@@ -89,7 +89,8 @@ class AjaxController extends Controller
             $c->size                = $fileData['size'];
             $c->collection_name     = $fileData['mediaType'];
             $c->disk                = $disk;
-            $c->media_category_id   = 1;
+            $c->media_category_id   = ($request->has('myImgType'))? $request->myImgType: 1;
+
             $c->file_ext            = $fileData['extension'];
             $list->media()->save($c);
 

@@ -77,7 +77,7 @@ return [
             'view' => '0',
             'selectable' => '1',
             'showMedia' => '1',
-            'showMediaCategory' => '0',
+            'showMediaCategory' => '1',
             'showMediaImages' => '1',
             'showMediaDoc' => '1',
             'showSeo' => '1',
