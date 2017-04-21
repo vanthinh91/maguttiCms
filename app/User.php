@@ -42,6 +42,14 @@ class User extends Authenticatable
     }
 
     /**
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->is_active == 1;
+    }
+
+    /**
      * @return array
      */
     function getFieldSpec ()
