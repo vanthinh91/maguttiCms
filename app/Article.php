@@ -2,9 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Article extends Model
 {
     use \Dimsav\Translatable\Translatable;
+    use \App\MaguttiCms\Filter\FilterableTrait;
 
     /**
      * Attributes that can be translated.

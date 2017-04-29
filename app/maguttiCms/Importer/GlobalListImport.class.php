@@ -1,4 +1,4 @@
-<?php namespace App\LaraCms\Admin\Importer;
+<?php namespace App\MaguttiCms\Admin\Importer;
 
 use App\Author;
 use App\Category;
@@ -8,7 +8,7 @@ use App;
  * Importa i dati dal fileone
  *
  * Class GlobalListImport
- * @package App\LaraCms\Admin\Importer
+ * @package App\MaguttiCms\Admin\Importer
  */
 class GlobalListImport extends ImportHelper
 {

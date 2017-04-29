@@ -54,14 +54,15 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
-        'adminauth' => \App\MaguttiCms\Middleware\AdminAuthenticate::class,
-
-
         /*
         |--------------------------------------------------------------------------
         | maguttiCms add-ons
         |--------------------------------------------------------------------------
         */
+
+        'adminauth' => \App\MaguttiCms\Middleware\AdminAuthenticate::class,
+        'localone'  => \App\MaguttiCms\Middleware\Localization::class,
+        'cors'      => \App\MaguttiCms\Middleware\Cors::class,
 
         /**** OTHER MIDDLEWARE ****/
         'localize'               => 'Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes',

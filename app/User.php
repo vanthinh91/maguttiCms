@@ -8,6 +8,7 @@ use App\MaguttiCms\Notifications\UserResetPasswordNotification as UserResetPassw
 class User extends Authenticatable
 {
     use Notifiable;
+    use \App\MaguttiCms\Filter\FilterableTrait;
 
     /**
      * The attributes that are mass assignable.

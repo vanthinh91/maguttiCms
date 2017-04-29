@@ -4,15 +4,23 @@ use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| API LOCALIZED
 |--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+Route::group(['prefix' => 'v1','middleware' =>'localone'], function () {
+
+    Route::group(['prefix' => 'search'], function () {
+        /** free willy search routes  */
+        Route::get('/{model}',  '\App\MaguttiCms\Api\V1\Controllers\SearchController@lista');
+
+    });
+
+    Route::group(['prefix' => 'services', 'middleware' => 'cors'], function () {
+        /** free willy  routes */
+        Route::get('/{model}',      '\App\MaguttiCms\Api\V1\Controllers\ServicesController@modellist');
+        Route::get('/{model}/{id}', '\App\MaguttiCms\Api\V1\Controllers\ServicesController@show');
+    });
+
+});

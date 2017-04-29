@@ -1,8 +1,8 @@
-<?php namespace App\LaraCms\Admin\Importer;
+<?php namespace App\MaguttiCms\Admin\Importer;
 
 /**
  * Class ExportHelper
- * @package App\LaraCms\Tools
+ * @package App\MaguttiCms\Tools
  */
 
 use Illuminate\Support\Facades\Storage;
