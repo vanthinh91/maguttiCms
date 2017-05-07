@@ -20,15 +20,24 @@
         <meta name="robots" content="noindex">
     @endif
     <link href="{!! LaravelLocalization::getLocalizedURL( LaravelLocalization::getCurrentLocale() )!!}/" rel="canonical" />
+
     <link rel="icon" href="{!! asset('/favicon.ico') !!}" type="any" sizes="16x16">
-    <link rel="stylesheet" href="{!! mix('website/css/app.css')!!}">
-    <link rel="stylesheet" href="{!! mix('website/css/helper.css')!!}">
+        <!-- Latest compiled and minified CSS -->
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,700,300,500' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.assets').'website/css/animate.min.css')!!}">
+    <link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.assets').'website/css/ma_helper.css')!!}">
+    <link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.assets').'website/css/main.css')!!}">
     <link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.assets').'website/css/lib/maCookieEu.css')!!}">
+
     <!-- Owl Carousel Assets -->
     <link href="{!! asset(config('maguttiCms.admin.path.assets').'website/plugins/owl-carousel/owl.carousel.css')!!}" rel="stylesheet">
     <link href="{!! asset(config('maguttiCms.admin.path.assets').'website/plugins/owl-carousel/owl.theme.default.css')!!}" rel="stylesheet">
     <!-- Color box -->
     <link href="{!! asset(config('maguttiCms.admin.path.assets').'website/plugins/colorbox/colorbox.css')!!}" rel="stylesheet">
+
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -71,43 +80,39 @@
         </footer>
     @show
 
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
-    <script type="text/javascript">
-
-        var urlAjaxHandler  = "{{ LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(),URL::to( '' )) }}";
-        var _LANG           = "{{ LaravelLocalization::getCurrentLocale()}} ";
-        var _WEBSITE_NAME	= "{!! config('maguttiCms.website.option.app.name')!!}";
-        var imageScroll     = "{!! asset(config('maguttiCms.admin.path.assets').'website/images/up.png') !!}";
-    </script>
+{{-- default js to show in all pages --}}
+<script type="text/javascript">
+    var urlAjaxHandler  = "{{ LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(),URL::to( '' )) }}";
+    var _LANG           = "{{ LaravelLocalization::getCurrentLocale()}} ";
+    var _WEBSITE_NAME	= "{!! config('maguttiCms.website.option.app.name')!!}";
+    var imageScroll     = "{!! asset(config('maguttiCms.admin.path.assets').'website/images/up.png') !!}";
+</script>
 
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script type="text/javascript" src="{!! mix('website/js/botomera.js')!!}"></script>
-    <!-- JS Implementing Plugins -->
-    <script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/carousel-swipe.js')!!}"></script>
-    <script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins//wow-animations/js/wow.min.js')!!}"></script>
-    <script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/owl-carousel/owl.carousel.min.js')!!}"></script>
-    <script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/colorbox/jquery.colorbox.js')!!}"></script>
-    <script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.plugins').'bootbox.js') !!}"></script>
-    <script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/js/app.js')!!}"></script>
-    <!-- JS Implementing Plugins -->
-    <script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/back-to-top.js')!!}"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/carousel-swipe.js')!!}"></script>
+<script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins//wow-animations/js/wow.min.js')!!}"></script>
+<script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/owl-carousel/owl.carousel.min.js')!!}"></script>
+<script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/colorbox/jquery.colorbox.js')!!}"></script>
+<script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.plugins').'bootbox.js') !!}"></script>
+<script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/js/app.js')!!}"></script>
+<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/back-to-top.js')!!}"></script>
 
-    @yield('footerjs')
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            App.init();
-            App.initWoW();
-            App.iniServiceOwl();
-            App.initTouchBTSlider('#myCarousel');
-            App.initColorBox()
-        });
-    </script>
-
-    @include('website.partials.widgets_cookie')
+@yield('footerjs')
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        App.init();
+        App.initWoW();
+        App.iniServiceOwl();
+        App.initTouchBTSlider('#myCarousel');
+        App.initColorBox()
+    });
+</script>
+@include('website.partials.widgets_cookie')
 </body>
 </html>

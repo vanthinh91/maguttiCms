@@ -198,6 +198,7 @@ return [
         'Clockwork\Support\Laravel\ClockworkServiceProvider',
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
 
        /*
        |--------------------------------------------------------------------------

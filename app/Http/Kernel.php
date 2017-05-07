@@ -36,6 +36,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
+            \Barryvdh\Cors\HandleCors::class,
         ],
     ];
 
@@ -62,7 +63,7 @@ class Kernel extends HttpKernel
 
         'adminauth' => \App\MaguttiCms\Middleware\AdminAuthenticate::class,
         'localone'  => \App\MaguttiCms\Middleware\Localization::class,
-        'cors'      => \App\MaguttiCms\Middleware\Cors::class,
+
 
         /**** OTHER MIDDLEWARE ****/
         'localize'               => 'Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes',
@@ -74,5 +75,6 @@ class Kernel extends HttpKernel
         'permission'            => \Zizaco\Entrust\Middleware\EntrustPermission::class,
         'ability'               => \Zizaco\Entrust\Middleware\EntrustAbility::class,
         //'Clockwork\Support\Laravel\ClockworkMiddleware',
+
     ];
 }

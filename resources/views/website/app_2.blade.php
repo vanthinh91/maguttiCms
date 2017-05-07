@@ -21,20 +21,15 @@
     @endif
     <link href="{!! LaravelLocalization::getLocalizedURL( LaravelLocalization::getCurrentLocale() )!!}/" rel="canonical" />
     <link rel="icon" href="{!! asset('/favicon.ico') !!}" type="any" sizes="16x16">
-    <link rel="stylesheet" href="{!! mix('website/css/app.css')!!}">
     <link rel="stylesheet" href="{!! mix('website/css/helper.css')!!}">
+    <link rel="stylesheet" href="{!! mix('website/css/app.css')!!}">
     <link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.assets').'website/css/lib/maCookieEu.css')!!}">
     <!-- Owl Carousel Assets -->
     <link href="{!! asset(config('maguttiCms.admin.path.assets').'website/plugins/owl-carousel/owl.carousel.css')!!}" rel="stylesheet">
     <link href="{!! asset(config('maguttiCms.admin.path.assets').'website/plugins/owl-carousel/owl.theme.default.css')!!}" rel="stylesheet">
     <!-- Color box -->
     <link href="{!! asset(config('maguttiCms.admin.path.assets').'website/plugins/colorbox/colorbox.css')!!}" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- GA -->
+     <!-- GA -->
     @include('website.partials.widgets_ga')
 </head>
 <body>
@@ -76,38 +71,38 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-    <script type="text/javascript">
+<script type="text/javascript">
 
-        var urlAjaxHandler  = "{{ LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(),URL::to( '' )) }}";
-        var _LANG           = "{{ LaravelLocalization::getCurrentLocale()}} ";
-        var _WEBSITE_NAME	= "{!! config('maguttiCms.website.option.app.name')!!}";
-        var imageScroll     = "{!! asset(config('maguttiCms.admin.path.assets').'website/images/up.png') !!}";
-    </script>
+    var urlAjaxHandler  = "{{ LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(),URL::to( '' )) }}";
+    var _LANG           = "{{ LaravelLocalization::getCurrentLocale()}} ";
+    var _WEBSITE_NAME	= "{!! config('maguttiCms.website.option.app.name')!!}";
+    var imageScroll     = "{!! asset(config('maguttiCms.admin.path.assets').'website/images/up.png') !!}";
+</script>
 
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script type="text/javascript" src="{!! mix('website/js/botomera.js')!!}"></script>
-    <!-- JS Implementing Plugins -->
-    <script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/carousel-swipe.js')!!}"></script>
-    <script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins//wow-animations/js/wow.min.js')!!}"></script>
-    <script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/owl-carousel/owl.carousel.min.js')!!}"></script>
-    <script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/colorbox/jquery.colorbox.js')!!}"></script>
-    <script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.plugins').'bootbox.js') !!}"></script>
-    <script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/js/app.js')!!}"></script>
-    <!-- JS Implementing Plugins -->
-    <script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/back-to-top.js')!!}"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script type="text/javascript" src="{!! mix('website/js/botomera.js')!!}"></script>
+<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/carousel-swipe.js')!!}"></script>
+<script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins//wow-animations/js/wow.min.js')!!}"></script>
+<script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/owl-carousel/owl.carousel.min.js')!!}"></script>
+<script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/colorbox/jquery.colorbox.js')!!}"></script>
+<script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.plugins').'bootbox.js') !!}"></script>
+<script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/js/app.js')!!}"></script>
+<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="{!! asset(config('maguttiCms.admin.path.assets').'/website/plugins/back-to-top.js')!!}"></script>
 
-    @yield('footerjs')
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            App.init();
-            App.initWoW();
-            App.iniServiceOwl();
-            App.initTouchBTSlider('#myCarousel');
-            App.initColorBox()
-        });
-    </script>
+@yield('footerjs')
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        App.init();
+        App.initWoW();
+        App.iniServiceOwl();
+        App.initTouchBTSlider('#myCarousel');
+        App.initColorBox()
+    });
+</script>
 
-    @include('website.partials.widgets_cookie')
+@include('website.partials.widgets_cookie')
 </body>
 </html>
