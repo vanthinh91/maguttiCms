@@ -1,6 +1,7 @@
 <?php namespace App\MaguttiCms\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Validator;
 use Input;
@@ -73,7 +74,9 @@ class AdminPagesController extends Controller
             $objBuilder->select($table.'.*');
         }
         else {
-            $objBuilder  = $models::orderby($this->sort, $this->sortType);
+            $objBuilder  = $models::orderByRaw(
+                DB::raw($this->sort.' '.$this->sortType)
+            );
         }
         $this->searchFilter( $objBuilder );
         $articles = $objBuilder->paginate(config('maguttiCms.admin.list.item_per_pages'));
