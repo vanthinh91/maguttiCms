@@ -107,6 +107,15 @@
             App.initColorBox()
         });
     </script>
+    <script type="application/javascript">
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!'
+            }
+        })
+    </script>
 
     @include('website.partials.widgets_cookie')
 </body>
