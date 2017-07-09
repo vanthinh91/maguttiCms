@@ -13,4 +13,3 @@
         {!! trans('admin.message.no_item_found')!!}
     @endforelse
 </ul>
-

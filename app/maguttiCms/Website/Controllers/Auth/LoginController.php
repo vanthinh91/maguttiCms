@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Website\Controllers\Auth;
+<?php namespace App\maguttiCms\Website\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -40,13 +40,6 @@ class LoginController extends Controller
      */
     protected $articleRepo           = '';
 
-
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     /**
      * Create a new authentication controller instance.
      * and  setup  some localized  variables
@@ -66,6 +59,11 @@ class LoginController extends Controller
 
     }
 
+    /**
+     * Return the view to display
+     * the page with login form
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showLoginForm()
     {
         /*
@@ -73,17 +71,28 @@ class LoginController extends Controller
          */
         $article =$this->articleRepo->getBySlug('login');
         return view('website.auth.login',compact('article'));
-    }
+   }
 
-    /**
-     * Calculate the current Locale path  prefix if needed
-     * @return string
-     */
+   /*
+   |--------------------------------------------------------------------------
+   | Calculate the current Locale
+   | path prefix if needed
+   |--------------------------------------------------------------------------
+   | @return string
+   |
+   */
     protected function getRealLocale()
     {
         return (LaravelLocalization::getCurrentLocale()==LaravelLocalization::getDefaultLocale())?'':'/'.LaravelLocalization::getCurrentLocale();
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    |
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
     public function logout(Request $request)
     {
         $this->guard('users')->logout();
@@ -92,8 +101,12 @@ class LoginController extends Controller
 
         return redirect($this->redirectAfterLogout);
     }
+    public function redirectTo()
+    {
+        return '/@'.auth()->user()->username;
+    }
 
-    /**
+	/**
      * Handle a login request to the application.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -113,18 +126,21 @@ class LoginController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
-            if ($this->guard()->user()->isActive())
+            if ($this->guard()->user()->isActive()){
                 return $this->sendLoginResponse($request);
-            else
+            }
+            else {
                 $this->logout($request);
+                $this->incrementLoginAttempts($request);
+                return $this->sendInactiveUserLoginResponse($request);
+            }
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
         // to login and redirect the user back to the login form. Of course, when this
         // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
-
-        return $this->sendInactiveUserLoginResponse($request);
+        return $this->sendFailedLoginResponse($request);
     }
 
     /**

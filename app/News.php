@@ -1,8 +1,7 @@
-<?php
-
-namespace App;
+<?php namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 /**
  * Class News
@@ -11,13 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
 
-	use \Dimsav\Translatable\Translatable;
-	/**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'news';
+    use \Dimsav\Translatable\Translatable;
+    use GFTranslatableHelperTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -38,73 +32,97 @@ class News extends Model
      */
 	protected  $fieldspec				= [];
 
-	/**
-	 * @return mixed
-     */
-	public function media()
-	{
-		return $this->morphMany('App\Media', 'model')->orderBy('sort');
-	}
-
-	/**
-	 * @param $value
-     */
-	public function setDateAttribute($value)
-	{
-		$this->attributes['date'] = Carbon::parse($value);
-	}
-
-	/**
-	 * @param $value
-	 * @return string
-     */
-	public function getDateAttribute($value)
-	{
-		return Carbon::parse($value)->format('d-m-Y');
-	}
-
-	/**
-	 * @return string
-     */
-	public function getFormattedDate()
-	{
-  		return Carbon::parse($this->attributes['date'])->formatLocalized('%d %B %Y');
-	}
-
-	/**
-	 * @return array
-     */
-	function getFieldSpec ()
-    // set the specifications for this database table
+    /*
+   |--------------------------------------------------------------------------
+   |  RELATIONS
+   |--------------------------------------------------------------------------
+   */
+    public function media()
     {
-       
-		// build array of field specifications
+        return $this->morphMany('App\Media', 'model')->orderBy('sort');
+    }
+
+    public function tags(){
+        return $this->belongsToMany('App\Tag');
+    }
+
+    public function saveTags($values)
+    {
+        if(!empty($values))
+        {
+            $this->tags()->sync($values);
+        } else {
+            $this->tags()->detach();
+        }
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  DATE ATTRIBUTE
+    |--------------------------------------------------------------------------
+    */
+    public function setDateAttribute($value)
+    {
+        $this->attributes['date'] = Carbon::parse($value);
+
+    }
+
+    public function getDateAttribute($value)
+    {
+        //return Carbon::parse($value)->format('d-m-Y');
+        return Carbon::parse($value)->format('d-m-Y H:i:s');
+    }
+
+    public function getFormattedDate()
+    {
+        //return Carbon::parse($this->attributes['date'])->formatLocalized('%d %B %Y');
+        return Carbon::parse($this->attributes['date'])->format('d-m-Y H:i:s');
+    }
+
+
+
+
+	function getFieldSpec ()
+
+    {
+
         $this->fieldspec['id'] = [
             'type'     => 'integer',
             'minvalue' => 0,
             'pkey'     => 'y',
             'required' =>true,
             'label'    => 'id',
-            'hidden'   => '1',
-            'display'  => '0',
+            'hidden'   => 1,
+            'display'  => 0,
         ];
 		$this->fieldspec['date'] = [
-			'type'      =>'date',
+			'type'      =>'string',
 			'required'  => 1,
-			'hidden'    => '0',
+			'hidden'    => 0,
 			'label'     => 'Publish date',
 			'extraMsg'  => '',
-			'display'   =>  '1',
-			'cssClass'  => 'datepicker',
-			'cssClassElement' => 'col-sm-2',
+			'display'   =>  1,
+			'cssClass'  => 'datetimepicker',
+            //'cssClass'  => 'datepicker',
+			'cssClassElement' => 'col-sm-3',
 		];
+        $this->fieldspec['start_date'] = [
+            'type'      =>'date',
+            'required'  => 1,
+            'hidden'    => 0,
+            'label'     => 'Data Ora evento',
+            'extraMsg'  => '',
+            'display'   =>  1,
+            'cssClass'  => 'datetimepicker',
+            'cssClassElement' => 'col-sm-2',
+        ];
 		$this->fieldspec['title'] = [
 			'type'      =>'string',
 			'required'  => true,
-			'hidden'    => '0',
+			'hidden'    => 0,
 			'label'     => 'Title',
 			'extraMsg'  => '',
-			'display'   => '1',
+			'display'   => 1,
 		];
 		$this->fieldspec['slug'] = [
 			'type'      => 'string',
@@ -114,7 +132,7 @@ class News extends Model
 			'extraMsg'  => '',
 			'display'   =>  1,
 		];
-		$this->fieldspec['description'] = [	
+		$this->fieldspec['description'] = [
 			'type'      => 'text',
 			'size'      => 600,
 			'h'         => 300,
@@ -122,7 +140,7 @@ class News extends Model
 			'hidden'    => 0,
 			'label'     => 'Description',
 			'extraMsg'  => '',
-			'cssClass'  => 'ckeditor',
+			'cssClass'  => 'wyswyg',
 			'display'   => 1,
 		];
 		$this->fieldspec['tag'] = [
@@ -133,7 +151,7 @@ class News extends Model
 			'label_key'     => 'title',
 			'label'         => 'Tags',
             'required'      => true,
-			'display'       => '1',
+			'display'       => 1,
             'hidden'        => false,
 			'multiple'      => true,
 		];
@@ -148,7 +166,7 @@ class News extends Model
 		];
 		$this->fieldspec['image'] = [
 			'type'      =>'media',
-			'required'  => true,
+			'required'  => false,
 			'hidden'    => 0,
 			'label'     => 'Image',
 			'extraMsg'  => '',
@@ -156,7 +174,7 @@ class News extends Model
 			'mediaType' => 'Img',
 			'display'   => 1,
 		];
-		$this->fieldspec['doc'] = [	
+		$this->fieldspec['doc'] = [
 			'type'      =>'media',
 			'required'  =>'n',
 			'hidden'    => 0,
@@ -170,23 +188,23 @@ class News extends Model
             'type'     => 'integer',
             'required' => false,
             'label'    => 'Order',
-            'hidden'   => '0',
-            'display'  => '1',
+            'hidden'   => 0,
+            'display'  => 1,
         ];
         $this->fieldspec['pub'] = [
             'type'     => 'boolean',
             'required' => false,
-            'hidden'   => '0',
+            'hidden'   => 0,
             'label'    => trans('admin.label.active'),
-            'display'  => '1'
+            'display'  => 1
         ];
         $this->fieldspec['seo_title'] = [
             'type'     => 'string',
             'required' => 'n',
-            'hidden'   => '0',
+            'hidden'   => 0,
             'label'    => trans('admin.seo.title'),
             'extraMsg' => '',
-            'display'  => '1',
+            'display'  => 1,
         ];
         $this->fieldspec['seo_keywords'] = [
             'type'     => 'string',
@@ -209,40 +227,23 @@ class News extends Model
         $this->fieldspec['seo_no_index'] = [
             'type'     => 'boolean',
             'required' => false,
-            'hidden'   => '0',
+            'hidden'   => 0,
             'label'    => trans('admin.seo.no-index'),
-            'display'  => '0'
+            'display'  => 0
         ];
 	    return $this->fieldspec;
 	}
-	/**
-	 * Many-to-Many relations with Tag.
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-	 */
-	public function tags(){
-		return $this->belongsToMany('App\Tag');
-	}
 
-	/**
-	 * @param $values
-     */
-	public function saveTags($values)
-	{
-		if(!empty($values))
-		{
-			$this->tags()->sync($values);
-		} else {
-			$this->tags()->detach();
-		}
-	}
 
 	/**
 	 * @param $query
 	 * @param int $limit
      */
 	public function scopeLatest($query, $limit = 5)    {
-		$query->where('pub',1)->take($limit)->orderBy('date', 'desc');
+		$query->where('pub',1)->translatedContent()->take($limit)->orderBy('date', 'desc');
 	}
 
+	public function getPermalink() {
+		return '/news/'.$this->slug;
+	}
 }

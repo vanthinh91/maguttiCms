@@ -1,10 +1,10 @@
 <?php
 
-namespace App\MaguttiCms\Website\Controllers;
+namespace App\maguttiCms\Website\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\MaguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
-use App\MaguttiCms\Website\Repos\Product\ProductRepositoryInterface;
+use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
+use App\maguttiCms\Website\Repos\Product\ProductRepositoryInterface;
 use Input;
 use Validator;
 use App\Product;
@@ -12,11 +12,11 @@ use App\Domain;
 
 /**
  * Class ProductsController
- * @package App\MaguttiCms\Website\Controllers
+ * @package App\maguttiCms\Website\Controllers
  */
 class ProductsController extends Controller
 {
-	use \App\MaguttiCms\SeoTools\MaguttiCmsSeoTrait;
+	use \App\maguttiCms\SeoTools\laraCmsSeoTrait;
     /**
      * @var
      */
@@ -56,12 +56,15 @@ class ProductsController extends Controller
             return view('website.products', ['article' => $article, 'products' => $product]); //LISTA PRODOTTI
 
         }else{
-            $slugArray = explode('-',$product_slug);
-            $product = Product::where('id', $slugArray[0])
+            $product = Product::where('slug', $product_slug)
                 ->where('pub', 1)
                 ->first();
-            $this->setSeo($product);
-            return view('website.product_single', ['article' => $article, 'product' => $product]); //SINGOLO PRODOTTO
+			if ($product) {
+				$this->setSeo($product);
+				return view('website.product_single', ['article' => $article, 'product' => $product]); //SINGOLO PRODOTTO
+			}
+			else
+				return redirect('/');
         }
     }
 }

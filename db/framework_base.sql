@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Creato il: Gen 26, 2017 alle 16:46
--- Versione del server: 5.7.14
--- Versione PHP: 7.0.14
+-- Host: 127.0.0.1
+-- Creato il: Lug 09, 2017 alle 11:12
+-- Versione del server: 10.1.22-MariaDB
+-- Versione PHP: 7.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `maguttiCms`
+-- Database: `magutticms`
 --
 
 -- --------------------------------------------------------
@@ -35,8 +37,8 @@ CREATE TABLE `adminusers` (
   `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `real_password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   `is_active` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -45,7 +47,26 @@ CREATE TABLE `adminusers` (
 --
 
 INSERT INTO `adminusers` (`id`, `first_name`, `last_name`, `email`, `password`, `real_password`, `remember_token`, `created_at`, `updated_at`, `is_active`) VALUES
-(3, 'maguttiCms', 'Admin', 'cmsadmin@magutti.com', '$2y$10$ik68CVfADq6okmR1u0UYG.3wAHeazHRE3g2Se1X3b.XYG3dFi3/Dq', 'password', 'HZwW5uc1LBjJ7cFjaMH0wKXy9XAir1r7YSFDRHfnNpouPE91dzjmiAwiCtQL', '0000-00-00 00:00:00', '2017-01-03 15:30:23', 1);
+(1, 'GF', 'Admin', 'cmsadmin@magutti.com', '$2y$10$o1FptJnzf3CFEX/2TUZG9.34BvuADyLhJuj1xL/Am9mJXHL1bnFx6', 'password', 'DSAJ3b2zQ4aZSvaUAqsOG7JiWDQN4lRyHgsRpausvVHrXJhqVkdsoxJfZHPF', '0000-00-00 00:00:00', '2017-07-09 09:11:07', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `adminuser_role`
+--
+
+DROP TABLE IF EXISTS `adminuser_role`;
+CREATE TABLE `adminuser_role` (
+  `adminuser_id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `adminuser_role`
+--
+
+INSERT INTO `adminuser_role` (`adminuser_id`, `role_id`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -68,15 +89,15 @@ CREATE TABLE `articles` (
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `banner` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `banner` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sort` int(11) NOT NULL,
   `pub` tinyint(4) DEFAULT '1',
   `top_menu` tinyint(4) DEFAULT '1',
   `template_id` int(11) DEFAULT NULL,
   `created_by` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -84,20 +105,16 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`id`, `domain`, `id_parent`, `id_template`, `menu_title`, `title`, `subtitle`, `intro`, `abstract`, `description`, `slug`, `doc`, `image`, `banner`, `link`, `sort`, `pub`, `top_menu`, `template_id`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'home', '', 'Iscrizione concorso « Gewiss Professional.png', '', '', 100, 1, 1, 0, 0, '2016-07-04 06:54:35', '2016-12-29 11:43:39'),
-(2, '', 1, 0, NULL, '', NULL, NULL, NULL, '', 'about', '', '55609-gnaro-01.jpg', '', '', 200, 1, 1, 0, 0, '2016-07-04 06:56:59', '2017-01-03 14:44:50'),
-(3, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'privacy', '', '', '', '', 300, 1, 0, 0, 0, '2016-07-04 07:11:17', '2016-12-27 16:30:22'),
-(4, '', 1, 0, NULL, '', NULL, NULL, NULL, '', 'contacts', '', '', '', '', 700, 1, 1, 0, 0, '2016-07-04 07:11:39', '2016-12-27 16:30:30'),
-(5, '', 1, 0, NULL, '', NULL, NULL, NULL, '', 'products', '', '', '', '', 400, 1, 1, 0, 0, '2016-07-04 07:20:37', '2016-12-27 16:30:22'),
-(6, '', 1, 0, NULL, '', NULL, NULL, NULL, '', 'news', '', '34660-on-sale-icon.jpg', '', '', 600, 1, 1, 0, 0, '2016-07-04 07:59:05', '2016-12-27 16:30:24'),
-(7, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'login', '', '', '', '', 10000, 1, 0, 0, 0, '2016-08-09 13:12:14', '2016-12-27 16:30:15'),
-(8, '', 9, 0, NULL, '', NULL, NULL, NULL, '', 'user-dashboard', '', '', '', '', 12000, 1, 0, 0, 0, '2016-08-09 13:24:04', '2016-12-27 14:01:35'),
-(9, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'reserved-area', '', '', '', '', 11000, 1, 0, 0, 0, '2016-08-10 07:16:26', '2016-12-27 16:30:18'),
-(10, '', 9, 0, NULL, '', NULL, NULL, NULL, '', 'user-profile', '', '', '', '', 13000, 1, 0, 0, 0, '2016-08-10 07:17:38', '2016-12-27 14:02:31'),
-(11, '', 1, 0, NULL, '', NULL, NULL, NULL, '', 'service', '', '', '', '', 500, 1, 1, 0, 0, '2016-12-27 16:25:28', '2016-12-31 08:24:38'),
-(12, '', 11, 0, NULL, '', NULL, NULL, NULL, '', 'open-source', '', '65196-fiocco.png', '', '', 510, 1, 0, 0, 0, '2016-12-27 17:10:47', '2016-12-29 09:11:57'),
-(13, '', 11, 0, NULL, '', NULL, NULL, NULL, '', 'multilanguage', '', '48228-fiocco.png', '', '', 520, 1, 0, 0, 0, '2016-12-27 17:16:25', '2016-12-29 09:12:27'),
-(14, '', 11, 0, NULL, '', NULL, NULL, NULL, '', 'modular', '', '58645-fiocco.png', '', '', 530, 1, 0, 0, 0, '2016-12-27 17:17:21', '2016-12-29 09:11:26');
+(1, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'home', '', '', '', '', 0, 1, 0, 0, 0, '2016-07-04 06:54:35', '2017-04-21 15:47:59'),
+(2, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'company', '', '', '', '', 100, 1, 1, 0, 0, '2016-07-04 06:56:59', '2017-04-21 15:48:05'),
+(3, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'privacy', '', '', '', '', 2000, 1, 0, 0, 0, '2016-07-04 07:11:17', '2017-04-21 15:47:43'),
+(4, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'contacts', '', '', '', '', 400, 1, 1, 0, 0, '2016-07-04 07:11:39', '2017-04-21 15:47:31'),
+(5, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'products', '', '', '', '', 200, 1, 1, 0, 0, '2016-07-04 07:20:37', '2017-04-21 15:47:27'),
+(6, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'news', '', '', '', '', 300, 1, 1, 0, 0, '2016-07-04 07:59:05', '2017-04-21 15:48:25'),
+(7, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'login', '', '', '', '', 1000, 1, 0, 0, 0, '2016-08-09 13:12:14', '2017-04-21 15:47:35'),
+(8, '', 9, 0, NULL, '', NULL, NULL, NULL, '', 'user-dashboard', '', '', '', '', 1200, 1, 0, 0, 0, '2016-08-09 13:24:04', '2017-04-21 15:47:37'),
+(9, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'reserved-area', '', '', '', '', 1100, 1, 0, 0, 0, '2016-08-10 07:16:26', '2017-04-21 15:47:36'),
+(10, '', 9, 0, NULL, '', NULL, NULL, NULL, '', 'user-profile', '', '', '', '', 1300, 1, 0, 0, 0, '2016-08-10 07:17:38', '2017-04-21 15:47:41');
 
 -- --------------------------------------------------------
 
@@ -122,8 +139,8 @@ CREATE TABLE `article_translations` (
   `seo_no_index` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `update_by` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -131,88 +148,26 @@ CREATE TABLE `article_translations` (
 --
 
 INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `menu_title`, `title`, `subtitle`, `intro`, `description`, `abstract`, `seo_title`, `seo_description`, `seo_keywords`, `seo_no_index`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'it', '', 'The Cms for web artisan', 'LaraCms', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>', '', '', '', '', '1', 0, 0, '2016-07-04 07:53:04', '2016-12-29 11:43:39'),
-(2, 1, 'en', '', 'LaraCms', 'The Cms for web artisan', NULL, '', '', 'laraCms - free open source CMS based on the Laravel PHP Framework', '', '', '', 0, 0, '2016-07-04 07:53:04', '2016-12-29 11:43:10'),
-(3, 2, 'it', '', 'Azienda', '', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '', '', '', '', 0, 0, '2016-07-04 07:53:13', '2016-12-29 09:21:02'),
-(4, 2, 'en', 'titolo', 'Company', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a liber', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '', '', '', '', 0, 0, '2016-07-04 07:53:13', '2016-12-27 16:51:04'),
-(5, 3, 'it', '', 'Privacy', '', NULL, '', NULL, '', '', '', '', 0, 0, '2016-07-04 07:53:28', '2016-07-04 07:53:28'),
-(6, 3, 'en', '', 'Privacy', '', NULL, '', NULL, '', '', '', '', 0, 0, '2016-07-04 07:53:28', '2016-07-04 10:51:02'),
-(7, 5, 'it', '', 'Prodotti', '', NULL, '', NULL, '', '', '', '', 0, 0, '2016-07-04 07:53:38', '2016-07-04 10:51:40'),
-(8, 5, 'en', '', 'Products', '', NULL, '', NULL, '', '', '', '', 0, 0, '2016-07-04 07:53:38', '2016-07-04 10:51:09'),
-(9, 4, 'it', '', 'Contatti', '', NULL, '', NULL, '', '', '', '', 0, 0, '2016-07-04 07:54:32', '2016-07-04 07:54:32'),
-(10, 4, 'en', '', 'Contacts', '', NULL, '', NULL, '', '', '', '', 0, 0, '2016-07-04 07:54:32', '2016-07-04 10:51:23'),
-(13, 6, 'it', '', 'News', '', NULL, '', NULL, '', '', '', '', 0, 0, '2016-08-04 11:24:58', '2016-08-04 11:24:58'),
-(14, 6, 'en', 'News', 'News', '', NULL, '', NULL, '', '', '', '', 0, 0, '2016-08-04 11:24:58', '2016-12-27 14:02:09'),
+(1, 1, 'it', 'Home', 'The Cms for web artisan', 'maguttiCms', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>', '', '', '', '', '0', 0, 0, '2016-07-04 07:53:04', '2017-04-21 13:51:49'),
+(2, 1, 'en', 'Home', 'maguttiCms', 'The Cms for web artisan', NULL, '', '', '', '', '', '', 0, 0, '2016-07-04 07:53:04', '2016-12-29 11:43:10'),
+(3, 2, 'it', 'Azienda', 'Azienda', '', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '', '', '', '', 0, 0, '2016-07-04 07:53:13', '2016-12-29 09:21:02'),
+(4, 2, 'en', 'Company', 'Company', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a liber', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '', '', '', '', 0, 0, '2016-07-04 07:53:13', '2016-12-27 16:51:04'),
+(5, 3, 'it', 'Privacy', 'Privacy', '', NULL, '', NULL, '', '', '', '', 0, 0, '2016-07-04 07:53:28', '2016-07-04 07:53:28'),
+(6, 3, 'en', 'Privacy', 'Privacy', '', NULL, '', NULL, '', '', '', '', 0, 0, '2016-07-04 07:53:28', '2016-07-04 10:51:02'),
+(7, 5, 'it', 'Prodotti', 'Prodotti', '', NULL, '', '', '', '', '', '', 0, 0, '2016-07-04 07:53:38', '2017-04-21 15:46:49'),
+(8, 5, 'en', 'Products', 'Products', '', NULL, '', '', '', '', '', '', 0, 0, '2016-07-04 07:53:38', '2017-04-21 15:46:49'),
+(9, 4, 'it', 'Contatti', 'Contatti', '', NULL, '', '', '', '', '', '', 0, 0, '2016-07-04 07:54:32', '2017-04-21 15:47:10'),
+(10, 4, 'en', 'Contacts', 'Contacts', '', NULL, '', '', '', '', '', '', 0, 0, '2016-07-04 07:54:32', '2017-04-21 15:47:10'),
+(13, 6, 'it', 'News', 'News', '', NULL, '', '', '', '', '', '', 0, 0, '2016-08-04 11:24:58', '2017-04-21 15:46:59'),
+(14, 6, 'en', 'News', 'News', '', NULL, '', '', '', '', '', '', 0, 0, '2016-08-04 11:24:58', '2017-04-21 15:46:59'),
 (15, 7, 'it', 'login', 'login', 'login', NULL, '', NULL, 'Login', '', '', '', 0, 0, '2016-08-09 13:12:14', '2016-08-10 04:55:48'),
-(16, 7, 'en', 'Login', 'Login', '', NULL, '', NULL, 'Login', '', '', '', 0, 0, '2016-08-09 13:12:14', '2016-12-27 14:01:50'),
+(16, 7, 'en', 'Login', 'Login', 'Login', NULL, '', NULL, 'Login', '', '', '', 0, 0, '2016-08-09 13:12:14', '2016-12-27 14:01:50'),
 (17, 8, 'it', 'Dashboard', 'Dashboard', 'Dashboard', NULL, '', NULL, '', '', '', '', 0, 0, '2016-08-09 13:24:04', '2016-08-09 13:24:04'),
 (18, 8, 'en', 'Dashboard', 'Dashboard', '', NULL, '', NULL, '', '', '', '', 0, 0, '2016-08-09 13:24:04', '2016-12-27 14:01:35'),
 (19, 9, 'it', 'Reserved Area', 'Reserved Area', 'Reserved Area', NULL, '', NULL, '', '', '', '', 0, 0, '2016-08-10 07:16:26', '2016-08-10 07:16:26'),
 (20, 9, 'en', 'Reserved Area', 'Reserved area', '', NULL, '', NULL, '', '', '', '', 0, 0, '2016-08-10 07:16:26', '2016-12-27 14:02:51'),
 (21, 10, 'it', 'Profile', 'Profile', 'Profile', NULL, '', NULL, '', '', '', '', 0, 0, '2016-08-10 07:17:38', '2016-08-10 07:17:38'),
-(22, 10, 'en', 'User profile', 'User profile', '', NULL, '', NULL, '', '', '', '', 0, 0, '2016-08-10 07:17:38', '2016-12-27 14:02:31'),
-(23, 11, 'en', 'Services', 'Service', 'Here to help your idea grow', NULL, '<p>We develop made-to-measure innovative design solutions to boost what you have in mind.</p>', '', '', '', '', '', 0, 0, '2016-12-27 16:25:28', '2016-12-31 08:24:38'),
-(24, 11, 'it', '', 'Servizi', 'Here to help your idea grow', NULL, '<p>We develop made-to-measure innovative design solutions to boost what you have in mind.</p>', '', '', '', '', '', 0, 0, '2016-12-27 16:25:28', '2016-12-31 08:24:38'),
-(25, 12, 'en', 'Open Source', 'Open Source', 'Open Source', NULL, '', '', '', '', '', '', 0, 0, '2016-12-27 17:10:47', '2016-12-27 17:10:47'),
-(26, 12, 'it', 'Open Source', 'Open Source', 'Open Source', NULL, '', '', '', '', '', '', 0, 0, '2016-12-27 17:10:47', '2016-12-29 09:11:57'),
-(27, 13, 'en', 'Multilanguage', 'Multilanguage', 'Multilanguage', NULL, '<p><strong>Lorem Ipsum</strong> &egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', '', '', '', '', '', 0, 0, '2016-12-27 17:16:25', '2016-12-27 17:16:25'),
-(28, 13, 'it', 'Multilanguage', 'Multilanguage', 'Multilanguage', NULL, '', '', '', '', '', '', 0, 0, '2016-12-27 17:16:25', '2016-12-29 09:12:27'),
-(29, 14, 'en', 'Modular', 'Modular', 'Modular', NULL, '<p><strong>Lorem Ipsum</strong> &egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', '', '', '', '', '', 0, 0, '2016-12-27 17:17:21', '2016-12-27 17:17:21'),
-(30, 14, 'it', 'Modular', 'Modular', 'Modular', NULL, '', '', '', '', '', '', 0, 0, '2016-12-27 17:17:21', '2016-12-29 09:11:26');
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `attributes`
---
-
-DROP TABLE IF EXISTS `attributes`;
-CREATE TABLE `attributes` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `domain` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `code` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8_unicode_ci,
-  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `sort` int(11) NOT NULL,
-  `pub` tinyint(4) DEFAULT '1',
-  `created_by` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `attribute_product`
---
-
-DROP TABLE IF EXISTS `attribute_product`;
-CREATE TABLE `attribute_product` (
-  `product_id` int(10) UNSIGNED NOT NULL,
-  `attribute_id` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `attribute_translations`
---
-
-DROP TABLE IF EXISTS `attribute_translations`;
-CREATE TABLE `attribute_translations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `attribute_id` int(10) UNSIGNED NOT NULL,
-  `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `created_by` int(10) UNSIGNED NOT NULL,
-  `update_by` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+(22, 10, 'en', 'User profile', 'User profile', '', NULL, '', NULL, '', '', '', '', 0, 0, '2016-08-10 07:17:38', '2016-12-27 14:02:31');
 
 -- --------------------------------------------------------
 
@@ -302,8 +257,8 @@ CREATE TABLE `contacts` (
   `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` tinyint(4) DEFAULT '0',
   `created_by` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -655,8 +610,8 @@ CREATE TABLE `hpsliders` (
   `sort` int(11) NOT NULL,
   `is_active` tinyint(4) DEFAULT '1',
   `created_by` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -664,8 +619,8 @@ CREATE TABLE `hpsliders` (
 --
 
 INSERT INTO `hpsliders` (`id`, `title`, `description`, `icon`, `image`, `link`, `slug`, `sort`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'laraCms', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', NULL, 'laracms', 200, 1, 0, '2016-12-27 17:34:38', '2016-12-27 16:34:38'),
-(2, 'laraCms 5.3', 'A modular multilingual CMS built with Laravel 5.3', NULL, 'header1.jpg', NULL, 'laracms-53', 100, 1, 0, '2016-12-27 18:18:09', '2016-12-27 16:37:04');
+(1, 'maguttiCms', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', NULL, 'laracms', 200, 1, 0, '2016-12-27 17:34:38', '2016-12-27 16:34:38'),
+(2, 'maguttiCms 5.3', 'A modular multilingual CMS built with Laravel 5.3', NULL, 'header1.jpg', NULL, 'laracms-53', 100, 1, 0, '2016-12-27 18:18:09', '2016-12-27 16:37:04');
 
 -- --------------------------------------------------------
 
@@ -689,8 +644,8 @@ CREATE TABLE `media` (
   `manipulations` text COLLATE utf8_unicode_ci NOT NULL,
   `pub` tinyint(4) DEFAULT '1',
   `sort` int(10) UNSIGNED DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -740,8 +695,8 @@ CREATE TABLE `media_translations` (
   `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -842,23 +797,15 @@ CREATE TABLE `news` (
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `doc` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sort` int(11) NOT NULL,
   `pub` tinyint(4) DEFAULT '1',
   `created_by` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dump dei dati per la tabella `news`
---
-
-INSERT INTO `news` (`id`, `domain`, `date`, `title`, `description`, `slug`, `doc`, `image`, `link`, `sort`, `pub`, `created_by`, `created_at`, `updated_at`) VALUES
-(2, '', '2016-07-04', '', '', 'lorem-ipsum-1', '', '57671-placeholder.jpg', NULL, 10, 1, 0, '2016-12-27 18:07:44', '2016-12-27 17:07:44'),
-(3, '', '2015-07-04', '', '', 'lorem-ipsum-2', '', '96370-placeholder.jpg', NULL, 20, 1, 0, '2017-01-03 16:38:24', '2017-01-03 15:38:24');
 
 -- --------------------------------------------------------
 
@@ -874,8 +821,8 @@ CREATE TABLE `newsletters` (
   `sort` int(11) NOT NULL,
   `pub` tinyint(4) DEFAULT '1',
   `created_by` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -888,18 +835,9 @@ DROP TABLE IF EXISTS `news_tag`;
 CREATE TABLE `news_tag` (
   `news_id` int(10) UNSIGNED NOT NULL,
   `tag_id` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dump dei dati per la tabella `news_tag`
---
-
-INSERT INTO `news_tag` (`news_id`, `tag_id`, `created_at`, `updated_at`) VALUES
-(2, 1, '2016-12-27 14:46:58', '2016-12-27 14:46:58'),
-(2, 2, '2016-12-27 18:07:44', '2016-12-27 18:07:44'),
-(3, 3, '2016-12-27 18:08:52', '2016-12-27 18:08:52');
 
 -- --------------------------------------------------------
 
@@ -922,19 +860,9 @@ CREATE TABLE `news_translations` (
   `seo_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `update_by` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dump dei dati per la tabella `news_translations`
---
-
-INSERT INTO `news_translations` (`id`, `news_id`, `locale`, `title`, `description`, `abstract`, `subtitle`, `intro`, `seo_title`, `seo_description`, `seo_keywords`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 2, 'it', 'Lorem Ipsum', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>\r\n<p>In et elit a eros blandit vehicula cursus sed lacus. Donec a lectus lorem. Fusce lobortis, sapien quis finibus commodo, metus eros ultrices nibh, ut viverra dui quam eu nunc. Vestibulum risus lorem, tincidunt eu porttitor vitae, finibus in nibh. Sed non leo eget metus accumsan posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel pharetra leo.</p>\r\n<p>Donec ac purus posuere mi iaculis vehicula sit amet non ipsum. Phasellus molestie tempor mi vel tempor. In vel tincidunt quam. Maecenas ullamcorper, metus id egestas tempor, lorem libero consectetur quam, vel euismod nulla dolor sollicitudin ante. Donec ac mi facilisis, pretium magna quis, molestie enim. Praesent ornare purus id fringilla iaculis. Praesent hendrerit eros vitae sapien sollicitudin, eu aliquam magna semper. Pellentesque dictum leo sed lacus porta, vitae finibus odio tincidunt.</p>', NULL, NULL, NULL, '', '', '', 0, 0, '2016-07-04 10:31:53', '2016-07-04 08:31:53'),
-(2, 2, 'en', 'Lorem Ipsum', '<p><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncu</strong>s vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>\r\n<p>In et elit a eros blandit vehicula cursus sed lacus. Donec a lectus lorem. Fusce lobortis, sapien quis finibus commodo, metus eros ultrices nibh, ut viverra dui quam eu nunc. Vestibulum risus lorem, tincidunt eu porttitor vitae, finibus in nibh. Sed non leo eget metus accumsan posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel pharetra leo.</p>\r\n<p>Donec ac purus posuere mi iaculis vehicula sit amet non ipsum. Phasellus molestie tempor mi vel tempor. In vel tincidunt quam. Maecenas ullamcorper, metus id egestas tempor, lorem libero consectetur quam, vel euismod nulla dolor sollicitudin ante. Donec ac mi facilisis, pretium magna quis, molestie enim. Praesent ornare purus id fringilla iaculis. Praesent hendrerit eros vitae sapien sollicitudin, eu aliquam magna semper. Pellentesque dictum leo sed lacus porta, vitae finibus odio tincidunt.</p>', NULL, NULL, NULL, '1', '3', '2', 0, 0, '2016-12-26 13:16:50', '2016-12-26 12:16:50'),
-(3, 3, 'it', 'Lorem Ipsum 2', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ornare nisi a convallis ultrices. Vestibulum vitae justo venenatis, auctor arcu in, egestas tellus. Aliquam erat volutpat. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam auctor faucibus convallis. Etiam posuere cursus tellus quis bibendum. Sed aliquam dolor dui. Aenean nec fermentum libero. Ut et sapien eu lectus facilisis mattis nec quis orci. Aliquam erat volutpat. Pellentesque quis ipsum sed felis aliquam pretium. Aenean accumsan, arcu ac dignissim laoreet, leo lacus venenatis est, nec eleifend turpis arcu a leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>\r\n<p>Fusce leo est, tristique sed luctus vitae, pellentesque at nisi. Curabitur et porttitor metus. Sed cursus nibh arcu, ac suscipit enim mattis ut. Morbi tristique mauris velit, porttitor interdum ex pharetra quis. Etiam vel sapien auctor, eleifend lorem id, vulputate est. Pellentesque eget mi ac nulla elementum sagittis vel at ligula. Duis feugiat faucibus augue eu elementum. Donec in tellus quis velit molestie faucibus. Integer lacinia est vel diam blandit pellentesque. Phasellus eget felis in ante ultrices lacinia vitae lobortis ipsum. Praesent iaculis quis magna a aliquet. Aliquam erat volutpat. Morbi quis magna nisl. Nunc in leo turpis. Phasellus finibus aliquam dolor ac mollis.</p>', NULL, NULL, NULL, '', '', '', 0, 0, '2016-07-04 12:23:16', '2016-07-04 10:23:16'),
-(4, 3, 'en', 'Lorem Ipsum 2', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ornare nisi a convallis ultrices. Vestibulum vitae justo venenatis, auctor arcu in, egestas tellus. Aliquam erat volutpat. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam auctor faucibus convallis. Etiam posuere cursus tellus quis bibendum. Sed aliquam dolor dui. Aenean nec fermentum libero. Ut et sapien eu lectus facilisis mattis nec quis orci. Aliquam erat volutpat. Pellentesque quis ipsum sed felis aliquam pretium. Aenean accumsan, arcu ac dignissim laoreet, leo lacus venenatis est, nec eleifend turpis arcu a leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>\r\n<p>Fusce leo est, tristique sed luctus vitae, pellentesque at nisi. Curabitur et porttitor metus. Sed cursus nibh arcu, ac suscipit enim mattis ut. Morbi tristique mauris velit, porttitor interdum ex pharetra quis. Etiam vel sapien auctor, eleifend lorem id, vulputate est. Pellentesque eget mi ac nulla elementum sagittis vel at ligula. Duis feugiat faucibus augue eu elementum. Donec in tellus quis velit molestie faucibus. Integer lacinia est vel diam blandit pellentesque. Phasellus eget felis in ante ultrices lacinia vitae lobortis ipsum. Praesent iaculis quis magna a aliquet. Aliquam erat volutpat. Morbi quis magna nisl. Nunc in leo turpis. Phasellus finibus aliquam dolor ac mollis.</p>', NULL, NULL, NULL, '', '', '', 0, 0, '2016-07-04 12:50:24', '2016-07-04 10:50:24');
 
 -- --------------------------------------------------------
 
@@ -946,7 +874,7 @@ DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -961,8 +889,8 @@ CREATE TABLE `permissions` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `display_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -991,7 +919,7 @@ CREATE TABLE `products` (
   `subtitle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `video` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `sort` int(11) NOT NULL,
@@ -1002,58 +930,6 @@ CREATE TABLE `products` (
   `created_by` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dump dei dati per la tabella `products`
---
-
-INSERT INTO `products` (`id`, `category_id`, `title`, `subtitle`, `description`, `slug`, `image`, `doc`, `video`, `sort`, `pub`, `seo_title`, `seo_description`, `seo_keywords`, `created_by`, `created_at`, `updated_at`) VALUES
-(8, 1, '', '', '', 'prodotto-demo', 'displayVC.jpg', NULL, '', 160, 1, NULL, NULL, NULL, 0, '2016-07-04 07:21:52', '2016-12-29 09:07:49'),
-(9, 2, '', 'Superface', '', 'superface', 'superface_3-1.jpg', NULL, '', 10, 1, NULL, NULL, NULL, 0, '2016-12-27 18:37:24', '2016-12-29 09:05:26'),
-(10, 2, '', '', '', 'armour-climbing-helmet', 'armour_02.jpg', NULL, '', 170, 1, NULL, NULL, NULL, 0, '2016-12-29 08:56:05', '2016-12-29 09:07:50'),
-(11, 2, '', '', '', 'capela-side-table', 'gnaro_01.jpg', NULL, '', 20, 1, NULL, NULL, NULL, 0, '2016-12-29 08:57:54', '2016-12-29 09:05:28'),
-(12, 3, '', '', '', 'whomade-avant-craft', 'post-it-2.jpg', NULL, '', 30, 1, NULL, NULL, NULL, 0, '2016-12-29 08:59:26', '2016-12-29 09:05:33'),
-(13, 3, '', '', '', 'tajiki-handicraft', 'IMG_5264.jpg', NULL, '', 40, 1, NULL, NULL, NULL, 0, '2016-12-29 09:01:24', '2016-12-29 09:05:35'),
-(14, 1, '', '', '', 'kiepe-packaging', 'depliant-Picasso.jpg', NULL, '', 150, 1, NULL, NULL, NULL, 0, '2016-12-29 09:04:23', '2016-12-29 09:07:48');
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `product_models`
---
-
-DROP TABLE IF EXISTS `product_models`;
-CREATE TABLE `product_models` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `product_id` int(10) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `sort` int(11) NOT NULL,
-  `pub` tinyint(4) DEFAULT '1',
-  `created_by` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `product_model_translations`
---
-
-DROP TABLE IF EXISTS `product_model_translations`;
-CREATE TABLE `product_model_translations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `product_model_id` int(10) NOT NULL,
-  `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `created_by` int(10) UNSIGNED NOT NULL,
-  `update_by` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1079,26 +955,6 @@ CREATE TABLE `product_translations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dump dei dati per la tabella `product_translations`
---
-
-INSERT INTO `product_translations` (`id`, `product_id`, `locale`, `title`, `subtitle`, `description`, `doc`, `seo_title`, `seo_description`, `seo_keywords`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(3, 8, 'it', 'Prodotto Demo', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel risus vehicula, rhoncus augue in, bibendum felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>', NULL, '', '', '', 0, 0, '2016-07-04 07:21:52', '2016-12-29 08:54:13'),
-(4, 8, 'en', 'Product Demo', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel risus vehicula, rhoncus augue in, bibendum felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>', NULL, '', '', '', 0, 0, '2016-07-04 07:21:52', '2016-12-29 08:54:13'),
-(5, 9, 'en', 'Superface', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel risus vehicula, rhoncus augue in, bibendum felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>', NULL, '', '', '', 0, 0, '2016-12-27 18:37:24', '2016-12-29 08:54:57'),
-(6, 9, 'it', 'Superface', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel risus vehicula, rhoncus augue in, bibendum felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>', NULL, '', '', '', 0, 0, '2016-12-27 18:37:24', '2016-12-29 08:54:57'),
-(7, 10, 'en', 'Armour climbing helmet', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel risus vehicula, rhoncus augue in, bibendum felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos</p>', NULL, '', '', '', 0, 0, '2016-12-29 08:56:05', '2016-12-29 08:56:05'),
-(8, 10, 'it', 'Armour climbing helmet', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel risus vehicula, rhoncus augue in, bibendum felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos</p>', NULL, '', '', '', 0, 0, '2016-12-29 08:56:05', '2016-12-29 08:56:05'),
-(9, 11, 'en', 'Capela side table', '', '<p>From the traditional iron processing as typical in Camonica Valley, Whomade develops with Uberto Gnaro a series of objects inspired by the simple forms of buckets and pans belonging to the local rural culture. The roast chestnut pot is the symbolic mother element for all the collection: overturned, manipulated and transformed, it passes on the dominant gene to a numerous kind of objects, all dedicated to the contemporary home, able to directly give back an idea of a frugal, simple and reassuring world</p>', NULL, '', '', '', 0, 0, '2016-12-29 08:57:54', '2016-12-29 08:57:54'),
-(10, 11, 'it', 'Capela side table', '', '<p>From the traditional iron processing as typical in Camonica Valley, Whomade develops with Uberto Gnaro a series of objects inspired by the simple forms of buckets and pans belonging to the local rural culture. The roast chestnut pot is the symbolic mother element for all the collection: overturned, manipulated and transformed, it passes on the dominant gene to a numerous kind of objects, all dedicated to the contemporary home, able to directly give back an idea of a frugal, simple and reassuring world</p>', NULL, '', '', '', 0, 0, '2016-12-29 08:57:54', '2016-12-29 08:57:54'),
-(11, 12, 'en', 'Whomade Avant-craft', '', '<p>Start-up development, strategic and&nbsp;marketing&nbsp;direction&nbsp;for the Whomade Avant-craft brand.</p>', NULL, '', '', '', 0, 0, '2016-12-29 08:59:26', '2016-12-29 08:59:26'),
-(12, 12, 'it', 'Whomade Avant-craft', '', '<p>Start-up development, strategic and&nbsp;marketing&nbsp;direction&nbsp;for the Whomade Avant-craft brand.</p>', NULL, '', '', '', 0, 0, '2016-12-29 08:59:26', '2016-12-29 08:59:26'),
-(13, 13, 'en', 'Tajiki Handicraft', '', '<p>Strategic set-up and implementation of the development plan for the Tajik handicraft sector. Total branding, visual identity and graphic design of the main communication tools (logo, catalog, labels, etc..) for new Tajikistan craft brand</p>', NULL, '', '', '', 0, 0, '2016-12-29 09:01:24', '2016-12-29 09:01:24'),
-(14, 13, 'it', 'Tajiki Handicraft', '', '<p>Strategic set-up and implementation of the development plan for the Tajik handicraft sector. Total branding, visual identity and graphic design of the main communication tools (logo, catalog, labels, etc..) for new Tajikistan craft brand</p>', NULL, '', '', '', 0, 0, '2016-12-29 09:01:24', '2016-12-29 09:01:24'),
-(15, 14, 'en', 'Kiepe packaging', '', '<p>New visual identity, graphic catalog, packaging design, realization of the website for the manufacturer of professional scissors in Premana district, Lecco.</p>', NULL, '', '', '', 0, 0, '2016-12-29 09:04:23', '2016-12-29 09:04:23'),
-(16, 14, 'it', 'Kiepe packaging', '', '<p>New visual identity, graphic catalog, packaging design, realization of the website for the manufacturer of professional scissors in Premana district, Lecco.</p>', NULL, '', '', '', 0, 0, '2016-12-29 09:04:23', '2016-12-29 09:04:23');
 
 -- --------------------------------------------------------
 
@@ -1245,8 +1101,8 @@ CREATE TABLE `roles` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `display_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1262,21 +1118,21 @@ INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `role_adminuser`
+-- Struttura della tabella `role_user`
 --
 
-DROP TABLE IF EXISTS `role_adminuser`;
-CREATE TABLE `role_adminuser` (
+DROP TABLE IF EXISTS `role_user`;
+CREATE TABLE `role_user` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `role_adminuser`
+-- Dump dei dati per la tabella `role_user`
 --
 
-INSERT INTO `role_adminuser` (`user_id`, `role_id`) VALUES
-(3, 1);
+INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -1321,8 +1177,8 @@ CREATE TABLE `socials` (
   `sort` int(11) NOT NULL,
   `is_active` tinyint(4) DEFAULT '1',
   `created_by` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1389,8 +1245,8 @@ CREATE TABLE `tags` (
   `slug` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `created_by` int(10) UNSIGNED NOT NULL,
   `update_by` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1414,8 +1270,8 @@ CREATE TABLE `tag_translations` (
   `tag_id` int(10) UNSIGNED NOT NULL,
   `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1444,17 +1300,10 @@ CREATE TABLE `users` (
   `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `real_password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   `is_active` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dump dei dati per la tabella `users`
---
-
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `real_password`, `remember_token`, `created_at`, `updated_at`, `is_active`) VALUES
-(5, 'marco', 'marco@magutti.com', '$2y$10$pF7Zk02f5U8uLsTwwlMOo.yyofFmWy3yOVdAvwC5msJeoyQ0tTVU6', 'password', 'tMYff35pBQlexvQvpCm81WNGQAHVGNQkFCgJPw9Pskgu9MVOaQMwCxVaIpMy', '2017-01-03 14:37:35', '2017-01-03 14:42:57', 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -1466,6 +1315,13 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `real_password`, `rememb
 ALTER TABLE `adminusers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- Indici per le tabelle `adminuser_role`
+--
+ALTER TABLE `adminuser_role`
+  ADD PRIMARY KEY (`adminuser_id`,`role_id`),
+  ADD KEY `adminuser_role_role_id_foreign` (`role_id`);
 
 --
 -- Indici per le tabelle `articles`
@@ -1480,20 +1336,6 @@ ALTER TABLE `article_translations`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `article_translations_article_id_locale_unique` (`article_id`,`locale`),
   ADD KEY `article_translations_locale_index` (`locale`);
-
---
--- Indici per le tabelle `attributes`
---
-ALTER TABLE `attributes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `attribute_translations`
---
-ALTER TABLE `attribute_translations`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `attribute_translations_attribute_id_locale_unique` (`attribute_id`,`locale`),
-  ADD KEY `attribute_translations_locale_index` (`locale`);
 
 --
 -- Indici per le tabelle `categories`
@@ -1614,18 +1456,6 @@ ALTER TABLE `products`
   ADD UNIQUE KEY `products_slug_unique` (`slug`);
 
 --
--- Indici per le tabelle `product_models`
---
-ALTER TABLE `product_models`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `product_model_translations`
---
-ALTER TABLE `product_model_translations`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indici per le tabelle `product_translations`
 --
 ALTER TABLE `product_translations`
@@ -1649,9 +1479,9 @@ ALTER TABLE `roles`
   ADD UNIQUE KEY `roles_name_unique` (`name`);
 
 --
--- Indici per le tabelle `role_adminuser`
+-- Indici per le tabelle `role_user`
 --
-ALTER TABLE `role_adminuser`
+ALTER TABLE `role_user`
   ADD PRIMARY KEY (`user_id`,`role_id`),
   ADD KEY `role_user_role_id_foreign` (`role_id`);
 
@@ -1705,27 +1535,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT per la tabella `adminusers`
 --
 ALTER TABLE `adminusers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT per la tabella `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT per la tabella `article_translations`
 --
 ALTER TABLE `article_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
---
--- AUTO_INCREMENT per la tabella `attributes`
---
-ALTER TABLE `attributes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT per la tabella `attribute_translations`
---
-ALTER TABLE `attribute_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT per la tabella `categories`
 --
@@ -1775,7 +1595,7 @@ ALTER TABLE `media_translations`
 -- AUTO_INCREMENT per la tabella `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `newsletters`
 --
@@ -1785,7 +1605,7 @@ ALTER TABLE `newsletters`
 -- AUTO_INCREMENT per la tabella `news_translations`
 --
 ALTER TABLE `news_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `permissions`
 --
@@ -1795,22 +1615,12 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT per la tabella `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT per la tabella `product_models`
---
-ALTER TABLE `product_models`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT per la tabella `product_model_translations`
---
-ALTER TABLE `product_model_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `product_translations`
 --
 ALTER TABLE `product_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `provinces`
 --
@@ -1850,22 +1660,23 @@ ALTER TABLE `tag_translations`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- Limiti per le tabelle scaricate
 --
+
+--
+-- Limiti per la tabella `adminuser_role`
+--
+ALTER TABLE `adminuser_role`
+  ADD CONSTRAINT `adminuser_role_adminuser_id_foreign` FOREIGN KEY (`adminuser_id`) REFERENCES `adminusers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `adminuser_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `article_translations`
 --
 ALTER TABLE `article_translations`
   ADD CONSTRAINT `article_translations_article_id_foreign` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE;
-
---
--- Limiti per la tabella `attribute_translations`
---
-ALTER TABLE `attribute_translations`
-  ADD CONSTRAINT `attribute_translations_attribute_id_foreign` FOREIGN KEY (`attribute_id`) REFERENCES `attributes` (`id`) ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `domain_translations`
@@ -1906,17 +1717,18 @@ ALTER TABLE `product_translations`
   ADD CONSTRAINT `products_translations_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
--- Limiti per la tabella `role_adminuser`
+-- Limiti per la tabella `role_user`
 --
-ALTER TABLE `role_adminuser`
+ALTER TABLE `role_user`
   ADD CONSTRAINT `role_user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `adminusers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `tag_translations`
 --
 ALTER TABLE `tag_translations`
   ADD CONSTRAINT `tag_translations_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

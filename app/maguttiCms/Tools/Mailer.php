@@ -1,10 +1,4 @@
-<?php namespace App\MaguttiCms\Tools;
-
-/**
- * Created by Luca.
- * Date: 17/11/16
- * Time: 08:12
- */
+<?php namespace App\maguttiCms\Tools;
 
 use Illuminate\Mail\Mailer as Mail;
 

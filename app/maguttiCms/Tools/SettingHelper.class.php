@@ -1,23 +1,21 @@
-<?php namespace App\MaguttiCms\Tools;
+<?php namespace App\maguttiCms\Tools;
 
  use App\Setting;
 /**
  * Class Setting
- * @package App\MaguttiCms\Tools
+ * @package App\maguttiCms\Tools
  */
 class SettingHelper {
 
 	/**
-     * Static method to retrive
-     * a db config settin
 	 * @param $key
 	 * @return mixed
      */
-    static public function getOption($key)
-    {
+	static public function getOption($key)
+	{
 
-        $settingObj = Setting::where('Key',$key)->first();
-        return $settingObj->value;
-    }
+		$settingObj = Setting::where('Key',$key)->first();
+		return $settingObj->value;
+	}
 
 }	

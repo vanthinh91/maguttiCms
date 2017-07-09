@@ -12,26 +12,24 @@ class Social extends Model
 
 
     function getFieldSpec ()
-        // set the specifications for this database table
     {
 
-        // build array of field specifications
         $this->fieldspec['id'] = [
             'type'     => 'integer',
             'minvalue' => 0,
             'pkey'     => 'y',
             'required' => true,
             'label'    => 'id',
-            'hidden'   => '1',
-            'display'  => '0',
+            'hidden'   => 1,
+            'display'  => 0,
         ];
         $this->fieldspec['title']    = [
             'type'      => 'string',
             'required'  => true,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => 'Social',
             'extraMsg'  => '',
-            'display'   => '1',
+            'display'   => 1,
         ];
         $this->fieldspec['icon'] = [
             'type'      =>  'string',
@@ -44,10 +42,10 @@ class Social extends Model
         $this->fieldspec['link'] = [
             'type'      => 'string',
             'required'  => true,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => 'Social link',
             'extraMsg'  => '',
-            'display'   => '1',
+            'display'   => 1,
 
         ];
         $this->fieldspec['image'] = [
@@ -68,22 +66,22 @@ class Social extends Model
             'hidden'    => 0,
             'label'     => 'Description',
             'extraMsg'  => '',
-            'cssClass'  => 'ckeditor',
+            'cssClass'  => 'wyswyg',
             'display'   => 1,
         ];
         $this->fieldspec['sort'] = [
             'type'     => 'integer',
             'required' => false,
             'label'    => 'Order',
-            'hidden'   => '0',
-            'display'  => '1',
+            'hidden'   => 0,
+            'display'  => 1,
         ];
         $this->fieldspec['is_active'] = [
             'type'     => 'boolean',
             'required' => false,
-            'hidden'   => '0',
+            'hidden'   => 0,
             'label'    => trans('admin.label.active'),
-            'display'  => '1'
+            'display'  => 1
         ];
       return $this->fieldspec;
     }

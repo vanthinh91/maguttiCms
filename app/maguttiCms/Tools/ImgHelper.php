@@ -29,15 +29,14 @@ filter - Filters that will be applied to the image after resizing and before enc
 	)
 */
 
-namespace App\MaguttiCms\Tools;
+namespace App\maguttiCms\Tools;
 
 use Image;
 
 /**
  * imgHelper
  */
-class ImgHelper
-{
+class ImgHelper {
 	protected $path_repository;
 	protected $path_save;
 	protected $image_matte;
@@ -66,7 +65,7 @@ class ImgHelper
 				return $this->path_repository.'placeholder.png';
 		}
 		else {
-			if (file_exists($this->path_repository.$file_name))
+			if ($file_name && file_exists($this->path_repository.$file_name))
 				return $this->path_repository.$file_name;
 			else
 				return $this->path_repository.'placeholder.png';
@@ -74,7 +73,7 @@ class ImgHelper
 	}
 
 	// returns default value for argument if missing
-	private function arg ($args, $arg_name) {
+	private function arg($args, $arg_name) {
 		return (isset($args[$arg_name]))? $args[$arg_name]: $this->defaults[$arg_name];
 	}
 
@@ -197,7 +196,7 @@ class ImgHelper
 		}
 		else {
 			// save the generated image;
-			$obj->save($this->path_save.$new_name);
+			$obj->save($this->path_save.$new_name, $q);
 
 			if ($this->arg($args, 'e'))
 				echo '/'.$this->path_save.$new_name;
@@ -214,5 +213,10 @@ class ImgHelper
 			return '/'.$this->path_save.$new_name;
 		else
 			return $this->get($src, $args);
+	}
+
+	// returns the url to the unaltered image
+	public function get_url($src) {
+		return '/'.$this->resolve_path($src, false);
 	}
 }

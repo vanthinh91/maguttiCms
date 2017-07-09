@@ -32,14 +32,10 @@ class CreateMediaTable extends Migration
             $table->text('manipulations');
             $table->tinyInteger('pub')->nullable()->default(1);
             $table->unsignedInteger('sort')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
-            $table->string('title', 255);
-
-            $table->index(['model_id', 'model_type'], 'media_model_id_model_type_index');
-
-            
-
-        });
+          });
     }
 
     /**

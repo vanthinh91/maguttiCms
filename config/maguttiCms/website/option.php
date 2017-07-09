@@ -5,18 +5,18 @@ return [
     'app' => [
         'name'	   => 'maguttiCms',
         'address'  => '5.3 maguttiCms Street',
-        'locality' => 'Milan - Italy',
+        'locality' => 'Bergamo - Italy',
         'lat'      => '45.612310',
         'lng'      => '9.694187',
         'phone'	   => '+39 0363.123456',
         'fax'	   => '+39 035.123456',
-        'vat'	   => 'P.IVA: XXXXXXXXX',
-        'email'	   => 'support@magutti.com',
+        'vat'	   => 'XXXXXXXXX',
+        'email'	   => 'hello@magutti.com',
 
     ],
     'email' => [
-        'default'	   => 'support@magutti.com',
-        'footer'       => '© Copyright  maguttiCms',
+        'default'	   => 'hello@magutti.com',
+        'footer'       => '© Copyright  magutti',
     ],
 
     'news' => [
@@ -29,4 +29,5 @@ return [
         'bottom'	  => '3',
     ],
 
+	'js_localization' => ['website','message'],
 ];

@@ -12,6 +12,15 @@
                         data-placement="bottom" rel="tooltip">
                         <i class="fa fa-save  color-main"></i>
                     </a>
+                    @if($pageConfig['copy']==1 && $article->id!='')
+                        <a  class="btn btn-default btn-lg "
+                            href="{{ ma_get_admin_copy_url($article) }}"
+                            title="{!! trans('admin.label.copy')!!}"
+                            data-toggle="tooltip"
+                            data-placement="bottom" rel="tooltip">
+                            <i class="fa fa-copy  color-main"></i>
+                        </a>
+                    @endif
                 @endif
                 @if ($view_name=='admin-list' && isset( $pageConfig['export_csv']) && $pageConfig['export_csv']==1)
                     <a class="btn btn-default btn-lg"

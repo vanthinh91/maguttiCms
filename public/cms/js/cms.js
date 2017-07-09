@@ -163,7 +163,7 @@ var Cms = function () {
                             }
                         );
                     });
-                    $.notify("Selected items had been deleted");
+                    $.notify("Selected items have been deleted");
                 }
             });
         });
@@ -204,13 +204,41 @@ var Cms = function () {
             });
         },
 
-        initUploadifive:function () {
-
-            $('#file_upload').uploadifive({
+        initUploadifiveSingle: function () {
+            $('.file_upload_single').each(function() {
+				var elem = $(this);
+				elem.uploadifive({
+					'auto'             : true,
+					//'checkScript'      : 'check-exists.php',
+					'queueID'          : 'queue_' + elem.data('key'),
+					'uploadScript'     : urlAjaxHandlerCms+'uploadifiveSingle',
+					'onAddQueueItem' : function(file) {
+						this.data('uploadifive').settings.formData = {
+							'timestamp' : '1451682058',
+							'token'     : '4b9fe8f26d865150e4b26b2a839d4f2b',
+							'Id'        :  $('#itemId').val(),
+							'myImgType' :  $('#myImgType').val(),
+							'model'     :  _CURMODEL,
+							'key'		: elem.data('key'),
+							"_token" :  $('[name=_token]').val()
+						};
+					},
+					'onUploadComplete' : function(file, data) {
+						var responseObj = jQuery.parseJSON(data);
+						var mediaType   =  responseObj.data;
+						var filename = responseObj.filename;
+						$('[name="' + elem.data('key') + '"]').val(filename);
+					}
+				});
+			});
+		},
+		initUploadifiveMedia:function () {
+			var elem = $('#file_upload_media');
+			elem.uploadifive({
                 'auto'             : true,
                 //'checkScript'      : 'check-exists.php',
-                'queueID'          : 'queue',
-                'uploadScript'     : urlAjaxHandlerCms+'uploadifive',
+                'queueID'          : 'queue_media',
+                'uploadScript'     : urlAjaxHandlerCms+'uploadifiveMedia',
                 'onAddQueueItem' : function(file) {
                     this.data('uploadifive').settings.formData = {
                         'timestamp' : '1451682058',
@@ -218,6 +246,7 @@ var Cms = function () {
                         'Id'        :  $('#itemId').val(),
                         'myImgType' :  $('#myImgType').val(),
                         'model'     :  _CURMODEL,
+						'key'		: elem.data('key'),
                         "_token" :  $('[name=_token]').val()
                     };
                 },
@@ -225,14 +254,15 @@ var Cms = function () {
                     var responseObj = jQuery.parseJSON(data);
                     var mediaType   =  responseObj.data;
                     $("#" + mediaType + "ListBody").load( urlAjaxHandlerCms + 'updateHtml/' + mediaType + '/' + _CURMODEL + '/'+ $('#itemId').val());
-                }
+                 }
             });
         },
+
 
         initTinymce: function () {
 
             tinymce.init({
-                selector: "textarea.ckeditor",
+                selector: "textarea.wyswyg",
                 plugins: [
                     "advlist autolink lists link image charmap print preview anchor",
                     "searchreplace visualblocks code fullscreen",
@@ -242,20 +272,46 @@ var Cms = function () {
             });
         },
 
+		initColorPicker: function () {
+			$('.color-picker').colorpicker({
+				'format': 'hex'
+			});
+		},
+
         initSortableList: function (object) {
 
             $(object).sortable({
                 revert: true,
                 update: function (ev, ui) {
                     var order = $(object).sortable('serialize');
-
-                    $("#info").load(urlAjaxHandlerCms + "updateMediaSortList?" + order);
+                 $("#info").load(urlAjaxHandlerCms + "updateMediaSortList?" + order);
                 }
             });
             $("ul#simpleGallery").disableSelection()
 
         },
-
+        initImageRelationList: function() {
+            $('[data-image-relation]').on('click', function () {
+                var targetField   = $(this).data('image-relation');
+                var targetFieldValue = $(this).data('image-id')
+                $("#"+targetField).val(targetFieldValue);
+                $('[data-image-relation="'+targetField +'"]').each(function (index) {
+                    $(this).removeClass('active');
+                    $(this).addClass('inactive');
+                });
+                $(this).addClass('active');
+            });
+        },
+        initDateTimePicker:function () {
+            $('.datetimepicker').datetimepicker({
+                controlType: 'select',
+                oneLine: true,
+                dateFormat: 'dd-mm-yy',
+                timeFormat: 'HH:mm:ss',
+                hourMin: 6,
+                hourMax: 22
+            });
+        }
     }
 }();
 
@@ -266,7 +322,7 @@ function deleteImages(obj) {
     bootbox.confirm("<h4>Are you sure?</h4>", function (confirmed) {
         var curItem = obj;
         var value = "";
-        var itemArray = curItem.id.split('_');
+        var itemArray = curItem.id.split('-');
         var field = itemArray[1];
         var boxObj = $("#box_" + itemArray[1] + "_" + itemArray[2]);
 

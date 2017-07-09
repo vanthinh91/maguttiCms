@@ -19,17 +19,16 @@ class Setting extends Model
      * @return array
      */
     public function getFieldSpec ()
-        // set the specifications for this database table
     {
-        // build array of field specifications
+
         $this->fieldspec['id'] = [
             'type'     => 'integer',
             'minvalue' => 0,
             'pkey'     => 'y',
             'required' =>true,
             'label'    => 'id',
-            'hidden'   => '1',
-            'display'  => '0',
+            'hidden'   => 1,
+            'display'  => 0,
         ];
         $this->fieldspec['domain'] = [
             'type'      => 'string',
@@ -42,18 +41,18 @@ class Setting extends Model
         $this->fieldspec['key'] = [
             'type'      => 'string',
             'required'  => true,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => 'Key',
             'extraMsg'  => '',
-            'display'   => '1',
+            'display'   => 1,
         ];
         $this->fieldspec['value'] = [
             'type'      => 'string',
             'required'  => true,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => 'Value',
             'extraMsg'  => '',
-            'display'   => '1',
+            'display'   => 1,
         ];
         $this->fieldspec['description'] = [
             'type'      => 'text',

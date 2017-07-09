@@ -5,16 +5,17 @@
 	<!-- Latest compiled and minified CSS -->
 
 
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300"/>
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300"/>
 	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.plugins').'uploadifive/uploadifive.css')!!}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.plugins').'select2/css/select2.min.css') !!}">
+	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.plugins').'selectize/selectize.bootstrap3.css') !!}">
 	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.plugins').'custom-scrollbar/jquery.mCustomScrollbar.min.css')!!}" />
+	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.plugins').'colorpicker/css/bootstrap-colorpicker.min.css')!!}" />
 	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.common_css').'ma_helper.css')!!}">
 	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.cms_css').'bootstrap-theme.css')!!}">
-	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.cms_css').'admin.css')!!}">
+	<link rel="stylesheet" href="{{ mix('cms/css/admin.css') }}">
 	<script>
         // init  some   global  variable
         var    _SERVER_PATH  = "{!! url('') !!}";
@@ -35,6 +36,7 @@
 <script src="{!! asset(config('maguttiCms.admin.path.cms_js').'cms.js')!!}"></script>
 <script src="{!! asset(config('maguttiCms.admin.path.plugins').'notify.min.js')!!}"></script>
 <script src="{!! asset(config('maguttiCms.admin.path.plugins').'tinymce/tinymce.min.js')!!}"></script>
+<script src="{!! asset(config('maguttiCms.admin.path.plugins').'colorpicker/js/bootstrap-colorpicker.min.js')!!}"></script>
 <script src="{!! asset(config('maguttiCms.admin.path.plugins').'bootbox.js') !!}"></script>
 <script>
     $(document).ready(function() {

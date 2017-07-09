@@ -5,7 +5,7 @@
  * Date: 03/07/2016
  * Time: 11:21
  */
-namespace App\MaguttiCms\Website\Repos\News;
+namespace App\maguttiCms\Website\Repos\News;
 
 interface NewsRepositoryInterface
 {

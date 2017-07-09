@@ -1,21 +1,24 @@
 <!--=== news side bar ===-->
 @inject('posts','App\News')
-<div class="col-md-3 mb25-max-sm">
-    <h3 class="color-4  mb15">Latest news</h3>
-    <div class="text-left wow flipInY animated  animated">
-        <a href="{{ LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(),URL::to( 'news' )) }}"><h2 class="color-main mb25 txt-upper text-extra-spaced-mid">{{ $article->subtitle }}</h2></a>
-    </div>
-    @foreach (  $posts->Latest(3)->get() as  $index => $posta )
-        <div class="media mb15 pb15 border-bottom-color-5">
-            <div class="media-left">
-                <a href="{{ LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(),URL::to( $article->slug.'/'.$posta->slug )) }}">
-                    <img class="media-object"  src="{!! ImgHelper::get($posta->image, config('magutti.image.small')) !!}" border="0" width="64" heigth="64">
-                </a>
-            </div>
-            <div class="media-body">
-                <h6 class="media-heading color-2 smallTitle">{{ $posta->date }}</h6>
-                <h4 class="media-heading color-4 small">{{ $posta->title }}</h4>
-            </div>
-        </div>
-    @endforeach
-</div> <!-- /end news sidebar -->
+<h3>Latest news</h3>
+<div class="row">
+	@foreach ( $posts->Latest(4)->get() as $_post )
+		<div class="col-xs-12 col-sm-6 col-md-12">
+			<div class="row">
+				<div class="col-xs-4 mb10">
+					<a href="{{ $_post->getPermalink() }}">
+						<img class="img-responsive"  src="{!! ImgHelper::get($_post->image, config('magutti.image.small')) !!}">
+					</a>
+				</div>
+				<div class="col-xs-8 mb10">
+					<h4>
+						<a href="{{$_post->getPermalink()}}">
+							{{ $_post->title }}
+						</a>
+					</h4>
+					<p>{{ $_post->date }}</p>
+				</div>
+			</div>
+		</div>
+	@endforeach
+</div>

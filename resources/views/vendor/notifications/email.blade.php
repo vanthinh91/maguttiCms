@@ -14,12 +14,14 @@
         }
     </style>
 </head>
+
 <?php
+
 $style = [
     /* Layout ------------------------------ */
 
-    'body' => 'margin: 0; padding: 0; width: 100%; background-color: #FFFFFF;',
-    'email-wrapper' => 'width: 100%; margin: 0; padding: 0; background-color: #FFFFFF;',
+    'body' => 'margin: 0; padding: 0; width: 100%; background-color: #F2F4F6;',
+    'email-wrapper' => 'width: 100%; margin: 0; padding: 0; background-color: #F2F4F6;',
 
     /* Masthead ----------------------- */
 
@@ -69,8 +71,7 @@ $style = [
                     <tr>
                         <td style="{{ $style['email-masthead'] }}">
                             <a style="{{ $fontFamily }} {{ $style['email-masthead_name'] }}" href="{{ url('/') }}" target="_blank">
-                                <img src="{!! asset('/website/images/email/email_header.jpg')!!}"   border="0" alt="{!! config('maguttiCms.website.option.app.name')!!}"/>
-
+                                {{ config('app.name') }}
                             </a>
                         </td>
                     </tr>
@@ -139,7 +140,7 @@ $style = [
 
                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            {{ trans('website.mail_message.firm') }}
+                                            Regards,<br>{{ config('app.name') }}
                                         </p>
 
                                         <!-- Sub Copy -->
@@ -175,7 +176,7 @@ $style = [
                                     <td style="{{ $fontFamily }} {{ $style['email-footer_cell'] }}">
                                         <p style="{{ $style['paragraph-sub'] }}">
                                             &copy; {{ date('Y') }}
-                                            <a style="{{ $style['anchor'] }}" href="{{ url('/') }}" target="_blank">{!! config('maguttiCms.website.option.app.name')!!}</a>.
+                                            <a style="{{ $style['anchor'] }}" href="{{ url('/') }}" target="_blank">{{ config('app.name') }}</a>.
                                             All rights reserved.
                                         </p>
                                     </td>

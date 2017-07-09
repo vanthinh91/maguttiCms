@@ -1,327 +1,219 @@
-/**
- * Created by Marco Asperti for maguttiCms on 24/12/2015.
- * for maguttiCms
- */
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 49);
+/******/ })
+/************************************************************************/
+/******/ ({
 
-var App = function () {
+/***/ 49:
+/***/ (function(module, exports, __webpack_require__) {
 
-
-    function handleBootstrap() {
-        /*Bootstrap Carousel*/
-        jQuery('.carousel').carousel({
-            interval: 5000,
-            pause: 'hover'
-        });
-
-        /*Tooltips*/
-
-        jQuery('.tooltips').tooltip();
-        jQuery('.tooltips-show').tooltip('show');
-        jQuery('.tooltips-hide').tooltip('hide');
-        jQuery('.tooltips-toggle').tooltip('toggle');
-        jQuery('.tooltips-destroy').tooltip('destroy');
-
-        /*Popovers*/
-        jQuery('.popovers').popover();
-        jQuery('.popovers-show').popover('show');
-        jQuery('.popovers-hide').popover('hide');
-        jQuery('.popovers-toggle').popover('toggle');
-        jQuery('.popovers-destroy').popover('destroy');
-    }
-
-
-
-    function handleToggle() {
-        jQuery('.list-toggle').on('click', function() {
-            jQuery(this).toggleClass('active');
-        });
-    }
-
-    function handleHeader() {
-        jQuery(window).scroll(function() {
-            if (jQuery(window).scrollTop()>100){
-                jQuery(".header-fixed .header").addClass("header-fixed-shrink");
-            }
-            else {
-                jQuery(".header-fixed .header").removeClass("header-fixed-shrink");
-            }
-        });
-    }
-
-    function hideTopBar() {
-        jQuery(window).on("scroll", function() {
-
-            if ($(document).scrollTop() > 100) {
-                //$(".topbar").slideUp();
-                $("#main-navi").addClass("bottomonly-shadow");
-                $("#logo-colore").show();
-                $("#logo-bianco").hide();
-            } else {
-                //$(".topbar").slideDown();
-                setTimeout(function(){
-                    $("#main-navi").removeClass("bottomonly-shadow");
-                    $("#logo-colore").hide();
-                    $("#logo-bianco").show();
-                },50);
-
-            }
-        });
-    }
-    //Hover Selector
-    function handleHoverSelector() {
-        $('.hoverSelector').on('hover', function(e) {
-            $('.hoverSelectorBlock', this).toggleClass('show');
-            e.stopPropagation();
-        });
-    }
+module.exports = __webpack_require__(8);
 
 
+/***/ }),
 
-    function iscivitiNewsletter() {
-        var msg = '';
-        jQuery('#btn-newsletter-subscribe').click(function(){
+/***/ 8:
+/***/ (function(module, exports) {
 
-            //showWait();
-            $.ajax({
-                type : 'POST',
-                url : urlAjaxHandler+"/api/newsletter",
-                data : $( "#form-newsletter" ).serialize(),
-                dataType : 'json',
-                success : function(response) {
-                    var msgHtml = '';
-                    if (response.status=='ok') {
-                        msgHtml += '<h4>' + response.msg + '</h4>';
-                    }
-                    else   {
-                       $.each( response.errors , function( key, value ) {
-                            msgHtml += '<h4>' + value[0] + '</h4>'; //showing only the first error.
-                        });
+window.App = function () {
+				function handleBootstrap() {
+								/*Bootstrap Carousel*/
+								$('.carousel').carousel({
+												interval: 5000,
+												pause: 'hover'
+								});
 
-                    };
-                    updateModalAlertMsg(msgHtml);
+								/*Tooltips*/
+								$('.tooltips').tooltip();
+								$('.tooltips-show').tooltip('show');
+								$('.tooltips-hide').tooltip('hide');
+								$('.tooltips-toggle').tooltip('toggle');
+								$('.tooltips-destroy').tooltip('destroy');
 
-                },
-                error : function(response) {
-                    updateModalAlertMsg('Error');
-                }
-            });
-        });
+								/*Popovers*/
+								$('.popovers').popover();
+								$('.popovers-show').popover('show');
+								$('.popovers-hide').popover('hide');
+								$('.popovers-toggle').popover('toggle');
+								$('.popovers-destroy').popover('destroy');
+				}
 
-    }
+				function handleNewsletter() {
+								var msg = '';
+								$('#form-newsletter').submit(function (e) {
+												e.preventDefault();
+												//showWait();
+												$.ajax({
+																type: 'POST',
+																url: urlAjaxHandler + "/api/newsletter",
+																data: $("#form-newsletter").serialize(),
+																dataType: 'json',
+																success: function success(response) {
+																				var msgHtml = '';
+																				if (response.status == 'ok') {
+																								msgHtml += '<h4>' + response.msg + '</h4>';
+																				} else {
+																								$.each(response.errors, function (key, value) {
+																												msgHtml += '<h4>' + value[0] + '</h4>'; //showing only the first error.
+																								});
+																				}
+																				updateModalAlertMsg(msgHtml);
+																},
+																error: function error(response) {
+																				updateModalAlertMsg('Error');
+																}
+												});
+								});
+				}
 
-    function  niceScroll(){
+				function handleLightBox() {
+								$(".lightbox").colorbox({
+												rel: '.lightbox',
+												maxHeight: '90%',
+												maxWidth: '90%'
+								});
+				}
 
-        // Nice scroll to DIVs
-        $('#menu.navbar-nav li a').click(function(evt){
-            evt.preventDefault();
-            $('.navbar-nav li').removeClass('active')
-            var place = $(this).attr('href');
-            $(this).parent().addClass('active');
-            $('html, body').animate({
-                scrollTop: $(place).offset().top-100
-            }, 1200, 'swing');
-        });
-    }
+				function handleWow() {
+								window.wow.init({
+												mobile: false, // default
+												live: false // default
+								});
+				}
 
+				function handleScrollTo() {
+								$('.scroll-to').click(function (e) {
+												e.preventDefault();
+												var margin_top = $("nav").outerHeight();
+												var elem_top = $($(this).attr('href')).offset().top;
+												$('html, body').stop().animate({ 'scrollTop': elem_top - margin_top }, 500);
+								});
+				}
 
+				return {
+								init: function init() {
+												handleBootstrap();
+												handleNewsletter();
+												handleLightBox();
+												handleWow();
+												handleScrollTo();
+								},
+								formValidation: function formValidation(selector) {
+												var msg = '';
+												$('#' + selector).submit(function (event) {
+																event.preventDefault();
 
-    return {
-        init: function () {
-            handleBootstrap();
-            handleToggle();
-            handleHeader();
-            hideTopBar();
-            //niceScroll();
-            iscivitiNewsletter();
-        },
-        iniServiceOwl: function () {
-            var Serviziowl = $('.servizi-carousel');
-            Serviziowl.owlCarousel({
-                loop : true,
-                margin : 25,
-                nav : false,
-                //navText : [&#x27;<&#x27;,&#x27;>&#x27;]
-                responsive : {
-                    0 : { items :1
-                    },
-                    600 : { items :2
-                    },
-                    1000 : { items :3
-                    }
-                }
-            });
+																$.ajax({
+																				type: 'POST',
+																				url: urlAjaxHandler + '/api/' + selector,
+																				data: $('#' + selector).serialize(),
+																				dataType: 'json',
+																				success: function success(response) {
+																								if (response.status == 'ok') {
+																												$('#' + selector).hide();
+																												$('#response').show().text(response.msg);
+																								} else {
+																												$.each(response.errors, function (key, value) {
+																																$('[name="' + key + '"]').addClass('error');
+																												});
 
-
-            $('.customNextBtnServizi').click(function() {
-                Serviziowl.trigger('next.owl.carousel');
-            })
-            // Go to the previous item
-            $('.customPrevBtnServizi').click(function() {
-                Serviziowl.trigger('prev.owl.carousel', [300]);
-            })
-
-        },
-        initMapSwitcher: function () {
-            // Nice scroll to DIVs
-            $('.showMap').click(function(evt){
-                evt.preventDefault();
-                $('#map-address').fadeToggle( "slow", "linear" );
-                $('#contact-layer').fadeToggle(  "slow", "linear" );
-
-                var text    = $(this).text();
-                var newText = $(this).data('text');
-                var oldText = $(this).data('old-text')
-                $(this).text(text ==  newText ? oldText : newText   );
-            })
-
-        },
-        initFancybox: function () {
-
-
-
-            jQuery(".fancybox-button").fancybox({
-                groupAttr: 'data-rel',
-                prevEffect: 'none',
-                nextEffect: 'none',
-                closeBtn: true,
-                helpers: {
-                    title: {
-                        type: 'inside'
-                    }
-                }
-            });
-
-            jQuery(".iframe").fancybox({
-                maxWidth    : 800,
-                maxHeight   : 600,
-                fitToView   : false,
-                width       : '70%',
-                height      : '70%',
-                autoSize    : false,
-                closeClick  : false,
-                openEffect  : 'none',
-                closeEffect : 'none'
-            });
-        },
-
-
-        initColorBox: function () {
-
-            $(".lightbox").colorbox({
-                rel: '.lightbox',
-                maxHeight:'90%',
-                maxWidth:'95%',
-                width:'550px',
-                height:'550px'
-            });
-        },
-
-
-
-        initIsotope: function () {
-            var $container = $('.isotope').isotope({
-                itemSelector: '.topa',
-                layoutMode: 'masonry'
-            });
-            /*
-            setTimeout(function(){
-                $container.isotope({
-                    filter:  '.product'
-                });
-            }, 1000);
-            */
-
-            // bind filter button click
-            $('#filters').on( 'click', 'li > button', function() {
-                $("[data-filter='*']").removeClass('active');
-                var filterValue = $( this ).attr('data-filter');
-                $container.isotope({ filter: filterValue });
-            });
-        },
-
-         initWoW: function () {
-            new WOW().init({
-                mobile:       false,       // default
-                live:         true        // default
-            });
-        },
-
-        initTouchBTSlider: function (objectTarget) {
-            //Function to animate slider captions
-            function doAnimations( elems ) {
-                //Cache the animationend event in a variable
-                var animEndEv = 'webkitAnimationEnd animationend';
-                elems.each(function () {
-                    var $this = $(this),
-                        $animationType = $this.data('animation');
-                    $this.addClass($animationType).one(animEndEv, function () {
-                        $this.removeClass($animationType);
-                    });
-                });
-            }
-
-            //Variables on page load
-            var $myCarousel = $(objectTarget),
-                $firstAnimatingElems = $myCarousel.find('.item:first').find("[data-animation ^= 'animated']");
-
-                //Initialize carousel
-                $myCarousel.carousel();
-
-                //Animate captions in first slide on page load
-                doAnimations($firstAnimatingElems);
-
-                //Pause carousel
-                $myCarousel.carousel('pause');
-
-                //Other slides to be animated on carousel slide event
-                $myCarousel.on('slide.bs.carousel', function (e) {
-                    var $animatingElems = $(e.relatedTarget).find("[data-animation ^= 'animated']");
-                    doAnimations($animatingElems);
-                });
-        },
-
-    };
-
+																												$('html, body').animate({
+																																scrollTop: $('#' + selector).offset().top - $('nav').height()
+																												}, 1200, 'swing');
+																								}
+																				},
+																				error: function error(response) {
+																								//console.log(response.errors.email);
+																				}
+																});
+												});
+								}
+				};
 }();
 
-
-function scrollToAnchor(aid){
-    window.location.hash = '#'+aid;
-}
-
 /******************************** MODAL ************************/
-
-
 function updateModalAlertMsg($htmlContent) {
-    bootbox.alert($htmlContent, function(result) {
-        if (result === false) {
-
-        } else {
-
-        }
-    });
-}
-
-function showWait() {
-    updateModalAlertMsg ('.....Attendere prego.....')
+				bootbox.alert($htmlContent, function (result) {});
 }
 
 function updateModalBoxMsg($htmlContent) {
-    bootbox.confirm($htmlContent, function(result) {
-        if (result === false) {
-
-        } else {
-
-        }
-    });
+				bootbox.confirm($htmlContent, function (result) {});
 }
 
 /*********************************  localize *********************/
-
-function t(str) {
-    if (localized[str].length>0) {
-        return localized[str];
-    } else {
-        return str;
-    }
+function trans(keystring) {
+				var key_array = keystring.split('.');
+				var temp_localization = JS_LOCALIZATION;
+				$.each(key_array, function () {
+								temp_localization = temp_localization[this];
+				});
+				if (typeof temp_localization == 'string') return temp_localization;else return keystring;
 }
+
+/***/ })
+
+/******/ });

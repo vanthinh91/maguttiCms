@@ -2,7 +2,7 @@ const { mix } = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
- | Mix Asset Management
+ | Mix Asset Fo development Management
  |--------------------------------------------------------------------------
  |
  | Mix provides a clean, fluent API for defining some Webpack build steps
@@ -11,18 +11,15 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/website/js/botomera.js')
-    .sass('resources/assets/sass/app.scss', 'public/website/css', {
-       precision:5
-    })
-    .styles([
-        'public/website/css/animate.min.css',
-        'public/website/css/ma_helper.css',
-    ],'public/website/css/helper.css');
+mix.sass('resources/assets/sass/vendor.scss',  			'public/website/css/');
+mix.sass('resources/assets/sass/app.scss', 			'public/website/css/');
+mix.sass('resources/assets/sass/admin.scss',			'public/cms/css/');
 
+mix.js('resources/assets/js/vendor.js',        			'public/website/js');
+mix.js('resources/assets/js/app.js',        			'public/website/js');
 
-mix.browserSync({
-    proxy: 'http://127.0.0.1:8000/'
-});
+if (mix.config.inProduction) {
+    mix.version();
+}
 
-
+mix.browserSync('framework_base.dev');

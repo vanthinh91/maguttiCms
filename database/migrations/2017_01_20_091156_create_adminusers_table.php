@@ -19,22 +19,16 @@ class CreateAdminusersTable extends Migration
     {
         Schema::create('adminusers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 255);
-            $table->string('email', 255);
-            $table->integer('has_notify');
-            $table->integer('has_report');
-            $table->integer('can_export')->comment('puo exportare le richieste');
-            $table->integer('region_id');
-            $table->string('password', 60);
-            $table->string('real_password', 255)->nullable();
-            $table->tinyInteger('is_active')->default(1);
             $table->string('first_name', 255);
             $table->string('last_name', 255);
-            $table->unique('email', 'users_email_unique');
-
+            $table->string('email')->unique();
+            $table->string('password', 60)->nullable();;
+            $table->string('real_password', 255)->nullable();
+            $table->tinyInteger('is_active')->default(1);
             $table->rememberToken();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
-
         });
     }
 

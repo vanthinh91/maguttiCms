@@ -1,24 +1,23 @@
 @inject('hpslider','App\HpSlider')
 <!-- Carousel  ================================================== -->
-<!--=== Slider ===-->
-<section id="home_section" class="section">
-    <!-- Carousel ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-         <div class="carousel-inner">
-           @foreach (  $hpslider->active()->get() as  $index => $slider )
-                <div class="item   @if ($index == 1) active"  @endif">
-                    <img src="{!!  ma_get_image_from_repository($slider->image) !!}" alt="">
-                    <div class="container">
-                        <div class="carousel-caption full-screen">
-                            <p class="lead" data-animation="animated bounceInDown">{{ $slider->description }}</p>
-                            <h2 data-animation="animated bounceInUp">{{ $slider->title }}</h2>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+<section id="carousel" class="owl-carousel">
+	@foreach ($hpslider->active()->get() as  $index => $slider)
+        <div class="slide">
+						<img src="{{ ImgHelper::get_cached($slider->image, ['w' => 1920, 'h' => 600, 'c' => 'cover']) }}" alt="">
+            <div class="caption">
+				<h2>{{ $slider->title }}</h2>
+                <p>{{ $slider->description }}</p>
+            </div>
         </div>
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span></a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span></a>
-    </div><!-- /.carousel -->
+    @endforeach
 </section>
-<!--=== End Slider ===-->
+
+@section('footerjs')
+	@parent
+	<script type="text/javascript">
+		$('#carousel').owlCarousel({
+			items: 1,
+			loop: true,
+		});
+	</script>
+@endsection

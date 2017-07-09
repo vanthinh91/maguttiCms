@@ -1,27 +1,21 @@
 <?php
 
-namespace App\MaguttiCms\Website\Controllers;
-use App\FaqCategory;
-use App\MaguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
-use App\MaguttiCms\Website\Repos\News\NewsRepositoryInterface;
+namespace App\maguttiCms\Website\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Input;
 use Validator;
+
 use App\Article;
-use App\News;
-use App\Product;
-use App\PlantProvenience;
-use App\LeafType;
-use App\Environment;
-use Domain;
+use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
+use App\maguttiCms\Website\Repos\News\NewsRepositoryInterface;
 
 
 class ReservedAreaController extends Controller
 
 {
-	use \App\MaguttiCms\SeoTools\MaguttiCmsSeoTrait;
+	use \App\maguttiCms\SeoTools\laraCmsSeoTrait;
     /**
      * @var
      */

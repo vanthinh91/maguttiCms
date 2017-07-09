@@ -27,7 +27,8 @@ class CreateHpslidersTable extends Migration
             $table->string('slug', 255);
             $table->integer('sort');
             $table->tinyInteger('is_active')->nullable()->default(1);
-            $table->integer('created_by');
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
 
             $table->unique('slug', 'hpsliders_slug_unique');

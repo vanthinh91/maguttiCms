@@ -4,7 +4,6 @@ return [
 		'contacts' => [
 			'name'	  => 'required',
 			'surname' => 'required',
-            'company' => 'required',
             'subject' => 'required',
 			'message' => 'required',
 			'privacy' => 'required',
@@ -14,5 +13,5 @@ return [
 		'newsletter' => [
 			'email'   => 'required|Between:3,64|Email|unique:newsletters',
 		]
-		
+
 ];

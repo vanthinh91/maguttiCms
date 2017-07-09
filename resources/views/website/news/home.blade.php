@@ -1,36 +1,37 @@
 @extends('website.app')
 @section('content')
-@include('website.partials.page_banner')
 <!--=== Content Part ===-->
-<section id="news_section" class="section" data-role="home-news">
-    <div class="container content pv25 mt10">
-        <div class="row" id="widgets_news_homes">
-            @include('website.news.news_sidebar')
-            <div class="col-md-9">
-                <div class="row">
-                    @foreach (  $news as  $index => $post )
-                        <div class="col-md-6 mb25">
-                            <div >
-                                <div class="mediaholder">
-                                    <a href="news/{{ $post->slug }}">
-                                        <img src="{!! ImgHelper::get($post->image, config('maguttiCms.image.defaults')) !!}" alt="{{ $post->title }}" border="0" class="img-responsive-100">
-                                    </a>
-                                </div>
-                                <div class="mv5">
-                                    <span class="color-4">{{ $post->date }}</span>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="mv5 color-main"> {{ $post->title }}</h4>
-                                    {!! str_limit( $post->description, 450 )  !!}
-                                </div>
-                                <a href="news/{{ $post->slug }}" class="read-more mb5">{!! trans('website.read_more') !!}</a>
-                            </div>
-                        </div><!--/news -->
-                    @endforeach
-
-                </div>
-            </div> <!-- / newscontainer -->
-        </div>
-    </div> <!-- /container -->
-</section>
+<main class="container">
+	<h1>{{$article->title}}</h1>
+    <div class="row">
+        <div class="col-md-9">
+            @foreach ($news as $_post)
+				<div class="row">
+					<div class="col-xs-12 col-sm-3 col-md-4 mb20">
+						<a href="{{$_post->getPermalink()}}">
+							<img src="{!! ImgHelper::get($_post->image, config('maguttiCms.image.defaults')) !!}" alt="{{ $_post->title }}" class="img-responsive">
+						</a>
+					</div>
+					<article class="col-xs-12 col-sm-9 col-md-8 mb20">
+						<h3>
+							<a href="{{$_post->getPermalink()}}">
+								{{ $_post->title }}
+							</a>
+						</h3>
+						<span>{{ Carbon::parse($_post->date)->format('d/m/Y') }}</span>
+						<p>
+							{!! str_limit($_post->description, 200) !!}
+						</p>
+						<div class="read-more">
+							<a href="{{ $_post->getPermalink() }}" class="read-more mb5">{!! trans('website.read_more') !!}</a>
+						</div>
+                    </article><!--/news -->
+				</div>
+            @endforeach
+        </div> <!-- / newscontainer -->
+		<div class="col-xs-12 col-md-3">
+			@include('website.news.news_sidebar')
+		</div>
+    </div>
+</main> <!-- /container -->
 @endsection

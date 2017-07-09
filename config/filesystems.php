@@ -53,6 +53,7 @@ return [
             'root' => storage_path('app/public'),
             'visibility' => 'public',
         ],
+
         'media' => [
             'driver' => 'local',
             'root'   => public_path('media'),
@@ -67,6 +68,19 @@ return [
             'bucket' => 'your-bucket',
         ],
 
+		'ftp' => [
+		    'driver'   => 'ftp',
+		    'host'     => 'ftp.example.com',
+		    'username' => 'your-username',
+		    'password' => 'your-password',
+
+		    // Optional FTP Settings...
+		    // 'port'     => 21,
+		    // 'root'     => '',
+		    // 'passive'  => true,
+		    // 'ssl'      => true,
+		    // 'timeout'  => 30,
+		],
     ],
 
 ];

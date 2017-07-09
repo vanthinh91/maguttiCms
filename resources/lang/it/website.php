@@ -20,7 +20,7 @@ return [
 	'message_email' => 'Messaggio',
 	'more_info'     => 'Continua',
 	'name'          => 'Nome',
-	'newsletters_placeholder' =>'Inserisci la tua e-mail',
+	'newsletters_placeholder' =>'Iscriviti alla newsletter',
 	'please_select' =>'Prego selezionare',
     'privacy'		=> 'Privacy Policy',
 	'phone'         => 'Telefono',
@@ -41,7 +41,8 @@ return [
     'message' => [
         'contact_feedback'	=> 'Grazie per  aver inviato la tua richiesta',
         'privacy'			=> 'Acconsento al trattamento dei dati',
-        'required_field'	=> 'I campi contrassestati con (*) sono obbligatori',
+        'required_field'	=> 'I campi contrassegnati con (*) sono obbligatori',
+        'product_request'	=> 'Richiesta informazioni per il prodotto',
 
         /**************************   COOKIE  ****************************/
         'cookie'			=>'Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di cookie necessari al funzionamento ed utili alle finalità illustrate nella cookie policy. Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, consulta la cookie policy. Cliccando su \'Accetto\' o proseguendo la navigazione acconsenti all’uso dei cookie.',

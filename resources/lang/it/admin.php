@@ -21,6 +21,7 @@ return [
         'btn_no'  => 'No',
         'cancel'  => 'Cancel',
         'create'  => 'Create a new item',
+        'copy'    => 'Copy',
         'created_at'  => 'Created at',
         'delete'  => 'Delete',
         'download'=> 'Download',

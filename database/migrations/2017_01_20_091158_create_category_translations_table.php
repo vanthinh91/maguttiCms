@@ -26,14 +26,11 @@ class CreateCategoryTranslationsTable extends Migration
             $table->string('seo_title', 255)->nullable();
             $table->string('seo_description', 255)->nullable();
             $table->string('seo_keywords', 255)->nullable();
-            $table->unsignedInteger('created_by');
-            $table->unsignedInteger('update_by');
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
-
             $table->unique(['category_id', 'locale'], 'categories_translations_category_id_locale_unique');
             $table->index('locale', 'categories_translations_locale_index');
-
-            
 
         });
     }

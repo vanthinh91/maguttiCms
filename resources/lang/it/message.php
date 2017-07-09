@@ -13,11 +13,11 @@ return [
     |
     */
 
-    'new_user' =>'Crea nuovo account?',
+    'new_user' =>'Crea nuovo account',
     'password_confirm' =>'Conferma Password',
     'password_sent_reset_link'  => 'Invia Link per reset password',
     'password_reset'  => 'Reset password',
-    'password_forgot_your' =>'Password dimenticata?',
+    'password_forgot_your' =>'Hai dimenticato la password?',
     'password_forgot' =>'Password dimenticata',
     'register_account' => 'Crea nuovo account',
     'register' => 'Registrati',

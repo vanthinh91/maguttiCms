@@ -19,8 +19,8 @@ class Role extends EntrustRole
             'pkey'     => 'y',
             'required' =>true,
             'label'    => 'id',
-            'hidden'   => '1',
-            'display'  => '0',
+            'hidden'   => 1,
+            'display'  => 0,
         ];
 		$this->fieldspec['name']    = [
 			'type' =>'string',
@@ -28,10 +28,10 @@ class Role extends EntrustRole
 			'max' => 255,
 			'pkey' => 'n',
 			'required' =>true,
-			'hidden' => '0',
+			'hidden' => 0,
 			'label'=>'Name',
 			'extraMsg'=>'',
-			'display'=>'1'
+			'display'=>1
 		];
 		$this->fieldspec['display_name']    = [	
 			'type' =>'string',
@@ -39,10 +39,10 @@ class Role extends EntrustRole
 			'max' => 255,
 			'pkey' => 'n',
 			'required' =>true,
-			'hidden' => '0',
+			'hidden' => 0,
 			'label'=>'Display Name',
 			'extraMsg'=>'',
-			'display'=>'1',
+			'display'=>1,
 			
 		];
 		$this->fieldspec['description'] = [	

@@ -1,49 +1,20 @@
-%flex {
-  display: -webkit-box !important;
-  display: -moz-box !important;
-  display: -ms-flexbox !important;
-  display: -webkit-flex !important;
-  display: flex !important;
-} //%flex
-
-%animation {
-  -webkit-transition: all 450ms ease-in-out;
-  -moz-transition: all 450ms ease-in-out;
-  -o-transition: all 450ms ease-in-out;
-  transition: all 450ms ease-in-out;
-} //%animation
-/****************************** TRANSITION  ********************************/
-
-.rotate-90 {
-  transition: transform 0.4s ease-in-out;
-  cursor: pointer;
-}
-
-.rotate-90:hover {
-  transform: rotateZ(90deg);
-}
 //FIX SAFARI
 .row {
-
-  &:after, &:before {
-    content: '';
-    display: inherit;
-  }
+	&:after, &:before {
+		content: '';
+		display: block;
+	}
 } //.row
 
-.container {
-  @media screen and (min-width: 1450px) {
-    width: 1400px;
-  }
-} //.container
-
 .flex {
-  @extend %flex;
-  @include flexWrap(wrap);
-} //.flex
+	display: flex;
+	flex-wrap: wrap;
+}
 
+.align-center {
+	align-items: center;
+}
 
-
-
-
-
+@for $i from 1 through 20 {
+  .width-#{$i * 5} {width: 1% * $i * 5;}
+}

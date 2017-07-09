@@ -22,6 +22,7 @@ return [
 	'css_vendor'     => 'css/vendor/',
 
 	'user_upload'    => 'upload/',
+
     'expor_data'     => 'export/',
     'shared'         => 'shared_data/',
 

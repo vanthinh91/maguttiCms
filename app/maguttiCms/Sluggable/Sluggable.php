@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Sluggable;
+<?php namespace App\maguttiCms\Sluggable;
 
 
 use Illuminate\Database\Eloquent\Model;

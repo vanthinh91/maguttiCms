@@ -20,7 +20,7 @@
 									@elseif( $article->name!='')
 										Edit {{ $article->name }}
 									@else
-										Create new  {{ $pageConfig['model'] }}
+										{!! trans('admin.label.create_new')!!}  {{ $pageConfig['title'] }}
 									@endif
 								</a>
 							</li>
@@ -50,7 +50,7 @@
 
 								@include('admin.helper.form_submit_button')
 							</div>
-							@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'.showSeo')  == 1)
+							@if ( config('maguttiCms'.strtolower(str_plural($pageConfig['model'])).'.showSeo')  == 1)
 								<div role="tabpanel" class="tab-pane well noborder-top  bs-component" id="seo_tab">
 									{{ AdminForm::getSeo( $article ) }}
 									@include('admin.helper.form_submit_button')
@@ -58,7 +58,7 @@
 							@endif
 							@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'.showMedia')  == 1 && $article->id!='')
 								<div role="tabpanel" class="tab-pane  well noborder-top bs-component" id="media_tab">
-									@include('admin.helper.form_uplodifive')
+									@include('admin.helper.form_uploadifive')
 									@include('admin.helper.form_submit_button')
 								</div>
 							@endif
@@ -83,21 +83,34 @@
 		</div>
 		<!-- /.modal-dialog -->
 	</div>
+
 @endsection
 @section('footerjs')
 	<script src="{!! asset(config('maguttiCms.admin.path.plugins').'uploadifive/jquery.uploadifive.min.js')!!}" type="text/javascript"></script>
-	<script src="{!! asset(config('maguttiCms.admin.path.plugins').'select2/js/select2.min.js')!!}" type="text/javascript"></script>
+	<script src="{!! asset(config('maguttiCms.admin.path.plugins').'timepicker/jquery-ui-timepicker-addon.js')!!}" type="text/javascript"></script>
+	<script src="{!! asset(config('maguttiCms.admin.path.plugins').'selectize/selectize.min.js')!!}" type="text/javascript"></script>
 	<script type="text/javascript">
 
      	$(function() {
 			Cms.initTinymce();
+			Cms.initColorPicker();
 			Cms.initDatePicker();
-			Cms.initUploadifive();
+            Cms.initDateTimePicker();
+            Cms.initUploadifiveSingle();
+            Cms.initUploadifiveMedia();
 			Cms.initSortableList("ul#simpleGallery");
 			Cms.initSortableList("ul#simpleDocGallery");
-			$(".select2").select2({
-				allowClear: true
-			})
+            Cms.initImageRelationList();
+            $('.selectizemulti').selectize({
+                plugins: ['remove_button','drag_drop'],
+                delimiter: ',',
+                persist: false,
+                create: false,
+                sortField: 'text'
+            });
+            $('.selectize').selectize({
+                sortField: 'text'
+            });
 		});
 	</script>
 	<script>

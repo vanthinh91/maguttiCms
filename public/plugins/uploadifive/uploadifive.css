@@ -80,7 +80,14 @@ Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 }
 
 
-#queue {
-	min-height:150px;
+.queue {
+	min-height:100px;
 	padding:10px;
+	border: 1px solid rgba(255,255,255,0.75);
+	transition: background-color 0.3s;
+	margin-top: 10px;
+}
+
+.queue:hover {
+	background-color: rgba(255,255,255,0.5);
 }

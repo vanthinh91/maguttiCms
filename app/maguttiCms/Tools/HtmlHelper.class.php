@@ -1,11 +1,34 @@
-<?php namespace App\MaguttiCms\Tools;
+<?php namespace App\maguttiCms\Tools;
 
 use App\Setting;
+
 /**
 * Class Setting
-* @package App\MaguttiCms\Tools
+* @package App\maguttiCms\Tools
 */
 class HtmlHelper {
+	protected $args = [];
+
+	public function setHtmlTagAttributes($array) {
+		foreach($array as $key => $value) {
+			$this->args[$key] = $value;
+		}
+		return $this;
+	}
+
+	public function getHtmlTagAttributes() {
+		return $this->args;
+	}
+
+	public function createHtmlTagAttributes() {
+		$attribute_string = "";
+
+		foreach($this->getHtmlTagAttributes() as $key => $value) {
+			$attribute_string .= $key ."=\"" . $value . "\" ";
+		}
+
+		return $attribute_string;
+	}
 
 	/**
 	* @param $icons
@@ -14,7 +37,7 @@ class HtmlHelper {
 	* @param $echo
 	* @return mixed
 	*/
-	static public function createFAIcon($icons, $classes = '', $forceicon = false, $echo = true) {
+	public static function createFAIcon($icons, $classes = '', $forceicon = false, $echo = true) {
 		$arr_icons = explode(',', $icons);
 
 		$str_classes = implode(' ',explode(',', $classes));
@@ -36,17 +59,28 @@ class HtmlHelper {
 		if ($echo) echo $output; else return $output;
 	}
 
-	static public function checkError($errors, $field) {
+	public static function checkError($errors, $field) {
 		if ($errors->has($field)) {
 			return 'input-danger';
 		}
 	}
 
-	static public function videoEmbed($id, $ratio = '16by9') {
+	public static function videoEmbed($id, $ratio = '16by9') {
 		$output = '';
 		$output .= '<div class="embed-responsive embed-responsive-'.$ratio.'">';
 		$output .= '<iframe class="embed-responsive-item" src="'.$id.'"></iframe>';
 		$output .= '</div>';
 		return $output;
+	}
+
+	// Get responsive image
+	public function get_responsive($src, $args_small=['w' => 768], $args_medium=['w' => 1200]) {
+		return "<picture>
+		<source media='(max-width: 768px)' sizes='100vw'
+		srcset='". \ImgHelper::get_cached($src, $args_small) ."'>
+		<source media='(max-width: 1200px)' sizes='100vw'
+		srcset='". \ImgHelper::get_cached($src, $args_medium) ."'>
+		<img src='".ma_get_image_from_repository($src)."' ".$this->createHtmlTagAttributes().">
+		</picture>";
 	}
 }

@@ -1,13 +1,11 @@
-<?php
-
-namespace App;
+<?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Media extends Model
 {
-    //
     use \Dimsav\Translatable\Translatable;
+    use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
     protected   $table = 'media';
     public      $translatedAttributes = ['title','description'];
@@ -36,8 +34,8 @@ class Media extends Model
             'pkey'     => 'y',
             'required' =>true,
             'label'    => 'id',
-            'hidden'   => '1',
-            'display'  => '0',
+            'hidden'   => 1,
+            'display'  => 0,
         ];
         $this->fieldspec['file_name'] = [
             'type'      => 'readonly',
@@ -56,9 +54,9 @@ class Media extends Model
             'foreign_key'   => 'id',
             'label_key'     => 'title',
             'label'     => 'Media Category',
-            'hidden'    => '0',
+            'hidden'    => 0,
             'required'  =>  false,
-            'display'   => '1',
+            'display'   => 1,
 
         ];
 
@@ -86,17 +84,17 @@ class Media extends Model
             'type'      => 'integer',
             'required'  => false,
             'label'     => 'Order',
-            'hidden'    => '0',
-            'display'   => '1',
+            'hidden'    => 0,
+            'display'   => 1,
         ];
 
         $this->fieldspec['pub'] = [
             'type'      => 'boolean',
             'pkey'      => 'n',
             'required'  => false,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => trans('admin.label.active'),
-            'display'   => '1'
+            'display'   => 1
         ];
 
         return $this->fieldspec;

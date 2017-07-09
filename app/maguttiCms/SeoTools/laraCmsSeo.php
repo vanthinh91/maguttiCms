@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\SeoTools;
+<?php namespace App\maguttiCms\SeoTools;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -7,18 +7,18 @@ use SEO;
 use Request;
 
 /**
- * Class maguttiCmsSeoTrait
+ * Class laraCmsSeoTrait
  *
  *
  */
-trait MaguttiCmsSeoTrait
+trait laraCmsSeoTrait
 {
     protected $title;
     protected $image;
     protected $model;
     protected $url;
 
-    public static function bootMaguttiCmsSeoTrait()
+    public static function bootlaraCmsSeoTrait()
     {
         static::created(function($item){
             // Index the itemcompo
@@ -54,7 +54,7 @@ trait MaguttiCmsSeoTrait
 
     public function setOpenGraphImages()
     {
-        $this->image = ($this->model->image!='')?ma_get_image_from_repository($this->model->image):asset('public/website/images/logo.jpg');
+        $this->image = ($this->model->image!='')?ma_get_image_from_repository($this->model->image):asset('/website/images/logo.jpg');
         SEO::opengraph()->addImage($this->image);
     }
 

@@ -44,6 +44,8 @@ return [
         'contact_feedback'  => 'Thanks for you request.<br> Il team Gfstudio ',
         'privacy'           => 'I accept terms and conditions of use and read the privacy note.',
         'required_field'    => 'Required field (*)',
+		'product_request'	=> 'Information request for product',
+
         /**************************   COOKIE  ****************************/
         'cookie'            => 'This website or the related devices use cookies, which are necessary to the working and to the purposes showed in the cookie policy.If you\'d like to know more about it or deny your approval to all or some cookies, please consult the cookie policy. If you click on Accept or go on with the surfing, you accept then the cookie use.',
         'cookie_accept'     => 'Accept',

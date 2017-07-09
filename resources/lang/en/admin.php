@@ -18,6 +18,8 @@ return [
         'btn_no'  => 'No',
         'cancel'  => 'Cancel',
         'create'  => 'Create a new item',
+        'create_new'  => 'Create a new ',
+        'copy'    => 'Copy',
         'created_at'  => 'Created at',
         'delete'  => 'Delete',
         'download'=> 'Download',

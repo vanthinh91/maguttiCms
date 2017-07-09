@@ -28,8 +28,8 @@ class Province extends Model
             'pkey'     => 'y',
             'required' =>true,
             'label'    => 'id',
-            'hidden'   => '1',
-            'display'  => '0',
+            'hidden'   => 1,
+            'display'  => 0,
         ];
         $this->fieldspec['country_id'] = [
             'type'      => 'relation',
@@ -37,9 +37,9 @@ class Province extends Model
             'foreign_key' => 'id',
             'label_key' => 'name',
             'label'     => 'Country',
-            'hidden'    => '0',
+            'hidden'    => 0,
             'required'  =>  true,
-            'display'   => '1',
+            'display'   => 1,
         ];
         $this->fieldspec['state_id'] = [
             'type'      => 'relation',
@@ -47,9 +47,9 @@ class Province extends Model
             'foreign_key' => 'id',
             'label_key' => 'title',
             'label'     => 'State/Regione',
-            'hidden'    => '0',
+            'hidden'    => 0,
             'required'  =>  true,
-            'display'   => '1',
+            'display'   => 1,
         ];
         $this->fieldspec['title'] = [
             'type'      => 'string',
@@ -70,9 +70,9 @@ class Province extends Model
         $this->fieldspec['pub'] = [
             'type'     => 'boolean',
             'required' => false,
-            'hidden'   => '0',
+            'hidden'   => 0,
             'label'    => trans('admin.label.active'),
-            'display'  => '1'
+            'display'  => 1
         ];
         return $this->fieldspec;
     }

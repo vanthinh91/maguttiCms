@@ -1,8 +1,8 @@
-<?php namespace App\MaguttiCms\Website\Controllers;
+<?php namespace App\maguttiCms\Website\Controllers;
 
 
-use App\MaguttiCms\Website\Requests\WebsiteFormRequest;
-use App\MaguttiCms\Mailers\SystemMailer;
+use App\maguttiCms\Website\Requests\WebsiteFormRequest;
+use App\maguttiCms\Mailers\SystemMailer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\FaqCategory;
@@ -68,7 +68,7 @@ class WebsiteFormController extends Controller
             ->to(config('maguttiCms.website.option.app.email'))
             ->replyTo($data['email'])
             ->notifyContactFormSubmission($data['mailSubject'], $data)
-            ->queue();
+            ->send();
 
         /******************** end email ***********************/
 

@@ -73,7 +73,7 @@ return [
     | database.
     |
     */
-    'role_user_table' => 'role_adminuser',
+    'role_user_table' => 'user_role',
 
     /*
     |--------------------------------------------------------------------------
@@ -90,5 +90,3 @@ return [
     'role_foreign_key' => 'role_id',
 
 ];
-
-

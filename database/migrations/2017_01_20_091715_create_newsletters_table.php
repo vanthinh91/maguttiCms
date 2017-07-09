@@ -22,14 +22,8 @@ class CreateNewslettersTable extends Migration
             $table->string('name', 255);
             $table->string('email', 255);
             $table->integer('sort');
-            $table->tinyInteger('pub')->nullable()->default(1);
-            $table->integer('created_by');
+            $table->tinyInteger('is_active')->nullable()->default(1);
             $table->timestamps();
-
-            
-
-            
-
         });
     }
 

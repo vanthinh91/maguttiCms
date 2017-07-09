@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Rome',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
     */
 
 
-    'locale' => 'en',
+    'locale' => 'it',
     'locales' => ['en' => 'English', 'it' => 'Italiano'],
 
     /*
@@ -170,8 +170,7 @@ return [
         /*
          * Package Service Providers...
          */
-
-        //
+		Spatie\Sitemap\SitemapServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -191,31 +190,32 @@ return [
 
         'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
         Dimsav\Translatable\TranslatableServiceProvider::class,
-        'hisorange\BrowserDetect\Provider\BrowserDetectService',
+        //'hisorange\BrowserDetect\Provider\BrowserDetectService',
         Collective\Html\HtmlServiceProvider::class,
         'Zizaco\Entrust\EntrustServiceProvider',
         'Intervention\Image\ImageServiceProvider',
-        'Clockwork\Support\Laravel\ClockworkServiceProvider',
+        //'Clockwork\Support\Laravel\ClockworkServiceProvider',
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        Barryvdh\Cors\ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
        /*
        |--------------------------------------------------------------------------
-       | MaguttiCms Service Providers...
+       | maguttiCms Service Providers...
        |--------------------------------------------------------------------------
        */
-        App\MaguttiCms\Providers\LaraServiceProvider::class,
+        App\maguttiCms\Providers\maguttiCmsServiceProvider::class,
+        App\maguttiCms\Providers\SystemServiceProvider::class,
 
 
-        'App\MaguttiCms\Notifications\FlashServiceProvider',
-        App\MaguttiCms\Admin\Providers\AdminFormServiceProvider::class,
-        App\MaguttiCms\Admin\Providers\AdminListServiceProvider::class,
-        App\MaguttiCms\Website\Providers\WebsiteDbServiceProvider::class,
+        'App\maguttiCms\Notifications\FlashServiceProvider',
+        App\maguttiCms\Admin\Providers\AdminFormServiceProvider::class,
+        App\maguttiCms\Admin\Providers\AdminListServiceProvider::class,
+        App\maguttiCms\Website\Providers\WebsiteDbServiceProvider::class,
 
-        // MaguttiCmsfe
-        App\MaguttiCms\Website\Providers\HtmlSocialServiceProvider::class,
-        App\MaguttiCms\Website\Providers\WebsiteDecoratorServiceProvider::class,
+        // maguttiCmsfe
+        App\maguttiCms\Website\Providers\HtmlSocialServiceProvider::class,
+        App\maguttiCms\Website\Providers\WebsiteDecoratorServiceProvider::class,
 
 
     ],
@@ -281,7 +281,9 @@ return [
         'Entrust'               => 'Zizaco\Entrust\EntrustFacade',
         'Image'                 => 'Intervention\Image\Facades\Image',
         'Excel' 				=> Maatwebsite\Excel\Facades\Excel::class,
-        'Clockwork'             => 'Clockwork\Support\Laravel\Facade',
+        //'Clockwork'             => 'Clockwork\Support\Laravel\Facade',
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Carbon'				=> 'Carbon\Carbon',
 
 
         /*
@@ -289,16 +291,17 @@ return [
          | maguttiCms Class Aliases
          |--------------------------------------------------------------------------
         */
-        'AdminForm' => App\MaguttiCms\Admin\Facades\AdminForm::class,
-        'AdminList' => App\MaguttiCms\Admin\Facades\AdminList::class,
+        'AdminForm' => App\maguttiCms\Admin\Facades\AdminForm::class,
+        'AdminFormImageRelation' => App\maguttiCms\Admin\Facades\AdminFormImageRelation::class,
+        'AdminList' => App\maguttiCms\Admin\Facades\AdminList::class,
 
         'Flash'     => 'Helpers\Notifications\Flash',
-        'HtmlHelper'=> \App\MaguttiCms\Tools\HtmlHelper::class,
+        'HtmlHelper'=> App\maguttiCms\Website\Facades\HtmlHelper::class,
         'SEO'       => Artesaos\SEOTools\Facades\SEOTools::class,
-        'Setting'   => \App\MaguttiCms\Tools\SettingHelper::class,
-
-        'ImgHelper' => App\MaguttiCms\Website\Facades\ImgHelper::class,
-        'HtmlSocial'=> App\MaguttiCms\Website\Facades\HtmlSocial::class,
+        'Setting'   => \App\maguttiCms\Tools\SettingHelper::class,
+        'Stringable' => App\maguttiCms\Tools\Stringable::class,
+        'ImgHelper' => App\maguttiCms\Website\Facades\ImgHelper::class,
+        'HtmlSocial'=> App\maguttiCms\Website\Facades\HtmlSocial::class,
 
     ],
 

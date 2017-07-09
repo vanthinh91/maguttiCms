@@ -6,7 +6,7 @@
  * Time: 11:22
  */
 
-namespace App\MaguttiCms\Website\Decorator;
+namespace App\maguttiCms\Website\Decorator;
 
 class maguttiCmsDecorator
 {

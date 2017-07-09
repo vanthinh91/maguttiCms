@@ -1,20 +1,14 @@
-
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,700,300,500);
-@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
-
-// Variables
-@import "variables";
-
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "gf-helper.scss";
+@import "gf-helper-print.scss";
 
 @import "helper/reset";
-@import "helper/fonts";
 @import "helper/mixins";
 @import "helper/basic";
+@import "config/variables";
 @import "config/base";
+@import "config/typography";
 @import "partials/navbar";
 @import "partials/header";
 @import "partials/content";
 @import "partials/footer";
+@import "partials/cookies";

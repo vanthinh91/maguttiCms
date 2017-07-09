@@ -33,17 +33,11 @@ class CreateArticlesTable extends Migration
             $table->string('image', 255)->nullable();
             $table->string('banner', 255)->nullable();
             $table->string('link', 255)->nullable();
-            $table->integer('sort');
+            $table->integer('sort')->nullable();
             $table->tinyInteger('pub')->nullable()->default(1);
             $table->tinyInteger('top_menu')->nullable()->default(1);
             $table->integer('template_id')->nullable();
-            $table->integer('created_by');
             $table->timestamps();
-
-            
-
-            
-
         });
     }
 

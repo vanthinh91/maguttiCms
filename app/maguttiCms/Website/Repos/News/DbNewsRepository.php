@@ -1,5 +1,5 @@
 <?php
-namespace App\MaguttiCms\Website\Repos\News;
+namespace App\maguttiCms\Website\Repos\News;
 
 /**
  * Created by PhpStorm.
@@ -7,13 +7,14 @@ namespace App\MaguttiCms\Website\Repos\News;
  * Date: 03/07/2016
  * Time: 10:58
  */
-use App\MaguttiCms\Website\Repos\News\NewsRepositoryInterface;
+use App\maguttiCms\Website\Repos\News\NewsRepositoryInterface;
 use App\News;
-use App\MaguttiCms\Website\Repos\DbRepository;
+use App\maguttiCms\Website\Repos\DbRepository;
+use Carbon\Carbon;
 
 /**
  * Class DbPostRepository
- * @package App\MaguttiCms\Website\Repos\Post
+ * @package App\maguttiCms\Website\Repos\Post
  */
 class DbNewsRepository extends DbRepository implements NewsRepositoryInterface
 {
@@ -32,9 +33,15 @@ class DbNewsRepository extends DbRepository implements NewsRepositoryInterface
         $this->model = $model;
     }
 
-   function  getLatest($limit){
-       $this->model->latest($limit)->get();
-  }
+	function  getLatest($limit){
+		$this->model->latest($limit)->get();
+	}
 
-
+	/**
+	* @return mixed
+	*/
+	function  getPublished()
+	{
+		return $this->published()->where('date','<=',Carbon::now())->orderBy('date', 'desc')->get();
+	}
 }

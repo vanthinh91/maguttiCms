@@ -1,6 +1,6 @@
 <?php
 
-namespace App\MaguttiCms\Presenter;
+namespace App\maguttiCms\Presenter;
 /**
  * Created by PhpStorm.
  * User: web01

@@ -5,12 +5,12 @@
  * Date: 03/07/2016
  * Time: 11:40
  */
-namespace App\MaguttiCms\Website\Repos;
+namespace App\maguttiCms\Website\Repos;
 use Carbon\Carbon;
 
 /**
  * Class DbRepository
- * @package App\MaguttiCms\Website\Repos
+ * @package App\maguttiCms\Website\Repos
  */
 abstract class DbRepository
 {
@@ -35,13 +35,6 @@ abstract class DbRepository
      */
     public function getBySlug($slug){
         return $this->model->where('slug','=',$slug)->where('pub', 1)->first();
-    }
-    /**
-     * @return mixed
-     */
-    function  getPublished()
-    {
-        return $this->published()->where('date','<=',Carbon::now())->orderBy('date', 'desc')->get();
     }
 
     /**

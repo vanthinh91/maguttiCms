@@ -1,6 +1,6 @@
 <?php
 return [
     'title'	   => 'maguttiCms',
-    'email'    => 'marco@magutti.com',
+    'email'    => 'hello@magutti.com',
     'logo'     => 'logo.png',
 ];

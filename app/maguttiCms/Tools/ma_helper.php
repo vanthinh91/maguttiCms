@@ -9,6 +9,11 @@ function sanitizeParameter($parameter)
 }
 
 /*******************     DOC    *****************/
+function ma_get_doc_path_from_repository($doc)
+{
+    $path = config('maguttiCms.admin.path.doc_repository');
+    return public_path($path . $doc);
+}
 function ma_get_doc_from_repository($doc)
 {
     $path = config('maguttiCms.admin.path.doc_repository');
@@ -39,6 +44,19 @@ function ma_get_image_path_from_repository($img,$absolute=true)
 function ma_get_image_from_repository($img, $absolute = true)
 {
     return ma_get_image_path_from_repository($img, $absolute);
+}
+
+/**
+ * ritorna l'immagine solo se presente
+ * nel file system
+ *
+ * @param $img
+ * @param bool $absolute
+ * @return string
+ */
+function ma_get_image_from_repository_if_exists($img, $absolute = true)
+{
+    return ($img!='')?ma_get_image_path_from_repository($img, $absolute):"";
 }
 
 /**
@@ -150,6 +168,13 @@ function ma_get_admin_preview_url($model)
     return URL::to($path);
 }
 
+function ma_get_admin_copy_url($model)
+{
+    $path = '/admin/duplicate';
+    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(str_plural(class_basename($model)));
+    return URL::to($path . '/' . str_plural($modelName) . '/' . $model->id);
+}
+
 
 function ma_get_admin_export_url($model)
 {
@@ -198,19 +223,47 @@ function getModelFromString($string, $namespace = "\\App\\")
 }
 
 /**
- * This method is used to get the client's IP address
- * when the site is accessed through a proxy.
  *
- * @param Request $request
+ * get the  real user IP
+ * @return bool
  *
- * @return string
  */
-function getClientIPBehindProxy(Request $request)
-{
-    if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && (trim($_SERVER['HTTP_X_FORWARDED_FOR']) !== ''))
-        return trim($_SERVER['HTTP_X_FORWARDED_FOR']);
+function get_ip()  {
+    $ip = FALSE;
+    // If HTTP_CLIENT_IP is set, then give it priority
+    if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
+        $ip = $_SERVER["HTTP_CLIENT_IP"];
+    }
 
-    return $request->getClientIp();
+    // User is behind a proxy and check that we discard RFC1918 IP addresses
+    // if they are behind a proxy then only figure out which IP belongs to the
+    // user.  Might not need any more hackin if there is a squid reverse proxy
+    // infront of apache.
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+
+        // Put the IP's into an array which we shall work with shortly.
+        $ips = explode (", ", $_SERVER['HTTP_X_FORWARDED_FOR']);
+        if ($ip) { array_unshift($ips, $ip); $ip = FALSE; }
+
+        for ($i = 0; $i < count($ips); $i++) {
+            // Skip RFC 1918 IP's 10.0.0.0/8, 172.16.0.0/12 and 192.168.0.0/16
+            if (!preg_match ("/^(10|172\.16|192\.168)\./i", $ips[$i])) {
+                if (version_compare(phpversion(), "5.0.0", ">=")) {
+                    if (ip2long($ips[$i]) != false) {
+                        $ip = $ips[$i];
+                        break;
+                    }
+                } else {
+                    if (ip2long($ips[$i]) != -1) {
+                        $ip = $ips[$i];
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    $Ip=($ip)? $ip : $_SERVER['REMOTE_ADDR'];
+    return $Ip;
 }
 
 /**
@@ -228,4 +281,3 @@ function  ma_fullLocaleUrl($url) {
 
     return ma_getRealLocale().'/'.$url;
 }
-

@@ -1,14 +1,18 @@
 <?php namespace App;
 
+use App\maguttiCms\Permission\GFEntrustUserTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use App\MaguttiCms\Notifications\UserResetPasswordNotification as UserResetPasswordNotification;
-
+use App\maguttiCms\Notifications\UserResetPasswordNotification as UserResetPasswordNotification;
+use Illuminate\Support\Facades\Config;
 class User extends Authenticatable
 {
     use Notifiable;
-    use \App\MaguttiCms\Filter\FilterableTrait;
+    use GFEntrustUserTrait; // add this trait to your user model
+
+    protected  $role_user_table  = "role_user";
+    protected  $user_foreign_key = "user_id";
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +35,22 @@ class User extends Authenticatable
     protected $fieldspec = [];
 
     /**
+     * @param $roles
+     */
+    public function saveRoles($roles)
+
+
+    {
+        if(!empty($roles))
+        {
+            $this->roles()->sync($roles);
+        } else {
+            $this->roles()->detach();
+        }
+
+    }
+
+    /**
      * @param $password
      */
     public function setPasswordAttribute($password)
@@ -40,14 +60,6 @@ class User extends Authenticatable
             //  set  also the real password only for  demo purpose must not fillable
             $this->attributes['real_password'] = $password;
         }
-    }
-
-    /**
-     * @return bool
-     */
-    public function isActive()
-    {
-        return $this->is_active == 1;
     }
 
     /**
@@ -64,26 +76,26 @@ class User extends Authenticatable
             'pkey'     => 'y',
             'required' =>true,
             'label'    => 'id',
-            'hidden'   => '1',
-            'display'  => '0',
+            'hidden'   => 1,
+            'display'  => 0,
         ];
         $this->fieldspec['name']    = [
             'type'      => 'string',
             'required'  => true,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => 'Name',
             'extraMsg'  => '',
-            'display'   => '1',
+            'display'   => 1,
         ];
         $this->fieldspec['email']    = [
             'type'      => 'string',
             'required'  => true,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => 'Email',
             'extraMsg'  => '',
-            'display'   => '1',
+            'display'   => 1,
         ];
-        /*
+
 		$this->fieldspec['role'] = [
 			'type'       		=> 'relation',
 			'model'      		=> 'Role',
@@ -96,26 +108,26 @@ class User extends Authenticatable
 			'pkey' => 'y',
 			'required' =>true,
 			'label'=>'Role',
-			'hidden' => '1',
-			'display'=>'1',
+			'hidden' => 0,
+			'display'=>1,
 			 'multiple' => true,
 		];
-        */
+
         $this->fieldspec['password']    = [
             'type'      =>'password',
             'required'  => true,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => 'Password',
             'extraMsg'  => '',
-            'display'   => '1',
+            'display'   => 1,
             'template'  => 'password' /*TODO*/
         ];
         $this->fieldspec['is_active']   = [
             'type'      => 'boolean',
             'required'  => false,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => trans('admin.label.active'),
-            'display'   => '1'
+            'display'   => 1
         ];
         return $this->fieldspec;
     }
@@ -146,4 +158,14 @@ class User extends Authenticatable
     {
         $this->notify(new UserResetPasswordNotification($token));
     }
+
+	/**
+	* This method is used to check whether the user is active or not.
+	*
+	* @return bool
+	*/
+	public function isActive()
+	{
+		return $this->is_active == 1;
+	}
 }

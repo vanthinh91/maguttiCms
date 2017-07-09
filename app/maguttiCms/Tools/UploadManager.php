@@ -1,4 +1,5 @@
-<?php namespace App\MaguttiCms\Tools;
+<?php namespace App\maguttiCms\Tools;
+
 use Input;
 Use Form;
 Use App;
@@ -6,30 +7,43 @@ Use App;
 class UploadManager {
 
     protected $model;
+
     protected $newMedia;            // file object
     protected $fileFullName;        // full filename
     protected $fileBaseName;        // filename  without extension
     protected $fileExtension;       // file extension
     protected $mediaType;           // media type  doc or image
+    protected $destinationStorage;  // media destination storage
     protected $destinationPath;     // media destination path
-    protected $disk     = 'media';  // media folder
 
     /**
      * @param $media
      * @param $model
      * @return $this
      */
-    public function init($media,$request) {
-        $this->media   = $media;
-        $this->request = $request;
-        return $this;
-    }
+	public function init($media, $request, $disk = '', $folder = '') {
+		$this->media	= $media;
+        $this->request	= $request;
 
+		if ($disk) {
+			$this->destinationStorage = $disk;
+			$this->destinationPath = $folder;
+		}
+		else {
+			$this->destinationStorage = 'media';
+			$this->destinationPath = '';
+		}
 
-    protected function prepareMediaToUplod() {
+		return $this;
+	}
+
+	protected function prepareMediaToUpload() {
         if (Input::hasFile($this->media) && Input::file($this->media)->isValid()) {
             $this->newMedia        = Input::file($this->media);
             $this->setFileFullName($this->newMedia->getClientOriginalName());
+			if ($this->destinationStorage == 'media' && !$this->destinationPath) {
+				$this->destinationPath = $this->getMediaType();
+			}
             $this->fileNameHandler();
             return true;
         }
@@ -42,32 +56,12 @@ class UploadManager {
      * @return $this
      */
     public function store() {
-
-        if($this->prepareMediaToUplod()){
+        if ($this->prepareMediaToUpload()){
             $this->request->file($this->media)->storeAs(
-                $this->getMediaType(),
+                $this->destinationPath,
                 $this->getFileFullName(),
-                $this->getDisk()
+                $this->destinationStorage
             );
-        }
-        return  $this;
-    }
-
-    /**
-     * Store any media using
-     * Ajax file upload
-     * @return $this
-     */
-    /*
-     * TODO
-     * will be removed
-     */
-    public function storeAjax() {
-        if($this->prepareMediaToUplod()){
-            $storage = \Storage::disk($this->getDisk());
-            $storage->put( $this->getMediaType() . '/' . $this->getFileFullName(),
-                file_get_contents($this->newMedia,
-                    'public'));
         }
         return  $this;
     }
@@ -80,7 +74,7 @@ class UploadManager {
     public function fileNameHandler()
     {
         if($this->verifyIfFileExist()) {
-            $newFileName = str_slug(rand(11111,99999).'_'.$this->getFileBaseName()).".".$this->getFileExtension();
+            $newFileName = str_slug(rand(10000,99999).'_'.$this->getFileBaseName()).".".$this->getFileExtension();
             $this->setFileFullName($newFileName);
         }
         return $this;
@@ -89,17 +83,16 @@ class UploadManager {
     /**
      * @return string
      */
-    public function getDestinationPath()
-    {
-        return $this->destinationPath = config('maguttiCms.admin.path.repository').$this->getMediaType();
+    public function getDestinationPath() {
+        return $this->destinationPath;
     }
 
     /**
      *
      * @return bool
      */
-    protected   function  verifyIfFileExist(){
-        return (file_exists( public_path($this->getDestinationPath().'/'.$this->getFileFullName()))) ? true: false;
+    protected function verifyIfFileExist(){
+        return \Storage::disk($this->destinationStorage)->exists($this->destinationPath.'/'.$this->getFileFullName());
     }
 
     /**
@@ -121,7 +114,7 @@ class UploadManager {
      * @return string
      */
     public function getMediaType() {
-        return $this->mediaType    = ( is_image( $this->newMedia->getMimeType()) == 'image') ? 'images':'docs';
+        return $this->mediaType = (is_image($this->newMedia->getMimeType()) == 'image')? 'images': 'docs';
     }
 
     /**
@@ -139,25 +132,6 @@ class UploadManager {
     {
         $this->fileFullName = $fileName;
     }
-
-    /**
-     * @param string $disk
-     * @return UploadManager
-     */
-    public function setDisk($disk)
-    {
-        $this->disk = $disk;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDisk()
-    {
-        return $this->disk;
-    }
-
 
     /**
      * Store file attributes

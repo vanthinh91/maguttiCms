@@ -1,5 +1,8 @@
 {
-  "/website/js/botomera.js": "/website/js/botomera.js",
+  "/website/js/vendor.js": "/website/js/vendor.js",
+  "/mix.js": "/mix.js",
   "/website/css/app.css": "/website/css/app.css",
-  "/website/css/helper.css": "/website/css/helper.css"
+  "/cms/css/admin.css": "/cms/css/admin.css",
+  "/website/js/app.js": "/website/js/app.js",
+  "/website/css/vendor.css": "/website/css/vendor.css"
 }

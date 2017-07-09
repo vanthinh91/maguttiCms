@@ -1,3 +1,3 @@
-<ul class="socialIcons list-inline  text-center back-color-main mb0 pf15">
+<ul class="socialIcons list-inline">
 	{!! HtmlSocial::get()->render() !!}
 </ul>

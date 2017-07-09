@@ -26,13 +26,9 @@ class CreateSocialsTable extends Migration
             $table->string('link', 255)->nullable();
             $table->integer('sort');
             $table->tinyInteger('is_active')->nullable()->default(1);
-            $table->integer('created_by');
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
-
-            
-
-            
-
         });
     }
 
