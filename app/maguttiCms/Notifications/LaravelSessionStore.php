@@ -1,5 +1,5 @@
 <?php
-namespace App\MaguttiCms\Notifications;
+namespace App\maguttiCms\Notifications;
 use Illuminate\Session\Store;
 class LaravelSessionStore implements SessionStore {
     /**

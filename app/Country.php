@@ -13,7 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
 
-    use \App\MaguttiCms\Filter\FilterableTrait;
+
+
     /**
      * @var array
      */
@@ -36,26 +37,26 @@ class Country extends Model
             'pkey'     => 'y',
             'required' =>true,
             'label'    => 'id',
-            'hidden'   => '1',
-            'display'  => '0',
+            'hidden'   => 1,
+            'display'  => 0,
         ];
 
         $this->fieldspec['name'] = [
             'type'      => 'string',
             'required'  => true,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => 'Name',
             'extraMsg'  => '',
-            'display'   => '1',
+            'display'   => 1,
         ];
 
         $this->fieldspec['iso_code'] = [
             'type'      => 'string',
             'required'  => true,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => 'Iso code',
             'extraMsg'  => '',
-            'display'   => '1',
+            'display'   => 1,
         ];
         $this->fieldspec['id_continent'] = [
             'type'          => 'relation',
@@ -64,31 +65,31 @@ class Country extends Model
             'label_key'     => 'title',
             'required'  => false,
             'label'     => 'Continet',
-            'hidden'    => '1',
-            'display'   => '0',
+            'hidden'    => 1,
+            'display'   => 0,
         ];
 
         $this->fieldspec['eu'] = [
             'type'      => 'boolean',
             'required'  =>true,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => "Eu",
-            'display'   => '1'
+            'display'   => 1
         ];
         $this->fieldspec['vat'] = [
             'type'      => 'integer',
             'required'  => false,
             'label'     => 'Vat %',
-            'hidden'    => '0',
-            'display'   => '1',
+            'hidden'    => 0,
+            'display'   => 1,
         ];
 
         $this->fieldspec['is_active'] = [
             'type'      => 'boolean',
             'required'  => false,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => trans('admin.label.active'),
-            'display'   => '1'
+            'display'   => 1
         ];
         return $this->fieldspec;
     }

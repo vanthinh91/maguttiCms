@@ -15,7 +15,8 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \Clockwork\Support\Laravel\ClockworkMiddleware::class,
+        //'Clockwork\Support\Laravel\ClockworkMiddleware',
+        \App\Http\Middleware\ForceSSLMiddleware::class
     ];
 
     /**
@@ -36,7 +37,6 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
-            \Barryvdh\Cors\HandleCors::class,
         ],
     ];
 
@@ -48,22 +48,21 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
+
+        'adminauth' => \App\maguttiCms\Middleware\AdminAuthenticate::class,
+
         /*
         |--------------------------------------------------------------------------
         | maguttiCms add-ons
         |--------------------------------------------------------------------------
         */
-
-        'adminauth' => \App\MaguttiCms\Middleware\AdminAuthenticate::class,
-        'localone'  => \App\MaguttiCms\Middleware\Localization::class,
-
 
         /**** OTHER MIDDLEWARE ****/
         'localize'               => 'Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes',
@@ -74,7 +73,6 @@ class Kernel extends HttpKernel
         'role'                  => \Zizaco\Entrust\Middleware\EntrustRole::class,
         'permission'            => \Zizaco\Entrust\Middleware\EntrustPermission::class,
         'ability'               => \Zizaco\Entrust\Middleware\EntrustAbility::class,
-        //'Clockwork\Support\Laravel\ClockworkMiddleware',
 
     ];
 }

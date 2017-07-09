@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class Authenticate
 {
@@ -39,7 +40,8 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('login');
+				$redirPath = LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(),'users/login');
+                return redirect($redirPath);
             }
         }
 

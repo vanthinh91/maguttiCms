@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use App\maguttiCms\Permission\GFEntrustUserTrait;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
@@ -8,19 +9,21 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-use Zizaco\Entrust\Traits\EntrustUserTrait;
-
 /*GF_ma for maguttiCms*/
-use App\MaguttiCms\Presenter\AdminUserPresenter;
-use App\MaguttiCms\Notifications\AdminResetPasswordNotification as AdminUserResetPasswordNotification;
+use App\maguttiCms\Presenter\AdminUserPresenter;
+use App\maguttiCms\Notifications\AdminResetPasswordNotification as AdminUserResetPasswordNotification;
 
 class AdminUser extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
     use Authenticatable, CanResetPassword;
-	use EntrustUserTrait; // add this trait to your user model
     use Notifiable;
     /*Gf_ma for maguttiCms*/
     use AdminUserPresenter;
+
+	use GFEntrustUserTrait;
+
+    protected  $role_user_table  = "adminuser_role";
+    protected  $user_foreign_key = "adminuser_id";
 
     /**
      * The database table used by the model.
@@ -79,32 +82,32 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
             'pkey'      =>'y',
             'required'  =>true,
             'label'     =>'id',
-            'hidden'    =>'1',
-            'display'   =>'0',
+            'hidden'    =>1,
+            'display'   =>0,
         ];
         $this->fieldspec['first_name'] = [
             'type'      =>'string',
             'required'  =>true,
-            'hidden'    =>'0',
+            'hidden'    =>0,
             'label'     =>'First Name',
             'extraMsg'  =>'',
-            'display'   =>'1',
+            'display'   =>1,
         ];
         $this->fieldspec['last_name'] = [
             'type'      =>'string',
             'required'  =>true,
-            'hidden'    =>'0',
+            'hidden'    =>0,
             'label'     =>'Last Name',
             'extraMsg'  =>'',
-            'display'   =>'1',
+            'display'   =>1,
         ];
         $this->fieldspec['email']    = [
             'type'      =>'string',
             'required'  =>true,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     =>'Email',
             'extraMsg'  =>'',
-            'display'   =>'1',
+            'display'   =>1,
         ];
         $this->fieldspec['role'] = [
             'type'       	=>'relation',
@@ -115,24 +118,24 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
             'required'      => true,
             'label'         => 'Role',
             'hidden'        => $this->hideEditRole(),
-            'display'       => '1',
+            'display'       => 1,
             'multiple'      => true,
         ];
         $this->fieldspec['password']    = [
             'type'      =>'password',
             'required'  =>true,
-            'hidden'    =>'0',
+            'hidden'    =>0,
             'label'     =>'Password',
             'extraMsg'  =>'',
-            'display'   =>'1',
+            'display'   =>1,
             'template'  =>'password'
         ];
         $this->fieldspec['is_active'] = [
             'type'     => 'boolean',
             'required' => false,
-            'hidden'   => '0',
+            'hidden'   => 0,
             'label'    => trans('admin.label.active'),
-            'display'  => '1'
+            'display'  => 1
         ];
         return $this->fieldspec;
     }
@@ -195,5 +198,5 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
     {
         $this->notify(new AdminUserResetPasswordNotification($token));
     }
-	  
+
 }

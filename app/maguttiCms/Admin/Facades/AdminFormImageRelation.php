@@ -9,6 +9,6 @@
 namespace App\maguttiCms\Admin\Facades;
 use Illuminate\Support\Facades\Facade;
 
-class AdminList extends Facade{
-    protected static function getFacadeAccessor() { return 'AdminList'; }
+class AdminFormImageRelation extends Facade{
+    protected static function getFacadeAccessor() { return 'AdminFormImageRelation'; }
 }

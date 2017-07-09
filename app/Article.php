@@ -1,41 +1,23 @@
 <?php namespace App;
 
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 
+use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
+/**
+ * Class Article
+ * @package App
+ */
 class Article extends Model
 {
     use \Dimsav\Translatable\Translatable;
-    use \App\MaguttiCms\Filter\FilterableTrait;
-
-    /**
-     * Attributes that can be translated.
-     *
-     * @var array
-     */
+    use  GFTranslatableHelperTrait;
     public $translatedAttributes = ['menu_title', 'title', 'subtitle', 'abstract', 'description', 'seo_title', 'seo_keywords', 'seo_description', 'seo_no_index'];
-
-    /**
-     * Attributes that can be 'slugged'.
-     *
-     * @var array
-     */
     public $sluggable = ['slug'];
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = ['title', 'subtitle', 'abstract', 'description', 'slug', 'sort', 'pub', 'top_menu', 'id_parent', 'link', 'template_id'];
-
-    /**
-     * The list of fields to build the edit/new form.
-     *
-     * @var array
-     */
     protected $fieldspec = [];
-
     /**
      * Accessibility roles for searches.
      *
@@ -43,31 +25,21 @@ class Article extends Model
      */
     public $ajaxAccessibilityRoles = ['su'];
 
-    /**
-     * The Domain relationship.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    /*
+     |--------------------------------------------------------------------------
+     |  RELATION
+     |--------------------------------------------------------------------------
      */
     public function template()
     {
         return $this->belongsTo('App\Domain', 'template_id', 'id');
     }
 
-    /**
-     * The Media relationship.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
     public function media()
     {
         return $this->morphMany('App\Media', 'model');
     }
 
-    /**
-     * The Article relationship.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
     public function parentPage()
     {
         return $this->hasOne('App\Article','id','id_parent');
@@ -87,8 +59,8 @@ class Article extends Model
             'pkey'      => 'y',
             'required'  => true,
             'label'     => 'id',
-            'hidden'    => '1',
-            'display'   => '0',
+            'hidden'    => 1,
+            'display'   => 0,
         ];
         $this->fieldspec['id_parent'] = [
             'type'        => 'relation',
@@ -97,8 +69,9 @@ class Article extends Model
             'label_key'   => 'title',
             'required'    => false,
             'label'       => 'Parent Page',
-            'hidden'      => '0',
-            'display'     => '1',
+            'hidden'      => 0,
+            'display'     => 1,
+            'cssClass'    => 'selectize',
         ];
         $this->fieldspec['template_id'] = [
             'type'        => 'relation',
@@ -108,8 +81,8 @@ class Article extends Model
             'label_key'   => 'title',
             'required'    => false,
             'label'       => 'Template',
-            'hidden'      => '0',
-            'display'     => '1',
+            'hidden'      => 0,
+            'display'     => 1,
         ];
         $this->fieldspec['menu_title'] = [
             'type'     => 'string',
@@ -121,23 +94,23 @@ class Article extends Model
         ];
         $this->fieldspec['title'] = [
             'type'     => 'string',
-            'required' => '1',
-            'hidden'   => '0',
+            'required' => 1,
+            'hidden'   => 0,
             'label'    => 'Page Title',
             'extraMsg' => '',
-            'display'  => '1',
+            'display'  => 1,
         ];
         $this->fieldspec['subtitle'] = [
             'type'     => 'string',
             'required' => false,
-            'hidden'   => '0',
+            'hidden'   => 0,
             'label'    => 'Subtitle',
             'extraMsg' => '',
-            'display'  => '1',
+            'display'  => 1,
         ];
         $this->fieldspec['slug'] = [
             'type'     => 'string',
-            'required' => '1',
+            'required' => 1,
             'hidden'   => 0,
             'label'    => 'Slug',
             'extraMsg' => '',
@@ -151,7 +124,7 @@ class Article extends Model
             'hidden'   => 0,
             'label'    => 'Description',
             'extraMsg' => '',
-            'cssClass' => 'ckeditor',
+            'cssClass' => 'wyswyg',
             'display'  => 1,
         ];
         $this->fieldspec['abstract'] = [
@@ -162,7 +135,7 @@ class Article extends Model
             'hidden'   => 0,
             'label'    => 'Abstract or text right side column',
             'extraMsg' => '',
-            'cssClass' => 'ckeditor',
+            'cssClass' => 'wyswyg',
             'display'  => 1,
         ];
         $this->fieldspec['link'] = [
@@ -191,35 +164,36 @@ class Article extends Model
             'lang'      => 0,
             'mediaType' => 'Doc',
             'display'   => 1,
+			'uploadifive' => 1,
         ];
         $this->fieldspec['sort'] = [
             'type'     => 'integer',
             'required' => false,
             'label'    => 'Order',
-            'hidden'   => '0',
-            'display'  => '1',
+            'hidden'   => 0,
+            'display'  => 1,
         ];
         $this->fieldspec['pub'] = [
             'type'     => 'boolean',
             'required' => false,
-            'hidden'   => '0',
+            'hidden'   => 0,
             'label'    => trans('admin.label.active'),
-            'display'  => '1'
+            'display'  => 1
         ];
         $this->fieldspec['top_menu'] = [
             'type'     => 'boolean',
             'required' => false,
-            'hidden'   => '0',
+            'hidden'   => 0,
             'label'    => trans('admin.label.top_menu'),
-            'display'  => '1'
+            'display'  => 1
         ];
         $this->fieldspec['seo_title'] = [
             'type'     => 'string',
             'required' => 'n',
-            'hidden'   => '0',
+            'hidden'   => 0,
             'label'    => trans('admin.seo.title'),
             'extraMsg' => '',
-            'display'  => '1',
+            'display'  => 1,
         ];
         $this->fieldspec['seo_keywords'] = [
             'type'     => 'string',
@@ -242,31 +216,35 @@ class Article extends Model
         $this->fieldspec['seo_no_index'] = [
             'type'     => 'boolean',
             'required' => false,
-            'hidden'   => '0',
+            'hidden'   => 0,
             'label'    => trans('admin.seo.no-index'),
-            'display'  => '1'
+            'display'  => 1
         ];
 
         return $this->fieldspec;
     }
 
-    public function scopePublished($query)
-    {
-        $query->where('pub', '=', 1);
+    public function scopePublished($query) {
+        $query->where('pub', 1);
     }
 
-    public function scopeTop($query)
-    {
-        $query->where('top_menu', '=', 1)->where('id_parent', '=', 1)->orderBy('sort', 'asc');
+    public function scopeMenu($query) {
+        $query->where('top_menu', 1)->where('id_parent', 0)->orderBy('sort', 'asc');
     }
 
-    public function scopeChildren($query, $id = '')
-    {
-        $query->where('id_parent', '=', $id)->orderBy('sort', 'asc');
+    public function scopeChildren($query, $id = '') {
+        $query->where('id_parent', $id)->orderBy('sort', 'asc');
     }
 
-    public function scopeChildrenMenu($query, $id)
-    {
-        $query->where('id_parent', '=', $id)->where('top_menu', '=', 1)->orderBy('sort', 'asc');
+    public function scopeChildrenMenu($query, $id) {
+        $query->where('id_parent', $id)->where('top_menu', 1)->orderBy('sort', 'asc');
     }
+
+	public function getPermalink() {
+  		if ($this->id_parent) {
+  			return $this->parentPage->getPermalink().'/'.$this->slug;
+  		}
+
+  		return LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(), URL::to($this->slug));
+  	}
 }

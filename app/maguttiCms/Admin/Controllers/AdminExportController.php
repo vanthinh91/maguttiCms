@@ -1,10 +1,10 @@
 <?php
 
-namespace App\MaguttiCms\Admin\Controllers;
+namespace App\maguttiCms\Admin\Controllers;
 
 
 use App\Article;
-use App\MaguttiCms\Tools\ExportHelper;
+use App\maguttiCms\Tools\ExportHelper;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,7 +17,7 @@ use Validator;
 
 /**
  * Class AdminExportController
- * @package App\MaguttiCms\Admin\Controllers
+ * @package App\maguttiCms\Admin\Controllers
  */
 class AdminExportController extends Controller
 {

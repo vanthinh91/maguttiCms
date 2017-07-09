@@ -1,11 +1,13 @@
 <?php
 namespace App;
 use Illuminate\Database\Eloquent\Model;
+use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class Domain extends Model
 {
-    //
     use \Dimsav\Translatable\Translatable;
+    use GFTranslatableHelperTrait;
+
     public    $translatedAttributes = ['title'];
     protected $fillable  = ['domain','title','value','pub','sort'];
     protected $fieldspec = [];
@@ -14,15 +16,14 @@ class Domain extends Model
     function getFieldSpec ()
     {
 
-        // build array of field specifications
         $this->fieldspec['id'] = [
             'type'      => 'integer',
             'minvalue'  => 0,
             'pkey'      => 'y',
             'required'  => true,
             'label'     => 'id',
-            'hidden'    => '1',
-            'display'   => '0',
+            'hidden'    => 1,
+            'display'   => 0,
         ];
 
         $this->fieldspec['domain'] = [
@@ -56,17 +57,17 @@ class Domain extends Model
             'type'      => 'integer',
             'required'  => false,
             'label'     => 'Order',
-            'hidden'    => '0',
-            'display'   => '1',
+            'hidden'    => 0,
+            'display'   => 1,
         ];
 
         $this->fieldspec['pub'] = [
             'type'      => 'boolean',
             'pkey'      => 'n',
             'required'  => false,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => trans('admin.label.active'),
-            'display'   => '1'
+            'display'   => 1
         ];
         return $this->fieldspec;
     }

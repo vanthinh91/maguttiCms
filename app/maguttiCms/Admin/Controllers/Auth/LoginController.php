@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Admin\Controllers\Auth;
+<?php namespace App\maguttiCms\Admin\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -21,6 +21,8 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+
+
     /**
      * Where to redirect users after login.
      *
@@ -31,7 +33,15 @@ class LoginController extends Controller
     protected $redirectPath          = '/admin';
     protected $redirectAfterLogout   = '/admin';
     protected $localePrefix          =  '';
-
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //$this->middleware('adminauth', ['except' => 'logout']);
+    }
 
     public function showLoginForm()
     {

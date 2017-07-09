@@ -1,12 +1,6 @@
-<?php namespace App\MaguttiCms\Mailers;
+<?php namespace App\maguttiCms\Mailers;
 
-/**
- * Created by Luca.
- * Date: 17/11/16
- * Time: 08:14
- */
-
-use App\MaguttiCms\Tools\Mailer;
+use App\maguttiCms\Tools\Mailer;
 
 class BaseMailer extends Mailer
 {

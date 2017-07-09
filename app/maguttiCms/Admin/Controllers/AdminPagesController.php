@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Admin\Controllers;
+<?php namespace App\maguttiCms\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -6,23 +6,21 @@ use Illuminate\Http\Request;
 use Validator;
 use Input;
 
-
-use App\MaguttiCms\Admin\Helpers\AdminUserTrackerTrait;
-use App\MaguttiCms\Admin\Requests\AdminFormRequest;
-use App\MaguttiCms\Searchable\SearchableTrait;
-use App\MaguttiCms\Sluggable\SluggableTrait;
-use App\MaguttiCms\Tools\UploadManager;
+use \App\maguttiCms\Admin\Helpers\AdminUserTrackerTrait;
+use App\maguttiCms\Admin\Requests\AdminFormRequest;
+use App\maguttiCms\Searchable\SearchableTrait;
+use App\maguttiCms\Sluggable\SluggableTrait;
+use App\maguttiCms\Tools\UploadManager;
 
 /**
  * Class AdminPagesController
- * @package App\MaguttiCms\Admin\Controllers
+ * @package App\maguttiCms\Admin\Controllers
  */
 class AdminPagesController extends Controller
 {
     use SluggableTrait;
     use SearchableTrait;
     use AdminUserTrackerTrait;
-
 
     protected $model;
     protected $models;
@@ -38,10 +36,9 @@ class AdminPagesController extends Controller
     public function init($model)
     {
         $this->model = $model;
-        $this->config = config('maguttiCms.admin.list.section.'.$this->model);
+        $this->config = config('maguttiCms.admin.list.section.' . $this->model);
         $this->models = strtolower(str_plural($this->config['model']));
         $this->modelClass = 'App\\' . $this->config['model'];
-
     }
 
     /**
@@ -58,27 +55,21 @@ class AdminPagesController extends Controller
      */
     public function lista(Request $request, $model, $sub = '')
     {
+
         $this->request = $request;
         $this->init($model);
-        $models = new $this->modelClass;
-        $this->setCurModel($models)->setOrderBy();
+        $models      = new $this->modelClass;
+        $objBuilder  = $models::query();
+        $this->setCurModel($models);
+
+        $this->joinable($objBuilder);
+        $this->whereFilter($objBuilder);
+        $this->searchFilter( $objBuilder );
+        $this->orderFilter( $objBuilder );
 
         if( $this->isTranslatableField($this->sort)) {
-            $translationTable = $this->getTranslatableTable();
-            $table            = $this->getMainTable();
-            $objBuilder = $models::join($translationTable.'_translations as t', 't.'.$translationTable.'_id', '=', $table.'.id')
-                ->where('locale','it')
-                ->groupBy($table.'.id')
-                ->orderBy('t.'.$this->sort, $this->sortType)
-                ->with('translations');
-            $objBuilder->select($table.'.*');
+            $objBuilder->select($this->model->getTable().'.*');
         }
-        else {
-            $objBuilder  = $models::orderByRaw(
-                DB::raw($this->sort.' '.$this->sortType)
-            );
-        }
-        $this->searchFilter( $objBuilder );
         $articles = $objBuilder->paginate(config('maguttiCms.admin.list.item_per_pages'));
         $articles->appends(request()->input())->links(); // paginazione con parametri di ricerca
         return view('admin.list', ['articles' => $articles, 'pageConfig' => $this->config]);
@@ -171,7 +162,7 @@ class AdminPagesController extends Controller
         $this->requestFieldHandler($article);
 
         flash()->success('The item <strong>' . $article->title . '</strong> has been created!');
-        return redirect(action('\App\MaguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
+        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
     }
 
     /**
@@ -191,8 +182,31 @@ class AdminPagesController extends Controller
         $article = $model::whereId($id)->firstOrFail();
         // input data Handler
         $this->requestFieldHandler($article);
-        return redirect(action('\App\MaguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
+        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
 
+    }
+
+
+    /**
+     * SIMPLE DUPLICATE FUNCTION
+     * FOR NOW DUPLICATE A
+     * RECORD WITHOUT IS
+     * RELATION
+     *
+     * TODO RELATION DUPLICATION
+     * @param $model
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function duplicate($model, $id)
+    {
+        $this->init($model);
+        $model      = new  $this->modelClass;
+        $oldArticle =  $model::find($id);
+        $article    =  $oldArticle->replicate();
+
+        $article->save();
+        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
     }
 
     /**
@@ -233,7 +247,7 @@ class AdminPagesController extends Controller
         $article = $model::whereId($this->id)->firstOrFail();
         $article->delete();
         flash()->error('The items ' . $article->title . ' has been deleted!')->important();
-        return redirect(action('\App\MaguttiCms\Admin\Controllers\AdminPagesController@lista', $this->models));
+        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->models));
     }
 
     /**
@@ -275,10 +289,10 @@ class AdminPagesController extends Controller
      * @param $model
      * @param $media
      */
-    private function mediaHandler($model,$media)
+    private function mediaHandler($model,$media, $disk = '', $folder = '')
     {
         $UM = new UploadManager;
-        $model->$media = ($UM->init($media,$this->request)->store()->getFileFullName()) ? :  $model->$media;
+        $model->$media = ($UM->init($media, $this->request, $disk, $folder)->store()->getFileFullName()) ? :  $model->$media;
     }
 
     /**
@@ -290,8 +304,47 @@ class AdminPagesController extends Controller
     {
         foreach ($model->getFieldSpec() as $key => $field) {
             if ($field['type'] == 'media') {
-                $this->mediaHandler($model, $key);
+
+				$disk = (isset($field['disk']))? $field['disk']: '';
+				$folder = (isset($field['folder']))? $field['folder']: '';
+
+                $this->mediaHandler($model, $key, $disk, $folder);
             }
         }
     }
+
+	// questa funzione recupera solo i file non immagine. Per le immagini è già presente l'anteprima.
+	public function get_file($object, $key) {
+		$fields = $object->getFieldSpec();
+
+		$disk = (isset($fields[$key]['disk'])) ? $fields[$key]['disk'] : 'media';
+		$folder = (isset($fields[$key]['folder'])) ? $fields[$key]['folder'] : 'docs';
+
+		$storage = \Storage::disk($disk);
+
+		if ($storage->exists($folder.'/'.$object->$key))
+			return [
+				'file' => $storage->get($folder.'/'.$object->$key),
+				'mime' => $storage->mimeType($folder.'/'.$object->$key)
+			];
+		else
+			return false;
+	}
+
+	public function file_view($model, $id, $key) {
+		$this->id = $id;
+        $this->init($model);
+        $model = new $this->modelClass;
+        $article = $model::whereId($this->id)->firstOrFail();
+
+		if ($article) {
+			$file = $this->get_file($article, $key);
+			if ($file['file']) {
+				return response()->make($file['file'], 200, [
+				    'Content-Type' => $file['mime'],
+				    'Content-Disposition' => 'inline; filename="'.$article->$key.'"'
+				]);
+			}
+		}
+	}
 }

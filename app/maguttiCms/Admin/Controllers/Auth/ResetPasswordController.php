@@ -1,6 +1,6 @@
 <?php
 
-namespace App\MaguttiCms\Admin\Controllers\Auth;
+namespace App\maguttiCms\Admin\Controllers\Auth;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;

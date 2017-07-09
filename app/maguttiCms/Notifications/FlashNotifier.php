@@ -1,7 +1,7 @@
-<?php namespace App\MaguttiCms\Notifications;
+<?php namespace App\maguttiCms\Notifications;
 
 use Illuminate\Session\Store;
-//use App\MaguttiCms\Notifications\SessionStore;
+//use App\maguttiCms\Notifications\SessionStore;
 
 class FlashNotifier
 {

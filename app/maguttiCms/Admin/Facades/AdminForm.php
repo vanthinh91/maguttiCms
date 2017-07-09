@@ -6,7 +6,7 @@
  * Time: 1:47 PM
  */
 
-namespace App\MaguttiCms\Admin\Facades;
+namespace App\maguttiCms\Admin\Facades;
 use Illuminate\Support\Facades\Facade;
 
 class AdminForm extends Facade{

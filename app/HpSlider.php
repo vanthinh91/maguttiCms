@@ -29,8 +29,8 @@ class HpSlider extends Model
             'pkey'     => 'y',
             'required' =>true,
             'label'    => 'id',
-            'hidden'   => '1',
-            'display'  => '0',
+            'hidden'   => 1,
+            'display'  => 0,
         ];
         $this->fieldspec['title']    = [
             'type'      => 'string',
@@ -43,17 +43,17 @@ class HpSlider extends Model
 
         $this->fieldspec['description'] = [
             'type'      => 'string',
-            'required'  => true,
+            'required'  => false,
             'hidden'    => 0,
             'label'     => 'Caption',
             'extraMsg'  => '',
             'lang'      => 0,
-            'cssClass'  => 'ckeditor',
+            'cssClass'  => 'wyswyg',
             'display'   => 1,
         ];
         $this->fieldspec['slug'] = [
             'type'      => 'string',
-            'required'  => true,
+            'required'  => false,
             'hidden'    => 0,
             'label'     => 'Slug',
             'extraMsg'  => '',
@@ -61,9 +61,9 @@ class HpSlider extends Model
         ];
         $this->fieldspec['link'] = [
             'type'      => 'string',
-            'required'  => true,
+            'required'  => false,
             'hidden'    => 0,
-            'label'     => 'External link  (optional)',
+            'label'     => 'Link',
             'extraMsg'  => '',
             'display'   => 1,
         ];
@@ -82,16 +82,16 @@ class HpSlider extends Model
             'type'      => 'integer',
             'required'  => false,
             'label'     => 'Order',
-            'hidden'    => '0',
-            'display'   => '1',
+            'hidden'    => 0,
+            'display'   => 1,
         ];
         $this->fieldspec['is_active'] = [
             'type'      => 'boolean',
             'pkey'      => 'n',
             'required'  => false,
-            'hidden'    => '0',
+            'hidden'    => 0,
             'label'     => trans('admin.label.active'),
-            'display'   => '1'
+            'display'   => 1
         ];
         return $this->fieldspec;
     }

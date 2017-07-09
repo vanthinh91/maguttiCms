@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Admin\Helpers;
+<?php namespace App\maguttiCms\Admin\Helpers;
 use Illuminate\Database\Eloquent\Model;
 use App\ActionTracker;
 

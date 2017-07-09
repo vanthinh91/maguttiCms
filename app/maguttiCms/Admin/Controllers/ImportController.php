@@ -1,10 +1,10 @@
 <?php
-namespace App\MaguttiCms\Admin\Controllers;
+namespace App\maguttiCms\Admin\Controllers;
 use Illuminate\Http\Request;
 
 
 use App\Http\Controllers\Controller;
-use App\MaguttiCms\Admin\Importer\GlobalListImport;
+use App\maguttiCms\Admin\Importer\GlobalListImport;
 use Input;
 use Validator;
 
@@ -14,7 +14,7 @@ class ImportController extends Controller
 
     public function language_translation()
     {
-        $path = config('laraCms.admin.path.shared') . 'TraduzioniNewWebsite.csv';
+        $path = config('maguttiCms.admin.path.shared') . 'TraduzioniNewWebsite.csv';
         $file = fopen($path, "r");
         $i = 0;
         echo "<pre>";
@@ -25,6 +25,7 @@ class ImportController extends Controller
             $lang = $data[2]; //4pt 5de 6es
             if ($i > 0) {
                 echo "'" . $key . "' => '" . addslashes(trim($lang)) . "',\n";
+
             }
             $i++;
         }
@@ -35,7 +36,7 @@ class ImportController extends Controller
 
     public function model_translation($model)
     {
-        echo $path = config('laraCms.admin.path.shared') . 'pino.csv';
+        echo $path = config('maguttiCms.admin.path.shared') . 'pino.csv';
         $file = fopen($path, "r");
         $i = 0;
 

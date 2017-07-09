@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
 
         \App\Console\Commands\SetupRedis::class,
+        \App\Console\Commands\GenerateSitemap::class,
+
     ];
 
     /**

@@ -1,11 +1,11 @@
-<?php namespace App\MaguttiCms\Admin\Helpers;
+<?php namespace App\maguttiCms\Admin\Helpers;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
  *
  * Class AdminUserHelperTrait
- * @package App\MaguttiCms\Admin\Helpers
+ * @package App\maguttiCms\Admin\Helpers
  */
 
 trait AdminUserTrackerTrait
@@ -15,8 +15,8 @@ trait AdminUserTrackerTrait
     | Trake
     |--------------------------------------------------------------------------
     */
-
-    
+    protected $value;
+    protected $model;
     protected $guard = 'admin';
 
 

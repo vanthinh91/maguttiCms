@@ -1,4 +1,5 @@
-<?php namespace App\MaguttiCms\Admin\Controllers;
+<?php namespace App\maguttiCms\Admin\Controllers;
+
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -6,7 +7,7 @@ use Illuminate\Http\Request;
 use Input;
 use Image;
 
-use App\MaguttiCms\Tools\UploadManager;
+use App\maguttiCms\Tools\UploadManager;
 use App\Media;
 
 class AjaxController extends Controller
@@ -58,22 +59,66 @@ class AjaxController extends Controller
     |
     |
      */
-    public function uploadifive(Request $request)
+    public function uploadifiveSingle(Request $request)
     {
+		$modelClass = 'App\\' . $request->model;
+		$object = new $modelClass;
+		$fieldspec = $object->getFieldSpec();
+		$disk = (isset($fieldspec[$request->key]['disk']))? $fieldspec[$request->key]['disk']: '';
+		$folder = (isset($fieldspec[$request->key]['folder']))? $fieldspec[$request->key]['folder']: '';
+
         $media = 'Filedata';
         if (Input::hasFile($media) && Input::file($media)->isValid()) {
 
             $UM              = new UploadManager;
-            $fileData        = $UM->init($media,$request)->store()->getFileDetails();
-            $disk            = "media";
-            $destinationPath = $disk.'/' .$fileData['mediaType']; // upload path folder
+            $fileData        = $UM->init($media, $request, $disk, $folder)->store()->getFileDetails();
 
-            if (is_image($fileData['mediaType']) == 'image') {
-                //$img = Image::make($newMedia->getRealPath());
-                $img = Image::make(public_path( $destinationPath . '/' . $fileData['fullName'] ))->widen(1600);
-                // save file as png with medium quality
-                $img->save(public_path($destinationPath . '/' . $fileData['fullName'], 60));
-            }
+            // $disk            = "media";
+            // $destinationPath = $disk.'/' .$fileData['mediaType']; // upload path folder
+            // if (is_image($fileData['mediaType']) == 'image') {
+            //     //$img = Image::make($newMedia->getRealPath());
+            //     $img = Image::make(public_path( $destinationPath . '/' . $fileData['fullName'] ))->widen(1600);
+            //     // save file as png with medium quality
+            //     $img->save(public_path($destinationPath . '/' . $fileData['fullName'], 60));
+            // }
+
+            $this->responseContainer['status'] = 'ok';
+            $this->responseContainer['data']   = $fileData['mediaType'];
+			$this->responseContainer['filename'] = $fileData['fullName'];
+            return $this->responseHandler();
+        }
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Upload File using Ajax Method
+    |--------------------------------------------------------------------------
+    |  Filesystem Disk = > media
+    |
+    |
+     */
+    public function uploadifiveMedia(Request $request)
+    {
+		$modelClass = 'App\\' . $request->model;
+		$object = new $modelClass;
+		$fieldspec = $object->getFieldSpec();
+		$disk = (isset($fieldspec[$request->key]['disk']))? $fieldspec[$request->key]['disk']: '';
+		$folder = (isset($fieldspec[$request->key]['folder']))? $fieldspec[$request->key]['folder']: '';
+
+        $media = 'Filedata';
+        if (Input::hasFile($media) && Input::file($media)->isValid()) {
+
+            $UM              = new UploadManager;
+            $fileData        = $UM->init($media, $request, $disk, $folder)->store()->getFileDetails();
+
+            // $disk            = "media";
+            // $destinationPath = $disk.'/' .$fileData['mediaType']; // upload path folder
+            // if (is_image($fileData['mediaType']) == 'image') {
+            //     //$img = Image::make($newMedia->getRealPath());
+            //     $img = Image::make(public_path( $destinationPath . '/' . $fileData['fullName'] ))->widen(1600);
+            //     // save file as png with medium quality
+            //     $img->save(public_path($destinationPath . '/' . $fileData['fullName'], 60));
+            // }
 
             /**
              * SAVE THE DATA TO
@@ -90,7 +135,6 @@ class AjaxController extends Controller
             $c->collection_name     = $fileData['mediaType'];
             $c->disk                = $disk;
             $c->media_category_id   = ($request->has('myImgType'))? $request->myImgType: 1;
-
             $c->file_ext            = $fileData['extension'];
             $list->media()->save($c);
 
@@ -109,6 +153,18 @@ class AjaxController extends Controller
     }
 
 
+
+    public function updateModelMediaList($modelFilter)
+    {
+
+        $object = Media::where('id','>',100)->orderBy('id','DESC')->get();
+        return view('admin.helper.modal_media_gallery', ['medias' => $object]);
+    }
+
+
+
+
+
     public function updateMediaSortList(Request $request)
     {
         $i = 1;
@@ -117,7 +173,7 @@ class AjaxController extends Controller
         foreach ($input as $key => $items) {
             $dataObject = explode('_', $key);
             foreach ($items as $id) {
-                $modelClass = 'App\\' . $dataObject[1];
+                $modelClass = 'App\\' . ucfirst($dataObject[1]);
                 $object = $modelClass::whereId($id)->firstOrFail();
                 $object->sort = $i * 10;
                 $object->save();
@@ -146,7 +202,6 @@ class AjaxController extends Controller
             'model' => 'required',
             'value' => 'required',
             'caption' => 'required',
-            'accessor' => 'required'
         ]);
 
         // Set convenience variables.
@@ -154,6 +209,8 @@ class AjaxController extends Controller
         $model = getModelFromString($request->model);
         $value = $request->value;
         $caption = $request->caption;
+        $searchField = (isset($request->searchFields) && $request->searchFields!='') ? $request->searchFields:$caption;
+
 
         /*
          * Make sure that the user can access this data (meaning he has sufficient role permissions).
@@ -177,54 +234,32 @@ class AjaxController extends Controller
                 return response()->json([]);
         }
 
-        // Check if we are dealing with an accessor property.
-        if ($request->accessor == '1') {
 
-            // Make sure that we have the necessary data to perform the query.
-            if (property_exists(get_class($model), 'accessors') && isset($model->accessors[$caption])) {
 
-                // Build the query by adding each field to the where clause.
-                $step = 0;
-                foreach ($model->accessors[$caption] as $field) {
+        // Check if the field is translatable.
+        if ($this->isTranslatableField($model, $caption)) {
 
-                    $step++;
-                    if ($step == 1)
-                        $records = $model->where($field, 'LIKE', "%{$term}%");
-                    else
-                        $records = $records->orWhere($field, 'LIKE', "%{$term}%");
-                }
-
-                // Build the response and return.
-                $items = $this->buildSuggestResponse($records->get(), $value, $caption);
-
-                return response()->json($items);
-            }
-
-            // Cannot search on an accessor without knowing the relevant fields.
-            return response()->json([]);
+            $records = $model::whereTranslationLike($caption, "%{$term}%");
         }
         else {
 
-            // Check if the field is translatable.
-            if ($this->isTranslatableField($model, $caption)) {
+            // This is the simplest case where we know exactly what's the field to search.
+            $records = $model::select('*');
+            $seachFieldsList =explode(',',$searchField);
+            foreach( $seachFieldsList as $_field){
+                $records->orWhere($_field,'like',"%{$term}%");
 
-                $records = $model::whereTranslationLike($caption, "%{$term}%");
             }
-            else {
-
-                // This is the simplest case where we know exactly what's the field to search.
-                $records = $model::select($value, $caption)->where($caption, 'LIKE', "%{$term}%");
-            }
-
-            if ($request->has('where') && $request->where != '')
-                $records = $records->whereRaw($request->where);
-
-            $records = $records->get();
         }
+
+        if ($request->has('where') && $request->where != '')
+            $records = $records->whereRaw($request->where);
+
+        $records = $records->get();
+
 
         // Build the response and return.
         $items = $this->buildSuggestResponse($records, $value, $caption);
-
         return response()->json($items);
     }
 

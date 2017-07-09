@@ -1,9 +1,9 @@
-<?php namespace App\MaguttiCms\Tools;
+<?php namespace App\maguttiCms\Tools;
 
 
 /**
  * Class ExportHelper
- * @package App\MaguttiCms\Tools
+ * @package App\maguttiCms\Tools
  */
 class ExportHelper {
 
