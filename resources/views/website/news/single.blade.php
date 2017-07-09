@@ -7,7 +7,7 @@
 			<h1>{{ $news->title }}</h1>
             <div class="row">
 				<div class="col-xs-12 mb10">
-					<img src="{!! ImgHelper::get_cached($news->image, config('maguttiCms')) !!}" alt="{{ $news->title }}" border="0" class="img-responsive">
+					<img src="{!! ImgHelper::get_cached($news->image, config('maguttiCms.image.medium')) !!}" alt="{{ $news->title }}" border="0" class="img-responsive">
 				</div>
 				<div class="col-xs-12 mb10">
 					<p><i class="fa fa-calendar mr10"></i>{{ $news->date }}</p>
