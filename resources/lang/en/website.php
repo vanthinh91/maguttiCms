@@ -41,7 +41,7 @@ return [
     ],
 
     'message' => [
-        'contact_feedback'  => 'Thanks for you request.<br> Il team Gfstudio ',
+        'contact_feedback'  => 'Thanks for you request.<br> Il team MaguttiCms ',
         'privacy'           => 'I accept terms and conditions of use and read the privacy note.',
         'required_field'    => 'Required field (*)',
 		'product_request'	=> 'Information request for product',

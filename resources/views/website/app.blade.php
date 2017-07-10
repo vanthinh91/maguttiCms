@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="GFstudio" />
+    <meta name="author" content="MaguttiCms" />
     <meta name="google-site-verification" content="" />
     <!-- Meta SEO -->
     {!! SEO::generate() !!}
