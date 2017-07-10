@@ -205,7 +205,7 @@ return [
        |--------------------------------------------------------------------------
        */
         App\maguttiCms\Providers\maguttiCmsServiceProvider::class,
-        App\maguttiCms\Providers\SystemServiceProvider::class,
+        //App\maguttiCms\Providers\SystemServiceProvider::class,
 
 
         'App\maguttiCms\Notifications\FlashServiceProvider',
