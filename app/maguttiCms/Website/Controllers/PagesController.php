@@ -1,12 +1,14 @@
 <?php
 
 namespace App\maguttiCms\Website\Controllers;
+use App\Exceptions\maguttiException;
 use App\FaqCategory;
 use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 use App\maguttiCms\Website\Repos\News\NewsRepositoryInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Input;
+use Mockery\Exception;
 use Validator;
 use App\Article;
 use App\News;
@@ -87,9 +89,14 @@ class PagesController extends Controller
 
     }
 
-    public function test() {
-        phpinfo();
-        die();
+    public function test($slug) {
+        $article = Article::find($slug);
+        $this->manage($article);
+
+        var_dump($article->id);
+    }
+    function manage($obj) {
+        if(!$obj)throw new maguttiException();
     }
 
 	/**

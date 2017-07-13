@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Redirect;
 
 class Handler extends ExceptionHandler
 {
@@ -50,7 +51,8 @@ class Handler extends ExceptionHandler
         if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
-        else if( $e instanceof  NotFoundHttpException ) return Redirect::to('/');
+        else if( $e instanceof  maguttiException ) return $this->showCustomErrorPage();
+        else if( $e instanceof  NotFoundHttpException )return $this->showCustomErrorPage();
 
         return parent::render($request, $e);
     }
@@ -68,5 +70,12 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
         return redirect()->guest('login');
+    }
+
+    protected function showCustomErrorPage()
+    {
+        $url = ma_fullLocaleUrl('/');
+        return Redirect::to($url);
+        //return view()->make('errors.404Custom')->with('recentlyAdded', $recentlyAdded);
     }
 }

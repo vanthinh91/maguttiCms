@@ -109,6 +109,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::get('/contacts/',		    '\App\maguttiCms\Website\Controllers\PagesController@contacts');
     Route::post('/contacts/',		    '\App\maguttiCms\Website\Controllers\WebsiteFormController@getContactUsForm');
 
+    Route::get('/test/{child}',                     '\App\maguttiCms\Website\Controllers\PagesController@test');
+
     Route::get('/{parent}/{child}', '\App\maguttiCms\Website\Controllers\PagesController@pages');
     Route::get('/{parent?}/', '\App\maguttiCms\Website\Controllers\PagesController@pages');
 
