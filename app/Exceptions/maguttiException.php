@@ -5,9 +5,7 @@
  * Date: 13/07/2017
  * Time: 14:46
  */
-
 namespace App\Exceptions;
-
 
 class maguttiException extends \Exception
 {
