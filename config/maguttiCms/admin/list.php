@@ -302,7 +302,7 @@ return [
                     'action' =>['add'],
                     'submodel'  =>[
                         'category' => ['label' =>'Product Categories','model' =>'category','add'=>1 ],
-                        'models'   => ['label' =>'Models','model' =>'productmodel','add'=>1 ]
+
                     ]
                 ],
             ],

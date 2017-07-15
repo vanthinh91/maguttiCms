@@ -50,7 +50,7 @@ class Product extends Model
             'display'  => 0,
         ];
         $this->fieldspec['category_id'] = [
-            'type'      => 'relationimage',
+            'type'      => 'relation',
             'model'     => 'Category',
             'foreign_key' => 'id',
             'label_key' => 'title',
