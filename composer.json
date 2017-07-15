@@ -10,7 +10,7 @@
         "barryvdh/laravel-debugbar": "^2.4",
         "dimsav/laravel-translatable": "^6.0",
         "guzzlehttp/guzzle": "~6.0",
-        "hisorange/browser-detect": "dev-master",
+        "hisorange/browser-detect": "2.*",
         "intervention/image": "^2.3",
         "intervention/imagecache": "^2.3",
 

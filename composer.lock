@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c628d69e72add2104609a85651a2c24e",
+    "content-hash": "2659dafd673d41eade9310695c356983",
     "packages": [
         {
             "name": "artesaos/seotools",
@@ -592,7 +592,7 @@
         },
         {
             "name": "hisorange/browser-detect",
-            "version": "dev-master",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hisorange/browser-detect.git",
@@ -4909,7 +4909,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "hisorange/browser-detect": 20,
         "zizaco/entrust": 20
     },
     "prefer-stable": false,
