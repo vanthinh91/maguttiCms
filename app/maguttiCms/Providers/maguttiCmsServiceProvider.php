@@ -1,7 +1,5 @@
 <?php namespace App\maguttiCms\Providers;
-
 use Illuminate\Support\ServiceProvider;
-
 /*
  *  maguttiCms
  */
@@ -9,7 +7,7 @@ use DB;
 use Event;
 /*
     |--------------------------------------------------------------------------
-    | common maguttiCms service providers
+    | Common maguttiCms service providers
     |--------------------------------------------------------------------------
     | here  will'be set all the common action
     */
