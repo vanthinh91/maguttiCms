@@ -38,6 +38,7 @@ trait laraCmsSeoTrait
     {
         $this->title = $this->tagHandler('title');
         SEO::setTitle($this->title);
+        SEO::twitter()->setTitle($this->title);
     }
 
      public function setDescription()
@@ -56,6 +57,7 @@ trait laraCmsSeoTrait
     {
         $this->image = ($this->model->image!='')?ma_get_image_from_repository($this->model->image):asset('/website/images/logo.jpg');
         SEO::opengraph()->addImage($this->image);
+        SEO::twitter()->addValue('image',$this->image);
     }
 
     public function addOpenGraphProperty($property,$value)

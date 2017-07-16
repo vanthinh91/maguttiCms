@@ -38,12 +38,13 @@ return [
         ],
     ],
     'twitter' => [
-        /*
-         * The default values to be used by the twitter cards generator.
-         */
-        'defaults' => [
-          //'card'        => 'summary',
-          //'site'        => '@LuizVinicius73',
+            /*
+             * The default values to be used by the twitter cards generator.
+             */
+            'defaults' => [
+              'card'        => 'summary_large_image',
+              'site'        => '@marcoaxx',
+
+            ],
         ],
-    ],
 ];
