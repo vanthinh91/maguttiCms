@@ -4,7 +4,7 @@
 open source multilingual laravel 5.4 CMS
 
 ## Version
-5.48
+5.4.32
 
 magutti Cms  is released using laravel 5.4
 
