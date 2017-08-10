@@ -22,4 +22,4 @@ if (mix.config.inProduction) {
     mix.version();
 }
 
-mix.browserSync('framework_base.dev');
+//mix.browserSync('http://127.0.0.1:8000/');
