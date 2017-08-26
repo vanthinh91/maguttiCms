@@ -1,15 +1,15 @@
-<?php namespace App\maguttiCms\Admin;
+<?php namespace App\MaguttiCms\Admin;
 
 use Carbon\Carbon;
 use Form;
 use App;
 
-use App\maguttiCms\Admin\Facades\AdminFormImageRelation;
+use App\MaguttiCms\Admin\Facades\AdminFormImageRelation;
 
 /**
  * Class AdminForm
  *
- * @package App\maguttiCms\Admin
+ * @package App\MaguttiCms\Admin
  */
 class AdminForm {
 
@@ -138,7 +138,7 @@ class AdminForm {
         }
         else if($this->property['type'] =='media'  && $this->property['display']== 1) {
             $formElement = Form::file($key)	;
-            $cssClassElement  = 'col-md-4';
+            $cssClassElement  = 'col-md-10';
         }
         else if($this->property['type'] =='relation'  && $this->property['display']== 1) {
             $objRelation = $this->getRelation();
@@ -197,17 +197,23 @@ class AdminForm {
 	            //$html.= "<span id=\"".$this->formElement."_extraMsg\" class=\"help-inline small\"> (".$this->extraMsg.")</span> ";
 	        }
 	        $html .= "<div class=\" mediaContent ".$cssClass."\">\n";
-		        $html .= $formElement;
-		        if( $this->model->$key!='') {
-		            if( $this->property['mediaType']=='Img') $html.="<div class=\"mt10 mr10 mediaBox\"  id=\"box_".$key."_".$this->model->id."\">
-		                                <img class=\"img-responsive imgEditThumb\" src=\"".ma_get_image_from_repository($this->model->$key)."\">
-		                                ".$this->createMediaDeleteBtn( $key,$this->model->id)."</div>\n";
-		            else  $html.="<div class=\"mt10 mr10\" id=\"box_".$key."_".$this->model->id."\">
-		                            <div class=\"btn-group\" role=\"group\" aria-label=\"...\">
-		                              <a href=\"".ma_get_doc_from_repository($this->model->$key)."\" target=\"_blank\" class=\"btn btn-primary\">".__('admin.label.view')."</a>
-		                              ".$this->createMediaDeleteBtn( $key,$this->model->id)."</div>
-		                            </div>\n";
-		        }
+			$html .= '<div class="row">';
+				$html .= '<div class="col-xs-6">';
+			        $html .= $formElement;
+				$html .= '</div>';
+				$html .= '<div class="col-xs-6">';
+			        if( $this->model->$key!='') {
+			            if( $this->property['mediaType']=='Img') $html.="<div class=\"mt10 mr10 mediaBox\"  id=\"box_".$key."_".$this->model->id."\">
+			                                <img class=\"img-responsive imgEditThumb\" src=\"".ma_get_image_from_repository($this->model->$key)."\">
+			                                ".$this->createMediaDeleteBtn( $key,$this->model->id)."</div>\n";
+			            else  $html.="<div class=\"mt10 mr10\" id=\"box_".$key."_".$this->model->id."\">
+			                            <div class=\"btn-group\" role=\"group\" aria-label=\"...\">
+			                              <a href=\"".ma_get_doc_from_repository($this->model->$key)."\" target=\"_blank\" class=\"btn btn-primary\">".__('admin.label.view')."</a>
+			                              ".$this->createMediaDeleteBtn( $key,$this->model->id)."</div>
+			                            </div>\n";
+			        }
+					$html .= '</div>';
+				$html .= '</div>';
 				$html.= '<hr/>';
 	        $html.="</div>";
         $html.="</div>";
@@ -225,27 +231,33 @@ class AdminForm {
 
 			$html .= Form::hidden($key, $value , array('class' => ' form-control '.$cssClass));
 			$html .= "<div class=\" mediaContent ".$cssClass."\">\n";
-				$html .= '<fieldset class="alert alert-info">';
-				    $html .= '<input id="file_upload_'.$key.'" type="file" class="btn btn-primary file_upload_single" data-key="'.$key.'">';
-				    $html .= '<div>';
-				        $html .= '<div id="queue_'.$key.'" class="queue">'.trans('admin.message.media_drag').'</div>';
-				    $html .= '</div>';
-				$html .= '</fieldset>';
-				$html .= '<a href="javascript:$(\'#file_upload_'.$key.'\').uploadifive(\'upload\')" class="btn btn-primary hidden">';
-				    $html .= '<i class="fa fa-download"></i>'.trans('admin.label.upload_file');
-				$html .= '</a>';
-					if( $this->model->$key!='') {
-						if( $this->property['mediaType']=='Img') $html.="<div class=\"mt10 mr10 mediaBox\"  id=\"box_".$key."_".$this->model->id."\">
-						<img class=\"img-responsive imgEditThumb\" src=\"".ma_get_image_from_repository($this->model->$key)."\">
-						".$this->createMediaDeleteBtn( $key,$this->model->id)."</div>\n";
-						else  $html.="<div class=\"mt10 mr10\" id=\"box_".$key."_".$this->model->id."\">
-						<div class=\"btn-group\" role=\"group\" aria-label=\"...\">
-						<a href=\"/admin/file_view/".strtolower(str_plural(class_basename($this->model)))."/".$this->model->id."/".$key."\" target=\"_blank\" class=\"btn btn-primary\">".__('admin.label.view')."</a>
-						".$this->createMediaDeleteBtn( $key,$this->model->id)."</div>
-						</div>\n";
-					}
-				$html.= '<hr/>';
-			$html.="</div>";
+				$html .= '<div class="row">';
+					$html .= '<div class="col-xs-6">';
+						$html .= '<fieldset class="alert alert-info">';
+						    $html .= '<input id="file_upload_'.$key.'" type="file" class="btn btn-primary file_upload_single" data-key="'.$key.'">';
+						    $html .= '<div>';
+						        $html .= '<div id="queue_'.$key.'" class="queue">'.trans('admin.message.media_drag').'</div>';
+						    $html .= '</div>';
+						$html .= '</fieldset>';
+						$html .= '<a href="javascript:$(\'#file_upload_'.$key.'\').uploadifive(\'upload\')" class="btn btn-primary hidden">';
+						    $html .= '<i class="fa fa-download"></i>'.trans('admin.label.upload_file');
+						$html .= '</a>';
+					$html .= '</div>';
+					$html .= '<div class="col-xs-6">';
+						if( $this->model->$key!='') {
+							if( $this->property['mediaType']=='Img') $html.="<div class=\"mt10 mr10 mediaBox\"  id=\"box_".$key."_".$this->model->id."\">
+							<img class=\"img-responsive imgEditThumb\" src=\"".ma_get_image_from_repository($this->model->$key)."\">
+							".$this->createMediaDeleteBtn( $key,$this->model->id)."</div>\n";
+							else  $html.="<div class=\"mt10 mr10\" id=\"box_".$key."_".$this->model->id."\">
+							<div class=\"btn-group\" role=\"group\" aria-label=\"...\">
+							<a href=\"/admin/file_view/".strtolower(str_plural(class_basename($this->model)))."/".$this->model->id."/".$key."\" target=\"_blank\" class=\"btn btn-primary\">".__('admin.label.view')."</a>
+							".$this->createMediaDeleteBtn( $key,$this->model->id)."</div>
+							</div>\n";
+						}
+						$html .= '</div>';
+					$html.="</div>";
+				$html.= '</div>';
+			$html.= '<hr/>';
 		$html.="</div>";
 		return $html;
 	}

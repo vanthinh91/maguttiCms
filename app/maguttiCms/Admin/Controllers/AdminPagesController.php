@@ -1,4 +1,4 @@
-<?php namespace App\maguttiCms\Admin\Controllers;
+<?php namespace App\MaguttiCms\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 use Validator;
 use Input;
 
-use \App\maguttiCms\Admin\Helpers\AdminUserTrackerTrait;
-use App\maguttiCms\Admin\Requests\AdminFormRequest;
-use App\maguttiCms\Searchable\SearchableTrait;
-use App\maguttiCms\Sluggable\SluggableTrait;
-use App\maguttiCms\Tools\UploadManager;
+use \App\MaguttiCms\Admin\Helpers\AdminUserTrackerTrait;
+use App\MaguttiCms\Admin\Requests\AdminFormRequest;
+use App\MaguttiCms\Searchable\SearchableTrait;
+use App\MaguttiCms\Sluggable\SluggableTrait;
+use App\MaguttiCms\Tools\UploadManager;
 
 /**
  * Class AdminPagesController
- * @package App\maguttiCms\Admin\Controllers
+ * @package App\MaguttiCms\Admin\Controllers
  */
 class AdminPagesController extends Controller
 {
@@ -162,7 +162,7 @@ class AdminPagesController extends Controller
         $this->requestFieldHandler($article);
 
         flash()->success('The item <strong>' . $article->title . '</strong> has been created!');
-        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
+        return redirect(action('\App\MaguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
     }
 
     /**
@@ -182,7 +182,7 @@ class AdminPagesController extends Controller
         $article = $model::whereId($id)->firstOrFail();
         // input data Handler
         $this->requestFieldHandler($article);
-        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
+        return redirect(action('\App\MaguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
 
     }
 
@@ -206,7 +206,7 @@ class AdminPagesController extends Controller
         $article    =  $oldArticle->replicate();
 
         $article->save();
-        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
+        return redirect(action('\App\MaguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
     }
 
     /**
@@ -247,7 +247,7 @@ class AdminPagesController extends Controller
         $article = $model::whereId($this->id)->firstOrFail();
         $article->delete();
         flash()->error('The items ' . $article->title . ' has been deleted!')->important();
-        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->models));
+        return redirect(action('\App\MaguttiCms\Admin\Controllers\AdminPagesController@lista', $this->models));
     }
 
     /**
@@ -258,26 +258,48 @@ class AdminPagesController extends Controller
         foreach ($article->getFillable() as $a) {
             $article->$a = $this->request->get($a);
         }
+
         if (isset($article->sluggable)) {
-            foreach ($article->sluggable as $a) {
-                $article->$a = $this->sluggy($article, $this->request->get($a));
+            foreach ($article->sluggable as $key => $a) {
+
+                if(!$this->slugIsTranslatable($a) ) {
+                    $slug_value    = $this->request->get($key);
+                    $source_value  = $this->request->get($a['field']);
+                    $article->$key = $this->setSlugAttributes($a)
+                                          ->sluggy($article, $slug_value,$source_value);
+                }
             }
         }
+
         /** tiene traccia dell'utente che ha fatto le modifiche */
         $this->hackedBy($article);
+
         $this->processMedia($article);
+
         $article->save();
         // many to many relation
         /* TODO -> create  dimanic  check roles */
         if (method_exists($article, 'saveRoles'))       $article->saveRoles($this->request->get('role'));
         if (method_exists($article, 'saveTags'))        $article->saveTags($this->request->get('tag'));
+        if (method_exists($article, 'saveArticles'))    $article->saveArticles($this->request->get('example_articles'));
         if (method_exists($article, 'saveCountries'))   $article->saveCountries($this->request->get('country'));
+
         // translatable
         if (isset($article->translatedAttributes) && count($article->translatedAttributes) > 0) {
             foreach (config('app.locales') as $locale => $value) {
                 foreach ($article->translatedAttributes as $attribute) {
-                    if (config('app.locale') != $locale) $article->translateOrNew($locale)->$attribute = $this->request->get($attribute . '_' . $locale);
-                    else $article->translateOrNew($locale)->$attribute = $this->request->get($attribute);
+                    // se è un attributo sluggabile;
+                    if(isset($article->sluggable) && $this->attributeIsSluggable($attribute,$article->sluggable)){
+                        $attribute_to_slug = (config('app.locale') != $locale) ? $attribute.'_' . $locale:$attribute;
+                        $string_value      = $this->setSlugAttributes($a)
+                                                   ->sluggyTranslatable($article,$this->request->get($attribute_to_slug),$locale);
+
+                        $article->translateOrNew($locale)->$attribute = $string_value;
+                    }
+                    else {
+                        if (config('app.locale') != $locale) $article->translateOrNew($locale)->$attribute = $this->request->get($attribute . '_' . $locale);
+                        else $article->translateOrNew($locale)->$attribute = $this->request->get($attribute);
+                    }
                 }
                 $article->save();
             }
@@ -305,7 +327,7 @@ class AdminPagesController extends Controller
         foreach ($model->getFieldSpec() as $key => $field) {
             if ($field['type'] == 'media') {
 
-				$disk = (isset($field['disk']))? $field['disk']: '';
+				$disk   = (isset($field['disk']))? $field['disk']: '';
 				$folder = (isset($field['folder']))? $field['folder']: '';
 
                 $this->mediaHandler($model, $key, $disk, $folder);

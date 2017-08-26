@@ -1,12 +1,12 @@
 <?php
-namespace App\maguttiCms\Admin;
+namespace App\MaguttiCms\Admin;
 Use Form;
 Use App;
 use Carbon\Carbon;
 
 /**
  * Class AdminForm
- * @package App\maguttiCms\Admin
+ * @package App\MaguttiCms\Admin
  */
 class AdminList {
 

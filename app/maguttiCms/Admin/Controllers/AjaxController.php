@@ -1,4 +1,4 @@
-<?php namespace App\maguttiCms\Admin\Controllers;
+<?php namespace App\MaguttiCms\Admin\Controllers;
 
 
 use App\Http\Controllers\Controller;
@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Input;
 use Image;
 
-use App\maguttiCms\Tools\UploadManager;
+use App\MaguttiCms\Tools\UploadManager;
 use App\Media;
 
 class AjaxController extends Controller

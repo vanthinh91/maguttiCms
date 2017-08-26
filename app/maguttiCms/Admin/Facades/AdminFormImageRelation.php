@@ -6,7 +6,7 @@
  * Time: 1:47 PM
  */
 
-namespace App\maguttiCms\Admin\Facades;
+namespace App\MaguttiCms\Admin\Facades;
 use Illuminate\Support\Facades\Facade;
 
 class AdminFormImageRelation extends Facade{

@@ -1,10 +1,10 @@
 <?php
-namespace App\maguttiCms\Admin\Controllers;
+namespace App\MaguttiCms\Admin\Controllers;
 use Illuminate\Http\Request;
 
 
 use App\Http\Controllers\Controller;
-use App\maguttiCms\Admin\Importer\GlobalListImport;
+use App\MaguttiCms\Admin\Importer\GlobalListImport;
 use Input;
 use Validator;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\maguttiCms\Admin\Controllers\Auth;
+namespace App\MaguttiCms\Admin\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;

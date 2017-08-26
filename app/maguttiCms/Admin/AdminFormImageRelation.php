@@ -1,10 +1,10 @@
-<?php namespace App\maguttiCms\Admin;
+<?php namespace App\MaguttiCms\Admin;
 use Form;
 use App;
 
 /**
  * Class AdminFormImageRelation
- * @package App\maguttiCms\Admin
+ * @package App\MaguttiCms\Admin
  */
 class AdminFormImageRelation  {
 
