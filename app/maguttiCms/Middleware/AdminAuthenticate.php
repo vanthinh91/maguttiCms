@@ -1,6 +1,6 @@
 <?php
 
-namespace App\maguttiCms\Middleware;
+namespace App\MaguttiCms\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;

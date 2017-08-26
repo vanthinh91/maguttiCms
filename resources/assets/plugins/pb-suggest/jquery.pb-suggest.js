@@ -189,8 +189,10 @@ jQuery.fn.extend({
 			else {
 				var search_text = elem.val().trim();
 
-				if (search_text.length < config.min_chars)
+				if (search_text.length < config.min_chars) {
+					pbsMessage(config.text_start, elem.data('target'));
 					return false;
+				}
 
 				if (search_text != '') {
 					pbsMessage(config.text_search, elem.data('target'));

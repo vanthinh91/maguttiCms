@@ -1848,7 +1848,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #327D65;
+  color: #ff8040;
 }
 
 body {
@@ -2011,7 +2011,7 @@ label {
 
 .nav > li a:hover,
 .nav > li a:focus {
-  background-color: #327D65;
+  background-color: #ff8040;
   color: white;
 }
 
@@ -2030,7 +2030,7 @@ label {
 }
 
 .navbar-toggle:hover {
-  background-color: #327D65;
+  background-color: #ff8040;
   color: white;
 }
 
@@ -2061,7 +2061,7 @@ label {
 }
 
 .call-action:hover {
-  background-color: #327D65;
+  background-color: #ff8040;
 }
 
 .call-action:hover > i {
@@ -2145,8 +2145,8 @@ a.btn-default:hover {
 .btn-primary,
 a.btn-primary {
   color: white;
-  border-color: #327D65;
-  background-color: #327D65;
+  border-color: #ff8040;
+  background-color: #ff8040;
 }
 
 .btn-primary:active,
@@ -2155,8 +2155,8 @@ a.btn-primary {
 a.btn-primary:active,
 a.btn-primary:focus,
 a.btn-primary:hover {
-  color: #327D65;
-  border-color: #327D65;
+  color: #ff8040;
+  border-color: #ff8040;
   background-color: white;
 }
 
@@ -2230,7 +2230,7 @@ label.required:after {
 }
 
 .form-control:focus {
-  border-color: #327D65;
+  border-color: #ff8040;
   outline: 0;
   box-shadow: none;
 }
@@ -2592,7 +2592,7 @@ textarea {
 .pagination .active > span,
 .pagination .active > span:hover,
 .pagination .active > span:focus {
-  background-color: #327D65;
+  background-color: #ff8040;
   color: white;
 }
 
@@ -2699,7 +2699,7 @@ textarea {
   display: inline-block;
   text-align: center;
   color: white;
-  background-color: #327D65;
+  background-color: #ff8040;
   border-radius: 50%;
   transition: all 0.3s ease-in-out;
 }

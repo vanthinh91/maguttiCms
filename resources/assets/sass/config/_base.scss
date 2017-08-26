@@ -5,14 +5,22 @@ body {
 }
 body {
 	overflow-x: hidden;
-	margin-top: $navbar-height;
+	margin-top: $navbar-height-mobile;
+	@include breakpoint-up(sm) {
+		margin-top: $navbar-height;
+	}
 }
 
-main {
+main,
+section {
 	padding-top: 50px;
 	padding-bottom: 50px;
 }
 
 h1,h2,h3,h4,h5,h6 {
 	color: $color-primary;
+}
+
+.wow {
+	visibility: hidden;
 }

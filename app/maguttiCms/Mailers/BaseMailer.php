@@ -1,6 +1,6 @@
-<?php namespace App\maguttiCms\Mailers;
+<?php namespace App\MaguttiCms\Mailers;
 
-use App\maguttiCms\Tools\Mailer;
+use App\MaguttiCms\Tools\Mailer;
 
 class BaseMailer extends Mailer
 {

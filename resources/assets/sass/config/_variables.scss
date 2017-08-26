@@ -5,7 +5,7 @@ $color-background:		white;
 $color-text:			#303030;
 $color-text-contrast:	white; // used in contrast with primary and secondary color
 
-$color-primary:			#327D65;
+$color-primary:			#ff8040;
 $color-secondary:		#606060;
 $color-accent:			#FFe000;
 $color-4:				#6f6f6e;
@@ -19,9 +19,12 @@ $font-family-subtitle: 	"Open Sans", sans-serif;
 $font-family-icons:		"FontAwesome";
 
 /*	navbar 	*/
-$navbar-height: 80px;
-$navbar-height-content: 50px;
+$navbar-height: 100px;
+$navbar-height-content: 60px;
 $navbar-height-padding: ($navbar-height - $navbar-height-content) / 2;
+$navbar-height-mobile: 80px;
+$navbar-height-content-mobile: 30px;
+$navbar-height-padding-mobile: ($navbar-height-mobile - $navbar-height-content-mobile) / 2;
 $navbar-item-padding: 0 15px;
 $navbar-item-margin: 0 0;
 

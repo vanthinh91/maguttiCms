@@ -1,5 +1,5 @@
 <!-- header -->
-<nav class="navbar navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-fixed-top compensate-for-scrollbar" role="navigation">
 	<!-- Topbar -->
 	<!-- End Topbar -->
 	<div  class="container">
@@ -80,14 +80,24 @@
 							<img class="flag" src="{{asset('website/images/flags/'.LaravelLocalization::getCurrentLocale().'.png')}}" alt="{{LaravelLocalization::getCurrentLocale()}} language"> {{HtmlHelper::createFAIcon('caret-down', 'ml5')}}</span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
+
 							@foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-							<li>
-								@if (LaravelLocalization::getCurrentLocale() !=  $localeCode)
-									<a href="{{LaravelLocalization::getLocalizedURL($localeCode) }}">
-										<img class="flag mr10" src="{{asset('website/images/flags/'.$localeCode.'.png')}}" alt="{{LaravelLocalization::getCurrentLocale()}} language"> {{ $properties['native'] }}
-									</a>
-								@endif
-							</li>
+
+									@if(LaravelLocalization::getCurrentLocale() != $localeCode)
+										<li>
+											@if(isset($article) && !$article->ignore_slug_translation)
+												@php $article_locale = (isset($locale_article)) ? $locale_article : $article @endphp
+												<a href="{{LaravelLocalization::getLocalizedURL($localeCode, $article_locale->getPermalink($localeCode)) }}">
+													<img class="flag mr10" src="{{asset('website/images/flags/'.$localeCode.'.png')}}" alt="{{LaravelLocalization::getCurrentLocale()}} language"> {{ $properties['native'] }}
+												</a>
+											@else
+												<a href="{{LaravelLocalization::getLocalizedURL($localeCode) }}">
+													<img class="flag mr10" src="{{asset('website/images/flags/'.$localeCode.'.png')}}" alt="{{LaravelLocalization::getCurrentLocale()}} language"> {{ $properties['native'] }}
+												</a>
+											@endif
+										</li>
+									@endif
+
 							@endforeach
 						</ul>
 					</li>

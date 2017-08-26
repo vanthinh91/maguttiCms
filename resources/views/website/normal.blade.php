@@ -9,7 +9,7 @@
         </div>
         @if($article->image)
             <div class="col-md-4">
-                <img src="{!! ImgHelper::get_cached($article->image, config('laraCms.image.medium')) !!}" alt="{{ $article->title }}" border="0" class="img-responsive">
+                <img src="{!! ImgHelper::get_cached($article->image, config('maguttiCms.image.medium')) !!}" alt="{{ $article->title }}" border="0" class="img-responsive">
             </div>
         @endif
     </div>

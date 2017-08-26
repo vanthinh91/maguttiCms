@@ -1,6 +1,6 @@
 <?php
 
-namespace App\maguttiCms\Notifications;
+namespace App\MaguttiCms\Notifications;
 
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;

@@ -51,10 +51,7 @@ window.App = function () {
     }
 
 	function handleLightBox() {
-		$(".lightbox").colorbox({
-			rel: '.lightbox',
-			maxHeight:'90%',
-			maxWidth:'90%',
+		$(".lightbox").fancybox({
 		});
 	}
 

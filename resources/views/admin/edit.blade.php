@@ -44,13 +44,15 @@
 							<div role="tabpanel" class="tab-pane active well noborder-top bs-component " id="main_tab">
 
 								{{ AdminForm::get( $article ) }}
+
 								@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'.password')  == 1)
 									@include('admin.helper.password')
 								@endif
 
 								@include('admin.helper.form_submit_button')
 							</div>
-							@if ( config('maguttiCms'.strtolower(str_plural($pageConfig['model'])).'.showSeo')  == 1)
+							@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'.showSeo')  == 1)
+
 								<div role="tabpanel" class="tab-pane well noborder-top  bs-component" id="seo_tab">
 									{{ AdminForm::getSeo( $article ) }}
 									@include('admin.helper.form_submit_button')

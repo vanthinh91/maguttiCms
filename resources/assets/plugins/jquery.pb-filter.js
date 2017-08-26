@@ -12,13 +12,11 @@
 // 		Gli input con "filter-limit" necessitano anche del'attributo "data-limit" con valore "min" o "max" a seconda se si vuole filtrare per valori superiori o inferiori al valore inserito, rispettivamente
 // 		Ogni input deve avere anche l'attributo "name".
 // 4.	Facoltativo - se l'operazione richiesta dal filtro non è un "and" ma un "or", è sufficiente aggiungere l'attributo "data-filter-operation" con valore "or"
-// 4.	Se vengono utilizzati i filter e i filter-checked, gli elementi del dom che devono essere filtrati devono avere una serie di classi formattate come segue: [nome filtro]-[valore filtro].
-//	 	Ad esempio, se la select ha name="user" e option con valori 1, 2 e 3, un elemento associato all'utente 2 avrà la classe "user-2"
-//	 	Se vengono utilizzati i filter-like e i filter-limit, gli elementi del dom che devono essere filtrati devono avere un data attribute formattato come segue: data-[nome filtro]="[valore-filtro]".
+// 5.	Tutti gli elementi del dom che devono essere filtrati devono avere un data attribute formattato come segue: data-[nome filtro]="[valore-filtro]".
 //	 	Ad esempio, se l'input ha name="description", ogni elemento dovrà avere un attributo data-description contenente il testo nel quale si vuole cercare la descrizione digitata dall'utente.
 //	 	I filter limit funzionano in modo analogo, ma accettano solo valori numerici.
-// 5.	Associare ad un elemento che funge da "invio" la classe "filter-button"
-// 6.	Facoltativo - un elemento con la classe "filter-reset" causa la pulizia di tutti i filtri, se premuto
+// 6.	Associare ad un elemento che funge da "invio" la classe "filter-button"
+// 7.	Facoltativo - un elemento con la classe "filter-reset" causa la pulizia di tutti i filtri, se premuto
 //
 // Quando il filtro viene avviato, per la pressione del controllo dedicato o perché vengono cambiati i valori nei campi di input, il sistema nasconde tutti gli elementi e mostra solo quelli che rispondono ai valori inseriti dall'utente
 
@@ -45,37 +43,41 @@ function init_filters() {
 		button.click(function(e) {
 			e.preventDefault();
 
-			var classes = "";
-			var classes_or = [];
+			var values = {};
+			var values_or = {};
 
 			//	costruisco una lista di classi da filtrare
 			elem.find(FILTERS).each(function() {
 				if ($(this).val() != "")
 					if ($(this).data('filter-operation') == 'or')
-						classes_or[classes_or.length] = "." + $(this).val();
-					else
-						classes += "." + $(this).val();
+						values_or[$(this).attr('name')] = $(this).val();
+					else {
+						values[$(this).attr('name')] = $(this).val();
+					}
 			});
 
 			elem.find(FILTER_CHECKED).each(function() {
 				if ($(this).is(':checked')) {
 					if ($(this).data('filter-operation') == 'or')
-						classes_or[classes_or.length] = "." + $(this).val();
+						values_or[$(this).attr('name')] = $(this).val();
 					else
-						classes += "." + $(this).val();
+						values[$(this).attr('name')] = $(this).val();
 				}
 			});
 
 			//	nascondo tutti gli elementi e mostro le classi trovate
-			if (classes || classes_or.length) {
-				$(target).addClass('hidden');
-				if (classes_or.length)
-					$.each(classes_or, function(k,v) {
-						$(target + classes + v).removeClass('hidden');
-						console.log(target + classes + v);
+			$(target).addClass('hidden');
+			if (Object.keys(values).length || Object.keys(values_or).length) {
+				var values_string = '';
+				$.each(values, function(k,v) {
+					values_string += '[data-'+k+'="'+v+'"]';
+				});
+				if (Object.keys(values_or).length)
+					$.each(values_or, function(k,v) {
+						$(target + values_string + '[data-'+k+'="'+v+'"]').removeClass('hidden');
 					});
 				else
-					$(target + classes).removeClass('hidden');
+					$(target + values_string).removeClass('hidden');
 			}
 			else {
 				$(target).removeClass('hidden');
@@ -110,7 +112,7 @@ function init_filters() {
 				if (filter_value)
 					$(target).each(function() {
 						if ($(this).data(filter_name) != null) {
-							var item_value = $(this).data(filter_name).toLowerCase();
+							var item_value = $(this).data(filter_name).toString().toLowerCase();
 							if (item_value.toString().indexOf(filter_value) == -1)
 								$(this).addClass('hidden');
 						}

@@ -1,11 +1,15 @@
 @include('flash::notification')
 <div class="row">
-	{{ Form::open(array('action' => '\App\maguttiCms\Website\Controllers\WebsiteFormController@getContactUsForm')) }}
+	{{ Form::open(array('action' => '\App\MaguttiCms\Website\Controllers\WebsiteFormController@getContactUsForm')) }}
 		{{ Form::hidden('request_product_id', $request_product_id, ['class' => 'form-control']) }}
 	    <div class="col-xs-12 mb10">
 			<div class="color-3 text-center mb15">{!! trans('website.message.required_field') !!}</div>
 	    </div>
-
+		@if ($product)
+			<div class="col-xs-12 mb10">
+				{!! trans('website.message.product_request') !!} {{$product->title}}.
+			</div>
+		@endif
 		<div class="col-xs-12">
 		    <div class="form-group">
 		        {{ Form::label('email',trans('website.email'), ['class' => 'required']) }}

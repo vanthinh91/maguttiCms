@@ -6,7 +6,8 @@
 
 require('./bootstrap');
 
-require('jquery-colorbox');
+// require('jquery-colorbox');
+require('@fancyapps/fancybox');
 require('owl.carousel');
 const WOW = require('wowjs'); window.wow = new WOW.WOW({ live: false });
 window.Cookies = require('js-cookie');

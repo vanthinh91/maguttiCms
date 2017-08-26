@@ -18,14 +18,9 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: $font-family-title;
 	margin: 1em 0 0.5em;
 	font-weight: 700;
+	&:first-child {margin-top: 0;}
+	&:last-child {margin-bottom: 0;}
 }
-
-h1:first-child,
-h2:first-child,
-h3:first-child,
-h4:first-child,
-h5:first-child,
-h6:first-child {margin-top: 0;}
 
 ul, ol, p {
 	margin-bottom: 0.5em;
