@@ -1,4 +1,4 @@
-<?php namespace App\maguttiCms\Permission;
+<?php namespace App\MaguttiCms\Permission;
 
 /**
  * This file is part of Entrust,

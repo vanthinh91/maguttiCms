@@ -1,5 +1,8 @@
-<?php namespace App\maguttiCms\Providers;
+<?php namespace App\MaguttiCms\Providers;
+
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+
 /*
  *  maguttiCms
  */
@@ -7,11 +10,11 @@ use DB;
 use Event;
 /*
     |--------------------------------------------------------------------------
-    | Common maguttiCms service providers
+    | common maguttiCms service providers
     |--------------------------------------------------------------------------
     | here  will'be set all the common action
     */
-class maguttiCmsServiceProvider extends ServiceProvider
+class LaraServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -46,6 +49,15 @@ class maguttiCmsServiceProvider extends ServiceProvider
                 }
             });
         }
+
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        |  BLADE CUSTOM DIRECTIVE
+        |--------------------------------------------------------------------------
+        */
     }
 
     /**

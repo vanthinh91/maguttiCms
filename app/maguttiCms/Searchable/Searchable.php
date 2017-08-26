@@ -1,4 +1,4 @@
-<?php namespace App\maguttiCms\Searchable;
+<?php namespace App\MaguttiCms\Searchable;
 
 use App\Http\Requests;
 Use Form;
@@ -7,7 +7,7 @@ Use App;
 /**
  * GF_ma
  * Class SearchableTrait
- * @package App\maguttiCms\Searchable
+ * @package App\MaguttiCms\Searchable
  */
 trait SearchableTrait
 {
