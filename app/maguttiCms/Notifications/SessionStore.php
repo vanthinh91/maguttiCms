@@ -1,5 +1,5 @@
 <?php
-namespace App\maguttiCms\Notifications;
+namespace App\MaguttiCms\Notifications;
 interface SessionStore {
     /**
      * Flash a message to the session.

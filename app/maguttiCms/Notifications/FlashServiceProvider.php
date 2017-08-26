@@ -1,5 +1,5 @@
 <?php
-namespace App\maguttiCms\Notifications;
+namespace App\MaguttiCms\Notifications;
 Use App;
 use Illuminate\Support\ServiceProvider;
 class FlashServiceProvider     extends ServiceProvider
@@ -22,7 +22,7 @@ class FlashServiceProvider     extends ServiceProvider
             'Laracasts\Flash\LaravelSessionStore'
         );
         $this->app->singleton('flash', function () {
-            return $this->app->make('App\maguttiCms\Notifications\FlashNotifier');
+            return $this->app->make('App\MaguttiCms\Notifications\FlashNotifier');
         });
     }
     /**

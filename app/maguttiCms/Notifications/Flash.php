@@ -1,5 +1,5 @@
 <?php
-namespace App\maguttiCms\Notifications;
+namespace App\MaguttiCms\Notifications;
 use Illuminate\Support\Facades\Facade;
 class Flash extends Facade {
     /**
