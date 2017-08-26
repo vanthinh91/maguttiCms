@@ -1,12 +1,12 @@
 ![maguttiCms](http://www.magutti.com/public/website/images/logo_colore.png)
 
 ## About maguttiCms
-open source multilingual laravel 5.4 CMS
+open source multilingual laravel 5.5 CMS
 
 ## Version
-5.45
+5.5 DEV
 
-magutti Cms  is released using laravel 5.4
+magutti Cms  is released using laravel 5.5 dev version
 
 ### How to Install
  
