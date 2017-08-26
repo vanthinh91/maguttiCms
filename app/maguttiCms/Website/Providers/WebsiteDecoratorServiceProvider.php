@@ -1,6 +1,6 @@
 <?php
 
-namespace App\maguttiCms\Website\Providers;
+namespace App\MaguttiCms\Website\Providers;
 Use App;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,7 +24,7 @@ class WebsiteDecoratorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-      App::bind('HtmlHelper', function() {return new \App\maguttiCms\Tools\HtmlHelper;});
-      App::bind('ImgHelper', function() {return new \App\maguttiCms\Tools\ImgHelper;});
+      App::bind('HtmlHelper', function() {return new \App\MaguttiCms\Tools\HtmlHelper;});
+      App::bind('ImgHelper', function() {return new \App\MaguttiCms\Tools\ImgHelper;});
     }
 }

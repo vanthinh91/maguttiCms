@@ -1,9 +1,9 @@
 <?php
 
-namespace App\maguttiCms\Website\Controllers;
+namespace App\MaguttiCms\Website\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\maguttiCms\Website\Requests\AjaxFormRequest;
+use App\MaguttiCms\Website\Requests\AjaxFormRequest;
 use Input;
 use Validator;
 use App\Newsletter;

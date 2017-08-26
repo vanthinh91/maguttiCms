@@ -1,5 +1,5 @@
 <?php
-namespace App\maguttiCms\Website\Repos\Article;
+namespace App\MaguttiCms\Website\Repos\Article;
 /**
  * Created by PhpStorm.
  * User: Marco Asperti
@@ -7,7 +7,7 @@ namespace App\maguttiCms\Website\Repos\Article;
  * Time: 10:58
  */
 use App\Article;
-use App\maguttiCms\Website\Repos\DbRepository;
+use App\MaguttiCms\Website\Repos\DbRepository;
 class DbArticleRepository extends DbRepository implements ArticleRepositoryInterface
 {
 
@@ -19,15 +19,17 @@ class DbArticleRepository extends DbRepository implements ArticleRepositoryInter
 
     function getParentPage($parent)
     {
-      return $this->model->where('slug', $parent)->where('id_parent', 0)->where('pub', 1)->first();
+      return $this->model->where('slug', $parent)
+                         ->where('id_parent',0)
+                         ->where('pub', 1)
+                         ->first();
     }
 
     function getSubPage($parent, $child)
     {
 
       $parent = $this->getBySlug($parent);
-
-      $child = $this->getBySlug($child);
+      $child  = $this->getBySlug($child);
 
       // If $parent or $child doesn't exists
       if(!$parent || !$child) {
@@ -41,8 +43,5 @@ class DbArticleRepository extends DbRepository implements ArticleRepositoryInter
 
       // Return $child data
       return $child;
-
     }
-
-
 }

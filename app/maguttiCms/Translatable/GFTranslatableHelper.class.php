@@ -1,4 +1,4 @@
-<?php namespace App\maguttiCms\Translatable;
+<?php namespace App\MaguttiCms\Translatable;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Trait GFTranslatableHelperTrait
- * @package App\maguttiCms\Translatable
+ * @package App\MaguttiCms\Translatable
  */
 trait GFTranslatableHelperTrait
 {
@@ -41,4 +41,14 @@ trait GFTranslatableHelperTrait
 			$query->where('locale', app()->getLocale())->where('title', '!=', '');
 		});
 	}
+
+    public static function getByTranslationSlug($slug,$locale=''){
+        return self::WhereTranslation('slug',$slug,$locale)->first();
+    }
+
+
+    public function isAttributeTranslatable($key)
+    {
+        return (property_exists($this, 'translatedAttributes') && in_array($key, $this->translatedAttributes));
+    }
 }

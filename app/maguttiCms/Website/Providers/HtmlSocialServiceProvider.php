@@ -1,6 +1,6 @@
 <?php
 
-namespace App\maguttiCms\Website\Providers;
+namespace App\MaguttiCms\Website\Providers;
 Use App;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,7 +26,7 @@ class HtmlSocialServiceProvider extends ServiceProvider
     {
         App::bind('HtmlSocial', function()
         {
-            return new \App\maguttiCms\Website\Decorator\HtmlSocial;
+            return new \App\MaguttiCms\Website\Decorator\HtmlSocial;
         });
     }
 }

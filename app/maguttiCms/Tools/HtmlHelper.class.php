@@ -1,10 +1,10 @@
-<?php namespace App\maguttiCms\Tools;
+<?php namespace App\MaguttiCms\Tools;
 
 use App\Setting;
 
 /**
 * Class Setting
-* @package App\maguttiCms\Tools
+* @package App\MaguttiCms\Tools
 */
 class HtmlHelper {
 	protected $args = [];

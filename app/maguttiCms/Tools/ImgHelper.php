@@ -29,7 +29,7 @@ filter - Filters that will be applied to the image after resizing and before enc
 	)
 */
 
-namespace App\maguttiCms\Tools;
+namespace App\MaguttiCms\Tools;
 
 use Image;
 
@@ -61,20 +61,20 @@ class ImgHelper {
 		if ($absolute) {
 			if (@getimagesize($file_name))
 		  		return $file_name;
-			else
-				return $this->path_repository.'placeholder.png';
 		}
 		else {
-			if ($file_name && file_exists($this->path_repository.$file_name))
-				return $this->path_repository.$file_name;
-			else
-				return $this->path_repository.'placeholder.png';
+			if ($file_name && file_exists($this->path_repository.$file_name)) {
+				$metadata = @getimagesize($this->path_repository.$file_name);
+				if ($metadata[0] <= 2048 && $metadata[1] <= 2048)
+					return $this->path_repository.$file_name;
+			}
 		}
+		return $this->path_repository.'placeholder.png';
 	}
 
 	// returns default value for argument if missing
 	private function arg($args, $arg_name) {
-		return (isset($args[$arg_name]))? $args[$arg_name]: $this->defaults[$arg_name];
+		return (array_key_exists($arg_name, $args))? $args[$arg_name]: $this->defaults[$arg_name];
 	}
 
 	private function open($file_name, $args) {
@@ -88,6 +88,7 @@ class ImgHelper {
 		$new_name .= (isset($args['h']))? '_'.$args['h']: '_0';
 		$new_name .= '_'.$this->arg($args, 'c');
 		$new_name .= '_'.$this->arg($args, 'q');
+		$new_name .= (array_key_exists('filter', $args))? '_'.substr(md5(json_encode($this->arg($args, 'filter'))), 0, 8): '';
 		$new_name .= '.'.$this->arg($args, 'format');
 		return $new_name;
 	}

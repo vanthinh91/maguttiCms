@@ -1,12 +1,14 @@
 <?php
 use Illuminate\Http\Request;
+use Cocur\Slugify\Bridge\Laravel\SlugifyFacade;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-/***** SANITIZE PARAMETERS *****/
-function sanitizeParameter($parameter)
-{
-    return htmlspecialchars($parameter, ENT_QUOTES, 'utf-8');
-}
+/*
+|--------------------------------------------------------------------------
+|   PATH HELPERS / SHORTCUTS
+|--------------------------------------------------------------------------
+*/
+
 
 /*******************     DOC    *****************/
 function ma_get_doc_path_from_repository($doc)
@@ -118,7 +120,11 @@ function ma_get_upload_from_repository($doc)
     return asset($path . $doc);
 }
 
-/*******************        ADMIN       ****************/
+/*
+|--------------------------------------------------------------------------
+|    PATH HELPERS / SHORTCUTS   FOR ADMIN
+|--------------------------------------------------------------------------
+*/
 function ma_get_admin_list_url($model)
 {
     $path = '/admin/list';
@@ -193,12 +199,6 @@ function is_image($mimeType)
 }
 
 if (!function_exists('flash')) {
-    /**
-     * Arrange for a flash message.
-     *
-     * @param  string|null $message
-     *
-     */
     function flash($message = null)
     {
         $notifier = app('flash');
@@ -266,18 +266,39 @@ function get_ip()  {
     return $Ip;
 }
 
+/*
+|--------------------------------------------------------------------------
+|   String  & Sanitizer
+|--------------------------------------------------------------------------
+*/
+function sanitizeParameter($parameter)
+{
+    return htmlspecialchars($parameter, ENT_QUOTES, 'utf-8');
+}
+
+function ma_sluggy($stringa,$separator='-',$locale='')
+{
+    $locale = ($locale) ? :app()->getLocale();
+    if ($locale == 'zh') return $stringa;
+    return Slugify::slugify($stringa, $separator);
+}
+
+/*
+|--------------------------------------------------------------------------
+|  PATH Localization
+|--------------------------------------------------------------------------
+*/
 /**
- * GF_ma helper to retrive
- * the real locale url
  * @return string
  */
 function  ma_getRealLocale() {
-
     return (LaravelLocalization::getCurrentLocale()==LaravelLocalization::getDefaultLocale())?'':'/'.LaravelLocalization::getCurrentLocale();
-
 }
 
+/**
+ * @param $url
+ * @return mixed
+ */
 function  ma_fullLocaleUrl($url) {
-
-    return ma_getRealLocale().'/'.$url;
+    return LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(), URL::to($url));
 }

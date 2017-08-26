@@ -1,4 +1,4 @@
-<?php namespace App\maguttiCms\Tools;
+<?php namespace App\MaguttiCms\Tools;
 
 use Input;
 Use Form;

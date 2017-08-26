@@ -1,12 +1,12 @@
 <?php
-namespace App\maguttiCms\Website\Decorator;
+namespace App\MaguttiCms\Website\Decorator;
 Use App;
 Use App\Social;
 use Carbon\Carbon;
 
 /**
  * Class HtmlSocial
- * @package App\maguttiCms\Website\Decorator
+ * @package App\MaguttiCms\Website\Decorator
  */
 class HtmlSocial extends maguttiCmsDecorator
 {
