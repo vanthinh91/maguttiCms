@@ -6,7 +6,7 @@ return [
          * The default configurations to be used by the meta generator.
          */
         'defaults'       => [
-            'title'        => "maguttiCms", // set false to total remove
+            'title'        => config('maguttiCms.website.option.app.name'), // set false to total remove
             'description'  => '', // set false to total remove
             'separator'    => ' - ',
             'keywords'     => [],
@@ -38,13 +38,12 @@ return [
         ],
     ],
     'twitter' => [
-            /*
-             * The default values to be used by the twitter cards generator.
-             */
-            'defaults' => [
-              'card'        => 'summary_large_image',
-              'site'        => '@marcoaxx',
-
-            ],
+        /*
+         * The default values to be used by the twitter cards generator.
+         */
+        'defaults' => [
+          //'card'        => 'summary',
+          //'site'        => '@LuizVinicius73',
         ],
+    ],
 ];

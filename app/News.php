@@ -1,42 +1,34 @@
 <?php namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use Illuminate\Support\Facades\URL;
 
-/**
- * Class News
- * @package App
- */
+use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 class News extends Model
 {
 
-    use \Dimsav\Translatable\Translatable;
     use GFTranslatableHelperTrait;
+    use \Dimsav\Translatable\Translatable;
+    use \App\MaguttiCms\Domain\News\NewsPresenter;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-	public     $translatedAttributes	= ['title','description','seo_title','seo_keywords','seo_description'];
-	/**
-	 * @var array
-     */
-	public     $sluggable				= ['slug'];
-	/**
-	 * @var array
-     */
-	protected  $fillable				= ['title','description','date','slug','sort','pub'];
-	/**
-	 * @var array
-     */
-	protected  $fieldspec				= [];
+	protected  $fillable        = ['title','description','date','sort','pub'];
+	protected  $fieldspec       = [];
+
+	/*
+    |--------------------------------------------------------------------------
+    |  Sluggable & Translateble
+    |--------------------------------------------------------------------------
+    */
+    public $translatedAttributes    = ['title','slug','description','seo_title','seo_keywords','seo_description'];
+    public $sluggable               = ['slug'=>['field'=>'title','updatable'=>false]];
 
     /*
-   |--------------------------------------------------------------------------
-   |  RELATIONS
-   |--------------------------------------------------------------------------
-   */
+    |--------------------------------------------------------------------------
+    |  RELATIONS
+    |--------------------------------------------------------------------------
+    */
     public function media()
     {
         return $this->morphMany('App\Media', 'model')->orderBy('sort');
@@ -76,14 +68,17 @@ class News extends Model
     public function getFormattedDate()
     {
         //return Carbon::parse($this->attributes['date'])->formatLocalized('%d %B %Y');
-        return Carbon::parse($this->attributes['date'])->format('d-m-Y H:i:s');
+        return Carbon::parse($this->attributes['date'])->format('d-m-Y');
     }
 
 
 
-
+    /*
+    |--------------------------------------------------------------------------
+    |  Fieldspec
+    |--------------------------------------------------------------------------
+    */
 	function getFieldSpec ()
-
     {
 
         $this->fieldspec['id'] = [
@@ -235,15 +230,13 @@ class News extends Model
 	}
 
 
-	/**
-	 * @param $query
-	 * @param int $limit
-     */
+   /*
+   |--------------------------------------------------------------------------
+   |  Scopes & Mutator
+   |--------------------------------------------------------------------------
+   */
 	public function scopeLatest($query, $limit = 5)    {
-		$query->where('pub',1)->translatedContent()->take($limit)->orderBy('date', 'desc');
+		$query->where('pub',1)->translatedContent()->limit($limit)->orderBy('date', 'desc');
 	}
 
-	public function getPermalink() {
-		return '/news/'.$this->slug;
-	}
 }

@@ -1,5 +1,5 @@
 <?php
-namespace App\maguttiCms\Website\Requests;
+namespace App\MaguttiCms\Website\Requests;
 
 
 use Illuminate\Foundation\Http\FormRequest;

@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Media extends Model
 {
     use \Dimsav\Translatable\Translatable;
-    use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+    use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
 
     protected   $table = 'media';
     public      $translatedAttributes = ['title','description'];

@@ -1,26 +1,40 @@
 <?php namespace App;
 use Illuminate\Database\Eloquent\Model;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class Tag extends Model
 {
     use \Dimsav\Translatable\Translatable;
     use GFTranslatableHelperTrait;
 
-    public    $translatedAttributes = ['title'];
-    public    $sluggable = ['slug'];
+
     protected $fillable  = ['title','slug'];
     protected $fieldspec = [];
 
     /*
-     * Get news  associates with the tags
-     * Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
+    |--------------------------------------------------------------------------
+    |  Sluggable & Trnslateble
+    |--------------------------------------------------------------------------
+    */
+
+    public    $translatedAttributes = ['title'];
+    public    $sluggable            = ['slug'=>['field'=>'title']];
+
+    /*
+    |--------------------------------------------------------------------------
+    |  RELATION
+    |--------------------------------------------------------------------------
+    */
+
     public function news(){
         return $this->belongsToMany('App\News');
     }
 
-
+    /*
+    |--------------------------------------------------------------------------
+    |  Fieldspec
+    |--------------------------------------------------------------------------
+    */
     function getFieldSpec ()
     {
 

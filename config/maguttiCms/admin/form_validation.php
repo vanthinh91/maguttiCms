@@ -73,8 +73,7 @@ return [
 		    'password' => 'alpha_num|min:6|confirmed',
 			'password_confirmation' => 'alpha_num|min:6',
 		],
-
-
-
-
+		'examples' => [
+			'title' => 'required',
+		],
 ];

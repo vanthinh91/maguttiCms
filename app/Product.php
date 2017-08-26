@@ -1,24 +1,33 @@
 <?php namespace App;
-
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\URL;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class Product extends Model
 {
-    use \Dimsav\Translatable\Translatable;
-    use GFTranslatableHelperTrait;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    public 	  $translatedAttributes = ['title','description','seo_title','seo_keywords','seo_description'];
-    public    $sluggable = ['slug'];
+    use GFTranslatableHelperTrait;
+    use \Dimsav\Translatable\Translatable;
+    use \App\MaguttiCms\Domain\Product\ProductPresenter;
+
     protected $fillable  = ['category_id','title','subtitle','description','video','slug','sort','pub'];
     protected $fieldspec = [];
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Sluggable & Trnslateble
+    |--------------------------------------------------------------------------
+    */
+    public $translatedAttributes = ['title','slug','subtitle','description',
+                                    'seo_title','seo_keywords','seo_description'];
+    public $sluggable            =  ['slug'=>['field'=>'title','updatable'=>false,'translatable'=>true]];
+
+    /*
+    |--------------------------------------------------------------------------
+    |  RELATION
+    |--------------------------------------------------------------------------
+    */
 
     public function category() {
         return $this->belongsTo('App\Category','category_id','id');
@@ -37,9 +46,7 @@ class Product extends Model
     }
 
     function getFieldSpec ()
-    // set the specifications for this database table
     {
-        // build array of field specifications
         $this->fieldspec['id'] = [
             'type'     => 'integer',
             'minvalue' => 0,
@@ -50,7 +57,7 @@ class Product extends Model
             'display'  => 0,
         ];
         $this->fieldspec['category_id'] = [
-            'type'      => 'relation',
+            'type'      => 'relationimage',
             'model'     => 'Category',
             'foreign_key' => 'id',
             'label_key' => 'title',
@@ -171,11 +178,5 @@ class Product extends Model
         return $this->fieldspec;
     }
 
-	public function getPermalink() {
-		return LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(), URL::to('/products/'.$this->slug));
-	}
 
-	public function getInfoPermalink() {
-		return LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(), URL::to('/contacts/?product_id='.$this->id));
-	}
 }

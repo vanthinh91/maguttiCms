@@ -20,6 +20,7 @@ class CreateArticleTranslationsTable extends Migration
         Schema::create('article_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('article_id');
+            $table->string('slug',255)->nullable();
             $table->string('locale', 255);
             $table->string('menu_title', 255)->nullable();
             $table->string('title', 255);

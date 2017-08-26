@@ -234,9 +234,9 @@ return [
             'showMedia' => 0,
             'showSeo' => 0,
             'menu' => [
-                'home' => true,
+                'home' => false,
                 'top-bar' =>[
-                    'show' => true,
+                    'show' => false,
                 ],
             ],
         ],
@@ -270,7 +270,7 @@ return [
         'products' => [
             'model' => 'Product',
             'title' => 'Product',
-            'icon' => 'gears',
+            'icon' => 'cube',
             'fieldLabel' => 'ID,Category,Image,Title,Pub,Sort,Created At,Updated At',
             'field' => ['id',
                 'category' => ['type' => 'relation', 'relation' => 'category', 'field' => 'title', 'class' => 'col-sm-1'],
@@ -302,7 +302,7 @@ return [
                     'action' =>['add'],
                     'submodel'  =>[
                         'category' => ['label' =>'Product Categories','model' =>'category','add'=>1 ],
-
+                        'models'   => ['label' =>'Models','model' =>'productmodel','add'=>1 ]
                     ]
                 ],
             ],
@@ -333,6 +333,7 @@ return [
             'view' => 0,
             'selectable' => 1,
             'showMedia' => 0,
+			'showMediaImages' => 0,
             'showMediaDoc' => 0,
             'showSeo' => 1,
             'menu' => [
@@ -536,7 +537,7 @@ return [
         ],
         'socials' => [
             'model' => 'Social',
-            'icon' => 'users',
+            'icon' => 'share-alt',
             'title' => 'Social',
             'fieldLabel' => 'ID,Social,Icon,Link,Active,Created At,Updated At',
             'field' => ['id',
@@ -630,6 +631,91 @@ return [
                 'admin',
             ]
         ],
+		'examples' => [
+            'model' => 'Example',
+            'title' => 'Example',
+            'icon' => 'mortar-board',
+            'fieldLabel' => 'ID,Article,Article 2,Image,Title,Slug,Pub,Sort,Color,Created At,Updated At',
+            'field' => ['id',
+                'article' => ['type' => 'relation', 'relation' => 'article', 'field' => 'title'],
+                'article_2' => ['type' => 'relation', 'relation' => 'article_2', 'field' => 'title'],
+                'image'  => ['type' => 'image', 'field' => 'image', 'class' => 'list-image'],
+                'title'  => ['type' => 'text', 'field' => 'title', 'class' => 'text-center','orderable'=>true],
+                'slug'   => ['type' => 'text', 'field' => 'slug', 'class' => 'text-center','orderable'=>true],
+                'pub' => ['type' => 'boolean', 'field' => 'pub', 'class' => 'text-center','orderable'=>true],
+                'sort' => ['type' => 'editable', 'field' => 'sort', 'orderable'=>true],
+				'color' => ['type' => 'color', 'field' => 'color'],
+                'created_at' => ['type' => 'date', 'field' => 'created_at', 'class' => 'text-center','orderable'=>true],
+                'updated_at' => ['type' => 'date', 'field' => 'updated_at', 'class' => 'text-center','orderable'=>true],
+            ],
+            'field_searcheable' => [
+                /*
+                 * This is the 'relation' version which builds a dropdown input for the corresponding relation.
+                 * It should be only used when there are only a few records to show.
+                 */
+                'article_id' => [
+                    'label'    => 'Article',
+                    'class'    => ' col-xs-6 col-sm-2',
+                    'type'     => 'relation',
+                    'model'    => 'article',
+                    'relation' => 'article',
+                    'value'    => 'id',
+                    'field'    => 'title',
+                    'where'    => '1 = 1',
+                    'cssClass' => 'selectize',
+                ],
+                /**
+                 * This is the 'suggest' version which builds a dropdown handled by select 2 for the corresponding relation.
+                 * It should be used when there are a lot of records to filter.
+                 */
+                'article_2_id' => [
+                    'label'       => 'Article 2',
+                    'class'       => ' col-xs-6 col-sm-2',
+                    'type'        => 'suggest',
+                    'model'       => 'article',
+                    'value'       => 'id',
+                    'caption'     => 'title',
+                    'is_accessor' => 0,
+                    'where'       => '1 = 1',
+                ],
+                'title'   => ['type' => 'text', 'label' => 'Title', 'field' => 'title', 'class' => ' col-xs-6 col-sm-2'],
+                'slug'    => ['type' => 'text', 'label' => 'Slug', 'field' => 'slug', 'class' => ' col-xs-6 col-sm-1'],
+                'sort'    => ['type' => 'text', 'label' => 'Sort', 'field' => 'sort', 'class' => ' col-xs-6 col-sm-1'],
+            ],
+           'field_exportable' => [
+                'id'     => ['type' => 'integer', 'field' => 'id', 'label' => 'id'],
+                'parent' => ['type' => 'relation', 'relation' => 'parentPage', 'field' => 'title', 'label' => 'parent'],
+                'title'  =>   ['type' => 'text', 'label' =>'Title' ,'field' => 'title' ],
+                'slug'   =>   ['type' => 'text', 'label' =>'Slug' ,'field' => 'slug'],
+                'sort'   =>   ['type' => 'text', 'label' =>'Sort' ,'field' => 'sort'],
+            ],
+            'joinTable'         => "article_translations",
+            'foreignJoinKey'    => 'article_id',
+            'localJoinKey'      => 'id',
+            'whereFilter'       => 'locale="it" ',
+            'orderBy'           => 'article_translations.title,sort',
+            'orderType'         => 'ASC',
+            'edit' => 1,
+            'export_csv' => 1,
+            'delete' => 1,
+            'create' => 1,
+            'copy' => 1,
+            'preview' => 1,
+            'view' => 0,
+            'selectable' => 1,
+            'showMedia' => 1,
+            'showMediaCategory' => 0,
+            'showMediaImages' => 1,
+            'showMediaDoc' => 1,
+            'showSeo' => 1,
+            'menu' => [
+                'home' => true,
+                'top-bar' =>[
+                    'show' => true,
+                    'action' =>['add']
+                ],
+            ],
+        ],
 
         /************************  LOCALIZATION **********************/
         'countries' => [
@@ -661,7 +747,7 @@ return [
             'showMedia' => 0,
             'showSeo' => 0,
             'menu' => [
-                'home' => true,
+                'home' => false,
                 'top-bar' =>[
                     'show' => false,
                     'action' =>['add']
@@ -695,7 +781,7 @@ return [
             'view' => 0,
             'selectable' => 1,
             'menu' => [
-                'home' => true,
+                'home' => false,
                 'top-bar' =>[
                     'show' => false,
                     'action' =>['add']
@@ -727,7 +813,7 @@ return [
             'view' => 0,
             'selectable' => 1,
             'menu' => [
-                'home' => true,
+                'home' => false,
                 'top-bar' =>[
                     'show' => false,
                     'action' =>['add']

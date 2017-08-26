@@ -1,10 +1,10 @@
 <?php namespace App;
 
-use App\maguttiCms\Permission\GFEntrustUserTrait;
+use App\MaguttiCms\Permission\GFEntrustUserTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use App\maguttiCms\Notifications\UserResetPasswordNotification as UserResetPasswordNotification;
+use App\MaguttiCms\Notifications\UserResetPasswordNotification as UserResetPasswordNotification;
 use Illuminate\Support\Facades\Config;
 class User extends Authenticatable
 {

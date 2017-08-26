@@ -3,7 +3,7 @@ return [
 
 
     'app' => [
-        'name'	   => 'maguttiCms',
+        'name'	   => 'maguttiCms GFStudio',
         'address'  => '5.3 maguttiCms Street',
         'locality' => 'Bergamo - Italy',
         'lat'      => '45.612310',
@@ -11,12 +11,12 @@ return [
         'phone'	   => '+39 0363.123456',
         'fax'	   => '+39 035.123456',
         'vat'	   => 'XXXXXXXXX',
-        'email'	   => 'hello@magutti.com',
+        'email'	   => 'info@gfstudio.com',
 
     ],
     'email' => [
-        'default'	   => 'hello@magutti.com',
-        'footer'       => '© Copyright  magutti',
+        'default'	   => 'info@gfstudio.com',
+        'footer'       => '© Copyright  GFStudio',
     ],
 
     'news' => [
