@@ -3,6 +3,7 @@
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\URL;
+use Carbon\Carbon;
 
 use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
 
@@ -10,16 +11,14 @@ use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
  * Class Article
  * @package App
  */
-class Article extends Model
+class Example extends Model
 {
 
     use  GFTranslatableHelperTrait;
     use \Dimsav\Translatable\Translatable;
     use \App\MaguttiCms\Domain\Article\ArticlePresenter;
 
-    protected $fillable = ['title', 'subtitle',  'abstract', 'description',
-                           'slug', 'sort', 'pub','top_menu', 'id_parent',
-                           'link', 'template_id','ignore_slug_translation'];
+    protected $fillable = ['title', 'description', 'description_2', 'slug', 'doc', 'color', 'date', 'sort', 'pub', 'article_id', 'article_2_id'];
     protected $fieldspec = [];
 
     public $ajaxAccessibilityRoles = ['su'];
@@ -29,9 +28,7 @@ class Article extends Model
     |  Sluggable & Trnslateble
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = ['menu_title', 'title','slug',
-                                    'subtitle', 'abstract', 'description',
-                                    'seo_title', 'seo_keywords', 'seo_description', 'seo_no_index'];
+    public $translatedAttributes = ['title', 'slug', 'description', 'description_2', 'seo_title', 'seo_keywords', 'seo_description', 'seo_no_index'];
 
     public $sluggable            =  ['slug'=>['field'=>'title','updatable'=>false,'translatable'=>true]];
 
@@ -41,20 +38,43 @@ class Article extends Model
     |  RELATION
     |--------------------------------------------------------------------------
     */
-    public function template()
-    {
-        return $this->belongsTo('App\Domain', 'template_id', 'id');
+    public function article() {
+        return $this->belongsTo('App\Article', 'article_id', 'id');
     }
-
-    public function media()
-    {
+    public function article_2() {
+        return $this->belongsTo('App\Article', 'article_2_id', 'id');
+    }
+	public function articles(){
+        return $this->belongsToMany('App\Article', 'example_article', 'example_id', 'article_id');
+    }
+	public function saveArticles($values) {
+        if(!empty($values))
+            $this->articles()->sync($values);
+        else
+            $this->articles()->detach();
+    }
+	public function media() {
         return $this->morphMany('App\Media', 'model');
     }
 
-    public function parentPage()
-    {
-        return $this->hasOne('App\Article','id','id_parent');
-    }
+	/*
+	|--------------------------------------------------------------------------
+	|  DATE ATTRIBUTE
+	|--------------------------------------------------------------------------
+	*/
+	public function setDateAttribute($value) {
+		$this->attributes['date'] = Carbon::parse($value);
+	}
+
+	public function getDateAttribute($value) {
+		//return Carbon::parse($value)->format('d-m-Y');
+		return Carbon::parse($value)->format('d-m-Y');
+	}
+
+	public function getFormattedDate() {
+		//return Carbon::parse($this->attributes['date'])->formatLocalized('%d %B %Y');
+		return Carbon::parse($this->attributes['date'])->format('d-m-Y');
+	}
 
     /*
     |--------------------------------------------------------------------------
@@ -67,62 +87,57 @@ class Article extends Model
             'type'      => 'integer',
             'minvalue'  => 0,
             'pkey'      => 'y',
-            'required'  => true,
+            'required'  => 1,
             'label'     => 'id',
             'hidden'    => 1,
             'display'   => 0,
         ];
-        $this->fieldspec['id_parent'] = [
+        $this->fieldspec['article_id'] = [
             'type'        => 'relation',
             'model'       => 'article',
             'foreign_key' => 'id',
             'label_key'   => 'title',
-            'required'    => false,
-            'label'       => 'Parent Page',
+            'required'    => 0,
+            'label'       => 'Relation with another model',
+            'hidden'      => 0,
+            'display'     => 1,
+        ];
+        $this->fieldspec['article_2_id'] = [
+            'type'        => 'relation',
+            'model'       => 'article',
+            'foreign_key' => 'id',
+            'label_key'   => 'title',
+            'required'    => 0,
+            'label'       => 'Relation with another model and selectize',
             'hidden'      => 0,
             'display'     => 1,
             'cssClass'    => 'selectize',
         ];
-        $this->fieldspec['template_id'] = [
-            'type'        => 'relation',
-            'model'       => 'Domain',
-            'filter'      => ['domain' => 'template'],
-            'foreign_key' => 'id',
-            'label_key'   => 'title',
-            'required'    => false,
-            'label'       => 'Template',
-            'hidden'      => 0,
-            'display'     => 1,
-        ];
-        $this->fieldspec['menu_title'] = [
-            'type'     => 'string',
-            'required' => false,
-            'hidden'   => 0,
-            'label'    => 'Menu Title',
-            'extraMsg' => '',
-            'display'  => 1,
-        ];
+		$this->fieldspec['example_articles'] = [
+            'type'       	=> 'relation',
+            'model'      	=> 'Article',
+            'relation_name' => 'articles',
+            'foreign_key'   => 'id',
+			'label_key'     => 'title',
+			'label'         => 'Multiple relation',
+            'required'      => 0,
+			'display'       => 1,
+            'hidden'        => 0,
+			'multiple'      => 1,
+		];
         $this->fieldspec['title'] = [
             'type'     => 'string',
             'required' => 1,
             'hidden'   => 0,
-            'label'    => 'Page Title',
-            'extraMsg' => '',
-            'display'  => 1,
-        ];
-        $this->fieldspec['subtitle'] = [
-            'type'     => 'string',
-            'required' => false,
-            'hidden'   => 0,
-            'label'    => 'Subtitle',
+            'label'    => 'Text',
             'extraMsg' => '',
             'display'  => 1,
         ];
         $this->fieldspec['slug'] = [
             'type'     => 'string',
-            'required' => 1,
+            'required' => 0,
             'hidden'   => 0,
-            'label'    => 'Slug',
+            'label'    => 'Sluggable',
             'extraMsg' => '',
             'display'  => 1,
         ];
@@ -132,77 +147,73 @@ class Article extends Model
             'h'        => 300,
             'required' => 'n',
             'hidden'   => 0,
-            'label'    => 'Description',
+            'label'    => 'Textarea',
             'extraMsg' => '',
-            'cssClass' => 'wyswyg',
             'display'  => 1,
         ];
-        $this->fieldspec['abstract'] = [
+        $this->fieldspec['description_2'] = [
             'type'     => 'text',
             'size'     => 600,
-            'h'        => 100,
+            'h'        => 300,
             'required' => 'n',
             'hidden'   => 0,
-            'label'    => 'Abstract or text right side column',
+            'label'    => 'Textarea WYSIWYG',
             'extraMsg' => '',
             'cssClass' => 'wyswyg',
-            'display'  => 1,
-        ];
-        $this->fieldspec['link'] = [
-            'type'     => 'string',
-            'required' => false,
-            'hidden'   => 0,
-            'label'    => 'External url',
-            'extraMsg' => '',
             'display'  => 1,
         ];
         $this->fieldspec['image'] = [
             'type'      => 'media',
-            'required'  => false,
+            'required'  => 0,
             'hidden'    => 0,
-            'label'     => 'Image',
+            'label'     => 'File upload',
             'extraMsg'  => '',
             'mediaType' => 'Img',
             'display'   => 1,
         ];
         $this->fieldspec['doc'] = [
             'type'      => 'media',
-            'required'  => false,
+            'required'  => 0,
             'hidden'    => 0,
-            'label'     => 'Document',
+            'label'     => 'File upload with ajax',
             'extraMsg'  => '',
             'lang'      => 0,
             'mediaType' => 'Doc',
             'display'   => 1,
 			'uploadifive' => 1,
         ];
+		$this->fieldspec['color'] = [
+            'type'     => 'color',
+            'required' => 0,
+            'hidden'   => 0,
+            'label'    => 'Color picker',
+            'extraMsg' => '',
+            'display'  => 1,
+        ];
+		$this->fieldspec['date'] = [
+			'type'      =>'string',
+			'required'  => 0,
+			'hidden'    => 0,
+			'label'     => 'Date picker',
+			'extraMsg'  => '',
+			'display'   =>  1,
+			'cssClass'  => 'datepicker',
+			//'cssClass'  => 'datepicker',
+			'cssClassElement' => 'col-sm-3',
+		];
         $this->fieldspec['sort'] = [
             'type'     => 'integer',
-            'required' => false,
-            'label'    => 'Order',
+            'required' => 0,
+            'label'    => 'Number',
             'hidden'   => 0,
             'display'  => 1,
         ];
         $this->fieldspec['pub'] = [
             'type'     => 'boolean',
-            'required' => false,
+            'required' => 0,
             'hidden'   => 0,
-            'label'    => trans('admin.label.active'),
+            'label'    => 'Boolean',
             'display'  => 1
-        ];
-        $this->fieldspec['top_menu'] = [
-            'type'     => 'boolean',
-            'required' => false,
-            'hidden'   => 0,
-            'label'    => trans('admin.label.top_menu'),
-            'display'  => 1
-        ];
-        $this->fieldspec['ignore_slug_translation'] = [
-            'type'     => 'boolean',
-            'required' => false,
-            'hidden'   => '0',
-            'label'    => 'Ignore slug translation',
-            'display'  => '1'
         ];
         $this->fieldspec['seo_title'] = [
             'type'     => 'string',
@@ -232,34 +243,12 @@ class Article extends Model
         ];
         $this->fieldspec['seo_no_index'] = [
             'type'     => 'boolean',
-            'required' => false,
+            'required' => 0,
             'hidden'   => 0,
             'label'    => trans('admin.seo.no-index'),
             'display'  => 1
         ];
 
         return $this->fieldspec;
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    |  Scopes & Mutator
-    |--------------------------------------------------------------------------
-    */
-
-    public function scopePublished($query) {
-        $query->where('pub', 1);
-    }
-
-    public function scopeMenu($query) {
-        $query->where('top_menu', 1)->where('id_parent', 0)->orderBy('sort', 'asc');
-    }
-
-    public function scopeChildren($query, $id = '') {
-        $query->where('id_parent', $id)->orderBy('sort', 'asc');
-    }
-
-    public function scopeChildrenMenu($query, $id) {
-        $query->where('id_parent', $id)->where('top_menu', 1)->orderBy('sort', 'asc');
     }
 }

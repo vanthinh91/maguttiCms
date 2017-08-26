@@ -1,7 +1,7 @@
 <?php
 namespace App;
 use Illuminate\Database\Eloquent\Model;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class Domain extends Model
 {

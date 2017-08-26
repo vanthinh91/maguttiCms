@@ -1,18 +1,27 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
 
 
 class Category extends Model
 {
     use \Dimsav\Translatable\Translatable;
     use GFTranslatableHelperTrait;
+    use \App\MaguttiCms\Domain\Category\CategoryPresenter;
 
-    public 	  $translatedAttributes = ['title','description','seo_title','seo_keywords','seo_description'];
-    public    $sluggable = ['slug'];
+
+
     protected $fillable  = ['title','description','abstract', 'slug','sort','pub','id_parent'];
     protected $fieldspec = [];
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Sluggable & Trnslateble
+    |--------------------------------------------------------------------------
+    */
+    public $translatedAttributes = ['title','slug','description','seo_title','seo_keywords','seo_description'];
+    public $sluggable            = ['slug'=>['field'=>'title','updatable'=>false,'translatable'=>true]];
 
     /*
     |--------------------------------------------------------------------------
@@ -28,6 +37,12 @@ class Category extends Model
     public function product(){
         return $this->hasMany('App\Product');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Fieldspec
+    |--------------------------------------------------------------------------
+    */
 
     function getFieldSpec ()
     {
@@ -154,10 +169,11 @@ class Category extends Model
     }
 
 
-    public function scopeMenu($query)    {
-
-        $query->where('pub', '=',1 )->orderBy('sort','ASC');
-    }
+    /*
+    |--------------------------------------------------------------------------
+    |  Scopes & Mutator
+    |--------------------------------------------------------------------------
+    */
 
     public function scopePublished($query)    {
 

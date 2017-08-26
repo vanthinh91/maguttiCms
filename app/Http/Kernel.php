@@ -54,9 +54,9 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+		'shield' => \App\Http\Middleware\GF_ShieldMiddleware::class,
 
-
-        'adminauth' => \App\maguttiCms\Middleware\AdminAuthenticate::class,
+        'adminauth' => \App\MaguttiCms\Middleware\AdminAuthenticate::class,
 
         /*
         |--------------------------------------------------------------------------

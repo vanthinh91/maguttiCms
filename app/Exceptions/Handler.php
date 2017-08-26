@@ -1,9 +1,11 @@
-<?php namespace App\Exceptions;
+<?php
+
+namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Support\Facades\Redirect;
+use Mail;
 
 class Handler extends ExceptionHandler
 {
@@ -31,7 +33,21 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        parent::report($exception);
+		if ($exception instanceof \Exception) {
+	        // emails.exception is the template of your email
+	        // it will have access to the $error that we are passing below
+			if ($exception->getMessage() && config('maguttiCms.developer.email'))
+				Mail::send(
+					'emails.exception',
+					['error' => $exception->getMessage(), 'file' => $exception->getFile(), 'line' => $exception->getLine(), 'trace' => $exception->getTrace()],
+					function ($message) {
+						$message->subject(trans('Laravel Error on '.config('maguttiCms.website.option.app.name')));
+						$message->from('hello@magutti.com', config('maguttiCms.website.option.app.name'));
+						$message->to(config('maguttiCms.developer.email'));
+					}
+				);
+	    }
+        return parent::report($exception);
     }
 
     /**
@@ -49,8 +65,7 @@ class Handler extends ExceptionHandler
         if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
-        else if( $e instanceof  maguttiException ) return $this->showCustomErrorPage();
-        else if( $e instanceof  NotFoundHttpException )return $this->showCustomErrorPage();
+        else if( $e instanceof  NotFoundHttpException ) return Redirect::to('/');
 
         return parent::render($request, $e);
     }
@@ -68,12 +83,5 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
         return redirect()->guest('login');
-    }
-
-    protected function showCustomErrorPage()
-    {
-        $url = ma_fullLocaleUrl('/');
-        return Redirect::to($url);
-        //return view()->make('errors.404Custom')->with('recentlyAdded', $recentlyAdded);
     }
 }

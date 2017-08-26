@@ -1,6 +1,6 @@
 <?php namespace App;
 
-use App\maguttiCms\Permission\GFEntrustUserTrait;
+use App\MaguttiCms\Permission\GFEntrustUserTrait;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
@@ -10,8 +10,8 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 /*GF_ma for maguttiCms*/
-use App\maguttiCms\Presenter\AdminUserPresenter;
-use App\maguttiCms\Notifications\AdminResetPasswordNotification as AdminUserResetPasswordNotification;
+use App\MaguttiCms\Domain\Admin\AdminUserPresenter;
+use App\MaguttiCms\Notifications\AdminResetPasswordNotification as AdminUserResetPasswordNotification;
 
 class AdminUser extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
