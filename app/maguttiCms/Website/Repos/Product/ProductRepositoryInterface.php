@@ -5,22 +5,14 @@
  * Date: 03/07/2016
  * Time: 11:21
  */
-namespace App\maguttiCms\Website\Repos\Product;
+namespace App\MaguttiCms\Website\Repos\Product;
 
 /**
  * Interface ProductRepositoryInterface
- * @package App\maguttiCms\Website\Repos\Product
+ * @package App\MaguttiCms\Website\Repos\Product
  */
 interface ProductRepositoryInterface
 {
-    /**
-     * @param $slug
-     * @return mixed
-     */
     public function getBySlug($slug);
-
-    /**
-     * @return mixed
-     */
     public function getPublished();
 }

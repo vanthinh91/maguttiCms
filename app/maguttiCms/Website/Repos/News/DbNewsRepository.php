@@ -1,5 +1,5 @@
 <?php
-namespace App\maguttiCms\Website\Repos\News;
+namespace App\MaguttiCms\Website\Repos\News;
 
 /**
  * Created by PhpStorm.
@@ -7,14 +7,14 @@ namespace App\maguttiCms\Website\Repos\News;
  * Date: 03/07/2016
  * Time: 10:58
  */
-use App\maguttiCms\Website\Repos\News\NewsRepositoryInterface;
+use App\MaguttiCms\Website\Repos\News\NewsRepositoryInterface;
 use App\News;
-use App\maguttiCms\Website\Repos\DbRepository;
+use App\MaguttiCms\Website\Repos\DbRepository;
 use Carbon\Carbon;
 
 /**
  * Class DbPostRepository
- * @package App\maguttiCms\Website\Repos\Post
+ * @package App\MaguttiCms\Website\Repos\Post
  */
 class DbNewsRepository extends DbRepository implements NewsRepositoryInterface
 {
@@ -34,7 +34,10 @@ class DbNewsRepository extends DbRepository implements NewsRepositoryInterface
     }
 
 	function  getLatest($limit){
-		$this->model->latest($limit)->get();
+		if ($limit == 1)
+			return $this->model->latest($limit)->first();
+		else
+			return $this->model->latest($limit)->get();
 	}
 
 	/**

@@ -5,12 +5,12 @@
  * Date: 03/07/2016
  * Time: 11:40
  */
-namespace App\maguttiCms\Website\Repos;
+namespace App\MaguttiCms\Website\Repos;
 use Carbon\Carbon;
 
 /**
  * Class DbRepository
- * @package App\maguttiCms\Website\Repos
+ * @package App\MaguttiCms\Website\Repos
  */
 abstract class DbRepository
 {
@@ -33,8 +33,9 @@ abstract class DbRepository
      * @param $slug
      * @return mixed
      */
-    public function getBySlug($slug){
-        return $this->model->where('slug','=',$slug)->where('pub', 1)->first();
+    public function getBySlug($slug,$locale=''){
+        if($this->model->isAttributeTranslatable('slug'))  return  $this->model->getByTranslationSlug($slug,$locale);
+        return $this->model->where('slug','=',$slug)->first();
     }
 
     /**

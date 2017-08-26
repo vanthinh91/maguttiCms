@@ -1,5 +1,5 @@
 <?php
-namespace App\maguttiCms\Website\Repos\Product;
+namespace App\MaguttiCms\Website\Repos\Product;
 /**
  * Created by PhpStorm.
  * User: Marco Asperti
@@ -7,11 +7,11 @@ namespace App\maguttiCms\Website\Repos\Product;
  * Time: 10:58
  */
 use App\Product;
-use App\maguttiCms\Website\Repos\DbRepository;
+use App\MaguttiCms\Website\Repos\DbRepository;
 
 /**
  * Class DbProductRepository
- * @package App\maguttiCms\Website\Repos\Product
+ * @package App\MaguttiCms\Website\Repos\Product
  */
 class DbProductRepository extends DbRepository implements ProductRepositoryInterface
 {
