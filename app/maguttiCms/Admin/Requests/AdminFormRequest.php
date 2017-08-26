@@ -1,4 +1,4 @@
-<?php namespace App\maguttiCms\Admin\Requests;
+<?php namespace App\MaguttiCms\Admin\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Input;

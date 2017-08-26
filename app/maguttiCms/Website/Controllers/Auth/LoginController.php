@@ -1,14 +1,17 @@
-<?php namespace App\maguttiCms\Website\Controllers\Auth;
+<?php namespace App\MaguttiCms\Website\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
+use App\MaguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 
 class LoginController extends Controller
 {
+
+    use \App\MaguttiCms\SeoTools\MaguttiCmsSeoTrait;
+
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -70,6 +73,7 @@ class LoginController extends Controller
          *  TODO   will  be  removed
          */
         $article =$this->articleRepo->getBySlug('login');
+        $this->setSeo($article);
         return view('website.auth.login',compact('article'));
    }
 
@@ -100,10 +104,6 @@ class LoginController extends Controller
         $request->session()->regenerate();
 
         return redirect($this->redirectAfterLogout);
-    }
-    public function redirectTo()
-    {
-        return '/@'.auth()->user()->username;
     }
 
 	/**

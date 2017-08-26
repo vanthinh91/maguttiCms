@@ -1,21 +1,27 @@
 <?php
 
-namespace App\maguttiCms\Website\Controllers;
+namespace App\MaguttiCms\Website\Controllers;
+use App\FaqCategory;
+use App\MaguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
+use App\MaguttiCms\Website\Repos\News\NewsRepositoryInterface;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Input;
 use Validator;
-
 use App\Article;
-use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
-use App\maguttiCms\Website\Repos\News\NewsRepositoryInterface;
+use App\News;
+use App\Product;
+use App\PlantProvenience;
+use App\LeafType;
+use App\Environment;
+use Domain;
 
 
 class ReservedAreaController extends Controller
 
 {
-	use \App\maguttiCms\SeoTools\laraCmsSeoTrait;
+	use \App\MaguttiCms\SeoTools\MaguttiCmsSeoTrait;
     /**
      * @var
      */
@@ -41,14 +47,14 @@ class ReservedAreaController extends Controller
      */
     public function dashboard()
     {
-        $article =$this->articleRepo->getBySlug('user-dashboard');
+        $article =$this->articleRepo->getBySlug('dashboard');
         $this->setSeo($article);
         return view('website.users.dashboard',compact('article'));
     }
     public function profile()
     {
 
-        $article =$this->articleRepo->getBySlug('user-profile');
+        $article =$this->articleRepo->getBySlug('profile');
         $this->setSeo($article);
         return view('website.users.profile',compact('article'));
     }

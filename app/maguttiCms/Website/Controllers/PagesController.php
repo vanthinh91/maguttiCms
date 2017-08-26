@@ -1,14 +1,12 @@
 <?php
 
-namespace App\maguttiCms\Website\Controllers;
-use App\Exceptions\maguttiException;
+namespace App\MaguttiCms\Website\Controllers;
 use App\FaqCategory;
-use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
-use App\maguttiCms\Website\Repos\News\NewsRepositoryInterface;
+use App\MaguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
+use App\MaguttiCms\Website\Repos\News\NewsRepositoryInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Input;
-use Mockery\Exception;
 use Validator;
 use App\Article;
 use App\News;
@@ -19,7 +17,7 @@ use Domain;
 class PagesController extends Controller
 
 {
-	use \App\maguttiCms\SeoTools\laraCmsSeoTrait;
+	use \App\MaguttiCms\SeoTools\MaguttiCmsSeoTrait;
     /**
      * @var
      */
@@ -66,37 +64,33 @@ class PagesController extends Controller
      */
     public function pages($parent, $child='') {
 
-			if(!$child) {
-				$article = $this->articleRepo->getParentPage($parent);
-				$template = $parent;
-			}
-			else {
-				$article = $this->articleRepo->getSubPage($parent, $child);
-				$template = $child;
-			}
-
-      if($article && $article->slug != 'home'){
-        $this->setSeo($article);
-        $this->template = ( $article->template_id ) ?  $article->template->value : $template;
-        if (view()->exists('website.'. $this->template)) {
-          return view('website.'.$this->template,compact('article'));
+        if(!$child) {
+            $article = $this->articleRepo->getBySlug($parent,app()->getLocale());
+            $template = $parent;
         }
-        return view('website.normal',compact('article'));
-      }
-      else {
-        return Redirect::to('/');
-      }
+        else {
+
+            $article = $this->articleRepo->getSubPage($parent, $child);
+            $template = $child;
+        }
+
+        if($article && $article->slug != 'home' && $article->pub==1){
+            $this->setSeo($article);
+            $this->template = ( $article->template_id ) ?  $article->template->value : $template;
+            if (view()->exists('website.'. $this->template)) {
+                return view('website.'.$this->template,compact('article'));
+            }
+            return view('website.normal',compact('article'));
+        }
+        else {
+            return Redirect::to('/');
+        }
 
     }
 
-    public function test($slug) {
-        $article = Article::find($slug);
-        $this->manage($article);
-
-        var_dump($article->id);
-    }
-    function manage($obj) {
-        if(!$obj)throw new maguttiException();
+    public function test() {
+        phpinfo();
+        die();
     }
 
 	/**
@@ -106,7 +100,7 @@ class PagesController extends Controller
 	public function contacts() {
 		$article = $this->articleRepo->getBySlug('contatti');
 		$parameter = Input::get('product_id');
-        $product ='';
+
 		if ($parameter) {
 			$product = Product::findOrFail($parameter);
 			$info_request = 'Buongiorno, vorrei ricevere maggiori informazioni riguardo al prodotto "'.$product->title.'" del '.$product->year.'.';
@@ -114,7 +108,7 @@ class PagesController extends Controller
 		}
 		else {
 			$info_request = '';
-			return view('website.contacts', ['request_product_id' => 0, 'product' => $product, 'article' => $article]);
+			return view('website.contacts', ['request_product_id' => 0, 'product' => '', 'article' => $article]);
 		}
 	}
 
@@ -131,10 +125,11 @@ class PagesController extends Controller
             return view('website.news.home',compact('article','news'));
         }
         else {
-            $news = $this->newsRepo->getBySlug($slug);;
+            $news = $this->newsRepo->getBySlug($slug);
             if($news){
                 $this->setSeo($news);
-                return view('website.news.single',compact('article','news'));
+                $locale_article = $news;
+                return view('website.news.single',compact('article','news','locale_article'));
             }
             return Redirect::to('/');
         }

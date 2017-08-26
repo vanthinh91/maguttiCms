@@ -1,5 +1,5 @@
 <?php
-namespace App\maguttiCms\Website\Decorator;
+namespace App\MaguttiCms\Website\Decorator;
 Use App;
 use Carbon\Carbon;
 class HtmlMenu  extends  maguttiCmsDecorator{

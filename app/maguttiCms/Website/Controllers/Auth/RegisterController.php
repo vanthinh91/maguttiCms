@@ -1,6 +1,7 @@
-<?php namespace App\maguttiCms\Website\Controllers\Auth;
+<?php namespace App\MaguttiCms\Website\Controllers\Auth;
 
 
+use App\MaguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -20,6 +21,10 @@ class RegisterController extends Controller
     |
     */
 
+
+    use \App\MaguttiCms\SeoTools\MaguttiCmsSeoTrait;
+
+
     use RegistersUsers;
 
     /**
@@ -28,23 +33,30 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/users/dashboard';
+    /**
+     * @var ArticleRepositoryInterface
+     */
+    protected  $articleRepo;
+    var $localePrefix;
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * RegisterController constructor.
+     * @param ArticleRepositoryInterface $article
      */
-    public function __construct()
+    public function __construct(ArticleRepositoryInterface $article)
     {
         $this->middleware('guest');
         $this->localePrefix         = ma_getRealLocale();
         $this->redirectTo           = $this->localePrefix.'/users/dashboard';
+        $this->articleRepo          = $article;
        
     }
 
     public function showRegistrationForm()
     {
-        return view('website.auth.register');
+        $article = $this->articleRepo->getBySlug('register');
+        $this->setSeo($article);
+        return view('website.auth.register',compact('article'));
     }
 
     /**

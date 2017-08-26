@@ -1,8 +1,8 @@
-<?php namespace App\maguttiCms\Website\Controllers;
+<?php namespace App\MaguttiCms\Website\Controllers;
 
 
-use App\maguttiCms\Website\Requests\WebsiteFormRequest;
-use App\maguttiCms\Mailers\SystemMailer;
+use App\MaguttiCms\Website\Requests\WebsiteFormRequest;
+use App\MaguttiCms\Mailers\SystemMailer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\FaqCategory;

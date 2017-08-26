@@ -1,4 +1,4 @@
-<?php namespace App\maguttiCms\Website\Controllers\Auth;
+<?php namespace App\MaguttiCms\Website\Controllers\Auth;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -21,6 +21,7 @@ class ResetPasswordController extends Controller
     use ResetsPasswords;
     protected $redirectTo   = '/users/dashboard';
     protected $redirectPath = '/users/dashboard';
+    var $localePrefix;
     /**
      * Create a new controller instance.
      *
@@ -37,6 +38,9 @@ class ResetPasswordController extends Controller
 
     public function showResetForm(Request $request, $token = null)
     {
+
+        \SEO::setTitle( trans(trans('message.password_reset')) );
+
         return view('website.auth.reset')->with(
             ['token' => $token, 'email' => $request->email]
         );
