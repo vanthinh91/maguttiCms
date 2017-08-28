@@ -6,7 +6,7 @@ open source multilingual laravel 5.5 CMS
 ## Version
 5.5 DEV
 
-magutti Cms  is released using laravel 5.5 dev version
+magutti Cms  is released using laravel 5.5 dev version that require PHP 7
 
 ### How to Install
  
