@@ -13,7 +13,7 @@
         "cocur/slugify": "^2.5",
         "dimsav/laravel-translatable": "^6.0",
         "guzzlehttp/guzzle": "~6.0",
-        "hisorange/browser-detect": "dev-master",
+        "hisorange/browser-detect": "2.*",
         "intervention/image": "^2.3",
         "intervention/imagecache": "^2.3",
         "laravelcollective/html": "5.5.1",
@@ -23,7 +23,7 @@
 
         "vinkla/shield": "^2.1",
         "zizaco/entrust": "5.2.x-dev",
-        "maatwebsite/excel": "2.1.x-dev"
+        "maatwebsite/excel": "~2.1.0"
     },
 
     "require-dev": {
@@ -71,6 +71,6 @@
         "sort-packages": true,
         "optimize-autoloader": true
     },
-    "minimum-stability": "dev",
+
     "prefer-stable": true
 }

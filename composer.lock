@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ebdbf103d227016dc9f00537d878548b",
+    "content-hash": "0efbae4a4fc4dbfec3c168dd465d2449",
     "packages": [
         {
             "name": "artesaos/seotools",
@@ -651,7 +651,7 @@
         },
         {
             "name": "hisorange/browser-detect",
-            "version": "dev-master",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hisorange/browser-detect.git",
@@ -1357,16 +1357,16 @@
         },
         {
             "name": "maatwebsite/excel",
-            "version": "2.1.x-dev",
+            "version": "2.1.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maatwebsite/Laravel-Excel.git",
-                "reference": "067613315e09af944062cc84ea33f51fed255553"
+                "reference": "bb7b3d9a72f56ddab974e6a629e4f5e51cd945a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/067613315e09af944062cc84ea33f51fed255553",
-                "reference": "067613315e09af944062cc84ea33f51fed255553",
+                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/bb7b3d9a72f56ddab974e6a629e4f5e51cd945a2",
+                "reference": "bb7b3d9a72f56ddab974e6a629e4f5e51cd945a2",
                 "shasum": ""
             },
             "require": {
@@ -1431,7 +1431,7 @@
                 "import",
                 "laravel"
             ],
-            "time": "2017-08-31T18:50:06+00:00"
+            "time": "2017-08-31T14:52:24+00:00"
         },
         {
             "name": "mcamara/laravel-localization",
@@ -5214,11 +5214,9 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": {
-        "hisorange/browser-detect": 20,
-        "zizaco/entrust": 20,
-        "maatwebsite/excel": 20
+        "zizaco/entrust": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
