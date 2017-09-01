@@ -4,9 +4,9 @@
 open source multilingual laravel 5.5 CMS
 
 ## Version
-5.5 DEV
+5.5 
 
-magutti Cms  is released using laravel 5.5 dev version that require PHP 7
+magutti Cms is released using laravel 5.5
 
 ### How to Install
  
@@ -18,6 +18,14 @@ magutti Cms  is released using laravel 5.5 dev version that require PHP 7
  - to login in the admin panel (http://yourpath/admin)
    - email: cmsadmin@magutti.com
    - password: password
+   
+### Server Requirements
+- PHP >= 7.0.0
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
 
  
   
