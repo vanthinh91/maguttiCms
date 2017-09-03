@@ -37,9 +37,11 @@
     @include('website.partials.widgets_ga')
 </head>
 <body>
+<div id="app">
     @include('website.partials.navbar')
     @yield('content')
 	@include('website.partials.footer')
+</div>
 {{-- default js to show in all pages --}}
 <script type="text/javascript">
     var urlAjaxHandler  = "{{ LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(),URL::to( '' )) }}";
@@ -52,12 +54,11 @@
 @include('website.partials.js_localization')
 
 <!-- JS Implementing Plugins -->
-<script type="text/javascript" src="{{ mix('/website/js/vendor.js') }}"></script>
 <script type="text/javascript" src="{{ mix('/website/js/app.js') }}"></script>
+
+
 <script type="text/javascript">
-	$(document).ready(function() {
-		App.init();
-	});
+
 </script>
 <!-- JS Implementing Plugins -->
 @yield('footerjs')

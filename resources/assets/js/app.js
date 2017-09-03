@@ -1,135 +1,55 @@
-window.App = function () {
-    function handleBootstrap() {
-        /*Bootstrap Carousel*/
-        $('.carousel').carousel({
-            interval: 5000,
-            pause: 'hover'
-        });
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
 
-        /*Tooltips*/
-        $('.tooltips').tooltip();
-        $('.tooltips-show').tooltip('show');
-        $('.tooltips-hide').tooltip('hide');
-        $('.tooltips-toggle').tooltip('toggle');
-        $('.tooltips-destroy').tooltip('destroy');
+//import Popper from 'popper.js';
+//window.Popper = Popper;
+require('./bootstrap');
+require('./vendor');
 
-        /*Popovers*/
-        $('.popovers').popover();
-        $('.popovers-show').popover('show');
-        $('.popovers-hide').popover('hide');
-        $('.popovers-toggle').popover('toggle');
-        $('.popovers-destroy').popover('destroy');
+window.Vue = require('vue');
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+Vue.component('flash', require('./components/Flash.vue'));
+Vue.component('newsletter', require('./components/Newsletter.vue'));
+
+
+Vue.filter('caseInsensitiveOrderBy', function (arr, sortKey, reverse) {
+    // arr = convertArray(arr)
+    if (!sortKey) {
+        return arr
     }
+    var order = (reverse && reverse < 0) ? -1 : 1
+    // sort on a copy to avoid mutating original array
+    return arr.slice().sort(function (a, b) {
+        if (sortKey !== '$key') {
+            if (Vue.util.isObject(a) && '$value' in a) a = a.$value
+            if (Vue.util.isObject(b) && '$value' in b) b = b.$value
+        }
+        a = Vue.util.isObject(a) ? Vue.parsers.path.getPath(a, sortKey) : a
+        b = Vue.util.isObject(b) ? Vue.parsers.path.getPath(b, sortKey) : b
 
-    function handleNewsletter() {
-        var msg = '';
-        $('#form-newsletter').submit(function(e){
-			e.preventDefault();
-            //showWait();
-            $.ajax({
-                type : 'POST',
-                url : urlAjaxHandler+"/api/newsletter",
-                data : $( "#form-newsletter" ).serialize(),
-                dataType : 'json',
-                success : function(response) {
-                    var msgHtml = '';
-                    if (response.status=='ok') {
-                        msgHtml += '<h4>' + response.msg + '</h4>';
-                    }
-                    else {
-                       $.each( response.errors , function( key, value ) {
-                            msgHtml += '<h4>' + value[0] + '</h4>'; //showing only the first error.
-                        });
-                    }
-                    updateModalAlertMsg(msgHtml);
-                },
-                error : function(response) {
-                    updateModalAlertMsg('Error');
-                }
-            });
-        });
-    }
+        a = a.toLowerCase()
+        b = b.toLowerCase()
 
-	function handleLightBox() {
-		$(".lightbox").fancybox({
-		});
-	}
+        return a === b ? 0 : a > b ? order : -order
+    })
+});
 
-	function handleWow() {
-		window.wow.init({
-			mobile:	false,	// default
-			live:	false	// default
-		});
-	}
+const app = new Vue({
+    el: '#app',
+    components: {
 
-	function handleScrollTo() {
-		$('.scroll-to').click(function(e) {
-			e.preventDefault();
-			var margin_top = $("nav").outerHeight();
-			var elem_top = $($(this).attr('href')).offset().top;
-			$('html, body').stop().animate({'scrollTop': elem_top - margin_top}, 500);
-		});
-	}
+    },
 
-    return {
-        init: function () {
-            handleBootstrap();
-            handleNewsletter();
-			handleLightBox();
-			handleWow();
-			handleScrollTo();
-        },
-		formValidation: function(selector) {
-		      var msg = '';
-		      $('#'+selector).submit(function (event) {
-		        event.preventDefault();
+});
 
-		       $.ajax({
-		            type: 'POST',
-		            url: urlAjaxHandler + '/api/' + selector,
-		            data: $('#'+selector).serialize(),
-		            dataType: 'json',
-		            success: function (response) {
-		              if (response.status == 'ok') {
-		                $('#'+selector).hide();
-		                $('#response').show().text(response.msg);
-		              }else {
-		                $.each(response.errors, function (key, value) {
-		                  $('[name="' + key + '"]').addClass('error');
-		                });
 
-		               $('html, body').animate({
-		                  scrollTop: $('#'+selector).offset().top - $('nav').height()
-		                }, 1200, 'swing');
-		              }
-		            },
-		            error: function (response) {
-		                //console.log(response.errors.email);
-		            }
-		        });
-		    });
-		}
-    };
-}();
 
-/******************************** MODAL ************************/
-function updateModalAlertMsg($htmlContent) {
-    bootbox.alert($htmlContent, function(result) {});
-}
 
-function updateModalBoxMsg($htmlContent) {
-    bootbox.confirm($htmlContent, function(result) {});
-}
 
-/*********************************  localize *********************/
-function trans(keystring) {
-	var key_array = keystring.split('.');
-	var temp_localization = JS_LOCALIZATION;
-	$.each(key_array, function() {
-		temp_localization = temp_localization[this];
-	});
-	if (typeof(temp_localization) == 'string')
-		return temp_localization;
-	else
-		return keystring;
-}

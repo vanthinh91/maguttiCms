@@ -4,9 +4,6 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
-
-// require('jquery-colorbox');
 require('@fancyapps/fancybox');
 require('owl.carousel');
 const WOW = require('wowjs'); window.wow = new WOW.WOW({ live: false });
@@ -18,3 +15,4 @@ require('./jquery.maCookieEu.js');
 require('../plugins/jquery.pb-filter.js');
 require('../plugins/pb-suggest/jquery.pb-suggest.js');
 require('../plugins/pb-overlay/jquery.pb-overlay.js');
+

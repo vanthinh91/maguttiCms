@@ -1,7 +1,7 @@
 <div id="social-newsletter" class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 mb10">
-			@include('website.partials.widgets_newsletter')
+			<newsletter></newsletter>
 		</div>
 		<div class="col-xs-12 col-sm-6 mb10">
 			@include('website.partials.social')
@@ -27,4 +27,7 @@
 			</div>
 		</div>
 	</div>
+
 </footer>
+<flash message=""></flash>
+

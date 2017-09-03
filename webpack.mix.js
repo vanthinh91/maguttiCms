@@ -15,8 +15,8 @@ mix.sass('resources/assets/sass/vendor.scss',  			'public/website/css/');
 mix.sass('resources/assets/sass/app.scss', 			'public/website/css/');
 mix.sass('resources/assets/sass/admin.scss',			'public/cms/css/');
 
-mix.js('resources/assets/js/vendor.js',        			'public/website/js');
-mix.js('resources/assets/js/app.js',        			'public/website/js');
+mix.js('resources/assets/js/magutti.js',        		'public/website/js');
+mix.js('resources/assets/js/app.js',        		    'public/website/js');
 
 if (mix.config.inProduction) {
     mix.version();
