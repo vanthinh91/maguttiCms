@@ -49,7 +49,7 @@
 				@endforeach
 
 				{{-- login --}}
-				@if (!Auth::guard()->check())
+				@guest
 					<li><a href="{{ LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(),URL::to( 'users/login' ) ) }}">Login</a></li>
 				@else
 					<li class="dropdown">
@@ -71,7 +71,7 @@
 							</li>
 						</ul>
 					</li>
-				@endif
+				@endauth
 
 				{{-- languages --}}
 				@if (sizeOf(LaravelLocalization::getSupportedLocales()) > 1)

@@ -85,7 +85,7 @@
                     </li>
                 @endif
             </ul>
-            @if (Auth::guard('admin')->check())
+            @auth('admin')
 				<div id="sidebar">
 					<div id="sidebar-button">
 						<i class="fa fa-angle-left fa-3x"></i>
@@ -141,7 +141,7 @@
 	                   @endforeach
 	               </ul>
 			   </div>
-           @endif
+           @endauth
        </div>
 
        @endif
