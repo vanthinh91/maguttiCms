@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0efbae4a4fc4dbfec3c168dd465d2449",
+    "content-hash": "6031783d024933407f7afc971b36a842",
     "packages": [
         {
             "name": "artesaos/seotools",
-            "version": "v0.9.2",
+            "version": "0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/artesaos/seotools.git",
-                "reference": "90c287542602af077541dab1ddac4914f608e7e7"
+                "reference": "6cdd1787aa36ac0c1a63155fb84a27934f426c93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/artesaos/seotools/zipball/90c287542602af077541dab1ddac4914f608e7e7",
-                "reference": "90c287542602af077541dab1ddac4914f608e7e7",
+                "url": "https://api.github.com/repos/artesaos/seotools/zipball/6cdd1787aa36ac0c1a63155fb84a27934f426c93",
+                "reference": "6cdd1787aa36ac0c1a63155fb84a27934f426c93",
                 "shasum": ""
             },
             "require": {
@@ -26,8 +26,10 @@
                 "php": ">=5.4.0"
             },
             "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "orchestra/testbench": "~3.0",
                 "phpspec/phpspec": "2.1.x",
-                "phpunit/phpunit": "4.*"
+                "phpunit/phpunit": "^4.0|^5.0"
             },
             "type": "library",
             "autoload": {
@@ -55,7 +57,7 @@
                 "seotools",
                 "webmaster"
             ],
-            "time": "2016-04-30T00:18:23+00:00"
+            "time": "2016-10-27T03:03:45+00:00"
         },
         {
             "name": "cocur/slugify",
@@ -123,27 +125,34 @@
         },
         {
             "name": "dimsav/laravel-translatable",
-            "version": "v6.1",
+            "version": "v8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dimsav/laravel-translatable.git",
-                "reference": "24a2d1be97bd311cd2634b5d23d928f28e217041"
+                "reference": "80187189d228d95c014084e0646e85ef6ff9abc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dimsav/laravel-translatable/zipball/24a2d1be97bd311cd2634b5d23d928f28e217041",
-                "reference": "24a2d1be97bd311cd2634b5d23d928f28e217041",
+                "url": "https://api.github.com/repos/dimsav/laravel-translatable/zipball/80187189d228d95c014084e0646e85ef6ff9abc5",
+                "reference": "80187189d228d95c014084e0646e85ef6ff9abc5",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "~5.1",
+                "illuminate/support": "5.5.*",
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.0",
-                "phpunit/phpunit": "~4.0"
+                "orchestra/testbench": "3.5.*",
+                "phpunit/phpunit": "~6.0"
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dimsav\\Translatable\\TranslatableServiceProvider"
+                    ]
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Dimsav\\Translatable\\": "src/Translatable/"
@@ -170,7 +179,7 @@
                 "laravel",
                 "translation"
             ],
-            "time": "2017-01-25T09:53:13+00:00"
+            "time": "2017-09-01T18:39:08+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1721,16 +1730,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "4d4896e553f2094e657fe493506dc37c509d4e2b"
+                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/4d4896e553f2094e657fe493506dc37c509d4e2b",
-                "reference": "4d4896e553f2094e657fe493506dc37c509d4e2b",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/a1e8e1a30e1352f118feff1a8481066ddc2f234a",
+                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a",
                 "shasum": ""
             },
             "require": {
@@ -1768,7 +1777,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2017-07-28T14:45:09+00:00"
+            "time": "2017-09-02T17:10:46+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -3233,32 +3242,33 @@
         },
         {
             "name": "vinkla/shield",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vinkla/laravel-shield.git",
-                "reference": "3207eeb7f224b1c13849fc66749a06a6dd63cf37"
+                "reference": "bb7929b3af8fbd8d135119005eace94933014dd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vinkla/laravel-shield/zipball/3207eeb7f224b1c13849fc66749a06a6dd63cf37",
-                "reference": "3207eeb7f224b1c13849fc66749a06a6dd63cf37",
+                "url": "https://api.github.com/repos/vinkla/laravel-shield/zipball/bb7929b3af8fbd8d135119005eace94933014dd6",
+                "reference": "bb7929b3af8fbd8d135119005eace94933014dd6",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "5.3.* || 5.4.* || 5.5.*",
+                "illuminate/support": "5.5.*",
                 "php": "^7.0",
                 "symfony/http-kernel": "^3.3"
             },
             "require-dev": {
                 "graham-campbell/analyzer": "^1.1",
                 "graham-campbell/testbench": "^4.0",
+                "orchestra/testbench": "^3.5",
                 "phpunit/phpunit": "^6.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.3-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -3291,7 +3301,7 @@
                 "middleware",
                 "shield"
             ],
-            "time": "2017-08-07T13:01:28+00:00"
+            "time": "2017-09-02T21:55:15+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
