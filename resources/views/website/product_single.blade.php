@@ -11,6 +11,7 @@
 		<div class="col-xs-12 col-sm-8 col-sm-pull-4 mb20">
 			<h1>{{$product->title}}</h1>
 			{!!$product->description!!}
+			category {{ optional($product->category)->title }}
 		</div>
 	</div>
 </main>
