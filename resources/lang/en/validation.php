@@ -88,7 +88,7 @@ return [
     */
 
     'custom' => [
-        'email' => [
+        '*' => [
             'is_unique'                 => 'The :attribute is already present.',
         ],
 

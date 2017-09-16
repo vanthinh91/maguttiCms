@@ -7,7 +7,7 @@ return [
 		'adminusers' => [
 			'first_name' => 'required',
 			'last_name'  => 'required',
-			'email' => 'required|Between:3,64|Email',
+			'email' => 'required|Between:3,64|Email|is_unique',
 			'role' => 'required',
 			'password' => 'alpha_num|min:6|confirmed',
 			'password_confirmation' => 'alpha_num|min:6',
