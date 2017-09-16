@@ -1,5 +1,6 @@
 <?php namespace App\MaguttiCms\Providers;
 
+use App\User;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -8,6 +9,10 @@ use Illuminate\Support\ServiceProvider;
  */
 use DB;
 use Event;
+use Validator;
+use Illuminate\Validation\Rule;
+
+
 /*
     |--------------------------------------------------------------------------
     | common maguttiCms service providers
@@ -50,6 +55,20 @@ class LaraServiceProvider extends ServiceProvider
             });
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        |  MAGUTTI VALIDATION CUSTOM DIRECTIVE
+        |--------------------------------------------------------------------------
+        */
+
+        Validator::extend('is_unique', function($attribute, $value, $parameters, $validator) {
+            $model  = request()->segment(3);
+            $config = config('maguttiCms.admin.list.section.' .$model);
+            $id     = (request()->segment(4))?:null;
+            if(getModelFromString($config['model'])::where($attribute,$value)->where('id','!=',$id)->count()) return false;
+            return true;
+        });
+
 
 
 
@@ -58,6 +77,9 @@ class LaraServiceProvider extends ServiceProvider
         |  BLADE CUSTOM DIRECTIVE
         |--------------------------------------------------------------------------
         */
+
+
+
     }
 
     /**
@@ -67,6 +89,6 @@ class LaraServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 }

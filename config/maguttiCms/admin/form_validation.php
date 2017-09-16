@@ -1,4 +1,8 @@
 <?php
+
+
+use Illuminate\Validation\Rule;
+
 return [
 		'adminusers' => [
 			'first_name' => 'required',
@@ -69,7 +73,7 @@ return [
 		],
 		'users' => [
 			'name' => 'required',
-			'email' => 'required|Between:3,64|Email',
+			'email' => 'required|Between:3,64|Email|is_unique',
 		    'password' => 'alpha_num|min:6|confirmed',
 			'password_confirmation' => 'alpha_num|min:6',
 		],
