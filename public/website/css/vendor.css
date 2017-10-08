@@ -11584,7 +11584,7 @@ button.close {
   z-index: 99995;
 }
 
-.fancybox-slide > * {
+.fancybox-slide > div {
   display: inline-block;
   position: relative;
   padding: 24px;
@@ -11615,6 +11615,10 @@ button.close {
   background-repeat: no-repeat;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .fancybox-can-zoomOut .fancybox-image-wrap {
@@ -11649,6 +11653,10 @@ button.close {
   border: 0;
   max-width: none;
   max-height: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .fancybox-spaceball {
@@ -11943,7 +11951,7 @@ button.close {
   opacity: .3;
 }
 
-.fancybox-loading {
+.fancybox-slide > .fancybox-loading {
   border: 6px solid rgba(99, 99, 99, 0.4);
   border-top: 6px solid rgba(255, 255, 255, 0.6);
   border-radius: 100%;
