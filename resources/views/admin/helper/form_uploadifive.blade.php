@@ -1,4 +1,4 @@
-@if ( config('maguttiCms'.strtolower(str_plural($pageConfig['model'])).'.showMediaCategory')  == 1 && $article->id!='')
+@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'.showMediaCategory')  == 1 && $article->id!='')
 @inject('domain','App\Domain')
 <div class="col-md-12">
     <div class="form-group">
