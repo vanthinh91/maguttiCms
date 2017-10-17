@@ -30,7 +30,7 @@ return [
                  * This is the 'relation' version which builds a dropdown input for the corresponding relation.
                  * It should be only used when there are only a few records to show.
                  */
-                'id_parent' => [
+                /*'id_parent' => [
                     'label'    => 'Parent page',
                     'class'    => ' col-xs-6 col-sm-2',
                     'type'     => 'relation',
@@ -40,7 +40,7 @@ return [
                     'field'    => 'title',
                     'where'    => 'id_parent = 0',
                     'cssClass' => 'selectize',
-                ],
+                ],*/
                 /**
                  * This is the 'suggest' version which builds a dropdown handled by select 2 for the corresponding relation.
                  * It should be used when there are a lot of records to filter.
@@ -57,15 +57,7 @@ return [
                 ],*/
 
 
-                'created_by' => [
-                    'label'       => 'Created By',
-                    'class'       => ' col-xs-6 col-sm-3',
-                    'type'        => 'suggest',
-                    'model'       => 'AdminUser',
-                    'value'       => 'id',
-                    'caption'     => 'full_name',
-                    'searchFields'=> 'first_name,last_name'
-                ],
+
                 'title'   => ['type' => 'text', 'label' => 'Title', 'field' => 'title', 'class' => ' col-xs-6 col-sm-2'],
                 'slug'    => ['type' => 'text', 'label' => 'Slug', 'field' => 'slug', 'class' => ' col-xs-6 col-sm-1'],
                 'sort'    => ['type' => 'text', 'label' => 'Sort', 'field' => 'sort', 'class' => ' col-xs-6 col-sm-1'],
