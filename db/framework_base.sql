@@ -911,39 +911,7 @@ CREATE TABLE `migrations` (
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 
-INSERT INTO `migrations` (`migration`, `batch`)
-VALUES
-	('2014_10_12_000000_create_users_table',1),
-	('2014_10_12_100000_create_password_resets_table',1),
-	('2015_08_23_104442_create_products_table',1),
-	('2015_08_23_123427_add_paid_to_products',1),
-	('2015_08_27_133226_create_articles_table',1),
-	('2015_08_28_101039_add_media_to_articles_table',1),
-	('2015_08_29_151840_entrust_setup_tables',1),
-	('2015_08_29_173518_add_is_active_to_users_table',1),
-	('2015_12_06_191101_create_object_translation_table',1),
-	('2015_12_07_161911_article_translations',1),
-	('2015_12_20_135234_add_password_real_to_users_table',1),
-	('2015_12_23_205357_create_socials_table',2),
-	('2015_12_26_180448_create_hpsliders',3),
-	('2015_12_28_173515_add_subtitle_intro_abstract_to_article_table',4),
-	('2015_12_28_173917_add_subtitle_abstract_to_article_translations_table',4),
-	('2016_01_03_185806_add_subtitle_intro_to_article_translations',5),
-	('2016_01_03_190819_create_news_table',6),
-	('2016_01_03_190932_create_news_translations_table',7),
-	('2016_01_03_191050_create_media_table',8),
-	('2016_01_03_191145_create_media_translations_table',9),
-	('2016_01_09_213704_create_tags_table',10),
-	('2016_01_23_141830_create_contact_table',11),
-	('2016_01_23_141830_create_contacts_table',12),
-	('2016_01_27_195512_create_adminusers_table',12),
-	('2016_07_06_154403_create_newsletters_table',13),
-	('2016_08_04_150202_create_adminuser_role',14),
-	('2016_08_09_125134_create_countries_table',15),
-	('2016_08_09_135031_create_settings_table',16);
 
-/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table news
@@ -958,8 +926,8 @@ CREATE TABLE `news` (
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `doc` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sort` int(11) NOT NULL,
   `pub` tinyint(4) DEFAULT '1',
