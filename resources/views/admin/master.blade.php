@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.common_css').'ma_helper.css')!!}">
 	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.cms_css').'bootstrap-theme.css')!!}">
 	<link rel="stylesheet" href="{{ mix('cms/css/admin.css') }}">
+	<link rel="icon" href="{!! asset('website/images/icon.png') !!}" type="image/PNG">
 	<script>
         // init  some   global  variable
         var    _SERVER_PATH  = "{!! url('') !!}";
