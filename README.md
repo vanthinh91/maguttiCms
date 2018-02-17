@@ -1,12 +1,12 @@
 ![maguttiCms](http://www.magutti.com/public/website/images/logo_colore.png)
 
 ## About maguttiCms
-open source multilingual laravel 5.5 CMS
+open source multilingual laravel 5.6 CMS
 
 ## Version
-5.5 
+5.6
 
-magutti Cms is released using laravel 5.5
+magutti Cms is released using laravel 5.6
 
 ### How to Install
  
@@ -20,12 +20,14 @@ magutti Cms is released using laravel 5.5
    - password: password
    
 ### Server Requirements
-- PHP >= 7.0.0
+- PHP >= 7.1.3
 - OpenSSL PHP Extension
 - PDO PHP Extension
 - Mbstring PHP Extension
 - Tokenizer PHP Extension
 - XML PHP Extension
+- Ctype PHP Extension
+- JSON PHP Extension
 
  
   
