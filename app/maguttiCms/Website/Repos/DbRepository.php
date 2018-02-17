@@ -34,7 +34,7 @@ abstract class DbRepository
      * @return mixed
      */
     public function getBySlug($slug,$locale=''){
-        if($this->model->isAttributeTranslatable('slug'))  return  $this->model->getByTranslationSlug($slug,$locale);
+        if(isset($this->model->translatedAttributes) && $this->model->isAttributeTranslatable('slug'))  return  $this->model->getByTranslationSlug($slug,$locale);
         return $this->model->where('slug','=',$slug)->first();
     }
 

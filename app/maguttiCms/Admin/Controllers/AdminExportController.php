@@ -47,6 +47,6 @@ class AdminExportController extends Controller
                 $sheet->fromArray($itemsArray, null, 'A1', false, false);
             });
 
-        })->export('csv');
+        })->export();
     }
 }
