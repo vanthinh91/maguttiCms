@@ -187,17 +187,9 @@ return [
        |--------------------------------------------------------------------------
        */
 
-        'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
-        Dimsav\Translatable\TranslatableServiceProvider::class,
         'hisorange\BrowserDetect\Provider\BrowserDetectService',
-        Collective\Html\HtmlServiceProvider::class,
         'Zizaco\Entrust\EntrustServiceProvider',
-        'Intervention\Image\ImageServiceProvider',
-        //'Clockwork\Support\Laravel\ClockworkServiceProvider',
-        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
-		Vinkla\Shield\ShieldServiceProvider::class,
+         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         "Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider",
 
 
@@ -208,7 +200,6 @@ return [
        */
         App\MaguttiCms\Providers\LaraServiceProvider::class,
         App\MaguttiCms\Providers\SystemServiceProvider::class,
-
 
         'App\MaguttiCms\Notifications\FlashServiceProvider',
         App\MaguttiCms\Admin\Providers\AdminFormServiceProvider::class,
@@ -269,26 +260,18 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-
         /*
         |--------------------------------------------------------------------------
         | Vendor Class Aliases
         |--------------------------------------------------------------------------
         */
 
-        'LaravelLocalization'   => 'Mcamara\LaravelLocalization\Facades\LaravelLocalization',
         'BrowserDetect'         => 'hisorange\BrowserDetect\Facade\Parser',
         'Form'                  => Collective\Html\FormFacade::class,
         'Html'                  => Collective\Html\HtmlFacade::class,
         'Entrust'               => 'Zizaco\Entrust\EntrustFacade',
-        'Image'                 => 'Intervention\Image\Facades\Image',
-        'Excel' 				=> Maatwebsite\Excel\Facades\Excel::class,
-        //'Clockwork'             => 'Clockwork\Support\Laravel\Facade',
-        'Debugbar'              => Barryvdh\Debugbar\Facade::class,
         'Carbon'				=> 'Carbon\Carbon',
         'Slugify'               => 'Cocur\Slugify\Bridge\Laravel\SlugifyFacade',
-
-
 
         /*
          |--------------------------------------------------------------------------
