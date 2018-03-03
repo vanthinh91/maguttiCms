@@ -1,5 +1,4 @@
 <?php namespace App;
-
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\URL;
