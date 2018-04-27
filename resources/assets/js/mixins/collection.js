@@ -11,7 +11,6 @@ export default {
     methods: {
         add(item) {
             this.items.push(item);
-
             this.$emit('added');
         },
 

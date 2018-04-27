@@ -25,6 +25,9 @@
             }
 
         },
+        mounted() {
+            console.log('Component mounted.newsletter')
+        },
         created() {
 
             if (this.message) {

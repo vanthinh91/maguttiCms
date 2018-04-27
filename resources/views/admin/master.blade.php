@@ -22,12 +22,14 @@
         var    _SERVER_PATH  = "{!! url('') !!}";
         var    _LOCALE 		 = "{!! LaravelLocalization::getCurrentLocale() !!}";
         var    _CURMODEL 	 = "{!! ( isset($pageConfig['model']) ? $pageConfig['model'] : "" ) !!}";
+        window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
 	</script>
 </head>
 <body class="{{(in_array($view_name, ['admin-login', 'auth-password']))? 'no-margin': ''}}">
-@include('admin.common.navbar')
-
-@yield('content')
+<div id="app">
+	@include('admin.common.navbar')
+	@yield('content')
+</div>
 </body>
 <!-- Latest compiled and minified JavaScript -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -39,6 +41,7 @@
 <script src="{!! asset(config('maguttiCms.admin.path.plugins').'tinymce/tinymce.min.js')!!}"></script>
 <script src="{!! asset(config('maguttiCms.admin.path.plugins').'colorpicker/js/bootstrap-colorpicker.min.js')!!}"></script>
 <script src="{!! asset(config('maguttiCms.admin.path.plugins').'bootbox.js') !!}"></script>
+<script src="{!! asset(config('maguttiCms.admin.path.cms_js').'cms_app.js')!!}"></script>
 <script>
     $(document).ready(function() {
         // This command is used to initialize some elements and make them work properly
