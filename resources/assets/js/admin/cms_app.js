@@ -24,6 +24,7 @@ window.flash = function (message,status) {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 Vue.component('flash', require('./../components/Flash'));
+Vue.component('statusbutton', require('./../components/StatusButtonComponent'));
 
 Vue.filter('caseInsensitiveOrderBy', function (arr, sortKey, reverse) {
     // arr = convertArray(arr)

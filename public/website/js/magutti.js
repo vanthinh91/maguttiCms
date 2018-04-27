@@ -60,23 +60,23 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 34);
+/******/ 	return __webpack_require__(__webpack_require__.s = 43);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 34:
+/***/ 43:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(35);
-__webpack_require__(36);
-__webpack_require__(37);
-module.exports = __webpack_require__(38);
+__webpack_require__(44);
+__webpack_require__(45);
+__webpack_require__(46);
+module.exports = __webpack_require__(47);
 
 
 /***/ }),
 
-/***/ 35:
+/***/ 44:
 /***/ (function(module, exports) {
 
 window.App = function () {
@@ -212,21 +212,21 @@ function trans(keystring) {
 
 /***/ }),
 
-/***/ 36:
+/***/ 45:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 37:
+/***/ 46:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 38:
+/***/ 47:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

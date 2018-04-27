@@ -45,7 +45,8 @@
 						@if ($pageConfig['selectable']==1)
 							<td>
 								<input type="checkbox" value="{!! $article->id !!}" id="list_{!! $article->id !!}" name="list[{!! $article->id !!}]" class="checkbox"/>
-              				</td>
+
+							</td>
 						@endif
 						@foreach($labels=$pageConfig['field'] as $label)
 						<td class="{{ isset($label['class']) ? $label['class'] : 'text-center' }}">
@@ -72,9 +73,11 @@
 									<a href=" {!!   ma_get_image_from_repository($article->{$label['field']}) !!}" class="red" target="_new">
 										<img src="{!! ma_get_image_from_repository($article->{$label['field']},120,90,'png') !!}"  class="img-responsive imgEditThumb">
 									</a>
+								@elseif ( $label['type'] == 'booleans' )
+									<statusbutton list="{!! $pageConfig['model'].'_'.$article->id !!}" name="{!! $label['field']!!}" is_active="{{ $article->{$label['field']} }}"></statusbutton>
 
 								@elseif ( $label['type'] == 'boolean' )
-									<div class="togglebutton"  data-list-boolean ="{!! $pageConfig['model'].'_'.$article->id !!}" data-list-name ="{!! $label['field']!!}" >
+										<div class="togglebutton"  data-list-boolean ="{!! $pageConfig['model'].'_'.$article->id !!}" data-list-name ="{!! $label['field']!!}" >
 											<i class=" transitioned fa fa-2x fa-check text-success pointer {{ ($article->{$label['field']}==1) ? '' : 'hidden' }} "></i>
 											<i class="transitioned fa fa-2x fa-close text-error  pointer {{ ($article->{$label['field']}==1) ? 'hidden' : '' }}"></i>
 									</div>
