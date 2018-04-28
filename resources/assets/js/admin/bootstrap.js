@@ -22,7 +22,20 @@ window.axios = require('axios');
 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+window.flash = function (message,status) {
+    window.events.$emit('flash', message,status);
+};
 
+
+/**
+ *  SHARED COMPONENT
+ */
+
+window.events = new Vue();
+
+window.flash = function (message,status) {
+    window.events.$emit('flash', message,status);
+};
 
 
 

@@ -16,11 +16,23 @@ export default {
 
         remove(index) {
             this.items.splice(index, 1);
-
             this.$emit('removed');
         },
         showMessage(message,status) {
            flash(message,status);
+        },
+        simpleAjaxResponse(response)
+        {
+            let data;
+            data = response.data;
+            if(data.status==='ok'){
+                this.showMessage(data.message,this.SUCCESS_CLASS);
+            }
+            else  this.showMessage(data.status,this.ERROR_CLASS);
+        },
+        responseWithError(error)
+        {
+            this.showMessage(error,this.ERROR_CLASS)
         },
         methods: {
             url(page) {

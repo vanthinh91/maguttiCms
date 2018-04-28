@@ -73,23 +73,22 @@
 									<a href=" {!!   ma_get_image_from_repository($article->{$label['field']}) !!}" class="red" target="_new">
 										<img src="{!! ma_get_image_from_repository($article->{$label['field']},120,90,'png') !!}"  class="img-responsive imgEditThumb">
 									</a>
-								@elseif ( $label['type'] == 'booleans' )
-									<statusbutton list="{!! $pageConfig['model'].'_'.$article->id !!}" name="{!! $label['field']!!}" is_active="{{ $article->{$label['field']} }}"></statusbutton>
+
 
 								@elseif ( $label['type'] == 'boolean' )
-										<div class="togglebutton"  data-list-boolean ="{!! $pageConfig['model'].'_'.$article->id !!}" data-list-name ="{!! $label['field']!!}" >
-											<i class=" transitioned fa fa-2x fa-check text-success pointer {{ ($article->{$label['field']}==1) ? '' : 'hidden' }} "></i>
-											<i class="transitioned fa fa-2x fa-close text-error  pointer {{ ($article->{$label['field']}==1) ? 'hidden' : '' }}"></i>
-									</div>
-
+									<toggle_button
+											list="{!! $pageConfig['model'].'_'.$article->id !!}"
+											name="{!! $label['field']!!}"
+											value="{{ $article->{$label['field']} }}"></toggle_button>
 								@elseif ( $label['type'] == 'editable' )
-									<input
-										id="{!! $pageConfig['model'].'_'.$label['field'].'_'.$article->id !!}"
-										name="{!! $label['field'] !!}[]"
-										type="text" value="{{ $article->{$label['field']}  }}"
-										data-list-value ="{!! $pageConfig['model'].'_'.$article->id !!}"
-										data-list-name ="{!! $label['field']!!}"
-										/>
+									<input_component
+											list="{!! $pageConfig['model'].'_'.$article->id !!}"
+											name="{!! $label['field']!!}"
+											value="{{ $article->{$label['field']} }}"
+											id="{!! $pageConfig['model'].'_'.$label['field'].'_'.$article->id !!}"
+											name="{!! $label['field'] !!}[]">
+									</input_component>
+
 								@elseif ( $label['type'] == 'relation'  )
 
 									@if ( $article->{$label['relation']})  {!! $article->{$label['relation']}->{$label['field']} !!} @endif

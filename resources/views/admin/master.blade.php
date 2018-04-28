@@ -26,9 +26,10 @@
 	</script>
 </head>
 <body class="{{(in_array($view_name, ['admin-login', 'auth-password']))? 'no-margin': ''}}">
-<div id="app">
-	@include('admin.common.navbar')
-	@yield('content')
+@include('admin.common.navbar')
+<div id="app" v-cloak>
+    <flash message=""></flash>
+	@yield('content');
 </div>
 </body>
 <!-- Latest compiled and minified JavaScript -->
@@ -37,11 +38,12 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="{!! asset(config('maguttiCms.admin.path.plugins').'custom-scrollbar/jquery.mCustomScrollbar.concat.min.js')!!}"></script>
 <script src="{!! asset(config('maguttiCms.admin.path.cms_js').'cms.js')!!}"></script>
+<script src="{!! asset(config('maguttiCms.admin.path.cms_js').'cms_app.js')!!}"></script>
 <script src="{!! asset(config('maguttiCms.admin.path.plugins').'notify.min.js')!!}"></script>
 <script src="{!! asset(config('maguttiCms.admin.path.plugins').'tinymce/tinymce.min.js')!!}"></script>
 <script src="{!! asset(config('maguttiCms.admin.path.plugins').'colorpicker/js/bootstrap-colorpicker.min.js')!!}"></script>
 <script src="{!! asset(config('maguttiCms.admin.path.plugins').'bootbox.js') !!}"></script>
-<script src="{!! asset(config('maguttiCms.admin.path.cms_js').'cms_app.js')!!}"></script>
+
 <script>
     $(document).ready(function() {
         // This command is used to initialize some elements and make them work properly
