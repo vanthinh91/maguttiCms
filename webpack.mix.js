@@ -1,5 +1,4 @@
 const { mix } = require('laravel-mix');
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Fo development Management
@@ -22,7 +21,6 @@ mix.js('resources/assets/js/admin/cms_app.js',  'public/cms/js');
 if (mix.config.inProduction) {
     mix.version();
 }
-
 mix.browserSync({
     host: 'localhost',
     port: 8000,
