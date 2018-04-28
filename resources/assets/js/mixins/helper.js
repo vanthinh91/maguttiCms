@@ -1,11 +1,12 @@
 export default {
-
-    data: () => ({
-        path: '',
-    }),
-
+    data () {
+        return {
+            isModalVisible: false,
+            deleteUrl :'',
+            path: '',
+        };
+    },
     methods: {
-
         urlHandler(page) {
             if (! page) {
                 let query = location.search.match(/page=(\d+)/);
@@ -22,7 +23,17 @@ export default {
             }
 
             return this.path;
-        }
+        },
+        showModal(target) {
+            this.deleteUrl=target;
+            this.isModalVisible = true;
+        },
+        closeModal() {
+            this.isModalVisible = false;
+        },
+        updateModal() {
+            this.isModalVisible = false;
+            location.href = this.deleteUrl;
+        },
     }
-
 }

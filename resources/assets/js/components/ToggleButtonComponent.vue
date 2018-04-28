@@ -1,7 +1,7 @@
 <script>
     import collection from '../mixins/collection';
     export default {
-        props: ['list', 'name', 'value'],
+        props: ['model', 'name', 'value','item_id'],
         data: function () {
             return {
                 active: true,
@@ -14,12 +14,11 @@
         methods: {
             toggleBtn: function () {
                 this.active = (this.active == 1) ? 0 : 1;
-                let itemArray = this.list.split('_');
-                let url = window.urlAjaxHandlerCms + 'update/updateItemField/' + itemArray[0] + '/' + itemArray[1];
+
+                let url = window.urlAjaxHandlerCms + 'update/updateItemField/' + this.model + '/' + this.item_id;
                 axios.get(url,
                     {
                         params: {
-                            model: itemArray[0],
                             field: this.name,
                             value: this.active
                         }

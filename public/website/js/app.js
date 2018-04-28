@@ -11928,20 +11928,17 @@ module.exports = __webpack_require__(17);
         responseWithError: function responseWithError(error) {
             this.showMessage(error, this.ERROR_CLASS);
         },
+        url: function url(page) {
 
-        methods: {
-            url: function url(page) {
-
-                if (!page) {
-                    var query = location.search.match(/page=(\d+)/);
-                    page = query ? query[1] : 1;
-                }
-
-                if (location.href.indexOf("tag") > -1) {
-                    var tag = this.getTag();
-                    return '/news/tags/' + tag + '?page=' + page;
-                } else return '/news?page=' + page;
+            if (!page) {
+                var query = location.search.match(/page=(\d+)/);
+                page = query ? query[1] : 1;
             }
+
+            if (location.href.indexOf("tag") > -1) {
+                var tag = this.getTag();
+                return '/news/tags/' + tag + '?page=' + page;
+            } else return '/news?page=' + page;
         }
     }
 

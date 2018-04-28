@@ -29,7 +29,7 @@
 @include('admin.common.navbar')
 <div id="app">
     <flash message=""></flash>
-	@yield('content');
+	@yield('content')
 </div>
 </body>
 <!-- Latest compiled and minified JavaScript -->

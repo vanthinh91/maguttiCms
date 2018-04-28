@@ -78,15 +78,18 @@
 								@elseif ( $label['type'] == 'boolean' )
 									<toggle_button
 											list="{!! $pageConfig['model'].'_'.$article->id !!}"
+											model="{!! $pageConfig['model'] !!}"
+											item_id="{!! $article->id !!}"
 											name="{!! $label['field']!!}"
 											value="{{ $article->{$label['field']} }}"></toggle_button>
 								@elseif ( $label['type'] == 'editable' )
 									<input_component
-											list="{!! $pageConfig['model'].'_'.$article->id !!}"
+											model="{!! $pageConfig['model'] !!}"
+											item_id="{!! $article->id !!}"
 											name="{!! $label['field']!!}"
 											value="{{ $article->{$label['field']} }}"
 											id="{!! $pageConfig['model'].'_'.$label['field'].'_'.$article->id !!}"
-											name="{!! $label['field'] !!}[]">
+									>
 									</input_component>
 
 								@elseif ( $label['type'] == 'relation'  )
@@ -122,9 +125,13 @@
 						@endif
 						@if ($pageConfig['delete']==1)
 							<td class="text-center">
-								<a href="{{  ma_get_admin_delete_url($article) }}" class="btn btn-danger btn-small" data-role="delete-item">
+								<button
+										type="button"
+										class="btn btn-danger btn-small"
+										@click="showModal('{{  ma_get_admin_delete_url($article) }}')"
+								>
 									<i class="fa fa-trash"></i> {!! trans('admin.label.delete')!!}
-								</a>
+								</button>
 							</td>
 						@endif
 					</tr>
@@ -143,6 +150,13 @@
 	</div>
 
 </div>
+<modal
+		v-show="isModalVisible"
+		@close="closeModal"
+		@update="updateModal">
+		<h3 slot="header">Delete item</h3>
+		<h4 slot="body">Area you sure ?</h4>
+</modal>
 
 @endsection
 

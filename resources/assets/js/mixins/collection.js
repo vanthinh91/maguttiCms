@@ -34,21 +34,20 @@ export default {
         {
             this.showMessage(error,this.ERROR_CLASS)
         },
-        methods: {
-            url(page) {
+        url(page) {
 
-                if (! page) {
-                    let query = location.search.match(/page=(\d+)/);
-                    page = query ? query[1] : 1;
-                }
-
-                if(location.href.indexOf("tag") > -1) {
-                    let tag =this.getTag();
-                    return `/news/tags/${tag}?page=${page}`;
-                }
-                else   return `/news?page=${page}`;
+            if (! page) {
+                let query = location.search.match(/page=(\d+)/);
+                page = query ? query[1] : 1;
             }
+
+            if(location.href.indexOf("tag") > -1) {
+                let tag =this.getTag();
+                return `/news/tags/${tag}?page=${page}`;
+            }
+            else   return `/news?page=${page}`;
         }
+
     }
 
 }

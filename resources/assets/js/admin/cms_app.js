@@ -26,6 +26,8 @@ window.flash = function (message,status) {
 Vue.component('flash', require('./../components/Flash'));
 Vue.component('toggle_button', require('./../components/ToggleButtonComponent'));
 Vue.component('input_component', require('./../components/InputComponent.vue'));
+import modal from './../components/ModalComponent.vue';
+import helper from '../mixins/helper';
 
 Vue.filter('caseInsensitiveOrderBy', function (arr, sortKey, reverse) {
     // arr = convertArray(arr)
@@ -52,12 +54,13 @@ Vue.filter('caseInsensitiveOrderBy', function (arr, sortKey, reverse) {
 const app = new Vue({
     el: '#app',
     components: {
-
+        modal,
     },
+    mixins: [helper],
     mounted() {
         console.log('app mounted')
     },
-
+    methods: {},
 });
 
 

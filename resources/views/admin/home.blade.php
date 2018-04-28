@@ -2,6 +2,8 @@
 @section('title', 'Admin Control Panel')
 @section('content')
 
+
+
     <div class="container pt25 mt25">
         <div id="home-buttons" class="row">
             <div class=" col-xs-6 col-sm-6 col-md-3 col-lg-3 pf5">

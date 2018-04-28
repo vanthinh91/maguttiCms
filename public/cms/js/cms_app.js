@@ -11928,20 +11928,17 @@ module.exports = __webpack_require__(17);
         responseWithError: function responseWithError(error) {
             this.showMessage(error, this.ERROR_CLASS);
         },
+        url: function url(page) {
 
-        methods: {
-            url: function url(page) {
-
-                if (!page) {
-                    var query = location.search.match(/page=(\d+)/);
-                    page = query ? query[1] : 1;
-                }
-
-                if (location.href.indexOf("tag") > -1) {
-                    var tag = this.getTag();
-                    return '/news/tags/' + tag + '?page=' + page;
-                } else return '/news?page=' + page;
+            if (!page) {
+                var query = location.search.match(/page=(\d+)/);
+                page = query ? query[1] : 1;
             }
+
+            if (location.href.indexOf("tag") > -1) {
+                var tag = this.getTag();
+                return '/news/tags/' + tag + '?page=' + page;
+            } else return '/news?page=' + page;
         }
     }
 
@@ -30412,8 +30409,13 @@ module.exports = __webpack_require__(64);
 
 /***/ }),
 /* 64 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_ModalComponent_vue__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_ModalComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_ModalComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_helper__ = __webpack_require__(73);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -30443,6 +30445,8 @@ Vue.component('flash', __webpack_require__(35));
 Vue.component('toggle_button', __webpack_require__(66));
 Vue.component('input_component', __webpack_require__(68));
 
+
+
 Vue.filter('caseInsensitiveOrderBy', function (arr, sortKey, reverse) {
     // arr = convertArray(arr)
     if (!sortKey) {
@@ -30467,10 +30471,15 @@ Vue.filter('caseInsensitiveOrderBy', function (arr, sortKey, reverse) {
 
 var app = new Vue({
     el: '#app',
-    components: {},
+    components: {
+        modal: __WEBPACK_IMPORTED_MODULE_0__components_ModalComponent_vue___default.a
+    },
+    mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_helper__["a" /* default */]],
     mounted: function mounted() {
         console.log('app mounted');
-    }
+    },
+
+    methods: {}
 });
 
 /***/ }),
@@ -30587,7 +30596,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['list', 'name', 'value'],
+    props: ['model', 'name', 'value', 'item_id'],
     data: function data() {
         return {
             active: true
@@ -30603,11 +30612,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.active = this.active == 1 ? 0 : 1;
-            var itemArray = this.list.split('_');
-            var url = window.urlAjaxHandlerCms + 'update/updateItemField/' + itemArray[0] + '/' + itemArray[1];
+
+            var url = window.urlAjaxHandlerCms + 'update/updateItemField/' + this.model + '/' + this.item_id;
             axios.get(url, {
                 params: {
-                    model: itemArray[0],
                     field: this.name,
                     value: this.active
                 }
@@ -30678,7 +30686,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['list', 'name'],
+    props: ['model', 'name', 'item_id', 'type'],
     data: function data() {
         return {
             message: ''
@@ -30690,11 +30698,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         inputHandler: function inputHandler() {
             var _this = this;
 
-            var itemArray = this.list.split('_');
-            var url = window.urlAjaxHandlerCms + 'update/updateItemField/' + itemArray[0] + '/' + itemArray[1];
+            var url = window.urlAjaxHandlerCms + 'update/updateItemField/' + this.model + '/' + this.item_id;
             axios.get(url, {
                 params: {
-                    model: itemArray[0],
                     field: this.name,
                     value: this.message
                 }
@@ -30707,6 +30713,144 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     template: '<input v-model="message" type="text" v-on:change.prevent="inputHandler"/>'
 });
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(71)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\ModalComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0a46dff2", Component.options)
+  } else {
+    hotAPI.reload("data-v-0a46dff2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'modal',
+    methods: {
+        close: function close() {
+            this.$emit('close');
+        },
+
+        update: function update() {
+            this.$emit('update');
+        }
+    },
+    template: __webpack_require__(92)
+});
+
+/***/ }),
+/* 72 */,
+/* 73 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    data: function data() {
+        return {
+            isModalVisible: false,
+            deleteUrl: '',
+            path: ''
+        };
+    },
+
+    methods: {
+        urlHandler: function urlHandler(page) {
+            if (!page) {
+                var query = location.search.match(/page=(\d+)/);
+                page = query ? query[1] : 1;
+            }
+            if (location.href.indexOf("tag") > -1) {
+                var tag = this.getTag();
+                this.path = '/news/tags/' + tag;
+            } else this.path = '/news';
+
+            if (page > 1) {
+                this.path += '?page=' + page;
+            }
+
+            return this.path;
+        },
+        showModal: function showModal(target) {
+            this.deleteUrl = target;
+            this.isModalVisible = true;
+        },
+        closeModal: function closeModal() {
+            this.isModalVisible = false;
+        },
+        updateModal: function updateModal() {
+            this.isModalVisible = false;
+            location.href = this.deleteUrl;
+        }
+    }
+});
+
+/***/ }),
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */
+/***/ (function(module, exports) {
+
+module.exports = "<transition name=\"modal\">\r\n    <div class=\"modal-mask\">\r\n        <div class=\"modal-wrapper\">\r\n            <div class=\"modal-container\">\r\n\r\n                <div class=\"modal-header\">\r\n                    <slot name=\"header\">\r\n                        default header\r\n                    </slot>\r\n                </div>\r\n\r\n                <div class=\"modal-body\">\r\n                    <slot name=\"body\">\r\n                        default body\r\n                    </slot>\r\n                </div>\r\n\r\n                <div class=\"modal-footer\">\r\n                    <slot name=\"footer\">\r\n                        <button class=\"modal-default-button btn btn-primary\" @click=\"$emit('update')\">\r\n                            Yes\r\n                        </button>\r\n                        <button class=\"modal-default-button btn btn-default mr10\" @click=\"$emit('close')\">\r\n                            Cancel\r\n                        </button>\r\n                    </slot>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</transition>";
 
 /***/ })
 /******/ ]);
