@@ -30705,7 +30705,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         }
     },
-    template: '1111<input v-model="message" type="text" v-on:change.prevent="inputHandler"></input>'
+    template: '<input v-model="message" type="text" v-on:change.prevent="inputHandler"/>'
 });
 
 /***/ })

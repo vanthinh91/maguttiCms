@@ -26,6 +26,6 @@
                 .catch(error => this.responseWithError(error));
             }
         },
-        template: '1111<input v-model="message" type="text" v-on:change.prevent="inputHandler"></input>'
+        template: '<input v-model="message" type="text" v-on:change.prevent="inputHandler"/>'
     }
 </script>

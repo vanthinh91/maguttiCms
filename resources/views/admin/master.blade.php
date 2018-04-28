@@ -27,7 +27,7 @@
 </head>
 <body class="{{(in_array($view_name, ['admin-login', 'auth-password']))? 'no-margin': ''}}">
 @include('admin.common.navbar')
-<div id="app" v-cloak>
+<div id="app">
     <flash message=""></flash>
 	@yield('content');
 </div>
