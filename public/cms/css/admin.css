@@ -1232,7 +1232,7 @@ span .select2-selection.select2-selection--single {
 .modal-container {
   width: 500px;
   margin: 20px auto;
-  padding: 20px 30px;
+  padding: 10px 0px;
   background-color: #fff;
   border-radius: 2px;
   -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
@@ -1244,20 +1244,16 @@ span .select2-selection.select2-selection--single {
 
 .modal-header h3 {
   margin-top: 0;
+  margin-bottom: 0;
   color: #42b983;
-}
-
-.modal-header {
-  padding: 0px;
 }
 
 .modal-body {
   margin: 0px 0;
-  padding: 10px 0px 15px;
+  padding: 20px;
 }
 
 .modal-footer {
-  padding: 15px 0px 0px;
   text-align: right;
   border: 0px;
 }

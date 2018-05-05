@@ -30779,11 +30779,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$emit('update');
         }
     },
-    template: __webpack_require__(92)
+    template: __webpack_require__(72)
 });
 
 /***/ }),
-/* 72 */,
+/* 72 */
+/***/ (function(module, exports) {
+
+module.exports = "<transition name=\"modal\">\r\n    <div class=\"modal-mask\">\r\n        <div class=\"modal-wrapper\">\r\n            <div class=\"modal-container\">\r\n\r\n                <div class=\"modal-header\">\r\n                    <slot name=\"header\">\r\n                        default header\r\n                    </slot>\r\n                </div>\r\n\r\n                <div class=\"modal-body\">\r\n                    <slot name=\"body\">\r\n                        default body\r\n                    </slot>\r\n                </div>\r\n\r\n                <div class=\"modal-footer\">\r\n                    <slot name=\"footer\">\r\n                        <button class=\"modal-default-button btn btn-primary\" @click=\"$emit('update')\">\r\n                            Yes\r\n                        </button>\r\n                        <button class=\"modal-default-button btn btn-default mr10\" @click=\"$emit('close')\">\r\n                            Cancel\r\n                        </button>\r\n                    </slot>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</transition>";
+
+/***/ }),
 /* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -30827,30 +30832,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     }
 });
-
-/***/ }),
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */
-/***/ (function(module, exports) {
-
-module.exports = "<transition name=\"modal\">\r\n    <div class=\"modal-mask\">\r\n        <div class=\"modal-wrapper\">\r\n            <div class=\"modal-container\">\r\n\r\n                <div class=\"modal-header\">\r\n                    <slot name=\"header\">\r\n                        default header\r\n                    </slot>\r\n                </div>\r\n\r\n                <div class=\"modal-body\">\r\n                    <slot name=\"body\">\r\n                        default body\r\n                    </slot>\r\n                </div>\r\n\r\n                <div class=\"modal-footer\">\r\n                    <slot name=\"footer\">\r\n                        <button class=\"modal-default-button btn btn-primary\" @click=\"$emit('update')\">\r\n                            Yes\r\n                        </button>\r\n                        <button class=\"modal-default-button btn btn-default mr10\" @click=\"$emit('close')\">\r\n                            Cancel\r\n                        </button>\r\n                    </slot>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</transition>";
 
 /***/ })
 /******/ ]);
