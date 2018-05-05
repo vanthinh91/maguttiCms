@@ -21,11 +21,11 @@
 				@include('admin.helper.password')
 			@endif
 			<div class="form-group">
-				<div class="col-lg-10 col-lg-offset-2">
-					<button type="reset" class="btn btn-danger btn-lg pull-left" data-dismiss="modal">
+				<div class="pt10 ph10">
+					<button type="reset" class="btn btn-danger btn-lg" data-dismiss="modal">
 						<i class="fa fa-close"></i> Close
 					</button>
-					<button type="submit" class="btn btn-primary btn-lg pull-right pl25">
+					<button type="submit" class="btn btn-primary btn-lg pull-right">
 						<i class="fa fa-save"></i>  Save
 					</button>
 				</div>
