@@ -29,6 +29,11 @@ export default {
             this.isModalVisible = true;
         },
         closeModal() {
+
+            this.isModalVisible = false;
+        },
+        deleteModal() {
+            alert( this.deleteUrl);
             this.isModalVisible = false;
         },
         updateModal() {

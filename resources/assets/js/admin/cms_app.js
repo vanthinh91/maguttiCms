@@ -7,16 +7,6 @@
 //import Popper from 'popper.js';
 //window.Popper = Popper;
 require('./bootstrap');
-window.Vue = require('vue');
-/**
- *  SHARED COMPONENT
- */
-
-window.events = new Vue();
-
-window.flash = function (message,status) {
-    window.events.$emit('flash', message,status);
-};
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

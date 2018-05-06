@@ -16,11 +16,16 @@
                 </div>
 
                 <div class="modal-footer">
-                    <slot name="footer">
-                        <button class="modal-default-button btn btn-primary" @click="$emit('update')">
+                    <slot name="ok_button">
+                        <button class="modal-default-button btn btn-primary" @click="update">
                             Yes
                         </button>
-                        <button class="modal-default-button btn btn-default mr10" @click="$emit('close')">
+                    </slot>
+
+
+                    <slot name="cancel_btn">
+
+                        <button class="modal-default-button btn btn-default mr10" @click="close">
                             Cancel
                         </button>
                     </slot>
