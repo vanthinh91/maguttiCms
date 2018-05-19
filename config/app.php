@@ -191,6 +191,7 @@ return [
         'Zizaco\Entrust\EntrustServiceProvider',
          Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         "Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider",
+        Pbmedia\LaravelFFMpeg\FFMpegServiceProvider::class,
 
 
        /*
@@ -272,6 +273,7 @@ return [
         'Entrust'               => 'Zizaco\Entrust\EntrustFacade',
         'Carbon'				=> 'Carbon\Carbon',
         'Slugify'               => 'Cocur\Slugify\Bridge\Laravel\SlugifyFacade',
+        'FFMpeg'                 => Pbmedia\LaravelFFMpeg\FFMpegFacade::class,
 
         /*
          |--------------------------------------------------------------------------

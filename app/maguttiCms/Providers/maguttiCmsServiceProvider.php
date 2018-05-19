@@ -1,6 +1,7 @@
 <?php namespace App\MaguttiCms\Providers;
 
 use App\User;
+use FFMpeg;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -68,9 +69,26 @@ class LaraServiceProvider extends ServiceProvider
             if(getModelFromString($config['model'])::where($attribute,$value)->where('id','!=',$id)->count()) return false;
             return true;
         });
+        /** video duration validation 'video' => 'video:25' */
+        Validator::extend('video', function($attribute, $value, $parameters, $validator) {
+            //$ffmpeg = FFMpeg::open('pino.mp4');
+            //$ffmpeg = FFMpeg\FFMpeg::create();
+            //$video =$ffmpeg->open($value->getRealPath());
+            //$video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(5))
+            //      ->save('frame5.jpg');
+            //if (!($value instanceof UploadedFile)) return false;
 
+            if(!empty($value->getClientOriginalExtension()) && ($value->getClientOriginalExtension() == 'mp4')){
 
-
+                $ffprobe = FFMpeg\FFProbe::create();
+                $duration = $ffprobe
+                    ->format($value->getRealPath()) // extracts file informations
+                    ->get('duration');
+                 return(round($duration) > $parameters[0]) ?false:true;
+            }else{
+                return false;
+            }
+        });
 
         /*
         |--------------------------------------------------------------------------
