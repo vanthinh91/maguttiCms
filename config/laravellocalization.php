@@ -35,7 +35,7 @@ return [
 		//'cy'          => ['name' => 'Welsh',                  'script' => 'Latn', 'native' => 'Cymraeg', 'regional' => 'cy_GB'],
 		//'da'          => ['name' => 'Danish',                 'script' => 'Latn', 'native' => 'dansk', 'regional' => 'da_DK'],
 		//'se'          => ['name' => 'Northern Sami',          'script' => 'Latn', 'native' => 'davvisámegiella', 'regional' => 'se_NO'],
-		//'de'          => ['name' => 'German',                 'script' => 'Latn', 'native' => 'Deutsch', 'regional' => 'de_DE'],
+		// 'de'          => ['name' => 'German',                 'script' => 'Latn', 'native' => 'Deutsch', 'regional' => 'de_DE'],
 		//'luo'         => ['name' => 'Luo',                    'script' => 'Latn', 'native' => 'Dholuo', 'regional' => ''],
 		//'nv'          => ['name' => 'Navajo',                 'script' => 'Latn', 'native' => 'Diné bizaad', 'regional' => ''],
 		//'dua'         => ['name' => 'Duala',                  'script' => 'Latn', 'native' => 'duálá', 'regional' => ''],
@@ -46,13 +46,13 @@ return [
 		//'en-AU'       => ['name' => 'Australian English',     'script' => 'Latn', 'native' => 'Australian English', 'regional' => 'en_AU'],
 		//'en-GB'       => ['name' => 'British English',        'script' => 'Latn', 'native' => 'British English', 'regional' => 'en_GB'],
 		//'en-US'       => ['name' => 'U.S. English',           'script' => 'Latn', 'native' => 'U.S. English', 'regional' => 'en_US'],
-		//'es'          => ['name' => 'Spanish',                'script' => 'Latn', 'native' => 'español', 'regional' => 'es_ES'],
+		// 'es'          => ['name' => 'Spanish',                'script' => 'Latn', 'native' => 'español', 'regional' => 'es_ES'],
 		//'eo'          => ['name' => 'Esperanto',              'script' => 'Latn', 'native' => 'esperanto', 'regional' => ''],
 		//'eu'          => ['name' => 'Basque',                 'script' => 'Latn', 'native' => 'euskara', 'regional' => 'eu_ES'],
 		//'ewo'         => ['name' => 'Ewondo',                 'script' => 'Latn', 'native' => 'ewondo', 'regional' => ''],
 		//'ee'          => ['name' => 'Ewe',                    'script' => 'Latn', 'native' => 'eʋegbe', 'regional' => ''],
 		//'fil'         => ['name' => 'Filipino',               'script' => 'Latn', 'native' => 'Filipino', 'regional' => 'fil_PH'],
-		//'fr'          => ['name' => 'French',                 'script' => 'Latn', 'native' => 'français', 'regional' => 'fr_FR'],
+		// 'fr'          => ['name' => 'French',                 'script' => 'Latn', 'native' => 'français', 'regional' => 'fr_FR'],
 		//'fr-CA'       => ['name' => 'Canadian French',        'script' => 'Latn', 'native' => 'français canadien', 'regional' => 'fr_CA'],
 		//'fy'          => ['name' => 'Western Frisian',        'script' => 'Latn', 'native' => 'frysk', 'regional' => 'fy_DE'],
 		//'fur'         => ['name' => 'Friulian',               'script' => 'Latn', 'native' => 'furlan', 'regional' => 'fur_IT'],
@@ -299,7 +299,7 @@ return [
 
 	// Negotiate for the user locale using the Accept-Language header if it's not defined in the URL?
 	// If false, system will take app.php locale attribute
-	'useAcceptLanguageHeader' => true,
+	'useAcceptLanguageHeader' => false,
 
 	// If LaravelLocalizationRedirectFilter is active and hideDefaultLocaleInURL
 	// is true, the url would not have the default application language
@@ -307,6 +307,6 @@ return [
     // IMPORTANT - When hideDefaultLocaleInURL is set to true, the unlocalized root is treated as the applications default locale "app.locale".
     // Because of this language negotiation using the Accept-Language header will NEVER occur when hideDefaultLocaleInURL is true.
     //
-	'hideDefaultLocaleInURL' => true,
+	'hideDefaultLocaleInURL' => false,
 
 ];

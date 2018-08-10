@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'size_limit' => 2048,
 	'image_matte' => '#ffffff',
 	'defaults' => [
 		'w' => 640,
@@ -47,4 +48,10 @@ return [
         'q' => '85',
         'e' => 0
     ],
+	'admin' => [
+		'w' => 100,
+		'h' => 100,
+		'q' => 50,
+		'e' => 0
+	]
 ];

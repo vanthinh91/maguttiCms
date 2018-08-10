@@ -1,13 +1,11 @@
 @extends('website.app')
 @section('content')
-    <!--=== Content Part ===-->
-    <section data-role="info-block">
-        <div id="content_section">
-            <div class="container pt25">
-                <div class="row mv25 pv25">
-                   @include('website.auth.form.password')
-                </div><!-- /row -->
-            </div> <!-- /container -->
-        </div>
-    </section>
+	<main class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-sm-push-3 col-md-4 col-md-push-4">
+				<h1 class="text-center">{{ trans('message.password_forgot') }}</h1>
+				@include('website.auth.form.password')
+			</div>
+		</div>
+	</main>
 @endsection

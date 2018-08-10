@@ -1,6 +1,6 @@
 <?php namespace App;
 
-use App\MaguttiCms\Permission\GFEntrustUserTrait;
+use App\maguttiCms\Permission\GFEntrustUserTrait;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
@@ -10,8 +10,8 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 /*GF_ma for maguttiCms*/
-use App\MaguttiCms\Domain\Admin\AdminUserPresenter;
-use App\MaguttiCms\Notifications\AdminResetPasswordNotification as AdminUserResetPasswordNotification;
+use App\maguttiCms\Domain\Admin\AdminUserPresenter;
+use App\maguttiCms\Notifications\AdminResetPasswordNotification as AdminUserResetPasswordNotification;
 
 class AdminUser extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
@@ -33,7 +33,7 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
     protected $table = 'adminusers';
 
 
-    protected $fillable = ['first_name','last_name', 'email', 'password','is_active'];
+    protected $fillable = ['first_name','last_name', 'email', 'password','is_active', 'locale'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -77,64 +77,68 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
 
         // build array of field specifications
         $this->fieldspec['id'] = [
-            'type'      =>'integer',
-            'minvalue'  =>0,
-            'pkey'      =>'y',
-            'required'  =>true,
-            'label'     =>'id',
-            'hidden'    =>1,
-            'display'   =>0,
+            'type'     => 'integer',
+            'minvalue' => 0,
+            'pkey'     => 'y',
+            'required' => 1,
+            'label'    => trans('admin.label.id'),
+            'hidden'   => 1,
+            'display'  => 0,
         ];
         $this->fieldspec['first_name'] = [
-            'type'      =>'string',
-            'required'  =>true,
-            'hidden'    =>0,
-            'label'     =>'First Name',
-            'extraMsg'  =>'',
-            'display'   =>1,
+            'type'     => 'string',
+            'required' => 1,
+            'hidden'   => 0,
+            'label'    => trans('admin.label.first_name'),
+            'display'  => 1,
         ];
         $this->fieldspec['last_name'] = [
-            'type'      =>'string',
-            'required'  =>true,
-            'hidden'    =>0,
-            'label'     =>'Last Name',
-            'extraMsg'  =>'',
-            'display'   =>1,
+            'type'     => 'string',
+            'required' => 1,
+            'hidden'   => 0,
+            'label'    => trans('admin.label.last_name'),
+            'display'  => 1,
         ];
         $this->fieldspec['email']    = [
-            'type'      =>'string',
-            'required'  =>true,
-            'hidden'    => 0,
-            'label'     =>'Email',
-            'extraMsg'  =>'',
-            'display'   =>1,
+            'type'     => 'string',
+            'required' => 1,
+            'hidden'   => 0,
+            'label'    => trans('admin.label.email'),
+            'display'  => 1,
         ];
         $this->fieldspec['role'] = [
-            'type'       	=>'relation',
-            'model'      	=>'Role',
-            'relation_name' =>'roles',
+            'type' 	        => 'relation',
+            'model' 	    => 'Role',
+            'relation_name' => 'roles',
             'foreign_key'   => 'id',
             'label_key'     => 'display_name',
-            'required'      => true,
-            'label'         => 'Role',
+            'required'      => 1,
+            'label'         => trans('admin.label.role'),
             'hidden'        => $this->hideEditRole(),
+            'whereRaw'      => ($this->isSu())?'':'name != "su"',
             'display'       => 1,
-            'multiple'      => true,
+            'multiple'      => 1,
         ];
         $this->fieldspec['password']    = [
-            'type'      =>'password',
-            'required'  =>true,
-            'hidden'    =>0,
-            'label'     =>'Password',
-            'extraMsg'  =>'',
-            'display'   =>1,
-            'template'  =>'password'
+            'type'     => 'password',
+            'required' => 1,
+            'hidden'   => 0,
+            'label'    => trans('admin.label.password'),
+            'display'  => 1,
+            'template' => 'password'
+        ];
+		$this->fieldspec['locale'] = [
+            'type'        => 'locale',
+            'required'    => 1,
+            'label'       => trans('admin.label.locale'),
+            'hidden'      => 0,
+            'display'     => 1,
         ];
         $this->fieldspec['is_active'] = [
             'type'     => 'boolean',
-            'required' => false,
+            'required' => 0,
             'hidden'   => 0,
-            'label'    => trans('admin.label.active'),
+            'label'    => trans('admin.label.publish'),
             'display'  => 1
         ];
         return $this->fieldspec;
@@ -156,6 +160,14 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
         if(!isset($section['roles'])) return true;
         if( $this->hasRole($section['roles']) ) return  true;
         else return false;
+    }
+
+    /**
+     *
+     * @return int
+     */
+    public function isSu(  ){
+        return ( Auth::guard('admin')->user()->hasRole(['su']) ) ? 1 : 0 ;
     }
 
     /**

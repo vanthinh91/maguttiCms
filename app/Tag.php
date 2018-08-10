@@ -1,6 +1,6 @@
 <?php namespace App;
 use Illuminate\Database\Eloquent\Model;
-use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
+use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class Tag extends Model
 {
@@ -52,7 +52,6 @@ class Tag extends Model
             'required'  => true,
             'hidden'    => 0,
             'label'     => 'Title',
-            'extraMsg'  => '',
             'display'   => 1,
         ];
         $this->fieldspec['slug'] = [
@@ -60,7 +59,6 @@ class Tag extends Model
             'required'  => false,
             'hidden'    => 0,
             'label'     => 'Slug',
-            'extraMsg'  => '',
             'display'   => 1,
         ];
         return $this->fieldspec;

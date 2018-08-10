@@ -1,20 +1,37 @@
-@if (Session::has('flash_notification') && session('flash_notification.message')!='' )
-	@if (Session::has('flash_notification.overlay'))
-		@include('flash::modal', ['modalClass' => 'flash-modal', 'title' => Session::get('flash_notification.title'), 'body' => Session::get('flash_notification.message')])
-	@else
-		<div class="flash text-center alert alert-{{ Session::get('flash_notification.level') }} {{ Session::has('flash_notification.important') ? 'alert-important':''}}">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			<i class="fa fa-check-circle-o fa-5x"></i>
-			<p class="mv15">{!! Session::get('flash_notification.message') !!}</p>
-		</div>
-	@endif
+@if (session('success'))
+	<div class="text-center alert alert-success">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">{{icon('times')}}</button>
+		{{icon('check-circle', 'fa-3x')}}
+		<p>{!! session('success') !!}</p>
+	</div>
 @endif
 @if ($errors->any())
-	<div class='flash alert-danger alert-important pf25 mb15'>
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		@foreach ( $errors->all() as $error )
+	<div class='text-center alert alert-danger'>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">{{icon('times')}}</button>
+		{{icon('times-circle', 'fa-3x')}}
+		@foreach ( $errors->all() as $error)
 			<p>{{ $error }}</p>
 		@endforeach
 	</div>
 @endif
-
+@if (session('error'))
+	<div class="text-center alert alert-danger">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">{{icon('times')}}</button>
+		{{icon('times-circle', 'fa-3x')}}
+		<p>{!! session('error') !!}</p>
+	</div>
+@endif
+@if (session('warning'))
+	<div class="text-center alert alert-warning">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">{{icon('times')}}</button>
+		{{icon('exclamation-triangle', 'fa-3x')}}
+		<p>{!! session('warning') !!}</p>
+	</div>
+@endif
+@if (session('status'))
+	<div class="text-center alert alert-info">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">{{icon('times')}}</button>
+		{{icon('exclamation-circle', 'fa-3x')}}
+		<p>{!! session('status') !!}</p>
+	</div>
+@endif

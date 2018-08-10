@@ -63,6 +63,8 @@ var default_config = {
 	text_no_results:	DEFAULT_TEXT_NO_RESULTS
 };
 
+var cursor = 0;
+
 /*	variables	*/
 var result_count;								// number of entries found
 
@@ -101,7 +103,7 @@ function pbsHandleLinks(target) {
 		input.val($(this).attr('href'));
 		if (input.data('submit'))
 			input.closest('form').submit();
-			input.blur();
+		input.blur();
 	});
 }
 
@@ -118,7 +120,7 @@ function pbsClamp(current, min, max) {
 // clears the suggest results and adds generic content
 function pbsMessage(text, target) {
 	target.html('');
-	target.html('<div class="pbs-standard">'+text+'</div>')
+	target.html('<div class="pbs-standard">'+text+'</div>');
 }
 
 // clears the suggest results and adds new ones
@@ -134,7 +136,7 @@ function pbsRender(data, target, config) {
 }
 
 function pbsHighlight(index, target) {
-	var entries = target.find('.pbs-key')
+	var entries = target.find('.pbs-key');
 	entries.removeClass('active').eq(index).addClass('active');
 	target.scrollTop(target.scrollTop() + entries.eq(index).position().top - target.innerHeight()/2);
 }
@@ -149,82 +151,86 @@ jQuery.fn.extend({
 		// read configuration object and fire errors
 		var config = pbsReadConfig(config_object);
 
-		var elem = this;
+		this.each(function() {
+			var elem = $(this);
 
-		var cursor = 0;
+			var wrapper = $('<div class="pbs-wrapper"></div>');
+			elem.before(wrapper).appendTo(wrapper);
 
-		var wrapper = $('<div class="pbs-wrapper"></div>');
-		elem.before(wrapper).appendTo(wrapper);
+			// add class to input
+			elem.addClass('pbs-input');
+			elem.data('submit', config.submit);
 
-		// add class to input
-		elem.addClass('pbs-input');
-		elem.data('submit', config.submit);
+			// create drop-down
+			var results_container = $('<div class="pbs-results"></div>');
+			elem.after(results_container);
+			elem.data('target', results_container);
 
-		// create drop-down
-		var results_container = $('<div class="pbs-results"></div>');
-		elem.after(results_container);
-		elem.data('target', results_container);
+			pbsMessage(config.text_start, elem.data('target'));
 
-		pbsMessage(config.text_start, elem.data('target'));
+			// prevent sending the form with enter
+			elem.keydown(function(e) {
+				if (e.key == 'Enter')
+					e.preventDefault();
+			});
 
-		elem.keydown(function(e) {
-			if (e.key == 'Enter')
-				e.preventDefault();
-		});
-
-		// add event to user input
-		elem.keyup(function (e) {
-			if ($.inArray(e.key, ['ArrowUp', 'ArrowDown']) != -1) {
-				// the key is an arrow or an enter and we need to move the cursor
-				if (e.key == 'ArrowUp') cursor--;
-				if (e.key == 'ArrowDown') cursor++;
-				cursor = pbsClamp(cursor, 0, result_count - 1);
-
-				pbsHighlight(cursor, elem.data('target'));
-			}
-			else if (e.key == 'Enter') {
-				// call click event for selected item
-				pbsSelect(elem.data('target'));
-			}
-			else {
-				var search_text = elem.val().trim();
-
-				if (search_text.length < config.min_chars) {
-					pbsMessage(config.text_start, elem.data('target'));
-					return false;
+			// add event to user input
+			elem.keyup(function (e) {
+				if ($.inArray(e.key, ['ArrowUp', 'ArrowDown']) != -1) {
+					// the key is an arrow or an enter and we need to move the cursor
+					if (e.key == 'ArrowUp') cursor--;
+					if (e.key == 'ArrowDown') cursor++;
+					cursor = pbsClamp(cursor, 0, result_count - 1);
+					pbsHighlight(cursor, elem.data('target'));
 				}
+				else if (e.key == 'Enter') {
+					// call click event for selected item
+					pbsSelect(elem.data('target'));
+				}
+				else {
+					var search_text = elem.val().trim();
 
-				if (search_text != '') {
-					pbsMessage(config.text_search, elem.data('target'));
-					$.ajax({
-						type: 'POST',
-						url: config.call,
-						data: {
-							search_text: search_text,
-							count: config.count,
-							filters: config.filters,
-							_token: config.token
-						},
-						dataType : 'json',
-						success : function(response) {
-							if (Object.keys(response).length) {
-								pbsRender(response, elem.data('target'), config);
-								result_count = response.length;
-								cursor = 0;
-								pbsHighlight(cursor, elem.data('target'));
-							}
-							else
+					if (config.target) {
+						input = $(config.target);
+						input.val('');
+					}
+
+
+					if (search_text.length < config.min_chars)
+						return false;
+
+					if (search_text != '') {
+						pbsMessage(config.text_search, elem.data('target'));
+						$.ajax({
+							type: 'POST',
+							url: config.call,
+							data: {
+								search_text: search_text,
+								count: config.count,
+								filters: config.filters,
+								_token: config.token
+							},
+							dataType : 'json',
+							success : function(response) {
+								if (Object.keys(response).length) {
+									pbsRender(response, elem.data('target'), config);
+									result_count = Object.keys(response).length;
+									cursor = 0;
+									pbsHighlight(cursor, elem.data('target'));
+								}
+								else
 								pbsMessage(config.text_no_results, elem.data('target'));
-						},
-						error : function(response) {
-							pbsError(response);
-						}
-					});
-					return true;
-				}
-				else
+							},
+							error : function(response) {
+								pbsError(response);
+							}
+						});
+						return true;
+					}
+					else
 					return false;
-			}
+				}
+			});
 		});
     }
 });

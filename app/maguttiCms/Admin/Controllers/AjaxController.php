@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Admin\Controllers;
+<?php namespace App\maguttiCms\Admin\Controllers;
 
 
 use App\Http\Controllers\Controller;
@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Input;
 use Image;
-
-use App\MaguttiCms\Tools\UploadManager;
+use App\maguttiCms\Tools\UploadManager;
 use App\Media;
 
 class AjaxController extends Controller
@@ -156,8 +155,7 @@ class AjaxController extends Controller
 
     public function updateModelMediaList($modelFilter)
     {
-
-        $object = Media::where('id','>',100)->orderBy('id','DESC')->get();
+        $object = Media::orderBy('id','DESC')->get();
         return view('admin.helper.modal_media_gallery', ['medias' => $object]);
     }
 
@@ -186,6 +184,102 @@ class AjaxController extends Controller
     {
         return response()->json($this->responseContainer);
     }
+
+    /**
+     * This method is used to upload filemanager image or docs
+     */
+     public function uploadFileManager(Request $request)
+     {
+
+        $media = 'Filedata';
+
+        if (Input::hasFile($media) && Input::file($media)->isValid()) {
+
+          $UM = new UploadManager;
+          $fileData = $UM->init($media, $request)->store()->getFileDetails();
+
+          $c = new Media;
+          $c->title = $fileData['fullName'];
+          $c->file_name = $fileData['fullName'];
+          $c->size = $fileData['size'];
+          $c->collection_name = $fileData['mediaType'];
+          $c->media_category_id = 0;
+          $c->file_ext = $fileData['extension'];
+          $c->save();
+
+          $this->responseContainer['status'] = 'ok';
+          $this->responseContainer['id'] = $c->id;
+          $this->responseContainer['data'] = $fileData['mediaType'];
+
+          return $this->responseHandler();
+
+        }
+
+     }
+
+    /**
+     * This method is used to fetch filemanager media list
+     */
+    public function getFileManagerList($id='')
+    {
+        $object = (new Media)->when($id, function($query) use ($id) {
+                                $query-> orderByRaw('IF(FIELD(id,'.$id.')=0,1,0)');
+                            })
+                            ->orderBy('id','DESC')->get();
+        return view('admin.helper.filemanager-list', ['medias' => $object]);
+    }
+
+    /**
+     * This method is used to fetch edit view
+     */
+    public function editFileManager($id)
+    {
+      $media = Media::whereId($id)->firstOrFail();
+      return view('admin.helper.filemanager-edit', ['media' => $media]);
+    }
+
+    /**
+     * This method is used to save the edit data
+     */
+     public function updateFileManager($id, Request $request)
+     {
+
+       $article = Media::find($id);
+
+       $this->request = $request;
+
+       foreach ($article->getFillable() as $a) {
+           $article->$a = $this->request->get($a);
+       }
+
+       $article->save();
+
+       // translatable
+       if (isset($article->translatedAttributes) && count($article->translatedAttributes) > 0) {
+           foreach (config('app.locales') as $locale => $value) {
+               foreach ($article->translatedAttributes as $attribute) {
+                   // se è un attributo sluggabile;
+                   if(isset($article->sluggable) && $this->attributeIsSluggable($attribute,$article->sluggable)){
+                       $attribute_to_slug = (config('app.locale') != $locale) ? $attribute.'_' . $locale:$attribute;
+                       $string_value      = $this->setSlugAttributes($a)
+                                                  ->sluggyTranslatable($article,$this->request->get($attribute_to_slug),$locale);
+
+                       $article->translateOrNew($locale)->$attribute = $string_value;
+                   }
+                   else {
+                       if (config('app.locale') != $locale) $article->translateOrNew($locale)->$attribute = $this->request->get($attribute . '_' . $locale);
+                       else $article->translateOrNew($locale)->$attribute = $this->request->get($attribute);
+                   }
+               }
+               $article->save();
+           }
+       }
+
+       $this->responseContainer['status'] = 'ok';
+       $this->responseContainer['message'] = 'Data has been updated';
+
+       return $this->responseHandler();
+     }
 
     /**
      * This method is used to perform a search for select 2 suggestion fields.
@@ -233,12 +327,8 @@ class AjaxController extends Controller
             if (!$accessAllowed)
                 return response()->json([]);
         }
-
-
-
         // Check if the field is translatable.
         if ($this->isTranslatableField($model, $caption)) {
-
             $records = $model::whereTranslationLike($caption, "%{$term}%");
         }
         else {
@@ -248,7 +338,6 @@ class AjaxController extends Controller
             $seachFieldsList =explode(',',$searchField);
             foreach( $seachFieldsList as $_field){
                 $records->orWhere($_field,'like',"%{$term}%");
-
             }
         }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\MaguttiCms\Admin\Controllers\Auth;
+namespace App\maguttiCms\Admin\Controllers\Auth;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -35,7 +35,7 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->localePrefix    = ma_getRealLocale();
+        $this->localePrefix    = get_locale();
         $this->redirectTo      = $this->localePrefix.'/admin';
         $this->redirectPath    = $this->localePrefix.'/admin';
 

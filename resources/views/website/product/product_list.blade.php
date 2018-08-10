@@ -1,10 +1,10 @@
-@foreach ($product_category->where('pub',1)->orderby('sort')->get() as $_category)
+@foreach ($categories as $_category)
 	<div class="row">
 		<div class="col-xs-12">
 			<h3>{{$_category->title }}</h3>
 			{!!$_category->description!!}
 		</div>
-	    @foreach ($_category->product()->where('pub',1)->orderby('sort')->get() as $_item)
+	    @foreach ($_category->product()->active()->orderby('sort')->get() as $_item)
 			<div class="col-xs-12 col-md-4 col-lg-3 mb25">
 				<div class="row">
 					<div class="col-xs-4 col-md-12 mb10">

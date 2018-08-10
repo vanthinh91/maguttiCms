@@ -1,6 +1,6 @@
 <?php
 
-namespace App\MaguttiCms\Notifications;
+namespace App\maguttiCms\Notifications;
 
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -45,7 +45,7 @@ class AdminResetPasswordNotification extends Notification
             ->subject(trans('passwords.mail_reset_subject').' - '.config('app.name'))
             ->greeting(trans('website.mail_message.greeting'))
             ->line(trans('passwords.mail_reset_body'))
-            ->action(trans('passwords.mail_reset_button'), url( ma_fullLocaleUrl('admin/password/reset'), $this->token))
+            ->action(trans('passwords.mail_reset_button'), url( url_locale('admin/password/reset'), $this->token))
             ->line(trans('passwords.mail_reset_footer'));
     }
 

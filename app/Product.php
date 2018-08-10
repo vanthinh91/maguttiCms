@@ -1,17 +1,16 @@
 <?php namespace App;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\URL;
-use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
+use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class Product extends Model
 {
-
     use GFTranslatableHelperTrait;
     use \Dimsav\Translatable\Translatable;
-    use \App\MaguttiCms\Domain\Product\ProductPresenter;
+    use \App\maguttiCms\Domain\Product\ProductPresenter;
 
-    protected $fillable  = ['category_id','title','subtitle','description','video','slug','sort','pub'];
+	protected $with = ['translations'];
+
+    protected $fillable  = ['category_id','code','price','title','subtitle','description','video','slug','sort','pub'];
     protected $fieldspec = [];
 
     /*
@@ -20,8 +19,8 @@ class Product extends Model
     |--------------------------------------------------------------------------
     */
     public $translatedAttributes = ['title','slug','subtitle','description',
-                                    'seo_title','seo_keywords','seo_description'];
-    public $sluggable            =  ['slug'=>['field'=>'title','updatable'=>false,'translatable'=>true]];
+                                    'seo_title','seo_description'];
+    public $sluggable            =  ['slug'=>['field'=>'title','updatable'=>false,'translatable'=>1]];
 
     /*
     |--------------------------------------------------------------------------
@@ -50,45 +49,57 @@ class Product extends Model
         $this->fieldspec['id'] = [
             'type'     => 'integer',
             'minvalue' => 0,
-            'pkey'     => 'y',
-            'required' =>true,
+            'pkey'     => 1,
+            'required' => 1,
             'label'    => 'id',
             'hidden'   => 1,
             'display'  => 0,
         ];
         $this->fieldspec['category_id'] = [
-            'type'      => 'relationimage',
-            'model'     => 'Category',
+            'type'        => 'relation',
+            'model'       => 'Category',
             'foreign_key' => 'id',
-            'label_key' => 'title',
-            'label'     => 'Category',
-            'hidden'    => 0,
-            'required'  =>  true,
-            'display'   => 1,
+            'label_key'   => 'title',
+            'label'       => 'Category',
+            'hidden'      => 0,
+            'required'    => 1,
+            'display'     => 1,
+        ];
+		$this->fieldspec['code'] = [
+            'type'     => 'string',
+            'required' => 1,
+            'hidden'   => 0,
+            'label'    => 'Code',
+            'display'  => 1,
+        ];
+		$this->fieldspec['price'] = [
+            'type'     => 'integer',
+            'required' => 1,
+            'hidden'   => 0,
+            'label'    => 'Price',
+            'display'  => 1,
+			'step'     => 0.01
         ];
         $this->fieldspec['title'] = [
-            'type'      =>'string',
-            'required'  => true,
-            'hidden'    => 0,
-            'label'     => 'Title',
-            'extraMsg'  => '',
-            'display'   => 1,
+            'type'     => 'string',
+            'required' => 1,
+            'hidden'   => 0,
+            'label'    => 'Title',
+            'display'  => 1,
         ];
         $this->fieldspec['slug'] = [
-            'type'      => 'string',
-            'required'  => true,
-            'hidden'    => 0,
-            'label'     => 'Slug',
-            'extraMsg'  => '',
-            'display'   =>  1,
+            'type'     => 'string',
+            'required' => 1,
+            'hidden'   => 0,
+            'label'    => 'Slug',
+            'display'  => 1,
         ];
         $this->fieldspec['subtitle'] = [
-            'type'      =>'string',
-            'required'  => false,
-            'hidden'    => 0,
-            'label'     => 'Subtitle',
-            'extraMsg'  => '',
-            'display'   => 1,
+            'type'     => 'string',
+            'required' => false,
+            'hidden'   => 0,
+            'label'    => 'Subtitle',
+            'display'  => 1,
         ];
         $this->fieldspec['description'] = [
             'type'      => 'text',
@@ -97,7 +108,6 @@ class Product extends Model
             'required'  => false,
             'hidden'    => 0,
             'label'     => 'Description',
-            'extraMsg'  => '',
             'cssClass'  => 'wyswyg',
             'display'   => 1,
         ];
@@ -106,7 +116,6 @@ class Product extends Model
             'required'  => false,
             'hidden'    => 0,
             'label'     => 'Image*',
-            'extraMsg'  => '',
             'mediaType' => 'Img',
             'display'   => 1
         ];
@@ -115,7 +124,6 @@ class Product extends Model
 			'required'  => false,
 			'hidden'    => 0,
 			'label'     => 'Document',
-			'extraMsg'  => '',
 			'mediaType' => 'Doc',
 			'display'   => 1
 		];
@@ -124,7 +132,6 @@ class Product extends Model
             'required'  => false,
             'hidden'    => 1,
             'label'     => 'Video Code YouTube',
-            'extraMsg'  => '',
             'lang'      => 0,
             'display'   => 1,
         ];
@@ -139,7 +146,7 @@ class Product extends Model
             'type'     => 'boolean',
             'required' => false,
             'hidden'   => 0,
-            'label'    => trans('admin.label.active'),
+            'label'    => trans('admin.label.publish'),
             'display'  => 1
         ];
         $this->fieldspec['seo_title'] = [
@@ -147,15 +154,6 @@ class Product extends Model
             'required' => 'n',
             'hidden'   => 0,
             'label'    => trans('admin.seo.title'),
-            'extraMsg' => '',
-            'display'  => 1,
-        ];
-        $this->fieldspec['seo_keywords'] = [
-            'type'     => 'string',
-            'hidden'   => 0,
-            'label'    => trans('admin.seo.keywords').'<br>'.trans('admin.seo.keywords_eg_list'),
-            'extraMsg' => '',
-            'cssClass' => '',
             'display'  => 1,
         ];
         $this->fieldspec['seo_description'] = [
@@ -164,7 +162,6 @@ class Product extends Model
             'h'        => 300,
             'hidden'   => 0,
             'label'    => trans('admin.seo.description'),
-            'extraMsg' => '',
             'cssClass' => 'no',
             'display'  => 1,
         ];
@@ -178,5 +175,7 @@ class Product extends Model
         return $this->fieldspec;
     }
 
-
+	public function scopePublished($query) {
+        $query->where('pub', 1)->orderBy('sort', 'ASC');
+    }
 }

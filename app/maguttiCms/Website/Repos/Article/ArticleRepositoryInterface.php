@@ -5,10 +5,10 @@
  * Date: 03/07/2016
  * Time: 11:21
  */
-namespace App\MaguttiCms\Website\Repos\Article;
+namespace App\maguttiCms\Website\Repos\Article;
 /**
  * Interface ArticleRepositoryInterface
- * @package App\MaguttiCms\Website\Repos\Article
+ * @package App\maguttiCms\Website\Repos\Article
  */
 interface ArticleRepositoryInterface
 {

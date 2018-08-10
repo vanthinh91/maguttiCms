@@ -2,10 +2,11 @@
 
 namespace App\Exceptions;
 
+use Mail;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Mail;
+use App\Error;
 
 class Handler extends ExceptionHandler
 {
@@ -31,21 +32,31 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return void
      */
-    public function report(Exception $exception)
-    {
+    public function report(Exception $exception) {
 		if ($exception instanceof \Exception) {
 	        // emails.exception is the template of your email
 	        // it will have access to the $error that we are passing below
-			if ($exception->getMessage() && config('maguttiCms.developer.email'))
-				Mail::send(
-					'emails.exception',
-					['error' => $exception->getMessage(), 'file' => $exception->getFile(), 'line' => $exception->getLine(), 'trace' => $exception->getTrace()],
-					function ($message) {
-						$message->subject(trans('Laravel Error on '.config('maguttiCms.website.option.app.name')));
-						$message->from('hello@magutti.com', config('maguttiCms.website.option.app.name'));
-						$message->to(config('maguttiCms.developer.email'));
-					}
-				);
+			if ($exception->getMessage()) {
+				if (env('ERRORS_DB')) {
+					Error::create([
+						'message' => $exception->getMessage(),
+						'file' => $exception->getFile(),
+						'line' => $exception->getLine(),
+						'trace' => collect($exception->getTrace())->implode('file', '\n')
+					]);
+				}
+				if (env('ERRORS_MAIL') && config('maguttiCms.developer.email')) {
+					Mail::send(
+						'emails.exception',
+						['error' => $exception->getMessage(), 'file' => $exception->getFile(), 'line' => $exception->getLine(), 'trace' => $exception->getTrace()],
+						function ($message) {
+							$message->subject(trans('Laravel Error on '.config('maguttiCms.website.option.app.name')));
+							$message->from('maguttiCms@gfstudio.com', config('maguttiCms.website.option.app.name'));
+							$message->to(config('maguttiCms.developer.email'));
+						}
+					);
+				}
+			}
 	    }
         return parent::report($exception);
     }

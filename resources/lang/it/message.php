@@ -14,6 +14,7 @@ return [
     */
 
     'new_user' =>'Crea nuovo account',
+    'password' =>'Password',
     'password_confirm' =>'Conferma Password',
     'password_sent_reset_link'  => 'Invia Link per reset password',
     'password_reset'  => 'Reset password',

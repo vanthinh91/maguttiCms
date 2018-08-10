@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -14,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_parent');
+            $table->integer('parent_id');
             $table->integer('country_id');
             $table->string('firs_name');
             $table->string('last_name');

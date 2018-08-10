@@ -91,6 +91,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+       '*' => [
+              'is_unique'                 => 'Valore :attribute già presente.',
+       ]
     ],
 
     /*

@@ -20,8 +20,8 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('domain', 255);
-            $table->integer('id_parent');
-            $table->integer('id_template');
+            $table->integer('parent_id');
+            $table->integer('template_id');
             $table->string('menu_title', 255)->nullable();
             $table->string('title', 255)->nullable();
             $table->string('subtitle', 255)->nullable();

@@ -1,9 +1,9 @@
-<?php namespace App\MaguttiCms\Tools;
+<?php namespace App\maguttiCms\Tools;
 
 
 /**
  * Class ExportHelper
- * @package App\MaguttiCms\Tools
+ * @package App\maguttiCms\Tools
  */
 class ExportHelper {
 
@@ -47,7 +47,7 @@ class ExportHelper {
 		$this->config = config('maguttiCms.admin.list.section.' . $this->model);
 		$this->models = strtolower(str_plural($this->config['model']));
 		$this->modelClass = 'App\\' . $this->config['model'];
-		$this->setFilename($this->config['model'].'_'.date('Y-m-d'));
+		$this->setFilename($this->config['model'].'_'.date('Y-m-d').'.xlsx');
 		return $this;
 	}
 

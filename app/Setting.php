@@ -35,7 +35,6 @@ class Setting extends Model
             'required'  => false,
             'hidden'    => 0,
             'label'     => 'Domain',
-            'extraMsg'  => '',
             'display'   => 1,
         ];
         $this->fieldspec['key'] = [
@@ -43,7 +42,6 @@ class Setting extends Model
             'required'  => true,
             'hidden'    => 0,
             'label'     => 'Key',
-            'extraMsg'  => '',
             'display'   => 1,
         ];
         $this->fieldspec['value'] = [
@@ -51,7 +49,6 @@ class Setting extends Model
             'required'  => true,
             'hidden'    => 0,
             'label'     => 'Value',
-            'extraMsg'  => '',
             'display'   => 1,
         ];
         $this->fieldspec['description'] = [
@@ -61,7 +58,6 @@ class Setting extends Model
             'required'  => false,
             'hidden'    => 0,
             'label'     => 'Description',
-            'extraMsg'  => '',
             'cssClass'  => '',
             'display'   => 1,
         ];

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\MaguttiCms\Tools;
+namespace App\maguttiCms\Tools;
 
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -41,7 +41,7 @@ class Stringable
                     break;
                 }
             }
-            return implode(array_slice($parts, 0, $last_part)) . $separator;
+            return trim(implode(array_slice($parts, 0, $last_part))).$separator;
         }
     }
 

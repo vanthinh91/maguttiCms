@@ -1,6 +1,6 @@
 <?php
 
-namespace App\MaguttiCms\Admin\Providers;
+namespace App\maguttiCms\Admin\Providers;
 Use App;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,7 +25,12 @@ class AdminListServiceProvider extends ServiceProvider
     {
         App::bind('AdminList', function()
         {
-            return new \App\MaguttiCms\Admin\AdminList;
+            return new \App\maguttiCms\Admin\AdminList;
         });
+        App::bind('AdminDecorator', function()
+        {
+            return new \App\maguttiCms\Admin\Decorators\AdminDecorator();
+        });
+
     }
 }

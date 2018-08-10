@@ -9,7 +9,7 @@
 		</div>
 
 	@endif
-	
+
 	@if ( $property['type'] =='integer'  && $property['display']== 1)
 
 		<div class="form-group">
@@ -38,15 +38,15 @@
 			</div>
 		</div>
 	@endif
-	
+
 	@if ( $property['type'] =='media'  && $property['display']== 1)
 		<div class="form-group">
 			<label for="{{ $key }}" class="col-lg-2 control-label">{{ ucwords($property['label']) }}
 				({!! $article->key !!})
 			</label>
-		
+
 			<div class="col-lg-10">
-				
+
 				{!! Form::file($article->$key) !!}
 			</div>
 		</div>

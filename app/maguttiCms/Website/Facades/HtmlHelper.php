@@ -6,7 +6,7 @@
  * Time: 1:47 PM
  */
 
-namespace App\MaguttiCms\Website\Facades;
+namespace App\maguttiCms\Website\Facades;
 use Illuminate\Support\Facades\Facade;
 
 class HtmlHelper extends Facade{

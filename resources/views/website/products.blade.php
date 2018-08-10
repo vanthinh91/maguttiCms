@@ -1,5 +1,3 @@
-@inject('product_category','App\Category')
-
 @extends('website.app')
 @section('content')
 	<main class="container">

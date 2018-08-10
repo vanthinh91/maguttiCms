@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Mailers;
+<?php namespace App\maguttiCms\Mailers;
 
 class SystemMailer extends BaseMailer
 {
@@ -8,7 +8,7 @@ class SystemMailer extends BaseMailer
      *
      * @param array $data
      *
-     * @return \App\MaguttiCms\Mailers\SystemMailer
+     * @return \App\maguttiCms\Mailers\SystemMailer
      */
     public function notifyContactFormSubmission($subject, $data = [])
     {

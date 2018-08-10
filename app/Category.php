@@ -1,18 +1,18 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
+use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 
 class Category extends Model
 {
     use \Dimsav\Translatable\Translatable;
     use GFTranslatableHelperTrait;
-    use \App\MaguttiCms\Domain\Category\CategoryPresenter;
+    use \App\maguttiCms\Domain\Category\CategoryPresenter;
 
+	protected $with = ['translations'];
 
-
-    protected $fillable  = ['title','description','abstract', 'slug','sort','pub','id_parent'];
+    protected $fillable  = ['title','description','abstract', 'slug','sort','pub','parent_id'];
     protected $fieldspec = [];
 
     /*
@@ -20,7 +20,7 @@ class Category extends Model
     |  Sluggable & Trnslateble
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = ['title','slug','description','seo_title','seo_keywords','seo_description'];
+    public $translatedAttributes = ['title','slug','description','seo_title','seo_description'];
     public $sluggable            = ['slug'=>['field'=>'title','updatable'=>false,'translatable'=>true]];
 
     /*
@@ -34,7 +34,7 @@ class Category extends Model
         return $this->morphMany('App\Media', 'model');
     }
 
-    public function product(){
+    public function products(){
         return $this->hasMany('App\Product');
     }
 
@@ -51,37 +51,35 @@ class Category extends Model
             'minvalue' => 0,
             'pkey'     => 'y',
             'required' =>true,
-            'label'    => 'id',
+            'label'    => trans('admin.label.id'),
             'hidden'   => 1,
             'display'  => 0,
         ];
-        $this->fieldspec['id_parent'] = [
+        $this->fieldspec['parent_id'] = [
             'type'          => 'relation',
             'model'         => 'category',
             'foreign_key'   => 'id',
             'label_key'     => 'title',
-            'required'      => false,
-            'label'         => 'Category',
+            'required'      => 0,
+            'label'         => trans('admin.label.category'),
             'hidden'        => 0,
             'display'       => 1,
         ];
 
         $this->fieldspec['title'] = [
             'type'      => 'string',
-            'pkey'      => 'n',
-            'required'  => true,
+            'pkey'      => 0,
+            'required'  => 1,
             'hidden'    => 0,
-            'label'     => 'Title',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.title'),
             'display'   => 1,
         ];
         $this->fieldspec['slug'] = [
             'type'      => 'string',
-            'pkey'      => 'n',
-            'required'  => false,
+            'pkey'      => 0,
+            'required'  => 0,
             'hidden'    => 0,
-            'label'     => 'Slug',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.slug'),
             'display'   => 1,
         ];
 
@@ -89,63 +87,51 @@ class Category extends Model
             'type'      => 'text',
             'size'      => 600,
             'h'         => 300,
-            'required'  => false,
+            'required'  => 0,
             'hidden'    => 1,
-            'label'     => 'Description',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.description'),
             'cssClass'  => 'wyswyg',
             'display'   => 0,
         ];
 
         $this->fieldspec['image'] = [
             'type'      => 'media',
-            'pkey'      => 'n',
-            'required'  => true,
+            'pkey'      => 0,
+            'required'  => 1,
             'hidden'    => 0,
-            'label'     => 'Image',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.image'),
             'mediaType' => 'Img',
             'display'   => 1,
         ];
         $this->fieldspec['banner'] = [
             'type'      => 'media',
-            'pkey'      => 'n',
-            'required'  =>  true,
+            'pkey'      => 0,
+            'required'  => 1,
             'hidden'    => 0,
-            'label'     => 'Image For menu (390x210px)',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.banner'),
             'mediaType' => 'Img',
             'display'   => 0,
         ];
-        
+
         $this->fieldspec['sort'] = [
             'type'      => 'integer',
-            'required'  => false,
-            'label'     => 'Order',
+            'required'  => 0,
+            'label'     => trans('admin.label.position'),
             'hidden'    => 0,
             'display'   => 1,
         ];
         $this->fieldspec['pub'] = [
             'type'      => 'boolean',
-            'required'  => false,
+            'required'  => 0,
             'hidden'    => 0,
-            'label'     => trans('admin.label.active'),
+            'label'     => trans('admin.label.publish'),
             'display'   => 1
         ];
         $this->fieldspec['seo_title'] = [
             'type'      => 'string',
-            'required'  => 'n',
+            'required'  => 0,
             'hidden'    => 0,
             'label'     => trans('admin.seo.title'),
-            'extraMsg'  => '',
-            'display'   => 1,
-        ];
-        $this->fieldspec['seo_keywords'] = [
-            'type'      => 'string',
-            'hidden'    => 0,
-            'label'     => trans('admin.seo.keywords').'<br>'.trans('admin.seo.keywords_eg_list'),
-            'extraMsg'  => '',
-            'cssClass'  => '',
             'display'   => 1,
         ];
         $this->fieldspec['seo_description'] = [
@@ -154,13 +140,12 @@ class Category extends Model
             'h'         => 300,
             'hidden'    => 0,
             'label'     => trans('admin.seo.description'),
-            'extraMsg'  => '',
             'cssClass'  => 'no',
             'display'   => 1,
         ];
         $this->fieldspec['seo_no_index'] = [
             'type'      => 'boolean',
-            'required'  => false,
+            'required'  => 0,
             'hidden'    => 0,
             'label'     => trans('admin.seo.no-index'),
             'display'   => 1
@@ -177,6 +162,6 @@ class Category extends Model
 
     public function scopePublished($query)    {
 
-        $query->where('pub', '=',1 )->orderBy('sort','ASC');
+        $query->where('pub', '=', 1)->orderBy('sort','ASC');
     }
 }

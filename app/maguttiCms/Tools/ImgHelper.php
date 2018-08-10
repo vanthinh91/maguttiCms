@@ -29,7 +29,7 @@ filter - Filters that will be applied to the image after resizing and before enc
 	)
 */
 
-namespace App\MaguttiCms\Tools;
+namespace App\maguttiCms\Tools;
 
 use Image;
 
@@ -49,6 +49,7 @@ class ImgHelper {
 		$this->image_matte = config('maguttiCms.image.image_matte');
 		$this->cache_time = config('maguttiCms.image.cache_time');
 		$this->defaults = config('maguttiCms.image.defaults');
+		$this->size_limit = config('maguttiCms.image.size_limit');
 	}
 
 	public static function getInstance() {
@@ -65,7 +66,7 @@ class ImgHelper {
 		else {
 			if ($file_name && file_exists($this->path_repository.$file_name)) {
 				$metadata = @getimagesize($this->path_repository.$file_name);
-				if ($metadata[0] <= 2048 && $metadata[1] <= 2048)
+				if ($metadata[0] <= $this->size_limit && $metadata[1] <= $this->size_limit)
 					return $this->path_repository.$file_name;
 			}
 		}
@@ -83,7 +84,7 @@ class ImgHelper {
 
 	// constructs a new filename based on args
 	private function make_new_name($src, $args) {
-		$new_name = str_replace('.', '_', basename($src));
+		$new_name = str_replace(['.', ' '], '_', basename($src));
 		$new_name .= (isset($args['w']))? '_'.$args['w']: '_0';
 		$new_name .= (isset($args['h']))? '_'.$args['h']: '_0';
 		$new_name .= '_'.$this->arg($args, 'c');
@@ -142,7 +143,7 @@ class ImgHelper {
 	private function setColors($obj, $format, $matte) {
 		switch ($format) {
 			case 'png': $obj->limitColors(null, 'rgba(0,0,0,0)'); break;
-			case 'gif':	$obj->limitColors(256, $matte); break;
+			case 'gif':	$obj->limitColors(256, 'rgba(0,0,0,0)'); break;
 			case 'bmp':	$obj->limitColors(256, $matte);	break;
 			default: $obj->limitColors(null, $matte); break;
 		}
@@ -169,7 +170,7 @@ class ImgHelper {
 	}
 
 	// calculates a new image and returns the path to it
-	public function get ($src, $args = array()) {
+	public function get ($src, $args = array(), $disk = '', $folder = '') {
 		$new_name = $this->make_new_name($src, $args);
 
 		// create image object from source
@@ -207,7 +208,7 @@ class ImgHelper {
 	}
 
 	// checks if image exists and returns the path to it. creates it anew if not.
-	public function get_cached($src, $args = array()) {
+	public function get_cached($src, $args = array(), $disk = '', $folder = '') {
 		$new_name = $this->make_new_name($src, $args);
 
 		if (file_exists($this->path_save.$new_name))

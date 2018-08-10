@@ -1,6 +1,6 @@
-<?php namespace App\MaguttiCms\Mailers;
+<?php namespace App\maguttiCms\Mailers;
 
-use App\MaguttiCms\Tools\Mailer;
+use App\maguttiCms\Tools\Mailer;
 
 class BaseMailer extends Mailer
 {
@@ -32,6 +32,13 @@ class BaseMailer extends Mailer
      */
     protected $toAddress;
 
+	/**
+     * Destination address.
+     *
+     * @var string
+     */
+    protected $ccAddress;
+
     /**
      * ReplyTo address.
      *
@@ -60,6 +67,20 @@ class BaseMailer extends Mailer
         return $this;
     }
 
+	/**
+     * This method is used to set the recipient of the message.
+     *
+     * @param $email
+     *
+     * @return parent: The parent Mailer instance.
+     */
+    public function cc($email)
+    {
+        $this->ccAddress = $email;
+
+        return $this;
+    }
+
     /**
      * This method is used to set the ReplyTo field.
      *
@@ -83,7 +104,7 @@ class BaseMailer extends Mailer
      */
     public function send()
     {
-        return $this->sendMail(config('mail.from'), $this->data, $this->replyToAddress, $this->replyToName);
+        return $this->sendMail(config('mail.from'), $this->ccAddress, $this->data, $this->replyToAddress, $this->replyToName);
     }
 
     /**
@@ -93,6 +114,6 @@ class BaseMailer extends Mailer
      */
     public function queue()
     {
-        return $this->queueMail(config('mail.from'), $this->data, $this->replyToAddress, $this->replyToName);
+        return $this->queueMail(config('mail.from'), $this->ccAddress, $this->data, $this->replyToAddress, $this->replyToName);
     }
 }

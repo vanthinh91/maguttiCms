@@ -20,7 +20,11 @@
     "maatwebsite/excel": "^3.0",
     "mcamara/laravel-localization": "1.2.*",
     "pbmedia/laravel-ffmpeg": "^2.1",
-        "predis/predis": "~1.0",
+    "predis/predis": "~1.0",
+    "spatie/laravel-fractal": "^5.2",
+    "spatie/laravel-sitemap": "^5.2",
+    "srmklive/paypal": "=1.6.1",
+    "tymon/jwt-auth": "^0.5.10",
     "vinkla/shield": "^2.3",
     "zizaco/entrust": "5.2.x-dev"
   },

@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Admin\Controllers;
+<?php namespace App\maguttiCms\Admin\Controllers;
 
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -73,7 +73,7 @@ class AuthController extends Controller
 
                 // Make sure that the user is authorized.
                 if ($auth->user()->is_active == 1)
-                    return redirect()->action('\App\MaguttiCms\Admin\Controllers\AdminPagesController@home');
+                    return redirect()->action('\App\maguttiCms\Admin\Controllers\AdminPagesController@home');
                 else {
 
                     Auth::guard('admin')->logout();

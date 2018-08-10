@@ -22,28 +22,8 @@
 			> a,
 			> span {
 				border-radius: 0;
-				&:after {
-					font-family: 'FontAwesome';
-				}
 			}
 		}
-		&:first-child {
-			> a,
-			> span {
-				&:after {
-					content: '\f104';
-				}
-			}
-		}
-		&:last-child {
-			> a,
-			> span {
-				&:after {
-					content: '\f105';
-				}
-			}
-		}
-
 	}
 	.active {
 		> a,

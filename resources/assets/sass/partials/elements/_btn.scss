@@ -7,17 +7,21 @@
 	font-size: 1em;
 	border-radius: $border-radius-button;
 	color: $color-text;
-	transition: color 0.3s, background-color 0.3s;
+	@include animate();
 
-	&.active,
+	&:visited {
+		color: $color-text;
+	}
+
+	&:hover,
 	&.focus,
 	&:active,
-	&:hover {
-		color: #fff;
-		border-color: $color-secondary;
+	&:active:focus {
+		border-color: $color-4;
 		text-decoration: none;
 		outline: none;
 		box-shadow: none;
+		background-color: $color-5;
 	}
 
 	&.btn-icon {
@@ -28,11 +32,13 @@
 	}
 
 	&.btn-sm {
-		font-weight: 400;
+		letter-spacing: 0;
+		font-size: 0.8em;
 		border-width: 2px;
 	}
 
 	&.btn-lg {
+		font-size: 1.2em;
 		border-width: 5px;
 	}
 
@@ -60,9 +66,12 @@ a.btn-default {
 	border-color: transparent;
 	background-color: transparent;
 
-	&:active,
+	&:visited {color: $color-text;}
+
+	&:hover,
 	&:focus,
-	&:hover {
+	&:active,
+	&:active:focus {
 		color: $color-text;
 		border-color: $color-text;
 		background: white;
@@ -75,9 +84,12 @@ a.btn-primary {
 	border-color: $color-primary;
 	background-color: $color-primary;
 
-	&:active,
+	&:visited {color: $color-text-contrast;}
+
+	&:hover,
 	&:focus,
-	&:hover {
+	&:active,
+	&:active:focus {
 		color: $color-primary;
 		border-color: $color-primary;
 		background-color: $color-text-contrast;
@@ -90,9 +102,12 @@ a.btn-secondary {
 	border-color: $color-secondary;
 	background-color: $color-secondary;
 
-	&:active,
+	&:visited {color: $color-text-contrast;}
+
+	&:hover,
 	&:focus,
-	&:hover {
+	&:active,
+	&:active:focus {
 		color: $color-secondary;
 		border-color: $color-secondary;
 		background-color: $color-text-contrast;
@@ -105,9 +120,12 @@ a.btn-accent {
 	border-color: $color-accent;
 	background-color: white;
 
-	&:active,
+	&:visited {color: $color-accent;}
+
+	&:hover,
 	&:focus,
-	&:hover {
+	&:active,
+	&:active:focus {
 		color: $color-text;
 		border-color: $color-accent;
 		background-color: $color-accent;

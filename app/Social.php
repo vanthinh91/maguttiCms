@@ -18,42 +18,38 @@ class Social extends Model
             'type'     => 'integer',
             'minvalue' => 0,
             'pkey'     => 'y',
-            'required' => true,
+            'required' => 1,
             'label'    => 'id',
             'hidden'   => 1,
             'display'  => 0,
         ];
         $this->fieldspec['title']    = [
             'type'      => 'string',
-            'required'  => true,
+            'required'  => 1,
             'hidden'    => 0,
             'label'     => 'Social',
-            'extraMsg'  => '',
             'display'   => 1,
         ];
         $this->fieldspec['icon'] = [
-            'type'      =>  'string',
-            'required'  =>  true,
-            'hidden'    =>  0,
-            'label'     =>  'Font-Awesome class ',
-            'extraMsg'  =>  '',
-            'display'   =>  1,
+            'type'     => 'string',
+            'required' => true,
+            'hidden'   => 0,
+            'label'    => 'Font-Awesome class ',
+            'display'  => 1,
         ];
         $this->fieldspec['link'] = [
             'type'      => 'string',
-            'required'  => true,
+            'required'  => 1,
             'hidden'    => 0,
             'label'     => 'Social link',
-            'extraMsg'  => '',
             'display'   => 1,
 
         ];
         $this->fieldspec['image'] = [
             'type'      => 'media',
-            'required'  => true,
+            'required'  => 1,
             'hidden'    => 0,
             'label'     => 'Image',
-            'extraMsg'  => '',
             'lang'      => 0,
             'mediaType' => 'Img',
             'display'   => 1,
@@ -62,25 +58,24 @@ class Social extends Model
             'type'      => 'text',
             'size'      => 600,
             'h'         => 300,
-            'required'  => true,
+            'required'  => 1,
             'hidden'    => 0,
             'label'     => 'Description',
-            'extraMsg'  => '',
             'cssClass'  => 'wyswyg',
             'display'   => 1,
         ];
         $this->fieldspec['sort'] = [
             'type'     => 'integer',
-            'required' => false,
+            'required' => 0,
             'label'    => 'Order',
             'hidden'   => 0,
             'display'  => 1,
         ];
         $this->fieldspec['is_active'] = [
             'type'     => 'boolean',
-            'required' => false,
+            'required' => 0,
             'hidden'   => 0,
-            'label'    => trans('admin.label.active'),
+            'label'    => trans('admin.label.publish'),
             'display'  => 1
         ];
       return $this->fieldspec;

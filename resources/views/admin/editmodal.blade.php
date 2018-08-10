@@ -13,43 +13,57 @@
 </div>
 <div class="modal-body">
 	<div id="errorBox">@include('admin.common.error')</div>
-	{{ Form::model($article,['id'=>'edit_modal_form','class' =>'form-horizontal']) }}
-	<fieldset>
-		<div>
-			{{ AdminForm::get( $article ) }}
-			@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'s.password')  == 1)
-				@include('admin.helper.password')
-			@endif
-			<div class="form-group">
-				<div class="pt10 ph10">
-					<button type="reset" class="btn btn-danger btn-lg" data-dismiss="modal">
-						<i class="fa fa-close"></i> Close
-					</button>
-					<button type="submit" class="btn btn-primary btn-lg pull-right">
-						<i class="fa fa-save"></i>  Save
-					</button>
-				</div>
-			</div>
+	{{ Form::model($article,['id'=>'media-edit-form','class' =>'form-horizontal']) }}
+	{{ AdminForm::get( $article ) }}
+	@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'s.password')  == 1)
+		@include('admin.helper.password')
+	@endif
+	<hr>
+	<div class="row">
+		<div class="col-xs-6">
+			<button type="reset" class="btn btn-danger btn-lg btn-block" data-dismiss="modal">
+				{{icon('times')}} Close
+			</button>
 		</div>
-	</fieldset>
+		<div class="col-xs-6">
+			<button type="submit" class="btn btn-success btn-lg btn-block">
+				{{icon('save')}} Save
+			</button>
+		</div>
+	</div>
 	{{ Form::close() }}
 </div>
 <script type="text/javascript">
-
 	$(function() {
-
-		$('#edit_modal_form').on('submit', function (ev) {
+		$('#media-edit-form').on('submit', function (ev) {
 			ev.preventDefault();
+
+			var fields = $(this).serializeArray();
+			var fields_object = {};
+
+			$.each(fields, function(i, v) {
+				fields_object[v['name']] = v['value'];
+			});
+
+			if ($('#media_category_id option:selected').val())
+				media_category_title = $('#media_category_id option:selected').text();
+			else
+				media_category_title = '';
+
 			$.ajax({
 				type: 'POST',
 				dataType: 'json',
 				url: $(this).attr('action'),
 				data: $(this).serialize(),
 				success: function (response) {
+					console.log(fields_object);
 					var errorsHtml = '<div class="alert alert-info"><ul>';
 					errorsHtml += '<li>' + response.status + '</li>'; //showing only the first error.
 					errorsHtml += '</ul></div>';
-					$('#errorBox').html(errorsHtml)
+					$('#errorBox').html(errorsHtml);
+					var id = '#box_media_'+fields_object.id;
+					$(id+' .media-title').text(fields_object.title);
+					$(id+' .media-category').text(media_category_title);
 				},
 				error: function (data) {
 					var errors = data.responseJSON;
@@ -63,10 +77,5 @@
 				}
 			});
 		});
-
-		$('#myModal').on('hidden.bs.modal', function () {
-			$('#edit_form').submit();
-		})
-
 	});
 </script>

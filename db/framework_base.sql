@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Creato il: Apr 10, 2018 alle 16:52
--- Versione del server: 10.1.22-MariaDB
--- Versione PHP: 7.1.4
+-- Host: localhost
+-- Generation Time: Aug 10, 2018 at 02:39 PM
+-- Server version: 5.7.22
+-- PHP Version: 7.0.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,16 +17,38 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `magutticms`
+-- Database: `maguttiCms`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `adminusers`
+-- Table structure for table `addresses`
 --
 
-DROP TABLE IF EXISTS `adminusers`;
+CREATE TABLE `addresses` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `street` varchar(100) NOT NULL DEFAULT '',
+  `number` varchar(5) DEFAULT '',
+  `zip_code` varchar(10) NOT NULL,
+  `city` varchar(50) NOT NULL DEFAULT '',
+  `province` varchar(50) NOT NULL DEFAULT '',
+  `country_id` int(11) NOT NULL,
+  `phone` varchar(30) DEFAULT '',
+  `mobile` varchar(30) DEFAULT '',
+  `email` varchar(50) DEFAULT '',
+  `vat` varchar(50) DEFAULT '',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adminusers`
+--
+
 CREATE TABLE `adminusers` (
   `id` int(10) UNSIGNED NOT NULL,
   `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -37,32 +57,32 @@ CREATE TABLE `adminusers` (
   `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `real_password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `is_active` tinyint(4) NOT NULL DEFAULT '1',
+  `locale` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `is_active` tinyint(4) NOT NULL DEFAULT '1'
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `adminusers`
+-- Dumping data for table `adminusers`
 --
 
-INSERT INTO `adminusers` (`id`, `first_name`, `last_name`, `email`, `password`, `real_password`, `remember_token`, `created_at`, `updated_at`, `is_active`) VALUES
-(3, 'Magutti', 'Admin', 'cmsadmin@magutti.com', '$2y$10$RvNPNLzOwFUGr/v2BwMNWOR3hZs.q13LaOnyXN2HBq0KgQOEpIXhW', 'password', 'Vl4qr2XoWiz65rrljwUzxdjTEV0a9peMbYB1z3sirvf3Ddk7SrKmUyDBtShc', '0000-00-00 00:00:00', '2017-08-26 07:21:13', 1);
+INSERT INTO `adminusers` (`id`, `first_name`, `last_name`, `email`, `password`, `real_password`, `remember_token`, `is_active`, `locale`, `created_at`, `updated_at`) VALUES
+(3, 'GF', 'Admin', 'cmsadmin@magutti.com', '$2y$10$fhRhYYRj2tgq1/jmaUkgH.y7AW2lcDrdEIsn5GP35aLVsEQWWCBh6', 'password', 'i57xldsH7Qpjps6jljA6u2BCQgFuYbJuK3fIrEOZUkrr7vK0J8NETi2LsF6u', 1, 'fr', '0000-00-00 00:00:00', '2018-08-10 14:38:29');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `adminuser_role`
+-- Table structure for table `adminuser_role`
 --
 
-DROP TABLE IF EXISTS `adminuser_role`;
 CREATE TABLE `adminuser_role` (
   `adminuser_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `adminuser_role`
+-- Dumping data for table `adminuser_role`
 --
 
 INSERT INTO `adminuser_role` (`adminuser_id`, `role_id`) VALUES
@@ -71,14 +91,13 @@ INSERT INTO `adminuser_role` (`adminuser_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `articles`
+-- Table structure for table `articles`
 --
 
-DROP TABLE IF EXISTS `articles`;
 CREATE TABLE `articles` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `id_parent` int(11) NOT NULL,
+  `parent_id` int(11) NOT NULL,
   `id_template` int(11) NOT NULL,
   `menu_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
@@ -102,29 +121,28 @@ CREATE TABLE `articles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `articles`
+-- Dumping data for table `articles`
 --
 
-INSERT INTO `articles` (`id`, `domain`, `id_parent`, `id_template`, `menu_title`, `title`, `subtitle`, `intro`, `abstract`, `description`, `slug`, `doc`, `image`, `banner`, `link`, `sort`, `pub`, `ignore_slug_translation`, `top_menu`, `template_id`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'home', '', '', '', '', 0, 1, 0, 0, 0, 0, '2016-07-04 04:54:35', '2017-08-01 13:52:32'),
-(2, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'company', '', '', '', '', 100, 1, 0, 1, 0, 0, '2016-07-04 04:56:59', '2018-04-10 14:45:21'),
-(3, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'privacy', '', '', '', '', 2000, 1, 0, 0, 0, 0, '2016-07-04 05:11:17', '2017-08-01 12:33:01'),
-(4, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'contacts', '', '', '', '', 400, 1, 0, 1, 0, 0, '2016-07-04 05:11:39', '2017-08-01 12:32:40'),
-(5, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'products', '', '', '', '', 200, 1, 0, 1, 0, 0, '2016-07-04 05:20:37', '2017-08-02 12:55:34'),
-(6, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'news', '', '', '', '', 300, 1, 0, 1, 0, 0, '2016-07-04 05:59:05', '2017-08-01 12:33:11'),
-(7, '', 9, 0, NULL, '', NULL, NULL, NULL, '', 'login', '', '', '', '', 1000, 1, 0, 0, 0, 0, '2016-08-09 11:12:14', '2017-08-01 13:57:18'),
-(8, '', 9, 0, NULL, '', NULL, NULL, NULL, '', 'user-dashboard', '', '', '', '', 1200, 1, 0, 0, 0, 0, '2016-08-09 11:24:04', '2017-08-01 12:33:30'),
-(9, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'reserved-area', '', '', '', '', 1100, 0, 0, 0, 0, 0, '2016-08-10 05:16:26', '2017-08-01 13:57:05'),
-(10, '', 9, 0, NULL, '', NULL, NULL, NULL, '', 'user-profile', '', '', '', '', 1300, 1, 0, 0, 0, 0, '2016-08-10 05:17:38', '2017-08-01 12:33:37'),
-(11, '', 0, 0, NULL, '', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, '', 2000, 1, 0, 0, 0, 0, '2017-08-01 14:13:57', '2017-08-01 14:16:28');
+INSERT INTO `articles` (`id`, `domain`, `parent_id`, `id_template`, `menu_title`, `title`, `subtitle`, `intro`, `abstract`, `description`, `slug`, `doc`, `image`, `banner`, `link`, `sort`, `pub`, `ignore_slug_translation`, `top_menu`, `template_id`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'home', '', '', '', '', 0, 1, 0, 0, 0, 0, '2016-07-04 06:54:35', '2018-06-11 09:57:11'),
+(2, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'company', '', 'ff0000.png', '', '', 0, 0, 0, 0, 0, 0, '2016-07-04 06:56:59', '2018-01-29 13:24:31'),
+(3, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'privacy', '', '', '', '', 2000, 1, 0, 0, 0, 0, '2016-07-04 07:11:17', '2017-08-01 14:33:01'),
+(4, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'contacts', '', '', '', '', 400, 1, 0, 1, 0, 0, '2016-07-04 07:11:39', '2017-08-01 14:32:40'),
+(5, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'products', '', '', '', '', 200, 1, 0, 1, 0, 0, '2016-07-04 07:20:37', '2018-01-25 11:03:49'),
+(6, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'news', '', '', '', '', 300, 1, 0, 1, 0, 0, '2016-07-04 07:59:05', '2017-08-01 14:33:11'),
+(7, '', 9, 0, NULL, '', NULL, NULL, NULL, '', 'login', '', '', '', '', 1000, 1, 0, 0, 0, 0, '2016-08-09 13:12:14', '2017-08-01 15:57:18'),
+(8, '', 9, 0, NULL, '', NULL, NULL, NULL, '', 'user-dashboard', '', '', '', '', 1200, 1, 0, 0, 0, 0, '2016-08-09 13:24:04', '2017-08-01 14:33:30'),
+(9, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'reserved-area', '', '', '', '', 1100, 0, 0, 0, 0, 0, '2016-08-10 07:16:26', '2017-08-01 15:57:05'),
+(10, '', 9, 0, NULL, '', NULL, NULL, NULL, '', 'user-profile', '', '', '', '', 1300, 1, 0, 0, 0, 0, '2016-08-10 07:17:38', '2017-08-01 14:33:37'),
+(11, '', 0, 0, NULL, '', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, '', 2000, 1, 0, 0, 0, 0, '2017-08-01 16:13:57', '2017-08-01 16:16:28');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `article_translations`
+-- Table structure for table `article_translations`
 --
 
-DROP TABLE IF EXISTS `article_translations`;
 CREATE TABLE `article_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `article_id` int(10) UNSIGNED NOT NULL,
@@ -138,49 +156,75 @@ CREATE TABLE `article_translations` (
   `abstract` text COLLATE utf8_unicode_ci,
   `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `seo_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_no_index` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_by` int(11) NOT NULL,
-  `update_by` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `article_translations`
+-- Dumping data for table `article_translations`
 --
 
-INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_title`, `title`, `subtitle`, `intro`, `description`, `abstract`, `seo_title`, `seo_description`, `seo_keywords`, `seo_no_index`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'it', 'home', 'Home', 'Home', 'LaraCms', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>', '', '', '', '', '0', 0, 0, '2016-07-04 05:53:04', '2017-08-01 13:12:25'),
-(2, 1, 'en', 'home', 'Home', 'Home', '', NULL, '', '', '', '', '', '', 0, 0, '2016-07-04 05:53:04', '2017-08-01 13:52:32'),
-(3, 2, 'it', 'azienda', 'Azienda', 'Azienda', '', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', 'zcczc', '', '', '', 0, 0, '2016-07-04 05:53:13', '2017-08-26 13:41:39'),
-(4, 2, 'en', 'company', 'Company', 'Company', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a liber', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', 'z<cz<', '', '', '', 0, 0, '2016-07-04 05:53:13', '2017-08-26 13:41:39'),
-(5, 3, 'it', 'privacy', 'Privacy', 'Privacy', '', NULL, '', '', '', '', '', '', 0, 0, '2016-07-04 05:53:28', '2017-08-01 12:33:01'),
-(6, 3, 'en', 'privacy', 'Privacy', 'Privacy', '', NULL, '', '', '', '', '', '', 0, 0, '2016-07-04 05:53:28', '2017-08-01 12:33:01'),
-(7, 5, 'it', 'prodotti', 'Prodotti', 'Prodotti', '', NULL, '', '', '', '', '', '', 0, 0, '2016-07-04 05:53:38', '2017-08-02 12:55:34'),
-(8, 5, 'en', 'products', 'Products', 'Products', '', NULL, '', '', '', '', '', '', 0, 0, '2016-07-04 05:53:38', '2017-08-01 12:32:52'),
-(9, 4, 'it', 'contatti', 'Contatti', 'Contatti', '', NULL, '', '', '', '', '', '', 0, 0, '2016-07-04 05:54:32', '2017-08-01 12:32:40'),
-(10, 4, 'en', 'contacts', 'Contacts', 'Contacts', '', NULL, '', '', '', '', '', '', 0, 0, '2016-07-04 05:54:32', '2017-08-01 12:32:40'),
-(13, 6, 'it', 'news', 'News', 'News', '', NULL, '', '', '', '', '', '', 0, 0, '2016-08-04 09:24:58', '2017-08-01 12:33:11'),
-(14, 6, 'en', 'news', 'News', 'News', '', NULL, '', '', '', '', '', '', 0, 0, '2016-08-04 09:24:58', '2017-08-01 12:33:11'),
-(15, 7, 'it', 'login', 'login', 'login', 'login', NULL, '', '', 'Login', '', '', '', 0, 0, '2016-08-09 11:12:14', '2017-08-01 12:33:20'),
-(16, 7, 'en', 'login', 'Login', 'Login', 'Login', NULL, '', '', 'Login', '', '', '', 0, 0, '2016-08-09 11:12:14', '2017-08-01 12:33:20'),
-(17, 8, 'it', 'dashboard', 'Dashboard', 'Dashboard', 'Dashboard', NULL, '', '', '', '', '', '', 0, 0, '2016-08-09 11:24:04', '2017-08-01 12:33:30'),
-(18, 8, 'en', 'dashboard', 'Dashboard', 'Dashboard', '', NULL, '', '', '', '', '', '', 0, 0, '2016-08-09 11:24:04', '2017-08-01 12:33:30'),
-(19, 9, 'it', 'users', '', 'Users', 'Users', NULL, '', '', '', '', '', '', 0, 0, '2016-08-10 05:16:26', '2017-08-01 13:56:45'),
-(20, 9, 'en', 'users', 'Users', 'Users', '', NULL, '', '', '', '', '', '', 0, 0, '2016-08-10 05:16:26', '2017-08-01 13:56:21'),
-(21, 10, 'it', 'profile', 'Profile', 'Profile', 'Profile', NULL, '', '', '', '', '', '', 0, 0, '2016-08-10 05:17:38', '2017-08-01 12:33:37'),
-(22, 10, 'en', 'user-profile', 'User profile', 'User profile', '', NULL, '', '', '', '', '', '', 0, 0, '2016-08-10 05:17:38', '2017-08-01 12:33:37'),
-(23, 11, 'it', 'register', '', 'Registrazione', '', NULL, '', '', '', '', '', '', 0, 0, '2017-08-01 14:13:57', '2017-08-01 14:13:57'),
-(24, 11, 'en', 'register', '', 'Register', '', NULL, '', '', '', '', '', '', 0, 0, '2017-08-01 14:13:57', '2017-08-01 14:13:57');
+INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_title`, `title`, `subtitle`, `intro`, `description`, `abstract`, `seo_title`, `seo_description`, `seo_no_index`, `created_at`, `updated_at`) VALUES
+(1, 1, 'it', 'home', 'Home', 'Home', 'LaraCms', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>', '', '', '', '0', '2016-07-04 07:53:04', '2017-08-01 15:12:25'),
+(2, 1, 'en', 'home', 'Home', 'Home', '', NULL, '', '', '', '', '', '2016-07-04 07:53:04', '2017-08-01 15:52:32'),
+(3, 2, 'it', 'azienda', 'Azienda', 'Azienda', '', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '', '', '', '2016-07-04 07:53:13', '2018-01-29 13:24:31'),
+(4, 2, 'en', '', '', '', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a liber', '', '', '', '', '', '2016-07-04 07:53:13', '2018-01-29 13:24:31'),
+(5, 3, 'it', 'privacy', 'Privacy', 'Privacy', '', NULL, '', '', '', '', '', '2016-07-04 07:53:28', '2017-08-01 14:33:01'),
+(6, 3, 'en', 'privacy', 'Privacy', 'Privacy', '', NULL, '', '', '', '', '', '2016-07-04 07:53:28', '2017-08-01 14:33:01'),
+(7, 5, 'it', 'prodotti', '', 'Categorie', '', NULL, '', '', '', '', '', '2016-07-04 07:53:38', '2018-01-25 11:03:49'),
+(8, 5, 'en', 'products', '', 'Categories', '', NULL, '', '', '', '', '', '2016-07-04 07:53:38', '2018-01-25 11:03:49'),
+(9, 4, 'it', 'contatti', 'Contatti', 'Contatti', '', NULL, '', '', '', '', '', '2016-07-04 07:54:32', '2017-08-01 14:32:40'),
+(10, 4, 'en', 'contacts', 'Contacts', 'Contacts', '', NULL, '', '', '', '', '', '2016-07-04 07:54:32', '2017-08-01 14:32:40'),
+(13, 6, 'it', 'news', 'News', 'News', '', NULL, '', '', '', '', '', '2016-08-04 11:24:58', '2017-08-01 14:33:11'),
+(14, 6, 'en', 'news', 'News', 'News', '', NULL, '', '', '', '', '', '2016-08-04 11:24:58', '2017-08-01 14:33:11'),
+(15, 7, 'it', 'login', 'Login', 'Login', 'login', NULL, '', '', 'Login', '', '', '2016-08-09 13:12:14', '2017-08-01 14:33:20'),
+(16, 7, 'en', 'login', 'Login', 'Login', 'Login', NULL, '', '', 'Login', '', '', '2016-08-09 13:12:14', '2017-08-01 14:33:20'),
+(17, 8, 'it', 'dashboard', 'Dashboard', 'Dashboard', 'Dashboard', NULL, '', '', '', '', '', '2016-08-09 13:24:04', '2017-08-01 14:33:30'),
+(18, 8, 'en', 'dashboard', 'Dashboard', 'Dashboard', '', NULL, '', '', '', '', '', '2016-08-09 13:24:04', '2017-08-01 14:33:30'),
+(19, 9, 'it', 'users', '', 'Users', 'Users', NULL, '', '', '', '', '', '2016-08-10 07:16:26', '2017-08-01 15:56:45'),
+(20, 9, 'en', 'users', 'Users', 'Users', '', NULL, '', '', '', '', '', '2016-08-10 07:16:26', '2017-08-01 15:56:21'),
+(21, 10, 'it', 'profile', 'Profile', 'Profile', 'Profile', NULL, '', '', '', '', '', '2016-08-10 07:17:38', '2017-08-01 14:33:37'),
+(22, 10, 'en', 'user-profile', 'User profile', 'User profile', '', NULL, '', '', '', '', '', '2016-08-10 07:17:38', '2017-08-01 14:33:37'),
+(23, 11, 'it', 'register', '', 'Registrazione', '', NULL, '', '', '', '', '', '2017-08-01 16:13:57', '2017-08-01 16:13:57'),
+(24, 11, 'en', 'register', '', 'Register', '', NULL, '', '', '', '', '', '2017-08-01 16:13:57', '2017-08-01 16:13:57');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `categories`
+-- Table structure for table `carts`
 --
 
-DROP TABLE IF EXISTS `categories`;
+CREATE TABLE `carts` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart_items`
+--
+
+CREATE TABLE `cart_items` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `cart_id` int(11) NOT NULL,
+  `product_code` varchar(255) NOT NULL,
+  `product_model_code` varchar(255) DEFAULT NULL,
+  `quantity` int(1) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
 CREATE TABLE `categories` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_parent` int(10) UNSIGNED DEFAULT NULL,
@@ -195,29 +239,26 @@ CREATE TABLE `categories` (
   `pub` tinyint(4) DEFAULT '1',
   `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `seo_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `categories`
+-- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `id_parent`, `title`, `abstract`, `description`, `slug`, `image`, `banner`, `doc`, `sort`, `pub`, `seo_title`, `seo_description`, `seo_keywords`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 0, '', NULL, NULL, 'identity', '', '', '', 20, 1, NULL, NULL, NULL, 0, '2016-07-04 04:29:04', '2017-08-02 11:14:27'),
-(2, 0, '', NULL, NULL, 'research', '', '', '', 10, 1, NULL, NULL, NULL, 0, '2016-12-26 11:16:23', '2017-08-02 11:14:17'),
-(3, 0, '', NULL, NULL, 'start-up', '', '', '', 30, 1, NULL, NULL, NULL, 0, '2016-12-27 17:33:25', '2017-08-02 11:14:40'),
-(4, 0, '', NULL, NULL, NULL, NULL, NULL, '', 0, 1, NULL, NULL, NULL, 0, '2017-08-02 11:16:28', '2017-08-02 11:16:28');
+INSERT INTO `categories` (`id`, `id_parent`, `title`, `abstract`, `description`, `slug`, `image`, `banner`, `doc`, `sort`, `pub`, `seo_title`, `seo_description`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 0, '', NULL, NULL, 'identity', '', '', '', 0, 1, NULL, NULL, 0, '2016-07-04 06:29:04', '2018-06-13 14:43:39'),
+(2, 0, '', NULL, NULL, 'research', '', '', '', 10, 1, NULL, NULL, 0, '2016-12-26 12:16:23', '2018-06-13 14:44:31'),
+(3, 0, '', NULL, NULL, 'start-up', '', '', '', 20, 1, NULL, NULL, 0, '2016-12-27 18:33:25', '2018-06-13 14:45:00');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `category_translations`
+-- Table structure for table `category_translations`
 --
 
-DROP TABLE IF EXISTS `category_translations`;
 CREATE TABLE `category_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -227,7 +268,6 @@ CREATE TABLE `category_translations` (
   `description` text COLLATE utf8_unicode_ci,
   `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `seo_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_by` int(10) UNSIGNED NOT NULL,
   `update_by` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -235,26 +275,25 @@ CREATE TABLE `category_translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `category_translations`
+-- Dumping data for table `category_translations`
 --
 
-INSERT INTO `category_translations` (`id`, `slug`, `category_id`, `locale`, `title`, `description`, `seo_title`, `seo_description`, `seo_keywords`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 'identity', 1, 'it', 'Identity', NULL, '', '', '', 0, 0, '2016-07-04 04:29:04', '2017-08-02 11:14:27'),
-(2, 'identity', 1, 'en', 'Identity', NULL, '', '', '', 0, 0, '2016-07-04 04:29:04', '2017-08-02 11:14:27'),
-(3, 'research', 2, 'en', 'Research', NULL, '', '', '', 0, 0, '2016-12-26 11:16:23', '2017-08-02 11:14:17'),
-(4, 'research', 2, 'it', 'Research', NULL, '', '', '', 0, 0, '2016-12-26 11:16:23', '2017-08-02 11:14:17'),
-(5, 'start-up', 3, 'en', 'Start-up', NULL, '', '', '', 0, 0, '2016-12-27 17:33:25', '2017-08-02 11:14:40'),
-(6, 'start-up', 3, 'it', 'Start-up', NULL, '', '', '', 0, 0, '2016-12-27 17:33:25', '2017-08-02 11:14:40'),
-(7, 'nuova-categoria', 4, 'it', 'Nuova categoria', NULL, '', '', '', 0, 0, '2017-08-02 11:16:28', '2017-08-02 11:16:28'),
-(8, 'new-category', 4, 'en', 'New category', NULL, '', '', '', 0, 0, '2017-08-02 11:16:28', '2017-08-02 11:16:28');
+INSERT INTO `category_translations` (`id`, `slug`, `category_id`, `locale`, `title`, `description`, `seo_title`, `seo_description`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
+(1, 'prima-categoria', 1, 'it', 'Prima Categoria', NULL, '', '', 0, 0, '2016-07-04 06:29:04', '2018-06-13 14:43:39'),
+(2, 'first-category', 1, 'en', 'First Category', NULL, '', '', 0, 0, '2016-07-04 06:29:04', '2018-06-13 14:43:39'),
+(3, 'second-category', 2, 'en', 'Second Category', NULL, '', '', 0, 0, '2016-12-26 12:16:23', '2018-06-13 14:44:31'),
+(4, 'seconda-categoria', 2, 'it', 'Seconda Categoria', NULL, '', '', 0, 0, '2016-12-26 12:16:23', '2018-06-13 14:44:31'),
+(5, 'thid-category', 3, 'en', 'Third Category', NULL, '', '', 0, 0, '2016-12-27 18:33:25', '2018-06-13 14:45:00'),
+(6, 'terza-category', 3, 'it', 'Terza Categoria', NULL, '', '', 0, 0, '2016-12-27 18:33:25', '2018-06-13 14:45:00'),
+(7, 'nuova-categoria', 4, 'it', 'Nuova categoria', NULL, '', '', 0, 0, '2017-08-02 13:16:28', '2017-08-02 13:16:28'),
+(8, 'new-category', 4, 'en', 'New category', NULL, '', '', 0, 0, '2017-08-02 13:16:28', '2017-08-02 13:16:28');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `contacts`
+-- Table structure for table `contacts`
 --
 
-DROP TABLE IF EXISTS `contacts`;
 CREATE TABLE `contacts` (
   `id` int(10) UNSIGNED NOT NULL,
   `request_product_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -273,10 +312,9 @@ CREATE TABLE `contacts` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `countries`
+-- Table structure for table `countries`
 --
 
-DROP TABLE IF EXISTS `countries`;
 CREATE TABLE `countries` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -292,265 +330,264 @@ CREATE TABLE `countries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `countries`
+-- Dumping data for table `countries`
 --
 
 INSERT INTO `countries` (`id`, `name`, `iso_code`, `id_continent`, `eu`, `vat`, `is_active`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Andorra', 'AD', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(2, 'United Arab Emirates', 'AE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(3, 'Afghanistan', 'AF', NULL, 0, '0.0', 1, NULL, NULL, '2016-08-08 20:00:00', '2017-01-03 13:45:12'),
-(4, 'Antigua And Barbuda', 'AG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(5, 'Anguilla', 'AI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(6, 'Albania', 'AL', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(7, 'Armenia', 'AM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(8, 'Angola', 'AO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(9, 'Antarctica', 'AQ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(10, 'Argentina', 'AR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(11, 'American Samoa', 'AS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(12, 'Austria', 'AT', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(13, 'Australia', 'AU', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(14, 'Aruba', 'AW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(15, 'Aland Islands', 'AX', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2017-01-03 13:45:13'),
-(16, 'Azerbaijan', 'AZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(17, 'Bosnia And Herzegovina', 'BA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(18, 'Barbados', 'BB', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(19, 'Bangladesh', 'BD', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(20, 'Belgium', 'BE', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(21, 'Burkina Faso', 'BF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(22, 'Bulgaria', 'BG', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(23, 'Bahrain', 'BH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(24, 'Burundi', 'BI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(25, 'Benin', 'BJ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(26, 'Saint Barthelemy', 'BL', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(27, 'Bermuda', 'BM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(28, 'Brunei', 'BN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(29, 'Bolivia', 'BO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(30, 'Bonaire, Saint Eustatius And Saba ', 'BQ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(31, 'Brazil', 'BR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(32, 'Bahamas', 'BS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(33, 'Bhutan', 'BT', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(34, 'Bouvet Island', 'BV', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(35, 'Botswana', 'BW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(36, 'Belarus', 'BY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(37, 'Belize', 'BZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(38, 'Canada', 'CA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(39, 'Cocos Islands', 'CC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(40, 'Democratic Republic Of The Congo', 'CD', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(41, 'Central African Republic', 'CF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(42, 'Republic Of The Congo', 'CG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(43, 'Switzerland', 'CH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(44, 'Ivory Coast', 'CI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(45, 'Cook Islands', 'CK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(46, 'Chile', 'CL', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(47, 'Cameroon', 'CM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(48, 'China', 'CN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(49, 'Colombia', 'CO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(50, 'Costa Rica', 'CR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(51, 'Cuba', 'CU', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(52, 'Cape Verde', 'CV', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(53, 'Curacao', 'CW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(54, 'Christmas Island', 'CX', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(55, 'Cyprus', 'CY', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(56, 'Czech Republic', 'CZ', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(57, 'Germany', 'DE', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(58, 'Djibouti', 'DJ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(59, 'Denmark', 'DK', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(60, 'Dominica', 'DM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(61, 'Dominican Republic', 'DO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(62, 'Algeria', 'DZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(63, 'Ecuador', 'EC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(64, 'Estonia', 'EE', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(65, 'Egypt', 'EG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(66, 'Western Sahara', 'EH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(67, 'Eritrea', 'ER', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(68, 'Spain', 'ES', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(69, 'Ethiopia', 'ET', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(70, 'Finland', 'FI', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(71, 'Fiji', 'FJ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(72, 'Falkland Islands', 'FK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(73, 'Micronesia', 'FM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(74, 'Faroe Islands', 'FO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(75, 'France', 'FR', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(76, 'Gabon', 'GA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(77, 'United Kingdom', 'GB', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(78, 'Grenada', 'GD', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(79, 'Georgia', 'GE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(80, 'French Guiana', 'GF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(81, 'Guernsey', 'GG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(82, 'Ghana', 'GH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(83, 'Gibraltar', 'GI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(84, 'Greenland', 'GL', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(85, 'Gambia', 'GM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(86, 'Guinea', 'GN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(87, 'Guadeloupe', 'GP', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(88, 'Equatorial Guinea', 'GQ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(89, 'Greece', 'GR', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(90, 'South Georgia And The South Sandwich Islands', 'GS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(91, 'Guatemala', 'GT', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(92, 'Guam', 'GU', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(93, 'Guinea-Bissau', 'GW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(94, 'Guyana', 'GY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(95, 'Hong Kong', 'HK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(96, 'Honduras', 'HN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(97, 'Croatia', 'HR', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(98, 'Haiti', 'HT', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(99, 'Hungary', 'HU', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(100, 'Indonesia', 'ID', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(101, 'Ireland', 'IE', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(102, 'Israel', 'IL', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(103, 'Isle Of Man', 'IM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(104, 'India', 'IN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(105, 'British Indian Ocean Territory', 'IO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(106, 'Iraq', 'IQ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(107, 'Iran', 'IR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(108, 'Iceland', 'IS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(109, 'Italy', 'IT', 0, 1, '22.0', 1, 0, 1, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(110, 'Jersey', 'JE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(111, 'Jamaica', 'JM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(112, 'Jordan', 'JO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(113, 'Japan', 'JP', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(114, 'Kenya', 'KE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(115, 'Kyrgyzstan', 'KG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(116, 'Cambodia', 'KH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(117, 'Kiribati', 'KI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(118, 'Comoros', 'KM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(119, 'Saint Kitts And Nevis', 'KN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(120, 'North Korea', 'KP', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(121, 'South Korea', 'KR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(122, 'Kuwait', 'KW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(123, 'Cayman Islands', 'KY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(124, 'Kazakhstan', 'KZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(125, 'Laos', 'LA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(126, 'Lebanon', 'LB', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(127, 'Saint Lucia', 'LC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(128, 'Liechtenstein', 'LI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(129, 'Sri Lanka', 'LK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(130, 'Liberia', 'LR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(131, 'Lesotho', 'LS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(132, 'Lithuania', 'LT', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(133, 'Luxembourg', 'LU', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(134, 'Latvia', 'LV', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(135, 'Libya', 'LY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(136, 'Morocco', 'MA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(137, 'Monaco', 'MC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(138, 'Moldova', 'MD', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(139, 'Montenegro', 'ME', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(140, 'Saint Martin', 'MF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(141, 'Madagascar', 'MG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(142, 'Marshall Islands', 'MH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(143, 'Macedonia', 'MK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(144, 'Mali', 'ML', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(145, 'Myanmar', 'MM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(146, 'Mongolia', 'MN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(147, 'Macao', 'MO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(148, 'Northern Mariana Islands', 'MP', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(149, 'Martinique', 'MQ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(150, 'Mauritania', 'MR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(151, 'Montserrat', 'MS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(152, 'Malta', 'MT', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(153, 'Mauritius', 'MU', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(154, 'Maldives', 'MV', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(155, 'Malawi', 'MW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(156, 'Mexico', 'MX', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(157, 'Malaysia', 'MY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(158, 'Mozambique', 'MZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(159, 'Namibia', 'NA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(160, 'New Caledonia', 'NC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(161, 'Niger', 'NE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(162, 'Norfolk Island', 'NF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(163, 'Nigeria', 'NG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(164, 'Nicaragua', 'NI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(165, 'Netherlands', 'NL', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(166, 'Norway', 'NO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(167, 'Nepal', 'NP', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(168, 'Nauru', 'NR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(169, 'Niue', 'NU', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(170, 'New Zealand', 'NZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(171, 'Oman', 'OM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(172, 'Panama', 'PA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(173, 'Peru', 'PE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(174, 'French Polynesia', 'PF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(175, 'Papua New Guinea', 'PG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(176, 'Philippines', 'PH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(177, 'Pakistan', 'PK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(178, 'Poland', 'PL', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(179, 'Saint Pierre And Miquelon', 'PM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(180, 'Puerto Rico', 'PR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(181, 'Palestinian Territory', 'PS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(182, 'Portugal', 'PT', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(183, 'Palau', 'PW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(184, 'Paraguay', 'PY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(185, 'Qatar', 'QA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(186, 'Reunion', 'RE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(187, 'Romania', 'RO', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(188, 'Serbia', 'RS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(189, 'Russia', 'RU', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(190, 'Rwanda', 'RW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(191, 'Saudi Arabia', 'SA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(192, 'Solomon Islands', 'SB', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(193, 'Seychelles', 'SC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(194, 'Sudan', 'SD', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(195, 'Sweden', 'SE', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(196, 'Singapore', 'SG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(197, 'Saint Helena', 'SH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(198, 'Slovenia', 'SI', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(199, 'Svalbard And Jan Mayen', 'SJ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(200, 'Slovakia', 'SK', 0, 1, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(201, 'Sierra Leone', 'SL', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(202, 'San Marino', 'SM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(203, 'Senegal', 'SN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(204, 'Somalia', 'SO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(205, 'Suriname', 'SR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(206, 'South Sudan', 'SS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(207, 'Sao Tome And Principe', 'ST', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(208, 'El Salvador', 'SV', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(209, 'Sint Maarten', 'SX', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(210, 'Syria', 'SY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(211, 'Swaziland', 'SZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(212, 'Turks And Caicos Islands', 'TC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(213, 'Chad', 'TD', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(214, 'French Southern Territories', 'TF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(215, 'Togo', 'TG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(216, 'Thailand', 'TH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(217, 'Tajikistan', 'TJ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(218, 'Tokelau', 'TK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(219, 'East Timor', 'TL', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(220, 'Turkmenistan', 'TM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(221, 'Tunisia', 'TN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(222, 'Tonga', 'TO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(223, 'Turkey', 'TR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(224, 'Trinidad And Tobago', 'TT', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(225, 'Tuvalu', 'TV', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(226, 'Taiwan', 'TW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(227, 'Tanzania', 'TZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(228, 'Ukraine', 'UA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(229, 'Uganda', 'UG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(230, 'United States Minor Outlying Islands', 'UM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(231, 'United States', 'US', 0, 0, '0.0', 1, 0, 1, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(232, 'Uruguay', 'UY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(233, 'Uzbekistan', 'UZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(234, 'Saint Vincent And The Grenadines', 'VC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(235, 'Venezuela', 'VE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(236, 'British Virgin Islands', 'VG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(237, 'U.S. Virgin Islands', 'VI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(238, 'Vietnam', 'VN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(239, 'Vanuatu', 'VU', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(240, 'Wallis And Futuna', 'WF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(241, 'Samoa', 'WS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(242, 'Kosovo', 'XK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(243, 'Yemen', 'YE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(244, 'Mayotte', 'YT', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(245, 'South Africa', 'ZA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(246, 'Zambia', 'ZM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00'),
-(247, 'Zimbabwe', 'ZW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 20:00:00', '2016-08-08 20:00:00');
+(1, 'Andorra', 'AD', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(2, 'United Arab Emirates', 'AE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(3, 'Afghanistan', 'AF', NULL, 0, '0.0', 1, NULL, NULL, '2016-08-08 22:00:00', '2017-01-03 14:45:12'),
+(4, 'Antigua And Barbuda', 'AG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(5, 'Anguilla', 'AI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(6, 'Albania', 'AL', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(7, 'Armenia', 'AM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(8, 'Angola', 'AO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(9, 'Antarctica', 'AQ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(10, 'Argentina', 'AR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(11, 'American Samoa', 'AS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(12, 'Austria', 'AT', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(13, 'Australia', 'AU', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(14, 'Aruba', 'AW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(15, 'Aland Islands', 'AX', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2017-01-03 14:45:13'),
+(16, 'Azerbaijan', 'AZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(17, 'Bosnia And Herzegovina', 'BA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(18, 'Barbados', 'BB', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(19, 'Bangladesh', 'BD', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(20, 'Belgium', 'BE', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(21, 'Burkina Faso', 'BF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(22, 'Bulgaria', 'BG', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(23, 'Bahrain', 'BH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(24, 'Burundi', 'BI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(25, 'Benin', 'BJ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(26, 'Saint Barthelemy', 'BL', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(27, 'Bermuda', 'BM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(28, 'Brunei', 'BN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(29, 'Bolivia', 'BO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(30, 'Bonaire, Saint Eustatius And Saba ', 'BQ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(31, 'Brazil', 'BR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(32, 'Bahamas', 'BS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(33, 'Bhutan', 'BT', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(34, 'Bouvet Island', 'BV', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(35, 'Botswana', 'BW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(36, 'Belarus', 'BY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(37, 'Belize', 'BZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(38, 'Canada', 'CA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(39, 'Cocos Islands', 'CC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(40, 'Democratic Republic Of The Congo', 'CD', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(41, 'Central African Republic', 'CF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(42, 'Republic Of The Congo', 'CG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(43, 'Switzerland', 'CH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(44, 'Ivory Coast', 'CI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(45, 'Cook Islands', 'CK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(46, 'Chile', 'CL', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(47, 'Cameroon', 'CM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(48, 'China', 'CN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(49, 'Colombia', 'CO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(50, 'Costa Rica', 'CR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(51, 'Cuba', 'CU', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(52, 'Cape Verde', 'CV', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(53, 'Curacao', 'CW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(54, 'Christmas Island', 'CX', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(55, 'Cyprus', 'CY', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(56, 'Czech Republic', 'CZ', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(57, 'Germany', 'DE', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(58, 'Djibouti', 'DJ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(59, 'Denmark', 'DK', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(60, 'Dominica', 'DM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(61, 'Dominican Republic', 'DO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(62, 'Algeria', 'DZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(63, 'Ecuador', 'EC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(64, 'Estonia', 'EE', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(65, 'Egypt', 'EG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(66, 'Western Sahara', 'EH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(67, 'Eritrea', 'ER', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(68, 'Spain', 'ES', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(69, 'Ethiopia', 'ET', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(70, 'Finland', 'FI', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(71, 'Fiji', 'FJ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(72, 'Falkland Islands', 'FK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(73, 'Micronesia', 'FM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(74, 'Faroe Islands', 'FO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(75, 'France', 'FR', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(76, 'Gabon', 'GA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(77, 'United Kingdom', 'GB', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(78, 'Grenada', 'GD', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(79, 'Georgia', 'GE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(80, 'French Guiana', 'GF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(81, 'Guernsey', 'GG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(82, 'Ghana', 'GH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(83, 'Gibraltar', 'GI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(84, 'Greenland', 'GL', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(85, 'Gambia', 'GM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(86, 'Guinea', 'GN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(87, 'Guadeloupe', 'GP', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(88, 'Equatorial Guinea', 'GQ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(89, 'Greece', 'GR', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(90, 'South Georgia And The South Sandwich Islands', 'GS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(91, 'Guatemala', 'GT', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(92, 'Guam', 'GU', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(93, 'Guinea-Bissau', 'GW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(94, 'Guyana', 'GY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(95, 'Hong Kong', 'HK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(96, 'Honduras', 'HN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(97, 'Croatia', 'HR', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(98, 'Haiti', 'HT', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(99, 'Hungary', 'HU', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(100, 'Indonesia', 'ID', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(101, 'Ireland', 'IE', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(102, 'Israel', 'IL', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(103, 'Isle Of Man', 'IM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(104, 'India', 'IN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(105, 'British Indian Ocean Territory', 'IO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(106, 'Iraq', 'IQ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(107, 'Iran', 'IR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(108, 'Iceland', 'IS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(109, 'Italy', 'IT', 0, 1, '22.0', 1, 0, 1, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(110, 'Jersey', 'JE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(111, 'Jamaica', 'JM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(112, 'Jordan', 'JO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(113, 'Japan', 'JP', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(114, 'Kenya', 'KE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(115, 'Kyrgyzstan', 'KG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(116, 'Cambodia', 'KH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(117, 'Kiribati', 'KI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(118, 'Comoros', 'KM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(119, 'Saint Kitts And Nevis', 'KN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(120, 'North Korea', 'KP', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(121, 'South Korea', 'KR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(122, 'Kuwait', 'KW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(123, 'Cayman Islands', 'KY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(124, 'Kazakhstan', 'KZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(125, 'Laos', 'LA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(126, 'Lebanon', 'LB', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(127, 'Saint Lucia', 'LC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(128, 'Liechtenstein', 'LI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(129, 'Sri Lanka', 'LK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(130, 'Liberia', 'LR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(131, 'Lesotho', 'LS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(132, 'Lithuania', 'LT', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(133, 'Luxembourg', 'LU', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(134, 'Latvia', 'LV', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(135, 'Libya', 'LY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(136, 'Morocco', 'MA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(137, 'Monaco', 'MC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(138, 'Moldova', 'MD', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(139, 'Montenegro', 'ME', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(140, 'Saint Martin', 'MF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(141, 'Madagascar', 'MG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(142, 'Marshall Islands', 'MH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(143, 'Macedonia', 'MK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(144, 'Mali', 'ML', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(145, 'Myanmar', 'MM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(146, 'Mongolia', 'MN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(147, 'Macao', 'MO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(148, 'Northern Mariana Islands', 'MP', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(149, 'Martinique', 'MQ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(150, 'Mauritania', 'MR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(151, 'Montserrat', 'MS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(152, 'Malta', 'MT', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(153, 'Mauritius', 'MU', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(154, 'Maldives', 'MV', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(155, 'Malawi', 'MW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(156, 'Mexico', 'MX', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(157, 'Malaysia', 'MY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(158, 'Mozambique', 'MZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(159, 'Namibia', 'NA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(160, 'New Caledonia', 'NC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(161, 'Niger', 'NE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(162, 'Norfolk Island', 'NF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(163, 'Nigeria', 'NG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(164, 'Nicaragua', 'NI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(165, 'Netherlands', 'NL', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(166, 'Norway', 'NO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(167, 'Nepal', 'NP', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(168, 'Nauru', 'NR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(169, 'Niue', 'NU', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(170, 'New Zealand', 'NZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(171, 'Oman', 'OM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(172, 'Panama', 'PA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(173, 'Peru', 'PE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(174, 'French Polynesia', 'PF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(175, 'Papua New Guinea', 'PG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(176, 'Philippines', 'PH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(177, 'Pakistan', 'PK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(178, 'Poland', 'PL', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(179, 'Saint Pierre And Miquelon', 'PM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(180, 'Puerto Rico', 'PR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(181, 'Palestinian Territory', 'PS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(182, 'Portugal', 'PT', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(183, 'Palau', 'PW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(184, 'Paraguay', 'PY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(185, 'Qatar', 'QA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(186, 'Reunion', 'RE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(187, 'Romania', 'RO', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(188, 'Serbia', 'RS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(189, 'Russia', 'RU', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(190, 'Rwanda', 'RW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(191, 'Saudi Arabia', 'SA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(192, 'Solomon Islands', 'SB', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(193, 'Seychelles', 'SC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(194, 'Sudan', 'SD', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(195, 'Sweden', 'SE', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(196, 'Singapore', 'SG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(197, 'Saint Helena', 'SH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(198, 'Slovenia', 'SI', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(199, 'Svalbard And Jan Mayen', 'SJ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(200, 'Slovakia', 'SK', 0, 1, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(201, 'Sierra Leone', 'SL', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(202, 'San Marino', 'SM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(203, 'Senegal', 'SN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(204, 'Somalia', 'SO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(205, 'Suriname', 'SR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(206, 'South Sudan', 'SS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(207, 'Sao Tome And Principe', 'ST', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(208, 'El Salvador', 'SV', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(209, 'Sint Maarten', 'SX', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(210, 'Syria', 'SY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(211, 'Swaziland', 'SZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(212, 'Turks And Caicos Islands', 'TC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(213, 'Chad', 'TD', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(214, 'French Southern Territories', 'TF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(215, 'Togo', 'TG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(216, 'Thailand', 'TH', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(217, 'Tajikistan', 'TJ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(218, 'Tokelau', 'TK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(219, 'East Timor', 'TL', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(220, 'Turkmenistan', 'TM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(221, 'Tunisia', 'TN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(222, 'Tonga', 'TO', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(223, 'Turkey', 'TR', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(224, 'Trinidad And Tobago', 'TT', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(225, 'Tuvalu', 'TV', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(226, 'Taiwan', 'TW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(227, 'Tanzania', 'TZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(228, 'Ukraine', 'UA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(229, 'Uganda', 'UG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(230, 'United States Minor Outlying Islands', 'UM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(231, 'United States', 'US', 0, 0, '0.0', 1, 0, 1, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(232, 'Uruguay', 'UY', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(233, 'Uzbekistan', 'UZ', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(234, 'Saint Vincent And The Grenadines', 'VC', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(235, 'Venezuela', 'VE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(236, 'British Virgin Islands', 'VG', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(237, 'U.S. Virgin Islands', 'VI', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(238, 'Vietnam', 'VN', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(239, 'Vanuatu', 'VU', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(240, 'Wallis And Futuna', 'WF', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(241, 'Samoa', 'WS', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(242, 'Kosovo', 'XK', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(243, 'Yemen', 'YE', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(244, 'Mayotte', 'YT', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(245, 'South Africa', 'ZA', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(246, 'Zambia', 'ZM', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00'),
+(247, 'Zimbabwe', 'ZW', 0, 0, '0.0', 1, 0, 0, '2016-08-08 22:00:00', '2016-08-08 22:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `domains`
+-- Table structure for table `domains`
 --
 
-DROP TABLE IF EXISTS `domains`;
 CREATE TABLE `domains` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -564,21 +601,20 @@ CREATE TABLE `domains` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `domains`
+-- Dumping data for table `domains`
 --
 
 INSERT INTO `domains` (`id`, `domain`, `title`, `value`, `sort`, `pub`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'imagetype', '', '', 10, 1, 0, '2016-06-23 05:36:42', '2016-06-28 05:58:39'),
-(2, 'imagetype', '', '', 20, 1, 0, '2016-06-23 05:38:24', '2016-06-28 05:59:19'),
-(21, 'template', '', 'template_subpage', 30, 1, 0, '2016-06-28 11:18:04', '2016-12-27 13:17:35');
+(1, 'imagetype', '', '', 10, 1, 0, '2016-06-23 07:36:42', '2016-06-28 07:58:39'),
+(2, 'imagetype', '', '', 20, 1, 0, '2016-06-23 07:38:24', '2016-06-28 07:59:19'),
+(21, 'template', '', 'template_subpage', 30, 1, 0, '2016-06-28 13:18:04', '2016-12-27 14:17:35');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `domain_translations`
+-- Table structure for table `domain_translations`
 --
 
-DROP TABLE IF EXISTS `domain_translations`;
 CREATE TABLE `domain_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain_id` int(10) UNSIGNED NOT NULL,
@@ -590,24 +626,49 @@ CREATE TABLE `domain_translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `domain_translations`
+-- Dumping data for table `domain_translations`
 --
 
 INSERT INTO `domain_translations` (`id`, `domain_id`, `locale`, `title`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'it', 'Top Header Slider', 0, '2016-06-23 05:36:42', '2016-06-28 05:58:39'),
-(2, 1, 'en', 'Top Header Slider', 0, '2016-06-23 05:36:42', '2016-06-28 05:58:39'),
-(7, 2, 'it', 'Bottom Slider Image', 0, '2016-06-23 05:38:24', '2016-06-28 05:59:19'),
-(8, 2, 'en', 'page gallery', 0, '2016-06-23 05:38:24', '2016-12-27 15:38:49'),
-(121, 21, 'it', 'Template con sottopagine', 0, '2016-06-28 11:18:04', '2016-07-04 05:38:10'),
-(122, 21, 'en', 'Sub page template', 0, '2016-06-28 11:18:04', '2016-12-27 13:17:28');
+(1, 1, 'it', 'Top Header Slider', 0, '2016-06-23 07:36:42', '2016-06-28 07:58:39'),
+(2, 1, 'en', 'Top Header Slider', 0, '2016-06-23 07:36:42', '2016-06-28 07:58:39'),
+(7, 2, 'it', 'Bottom Slider Image', 0, '2016-06-23 07:38:24', '2016-06-28 07:59:19'),
+(8, 2, 'en', 'page gallery', 0, '2016-06-23 07:38:24', '2016-12-27 16:38:49'),
+(121, 21, 'it', 'Template con sottopagine', 0, '2016-06-28 13:18:04', '2016-07-04 07:38:10'),
+(122, 21, 'en', 'Sub page template', 0, '2016-06-28 13:18:04', '2016-12-27 14:17:28');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `examples`
+-- Table structure for table `errors`
 --
 
-DROP TABLE IF EXISTS `examples`;
+CREATE TABLE `errors` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `message` varchar(256) NOT NULL,
+  `file` varchar(256) NOT NULL,
+  `line` int(11) NOT NULL,
+  `trace` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `errors`
+--
+
+INSERT INTO `errors` (`id`, `message`, `file`, `line`, `trace`, `created_at`, `updated_at`) VALUES
+(1, 'Class App\\LaraCms\\Website\\Controllers\\Auth\\Request does not exist', '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php', 25, '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php\\n\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/ImplicitRouteBinding.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/ForceSSLMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/public/index.php\\n/Users/web08/.composer/vendor/laravel/valet/server.php', '2018-06-20 07:23:25', '2018-06-20 07:23:25'),
+(2, 'Class App\\LaraCms\\Website\\Controllers\\Auth\\Request does not exist', '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php', 25, '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php\\n\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/ImplicitRouteBinding.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/ForceSSLMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/public/index.php\\n/Users/web08/.composer/vendor/laravel/valet/server.php', '2018-06-20 07:25:40', '2018-06-20 07:25:40'),
+(3, 'Class App\\LaraCms\\Website\\Controllers\\Auth\\Request does not exist', '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php', 25, '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php\\n\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/ImplicitRouteBinding.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/ForceSSLMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/public/index.php\\n/Users/web08/.composer/vendor/laravel/valet/server.php', '2018-06-20 07:27:30', '2018-06-20 07:27:30'),
+(4, 'Class \'App\\LaraCms\\Website\\Controllers\\Auth\\Registered\' not found', '/Users/web08/REPOLARAVEL/framework_base/app/laraCms/Website/Controllers/Auth/RegisterController.php', 108, '\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Controller.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/RedirectIfAuthenticated.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/UserCart.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/mcamara/laravel-localization/src/Mcamara/LaravelLocalization/Middleware/LaravelLocalizationRedirectFilter.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/GF_ShieldMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/ForceSSLMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/public/index.php\\n/Users/web08/.composer/vendor/laravel/valet/server.php', '2018-06-20 07:34:54', '2018-06-20 07:34:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `examples`
+--
+
 CREATE TABLE `examples` (
   `id` int(10) UNSIGNED NOT NULL,
   `article_id` int(11) NOT NULL,
@@ -618,6 +679,7 @@ CREATE TABLE `examples` (
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image_media_id` int(11) DEFAULT NULL,
   `sort` int(11) DEFAULT '0',
   `pub` tinyint(4) DEFAULT '1',
   `color` varchar(7) COLLATE utf8_unicode_ci DEFAULT '0',
@@ -627,19 +689,18 @@ CREATE TABLE `examples` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `examples`
+-- Dumping data for table `examples`
 --
 
-INSERT INTO `examples` (`id`, `article_id`, `article_2_id`, `title`, `description`, `description_2`, `slug`, `doc`, `image`, `sort`, `pub`, `color`, `date`, `created_at`, `updated_at`) VALUES
-(1, 1, 7, '', '', NULL, NULL, '', 'test.png', 10, 1, '#da80f0', '2017-08-09', '2017-08-23 08:20:05', '2017-08-26 14:43:52');
+INSERT INTO `examples` (`id`, `article_id`, `article_2_id`, `title`, `description`, `description_2`, `slug`, `doc`, `image`, `image_media_id`, `sort`, `pub`, `color`, `date`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, '', '', NULL, NULL, '', 'test.png', NULL, 10, 1, '#80b0f0', '2017-08-09', '2017-08-23 10:20:05', '2017-08-23 12:09:33');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `example_article`
+-- Table structure for table `example_article`
 --
 
-DROP TABLE IF EXISTS `example_article`;
 CREATE TABLE `example_article` (
   `example_id` int(10) UNSIGNED NOT NULL,
   `article_id` int(10) UNSIGNED NOT NULL,
@@ -648,7 +709,7 @@ CREATE TABLE `example_article` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `example_article`
+-- Dumping data for table `example_article`
 --
 
 INSERT INTO `example_article` (`example_id`, `article_id`, `created_at`, `updated_at`) VALUES
@@ -659,10 +720,9 @@ INSERT INTO `example_article` (`example_id`, `article_id`, `created_at`, `update
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `example_translations`
+-- Table structure for table `example_translations`
 --
 
-DROP TABLE IF EXISTS `example_translations`;
 CREATE TABLE `example_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `example_id` int(10) UNSIGNED NOT NULL,
@@ -673,7 +733,6 @@ CREATE TABLE `example_translations` (
   `description_2` text COLLATE utf8_unicode_ci,
   `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `seo_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_no_index` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `update_by` int(11) NOT NULL,
@@ -682,20 +741,19 @@ CREATE TABLE `example_translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `example_translations`
+-- Dumping data for table `example_translations`
 --
 
-INSERT INTO `example_translations` (`id`, `example_id`, `locale`, `slug`, `title`, `description`, `description_2`, `seo_title`, `seo_description`, `seo_keywords`, `seo_no_index`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'it', 'lorem-ipsum', 'Lorem ipsum', 'Lorem ipsum dolor sit amet consectetur adipisci elit', '<p>Lorem ipsum dolor sit amet consectetur adipisci elit&nbsp;</p>', '', '', '', '', 0, 0, '2017-08-23 08:20:05', '2017-08-23 08:20:05'),
-(2, 1, 'en', 'xvxvcxv', 'xvxvcxv', '', '', '', '', '', '', 0, 0, '2017-08-23 08:20:05', '2017-08-26 14:43:52');
+INSERT INTO `example_translations` (`id`, `example_id`, `locale`, `slug`, `title`, `description`, `description_2`, `seo_title`, `seo_description`, `seo_no_index`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 'it', 'lorem-ipsum', 'Lorem ipsum', 'Lorem ipsum dolor sit amet consectetur adipisci elit', '<p>Lorem ipsum dolor sit amet consectetur adipisci elit&nbsp;</p>', '', '', '', 0, 0, '2017-08-23 10:20:05', '2017-08-23 10:20:05'),
+(2, 1, 'en', '', '', '', '', '', '', '', 0, 0, '2017-08-23 10:20:05', '2017-08-23 10:20:05');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `hpsliders`
+-- Table structure for table `hpsliders`
 --
 
-DROP TABLE IF EXISTS `hpsliders`;
 CREATE TABLE `hpsliders` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -712,20 +770,19 @@ CREATE TABLE `hpsliders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `hpsliders`
+-- Dumping data for table `hpsliders`
 --
 
 INSERT INTO `hpsliders` (`id`, `title`, `description`, `icon`, `image`, `link`, `slug`, `sort`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'maguttiCms Slider', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', '', 'laracms-slier', 200, 1, 0, '2016-12-27 16:34:38', '2017-08-02 11:17:01'),
-(2, 'magutti 5.5', 'A modular multilingual CMS built with Laravel 5.5', NULL, 'header1.jpg', '', 'laracms-53', 100, 1, 0, '2016-12-27 17:18:09', '2017-08-02 12:04:31');
+(1, 'laraCms Slier', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', '', 'laracms-slier', 200, 1, 0, '2016-12-27 17:34:38', '2017-08-02 13:17:01'),
+(2, 'laraCms 5.3', 'A modular multilingual CMS built with Laravel 5.3', NULL, 'header1.jpg', '', 'laracms-53', 100, 1, 0, '2016-12-27 18:18:09', '2017-08-02 14:04:31');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `media`
+-- Table structure for table `media`
 --
 
-DROP TABLE IF EXISTS `media`;
 CREATE TABLE `media` (
   `id` int(10) UNSIGNED NOT NULL,
   `media_category_id` int(10) UNSIGNED NOT NULL,
@@ -733,6 +790,7 @@ CREATE TABLE `media` (
   `model_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `collection_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `alt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `file_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `file_ext` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -746,112 +804,51 @@ CREATE TABLE `media` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `media`
+-- Dumping data for table `media`
 --
 
-INSERT INTO `media` (`id`, `media_category_id`, `model_id`, `model_type`, `collection_name`, `title`, `description`, `file_name`, `file_ext`, `disk`, `size`, `manipulations`, `pub`, `sort`, `created_at`, `updated_at`) VALUES
-(65, 1, 33, 'App\\Article', 'images', '', '', '84861-bg-header.jpg', 'jpg', 'images', 200854, '', 1, NULL, '2016-06-28 05:45:54', '2016-06-28 05:45:54'),
-(66, 2, 55, 'App\\Article', 'images', '', '', '97814-bg-header.jpg', 'jpg', 'images', 200854, '', 1, 10, '2016-06-28 07:49:53', '2016-06-28 05:49:53'),
-(67, 2, 55, 'App\\Article', 'images', '', '', '40330-bg-header.jpg', 'jpg', 'images', 200854, '', 1, 20, '2016-06-28 07:49:56', '2016-06-28 05:49:56'),
-(68, 2, 55, 'App\\Article', 'images', '', '', '58490-bg-header.jpg', 'jpg', 'images', 200854, '', 1, 30, '2016-06-28 07:49:56', '2016-06-28 05:49:56'),
-(69, 1, 59, 'App\\Article', 'images', '', '', '90919-bg-header.jpg', 'jpg', 'images', 200854, '', 1, NULL, '2016-06-29 09:13:03', '2016-06-29 09:13:03'),
-(70, 1, 59, 'App\\Article', 'images', '', '', '57396-bg-header.jpg', 'jpg', 'images', 200854, '', 1, NULL, '2016-06-29 09:13:06', '2016-06-29 09:13:06'),
-(71, 1, 60, 'App\\Article', 'images', '', '', '70822-bg-header.jpg', 'jpg', 'images', 200854, '', 1, NULL, '2016-06-29 09:51:08', '2016-06-29 09:51:08'),
-(72, 1, 1, 'App\\Environment', 'images', '', '', '50598-image-3.jpg', 'jpg', 'images', 77269, '', 1, NULL, '2016-06-30 08:08:36', '2016-06-30 08:08:36'),
-(73, 1, 1, 'App\\Environment', 'images', '', '', '92355-image-1.jpg', 'jpg', 'images', 64057, '', 1, NULL, '2016-06-30 10:11:59', '2016-06-30 08:08:50'),
-(74, 1, 2, 'App\\Environment', 'images', '', '', '22895-bg-header.jpg', 'jpg', 'images', 200854, '', 1, NULL, '2016-06-30 08:23:59', '2016-06-30 08:23:59'),
-(75, 1, 3, 'App\\Environment', 'images', '', '', '23356-1-allestimento-cremona-disegno.jpg', 'jpg', 'images', 1339279, '', 1, NULL, '2016-07-01 02:49:01', '2016-07-01 02:49:01'),
-(76, 1, 3, 'App\\Environment', 'images', '', '', '13429-3-allestimento-cremona.jpg', 'jpg', 'images', 1245406, '', 1, NULL, '2016-07-01 02:49:01', '2016-07-01 02:49:01'),
-(77, 1, 3, 'App\\Environment', 'images', '', '', '80018-4-allestimento-cremona-ficus-exotica-designer-900-cm-green.jpg', 'jpg', 'images', 681713, '', 1, NULL, '2016-07-01 02:49:02', '2016-07-01 02:49:02'),
-(78, 1, 3, 'App\\Environment', 'images', '', '', '38616-2-allestimento-cremona.jpg', 'jpg', 'images', 908195, '', 1, NULL, '2016-07-01 02:49:02', '2016-07-01 02:49:02'),
-(79, 1, 4, 'App\\Environment', 'images', '', '', '73032-idromassaggio-1.jpg', 'jpg', 'images', 549951, '', 1, NULL, '2016-07-01 03:37:29', '2016-07-01 03:37:29'),
-(80, 1, 4, 'App\\Environment', 'images', '', '', '23833-idromassaggio-3.jpg', 'jpg', 'images', 605191, '', 1, NULL, '2016-07-01 03:37:29', '2016-07-01 03:37:29'),
-(81, 1, 4, 'App\\Environment', 'images', '', '', '71278-idromassaggio-2.jpg', 'jpg', 'images', 787230, '', 1, NULL, '2016-07-01 03:37:30', '2016-07-01 03:37:30'),
-(82, 1, 4, 'App\\Article', 'images', '', '', '86991-on-sale-icon.jpg', 'jpg', 'images', 12886, '', 1, NULL, '2016-08-04 08:46:39', '2016-08-04 08:46:39'),
-(90, 1, 6, 'App\\Article', 'images', '', '', '50175-ric.png', 'png', 'images', 179478, '', 1, NULL, '2016-08-04 10:39:20', '2016-08-04 10:39:20'),
-(91, 1, 6, 'App\\Article', 'images', '', '', '90125-ric.png', 'png', 'images', 179478, '', 1, NULL, '2016-08-04 10:43:28', '2016-08-04 10:43:28'),
-(92, 1, 6, 'App\\Article', 'images', '', '', '93572-ric.png', 'png', 'images', 179478, '', 1, NULL, '2016-08-04 10:47:29', '2016-08-04 10:47:29'),
-(93, 1, 6, 'App\\Article', 'images', '', '', 'ric.png', 'png', 'images', 179478, '', 1, NULL, '2016-08-04 10:48:47', '2016-08-04 10:48:47'),
-(94, 1, 6, 'App\\Article', 'images', '', '', '30256-ric.png', 'png', 'images', 179478, '', 1, NULL, '2016-08-04 10:49:07', '2016-08-04 10:49:07'),
-(95, 1, 11, 'App\\Article', 'images', '', '', '30088-14230-casa-in-tronchi-tecnica-blockbau-val-bedretto-005.JPG', 'JPG', 'images', 363183, '', 1, NULL, '2016-12-26 11:20:33', '2016-12-26 11:20:33'),
-(96, 1, 1, 'App\\Article', 'images', '', '', 'anisa6.jpg', 'jpg', 'images', 67882, '', 1, NULL, '2016-12-26 11:21:43', '2016-12-26 11:21:43'),
-(97, 1, 1, 'App\\Article', 'images', '', '', 'anisa3.jpg', 'jpg', 'images', 130930, '', 1, NULL, '2016-12-26 11:25:51', '2016-12-26 11:25:51'),
-(98, 1, 3, 'App\\News', 'images', '', '', 'anisa3.jpg', 'jpg', 'images', 130930, '', 1, NULL, '2017-01-03 14:35:11', '2017-01-03 14:35:11'),
-(99, 1, 3, 'App\\News', 'images', '', '', 'anisa7.jpg', 'jpg', 'images', 150003, '', 1, NULL, '2017-01-03 14:35:24', '2017-01-03 14:35:24'),
-(100, 0, 1, 'App\\Example', 'docs', '', '', 'framework_base.sql', 'sql', '', 97352, '', 1, NULL, '2017-08-26 13:50:01', '2017-08-26 13:50:01'),
-(101, 0, 1, 'App\\Example', 'docs', '', '', '48459-framework-base.sql', 'sql', '', 97352, '', 1, NULL, '2017-08-26 14:43:59', '2017-08-26 14:43:59');
+INSERT INTO `media` (`id`, `media_category_id`, `model_id`, `model_type`, `collection_name`, `title`, `alt`, `description`, `file_name`, `file_ext`, `disk`, `size`, `manipulations`, `pub`, `sort`, `created_at`, `updated_at`) VALUES
+(2, 0, 2, 'App\\Article', 'images', '', NULL, '', 'ff0000.png', 'png', '', 14594, '', 1, NULL, '2018-05-03 09:55:26', '2018-05-03 09:55:26'),
+(3, 0, 2, 'App\\Article', 'images', '', NULL, '', '24524-00ff00.png', 'png', '', 14903, '', 1, NULL, '2018-05-03 09:56:11', '2018-05-03 09:56:11');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `media_translations`
+-- Table structure for table `media_translations`
 --
 
-DROP TABLE IF EXISTS `media_translations`;
 CREATE TABLE `media_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `media_id` int(10) UNSIGNED NOT NULL,
   `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `alt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `media_translations`
+-- Dumping data for table `media_translations`
 --
 
-INSERT INTO `media_translations` (`id`, `media_id`, `locale`, `title`, `description`, `created_at`, `updated_at`) VALUES
-(116, 65, 'it', '84861-bg-header.jpg', '', '2016-06-28 05:45:54', '2016-06-28 05:45:54'),
-(117, 66, 'it', '97814-bg-header.jpg', '', '2016-06-28 05:48:40', '2016-06-28 05:48:40'),
-(118, 67, 'it', '40330-bg-header.jpg', '', '2016-06-28 05:48:56', '2016-06-28 05:48:56'),
-(119, 68, 'it', '58490-bg-header.jpg', '', '2016-06-28 05:49:01', '2016-06-28 05:49:01'),
-(120, 66, 'en', '', '', '2016-06-28 05:49:18', '2016-06-28 05:49:18'),
-(121, 67, 'en', '', '', '2016-06-28 05:49:32', '2016-06-28 05:49:32'),
-(122, 68, 'en', '', '', '2016-06-28 05:49:41', '2016-06-28 05:49:41'),
-(123, 69, 'it', '90919-bg-header.jpg', '', '2016-06-29 09:13:03', '2016-06-29 09:13:03'),
-(124, 70, 'it', '57396-bg-header.jpg', '', '2016-06-29 09:13:06', '2016-06-29 09:13:06'),
-(125, 71, 'it', '70822-bg-header.jpg', '', '2016-06-29 09:51:08', '2016-06-29 09:51:08'),
-(126, 72, 'it', '50598-image-3.jpg', '', '2016-06-30 08:08:36', '2016-06-30 08:08:36'),
-(127, 73, 'it', '92355-image-1.jpg', '', '2016-06-30 08:08:40', '2016-06-30 08:08:40'),
-(128, 73, 'en', '', '', '2016-06-30 08:08:50', '2016-06-30 08:08:50'),
-(129, 74, 'it', '22895-bg-header.jpg', '', '2016-06-30 08:23:59', '2016-06-30 08:23:59'),
-(130, 75, 'it', '23356-1-allestimento-cremona-disegno.jpg', '', '2016-07-01 02:49:01', '2016-07-01 02:49:01'),
-(131, 76, 'it', '13429-3-allestimento-cremona.jpg', '', '2016-07-01 02:49:01', '2016-07-01 02:49:01'),
-(132, 77, 'it', '80018-4-allestimento-cremona-ficus-exotica-designer-900-cm-green.jpg', '', '2016-07-01 02:49:02', '2016-07-01 02:49:02'),
-(133, 78, 'it', '38616-2-allestimento-cremona.jpg', '', '2016-07-01 02:49:02', '2016-07-01 02:49:02'),
-(134, 79, 'it', '73032-idromassaggio-1.jpg', '', '2016-07-01 03:37:29', '2016-07-01 03:37:29'),
-(135, 80, 'it', '23833-idromassaggio-3.jpg', '', '2016-07-01 03:37:29', '2016-07-01 03:37:29'),
-(136, 81, 'it', '71278-idromassaggio-2.jpg', '', '2016-07-01 03:37:30', '2016-07-01 03:37:30'),
-(137, 82, 'it', '86991-on-sale-icon.jpg', '', '2016-08-04 08:46:39', '2016-08-04 08:46:39'),
-(145, 90, 'it', '50175-ric.png', '', '2016-08-04 10:39:20', '2016-08-04 10:39:20'),
-(146, 91, 'it', '90125-ric.png', '', '2016-08-04 10:43:28', '2016-08-04 10:43:28'),
-(147, 92, 'it', '93572-ric.png', '', '2016-08-04 10:47:29', '2016-08-04 10:47:29'),
-(148, 93, 'it', 'ric.png', '', '2016-08-04 10:48:47', '2016-08-04 10:48:47'),
-(149, 94, 'it', '30256-ric.png', '', '2016-08-04 10:49:07', '2016-08-04 10:49:07'),
-(150, 95, 'en', '30088-14230-casa-in-tronchi-tecnica-blockbau-val-bedretto-005.JPG', '', '2016-12-26 11:20:33', '2016-12-26 11:20:33'),
-(151, 96, 'en', 'anisa6.jpg', '', '2016-12-26 11:21:43', '2016-12-26 11:21:43'),
-(152, 97, 'en', 'anisa3.jpg', '', '2016-12-26 11:25:51', '2016-12-26 11:25:51'),
-(153, 98, 'en', 'anisa3.jpg', '', '2017-01-03 14:35:11', '2017-01-03 14:35:11'),
-(154, 99, 'en', 'anisa7.jpg', '', '2017-01-03 14:35:24', '2017-01-03 14:35:24'),
-(155, 100, 'it', 'framework_base.sql', '', '2017-08-26 13:50:01', '2017-08-26 13:50:01'),
-(156, 101, 'en', '48459-framework-base.sql', '', '2017-08-26 14:43:59', '2017-08-26 14:43:59');
+INSERT INTO `media_translations` (`id`, `media_id`, `locale`, `title`, `alt`, `description`, `created_at`, `updated_at`) VALUES
+(2, 2, 'it', 'ff0000.png', NULL, '', '2018-05-03 09:55:26', '2018-05-03 09:55:26'),
+(3, 3, 'it', '24524-00ff00.png', NULL, '', '2018-05-03 09:56:11', '2018-05-03 09:56:11');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `migrations`
+-- Table structure for table `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`migration`, `batch`) VALUES
@@ -887,10 +884,9 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `news`
+-- Table structure for table `news`
 --
 
-DROP TABLE IF EXISTS `news`;
 CREATE TABLE `news` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -899,7 +895,7 @@ CREATE TABLE `news` (
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sort` int(11) NOT NULL,
   `pub` tinyint(4) DEFAULT '1',
@@ -909,19 +905,18 @@ CREATE TABLE `news` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `news`
+-- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `domain`, `date`, `title`, `description`, `slug`, `doc`, `image`, `link`, `sort`, `pub`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, '', '2017-07-11', '', '', 'pinoscotto11', '96281-dedprifxoaaxql6.jpg', 'DEDpRifXoAAXql6.jpg', NULL, 0, 1, 0, '2017-07-11 05:18:08', '2017-08-02 07:21:57');
+(1, '', '2017-07-11', '', '', 'pinoscotto11', '96281-dedprifxoaaxql6.jpg', 'DEDpRifXoAAXql6.jpg', NULL, 0, 1, 0, '2017-07-11 07:18:08', '2017-08-02 09:21:57');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `newsletters`
+-- Table structure for table `newsletters`
 --
 
-DROP TABLE IF EXISTS `newsletters`;
 CREATE TABLE `newsletters` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -933,22 +928,12 @@ CREATE TABLE `newsletters` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dump dei dati per la tabella `newsletters`
---
-
-INSERT INTO `newsletters` (`id`, `name`, `email`, `sort`, `pub`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, '', 'marcoasperti@gmail.com', 0, 1, 0, '2017-09-03 09:59:51', '2017-09-03 09:59:51'),
-(2, '', 'marco@magutti.com', 0, 1, 0, '2017-09-03 10:05:02', '2017-09-03 10:05:02'),
-(3, '', 'marco.a@gfstudio.com', 0, 1, 0, '2017-09-03 11:14:36', '2017-09-03 11:14:36');
-
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `news_tag`
+-- Table structure for table `news_tag`
 --
 
-DROP TABLE IF EXISTS `news_tag`;
 CREATE TABLE `news_tag` (
   `news_id` int(10) UNSIGNED NOT NULL,
   `tag_id` int(10) UNSIGNED NOT NULL,
@@ -959,10 +944,9 @@ CREATE TABLE `news_tag` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `news_translations`
+-- Table structure for table `news_translations`
 --
 
-DROP TABLE IF EXISTS `news_translations`;
 CREATE TABLE `news_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -975,7 +959,6 @@ CREATE TABLE `news_translations` (
   `intro` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `seo_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `update_by` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -983,20 +966,58 @@ CREATE TABLE `news_translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `news_translations`
+-- Dumping data for table `news_translations`
 --
 
-INSERT INTO `news_translations` (`id`, `slug`, `news_id`, `locale`, `title`, `description`, `abstract`, `subtitle`, `intro`, `seo_title`, `seo_description`, `seo_keywords`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 'titolo-della-news-1', 1, 'it', 'Titolo della news 1', '<p>wqeqweqweqw</p>', NULL, NULL, NULL, '', '', '', 0, 0, '2017-07-11 05:18:08', '2017-08-02 07:21:57'),
-(2, 'news-one-title', 1, 'en', 'News  one  title', '', NULL, NULL, NULL, '', '', '', 0, 0, '2017-07-11 05:18:08', '2017-08-02 07:21:57');
+INSERT INTO `news_translations` (`id`, `slug`, `news_id`, `locale`, `title`, `description`, `abstract`, `subtitle`, `intro`, `seo_title`, `seo_description`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
+(1, 'titolo-della-news-1', 1, 'it', 'Titolo della news 1', '<p>wqeqweqweqw</p>', NULL, NULL, NULL, '', '', 0, 0, '2017-07-11 07:18:08', '2017-08-02 09:21:57'),
+(2, 'news-one-title', 1, 'en', 'News  one  title', '', NULL, NULL, NULL, '', '', 0, 0, '2017-07-11 07:18:08', '2017-08-02 09:21:57');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `password_resets`
+-- Table structure for table `orders`
 --
 
-DROP TABLE IF EXISTS `password_resets`;
+CREATE TABLE `orders` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `cart_id` int(11) NOT NULL,
+  `products_cost` varchar(255) NOT NULL DEFAULT '',
+  `shipping_cost` varchar(255) NOT NULL DEFAULT '',
+  `vat_cost` varchar(255) NOT NULL,
+  `total_cost` varchar(255) NOT NULL DEFAULT '',
+  `billing_address_id` int(11) NOT NULL,
+  `shipping_address_id` int(11) NOT NULL,
+  `token` varchar(32) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `cartitem_id` int(11) NOT NULL,
+  `product_code` varchar(255) NOT NULL DEFAULT '',
+  `product_model_code` varchar(255) DEFAULT '',
+  `quantity` int(11) NOT NULL,
+  `price` float NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
 CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1006,10 +1027,51 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `permissions`
+-- Table structure for table `payments`
 --
 
-DROP TABLE IF EXISTS `permissions`;
+CREATE TABLE `payments` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `payment_method_id` int(11) NOT NULL,
+  `is_paid` tinyint(4) NOT NULL,
+  `code` varchar(255) NOT NULL DEFAULT '',
+  `transaction` varchar(255) NOT NULL,
+  `notes` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_methods`
+--
+
+CREATE TABLE `payment_methods` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `code` varchar(10) NOT NULL,
+  `is_active` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `payment_methods`
+--
+
+INSERT INTO `payment_methods` (`id`, `title`, `code`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Paypal', 'paypal', 1, '2018-06-15 08:26:08', '2018-06-15 08:26:08'),
+(2, 'Bonifico', 'bank', 1, '2018-06-15 08:26:26', '2018-06-15 08:26:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
 CREATE TABLE `permissions` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1022,10 +1084,9 @@ CREATE TABLE `permissions` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `permission_role`
+-- Table structure for table `permission_role`
 --
 
-DROP TABLE IF EXISTS `permission_role`;
 CREATE TABLE `permission_role` (
   `permission_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
@@ -1034,17 +1095,18 @@ CREATE TABLE `permission_role` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `products`
+-- Table structure for table `products`
 --
 
-DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` int(10) UNSIGNED NOT NULL,
+  `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `category_id` int(10) UNSIGNED DEFAULT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `subtitle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `price` float NOT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `video` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1052,27 +1114,26 @@ CREATE TABLE `products` (
   `pub` tinyint(4) DEFAULT '1',
   `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `seo_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `products`
+-- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `category_id`, `title`, `subtitle`, `description`, `slug`, `image`, `doc`, `video`, `sort`, `pub`, `seo_title`, `seo_description`, `seo_keywords`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 1, '', '', '', NULL, 'san-pellegrino.jpg', NULL, '', 0, 1, NULL, NULL, NULL, 0, '2017-08-02 08:09:39', '2017-08-02 08:11:08'),
-(2, 3, '', '', '', NULL, 'magutti_optional.jpg', NULL, '', 0, 1, NULL, NULL, NULL, 0, '2017-09-02 11:36:53', '2017-09-16 15:02:37');
+INSERT INTO `products` (`id`, `code`, `category_id`, `title`, `subtitle`, `description`, `slug`, `price`, `image`, `doc`, `video`, `sort`, `pub`, `seo_title`, `seo_description`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 'PRDA', 1, '', '', '', NULL, 10, 'A.png', NULL, '', 0, 1, NULL, NULL, 0, '2017-08-02 10:09:39', '2018-06-13 14:48:28'),
+(2, 'PRDB', 2, '', '', '', NULL, 20, 'B.png', NULL, '', 10, 1, NULL, NULL, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
+(3, 'PRDC', 3, '', '', '', NULL, 30, 'Cpng.png', NULL, '', 0, 1, NULL, NULL, 0, '2018-06-13 14:50:05', '2018-06-13 14:50:05');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_models`
+-- Table structure for table `product_models`
 --
 
-DROP TABLE IF EXISTS `product_models`;
 CREATE TABLE `product_models` (
   `id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
@@ -1089,10 +1150,9 @@ CREATE TABLE `product_models` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_model_translations`
+-- Table structure for table `product_model_translations`
 --
 
-DROP TABLE IF EXISTS `product_model_translations`;
 CREATE TABLE `product_model_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `product_model_id` int(10) NOT NULL,
@@ -1108,10 +1168,9 @@ CREATE TABLE `product_model_translations` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_translations`
+-- Table structure for table `product_translations`
 --
 
-DROP TABLE IF EXISTS `product_translations`;
 CREATE TABLE `product_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1123,7 +1182,6 @@ CREATE TABLE `product_translations` (
   `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `seo_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_by` int(10) UNSIGNED NOT NULL,
   `update_by` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1131,22 +1189,23 @@ CREATE TABLE `product_translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `product_translations`
+-- Dumping data for table `product_translations`
 --
 
-INSERT INTO `product_translations` (`id`, `slug`, `product_id`, `locale`, `title`, `subtitle`, `description`, `doc`, `seo_title`, `seo_description`, `seo_keywords`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 'prodotto-numero-1', 1, 'it', 'prodotto numero 1', '', '', NULL, '', '', '', 0, 0, '2017-08-02 08:09:39', '2017-08-02 08:09:39'),
-(2, 'product-number-1', 1, 'en', 'Product number 1', '', '', NULL, '', '', '', 0, 0, '2017-08-02 08:09:39', '2017-08-02 08:09:39'),
-(3, 'aaa', 2, 'en', 'aa', 'aaa', '<p>aaa</p>', NULL, '', '', '', 0, 0, '2017-09-02 11:36:53', '2017-09-02 11:36:53'),
-(4, 'a', 2, 'it', 'a', '', '', NULL, '', '', '', 0, 0, '2017-09-02 11:36:53', '2017-09-02 11:37:25');
+INSERT INTO `product_translations` (`id`, `slug`, `product_id`, `locale`, `title`, `subtitle`, `description`, `doc`, `seo_title`, `seo_description`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
+(1, 'prodotto-a', 1, 'it', 'Prodotto A', '', '', NULL, '', '', 0, 0, '2017-08-02 10:09:39', '2018-06-13 14:48:28'),
+(2, 'product-number-1', 1, 'en', 'Product number 1', '', '', NULL, '', '', 0, 0, '2017-08-02 10:09:39', '2017-08-02 10:09:39'),
+(3, 'prodotto-b', 2, 'it', 'Prodotto B', '', '', NULL, '', '', 0, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
+(4, 'product-b', 2, 'en', 'Product B', '', '', NULL, '', '', 0, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
+(5, 'prodotto-c', 3, 'it', 'Prodotto C', '', '', NULL, '', '', 0, 0, '2018-06-13 14:50:05', '2018-06-13 14:50:05'),
+(6, 'product-c', 3, 'en', 'Product C', '', '', NULL, '', '', 0, 0, '2018-06-13 14:50:05', '2018-06-13 14:50:05');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `provinces`
+-- Table structure for table `provinces`
 --
 
-DROP TABLE IF EXISTS `provinces`;
 CREATE TABLE `provinces` (
   `id` int(10) NOT NULL,
   `country_id` int(8) NOT NULL,
@@ -1158,7 +1217,7 @@ CREATE TABLE `provinces` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dump dei dati per la tabella `provinces`
+-- Dumping data for table `provinces`
 --
 
 INSERT INTO `provinces` (`id`, `country_id`, `state_id`, `title`, `code`, `created_at`, `updated_at`) VALUES
@@ -1276,10 +1335,9 @@ INSERT INTO `provinces` (`id`, `country_id`, `state_id`, `title`, `code`, `creat
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `roles`
+-- Table structure for table `roles`
 --
 
-DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1290,29 +1348,28 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'su', 'super user', 'can do all', '2015-12-20 17:23:32', '2015-12-20 17:23:32'),
-(2, 'admin', 'admin', 'admi  user', '2015-12-20 17:26:36', '2015-12-20 17:26:36'),
-(3, 'user', 'user', 'user role', '2015-12-20 17:50:58', '2015-12-20 17:50:58'),
-(7, 'Guest', 'guest', 'guest user', '2015-12-28 12:37:23', '2015-12-28 12:37:23');
+(1, 'su', 'super user', 'can do all', '2015-12-20 18:23:32', '2015-12-20 18:23:32'),
+(2, 'admin', 'admin', 'admi  user', '2015-12-20 18:26:36', '2015-12-20 18:26:36'),
+(3, 'user', 'user', 'user role', '2015-12-20 18:50:58', '2015-12-20 18:50:58'),
+(7, 'Guest', 'guest', 'guest user', '2015-12-28 13:37:23', '2015-12-28 13:37:23');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `role_user`
+-- Table structure for table `role_user`
 --
 
-DROP TABLE IF EXISTS `role_user`;
 CREATE TABLE `role_user` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `role_user`
+-- Dumping data for table `role_user`
 --
 
 INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
@@ -1322,10 +1379,9 @@ INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `settings`
+-- Table structure for table `settings`
 --
 
-DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
   `id` int(10) UNSIGNED NOT NULL,
   `key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1337,21 +1393,23 @@ CREATE TABLE `settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `settings`
+-- Dumping data for table `settings`
 --
 
 INSERT INTO `settings` (`id`, `key`, `value`, `description`, `domain`, `created_at`, `updated_at`) VALUES
-(1, 'GA_CODE', 'UA-', 'Codice  google  analitycs', 'GA', '2016-08-09 10:01:24', '2016-08-09 10:28:06'),
-(2, 'credits_url', 'http://www.gfstudio.com', 'url credits', 'webiste', '2016-08-09 10:29:05', '2016-12-29 13:35:06'),
-(3, 'GA_MAP_API_KEY', '', 'Google maps apy key', 'GA', '2016-12-27 16:28:54', '2016-12-29 08:24:44');
+(1, 'GA_CODE', 'UA-', 'Codice  google  analitycs', 'GA', '2016-08-09 12:01:24', '2016-08-09 12:28:06'),
+(2, 'credits_url', 'http://www.gfstudio.com', 'url credits', 'webiste', '2016-08-09 12:29:05', '2016-12-29 14:35:06'),
+(3, 'GMAPS_KEY', '', 'Google maps apy key', '', '2016-12-27 17:28:54', '2016-12-29 09:24:44'),
+(4, 'iubenda_code_it', 'asd', '', '', '2018-06-05 07:08:21', '2018-06-05 07:08:21'),
+(5, 'iubenda_code_en', 'fgh', '', '', '2018-06-05 07:10:35', '2018-06-05 07:10:35'),
+(6, 'iubenda_site', 'jkl', '', '', '2018-06-05 07:10:49', '2018-06-05 07:10:49');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `socials`
+-- Table structure for table `socials`
 --
 
-DROP TABLE IF EXISTS `socials`;
 CREATE TABLE `socials` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1367,21 +1425,35 @@ CREATE TABLE `socials` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `socials`
+-- Dumping data for table `socials`
 --
 
 INSERT INTO `socials` (`id`, `title`, `description`, `icon`, `image`, `link`, `sort`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'facebook', NULL, 'fa-facebook', '', 'http://www.facebook.com', 10, 1, 0, '2016-08-09 10:50:01', '2016-08-09 08:50:01'),
-(2, 'Twitter', '', 'fa-twitter', '', 'http://www.twitter.com', 20, 1, 0, '2016-06-28 10:58:53', '2016-06-28 08:58:53'),
-(3, 'Linkedin', '', 'fa-linkedin', '', 'http://www.linkedin.com', 30, 1, 0, '2016-06-28 10:58:59', '2016-06-28 08:58:59');
+(1, 'facebook', NULL, 'fa-facebook', '', 'http://www.facebook.com', 10, 1, 0, '2016-08-09 12:50:01', '2016-08-09 10:50:01'),
+(2, 'Twitter', '', 'fa-twitter', '', 'http://www.twitter.com', 20, 1, 0, '2016-06-28 12:58:53', '2016-06-28 10:58:53'),
+(3, 'Linkedin', '', 'fa-linkedin', '', 'http://www.linkedin.com', 30, 1, 0, '2016-06-28 12:58:59', '2016-06-28 10:58:59');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `states`
+-- Table structure for table `special_prices`
 --
 
-DROP TABLE IF EXISTS `states`;
+CREATE TABLE `special_prices` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `product_code` varchar(255) NOT NULL DEFAULT '',
+  `list_code` varchar(10) NOT NULL,
+  `price` float NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `states`
+--
+
 CREATE TABLE `states` (
   `id` int(10) NOT NULL,
   `country_id` int(8) NOT NULL,
@@ -1392,7 +1464,7 @@ CREATE TABLE `states` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dump dei dati per la tabella `states`
+-- Dumping data for table `states`
 --
 
 INSERT INTO `states` (`id`, `country_id`, `title`, `zone`, `created_at`, `updated_at`) VALUES
@@ -1420,10 +1492,9 @@ INSERT INTO `states` (`id`, `country_id`, `title`, `zone`, `created_at`, `update
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `tags`
+-- Table structure for table `tags`
 --
 
-DROP TABLE IF EXISTS `tags`;
 CREATE TABLE `tags` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1435,21 +1506,20 @@ CREATE TABLE `tags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `tags`
+-- Dumping data for table `tags`
 --
 
 INSERT INTO `tags` (`id`, `title`, `slug`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, '', 'tag', 0, 0, '2016-12-27 17:07:28', '2016-12-27 16:07:28'),
-(2, '', 'php', 0, 0, '2016-12-27 16:07:15', '2016-12-27 16:07:15'),
-(4, '', 'artisan', 0, 0, '2017-08-02 12:01:53', '2017-08-02 12:01:53');
+(1, '', 'tag', 0, 0, '2016-12-27 18:07:28', '2016-12-27 17:07:28'),
+(2, '', 'php', 0, 0, '2016-12-27 17:07:15', '2016-12-27 17:07:15'),
+(4, '', 'artisan', 0, 0, '2017-08-02 14:01:53', '2017-08-02 14:01:53');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `tag_translations`
+-- Table structure for table `tag_translations`
 --
 
-DROP TABLE IF EXISTS `tag_translations`;
 CREATE TABLE `tag_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `tag_id` int(10) UNSIGNED NOT NULL,
@@ -1460,73 +1530,76 @@ CREATE TABLE `tag_translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `tag_translations`
+-- Dumping data for table `tag_translations`
 --
 
 INSERT INTO `tag_translations` (`id`, `tag_id`, `locale`, `title`, `created_at`, `updated_at`) VALUES
-(1, 1, 'en', 'Tag', '2016-12-27 17:07:07', '2016-12-27 16:07:07'),
-(2, 1, 'it', 'tag', '2016-12-27 13:46:45', '2016-12-27 12:46:45'),
-(3, 2, 'en', 'PHP', '2016-12-27 16:07:15', '2016-12-27 16:07:15'),
-(4, 2, 'it', 'Php', '2016-12-27 16:07:15', '2017-08-02 12:02:09'),
-(7, 4, 'it', 'Artisan', '2017-08-02 12:01:53', '2017-08-02 12:01:53'),
-(8, 4, 'en', 'Artisan', '2017-08-02 12:01:53', '2017-08-02 12:01:53');
+(1, 1, 'en', 'Tag', '2016-12-27 18:07:07', '2016-12-27 17:07:07'),
+(2, 1, 'it', 'tag', '2016-12-27 14:46:45', '2016-12-27 13:46:45'),
+(3, 2, 'en', 'PHP', '2016-12-27 17:07:15', '2016-12-27 17:07:15'),
+(4, 2, 'it', 'Php', '2016-12-27 17:07:15', '2017-08-02 14:02:09'),
+(7, 4, 'it', 'Artisan', '2017-08-02 14:01:53', '2017-08-02 14:01:53'),
+(8, 4, 'en', 'Artisan', '2017-08-02 14:01:53', '2017-08-02 14:01:53');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `users`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `gender` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `real_password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `list_code` varchar(10) COLLATE utf8_unicode_ci DEFAULT '',
+  `is_active` tinyint(4) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `is_active` tinyint(4) NOT NULL DEFAULT '1'
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `real_password`, `remember_token`, `created_at`, `updated_at`, `is_active`) VALUES
-(1, 'pinoa', 'pino@scotto.it', '$2y$10$oh4huMx8DhS.uwbME44vpe2DHWjAAMW48Hg1G/CflbWla2hmWCP8m', 'pinoscotto', NULL, '2017-07-07 11:37:30', '2017-07-07 12:43:25', 1),
-(2, 'Angelo marco Asperti', 'pino@scotto.eu', '$2y$10$KHh8bUQYlsdRBZmjJqpJb.R1Rr7xjeR.ed90Bph0POnPOn5BUs63S', 'pinetto', '0L6Vg9BG7xBbyYTrY7Ir7jithwhbC4vI3wahSC72WnKQjPajXNBY3HcKgCIc', '2017-08-01 13:50:49', '2017-09-16 12:32:17', 1),
-(3, 'marco', 'laracms@gfstudio.com', '$2y$10$02t5oduS./DNeANAwWYK1uO8VzSBC8U1fYAfK5AXFFJpGh0oTmAeu', 'ginaschena', 'GqwXQmnt3430eSh2bqQtHKps4pkRWmE91HTgwZnTJBtfF5iP58jf4JcS5dbO', '2017-08-02 06:40:00', '2017-08-02 06:41:36', 1),
-(4, 'dsfds', 'io@ui.it', '', NULL, NULL, '2017-09-16 14:43:02', '2017-09-16 14:43:02', 1),
-(5, 'fsdfsd', 'io@ui.ir', '', NULL, NULL, '2017-09-16 14:44:12', '2017-09-16 14:49:10', 1);
+INSERT INTO `users` (`id`, `name`, `email`, `gender`, `password`, `real_password`, `remember_token`, `list_code`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'GFstudio User', 'user@gfstudio.com', 'M', '$2y$10$XmrieXL.VXNw1sw4rYlxsu0B8acy8skQ2ABtls0zAp6jaOduBXZqW', 'california09', 'taeEe1GVsBFZh2Ui9qELCV9Aaqb93wu5iQcs1oD8qhv4HHkj4o7XBsZDUOXW', '', 1, '2017-07-07 13:37:30', '2018-06-14 12:04:28');
 
 --
--- Indici per le tabelle scaricate
+-- Indexes for dumped tables
 --
 
 --
--- Indici per le tabelle `adminusers`
+-- Indexes for table `addresses`
+--
+ALTER TABLE `addresses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `adminusers`
 --
 ALTER TABLE `adminusers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indici per le tabelle `adminuser_role`
+-- Indexes for table `adminuser_role`
 --
 ALTER TABLE `adminuser_role`
   ADD PRIMARY KEY (`adminuser_id`,`role_id`),
   ADD KEY `adminuser_role_role_id_foreign` (`role_id`);
 
 --
--- Indici per le tabelle `articles`
+-- Indexes for table `articles`
 --
 ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `article_translations`
+-- Indexes for table `article_translations`
 --
 ALTER TABLE `article_translations`
   ADD PRIMARY KEY (`id`),
@@ -1534,14 +1607,26 @@ ALTER TABLE `article_translations`
   ADD KEY `article_translations_locale_index` (`locale`);
 
 --
--- Indici per le tabelle `categories`
+-- Indexes for table `carts`
+--
+ALTER TABLE `carts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cart_items`
+--
+ALTER TABLE `cart_items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `categories_slug_unique` (`slug`);
 
 --
--- Indici per le tabelle `category_translations`
+-- Indexes for table `category_translations`
 --
 ALTER TABLE `category_translations`
   ADD PRIMARY KEY (`id`),
@@ -1549,25 +1634,25 @@ ALTER TABLE `category_translations`
   ADD KEY `categories_translations_locale_index` (`locale`);
 
 --
--- Indici per le tabelle `contacts`
+-- Indexes for table `contacts`
 --
 ALTER TABLE `contacts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `countries`
+-- Indexes for table `countries`
 --
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `domains`
+-- Indexes for table `domains`
 --
 ALTER TABLE `domains`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `domain_translations`
+-- Indexes for table `domain_translations`
 --
 ALTER TABLE `domain_translations`
   ADD PRIMARY KEY (`id`),
@@ -1575,20 +1660,26 @@ ALTER TABLE `domain_translations`
   ADD KEY `domains_translations_locale_index` (`locale`);
 
 --
--- Indici per le tabelle `examples`
+-- Indexes for table `errors`
+--
+ALTER TABLE `errors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `examples`
 --
 ALTER TABLE `examples`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `example_article`
+-- Indexes for table `example_article`
 --
 ALTER TABLE `example_article`
   ADD KEY `example_article_example_id_index` (`example_id`),
   ADD KEY `example_article_article_id_index` (`article_id`);
 
 --
--- Indici per le tabelle `example_translations`
+-- Indexes for table `example_translations`
 --
 ALTER TABLE `example_translations`
   ADD PRIMARY KEY (`id`),
@@ -1596,21 +1687,21 @@ ALTER TABLE `example_translations`
   ADD KEY `example_translations_locale_unique` (`locale`);
 
 --
--- Indici per le tabelle `hpsliders`
+-- Indexes for table `hpsliders`
 --
 ALTER TABLE `hpsliders`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `hpsliders_slug_unique` (`slug`);
 
 --
--- Indici per le tabelle `media`
+-- Indexes for table `media`
 --
 ALTER TABLE `media`
   ADD PRIMARY KEY (`id`),
   ADD KEY `media_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
--- Indici per le tabelle `media_translations`
+-- Indexes for table `media_translations`
 --
 ALTER TABLE `media_translations`
   ADD PRIMARY KEY (`id`),
@@ -1618,26 +1709,26 @@ ALTER TABLE `media_translations`
   ADD KEY `media_translations_locale_index` (`locale`);
 
 --
--- Indici per le tabelle `news`
+-- Indexes for table `news`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `newsletters`
+-- Indexes for table `newsletters`
 --
 ALTER TABLE `newsletters`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `news_tag`
+-- Indexes for table `news_tag`
 --
 ALTER TABLE `news_tag`
   ADD KEY `news_tag_news_id_index` (`news_id`),
   ADD KEY `news_tag_tag_id_index` (`tag_id`);
 
 --
--- Indici per le tabelle `news_translations`
+-- Indexes for table `news_translations`
 --
 ALTER TABLE `news_translations`
   ADD PRIMARY KEY (`id`),
@@ -1645,47 +1736,73 @@ ALTER TABLE `news_translations`
   ADD KEY `news_translations_locale_index` (`locale`);
 
 --
--- Indici per le tabelle `password_resets`
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `order_token_unique` (`token`);
+
+--
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`),
   ADD KEY `password_resets_token_index` (`token`);
 
 --
--- Indici per le tabelle `permissions`
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payment_methods`
+--
+ALTER TABLE `payment_methods`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `permissions_name_unique` (`name`);
 
 --
--- Indici per le tabelle `permission_role`
+-- Indexes for table `permission_role`
 --
 ALTER TABLE `permission_role`
   ADD PRIMARY KEY (`permission_id`,`role_id`),
   ADD KEY `permission_role_role_id_foreign` (`role_id`);
 
 --
--- Indici per le tabelle `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `products_code_unique` (`code`),
   ADD UNIQUE KEY `products_slug_unique` (`slug`);
 
 --
--- Indici per le tabelle `product_models`
+-- Indexes for table `product_models`
 --
 ALTER TABLE `product_models`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `product_model_translations`
+-- Indexes for table `product_model_translations`
 --
 ALTER TABLE `product_model_translations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `product_translations`
+-- Indexes for table `product_translations`
 --
 ALTER TABLE `product_translations`
   ADD PRIMARY KEY (`id`),
@@ -1693,7 +1810,7 @@ ALTER TABLE `product_translations`
   ADD KEY `products_translations_locale_index` (`locale`);
 
 --
--- Indici per le tabelle `provinces`
+-- Indexes for table `provinces`
 --
 ALTER TABLE `provinces`
   ADD PRIMARY KEY (`id`),
@@ -1701,21 +1818,21 @@ ALTER TABLE `provinces`
   ADD KEY `id_country` (`country_id`);
 
 --
--- Indici per le tabelle `roles`
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `roles_name_unique` (`name`);
 
 --
--- Indici per le tabelle `role_user`
+-- Indexes for table `role_user`
 --
 ALTER TABLE `role_user`
   ADD PRIMARY KEY (`user_id`,`role_id`),
   ADD KEY `role_user_role_id_foreign` (`role_id`);
 
 --
--- Indici per le tabelle `settings`
+-- Indexes for table `settings`
 --
 ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`),
@@ -1723,26 +1840,32 @@ ALTER TABLE `settings`
   ADD KEY `settings_id_index` (`id`);
 
 --
--- Indici per le tabelle `socials`
+-- Indexes for table `socials`
 --
 ALTER TABLE `socials`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `states`
+-- Indexes for table `special_prices`
+--
+ALTER TABLE `special_prices`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `states`
 --
 ALTER TABLE `states`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_country` (`country_id`);
 
 --
--- Indici per le tabelle `tags`
+-- Indexes for table `tags`
 --
 ALTER TABLE `tags`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `tag_translations`
+-- Indexes for table `tag_translations`
 --
 ALTER TABLE `tag_translations`
   ADD PRIMARY KEY (`id`),
@@ -1750,234 +1873,278 @@ ALTER TABLE `tag_translations`
   ADD KEY `tag_translations_locale_index` (`locale`);
 
 --
--- Indici per le tabelle `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT per le tabelle scaricate
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT per la tabella `adminusers`
+-- AUTO_INCREMENT for table `addresses`
+--
+ALTER TABLE `addresses`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `adminusers`
 --
 ALTER TABLE `adminusers`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT per la tabella `articles`
+-- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT per la tabella `article_translations`
+-- AUTO_INCREMENT for table `article_translations`
 --
 ALTER TABLE `article_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
--- AUTO_INCREMENT per la tabella `categories`
+-- AUTO_INCREMENT for table `carts`
+--
+ALTER TABLE `carts`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `cart_items`
+--
+ALTER TABLE `cart_items`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT per la tabella `category_translations`
+-- AUTO_INCREMENT for table `category_translations`
 --
 ALTER TABLE `category_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT per la tabella `contacts`
+-- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `countries`
+-- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
 --
--- AUTO_INCREMENT per la tabella `domains`
+-- AUTO_INCREMENT for table `domains`
 --
 ALTER TABLE `domains`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
--- AUTO_INCREMENT per la tabella `domain_translations`
+-- AUTO_INCREMENT for table `domain_translations`
 --
 ALTER TABLE `domain_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 --
--- AUTO_INCREMENT per la tabella `examples`
+-- AUTO_INCREMENT for table `errors`
+--
+ALTER TABLE `errors`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `examples`
 --
 ALTER TABLE `examples`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT per la tabella `example_translations`
+-- AUTO_INCREMENT for table `example_translations`
 --
 ALTER TABLE `example_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT per la tabella `hpsliders`
+-- AUTO_INCREMENT for table `hpsliders`
 --
 ALTER TABLE `hpsliders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT per la tabella `media`
+-- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT per la tabella `media_translations`
+-- AUTO_INCREMENT for table `media_translations`
 --
 ALTER TABLE `media_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT per la tabella `news`
+-- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT per la tabella `newsletters`
+-- AUTO_INCREMENT for table `newsletters`
 --
 ALTER TABLE `newsletters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `news_translations`
+-- AUTO_INCREMENT for table `news_translations`
 --
 ALTER TABLE `news_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT per la tabella `permissions`
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `payment_methods`
+--
+ALTER TABLE `payment_methods`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT per la tabella `product_models`
+-- AUTO_INCREMENT for table `product_models`
 --
 ALTER TABLE `product_models`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `product_model_translations`
+-- AUTO_INCREMENT for table `product_model_translations`
 --
 ALTER TABLE `product_model_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `product_translations`
+-- AUTO_INCREMENT for table `product_translations`
 --
 ALTER TABLE `product_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT per la tabella `provinces`
+-- AUTO_INCREMENT for table `provinces`
 --
 ALTER TABLE `provinces`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 --
--- AUTO_INCREMENT per la tabella `roles`
+-- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
--- AUTO_INCREMENT per la tabella `settings`
+-- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT per la tabella `socials`
+-- AUTO_INCREMENT for table `socials`
 --
 ALTER TABLE `socials`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT per la tabella `states`
+-- AUTO_INCREMENT for table `special_prices`
+--
+ALTER TABLE `special_prices`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
--- AUTO_INCREMENT per la tabella `tags`
+-- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT per la tabella `tag_translations`
+-- AUTO_INCREMENT for table `tag_translations`
 --
 ALTER TABLE `tag_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT per la tabella `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- Limiti per le tabelle scaricate
+-- Constraints for dumped tables
 --
 
 --
--- Limiti per la tabella `adminuser_role`
+-- Constraints for table `adminuser_role`
 --
 ALTER TABLE `adminuser_role`
   ADD CONSTRAINT `adminuser_role_adminuser_id_foreign` FOREIGN KEY (`adminuser_id`) REFERENCES `adminusers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `adminuser_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `article_translations`
+-- Constraints for table `article_translations`
 --
 ALTER TABLE `article_translations`
   ADD CONSTRAINT `article_translations_article_id_foreign` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE;
 
 --
--- Limiti per la tabella `domain_translations`
+-- Constraints for table `domain_translations`
 --
 ALTER TABLE `domain_translations`
   ADD CONSTRAINT `domains_translations_domain_id_foreign` FOREIGN KEY (`domain_id`) REFERENCES `domains` (`id`) ON DELETE CASCADE;
 
 --
--- Limiti per la tabella `media_translations`
+-- Constraints for table `media_translations`
 --
 ALTER TABLE `media_translations`
   ADD CONSTRAINT `media_translations_media_id_foreign` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE CASCADE;
 
 --
--- Limiti per la tabella `news_tag`
+-- Constraints for table `news_tag`
 --
 ALTER TABLE `news_tag`
   ADD CONSTRAINT `news_tag_news_id_foreign` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `news_tag_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE;
 
 --
--- Limiti per la tabella `news_translations`
+-- Constraints for table `news_translations`
 --
 ALTER TABLE `news_translations`
   ADD CONSTRAINT `news_translations_news_id_foreign` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE;
 
 --
--- Limiti per la tabella `permission_role`
+-- Constraints for table `permission_role`
 --
 ALTER TABLE `permission_role`
   ADD CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `product_translations`
+-- Constraints for table `product_translations`
 --
 ALTER TABLE `product_translations`
   ADD CONSTRAINT `products_translations_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
--- Limiti per la tabella `role_user`
+-- Constraints for table `role_user`
 --
 ALTER TABLE `role_user`
   ADD CONSTRAINT `role_user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `tag_translations`
+-- Constraints for table `tag_translations`
 --
 ALTER TABLE `tag_translations`
   ADD CONSTRAINT `tag_translations_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

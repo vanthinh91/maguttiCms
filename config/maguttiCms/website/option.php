@@ -3,7 +3,8 @@ return [
 
 
     'app' => [
-        'name'	   => 'maguttiCms GFStudio',
+        'name'	   => 'MaguttiCms',
+		'legal'		=> 'MaguttiCms Framework',
         'address'  => '5.3 maguttiCms Street',
         'locality' => 'Bergamo - Italy',
         'lat'      => '45.612310',
@@ -29,5 +30,15 @@ return [
         'bottom'	  => '3',
     ],
 
+	// FontAwesome or MaterialIcons
+	'icons' => 'fa',
+	// 'icons' => 'mi',
+
 	'js_localization' => ['website','message'],
+
+	'ghost_input' => [
+		'models' => [
+			'CartItem'
+		]
+	]
 ];

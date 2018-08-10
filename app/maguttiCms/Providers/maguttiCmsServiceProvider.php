@@ -1,8 +1,5 @@
-<?php namespace App\MaguttiCms\Providers;
+<?php namespace App\maguttiCms\Providers;
 
-use App\User;
-use FFMpeg;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 /*
@@ -12,14 +9,14 @@ use DB;
 use Event;
 use Validator;
 use Illuminate\Validation\Rule;
-
+use Illuminate\Support\Facades\Blade;
 
 /*
-    |--------------------------------------------------------------------------
-    | common maguttiCms service providers
-    |--------------------------------------------------------------------------
-    | here  will'be set all the common action
-    */
+|--------------------------------------------------------------------------
+| common maguttiCms service providers
+|--------------------------------------------------------------------------
+| here  will'be set all the common action
+*/
 class LaraServiceProvider extends ServiceProvider
 {
     /**
@@ -56,48 +53,29 @@ class LaraServiceProvider extends ServiceProvider
             });
         }
 
+
         /*
         |--------------------------------------------------------------------------
-        |  MAGUTTI VALIDATION CUSTOM DIRECTIVE
+        |  LARACMS VALIDATION CUSTOM DIRECTIVE
         |--------------------------------------------------------------------------
         */
 
         Validator::extend('is_unique', function($attribute, $value, $parameters, $validator) {
+
             $model  = request()->segment(3);
             $config = config('maguttiCms.admin.list.section.' .$model);
             $id     = (request()->segment(4))?:null;
             if(getModelFromString($config['model'])::where($attribute,$value)->where('id','!=',$id)->count()) return false;
             return true;
         });
-        /** video duration validation 'video' => 'video:25' */
-        Validator::extend('video', function($attribute, $value, $parameters, $validator) {
-            //$ffmpeg = FFMpeg::open('pino.mp4');
-            //$ffmpeg = FFMpeg\FFMpeg::create();
-            //$video =$ffmpeg->open($value->getRealPath());
-            //$video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(5))
-            //      ->save('frame5.jpg');
-            //if (!($value instanceof UploadedFile)) return false;
 
-            if(!empty($value->getClientOriginalExtension()) && ($value->getClientOriginalExtension() == 'mp4')){
 
-                $ffprobe = FFMpeg\FFProbe::create();
-                $duration = $ffprobe
-                    ->format($value->getRealPath()) // extracts file informations
-                    ->get('duration');
-                 return(round($duration) > $parameters[0]) ?false:true;
-            }else{
-                return false;
-            }
-        });
 
         /*
         |--------------------------------------------------------------------------
         |  BLADE CUSTOM DIRECTIVE
         |--------------------------------------------------------------------------
         */
-
-
-
     }
 
     /**
@@ -107,6 +85,6 @@ class LaraServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        //
     }
 }

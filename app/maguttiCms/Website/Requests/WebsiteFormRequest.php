@@ -1,6 +1,6 @@
 <?php
 
-namespace App\MaguttiCms\Website\Requests;
+namespace App\maguttiCms\Website\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Input;

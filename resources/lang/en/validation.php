@@ -88,13 +88,12 @@ return [
     */
 
     'custom' => [
-        '*' => [
-            'is_unique'                 => 'The :attribute is already present.',
-        ],
-
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        '*' => [
+            'is_unique'                 => 'The :attribute is already present.',
+        ]
     ],
 
     /*
@@ -108,9 +107,6 @@ return [
     |
     */
 
-    'attributes' => [
-
-        'is_unique'                 => 'The :attribute is already present.',
-    ],
+    'attributes' => [],
 
 ];

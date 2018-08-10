@@ -1,150 +1,139 @@
-<nav class="navbar navbar-inverse navbar-fixed-top bottomonly-shadow">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand"
-               href="/admin" target="_new">
-                <img src="{!! asset('cms/image/').'/'.config('maguttiCms.admin.option.logo')!!}" alt="CMS Login" style="margin-top:2px;height:45px;">
-            </a>
-        </div>
+@php
+	if (isset($pageConfig))
+		$current_model = $pageConfig['model'];
+	else
+		$current_model = false;
+@endphp
+<header class="header">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="main">
+		<a id="sidebar-toggle" href="#sidebar" class="nav-toggle">
+			{{icon('angle-right', 'fa-2x')}}
+		</a>
+		<a class="logo" href="/admin">
+			<img src="{!! asset('cms/images/logo-white.png')!!}" alt="CMS Login">
+		</a>
+		<a id="navbar-toggle" href="#navbar" class="nav-toggle">
+			{{icon('bars', 'fa-2x')}}
+		</a>
+	</div>
 
-        @if ($view_name != 'admin-login')
-
-        <!-- Navbar Right -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                 @if (Auth::guard('admin')->check())
-
-                    @if (Auth::guard('admin')->user()->hasRole('su'))
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tools
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="dropdown">
-                                    <a href="{{ ma_get_admin_list_url('adminusers') }}"><i class="fa fa-fw fa-list"></i> Admin</a>
-                                </li>
-                                <li>
-                                    <a href="{{  ma_get_admin_create_url('adminusers') }}"><i class="fa fa-fw fa-plus"></i> Add Admin</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="{{ ma_get_admin_list_url('domains') }}"><i class="fa fa-fw fa-list"></i> Domains</a>
-                                </li>
-                                <li>
-                                    <a href="{{ ma_get_admin_create_url('domains') }}"><i class="fa fa-fw fa-plus"></i> Add Domains</a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ ma_get_admin_list_url('countries') }}"><i class="fa fa-fw fa-list"></i> Countries</a>
-                                </li>
-                                <li>
-                                    <a href="{{ ma_get_admin_create_url('countries') }}"><i class="fa fa-fw fa-plus"></i> Add Country</a>
-                                </li>
-                                <li>
-                                    <a href="{{ ma_get_admin_list_url('settings') }}"><i class="fa fa-fw fa-list"></i> Settings</a>
-                                </li>
-                                <li>
-                                    <a href="{{ ma_get_admin_create_url('settings') }}"><i class="fa fa-fw fa-plus"></i> Add Setting</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="{{ ma_get_admin_list_url('roles') }}"><i class="fa fa-fw fa-list"></i> Roles</a>
-                                </li>
-                                <li>
-                                    <a href="{{ ma_get_admin_create_url('roles') }}"><i class="fa fa-fw fa-plus"></i> Add Role</a>
-                                </li>
-                            </ul>
-                        </li>
-                    @endif
-                    <li class="dropdown">
-
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"  aria-expanded="false">{{Auth::guard('admin')->user()->fullname}} <span class="caret"></span></a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            @if (Auth::guard('admin')->check())
-                                <li>
-                                    <a href="{{ URL::to('/admin/logout') }}">Logout</a>
-                                </li>
-                                <li>
-                                    <a href="{{ URL::to('/admin/edit/adminusers/'.Auth::guard('admin')->user()->id) }}">Profile</a>
-                                </li>
-                            @else
-                                <li>
-                                    <a href="{{ URL::to('/admin/login') }}">Login</a>
-                                </li>
-                            @endif
-                        </ul>
-                    </li>
-                @endif
-            </ul>
-            @auth('admin')
-				<div id="sidebar">
-					<div id="sidebar-button">
-						<i class="fa fa-angle-left fa-3x"></i>
-					</div>
-	                <ul class="nav navbar-nav navbar">
-	                    <li class="site-link">
-	                        <a href="{{ URL::to('/') }}" target="_new">View Site</a>
-	                    </li>
-	                    <li class="dashboard">
-	                        <a href="{{ URL::to('/admin/') }}">DashBoard</a>
-	                    </li>
-                        @foreach(config('maguttiCms.admin.list.section') as $section)
-	                        @if ( isset($section['menu']['top-bar']['show']) && $section['menu']['top-bar']['show']==true  && Auth::guard('admin')->user()->canViewSection($section))
-	                            <li class="dropdown">
-	                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ $section['title'] }}
-	                                    <span class="caret"></span>
-	                                </a>
-	                                <ul class="dropdown-menu" role="menu">
-	                                    <li>
-	                                        <a href="{{ ma_get_admin_list_url($section['model']) }}"><i class="fa fa-list"></i> {{ $section['title'] }}</a>
-	                                    </li>
-	                                    @if ( isset($section['menu']['top-bar']['action']) )
-	                                        @foreach($section['menu']['top-bar']['action'] as $action )
-	                                            @if ( $action == "add" )
-	                                                <li>
-	                                                    <a href="{{  ma_get_admin_create_url($section['model']) }}"><i class="fa fa-plus"></i> Add {{ $section['title'] }}</a>
-	                                                </li>
-	                                            @elseif ( $action == "website" )
-	                                                <li>
-	                                                    <a href="{{ URL::to('') }}" class="color-2" target="_new"><i class="fa fa-globe"></i> View site </a>
-	                                                </li>
-	                                            @endif
-	                                        @endforeach
-	                                    @endif
-	                                    @if ( isset($section['menu']['top-bar']['submodel']) )
-	                                        @foreach($section['menu']['top-bar']['submodel'] as $item )
-
-	                                            <li>
-	                                                <a href="{{ ma_get_admin_list_url($item['model']) }}"><i class="fa fa-list"></i> {{ ucfirst ($item['label'])  }}</a>
-	                                            </li>
-	                                            @if($item['add']==1)
-	                                            <li>
-	                                                <a href="{{  ma_get_admin_create_url($item['model']) }}"><i class="fa fa-plus"></i> Add {{ ucfirst ($item['label'])  }}</a>
-	                                            </li>
-	                                            @endif
-
-	                                       @endforeach
-	                                   @endif
-
-	                               </ul>
-	                           </li>
-	                       @endif
-	                   @endforeach
-	               </ul>
-			   </div>
-           @endauth
-       </div>
-
-       @endif
-
-   </div>
-</nav>
+	<!-- Navbar Right -->
+	<nav id="navbar" class="nav right">
+		<ul>
+			@if (Auth::guard('admin')->check())
+				@if (Auth::guard('admin')->user()->hasRole('su'))
+					<li>
+						<a href="#" class="nav-sub-toggle">
+							{{trans('admin.label.tools')}}{{icon('caret-down', 'dropdown-icon')}}
+						</a>
+						<ul class="nav-sub">
+							<li>
+								<a href="{{ ma_get_admin_list_url('adminusers') }}">
+									{{icon('user-circle')}}{{trans('admin.models.adminusers')}}
+								</a>
+							</li>
+							<li>
+								<a href="{{ ma_get_admin_list_url('domains') }}">
+									{{icon('puzzle-piece')}}{{trans('admin.models.domains')}}
+								</a>
+							</li>
+							<li>
+								<a href="{{ ma_get_admin_list_url('countries') }}">
+									{{icon('globe')}}{{trans('admin.models.countries')}}
+								</a>
+							</li>
+							<li>
+								<a href="{{ ma_get_admin_list_url('settings') }}">
+									{{icon('wrench')}}{{trans('admin.models.settings')}}
+								</a>
+							</li>
+							<li>
+								<a href="{{ ma_get_admin_list_url('roles') }}">
+									{{icon('users')}}{{trans('admin.models.roles')}}
+								</a>
+							</li>
+						</ul>
+					</li>
+				@endif
+				<li>
+					<a href="#" class="nav-sub-toggle">
+						{{Auth::guard('admin')->user()->fullname}}{{icon('caret-down', 'dropdown-icon')}}
+					</a>
+					<ul class="nav-sub">
+						@if (Auth::guard('admin')->check())
+							<li>
+								<a href="{{ URL::to('/admin/edit/adminusers/'.Auth::guard('admin')->user()->id) }}">
+									{{icon('user')}}{{trans('admin.label.profile')}}
+								</a>
+							</li>
+							<li>
+								<a href="{{ URL::to('/admin/logout') }}">
+									{{icon('sign-out')}}{{trans('admin.label.logout')}}
+								</a>
+							</li>
+						@else
+							<li>
+								<a href="{{ URL::to('/admin/login') }}">
+									{{icon('sign-in')}}{{trans('admin.label.login')}}
+								</a>
+							</li>
+						@endif
+					</ul>
+				</li>
+			@endif
+		</ul>
+	</nav>
+	@if (Auth::guard('admin')->check())
+		<nav id="sidebar" class="nav vertical left">
+			<ul class="body">
+				<li>
+					<a href="{{ URL::to('/') }}" target="_new" class="highlight">
+						{{icon('globe')}}{{trans('admin.label.go_to_site')}}
+					</a>
+				</li>
+				<li>
+					<a href="{{ URL::to('/admin/') }}" class="highlight">
+						{{icon('th')}}{{trans('admin.label.dashboard')}}
+					</a>
+				</li>
+				@foreach(config('maguttiCms.admin.list.section') as $_code => $_section)
+					@if (isset($_section['menu']['top-bar']['show']) && $_section['menu']['top-bar']['show']==true  && Auth::guard('admin')->user()->canViewSection($_section))
+						@if (isset($_section['menu']['top-bar']['submodel']))
+							<li>
+								<a href="#" class="nav-sub-toggle">
+									{{icon($_section['icon'])}}{{ trans('admin.models.'.$_code) }}{{icon('caret-down', 'dropdown-icon')}}
+								</a>
+								<ul class="nav-sub">
+									<li>
+										<a href="{{ ma_get_admin_list_url($_section['model']) }}" class="{{($_section['model'] == $current_model)? 'current': ''}}">
+											{{icon($_section['icon'])}}{{ trans('admin.models.'.$_code) }}
+										</a>
+									</li>
+									@if (isset($_section['menu']['top-bar']['submodel']))
+										@foreach($_section['menu']['top-bar']['submodel'] as $_submodel_code => $_submodel)
+											<li>
+												<a href="{{ma_get_admin_list_url($_submodel['model']) }}" class="{{($_submodel['model'] == $current_model)? 'current': ''}}">
+													{{icon($_section['icon'])}}{{ucfirst(trans('admin.models.'.$_submodel_code))}}
+												</a>
+											</li>
+										@endforeach
+									@endif
+								</ul>
+							</li>
+						@else
+							<li>
+								<a href="{{ ma_get_admin_list_url($_section['model']) }}" class="{{($_section['model'] == $current_model)? 'current': ''}}">
+									{{icon($_section['icon'])}} {{ trans('admin.models.'.$_code) }}
+								</a>
+							</li>
+						@endif
+					@endif
+				@endforeach
+			</ul>
+			<div class="footer">
+				{{config('maguttiCms.admin.option.title')}} {{ App::VERSION() }}
+			</div>
+		</nav>
+	@endif
+</header>

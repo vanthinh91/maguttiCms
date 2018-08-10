@@ -1,5 +1,6 @@
 <?php
-namespace App\MaguttiCms\Domain\News;
+namespace App\maguttiCms\Domain\News;
+use App\maguttiCms\Tools\Stringable;
 
 trait NewsPresenter
 
@@ -18,7 +19,10 @@ trait NewsPresenter
     public function getPermalink($locale='')
     {
         $url =  $this->getFullSlug($locale);
-        return ma_fullLocaleUrl($url);
+        return url_locale($url);
     }
 
+	public function getExcerpt($length = 200) {
+		return Stringable::truncate($this->description, $length);
+	}
 }

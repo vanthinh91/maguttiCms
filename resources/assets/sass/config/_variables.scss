@@ -8,8 +8,8 @@ $color-text-contrast:	white; // used in contrast with primary and secondary colo
 $color-primary:			#ff8040;
 $color-secondary:		#606060;
 $color-accent:			#FFe000;
-$color-4:				#6f6f6e;
-$color-5:				#f5f5f5;
+$color-4:				#a0a0a0;
+$color-5:				#e0e0e0;
 
 /*	font families	*/
 
@@ -19,6 +19,7 @@ $font-family-subtitle: 	"Open Sans", sans-serif;
 $font-family-icons:		"FontAwesome";
 
 /*	navbar 	*/
+$navbar-trigger: 'sm';
 $navbar-height: 100px;
 $navbar-height-content: 60px;
 $navbar-height-padding: ($navbar-height - $navbar-height-content) / 2;
@@ -28,6 +29,13 @@ $navbar-height-padding-mobile: ($navbar-height-mobile - $navbar-height-content-m
 $navbar-item-padding: 0 15px;
 $navbar-item-margin: 0 0;
 
+/*	forms	*/
+$form-control-border-radius: 0;
+$form-control-border-size: 2px;
+$form-control-border-color: $color-5;
+$form-control-border-color-hover: $color-primary;
+$form-control-placeholder-color: $color-4;
+
 /*	misc	*/
-$border-radius-button:	0;
+$border-radius-button:	4px;
 $social-button-size: 35px;

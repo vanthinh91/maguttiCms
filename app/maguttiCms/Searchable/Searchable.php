@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Searchable;
+<?php namespace App\maguttiCms\Searchable;
 
 use App\Http\Requests;
 Use Form;
@@ -7,7 +7,7 @@ Use App;
 /**
  * GF_ma
  * Class SearchableTrait
- * @package App\MaguttiCms\Searchable
+ * @package App\maguttiCms\Searchable
  */
 trait SearchableTrait
 {
@@ -24,28 +24,45 @@ trait SearchableTrait
     }
 
     /**
+     * GF_ma with relation
+     * add with relation to
+     * the query list
+     * @param $objBuilder
+     * @return mixed
+     */
+    public function withRelation($objBuilder)
+    {
+        return (data_get($this->config,'withRelation'))?$objBuilder->with($this->config['withRelation']):'';
+    }
+
+    /**
      *  GF_ma search handler
      *
      * @param $objBuilder: The QueryBuilder.
      */
     public function searchFilter($objBuilder)
     {
-        if (isset($this->config['field_searcheable']) && $this->request->all() != '') {
-            foreach ($this->config['field_searcheable'] as $key => $value) {
-                if ($this->request->has($key)) {
+        if (isset($this->config['field_searchable']) && $this->request->all() != '') {
+            foreach ($this->config['field_searchable'] as $key => $value) {
+                if ($this->request->has($key) && $this->request->get($key)) {
                     $curValue = $this->request->$key;
                     if ($this->isTranslatableField($key)) {
                         $objBuilder->whereTranslationLike($key, "%" . $curValue . "%");
-                    } else {
+                    }
+					else {
                         if ($value['type'] == 'relation') {
                             $objBuilder->whereHas($value['relation'], function($query) use($value, $curValue) {
                                 $query->where((isset($value['key']) ? $value['key'] : 'id'), $curValue);
                             });
                         }
-                        elseif( isset($value['value'])  &&  $this->whereStrictMode($value['value'])){
-                            $objBuilder->where($key, '=', $curValue);
-                         }
-                         else $objBuilder->where($key, 'like', "%" . $curValue . "%");
+						elseif ($value['type'] == 'integer') {
+							$objBuilder->where($key, $curValue);
+						}
+                        elseif(isset($value['value']) && $this->whereStrictMode($value['value'])) {
+                            $objBuilder->where($key, $curValue);
+                        }
+                        else
+							$objBuilder->where($key, 'like', "%".$curValue."%");
                     }
                 }
             }
@@ -54,11 +71,10 @@ trait SearchableTrait
 
     public function whereFilter($objBuilder)
     {
+       return (data_get($this->config,'whereFilter')) ? $objBuilder->whereRaw($this->config['whereFilter']):'';
+    }
 
-        if (isset($this->config['whereFilter']) && $this->config['whereFilter'] != '') {
-            return $objBuilder->whereRaw($this->config['whereFilter']);
-        }
-   }
+
 
 
     public function orderFilter($objBuilder)
@@ -147,6 +163,7 @@ trait SearchableTrait
 
     private function whereStrictMode($key)
     {
-      if($key=='id') return true;
+      if ($key=='id')
+	  	return true;
     }
 }

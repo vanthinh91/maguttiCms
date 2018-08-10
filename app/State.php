@@ -43,14 +43,13 @@ class State extends Model
             'required'  => true,
             'hidden'    => 0,
             'label'     => 'Name',
-            'extraMsg'  => '',
             'display'   => 1,
         ];
         $this->fieldspec['pub'] = [
             'type'     => 'boolean',
             'required' => false,
             'hidden'   => 0,
-            'label'    => trans('admin.label.active'),
+            'label'    => trans('admin.label.publish'),
             'display'  => 1
         ];
         return $this->fieldspec;

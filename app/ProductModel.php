@@ -1,7 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
+use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class ProductModel extends Model
 {
@@ -51,7 +51,6 @@ class ProductModel extends Model
             'required'  => true,
             'hidden'    => 0,
             'label'     => 'title',
-            'extraMsg'  => '',
             'display'   =>  1,
         ];
         $this->fieldspec['description'] = [
@@ -61,7 +60,6 @@ class ProductModel extends Model
             'required'  => true,
             'hidden'    => 0,
             'label'     => 'Description',
-            'extraMsg'  => '',
             'cssClass'  => 'wyswyg',
             'display'   => 1,
         ];
@@ -70,7 +68,6 @@ class ProductModel extends Model
             'required'  => false,
             'hidden'    => 0,
             'label'     => 'Image',
-            'extraMsg'  => '',
             'mediaType' => 'Img',
             'display'   => 1
         ];
@@ -86,7 +83,7 @@ class ProductModel extends Model
             'type'     => 'boolean',
             'required' => false,
             'hidden'   => 0,
-            'label'    => trans('admin.label.active'),
+            'label'    => trans('admin.label.publish'),
             'display'  => 1
         ];
 

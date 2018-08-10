@@ -1,6 +1,6 @@
 <?php
 
-namespace App\MaguttiCms\Domain\Admin;
+namespace App\maguttiCms\Domain\Admin;
 /**
  * Created by PhpStorm.
  * User: web01

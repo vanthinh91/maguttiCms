@@ -6,18 +6,19 @@
 @import "helper/mixins";
 @import "helper/basic";
 
-
-
 // Configuration
 @import "config/variables";
 @import "config/base";
 @import "config/typography";
 
-// Pages and blocks
+// Blocks
 @import "partials/navbar";
 @import "partials/content";
 @import "partials/footer";
 @import "partials/cookies";
+
+// Pages
+@import "pages/home";
 
 // Overrides
 @import "override/fancybox";

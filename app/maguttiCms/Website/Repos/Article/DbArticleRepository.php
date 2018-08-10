@@ -1,5 +1,5 @@
 <?php
-namespace App\MaguttiCms\Website\Repos\Article;
+namespace App\maguttiCms\Website\Repos\Article;
 /**
  * Created by PhpStorm.
  * User: Marco Asperti
@@ -7,7 +7,7 @@ namespace App\MaguttiCms\Website\Repos\Article;
  * Time: 10:58
  */
 use App\Article;
-use App\MaguttiCms\Website\Repos\DbRepository;
+use App\maguttiCms\Website\Repos\DbRepository;
 class DbArticleRepository extends DbRepository implements ArticleRepositoryInterface
 {
 
@@ -19,17 +19,21 @@ class DbArticleRepository extends DbRepository implements ArticleRepositoryInter
 
     function getParentPage($parent)
     {
-      return $this->model->where('slug', $parent)
-                         ->where('id_parent',0)
-                         ->where('pub', 1)
-                         ->first();
+
+      $page = $this->getBySlug($parent,app()->getLocale());
+
+      // Return false if page has parent because this method is used only for parent page
+      if($page && $page->parent_id != 0) return false;
+
+      return $page;
+
     }
 
     function getSubPage($parent, $child)
     {
 
-      $parent = $this->getBySlug($parent);
-      $child  = $this->getBySlug($child);
+      $parent = $this->getBySlug($parent,app()->getLocale());
+      $child  = $this->getBySlug($child,app()->getLocale());
 
       // If $parent or $child doesn't exists
       if(!$parent || !$child) {
@@ -37,7 +41,7 @@ class DbArticleRepository extends DbRepository implements ArticleRepositoryInter
       }
 
       // If $parent and $child doesn't match
-      if($parent->id != $child->id_parent) {
+      if($parent->id != $child->parent_id) {
         return false;
       }
 

@@ -9,12 +9,8 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  */
 
-
 class Country extends Model
 {
-
-
-
     /**
      * @var array
      */
@@ -36,7 +32,7 @@ class Country extends Model
             'minvalue' => 0,
             'pkey'     => 'y',
             'required' =>true,
-            'label'    => 'id',
+            'label'    => trans('admin.label.id'),
             'hidden'   => 1,
             'display'  => 0,
         ];
@@ -45,8 +41,7 @@ class Country extends Model
             'type'      => 'string',
             'required'  => true,
             'hidden'    => 0,
-            'label'     => 'Name',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.name'),
             'display'   => 1,
         ];
 
@@ -54,8 +49,7 @@ class Country extends Model
             'type'      => 'string',
             'required'  => true,
             'hidden'    => 0,
-            'label'     => 'Iso code',
-            'extraMsg'  => '',
+            'label'     => 'ISO',
             'display'   => 1,
         ];
         $this->fieldspec['id_continent'] = [
@@ -88,9 +82,19 @@ class Country extends Model
             'type'      => 'boolean',
             'required'  => false,
             'hidden'    => 0,
-            'label'     => trans('admin.label.active'),
+            'label'     => trans('admin.label.publish'),
             'display'   => 1
         ];
         return $this->fieldspec;
     }
+
+	public function scopeActive($query)
+	{
+		return $query->where('is_active', 1);
+	}
+
+	public function scopeList($query)
+	{
+		return $query->active()->orderBy('name');
+	}
 }

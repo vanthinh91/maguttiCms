@@ -8,26 +8,33 @@ return [
     |--------------------------------------------------------------------------
     */
 
-	'cancel'        => 'Annulla',
-	'city'          => 'Città',
-	'company'       => 'Azienda',
-	'country'       => 'Nazione',
-	'email'         => 'E-mail',
-	'follow_us'     => 'Seguici su',
-	'headquarter'   => 'Sede',
-	'home'          => 'Home',
-	'info_request'  => 'Richiesta informazioni',
-	'message_email' => 'Messaggio',
-	'more_info'     => 'Continua',
-	'name'          => 'Nome',
-	'newsletters_placeholder' =>'Iscriviti alla newsletter',
-	'please_select' =>'Prego selezionare',
-    'privacy'		=> 'Privacy Policy',
-	'phone'         => 'Telefono',
-	'read_more'     => 'Continua',
-	'send'          => 'Invia',
-	'surname'       => 'Cognome',
-	'subject'       => 'Oggetto',
+	'cancel'                  => 'Annulla',
+	'city'                    => 'Città',
+	'cookie'		          => 'Cookie Policy',
+	'country'                 => 'Nazione',
+	'email'                   => 'E-mail',
+	'employer'                => 'Azienda',
+	'follow_us'               => 'Seguici su',
+	'headquarter'             => 'Sede',
+	'home'                    => 'Home',
+	'info_request'            => 'Richiesta informazioni',
+	'message_email'           => 'Messaggio',
+	'more_info'               => 'Continua',
+	'name'                    => 'Nome',
+	'newsletters_placeholder' => 'Iscriviti alla newsletter',
+	'password'		          => 'Password',
+	'phone'                   => 'Telefono',
+	'please_select'           => 'Prego selezionare',
+	'privacy'		          => 'Privacy Policy',
+	'read_more'               => 'Continua',
+	'send'                    => 'Invia',
+	'subject'                 => 'Oggetto',
+	'surname'                 => 'Cognome',
+
+	'ghost' => [
+		'updated' => 'Valore aggiornato',
+		'forbidden' => 'Impossibile aggiornare il valore',
+	],
 
 	'product' => [
 		'download_pdf'      => 'Scarica Scheda',
@@ -50,7 +57,6 @@ return [
         'cookie_more_info'	=> 'Maggiori Informazioni',
     ],
 
-
     'mail_message' => [
         'contact'			=> 'Nuova richiesta informazioni da',
         'firm'              => 'Il team maguttiCms',
@@ -58,9 +64,7 @@ return [
         'subscribe_newsletter_subject'  => 'Iscrizione alla Newsletter',
         'subscribe_newsletter_feedback' => 'Grazie per esserti iscritto alla nostra newsletter',
     ],
-
     'pagetitle' => [
         'privacy'			=> 'Privacy Policy',
     ],
-
 ];

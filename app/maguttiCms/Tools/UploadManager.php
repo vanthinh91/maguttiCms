@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Tools;
+<?php namespace App\maguttiCms\Tools;
 
 use Input;
 Use Form;
@@ -39,7 +39,7 @@ class UploadManager {
 
 	protected function prepareMediaToUpload() {
         if (Input::hasFile($this->media) && Input::file($this->media)->isValid()) {
-            $this->newMedia        = Input::file($this->media);
+            $this->newMedia = Input::file($this->media);
             $this->setFileFullName($this->newMedia->getClientOriginalName());
 			if ($this->destinationStorage == 'media' && !$this->destinationPath) {
 				$this->destinationPath = $this->getMediaType();
@@ -48,15 +48,15 @@ class UploadManager {
             return true;
         }
         return false;
-
     }
+
     /**
      * Store function uploading
      * file to given path;
      * @return $this
      */
     public function store() {
-        if ($this->prepareMediaToUpload()){
+        if ($this->prepareMediaToUpload()) {
             $this->request->file($this->media)->storeAs(
                 $this->destinationPath,
                 $this->getFileFullName(),

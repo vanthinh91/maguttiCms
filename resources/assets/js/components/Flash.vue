@@ -25,9 +25,6 @@
             }
 
         },
-        mounted() {
-            console.log('Component mounted.newsletter')
-        },
         created() {
 
             if (this.message) {
@@ -59,3 +56,23 @@
         }
     };
 </script>
+<style>
+    .alert-flash {
+        position: fixed;
+        left: 25px;
+        bottom: 125px;
+        z-index: 10000;
+        font-size:1.3rem;
+        line-height: 1.5rem;
+        vertical-align: middle;
+    }
+    @media screen and (max-width: 767px) {
+        .alert-flash {
+            position: fixed;
+            left: 15px;
+            bottom: 175px;
+            width:95%;
+
+        }
+    }
+</style>

@@ -20,15 +20,15 @@ class Contact extends Model
         $this->fieldspec['id'] = [
             'type'     => 'integer',
             'minvalue' => 0,
-            'required' =>true,
-            'label'    => 'id',
+            'required' => 1,
+            'label'    => trans('admin.label.id'),
             'hidden'   => 1,
             'display'  => 0,
         ];
         // build array of field specifications
         $this->fieldspec['created_at'] = [
             'type'      => 'date-readonly',
-            'required'  => false,
+            'required'  => 0,
             'hidden'    => 0,
             'label'     => trans('admin.label.created_at'),
             'display'   => 1
@@ -36,56 +36,51 @@ class Contact extends Model
         $this->fieldspec['request_product_id'] = [
             'type'      => 'integer',
             'size'      => 5,
-            'required'  => true,
+            'required'  => 1,
             'hidden'    => 1,
             'display'   => 0,
         ];
         $this->fieldspec['email'] = [
-            'type'      => 'readonly',
-            'required'  => true,
-            'hidden'    =>  0,
-            'label'     => 'Email',
-            'extraMsg'  => '',
-            'display'   => 1,
+            'type'     => 'readonly',
+            'required' => 1,
+            'hidden'   => 0,
+            'label'    => trans('admin.label.email'),
+            'display'  => 1,
         ];
         $this->fieldspec['name'] = [
-            'type'      => 'readonly',
-            'required'  => true,
-            'hidden'    =>  0,
-            'label'     => 'Name',
-            'extraMsg'  => '',
-            'display'   => 1,
+            'type'     => 'readonly',
+            'required' => 1,
+            'hidden'   => 0,
+            'label'    => trans('admin.label.name'),
+            'display'  => 1,
         ];
         $this->fieldspec['company'] = [
             'type'      => 'readonly',
-            'required'  => true,
+            'required'  => 1,
             'hidden'    => 0,
-            'label'     => 'Comapny',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.company'),
             'display'   => 1,
         ];
         $this->fieldspec['subject'] = [
             'type'      => 'readonly',
-            'required'  => true,
+            'required'  => 1,
             'hidden'    => 0,
-            'label'     => 'Subject',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.subject'),
             'display'   => 1,
         ];
         $this->fieldspec['message'] = [
             'type'      => 'readonly',
             'size'      => 600,
             'h'         => 300,
-            'required'  => true,
+            'required'  => 1,
             'hidden'    => 1,
-            'label'     => 'Message',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.message'),
             'display'   => 0,
         ];
         $this->fieldspec['status'] = [
             'type'      => 'boolean',
-            'pkey'      => 'n',
-            'required'  => false,
+            'pkey'      => 0,
+            'required'  => 0,
             'hidden'    => 0,
             'label'     => trans('admin.label.read'),
             'display'   => 1

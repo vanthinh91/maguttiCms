@@ -17,7 +17,7 @@
             <table class="table_inner" align="left">
                 <tr>
                     <td align="left" class="logo" style="padding:0px;border-bottom:1px solid #6F6F6F;">
-                        <img src="{!! asset('/website/images/email/email_header.jpg')!!}"   border="0"/>
+                        <img src="{!! asset('/website/images/email/email_header.png')!!}"   border="0"/>
                     </td>
                 </tr>
                 <tr>

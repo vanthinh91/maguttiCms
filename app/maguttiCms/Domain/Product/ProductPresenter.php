@@ -1,5 +1,5 @@
 <?php
-namespace App\MaguttiCms\Domain\Product;
+namespace App\maguttiCms\Domain\Product;
 
 use Mcamara\LaravelLocalization\LaravelLocalization;
 
@@ -14,17 +14,19 @@ trait ProductPresenter
     function getFullSlug($locale=''){
         /** @var  JSP  trick */
         $locale = ($locale)?:app()->getLocale();
-        return  str_replace('{product?}',$this->{'slug:'.$locale},trans('routes.products',array(),$locale));
+		$trans_url = trans('routes.products', array(),$locale);
+		$trans_url = str_replace('{category}', $this->category->{'slug:'.$locale}, $trans_url);
+		$trans_url = str_replace('{product}', $this->{'slug:'.$locale}, $trans_url);
+        return $trans_url;
     }
 
     public function getPermalink($locale='')
     {
         $url =  $this->getFullSlug($locale);
-        return ma_fullLocaleUrl($url);
+        return url_locale($url);
     }
 
     public function getInfoPermalink() {
-        return LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(), URL::to('/contacts/?product_id='.$this->id));
+        return url_locale('/contacts/?product_id='.$this->id);
     }
-
 }

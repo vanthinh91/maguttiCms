@@ -8,28 +8,32 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'home'          => 'Home',
     'cancel'        => 'cancel',
-    'category'      => 'Category',
-    'follow_us'     => 'Follow us on',
-    'headquarter'   => 'Headquarter',
-    'info_request'  => 'Information Request',
-    'surname'       => 'Surname',
-    'name'          => 'Name',
-    'company'       => 'Company',
     'city'          => 'City',
+    'cookie'          => 'Cookie Policy',
     'country'       => 'Country',
     'email'         => 'E-mail',
+    'employer'       => 'Company',
+    'follow_us'     => 'Follow us on',
+    'headquarter'   => 'Headquarter',
+    'home'          => 'Home',
+    'info_request'  => 'Information Request',
     'message_email' => 'Message',
     'more_info'     => 'Continue',
+    'name'          => 'Name',
     'newsletters_placeholder' => 'Type your  email',
+    'phone'         => 'Telephone',
     'please_select' => 'Please select',
     'privacy'		=> 'Privacy Policy',
-    'phone'         => 'Telephone',
     'read_more'     => 'Continue',
     'send'          => 'Send',
-    'request_product_information' => 'Request information for the product:',
     'subject'       => 'Subject',
+    'surname'       => 'Surname',
+
+	'ghost' => [
+		'updated' => 'Value updated',
+		'forbidden' => 'Unable to update the value',
+	],
 
     'product' => [
         'download_pdf'      => 'Scarica Scheda',
@@ -58,7 +62,6 @@ return [
         'greeting'	        => 'Dear User',
         'subscribe_newsletter_subject' => 'Newsletter subscription',
         'subscribe_newsletter_feedback' => 'Thanks for subscribe our newsletter',
-
     ],
     'pagetitle' => [
         'privacy'           => 'Privacy Policy',

@@ -1,6 +1,16 @@
 <?php
 return [
     'title'	   => 'maguttiCms',
-    'email'    => 'marco@gfstudio.com',
-    'logo'     => 'logo.png',
+    'email'    => 'info@gfstudio.com',
+	'sidebar' => [
+		'show-add' => 0
+	],
+	'action-bar' => [
+		'show-labels' => 0
+	],
+	'list' => [
+		'show-labels' => 0,
+		'show-bool-labels' => 0,
+		'show-bool-icons' => 1
+	]
 ];

@@ -1,9 +1,9 @@
-<?php namespace App\MaguttiCms\Tools;
+<?php namespace App\maguttiCms\Tools;
 
  use App\Setting;
 /**
  * Class Setting
- * @package App\MaguttiCms\Tools
+ * @package App\maguttiCms\Tools
  */
 class SettingHelper {
 
@@ -15,7 +15,12 @@ class SettingHelper {
 	{
 
 		$settingObj = Setting::where('Key',$key)->first();
-		return $settingObj->value;
+		if ($settingObj) {
+			return $settingObj->value;
+		}
+		else {
+			return '';
+		}
 	}
 
-}	
+}

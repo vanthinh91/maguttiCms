@@ -1,10 +1,11 @@
 <?php
 
-namespace App\MaguttiCms\Admin\Controllers;
+namespace App\maguttiCms\Admin\Controllers;
 
 
 use App\Article;
-use App\MaguttiCms\Tools\ExportHelper;
+use App\maguttiCms\Exports\CollectionExport;
+use App\maguttiCms\Tools\ExportHelper;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,7 +18,7 @@ use Validator;
 
 /**
  * Class AdminExportController
- * @package App\MaguttiCms\Admin\Controllers
+ * @package App\maguttiCms\Admin\Controllers
  */
 class AdminExportController extends Controller
 {
@@ -39,14 +40,8 @@ class AdminExportController extends Controller
     {
 
         $ExportHelper = new  ExportHelper();
-        $itemsArray = $ExportHelper->init($model)->getDataToExport();
-        Excel::create($ExportHelper->getFileName(), function ($excel) use ($itemsArray) {
-            // Convert each member of the returned collection into an array,
-            // and append it to the payments array.
-            $excel->sheet('First sheet', function ($sheet) use ($itemsArray) {
-                $sheet->fromArray($itemsArray, null, 'A1', false, false);
-            });
-
-        })->export();
+        $data     = $ExportHelper->init($model)->getDataToExport();
+        $filename = $ExportHelper->getFileName();
+        return Excel::download(new CollectionExport($data), $filename);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace App\MaguttiCms\Domain\Category;
+namespace App\maguttiCms\Domain\Category;
 
 trait CategoryPresenter
 
@@ -10,15 +10,14 @@ trait CategoryPresenter
     |--------------------------------------------------------------------------
     */
     function getFullSlug($locale=''){
+		/** @var  JSP  trick */
         $locale = ($locale)?:app()->getLocale();
-        return  'category/'.$this->{'slug:'.$locale};
+        return  str_replace('{category?}',$this->{'slug:'.$locale},trans('routes.category',array(),$locale));
     }
-
 
     public function getPermalink($locale='')
     {
         $url =  $this->getFullSlug($locale);
-        return ma_fullLocaleUrl($url);
+        return url_locale($url);
     }
-
 }

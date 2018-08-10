@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Admin\Controllers;
+<?php namespace App\maguttiCms\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 use Validator;
 use Input;
 
-use \App\MaguttiCms\Admin\Helpers\AdminUserTrackerTrait;
-use App\MaguttiCms\Admin\Requests\AdminFormRequest;
-use App\MaguttiCms\Searchable\SearchableTrait;
-use App\MaguttiCms\Sluggable\SluggableTrait;
-use App\MaguttiCms\Tools\UploadManager;
+use \App\maguttiCms\Admin\Helpers\AdminUserTrackerTrait;
+use App\maguttiCms\Admin\Requests\AdminFormRequest;
+use App\maguttiCms\Searchable\SearchableTrait;
+use App\maguttiCms\Sluggable\SluggableTrait;
+use App\maguttiCms\Tools\UploadManager;
 
 /**
  * Class AdminPagesController
- * @package App\MaguttiCms\Admin\Controllers
+ * @package App\maguttiCms\Admin\Controllers
  */
 class AdminPagesController extends Controller
 {
@@ -55,24 +55,28 @@ class AdminPagesController extends Controller
      */
     public function lista(Request $request, $model, $sub = '')
     {
-
         $this->request = $request;
         $this->init($model);
-        $models      = new $this->modelClass;
-        $objBuilder  = $models::query();
+        $models = new $this->modelClass;
+        $objBuilder = $models::query();
         $this->setCurModel($models);
 
         $this->joinable($objBuilder);
         $this->whereFilter($objBuilder);
-        $this->searchFilter( $objBuilder );
-        $this->orderFilter( $objBuilder );
+        $this->searchFilter($objBuilder);
+        $this->orderFilter($objBuilder);
+
+        $this->withRelation($objBuilder);
 
         if( $this->isTranslatableField($this->sort)) {
             $objBuilder->select($this->model->getTable().'.*');
         }
         $articles = $objBuilder->paginate(config('maguttiCms.admin.list.item_per_pages'));
         $articles->appends(request()->input())->links(); // paginazione con parametri di ricerca
-        return view('admin.list', ['articles' => $articles, 'pageConfig' => $this->config]);
+
+		$fieldspec = $models->getFieldspec();
+
+        return view('admin.list', ['articles' => $articles, 'pageConfig' => $this->config, 'fieldspec' => $fieldspec, 'model' => $this->models]);
     }
 
     /**
@@ -161,8 +165,8 @@ class AdminPagesController extends Controller
         // input data Handler
         $this->requestFieldHandler($article);
 
-        flash()->success('The item <strong>' . $article->title . '</strong> has been created!');
-        return redirect(action('\App\MaguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
+        session()->flash('success', 'The item <strong>' . $article->title . '</strong> has been created!');
+        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
     }
 
     /**
@@ -182,7 +186,7 @@ class AdminPagesController extends Controller
         $article = $model::whereId($id)->firstOrFail();
         // input data Handler
         $this->requestFieldHandler($article);
-        return redirect(action('\App\MaguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
+        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
 
     }
 
@@ -206,7 +210,7 @@ class AdminPagesController extends Controller
         $article    =  $oldArticle->replicate();
 
         $article->save();
-        return redirect(action('\App\MaguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
+        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@edit', $this->models . '/' . $article->id));
     }
 
     /**
@@ -246,8 +250,8 @@ class AdminPagesController extends Controller
         $model = new  $this->modelClass;
         $article = $model::whereId($this->id)->firstOrFail();
         $article->delete();
-        flash()->error('The items ' . $article->title . ' has been deleted!')->important();
-        return redirect(action('\App\MaguttiCms\Admin\Controllers\AdminPagesController@lista', $this->models));
+        session()->flash('success', 'The items ' . $article->title . ' has been deleted!')->important();
+        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->models));
     }
 
     /**
@@ -256,7 +260,7 @@ class AdminPagesController extends Controller
     public function requestFieldHandler($article)
     {
         foreach ($article->getFillable() as $a) {
-            $article->$a = $this->request->get($a);
+            if($this->request->has($a))$article->$a = $this->request->get($a);
         }
 
         if (isset($article->sluggable)) {

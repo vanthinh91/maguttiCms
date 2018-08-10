@@ -39,6 +39,7 @@ return [
     */
 
     'debug' => env('APP_DEBUG', false),
+    'editor' => env('APP_EDITOR', 'atom'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -77,8 +79,8 @@ return [
     */
 
 
-    'locale' => 'en',
-    'locales' => ['en' => 'English', 'it' => 'Italiano'],
+    'locale' => 'it',
+    'locales' => ['en' => 'English', 'it' => 'Italiano', 'es' => 'Spanish', 'fr' => 'French'],
 
     /*
     |--------------------------------------------------------------------------
@@ -169,7 +171,7 @@ return [
         /*
          * Package Service Providers...
          */
-		//Spatie\Sitemap\SitemapServiceProvider::class,
+		Spatie\Sitemap\SitemapServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -187,11 +189,14 @@ return [
        |--------------------------------------------------------------------------
        */
 
+
         'hisorange\BrowserDetect\Provider\BrowserDetectService',
+        Collective\Html\HtmlServiceProvider::class,
         'Zizaco\Entrust\EntrustServiceProvider',
-         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
+    	Vinkla\Shield\ShieldServiceProvider::class,
         "Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider",
-        Pbmedia\LaravelFFMpeg\FFMpegServiceProvider::class,
+		Srmklive\PayPal\Providers\PayPalServiceProvider::class,
 
 
        /*
@@ -199,17 +204,18 @@ return [
        | MaguttiCms Service Providers...
        |--------------------------------------------------------------------------
        */
-        App\MaguttiCms\Providers\LaraServiceProvider::class,
-        App\MaguttiCms\Providers\SystemServiceProvider::class,
+        App\maguttiCms\Providers\LaraServiceProvider::class,
+        App\maguttiCms\Providers\SystemServiceProvider::class,
 
-        'App\MaguttiCms\Notifications\FlashServiceProvider',
-        App\MaguttiCms\Admin\Providers\AdminFormServiceProvider::class,
-        App\MaguttiCms\Admin\Providers\AdminListServiceProvider::class,
-        App\MaguttiCms\Website\Providers\WebsiteDbServiceProvider::class,
+
+        'App\maguttiCms\Notifications\FlashServiceProvider',
+        App\maguttiCms\Admin\Providers\AdminFormServiceProvider::class,
+        App\maguttiCms\Admin\Providers\AdminListServiceProvider::class,
+        App\maguttiCms\Website\Providers\WebsiteDbServiceProvider::class,
 
         // MaguttiCmsfe
-        App\MaguttiCms\Website\Providers\HtmlSocialServiceProvider::class,
-        App\MaguttiCms\Website\Providers\WebsiteDecoratorServiceProvider::class,
+        App\maguttiCms\Website\Providers\HtmlSocialServiceProvider::class,
+        App\maguttiCms\Website\Providers\WebsiteDecoratorServiceProvider::class,
 
 
     ],
@@ -261,11 +267,13 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+
         /*
         |--------------------------------------------------------------------------
         | Vendor Class Aliases
         |--------------------------------------------------------------------------
         */
+
 
         'BrowserDetect'         => 'hisorange\BrowserDetect\Facade\Parser',
         'Form'                  => Collective\Html\FormFacade::class,
@@ -273,26 +281,27 @@ return [
         'Entrust'               => 'Zizaco\Entrust\EntrustFacade',
         'Carbon'				=> 'Carbon\Carbon',
         'Slugify'               => 'Cocur\Slugify\Bridge\Laravel\SlugifyFacade',
-        'FFMpeg'                 => Pbmedia\LaravelFFMpeg\FFMpegFacade::class,
+
+
 
         /*
          |--------------------------------------------------------------------------
          | maguttiCms Class Aliases
          |--------------------------------------------------------------------------
         */
-        'AdminForm' => App\MaguttiCms\Admin\Facades\AdminForm::class,
-        'AdminFormImageRelation' => App\MaguttiCms\Admin\Facades\AdminFormImageRelation::class,
-        'AdminList' => App\MaguttiCms\Admin\Facades\AdminList::class,
-
+        'AdminForm' => App\maguttiCms\Admin\Facades\AdminForm::class,
+        'AdminFormImageRelation' => App\maguttiCms\Admin\Facades\AdminFormImageRelation::class,
+        'AdminDecorator'  => App\maguttiCms\Admin\Facades\AdminDecorator::class,
+        'AdminList' => App\maguttiCms\Admin\Facades\AdminList::class,
         'Flash'     => 'Helpers\Notifications\Flash',
-        'HtmlHelper'=> App\MaguttiCms\Website\Facades\HtmlHelper::class,
+        'HtmlHelper'=> App\maguttiCms\Website\Facades\HtmlHelper::class,
+        'StoreHelper'=> App\maguttiCms\Website\Facades\StoreHelper::class,
         'SEO'       => Artesaos\SEOTools\Facades\SEOTools::class,
         'SEOMeta'   => Artesaos\SEOTools\Facades\SEOMeta::class,
-        'Setting'   => \App\MaguttiCms\Tools\SettingHelper::class,
-
-		'Stringable' => App\MaguttiCms\Tools\Stringable::class,
-        'ImgHelper' => App\MaguttiCms\Website\Facades\ImgHelper::class,
-        'HtmlSocial'=> App\MaguttiCms\Website\Facades\HtmlSocial::class,
+        'Setting'   => \App\maguttiCms\Tools\SettingHelper::class,
+		'Stringable' => App\maguttiCms\Tools\Stringable::class,
+        'ImgHelper' => App\maguttiCms\Website\Facades\ImgHelper::class,
+        'HtmlSocial'=> App\maguttiCms\Website\Facades\HtmlSocial::class,
 
     ],
 

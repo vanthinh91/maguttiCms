@@ -1,8 +1,8 @@
-<?php namespace App\MaguttiCms\Website\Controllers\Auth;
+<?php namespace App\maguttiCms\Website\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use App\MaguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
+use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 
 class ForgotPasswordController extends Controller
 {
@@ -19,12 +19,8 @@ class ForgotPasswordController extends Controller
 
     use SendsPasswordResetEmails;
 
-
-
-    use \App\MaguttiCms\SeoTools\MaguttiCmsSeoTrait;
+    use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
     protected  $articleRepo;
-
-
 
     public function __construct(ArticleRepositoryInterface $article)
     {
@@ -33,10 +29,7 @@ class ForgotPasswordController extends Controller
     }
 
     public function showLinkRequestForm()
-
     {
-
-
         $article = $this->articleRepo->getBySlug('home');
         $this->setSeo($article);
         \SEO::setTitle( trans('message.password_forgot') );

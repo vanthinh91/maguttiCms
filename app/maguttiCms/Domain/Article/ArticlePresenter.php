@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Domain\Article;
+<?php namespace App\maguttiCms\Domain\Article;
 
 trait ArticlePresenter
 {
@@ -13,17 +13,19 @@ trait ArticlePresenter
     function getFullSlug($locale=''){
         $locale = ($locale)?:app()->getLocale();
 
-        if($this->parentPage && $this->parentPage->{'slug:it'}!='home') return $this->parentPage->{'slug:'.$locale}.'/'.$this->{'slug:'.$locale};
+        if ($this->parent && $this->parent->{'slug:it'} != 'home')
+			return $this->parent->{'slug:'.$locale}.'/'.$this->{'slug:'.$locale};
 
-        if($this->{'slug:'.$locale}=='home') return "";
+        if ($this->{'slug:'.$locale} == 'home')
+			return "";
 
         return $this->{'slug:'.$locale};
     }
 
     public function getPermalink($locale='')
     {
-        $url =  $this->getFullSlug($locale);
-        return ma_fullLocaleUrl($url);
+        $url =  ($this->sluggable['slug']['translatable'])? $this->getFullSlug($locale): $this->slug;
+        return url_locale($url);
     }
 
     /**

@@ -1,13 +1,9 @@
 <?php
-
-
-use Illuminate\Validation\Rule;
-
 return [
 		'adminusers' => [
 			'first_name' => 'required',
 			'last_name'  => 'required',
-			'email' => 'required|Between:3,64|Email|is_unique',
+            'email' => 'required|Between:3,64|Email|is_unique',
 			'role' => 'required',
 			'password' => 'alpha_num|min:6|confirmed',
 			'password_confirmation' => 'alpha_num|min:6',
@@ -47,6 +43,10 @@ return [
 		],
 		'productmodels' => [
 			'title' => 'required',
+		],
+		'paymentmethods' => [
+			'title' => 'required',
+			'code' => 'required',
 		],
 		'provinces' => [
 			'title' => 'required',

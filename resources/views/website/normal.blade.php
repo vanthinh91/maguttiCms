@@ -5,7 +5,10 @@
     <h1>{{ $article->title }}</h1>
     <div class="row">
         <div class="col-xs-12  {{($article->image)? 'col-md-7': '' }}">
-            {!! $article->description !!}
+            {!! HtmlHelper::content_part($article->description,1) !!}
+            @foreach(HtmlHelper::content_part_looper($article->description) as $part)
+                {!! $part !!}
+            @endforeach
         </div>
         @if($article->image)
             <div class="col-md-4">

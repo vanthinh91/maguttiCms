@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Website\Controllers\Auth;
+<?php namespace App\maguttiCms\Website\Controllers\Auth;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -30,7 +30,7 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->localePrefix    = ma_getRealLocale();
+        $this->localePrefix    = get_locale();
         $this->redirectTo      = $this->localePrefix.'/users/dashboard';
         $this->redirectPath    = $this->localePrefix.'/users/dashboard';
 

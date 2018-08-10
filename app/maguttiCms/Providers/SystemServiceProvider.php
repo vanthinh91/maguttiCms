@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Providers;
+<?php namespace App\maguttiCms\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\App;

@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Tools;
+<?php namespace App\maguttiCms\Tools;
 
 use Illuminate\Mail\Mailer as Mail;
 
@@ -38,13 +38,16 @@ abstract class Mailer
      *
      * @return void
      */
-    public function sendMail($from, $data = [], $replyToAddress = null, $replyToName = null)
+    public function sendMail($from, $cc = null, $data = [], $replyToAddress = null, $replyToName = null)
     {
-        $this->mail->send($this->view, $data, function($message) use($from, $replyToAddress, $replyToName)
+        $this->mail->send($this->view, $data, function($message) use($from, $cc, $replyToAddress, $replyToName)
         {
             $message->from($from['address'], $from['name'])
                 ->to($this->toAddress)
                 ->subject($this->subject);
+
+			if ($cc != null)
+				$message->cc($cc);
 
             if ($replyToAddress != null)
                 $message->replyTo($replyToAddress, $replyToName);
@@ -61,7 +64,7 @@ abstract class Mailer
      *
      * @return void
      */
-    public function queueMail($from, $data = [], $replyToAddress = null, $replyToName = null)
+    public function queueMail($from, $cc = null, $data = [], $replyToAddress = null, $replyToName = null)
     {
         // Declaring variables here is mandatory otherwise
         // the queue won't be able to refer to $this
@@ -69,11 +72,14 @@ abstract class Mailer
         $to = $this->toAddress;
         $subject = $this->subject;
 
-        $this->mail->queue($this->view, $data, function($message) use($from, $to, $subject, $replyToAddress, $replyToName)
+        $this->mail->queue($this->view, $data, function($message) use($from, $cc, $to, $subject, $replyToAddress, $replyToName)
         {
             $message->from($from['address'], $from['name'])
                 ->to($to)
                 ->subject($subject);
+
+			if ($cc != null)
+				$message->cc($cc);
 
             if ($replyToAddress != null)
                 $message->replyTo($replyToAddress, $replyToName);

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\MaguttiCms\Admin\Providers;
+namespace App\maguttiCms\Admin\Providers;
 Use App;
-use App\MaguttiCms\Admin\AdminFormImageRelation;
+use App\maguttiCms\Admin\AdminFormImageRelation;
 use Illuminate\Support\ServiceProvider;
 
 class AdminFormServiceProvider extends ServiceProvider
@@ -26,7 +26,7 @@ class AdminFormServiceProvider extends ServiceProvider
     {
         App::bind('AdminForm', function()
         {
-            return new \App\MaguttiCms\Admin\AdminForm;
+            return new \App\maguttiCms\Admin\AdminForm;
         });
 
         App::bind('AdminFormImageRelation', function()

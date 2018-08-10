@@ -1,16 +1,18 @@
-<?php namespace App\MaguttiCms\Website\Controllers\Auth;
+<?php namespace App\maguttiCms\Website\Controllers\Auth;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\maguttiCms\Tools\StoreHelper;
 
-use App\MaguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
+use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 
 class LoginController extends Controller
 {
 
-    use \App\MaguttiCms\SeoTools\MaguttiCmsSeoTrait;
+    use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
 
     /*
     |--------------------------------------------------------------------------
@@ -54,9 +56,9 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
 
         $this->articleRepo          = $article;
-        $this->localePrefix         = ma_getRealLocale();
-        $this->redirectTo           = $this->localePrefix.'/users/dashboard';
-        $this->redirectPath         = $this->localePrefix.'/users/dashboard';
+        $this->localePrefix         = get_locale();
+        $this->redirectTo           = $this->localePrefix.'/';
+        $this->redirectPath         = $this->localePrefix.'/';
         $this->loginPath            = $this->localePrefix.'/users/login';
         $this->redirectAfterLogout  = $this->localePrefix.'/users/login';
 
@@ -112,36 +114,40 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function login(Request $request)
-    {
-        $this->validateLogin($request);
+	 public function login(Request $request)
+     {
+         $this->validateLogin($request);
 
-        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the login attempts for this application. We'll key this by the username and
-        // the IP address of the client making these requests into this application.
-        if ($this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
+ 		if ($request->redirectTo) {
+ 			$this->redirectTo = $request->redirectTo;
+ 		}
 
-            return $this->sendLockoutResponse($request);
-        }
+         // If the class is using the ThrottlesLogins trait, we can automatically throttle
+         // the login attempts for this application. We'll key this by the username and
+         // the IP address of the client making these requests into this application.
+         if ($this->hasTooManyLoginAttempts($request)) {
+             $this->fireLockoutEvent($request);
 
-        if ($this->attemptLogin($request)) {
-            if ($this->guard()->user()->isActive()){
-                return $this->sendLoginResponse($request);
-            }
-            else {
-                $this->logout($request);
-                $this->incrementLoginAttempts($request);
-                return $this->sendInactiveUserLoginResponse($request);
-            }
-        }
+             return $this->sendLockoutResponse($request);
+         }
 
-        // If the login attempt was unsuccessful we will increment the number of attempts
-        // to login and redirect the user back to the login form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
-        $this->incrementLoginAttempts($request);
-        return $this->sendFailedLoginResponse($request);
-    }
+         if ($this->attemptLogin($request)) {
+             if ($this->guard()->user()->isActive()){
+                 return $this->sendLoginResponse($request);
+             }
+             else {
+                 $this->logout($request);
+                 $this->incrementLoginAttempts($request);
+                 return $this->sendInactiveUserLoginResponse($request);
+             }
+         }
+
+         // If the login attempt was unsuccessful we will increment the number of attempts
+         // to login and redirect the user back to the login form. Of course, when this
+         // user surpasses their maximum number of attempts they will get locked out.
+         $this->incrementLoginAttempts($request);
+         return $this->sendFailedLoginResponse($request);
+     }
 
     /**
      * Get the failed login response instance.
@@ -160,5 +166,39 @@ class LoginController extends Controller
         return redirect()->back()
             ->withInput($request->only($this->username(), 'remember'))
             ->withErrors($errors);
+    }
+
+	/**
+     * Send the response after the user was authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    protected function sendLoginResponse(Request $request)
+    {
+		if (StoreHelper::isStoreEnabled())
+			$cart = StoreHelper::getSessionCart();
+
+        $request->session()->regenerate();
+
+		// if the user has an active cart, store it to the new session
+		if (StoreHelper::isStoreEnabled()) {
+			if ($cart) {
+				$user = Auth::user();
+				$cart->user()->associate($user);
+				$cart->save();
+				StoreHelper::setSessionCart($cart);
+			}
+			else {
+				$cart = StoreHelper::getUserCart();
+				if ($cart)
+					StoreHelper::setSessionCart($cart);
+			}
+		}
+
+        $this->clearLoginAttempts($request);
+
+        return $this->authenticated($request, $this->guard()->user())
+                ?: redirect()->intended($this->redirectPath());
     }
 }

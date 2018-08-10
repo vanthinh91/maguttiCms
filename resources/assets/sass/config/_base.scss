@@ -6,7 +6,7 @@ body {
 body {
 	overflow-x: hidden;
 	margin-top: $navbar-height-mobile;
-	@include breakpoint-up(sm) {
+	@include breakpoint-up($navbar-trigger) {
 		margin-top: $navbar-height;
 	}
 }
@@ -17,10 +17,26 @@ section {
 	padding-bottom: 50px;
 }
 
+mark {
+	background-color: transparent;
+	color: $color-primary;
+	padding: 0;
+	display: inline;
+}
+
 h1,h2,h3,h4,h5,h6 {
 	color: $color-primary;
+	mark {
+		color: $color-secondary;
+	}
 }
 
 .wow {
-	visibility: hidden;
+	visibility: visible;
+	@include breakpoint-up(sm) {
+		visibility: hidden;
+	};
+	@include breakpoint-down(sm) {
+		animation: none !important;
+	};
 }

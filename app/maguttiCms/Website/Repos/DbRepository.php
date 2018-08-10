@@ -5,12 +5,12 @@
  * Date: 03/07/2016
  * Time: 11:40
  */
-namespace App\MaguttiCms\Website\Repos;
+namespace App\maguttiCms\Website\Repos;
 use Carbon\Carbon;
 
 /**
  * Class DbRepository
- * @package App\MaguttiCms\Website\Repos
+ * @package App\maguttiCms\Website\Repos
  */
 abstract class DbRepository
 {

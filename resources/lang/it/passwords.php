@@ -15,7 +15,7 @@ return [
 
     'password'  => 'La password deve essere di almeno sei caratteri oppure le password non coincidono.',
     'reset'     => 'La tua password è stata reimpostata',
-    'sent'      => 'Ti abbiamo inviato al tuo email un link per il reset della password!',
+    'sent'      => 'Abbiamo inviato al tuo indirizzo email un link per il reset della password!',
     'token'     => 'Token per il reset della password non valido',
     'user'      => "Email non trovato.",
     'mail_reset_button'     =>'Reset password',

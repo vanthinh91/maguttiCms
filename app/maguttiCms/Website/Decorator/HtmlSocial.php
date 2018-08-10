@@ -1,12 +1,12 @@
 <?php
-namespace App\MaguttiCms\Website\Decorator;
+namespace App\maguttiCms\Website\Decorator;
 Use App;
 Use App\Social;
 use Carbon\Carbon;
 
 /**
  * Class HtmlSocial
- * @package App\MaguttiCms\Website\Decorator
+ * @package App\maguttiCms\Website\Decorator
  */
 class HtmlSocial extends maguttiCmsDecorator
 {
@@ -49,11 +49,16 @@ class HtmlSocial extends maguttiCmsDecorator
     function createSocialBar()
     {
         foreach ($this->model->whereIsActive(1)->get() as $item) {
-			$this->html .= '<li>';
-            $this->html .= '<a href="' . $item->link . '" target="_new">';
+            $this->html .= '<li>';
+            if (filter_var($item->link, FILTER_VALIDATE_EMAIL)) {
+                $this->html .= '<a href="mailto:' . $item->link . '">';
+            }
+            else {
+                $this->html .= '<a href="' . $item->link . '" target="_new">';
+            }
             $this->html .= '<i class="fa '.$item->icon.' fa-lg"></i>';
             $this->html .= '</a>';
-			$this->html .= '</li>';
+            $this->html .= '</li>';
         }
     }
 }

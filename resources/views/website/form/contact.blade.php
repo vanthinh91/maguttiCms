@@ -1,11 +1,14 @@
 @include('flash::notification')
 <div class="row">
-	{{ Form::open(array('action' => '\App\MaguttiCms\Website\Controllers\WebsiteFormController@getContactUsForm')) }}
+	{{ Form::open(array('action' => '\App\maguttiCms\Website\Controllers\WebsiteFormController@getContactUsForm')) }}
+	@if(isset($request_product_id))
 		{{ Form::hidden('request_product_id', $request_product_id, ['class' => 'form-control']) }}
+	@endif
+
 	    <div class="col-xs-12 mb10">
 			<div class="color-3 text-center mb15">{!! trans('website.message.required_field') !!}</div>
 	    </div>
-		@if ($product)
+		@if(isset($product))
 			<div class="col-xs-12 mb10">
 				{!! trans('website.message.product_request') !!} {{$product->title}}.
 			</div>
@@ -33,7 +36,7 @@
 	    </div>
 		<div class="col-xs-12">
 		    <div class="form-group">
-		        {{ Form::label('company',trans('website.company')) }}
+		        {{ Form::label('company',trans('website.employer')) }}
 		        {{ Form::text('company', null,  ['class' => 'form-control']) }}
 		        {{ $errors->first('company') }}
 		    </div>
@@ -54,12 +57,14 @@
 	    </div>
 		<div class="col-xs-12">
 		    <div class="form-group">
-				<div class="checkbox">
+				<div class="form-checkbox">
+					<input type="checkbox" class="form-input" name="privacy" value="1" id="privacy" required>
 					<label for="privacy">
-						<input type="checkbox" name="privacy" value="1" id="privacy" required>
-						{{trans('website.message.privacy')}}
+						<a href="https://www.iubenda.com/privacy-policy/{{ Setting::getOption('iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}" class="iubenda-nostyle no-brand iubenda-embed " title="{{ trans('website.privacy')}}">
+							{{trans('website.message.privacy')}}
+						</a>
 					</label>
-			        {{ $errors->first('privacy') }}
+					{{ $errors->first('privacy') }}
 				</div>
 		    </div>
 	    </div>

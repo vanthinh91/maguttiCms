@@ -2,9 +2,9 @@
     <ul class="pagination">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
-            <li class="disabled"><span></span></li>
+            <li class="disabled"><span>{{HtmlHelper::createFAIcon('chevron-left')}}</span></li>
         @else
-            <li><a href="{{ $paginator->previousPageUrl() }}" rel="prev"></a></li>
+            <li><a href="{{ $paginator->previousPageUrl() }}" rel="prev">{{HtmlHelper::createFAIcon('chevron-left')}}</a></li>
         @endif
 
         {{-- Pagination Elements --}}
@@ -28,9 +28,9 @@
 
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
-            <li><a href="{{ $paginator->nextPageUrl() }}" rel="next"></a></li>
+            <li><a href="{{ $paginator->nextPageUrl() }}" rel="next">{{HtmlHelper::createFAIcon('chevron-right')}}</a></li>
         @else
-            <li class="disabled"><span></span></li>
+            <li class="disabled"><span>{{HtmlHelper::createFAIcon('chevron-right')}}</span></li>
         @endif
     </ul>
 @endif

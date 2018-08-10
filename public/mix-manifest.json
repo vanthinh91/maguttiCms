@@ -1,8 +1,15 @@
 {
-    "/website/js/app.js": "/website/js/app.js",
-    "/cms/js/cms_app.js": "/cms/js/cms_app.js",
-    "/website/js/magutti.js": "/website/js/magutti.js",
-    "/website/css/vendor.css": "/website/css/vendor.css",
-    "/website/css/app.css": "/website/css/app.css",
-    "/cms/css/admin.css": "/cms/css/admin.css"
+  "/cms/js/cms_app.js": "/cms/js/cms_app.js",
+  "/website/js/magutti.js": "/website/js/magutti.js",
+  "/website/css/app.css": "/website/css/app.css",
+  "/cms/css/admin.css": "/cms/css/admin.css",
+  "/website/js/app.js": "/website/js/app.js",
+  "/mix.js": "/mix.js",
+  "/website/css/vendor.css": "/website/css/vendor.css",
+  "/website/js/vendor.js": "/website/js/vendor.js",
+  "/cms/js/lara-file-manager.js": "/cms/js/lara-file-manager.js",
+  "/cms/js/header.js": "/cms/js/header.js",
+  "/cms/js/cmsvendor.js": "/cms/js/cmsvendor.js",
+  "/cms/js/cms.js": "/cms/js/cms.js",
+  "/website/js/store.js": "/website/js/store.js"
 }

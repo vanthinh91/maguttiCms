@@ -2,6 +2,7 @@
 use Illuminate\Http\Request;
 use Cocur\Slugify\Bridge\Laravel\SlugifyFacade;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -288,17 +289,17 @@ function ma_sluggy($stringa,$separator='-',$locale='')
 |  PATH Localization
 |--------------------------------------------------------------------------
 */
-/**
- * @return string
- */
-function  ma_getRealLocale() {
-    return (LaravelLocalization::getCurrentLocale()==LaravelLocalization::getDefaultLocale())?'':'/'.LaravelLocalization::getCurrentLocale();
-}
 
-/**
- * @param $url
- * @return mixed
- */
-function  ma_fullLocaleUrl($url) {
-    return LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(), URL::to($url));
+function ma_get_file_from_storage($file, $disk = '', $folder = '')
+{
+	if ($disk)
+		$storage = Storage::disk($disk);
+	else
+		$storage = Storage::disk('media');
+	if ($folder)
+		$image = asset($storage->url($folder.'/'.$file));
+	else
+		$image = asset($storage->url('images/'.$file));
+
+	return $image;
 }

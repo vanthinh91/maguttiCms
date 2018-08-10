@@ -1,7 +1,7 @@
 <?php
 namespace App;
 use Illuminate\Database\Eloquent\Model;
-use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
+use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class Domain extends Model
 {
@@ -19,9 +19,9 @@ class Domain extends Model
         $this->fieldspec['id'] = [
             'type'      => 'integer',
             'minvalue'  => 0,
-            'pkey'      => 'y',
+            'pkey'      => 1,
             'required'  => true,
-            'label'     => 'id',
+            'label'     => trans('admin.label.id'),
             'hidden'    => 1,
             'display'   => 0,
         ];
@@ -30,8 +30,7 @@ class Domain extends Model
             'type'      => 'string',
             'required'  => true,
             'hidden'    => 0,
-            'label'     => 'Domain',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.domain'),
             'display'   => 1,
         ];
 
@@ -39,8 +38,7 @@ class Domain extends Model
             'type'      => 'string',
             'required'  => true,
             'hidden'    => 0,
-            'label'     => 'Title',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.title'),
             'display'   => 1,
         ];
 
@@ -48,25 +46,24 @@ class Domain extends Model
             'type'      => 'string',
             'required'  => true,
             'hidden'    => 0,
-            'label'     => 'Value',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.value'),
             'display'   => 1,
         ];
 
         $this->fieldspec['sort'] = [
             'type'      => 'integer',
-            'required'  => false,
-            'label'     => 'Order',
+            'required'  => 0,
+            'label'     => trans('admin.label.position'),
             'hidden'    => 0,
             'display'   => 1,
         ];
 
         $this->fieldspec['pub'] = [
             'type'      => 'boolean',
-            'pkey'      => 'n',
-            'required'  => false,
+            'pkey'      => 0,
+            'required'  => 0,
             'hidden'    => 0,
-            'label'     => trans('admin.label.active'),
+            'label'     => trans('admin.label.publish'),
             'display'   => 1
         ];
         return $this->fieldspec;
@@ -84,5 +81,3 @@ class Domain extends Model
     }
 
 }
-
-

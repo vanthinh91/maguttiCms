@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Translatable;
+<?php namespace App\maguttiCms\Translatable;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Trait GFTranslatableHelperTrait
- * @package App\MaguttiCms\Translatable
+ * @package App\maguttiCms\Translatable
  */
 trait GFTranslatableHelperTrait
 {

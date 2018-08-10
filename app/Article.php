@@ -1,9 +1,7 @@
 <?php namespace App;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\URL;
 
-use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
+use Illuminate\Database\Eloquent\Model;
+use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 /**
  * Class Article
@@ -11,14 +9,16 @@ use \App\MaguttiCms\Translatable\GFTranslatableHelperTrait;
  */
 class Article extends Model
 {
-
     use  GFTranslatableHelperTrait;
     use \Dimsav\Translatable\Translatable;
-    use \App\MaguttiCms\Domain\Article\ArticlePresenter;
+    use \App\maguttiCms\Domain\Article\ArticlePresenter;
+
+	protected $with = ['translations'];
 
     protected $fillable = ['title', 'subtitle',  'abstract', 'description',
-                           'slug', 'sort', 'pub','top_menu', 'id_parent',
-                           'link', 'template_id','ignore_slug_translation'];
+                           'slug', 'sort', 'pub','top_menu', 'parent_id',
+                           'link', 'template_id','ignore_slug_translation',
+                           'doc'];
     protected $fieldspec = [];
 
     public $ajaxAccessibilityRoles = ['su'];
@@ -30,7 +30,7 @@ class Article extends Model
     */
     public $translatedAttributes = ['menu_title', 'title','slug',
                                     'subtitle', 'abstract', 'description',
-                                    'seo_title', 'seo_keywords', 'seo_description', 'seo_no_index'];
+                                    'seo_title', 'seo_description', 'seo_no_index'];
 
     public $sluggable            =  ['slug'=>['field'=>'title','updatable'=>false,'translatable'=>true]];
 
@@ -50,9 +50,14 @@ class Article extends Model
         return $this->morphMany('App\Media', 'model');
     }
 
-    public function parentPage()
+    public function parent()
     {
-        return $this->hasOne('App\Article','id','id_parent');
+        return $this->belongsTo('App\Article', 'parent_id', 'id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany('App\Article', 'parent_id', 'id');
     }
 
     /*
@@ -65,22 +70,23 @@ class Article extends Model
         $this->fieldspec['id'] = [
             'type'      => 'integer',
             'minvalue'  => 0,
-            'pkey'      => 'y',
-            'required'  => true,
-            'label'     => 'id',
+            'pkey'      => 1,
+            'required'  => 1,
+            'label'     => trans('admin.label.id'),
             'hidden'    => 1,
             'display'   => 0,
         ];
-        $this->fieldspec['id_parent'] = [
-            'type'        => 'relation',
+        $this->fieldspec['parent_id'] = [
+            'type'        => 'relation_tree',
+            'tree_field'  => 'parent_id',
+            'order_field' => 'sort',
             'model'       => 'article',
             'foreign_key' => 'id',
             'label_key'   => 'title',
-            'required'    => false,
-            'label'       => 'Parent Page',
+            'required'    => 0,
+            'label'       => trans('admin.label.parent'),
             'hidden'      => 0,
             'display'     => 1,
-            'cssClass'    => 'selectize',
         ];
         $this->fieldspec['template_id'] = [
             'type'        => 'relation',
@@ -88,51 +94,46 @@ class Article extends Model
             'filter'      => ['domain' => 'template'],
             'foreign_key' => 'id',
             'label_key'   => 'title',
-            'required'    => false,
-            'label'       => 'Template',
+            'required'    => 0,
+            'label'       => trans('admin.label.template'),
             'hidden'      => 0,
             'display'     => 1,
         ];
         $this->fieldspec['menu_title'] = [
             'type'     => 'string',
-            'required' => false,
+            'required' => 0,
             'hidden'   => 0,
-            'label'    => 'Menu Title',
-            'extraMsg' => '',
+            'label'    => trans('admin.label.menu_title'),
             'display'  => 1,
         ];
         $this->fieldspec['title'] = [
             'type'     => 'string',
             'required' => 1,
             'hidden'   => 0,
-            'label'    => 'Page Title',
-            'extraMsg' => '',
+            'label'    => trans('admin.label.title'),
             'display'  => 1,
         ];
         $this->fieldspec['subtitle'] = [
             'type'     => 'string',
-            'required' => false,
+            'required' => 0,
             'hidden'   => 0,
-            'label'    => 'Subtitle',
-            'extraMsg' => '',
+            'label'    => trans('admin.label.subtitle'),
             'display'  => 1,
         ];
         $this->fieldspec['slug'] = [
             'type'     => 'string',
             'required' => 1,
             'hidden'   => 0,
-            'label'    => 'Slug',
-            'extraMsg' => '',
+            'label'    => trans('admin.label.slug'),
             'display'  => 1,
         ];
         $this->fieldspec['description'] = [
             'type'     => 'text',
             'size'     => 600,
             'h'        => 300,
-            'required' => 'n',
+            'required' => 0,
             'hidden'   => 0,
-            'label'    => 'Description',
-            'extraMsg' => '',
+            'label'    => trans('admin.label.description'),
             'cssClass' => 'wyswyg',
             'display'  => 1,
         ];
@@ -142,81 +143,69 @@ class Article extends Model
             'h'        => 100,
             'required' => 'n',
             'hidden'   => 0,
-            'label'    => 'Abstract or text right side column',
-            'extraMsg' => '',
+            'label'    => trans('admin.label.additional'),
             'cssClass' => 'wyswyg',
             'display'  => 1,
         ];
         $this->fieldspec['link'] = [
             'type'     => 'string',
-            'required' => false,
+            'required' => 0,
             'hidden'   => 0,
-            'label'    => 'External url',
-            'extraMsg' => '',
+            'label'    => trans('admin.label.ext_url'),
             'display'  => 1,
         ];
         $this->fieldspec['image'] = [
             'type'      => 'media',
-            'required'  => false,
+            'required'  => 0,
             'hidden'    => 0,
-            'label'     => 'Image',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.image'),
             'mediaType' => 'Img',
             'display'   => 1,
+			'disk'      => 'media',
         ];
         $this->fieldspec['doc'] = [
-            'type'      => 'media',
-            'required'  => false,
-            'hidden'    => 0,
-            'label'     => 'Document',
-            'extraMsg'  => '',
-            'lang'      => 0,
-            'mediaType' => 'Doc',
-            'display'   => 1,
+            'type'        => 'media',
+            'required'    => 0,
+            'hidden'      => 0,
+            'label'       => trans('admin.label.doc'),
+            'lang'        => 0,
+            'mediaType'   => 'Doc',
+            'display'     => 1,
 			'uploadifive' => 1,
         ];
         $this->fieldspec['sort'] = [
             'type'     => 'integer',
-            'required' => false,
-            'label'    => 'Order',
+            'required' => 0,
+            'label'    => trans('admin.label.position'),
             'hidden'   => 0,
             'display'  => 1,
         ];
         $this->fieldspec['pub'] = [
             'type'     => 'boolean',
-            'required' => false,
+            'required' => 0,
             'hidden'   => 0,
-            'label'    => trans('admin.label.active'),
+            'label'    => trans('admin.label.publish'),
             'display'  => 1
         ];
         $this->fieldspec['top_menu'] = [
             'type'     => 'boolean',
-            'required' => false,
+            'required' => 0,
             'hidden'   => 0,
             'label'    => trans('admin.label.top_menu'),
             'display'  => 1
         ];
         $this->fieldspec['ignore_slug_translation'] = [
             'type'     => 'boolean',
-            'required' => false,
-            'hidden'   => '0',
-            'label'    => 'Ignore slug translation',
-            'display'  => '1'
+            'required' => 0,
+            'hidden'   => 0,
+            'label'    => trans('admin.label.slug_ignore'),
+            'display'  => 1
         ];
         $this->fieldspec['seo_title'] = [
             'type'     => 'string',
-            'required' => 'n',
+            'required' => 0,
             'hidden'   => 0,
             'label'    => trans('admin.seo.title'),
-            'extraMsg' => '',
-            'display'  => 1,
-        ];
-        $this->fieldspec['seo_keywords'] = [
-            'type'     => 'string',
-            'hidden'   => 0,
-            'label'    => trans('admin.seo.keywords').'<br>'.trans('admin.seo.keywords_eg_list'),
-            'extraMsg' => '',
-            'cssClass' => '',
             'display'  => 1,
         ];
         $this->fieldspec['seo_description'] = [
@@ -225,13 +214,12 @@ class Article extends Model
             'h'        => 300,
             'hidden'   => 0,
             'label'    => trans('admin.seo.description'),
-            'extraMsg' => '',
             'cssClass' => 'no',
             'display'  => 1,
         ];
         $this->fieldspec['seo_no_index'] = [
             'type'     => 'boolean',
-            'required' => false,
+            'required' => 0,
             'hidden'   => 0,
             'label'    => trans('admin.seo.no-index'),
             'display'  => 1
@@ -250,15 +238,11 @@ class Article extends Model
         $query->where('pub', 1);
     }
 
+	public function scopeTop($query) {
+        $query->where('parent_id', 0);
+    }
+
     public function scopeMenu($query) {
-        $query->where('top_menu', 1)->where('id_parent', 0)->orderBy('sort', 'asc');
-    }
-
-    public function scopeChildren($query, $id = '') {
-        $query->where('id_parent', $id)->orderBy('sort', 'asc');
-    }
-
-    public function scopeChildrenMenu($query, $id) {
-        $query->where('id_parent', $id)->where('top_menu', 1)->orderBy('sort', 'asc');
+        $query->where('top_menu', 1)->orderBy('sort', 'asc');
     }
 }

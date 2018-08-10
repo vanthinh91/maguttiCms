@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Sluggable;
+<?php namespace App\maguttiCms\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 /**
  * Trait SluggableTrait for
  * adminPageController
- * @package App\MaguttiCms\Sluggable
+ * @package App\maguttiCms\Sluggable
  */
 trait SluggableTrait
 {

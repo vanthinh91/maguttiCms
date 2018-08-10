@@ -57,7 +57,8 @@ return [
         'media' => [
             'driver' => 'local',
             'root'   => public_path('media'),
-            'visibility' => 'public',
+            'url'    => '/media',
+			'visibility' => 'public',
         ],
 
         's3' => [

@@ -26,71 +26,66 @@ class HpSlider extends Model
         $this->fieldspec['id'] = [
             'type'     => 'integer',
             'minvalue' => 0,
-            'pkey'     => 'y',
-            'required' =>true,
-            'label'    => 'id',
+            'pkey'     => 1,
+            'required' => 1,
+            'label'    => trans('admin.label.id'),
             'hidden'   => 1,
             'display'  => 0,
         ];
         $this->fieldspec['title']    = [
             'type'      => 'string',
-            'required'  => true,
+            'required'  => 1,
             'hidden'    => 0,
-            'label'     => 'Title',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.title'),
             'display'   => 1,
         ];
 
         $this->fieldspec['description'] = [
             'type'      => 'string',
-            'required'  => false,
+            'required'  => 0,
             'hidden'    => 0,
-            'label'     => 'Caption',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.description'),
             'lang'      => 0,
             'cssClass'  => 'wyswyg',
             'display'   => 1,
         ];
         $this->fieldspec['slug'] = [
             'type'      => 'string',
-            'required'  => false,
+            'required'  => 0,
             'hidden'    => 0,
-            'label'     => 'Slug',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.slug'),
             'display'   => 1,
         ];
         $this->fieldspec['link'] = [
             'type'      => 'string',
-            'required'  => false,
+            'required'  => 0,
             'hidden'    => 0,
-            'label'     => 'Link',
-            'extraMsg'  => '',
+            'label'     => trans('admin.label.link'),
             'display'   => 1,
         ];
         $this->fieldspec['image'] = [
-            'type'      =>  'media',
-            'pkey'      =>  'n',
-            'required'  =>  true,
-            'hidden'    =>  0,
-            'label'     =>  'Image',
-            'extraMsg'  =>  '',
-            'mediaType' =>  'Img',
-            'display'   =>  1,
+            'type'      => 'media',
+            'pkey'      => 0,
+            'required'  => 1,
+            'hidden'    => 0,
+            'label'     => trans('admin.label.image'),
+            'mediaType' => 'Img',
+            'display'   => 1,
 
         ];
         $this->fieldspec['sort'] = [
             'type'      => 'integer',
-            'required'  => false,
-            'label'     => 'Order',
+            'required'  => 0,
+            'label'     => trans('admin.label.position'),
             'hidden'    => 0,
             'display'   => 1,
         ];
         $this->fieldspec['is_active'] = [
             'type'      => 'boolean',
-            'pkey'      => 'n',
-            'required'  => false,
+            'pkey'      => 0,
+            'required'  => 0,
             'hidden'    => 0,
-            'label'     => trans('admin.label.active'),
+            'label'     => trans('admin.label.publish'),
             'display'   => 1
         ];
         return $this->fieldspec;
