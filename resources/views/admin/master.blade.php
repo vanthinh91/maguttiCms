@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.plugins').'custom-scrollbar/jquery.mCustomScrollbar.min.css')!!}" />
 	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.plugins').'colorpicker/css/bootstrap-colorpicker.min.css')!!}" />
 	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.common_css').'ma_helper.css')!!}">
-	<link rel="stylesheet" href="{!! asset(config('maguttiCms').'bootstrap-theme.css')!!}">
+	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.cms_css').'bootstrap-theme.css')!!}">
 	<link rel="stylesheet" href="{{ mix('cms/css/admin.css') }}">
 	<link rel="icon" href="{!! asset('/favicon.jpg') !!}" type="any" sizes="20x20">
 	<script>
