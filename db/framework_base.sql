@@ -796,8 +796,8 @@ CREATE TABLE `hpsliders` (
 --
 
 INSERT INTO `hpsliders` (`id`, `title`, `description`, `icon`, `image`, `link`, `slug`, `sort`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'laraCms Slier', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', '', 'laracms-slier', 200, 1, 0, '2016-12-27 17:34:38', '2017-08-02 13:17:01'),
-(2, 'laraCms 5.3', 'A modular multilingual CMS built with Laravel 5.3', NULL, '87786-img011.jpg', '', 'laracms-53', 100, 1, 0, '2016-12-27 18:18:09', '2018-08-11 16:58:17');
+(1, 'maguttiCms Slider', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', '', 'laracms-slier', 200, 1, 0, '2016-12-27 17:34:38', '2017-08-02 13:17:01'),
+(2, 'maguttiCms 5.6', 'A modular multilingual CMS built with Laravel 5.6', NULL, '87786-img011.jpg', '', 'laracms-53', 100, 1, 0, '2016-12-27 18:18:09', '2018-08-11 16:58:17');
 
 -- --------------------------------------------------------
 
