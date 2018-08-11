@@ -8,11 +8,11 @@
 		</div>
 		<div class="col-xs-12 col-md-6">
 			<address>
-				<h3>{!! config('maguttiCms')!!}</h3>
+				<h3>{!! config('maguttiCms.website.option.app.name')!!}</h3>
 				<p>
 					{!! config('maguttiCms.website.option.app.address')!!}<br>
 					{!! config('maguttiCms.website.option.app.locality')!!}<br>
-					{{HtmlHelper::createFAIcon('phone', 'fa-lg mr10')}}Tel {!! config('maguttiCms')!!}<br>
+					{{HtmlHelper::createFAIcon('phone', 'fa-lg mr10')}}Tel {!! config('maguttiCms.website.option.app.phone')!!}<br>
 					{{HtmlHelper::createFAIcon('fax', 'fa-lg mr10')}}Fax {!! config('maguttiCms.website.option.app.fax')!!}<br>
 					{{HtmlHelper::createFAIcon('envelope', 'fa-lg mr10')}}<a href="mailto:{!! config('maguttiCms.website.option.app.email')!!}">{!! config('maguttiCms.website.option.app.email')!!}</a>
 				</p>

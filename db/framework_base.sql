@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Aug 10, 2018 at 02:39 PM
--- Server version: 5.7.22
--- PHP Version: 7.0.29
+-- Host: 127.0.0.1
+-- Creato il: Ago 11, 2018 alle 19:02
+-- Versione del server: 10.1.22-MariaDB
+-- Versione PHP: 7.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,15 +19,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `maguttiCms`
+-- Database: `magutticms`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `addresses`
+-- Struttura della tabella `addresses`
 --
 
+DROP TABLE IF EXISTS `addresses`;
 CREATE TABLE `addresses` (
   `id` int(11) UNSIGNED NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -46,9 +49,10 @@ CREATE TABLE `addresses` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `adminusers`
+-- Struttura della tabella `adminusers`
 --
 
+DROP TABLE IF EXISTS `adminusers`;
 CREATE TABLE `adminusers` (
   `id` int(10) UNSIGNED NOT NULL,
   `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -64,25 +68,26 @@ CREATE TABLE `adminusers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `adminusers`
+-- Dump dei dati per la tabella `adminusers`
 --
 
 INSERT INTO `adminusers` (`id`, `first_name`, `last_name`, `email`, `password`, `real_password`, `remember_token`, `is_active`, `locale`, `created_at`, `updated_at`) VALUES
-(3, 'GF', 'Admin', 'cmsadmin@magutti.com', '$2y$10$fhRhYYRj2tgq1/jmaUkgH.y7AW2lcDrdEIsn5GP35aLVsEQWWCBh6', 'password', 'i57xldsH7Qpjps6jljA6u2BCQgFuYbJuK3fIrEOZUkrr7vK0J8NETi2LsF6u', 1, 'fr', '0000-00-00 00:00:00', '2018-08-10 14:38:29');
+(3, 'GF', 'Admin', 'cmsadmin@magutti.com', '$2y$10$fhRhYYRj2tgq1/jmaUkgH.y7AW2lcDrdEIsn5GP35aLVsEQWWCBh6', 'password', 'i57xldsH7Qpjps6jljA6u2BCQgFuYbJuK3fIrEOZUkrr7vK0J8NETi2LsF6u', 1, 'en', '0000-00-00 00:00:00', '2018-08-11 16:29:48');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `adminuser_role`
+-- Struttura della tabella `adminuser_role`
 --
 
+DROP TABLE IF EXISTS `adminuser_role`;
 CREATE TABLE `adminuser_role` (
   `adminuser_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `adminuser_role`
+-- Dump dei dati per la tabella `adminuser_role`
 --
 
 INSERT INTO `adminuser_role` (`adminuser_id`, `role_id`) VALUES
@@ -91,9 +96,10 @@ INSERT INTO `adminuser_role` (`adminuser_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `articles`
+-- Struttura della tabella `articles`
 --
 
+DROP TABLE IF EXISTS `articles`;
 CREATE TABLE `articles` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -121,7 +127,7 @@ CREATE TABLE `articles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `articles`
+-- Dump dei dati per la tabella `articles`
 --
 
 INSERT INTO `articles` (`id`, `domain`, `parent_id`, `id_template`, `menu_title`, `title`, `subtitle`, `intro`, `abstract`, `description`, `slug`, `doc`, `image`, `banner`, `link`, `sort`, `pub`, `ignore_slug_translation`, `top_menu`, `template_id`, `created_by`, `created_at`, `updated_at`) VALUES
@@ -130,7 +136,7 @@ INSERT INTO `articles` (`id`, `domain`, `parent_id`, `id_template`, `menu_title`
 (3, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'privacy', '', '', '', '', 2000, 1, 0, 0, 0, 0, '2016-07-04 07:11:17', '2017-08-01 14:33:01'),
 (4, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'contacts', '', '', '', '', 400, 1, 0, 1, 0, 0, '2016-07-04 07:11:39', '2017-08-01 14:32:40'),
 (5, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'products', '', '', '', '', 200, 1, 0, 1, 0, 0, '2016-07-04 07:20:37', '2018-01-25 11:03:49'),
-(6, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'news', '', '', '', '', 300, 1, 0, 1, 0, 0, '2016-07-04 07:59:05', '2017-08-01 14:33:11'),
+(6, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'news', '', '', '', '', 300, 1, 0, 1, 0, 0, '2016-07-04 07:59:05', '2018-08-11 16:38:10'),
 (7, '', 9, 0, NULL, '', NULL, NULL, NULL, '', 'login', '', '', '', '', 1000, 1, 0, 0, 0, 0, '2016-08-09 13:12:14', '2017-08-01 15:57:18'),
 (8, '', 9, 0, NULL, '', NULL, NULL, NULL, '', 'user-dashboard', '', '', '', '', 1200, 1, 0, 0, 0, 0, '2016-08-09 13:24:04', '2017-08-01 14:33:30'),
 (9, '', 0, 0, NULL, '', NULL, NULL, NULL, '', 'reserved-area', '', '', '', '', 1100, 0, 0, 0, 0, 0, '2016-08-10 07:16:26', '2017-08-01 15:57:05'),
@@ -140,9 +146,10 @@ INSERT INTO `articles` (`id`, `domain`, `parent_id`, `id_template`, `menu_title`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `article_translations`
+-- Struttura della tabella `article_translations`
 --
 
+DROP TABLE IF EXISTS `article_translations`;
 CREATE TABLE `article_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `article_id` int(10) UNSIGNED NOT NULL,
@@ -162,7 +169,7 @@ CREATE TABLE `article_translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `article_translations`
+-- Dump dei dati per la tabella `article_translations`
 --
 
 INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_title`, `title`, `subtitle`, `intro`, `description`, `abstract`, `seo_title`, `seo_description`, `seo_no_index`, `created_at`, `updated_at`) VALUES
@@ -177,7 +184,7 @@ INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_
 (9, 4, 'it', 'contatti', 'Contatti', 'Contatti', '', NULL, '', '', '', '', '', '2016-07-04 07:54:32', '2017-08-01 14:32:40'),
 (10, 4, 'en', 'contacts', 'Contacts', 'Contacts', '', NULL, '', '', '', '', '', '2016-07-04 07:54:32', '2017-08-01 14:32:40'),
 (13, 6, 'it', 'news', 'News', 'News', '', NULL, '', '', '', '', '', '2016-08-04 11:24:58', '2017-08-01 14:33:11'),
-(14, 6, 'en', 'news', 'News', 'News', '', NULL, '', '', '', '', '', '2016-08-04 11:24:58', '2017-08-01 14:33:11'),
+(14, 6, 'en', 'news', 'News', 'News', 'News Sub Title', NULL, '', '', '', '', '', '2016-08-04 11:24:58', '2018-08-11 16:38:10'),
 (15, 7, 'it', 'login', 'Login', 'Login', 'login', NULL, '', '', 'Login', '', '', '2016-08-09 13:12:14', '2017-08-01 14:33:20'),
 (16, 7, 'en', 'login', 'Login', 'Login', 'Login', NULL, '', '', 'Login', '', '', '2016-08-09 13:12:14', '2017-08-01 14:33:20'),
 (17, 8, 'it', 'dashboard', 'Dashboard', 'Dashboard', 'Dashboard', NULL, '', '', '', '', '', '2016-08-09 13:24:04', '2017-08-01 14:33:30'),
@@ -187,14 +194,17 @@ INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_
 (21, 10, 'it', 'profile', 'Profile', 'Profile', 'Profile', NULL, '', '', '', '', '', '2016-08-10 07:17:38', '2017-08-01 14:33:37'),
 (22, 10, 'en', 'user-profile', 'User profile', 'User profile', '', NULL, '', '', '', '', '', '2016-08-10 07:17:38', '2017-08-01 14:33:37'),
 (23, 11, 'it', 'register', '', 'Registrazione', '', NULL, '', '', '', '', '', '2017-08-01 16:13:57', '2017-08-01 16:13:57'),
-(24, 11, 'en', 'register', '', 'Register', '', NULL, '', '', '', '', '', '2017-08-01 16:13:57', '2017-08-01 16:13:57');
+(24, 11, 'en', 'register', '', 'Register', '', NULL, '', '', '', '', '', '2017-08-01 16:13:57', '2017-08-01 16:13:57'),
+(25, 6, 'es', '', '', '', '', NULL, '', '', '', '', '', '2018-08-11 16:38:10', '2018-08-11 16:38:10'),
+(26, 6, 'fr', '', '', '', '', NULL, '', '', '', '', '', '2018-08-11 16:38:10', '2018-08-11 16:38:10');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carts`
+-- Struttura della tabella `carts`
 --
 
+DROP TABLE IF EXISTS `carts`;
 CREATE TABLE `carts` (
   `id` int(11) UNSIGNED NOT NULL,
   `status` tinyint(4) NOT NULL,
@@ -206,9 +216,10 @@ CREATE TABLE `carts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart_items`
+-- Struttura della tabella `cart_items`
 --
 
+DROP TABLE IF EXISTS `cart_items`;
 CREATE TABLE `cart_items` (
   `id` int(11) UNSIGNED NOT NULL,
   `cart_id` int(11) NOT NULL,
@@ -222,9 +233,10 @@ CREATE TABLE `cart_items` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Struttura della tabella `categories`
 --
 
+DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_parent` int(10) UNSIGNED DEFAULT NULL,
@@ -245,7 +257,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `categories`
+-- Dump dei dati per la tabella `categories`
 --
 
 INSERT INTO `categories` (`id`, `id_parent`, `title`, `abstract`, `description`, `slug`, `image`, `banner`, `doc`, `sort`, `pub`, `seo_title`, `seo_description`, `created_by`, `created_at`, `updated_at`) VALUES
@@ -256,9 +268,10 @@ INSERT INTO `categories` (`id`, `id_parent`, `title`, `abstract`, `description`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category_translations`
+-- Struttura della tabella `category_translations`
 --
 
+DROP TABLE IF EXISTS `category_translations`;
 CREATE TABLE `category_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -275,7 +288,7 @@ CREATE TABLE `category_translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `category_translations`
+-- Dump dei dati per la tabella `category_translations`
 --
 
 INSERT INTO `category_translations` (`id`, `slug`, `category_id`, `locale`, `title`, `description`, `seo_title`, `seo_description`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
@@ -291,9 +304,10 @@ INSERT INTO `category_translations` (`id`, `slug`, `category_id`, `locale`, `tit
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contacts`
+-- Struttura della tabella `contacts`
 --
 
+DROP TABLE IF EXISTS `contacts`;
 CREATE TABLE `contacts` (
   `id` int(10) UNSIGNED NOT NULL,
   `request_product_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -312,9 +326,10 @@ CREATE TABLE `contacts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `countries`
+-- Struttura della tabella `countries`
 --
 
+DROP TABLE IF EXISTS `countries`;
 CREATE TABLE `countries` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -330,7 +345,7 @@ CREATE TABLE `countries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `countries`
+-- Dump dei dati per la tabella `countries`
 --
 
 INSERT INTO `countries` (`id`, `name`, `iso_code`, `id_continent`, `eu`, `vat`, `is_active`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
@@ -585,9 +600,10 @@ INSERT INTO `countries` (`id`, `name`, `iso_code`, `id_continent`, `eu`, `vat`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `domains`
+-- Struttura della tabella `domains`
 --
 
+DROP TABLE IF EXISTS `domains`;
 CREATE TABLE `domains` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -601,7 +617,7 @@ CREATE TABLE `domains` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `domains`
+-- Dump dei dati per la tabella `domains`
 --
 
 INSERT INTO `domains` (`id`, `domain`, `title`, `value`, `sort`, `pub`, `created_by`, `created_at`, `updated_at`) VALUES
@@ -612,9 +628,10 @@ INSERT INTO `domains` (`id`, `domain`, `title`, `value`, `sort`, `pub`, `created
 -- --------------------------------------------------------
 
 --
--- Table structure for table `domain_translations`
+-- Struttura della tabella `domain_translations`
 --
 
+DROP TABLE IF EXISTS `domain_translations`;
 CREATE TABLE `domain_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain_id` int(10) UNSIGNED NOT NULL,
@@ -626,7 +643,7 @@ CREATE TABLE `domain_translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `domain_translations`
+-- Dump dei dati per la tabella `domain_translations`
 --
 
 INSERT INTO `domain_translations` (`id`, `domain_id`, `locale`, `title`, `update_by`, `created_at`, `updated_at`) VALUES
@@ -640,9 +657,10 @@ INSERT INTO `domain_translations` (`id`, `domain_id`, `locale`, `title`, `update
 -- --------------------------------------------------------
 
 --
--- Table structure for table `errors`
+-- Struttura della tabella `errors`
 --
 
+DROP TABLE IF EXISTS `errors`;
 CREATE TABLE `errors` (
   `id` int(11) UNSIGNED NOT NULL,
   `message` varchar(256) NOT NULL,
@@ -654,7 +672,7 @@ CREATE TABLE `errors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `errors`
+-- Dump dei dati per la tabella `errors`
 --
 
 INSERT INTO `errors` (`id`, `message`, `file`, `line`, `trace`, `created_at`, `updated_at`) VALUES
@@ -666,9 +684,10 @@ INSERT INTO `errors` (`id`, `message`, `file`, `line`, `trace`, `created_at`, `u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `examples`
+-- Struttura della tabella `examples`
 --
 
+DROP TABLE IF EXISTS `examples`;
 CREATE TABLE `examples` (
   `id` int(10) UNSIGNED NOT NULL,
   `article_id` int(11) NOT NULL,
@@ -689,7 +708,7 @@ CREATE TABLE `examples` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `examples`
+-- Dump dei dati per la tabella `examples`
 --
 
 INSERT INTO `examples` (`id`, `article_id`, `article_2_id`, `title`, `description`, `description_2`, `slug`, `doc`, `image`, `image_media_id`, `sort`, `pub`, `color`, `date`, `created_at`, `updated_at`) VALUES
@@ -698,9 +717,10 @@ INSERT INTO `examples` (`id`, `article_id`, `article_2_id`, `title`, `descriptio
 -- --------------------------------------------------------
 
 --
--- Table structure for table `example_article`
+-- Struttura della tabella `example_article`
 --
 
+DROP TABLE IF EXISTS `example_article`;
 CREATE TABLE `example_article` (
   `example_id` int(10) UNSIGNED NOT NULL,
   `article_id` int(10) UNSIGNED NOT NULL,
@@ -709,7 +729,7 @@ CREATE TABLE `example_article` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `example_article`
+-- Dump dei dati per la tabella `example_article`
 --
 
 INSERT INTO `example_article` (`example_id`, `article_id`, `created_at`, `updated_at`) VALUES
@@ -720,9 +740,10 @@ INSERT INTO `example_article` (`example_id`, `article_id`, `created_at`, `update
 -- --------------------------------------------------------
 
 --
--- Table structure for table `example_translations`
+-- Struttura della tabella `example_translations`
 --
 
+DROP TABLE IF EXISTS `example_translations`;
 CREATE TABLE `example_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `example_id` int(10) UNSIGNED NOT NULL,
@@ -741,7 +762,7 @@ CREATE TABLE `example_translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `example_translations`
+-- Dump dei dati per la tabella `example_translations`
 --
 
 INSERT INTO `example_translations` (`id`, `example_id`, `locale`, `slug`, `title`, `description`, `description_2`, `seo_title`, `seo_description`, `seo_no_index`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
@@ -751,9 +772,10 @@ INSERT INTO `example_translations` (`id`, `example_id`, `locale`, `slug`, `title
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hpsliders`
+-- Struttura della tabella `hpsliders`
 --
 
+DROP TABLE IF EXISTS `hpsliders`;
 CREATE TABLE `hpsliders` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -770,19 +792,20 @@ CREATE TABLE `hpsliders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `hpsliders`
+-- Dump dei dati per la tabella `hpsliders`
 --
 
 INSERT INTO `hpsliders` (`id`, `title`, `description`, `icon`, `image`, `link`, `slug`, `sort`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, 'laraCms Slier', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', '', 'laracms-slier', 200, 1, 0, '2016-12-27 17:34:38', '2017-08-02 13:17:01'),
-(2, 'laraCms 5.3', 'A modular multilingual CMS built with Laravel 5.3', NULL, 'header1.jpg', '', 'laracms-53', 100, 1, 0, '2016-12-27 18:18:09', '2017-08-02 14:04:31');
+(2, 'laraCms 5.3', 'A modular multilingual CMS built with Laravel 5.3', NULL, '87786-img011.jpg', '', 'laracms-53', 100, 1, 0, '2016-12-27 18:18:09', '2018-08-11 16:58:17');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `media`
+-- Struttura della tabella `media`
 --
 
+DROP TABLE IF EXISTS `media`;
 CREATE TABLE `media` (
   `id` int(10) UNSIGNED NOT NULL,
   `media_category_id` int(10) UNSIGNED NOT NULL,
@@ -804,7 +827,7 @@ CREATE TABLE `media` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `media`
+-- Dump dei dati per la tabella `media`
 --
 
 INSERT INTO `media` (`id`, `media_category_id`, `model_id`, `model_type`, `collection_name`, `title`, `alt`, `description`, `file_name`, `file_ext`, `disk`, `size`, `manipulations`, `pub`, `sort`, `created_at`, `updated_at`) VALUES
@@ -814,9 +837,10 @@ INSERT INTO `media` (`id`, `media_category_id`, `model_id`, `model_type`, `colle
 -- --------------------------------------------------------
 
 --
--- Table structure for table `media_translations`
+-- Struttura della tabella `media_translations`
 --
 
+DROP TABLE IF EXISTS `media_translations`;
 CREATE TABLE `media_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `media_id` int(10) UNSIGNED NOT NULL,
@@ -829,7 +853,7 @@ CREATE TABLE `media_translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `media_translations`
+-- Dump dei dati per la tabella `media_translations`
 --
 
 INSERT INTO `media_translations` (`id`, `media_id`, `locale`, `title`, `alt`, `description`, `created_at`, `updated_at`) VALUES
@@ -839,16 +863,17 @@ INSERT INTO `media_translations` (`id`, `media_id`, `locale`, `title`, `alt`, `d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Struttura della tabella `migrations`
 --
 
+DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Dump dei dati per la tabella `migrations`
 --
 
 INSERT INTO `migrations` (`migration`, `batch`) VALUES
@@ -884,9 +909,10 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `news`
+-- Struttura della tabella `news`
 --
 
+DROP TABLE IF EXISTS `news`;
 CREATE TABLE `news` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -905,18 +931,19 @@ CREATE TABLE `news` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `news`
+-- Dump dei dati per la tabella `news`
 --
 
 INSERT INTO `news` (`id`, `domain`, `date`, `title`, `description`, `slug`, `doc`, `image`, `link`, `sort`, `pub`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, '', '2017-07-11', '', '', 'pinoscotto11', '96281-dedprifxoaaxql6.jpg', 'DEDpRifXoAAXql6.jpg', NULL, 0, 1, 0, '2017-07-11 07:18:08', '2017-08-02 09:21:57');
+(1, '', '2017-07-25', '', '', 'pinoscotto11', '96281-dedprifxoaaxql6.jpg', 'DEDpRifXoAAXql6.jpg', NULL, 10, 1, 0, '2017-07-11 07:18:08', '2018-08-11 16:58:55');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `newsletters`
+-- Struttura della tabella `newsletters`
 --
 
+DROP TABLE IF EXISTS `newsletters`;
 CREATE TABLE `newsletters` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -931,9 +958,10 @@ CREATE TABLE `newsletters` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `news_tag`
+-- Struttura della tabella `news_tag`
 --
 
+DROP TABLE IF EXISTS `news_tag`;
 CREATE TABLE `news_tag` (
   `news_id` int(10) UNSIGNED NOT NULL,
   `tag_id` int(10) UNSIGNED NOT NULL,
@@ -944,9 +972,10 @@ CREATE TABLE `news_tag` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `news_translations`
+-- Struttura della tabella `news_translations`
 --
 
+DROP TABLE IF EXISTS `news_translations`;
 CREATE TABLE `news_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -966,19 +995,22 @@ CREATE TABLE `news_translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `news_translations`
+-- Dump dei dati per la tabella `news_translations`
 --
 
 INSERT INTO `news_translations` (`id`, `slug`, `news_id`, `locale`, `title`, `description`, `abstract`, `subtitle`, `intro`, `seo_title`, `seo_description`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
 (1, 'titolo-della-news-1', 1, 'it', 'Titolo della news 1', '<p>wqeqweqweqw</p>', NULL, NULL, NULL, '', '', 0, 0, '2017-07-11 07:18:08', '2017-08-02 09:21:57'),
-(2, 'news-one-title', 1, 'en', 'News  one  title', '', NULL, NULL, NULL, '', '', 0, 0, '2017-07-11 07:18:08', '2017-08-02 09:21:57');
+(2, 'news-one-title', 1, 'en', 'News  one  title 12', '', NULL, NULL, NULL, 'ree', '', 0, 0, '2017-07-11 07:18:08', '2018-08-11 16:46:08'),
+(3, '', 1, 'es', '', '', NULL, NULL, NULL, '', '', 0, 0, '2018-08-11 16:44:56', '2018-08-11 16:44:56'),
+(4, '', 1, 'fr', '', '', NULL, NULL, NULL, '', '', 0, 0, '2018-08-11 16:44:56', '2018-08-11 16:44:56');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Struttura della tabella `orders`
 --
 
+DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `id` int(11) UNSIGNED NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -997,9 +1029,10 @@ CREATE TABLE `orders` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_items`
+-- Struttura della tabella `order_items`
 --
 
+DROP TABLE IF EXISTS `order_items`;
 CREATE TABLE `order_items` (
   `id` int(11) UNSIGNED NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -1015,9 +1048,10 @@ CREATE TABLE `order_items` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Struttura della tabella `password_resets`
 --
 
+DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1027,9 +1061,10 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payments`
+-- Struttura della tabella `payments`
 --
 
+DROP TABLE IF EXISTS `payments`;
 CREATE TABLE `payments` (
   `id` int(11) UNSIGNED NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -1046,9 +1081,10 @@ CREATE TABLE `payments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment_methods`
+-- Struttura della tabella `payment_methods`
 --
 
+DROP TABLE IF EXISTS `payment_methods`;
 CREATE TABLE `payment_methods` (
   `id` int(11) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL DEFAULT '',
@@ -1059,19 +1095,20 @@ CREATE TABLE `payment_methods` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `payment_methods`
+-- Dump dei dati per la tabella `payment_methods`
 --
 
 INSERT INTO `payment_methods` (`id`, `title`, `code`, `is_active`, `created_at`, `updated_at`) VALUES
 (1, 'Paypal', 'paypal', 1, '2018-06-15 08:26:08', '2018-06-15 08:26:08'),
-(2, 'Bonifico', 'bank', 1, '2018-06-15 08:26:26', '2018-06-15 08:26:26');
+(2, 'bank Transafer', 'bank', 1, '2018-06-15 08:26:26', '2018-08-11 17:01:19');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permissions`
+-- Struttura della tabella `permissions`
 --
 
+DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE `permissions` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1084,9 +1121,10 @@ CREATE TABLE `permissions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permission_role`
+-- Struttura della tabella `permission_role`
 --
 
+DROP TABLE IF EXISTS `permission_role`;
 CREATE TABLE `permission_role` (
   `permission_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
@@ -1095,9 +1133,10 @@ CREATE TABLE `permission_role` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Struttura della tabella `products`
 --
 
+DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` int(10) UNSIGNED NOT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1120,20 +1159,21 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `products`
+-- Dump dei dati per la tabella `products`
 --
 
 INSERT INTO `products` (`id`, `code`, `category_id`, `title`, `subtitle`, `description`, `slug`, `price`, `image`, `doc`, `video`, `sort`, `pub`, `seo_title`, `seo_description`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'PRDA', 1, '', '', '', NULL, 10, 'A.png', NULL, '', 0, 1, NULL, NULL, 0, '2017-08-02 10:09:39', '2018-06-13 14:48:28'),
+(1, 'PRDA', 1, '', '', '', NULL, 10, 'A.png', NULL, '', 30, 1, NULL, NULL, 0, '2017-08-02 10:09:39', '2018-08-11 17:00:07'),
 (2, 'PRDB', 2, '', '', '', NULL, 20, 'B.png', NULL, '', 10, 1, NULL, NULL, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
 (3, 'PRDC', 3, '', '', '', NULL, 30, 'Cpng.png', NULL, '', 0, 1, NULL, NULL, 0, '2018-06-13 14:50:05', '2018-06-13 14:50:05');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_models`
+-- Struttura della tabella `product_models`
 --
 
+DROP TABLE IF EXISTS `product_models`;
 CREATE TABLE `product_models` (
   `id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
@@ -1150,9 +1190,10 @@ CREATE TABLE `product_models` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_model_translations`
+-- Struttura della tabella `product_model_translations`
 --
 
+DROP TABLE IF EXISTS `product_model_translations`;
 CREATE TABLE `product_model_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `product_model_id` int(10) NOT NULL,
@@ -1168,9 +1209,10 @@ CREATE TABLE `product_model_translations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_translations`
+-- Struttura della tabella `product_translations`
 --
 
+DROP TABLE IF EXISTS `product_translations`;
 CREATE TABLE `product_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1189,23 +1231,26 @@ CREATE TABLE `product_translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `product_translations`
+-- Dump dei dati per la tabella `product_translations`
 --
 
 INSERT INTO `product_translations` (`id`, `slug`, `product_id`, `locale`, `title`, `subtitle`, `description`, `doc`, `seo_title`, `seo_description`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
 (1, 'prodotto-a', 1, 'it', 'Prodotto A', '', '', NULL, '', '', 0, 0, '2017-08-02 10:09:39', '2018-06-13 14:48:28'),
-(2, 'product-number-1', 1, 'en', 'Product number 1', '', '', NULL, '', '', 0, 0, '2017-08-02 10:09:39', '2017-08-02 10:09:39'),
+(2, 'product-number-1', 1, 'en', 'Product number 1', 'product number 1 subtitle', '', NULL, '', '', 0, 0, '2017-08-02 10:09:39', '2018-08-11 16:59:53'),
 (3, 'prodotto-b', 2, 'it', 'Prodotto B', '', '', NULL, '', '', 0, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
 (4, 'product-b', 2, 'en', 'Product B', '', '', NULL, '', '', 0, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
 (5, 'prodotto-c', 3, 'it', 'Prodotto C', '', '', NULL, '', '', 0, 0, '2018-06-13 14:50:05', '2018-06-13 14:50:05'),
-(6, 'product-c', 3, 'en', 'Product C', '', '', NULL, '', '', 0, 0, '2018-06-13 14:50:05', '2018-06-13 14:50:05');
+(6, 'product-c', 3, 'en', 'Product C', '', '', NULL, '', '', 0, 0, '2018-06-13 14:50:05', '2018-06-13 14:50:05'),
+(7, '', 1, 'es', '', '', '', NULL, '', '', 0, 0, '2018-08-11 16:59:53', '2018-08-11 16:59:53'),
+(8, '', 1, 'fr', '', '', '', NULL, '', '', 0, 0, '2018-08-11 16:59:53', '2018-08-11 16:59:53');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `provinces`
+-- Struttura della tabella `provinces`
 --
 
+DROP TABLE IF EXISTS `provinces`;
 CREATE TABLE `provinces` (
   `id` int(10) NOT NULL,
   `country_id` int(8) NOT NULL,
@@ -1217,7 +1262,7 @@ CREATE TABLE `provinces` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `provinces`
+-- Dump dei dati per la tabella `provinces`
 --
 
 INSERT INTO `provinces` (`id`, `country_id`, `state_id`, `title`, `code`, `created_at`, `updated_at`) VALUES
@@ -1335,9 +1380,10 @@ INSERT INTO `provinces` (`id`, `country_id`, `state_id`, `title`, `code`, `creat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Struttura della tabella `roles`
 --
 
+DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1348,7 +1394,7 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `roles`
+-- Dump dei dati per la tabella `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
@@ -1360,16 +1406,17 @@ INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role_user`
+-- Struttura della tabella `role_user`
 --
 
+DROP TABLE IF EXISTS `role_user`;
 CREATE TABLE `role_user` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `role_user`
+-- Dump dei dati per la tabella `role_user`
 --
 
 INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
@@ -1379,9 +1426,10 @@ INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settings`
+-- Struttura della tabella `settings`
 --
 
+DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
   `id` int(10) UNSIGNED NOT NULL,
   `key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1393,7 +1441,7 @@ CREATE TABLE `settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `settings`
+-- Dump dei dati per la tabella `settings`
 --
 
 INSERT INTO `settings` (`id`, `key`, `value`, `description`, `domain`, `created_at`, `updated_at`) VALUES
@@ -1407,9 +1455,10 @@ INSERT INTO `settings` (`id`, `key`, `value`, `description`, `domain`, `created_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `socials`
+-- Struttura della tabella `socials`
 --
 
+DROP TABLE IF EXISTS `socials`;
 CREATE TABLE `socials` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1425,7 +1474,7 @@ CREATE TABLE `socials` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `socials`
+-- Dump dei dati per la tabella `socials`
 --
 
 INSERT INTO `socials` (`id`, `title`, `description`, `icon`, `image`, `link`, `sort`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
@@ -1436,9 +1485,10 @@ INSERT INTO `socials` (`id`, `title`, `description`, `icon`, `image`, `link`, `s
 -- --------------------------------------------------------
 
 --
--- Table structure for table `special_prices`
+-- Struttura della tabella `special_prices`
 --
 
+DROP TABLE IF EXISTS `special_prices`;
 CREATE TABLE `special_prices` (
   `id` int(11) UNSIGNED NOT NULL,
   `product_code` varchar(255) NOT NULL DEFAULT '',
@@ -1451,9 +1501,10 @@ CREATE TABLE `special_prices` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `states`
+-- Struttura della tabella `states`
 --
 
+DROP TABLE IF EXISTS `states`;
 CREATE TABLE `states` (
   `id` int(10) NOT NULL,
   `country_id` int(8) NOT NULL,
@@ -1464,7 +1515,7 @@ CREATE TABLE `states` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `states`
+-- Dump dei dati per la tabella `states`
 --
 
 INSERT INTO `states` (`id`, `country_id`, `title`, `zone`, `created_at`, `updated_at`) VALUES
@@ -1492,9 +1543,10 @@ INSERT INTO `states` (`id`, `country_id`, `title`, `zone`, `created_at`, `update
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tags`
+-- Struttura della tabella `tags`
 --
 
+DROP TABLE IF EXISTS `tags`;
 CREATE TABLE `tags` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1506,7 +1558,7 @@ CREATE TABLE `tags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `tags`
+-- Dump dei dati per la tabella `tags`
 --
 
 INSERT INTO `tags` (`id`, `title`, `slug`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
@@ -1517,9 +1569,10 @@ INSERT INTO `tags` (`id`, `title`, `slug`, `created_by`, `update_by`, `created_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tag_translations`
+-- Struttura della tabella `tag_translations`
 --
 
+DROP TABLE IF EXISTS `tag_translations`;
 CREATE TABLE `tag_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `tag_id` int(10) UNSIGNED NOT NULL,
@@ -1530,7 +1583,7 @@ CREATE TABLE `tag_translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `tag_translations`
+-- Dump dei dati per la tabella `tag_translations`
 --
 
 INSERT INTO `tag_translations` (`id`, `tag_id`, `locale`, `title`, `created_at`, `updated_at`) VALUES
@@ -1544,9 +1597,10 @@ INSERT INTO `tag_translations` (`id`, `tag_id`, `locale`, `title`, `created_at`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struttura della tabella `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1562,44 +1616,44 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Dump dei dati per la tabella `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `gender`, `password`, `real_password`, `remember_token`, `list_code`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'GFstudio User', 'user@gfstudio.com', 'M', '$2y$10$XmrieXL.VXNw1sw4rYlxsu0B8acy8skQ2ABtls0zAp6jaOduBXZqW', 'california09', 'taeEe1GVsBFZh2Ui9qELCV9Aaqb93wu5iQcs1oD8qhv4HHkj4o7XBsZDUOXW', '', 1, '2017-07-07 13:37:30', '2018-06-14 12:04:28');
+(1, 'magutti User', 'user@magutti.com', 'M', '$2y$10$XmrieXL.VXNw1sw4rYlxsu0B8acy8skQ2ABtls0zAp6jaOduBXZqW', 'california09', 'sjWyjnpDY89zg4F3pCIcBN3prSAxDmfNPAgIZFM4aFZgJZjBWTw7B2pGH9HO', '', 1, '2017-07-07 13:37:30', '2018-06-14 12:04:28');
 
 --
--- Indexes for dumped tables
+-- Indici per le tabelle scaricate
 --
 
 --
--- Indexes for table `addresses`
+-- Indici per le tabelle `addresses`
 --
 ALTER TABLE `addresses`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `adminusers`
+-- Indici per le tabelle `adminusers`
 --
 ALTER TABLE `adminusers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indexes for table `adminuser_role`
+-- Indici per le tabelle `adminuser_role`
 --
 ALTER TABLE `adminuser_role`
   ADD PRIMARY KEY (`adminuser_id`,`role_id`),
   ADD KEY `adminuser_role_role_id_foreign` (`role_id`);
 
 --
--- Indexes for table `articles`
+-- Indici per le tabelle `articles`
 --
 ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `article_translations`
+-- Indici per le tabelle `article_translations`
 --
 ALTER TABLE `article_translations`
   ADD PRIMARY KEY (`id`),
@@ -1607,26 +1661,26 @@ ALTER TABLE `article_translations`
   ADD KEY `article_translations_locale_index` (`locale`);
 
 --
--- Indexes for table `carts`
+-- Indici per le tabelle `carts`
 --
 ALTER TABLE `carts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cart_items`
+-- Indici per le tabelle `cart_items`
 --
 ALTER TABLE `cart_items`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `categories`
+-- Indici per le tabelle `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `categories_slug_unique` (`slug`);
 
 --
--- Indexes for table `category_translations`
+-- Indici per le tabelle `category_translations`
 --
 ALTER TABLE `category_translations`
   ADD PRIMARY KEY (`id`),
@@ -1634,25 +1688,25 @@ ALTER TABLE `category_translations`
   ADD KEY `categories_translations_locale_index` (`locale`);
 
 --
--- Indexes for table `contacts`
+-- Indici per le tabelle `contacts`
 --
 ALTER TABLE `contacts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `countries`
+-- Indici per le tabelle `countries`
 --
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `domains`
+-- Indici per le tabelle `domains`
 --
 ALTER TABLE `domains`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `domain_translations`
+-- Indici per le tabelle `domain_translations`
 --
 ALTER TABLE `domain_translations`
   ADD PRIMARY KEY (`id`),
@@ -1660,26 +1714,26 @@ ALTER TABLE `domain_translations`
   ADD KEY `domains_translations_locale_index` (`locale`);
 
 --
--- Indexes for table `errors`
+-- Indici per le tabelle `errors`
 --
 ALTER TABLE `errors`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `examples`
+-- Indici per le tabelle `examples`
 --
 ALTER TABLE `examples`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `example_article`
+-- Indici per le tabelle `example_article`
 --
 ALTER TABLE `example_article`
   ADD KEY `example_article_example_id_index` (`example_id`),
   ADD KEY `example_article_article_id_index` (`article_id`);
 
 --
--- Indexes for table `example_translations`
+-- Indici per le tabelle `example_translations`
 --
 ALTER TABLE `example_translations`
   ADD PRIMARY KEY (`id`),
@@ -1687,21 +1741,21 @@ ALTER TABLE `example_translations`
   ADD KEY `example_translations_locale_unique` (`locale`);
 
 --
--- Indexes for table `hpsliders`
+-- Indici per le tabelle `hpsliders`
 --
 ALTER TABLE `hpsliders`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `hpsliders_slug_unique` (`slug`);
 
 --
--- Indexes for table `media`
+-- Indici per le tabelle `media`
 --
 ALTER TABLE `media`
   ADD PRIMARY KEY (`id`),
   ADD KEY `media_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
--- Indexes for table `media_translations`
+-- Indici per le tabelle `media_translations`
 --
 ALTER TABLE `media_translations`
   ADD PRIMARY KEY (`id`),
@@ -1709,26 +1763,26 @@ ALTER TABLE `media_translations`
   ADD KEY `media_translations_locale_index` (`locale`);
 
 --
--- Indexes for table `news`
+-- Indici per le tabelle `news`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `newsletters`
+-- Indici per le tabelle `newsletters`
 --
 ALTER TABLE `newsletters`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `news_tag`
+-- Indici per le tabelle `news_tag`
 --
 ALTER TABLE `news_tag`
   ADD KEY `news_tag_news_id_index` (`news_id`),
   ADD KEY `news_tag_tag_id_index` (`tag_id`);
 
 --
--- Indexes for table `news_translations`
+-- Indici per le tabelle `news_translations`
 --
 ALTER TABLE `news_translations`
   ADD PRIMARY KEY (`id`),
@@ -1736,53 +1790,53 @@ ALTER TABLE `news_translations`
   ADD KEY `news_translations_locale_index` (`locale`);
 
 --
--- Indexes for table `orders`
+-- Indici per le tabelle `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `order_token_unique` (`token`);
 
 --
--- Indexes for table `order_items`
+-- Indici per le tabelle `order_items`
 --
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_resets`
+-- Indici per le tabelle `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`),
   ADD KEY `password_resets_token_index` (`token`);
 
 --
--- Indexes for table `payments`
+-- Indici per le tabelle `payments`
 --
 ALTER TABLE `payments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `payment_methods`
+-- Indici per le tabelle `payment_methods`
 --
 ALTER TABLE `payment_methods`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `permissions`
+-- Indici per le tabelle `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `permissions_name_unique` (`name`);
 
 --
--- Indexes for table `permission_role`
+-- Indici per le tabelle `permission_role`
 --
 ALTER TABLE `permission_role`
   ADD PRIMARY KEY (`permission_id`,`role_id`),
   ADD KEY `permission_role_role_id_foreign` (`role_id`);
 
 --
--- Indexes for table `products`
+-- Indici per le tabelle `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
@@ -1790,19 +1844,19 @@ ALTER TABLE `products`
   ADD UNIQUE KEY `products_slug_unique` (`slug`);
 
 --
--- Indexes for table `product_models`
+-- Indici per le tabelle `product_models`
 --
 ALTER TABLE `product_models`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `product_model_translations`
+-- Indici per le tabelle `product_model_translations`
 --
 ALTER TABLE `product_model_translations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `product_translations`
+-- Indici per le tabelle `product_translations`
 --
 ALTER TABLE `product_translations`
   ADD PRIMARY KEY (`id`),
@@ -1810,7 +1864,7 @@ ALTER TABLE `product_translations`
   ADD KEY `products_translations_locale_index` (`locale`);
 
 --
--- Indexes for table `provinces`
+-- Indici per le tabelle `provinces`
 --
 ALTER TABLE `provinces`
   ADD PRIMARY KEY (`id`),
@@ -1818,21 +1872,21 @@ ALTER TABLE `provinces`
   ADD KEY `id_country` (`country_id`);
 
 --
--- Indexes for table `roles`
+-- Indici per le tabelle `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `roles_name_unique` (`name`);
 
 --
--- Indexes for table `role_user`
+-- Indici per le tabelle `role_user`
 --
 ALTER TABLE `role_user`
   ADD PRIMARY KEY (`user_id`,`role_id`),
   ADD KEY `role_user_role_id_foreign` (`role_id`);
 
 --
--- Indexes for table `settings`
+-- Indici per le tabelle `settings`
 --
 ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`),
@@ -1840,32 +1894,32 @@ ALTER TABLE `settings`
   ADD KEY `settings_id_index` (`id`);
 
 --
--- Indexes for table `socials`
+-- Indici per le tabelle `socials`
 --
 ALTER TABLE `socials`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `special_prices`
+-- Indici per le tabelle `special_prices`
 --
 ALTER TABLE `special_prices`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `states`
+-- Indici per le tabelle `states`
 --
 ALTER TABLE `states`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_country` (`country_id`);
 
 --
--- Indexes for table `tags`
+-- Indici per le tabelle `tags`
 --
 ALTER TABLE `tags`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tag_translations`
+-- Indici per le tabelle `tag_translations`
 --
 ALTER TABLE `tag_translations`
   ADD PRIMARY KEY (`id`),
@@ -1873,278 +1927,279 @@ ALTER TABLE `tag_translations`
   ADD KEY `tag_translations_locale_index` (`locale`);
 
 --
--- Indexes for table `users`
+-- Indici per le tabelle `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT per le tabelle scaricate
 --
 
 --
--- AUTO_INCREMENT for table `addresses`
+-- AUTO_INCREMENT per la tabella `addresses`
 --
 ALTER TABLE `addresses`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `adminusers`
+-- AUTO_INCREMENT per la tabella `adminusers`
 --
 ALTER TABLE `adminusers`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `articles`
+-- AUTO_INCREMENT per la tabella `articles`
 --
 ALTER TABLE `articles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT for table `article_translations`
+-- AUTO_INCREMENT per la tabella `article_translations`
 --
 ALTER TABLE `article_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
--- AUTO_INCREMENT for table `carts`
+-- AUTO_INCREMENT per la tabella `carts`
 --
 ALTER TABLE `carts`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `cart_items`
+-- AUTO_INCREMENT per la tabella `cart_items`
 --
 ALTER TABLE `cart_items`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT per la tabella `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `category_translations`
+-- AUTO_INCREMENT per la tabella `category_translations`
 --
 ALTER TABLE `category_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `contacts`
+-- AUTO_INCREMENT per la tabella `contacts`
 --
 ALTER TABLE `contacts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `countries`
+-- AUTO_INCREMENT per la tabella `countries`
 --
 ALTER TABLE `countries`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
 --
--- AUTO_INCREMENT for table `domains`
+-- AUTO_INCREMENT per la tabella `domains`
 --
 ALTER TABLE `domains`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
--- AUTO_INCREMENT for table `domain_translations`
+-- AUTO_INCREMENT per la tabella `domain_translations`
 --
 ALTER TABLE `domain_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 --
--- AUTO_INCREMENT for table `errors`
+-- AUTO_INCREMENT per la tabella `errors`
 --
 ALTER TABLE `errors`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `examples`
+-- AUTO_INCREMENT per la tabella `examples`
 --
 ALTER TABLE `examples`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `example_translations`
+-- AUTO_INCREMENT per la tabella `example_translations`
 --
 ALTER TABLE `example_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `hpsliders`
+-- AUTO_INCREMENT per la tabella `hpsliders`
 --
 ALTER TABLE `hpsliders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `media`
+-- AUTO_INCREMENT per la tabella `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT for table `media_translations`
+-- AUTO_INCREMENT per la tabella `media_translations`
 --
 ALTER TABLE `media_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT for table `news`
+-- AUTO_INCREMENT per la tabella `news`
 --
 ALTER TABLE `news`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `newsletters`
+-- AUTO_INCREMENT per la tabella `newsletters`
 --
 ALTER TABLE `newsletters`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `news_translations`
+-- AUTO_INCREMENT per la tabella `news_translations`
 --
 ALTER TABLE `news_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT per la tabella `orders`
 --
 ALTER TABLE `orders`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `order_items`
+-- AUTO_INCREMENT per la tabella `order_items`
 --
 ALTER TABLE `order_items`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `payments`
+-- AUTO_INCREMENT per la tabella `payments`
 --
 ALTER TABLE `payments`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `payment_methods`
+-- AUTO_INCREMENT per la tabella `payment_methods`
 --
 ALTER TABLE `payment_methods`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `permissions`
+-- AUTO_INCREMENT per la tabella `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT per la tabella `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `product_models`
+-- AUTO_INCREMENT per la tabella `product_models`
 --
 ALTER TABLE `product_models`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `product_model_translations`
+-- AUTO_INCREMENT per la tabella `product_model_translations`
 --
 ALTER TABLE `product_model_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `product_translations`
+-- AUTO_INCREMENT per la tabella `product_translations`
 --
 ALTER TABLE `product_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `provinces`
+-- AUTO_INCREMENT per la tabella `provinces`
 --
 ALTER TABLE `provinces`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT per la tabella `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
--- AUTO_INCREMENT for table `settings`
+-- AUTO_INCREMENT per la tabella `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `socials`
+-- AUTO_INCREMENT per la tabella `socials`
 --
 ALTER TABLE `socials`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `special_prices`
+-- AUTO_INCREMENT per la tabella `special_prices`
 --
 ALTER TABLE `special_prices`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `states`
+-- AUTO_INCREMENT per la tabella `states`
 --
 ALTER TABLE `states`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
--- AUTO_INCREMENT for table `tags`
+-- AUTO_INCREMENT per la tabella `tags`
 --
 ALTER TABLE `tags`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `tag_translations`
+-- AUTO_INCREMENT per la tabella `tag_translations`
 --
 ALTER TABLE `tag_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- Constraints for dumped tables
+-- Limiti per le tabelle scaricate
 --
 
 --
--- Constraints for table `adminuser_role`
+-- Limiti per la tabella `adminuser_role`
 --
 ALTER TABLE `adminuser_role`
   ADD CONSTRAINT `adminuser_role_adminuser_id_foreign` FOREIGN KEY (`adminuser_id`) REFERENCES `adminusers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `adminuser_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `article_translations`
+-- Limiti per la tabella `article_translations`
 --
 ALTER TABLE `article_translations`
   ADD CONSTRAINT `article_translations_article_id_foreign` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `domain_translations`
+-- Limiti per la tabella `domain_translations`
 --
 ALTER TABLE `domain_translations`
   ADD CONSTRAINT `domains_translations_domain_id_foreign` FOREIGN KEY (`domain_id`) REFERENCES `domains` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `media_translations`
+-- Limiti per la tabella `media_translations`
 --
 ALTER TABLE `media_translations`
   ADD CONSTRAINT `media_translations_media_id_foreign` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `news_tag`
+-- Limiti per la tabella `news_tag`
 --
 ALTER TABLE `news_tag`
   ADD CONSTRAINT `news_tag_news_id_foreign` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `news_tag_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `news_translations`
+-- Limiti per la tabella `news_translations`
 --
 ALTER TABLE `news_translations`
   ADD CONSTRAINT `news_translations_news_id_foreign` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `permission_role`
+-- Limiti per la tabella `permission_role`
 --
 ALTER TABLE `permission_role`
   ADD CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `product_translations`
+-- Limiti per la tabella `product_translations`
 --
 ALTER TABLE `product_translations`
   ADD CONSTRAINT `products_translations_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `role_user`
+-- Limiti per la tabella `role_user`
 --
 ALTER TABLE `role_user`
   ADD CONSTRAINT `role_user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tag_translations`
+-- Limiti per la tabella `tag_translations`
 --
 ALTER TABLE `tag_translations`
   ADD CONSTRAINT `tag_translations_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
