@@ -102,7 +102,7 @@ class PagesController extends Controller
 		}
 		else {
 			$info_request = '';
-			return view('website.contacts', ['request_product_id' => 0, 'product' => '', 'article' => $article]);
+			return view('website.contacts', ['request_product_id' => 0, 'article' => $article]);
 		}
 	}
 
