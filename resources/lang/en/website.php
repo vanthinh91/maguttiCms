@@ -22,6 +22,7 @@ return [
     'more_info'     => 'Continue',
     'name'          => 'Name',
     'newsletters_placeholder' => 'Type your  email',
+    'password'      => 'Password',
     'phone'         => 'Telephone',
     'please_select' => 'Please select',
     'privacy'		=> 'Privacy Policy',
