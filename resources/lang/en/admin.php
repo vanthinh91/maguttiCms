@@ -120,6 +120,7 @@ return [
 		'contacts' => 'Contacts',
 		'countries' => 'Nations',
 		'domains' => 'Domains',
+        'examples' => 'Examples',
 		'events' => 'Events',
 		'hpsliders' => 'Slides',
 		'media' => 'Media',
