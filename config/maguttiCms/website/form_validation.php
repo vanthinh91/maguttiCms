@@ -33,6 +33,7 @@ return [
 			'order_id'          => 'required|numeric',
 			'payment_method_id' => 'required|numeric'
 		],
+        'update-ghost' => [],
 
 		'address-new' => [
 			'street'     => 'required',
