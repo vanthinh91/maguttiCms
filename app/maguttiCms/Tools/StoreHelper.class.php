@@ -162,12 +162,14 @@ class StoreHelper {
 		if (!$cart)
 			$cart = self::cartCreate();
 
-		$cart_item = CartItem::create([
+		$cart_item = CartItem::firstOrCreate([
 			'cart_id'            => $cart->id,
 			'product_code'       => $product_code,
 			'product_model_code' => $product_model_code,
-			'quantity'           => $quantity
+
 		]);
+
+        $cart_item->increment('quantity',(int)$quantity);
 
 		if ($cart_item)
 			return [
