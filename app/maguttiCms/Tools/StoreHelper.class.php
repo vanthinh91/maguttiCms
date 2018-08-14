@@ -105,7 +105,7 @@ class StoreHelper {
 		if (!$cart)
 			$cart = self::getSessionCart();
 		if ($cart)
-			return $cart->cart_items()->count();
+			return $cart->cart_items()->sum('quantity');
 		else
 			return 0;
 	}
@@ -168,7 +168,6 @@ class StoreHelper {
 			'product_model_code' => $product_model_code,
 
 		]);
-
         $cart_item->increment('quantity',(int)$quantity);
 
 		if ($cart_item)
