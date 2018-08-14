@@ -1,7 +1,7 @@
 ![maguttiCms](http://www.magutti.com/public/website/images/logo_colore.png)
 
 ## About maguttiCms
-open source multilingual laravel 5.6 CMS
+open source multilingual laravel 5.6 CMS with simple shopping cart
 
 ## Version
 5.6
