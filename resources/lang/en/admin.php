@@ -73,6 +73,7 @@ return [
 		'slug_ignore'	=> 'Ignore slug translation',
 		'sort'          => 'Sort',
 		'status'		=> 'Status',
+        'status_id'		=> 'Status',
 		'subtitle'		=> 'Subtitle',
 		'surname'		=> 'Surname',
 		'template'		=> 'Template',

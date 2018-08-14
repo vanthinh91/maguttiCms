@@ -733,7 +733,7 @@ return [
 				* It should be used when there are a lot of records to filter.
 				*/
 				'article_2_id' => [
-					'label'       => 'Article 2',
+					'label'       => 'article_2',
 					'type'        => 'suggest',
 					'model'       => 'article',
 					'value'       => 'id',
