@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'size_limit' => 2048,
+	'size_limit' => 4096,
 	'image_matte' => '#ffffff',
 	'defaults' => [
 		'w' => 640,

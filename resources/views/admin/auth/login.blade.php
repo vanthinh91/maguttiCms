@@ -6,7 +6,7 @@
 				<img src="{!! asset('cms/images/logo.png')!!}" alt="CMS Login">
 				<hr>
 				<form method="post">
-					<h3>Accedi</h3>
+					<h3>Login</h3>
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
 							@foreach ($errors->all() as $error)
