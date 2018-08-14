@@ -79,6 +79,7 @@ class HpSlider extends Model
             'label'     => trans('admin.label.position'),
             'hidden'    => 0,
             'display'   => 1,
+            'cssInputSize'  => 'col-lg-4',
         ];
         $this->fieldspec['is_active'] = [
             'type'      => 'boolean',
