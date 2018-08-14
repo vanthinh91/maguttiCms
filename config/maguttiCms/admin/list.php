@@ -573,10 +573,10 @@ return [
 			'field' => [
 				'id',
 				'created_at' => ['type' => 'date', 'field' => 'created_at', 'orderable' => true],
-				'user_id'  => ['type' => 'text', 'field' => 'user_display', 'orderable' => true],
-				'products'  => ['type' => 'text', 'field' => 'products_display', 'class' => 'text-left'],
+				'user'  => ['type' => 'text', 'field' => 'user_display', 'orderable' => true],
+				'product'  => ['type' => 'text', 'field' => 'products_display', 'class' => 'text-left'],
 				'products_cost'  => ['type' => 'text', 'field' => 'products_cost_display'],
-				'total_cost'  => ['type' => 'text', 'field' => 'total_cost_display'],
+				'order_total'  => ['type' => 'text', 'field' => 'total_cost_display'],
 				'payment'  => ['type' => 'text', 'field' => 'payment_method_display'],
 				'payment_transaction' => ['type' => 'relation', 'relation' => 'payment', 'field' => 'transaction'],
 				'payment_date' => ['type' => 'relation', 'relation' => 'payment', 'field' => 'created_at'],
