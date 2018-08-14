@@ -43,7 +43,7 @@ class StoreAPIController extends Controller
 
 	public function storeCartItemRemove(AjaxFormRequest $request)
 	{
-		$result = StoreHelper::cartItemRemove($request->id);
+		$result = StoreHelper::cartItemRemove($request->get('cart_item_id'));
 		if ($result) {
 			array_push($this->response['alerts'], [
 				'text'	=> trans('store.alerts.remove_success'),

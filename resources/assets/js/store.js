@@ -90,7 +90,7 @@ window.Store = function () {
 				type : 'POST',
 				url : '/api/store/cart-item-remove',
 				data : {
-					id: id,
+					cart_item_id: id,
 					_token: Laravel.csrfToken
 				},
 				dataType : 'json',
