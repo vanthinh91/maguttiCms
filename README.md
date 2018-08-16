@@ -1,4 +1,5 @@
 ![maguttiCms](http://www.magutti.com/public/website/images/logo_colore.png)
+[grd_count user="IvanRF" repo="MassiveFileRenamer"]
 
 ## About maguttiCms
 open source multilingual laravel 5.6 CMS with simple shopping cart
