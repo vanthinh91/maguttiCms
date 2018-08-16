@@ -1478,9 +1478,9 @@ CREATE TABLE `socials` (
 --
 
 INSERT INTO `socials` (`id`, `title`, `description`, `icon`, `image`, `link`, `sort`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'facebook', NULL, 'fa-facebook', '', 'http://www.facebook.com', 10, 1, 0, '2016-08-09 12:50:01', '2016-08-09 10:50:01'),
+(1, 'facebook', NULL, 'fa-facebook-f', '', 'http://www.facebook.com', 10, 1, 0, '2016-08-09 12:50:01', '2016-08-09 10:50:01'),
 (2, 'Twitter', '', 'fa-twitter', '', 'http://www.twitter.com', 20, 1, 0, '2016-06-28 12:58:53', '2016-06-28 10:58:53'),
-(3, 'Linkedin', '', 'fa-linkedin', '', 'http://www.linkedin.com', 30, 1, 0, '2016-06-28 12:58:59', '2016-06-28 10:58:59');
+(3, 'Linkedin', '', 'fa-linkedin-in', '', 'http://www.linkedin.com', 30, 1, 0, '2016-06-28 12:58:59', '2016-06-28 10:58:59');
 
 -- --------------------------------------------------------
 
