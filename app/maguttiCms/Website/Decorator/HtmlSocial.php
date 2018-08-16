@@ -56,7 +56,7 @@ class HtmlSocial extends maguttiCmsDecorator
             else {
                 $this->html .= '<a href="' . $item->link . '" target="_new">';
             }
-            $this->html .= '<i class="fa '.$item->icon.' fa-lg"></i>';
+            $this->html .= '<i class="fab '.$item->icon.' fa-lg"></i>';
             $this->html .= '</a>';
             $this->html .= '</li>';
         }

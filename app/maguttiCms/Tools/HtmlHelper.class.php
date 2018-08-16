@@ -47,14 +47,14 @@ class HtmlHelper {
 			case 'fa':
 				if ((count($arr_icons) == 1) || ($forceicon !== false)) {
 					//simple icon
-					$output = '<i class="fa fa-'.$arr_icons[0].' '.$str_classes.'"></i>';
+					$output = '<i class="fas fa-'.$arr_icons[0].' '.$str_classes.'"></i>';
 				}
 				else {
 					//stacked icon
 					$output = '';
 					$output .= '<span class="fa-stack '.$str_classes.'">';
-					$output .= '<i class="fa fa-'.$arr_icons[0].' fa-stack-2x"></i>';
-					$output .= '<i class="fa fa-'.$arr_icons[1].' fa-stack-1x fa-inverse"></i>';
+					$output .= '<i class="fas fa-'.$arr_icons[0].' fa-stack-2x"></i>';
+					$output .= '<i class="fas fa-'.$arr_icons[1].' fa-stack-1x fa-inverse"></i>';
 					$output .= '</span>';
 				}
 				break;

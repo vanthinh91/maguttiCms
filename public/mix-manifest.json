@@ -11,5 +11,6 @@
   "/cms/js/header.js": "/cms/js/header.js",
   "/cms/js/cmsvendor.js": "/cms/js/cmsvendor.js",
   "/cms/js/cms.js": "/cms/js/cms.js",
-  "/website/js/store.js": "/website/js/store.js"
+  "/website/js/store.js": "/website/js/store.js",
+  "/cms/css/vendor.css": "/cms/css/vendor.css"
 }
