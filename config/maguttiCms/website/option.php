@@ -12,11 +12,11 @@ return [
         'phone'	   => '+39 0363.123456',
         'fax'	   => '+39 035.123456',
         'vat'	   => 'XXXXXXXXX',
-        'email'	   => 'info@gfstudio.com',
+        'email'	   => 'hello@magutti.com',
 
     ],
     'email' => [
-        'default'	   => 'info@gfstudio.com',
+        'default'	   => 'hello@magutti.com',
         'footer'       => '© Copyright  GFStudio',
     ],
 
