@@ -171,7 +171,7 @@ return [
         /*
          * Package Service Providers...
          */
-		Spatie\Sitemap\SitemapServiceProvider::class,
+
 
         /*
          * Application Service Providers...
