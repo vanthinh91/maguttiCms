@@ -21,7 +21,11 @@
 		<div class="collapse navbar-collapse navbar-responsive-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				{{-- pages --}}
-				@foreach($pages->top()->published()->menu()->get() as $index => $page)
+				@foreach( $pages->top()->published()->menu()->with(['children' => function($query) {
+                        $query->published()->menu();
+                    }, 'children.parentPage' => function($query) {
+                        $query->where('pub', '=', 1);
+                    }])->get() as $index => $page)
 					<?php
 						if ($page->slug == 'home')
 							$page_link = '/';
@@ -30,13 +34,13 @@
 						else
 							$page_link = $page->getPermalink();
 						$page_title = ($page->menu_title) ? $page->menu_title : $page->title;
-						$children = $page->children()->published()->menu()->get();
+
 					?>
-					@if($children->count()>0)
+					@if($page->children->count()>0)
 						<li class="dropdown {{ (!empty($article) && ($article->id == $page->id || $article->parent_id == $page->id)) ? 'active' : '' }}">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $page_title }}</a>
 							<ul class="dropdown-menu">
-								@foreach ($children as $index => $child)
+								@foreach ($page->children as $index => $child)
 									<?php
 										if ($child->slug == 'home')
 											$child_link = '/';
