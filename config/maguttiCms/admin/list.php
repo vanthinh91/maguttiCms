@@ -11,7 +11,7 @@ return [
 		'articles' => [
             'model' => 'Article',
             'title' => 'Pages',
-            'icon' => 'newspaper-o',
+            'icon' => 'newspaper',
             'fieldLabel' => 'ID,Parent,Image,Title,Slug,Pub,Menu,Sort,Created At,Updated At',
             'field' => ['id',
                 'parent' => ['type' => 'relation', 'relation' => 'parent', 'field' => 'title'],
