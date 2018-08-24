@@ -241,8 +241,6 @@ class Article extends Model
             'label'    => trans('admin.seo.no-index'),
             'display'  => 1
         ];
-
         return $this->fieldspec;
     }
-
 }
