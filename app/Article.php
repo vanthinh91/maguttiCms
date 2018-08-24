@@ -62,6 +62,11 @@ class Article extends Model
         return $this->hasMany('App\Article', 'parent_id', 'id');
     }
 
+    public function parentPage()
+    {
+        return $this->hasOne('App\Article','id','id_parent');
+    }
+
     /*
     |--------------------------------------------------------------------------
     |  Builder & Repo
@@ -240,21 +245,4 @@ class Article extends Model
         return $this->fieldspec;
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Scopes & Mutator
-    |--------------------------------------------------------------------------
-    */
-
-    public function scopePublished($query) {
-        $query->where('pub', 1);
-    }
-
-	public function scopeTop($query) {
-        $query->where('parent_id', 0);
-    }
-
-    public function scopeMenu($query) {
-        $query->where('top_menu', 1)->orderBy('sort', 'asc');
-    }
 }
