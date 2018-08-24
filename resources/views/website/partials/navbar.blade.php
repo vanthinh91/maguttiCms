@@ -23,8 +23,6 @@
 				{{-- pages --}}
 				@foreach( $pages->top()->published()->menu()->with(['children' => function($query) {
                         $query->published()->menu();
-                    }, 'children.parentPage' => function($query) {
-                        $query->where('pub', '=', 1);
                     }])->get() as $index => $page)
 					<?php
 						if ($page->slug == 'home')
@@ -38,7 +36,7 @@
 					?>
 					@if($page->children->count()>0)
 						<li class="dropdown {{ (!empty($article) && ($article->id == $page->id || $article->parent_id == $page->id)) ? 'active' : '' }}">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $page_title }}</a>
+							<a href="#" class=" nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $page_title }} <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								@foreach ($page->children as $index => $child)
 									<?php
@@ -61,6 +59,7 @@
 							<a href="{{ $page_link }}">{{ $page_title }}</a>
 						</li>
 					@endif
+
 				@endforeach
 
 				{{-- login --}}
