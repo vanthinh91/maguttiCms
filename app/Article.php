@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\maguttiCms\Builders\ArticleBuilder;
 use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 /**
@@ -11,6 +12,7 @@ class Article extends Model
 {
     use  GFTranslatableHelperTrait;
     use \Dimsav\Translatable\Translatable;
+
     use \App\maguttiCms\Domain\Article\ArticlePresenter;
 
 	protected $with = ['translations'];
@@ -58,6 +60,16 @@ class Article extends Model
     public function children()
     {
         return $this->hasMany('App\Article', 'parent_id', 'id');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Builder & Repo
+    |--------------------------------------------------------------------------
+    */
+    function newEloquentBuilder($query)
+    {
+        return new ArticleBuilder($query);
     }
 
     /*
