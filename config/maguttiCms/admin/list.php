@@ -683,7 +683,7 @@ return [
 		'examples' => [
 			'model' => 'Example',
 			'title' => 'Example',
-			'icon' => 'mortar-board',
+			'icon' => 'at',
 			'fieldLabel' => 'ID,Article,Article 2,Image,Image from  Library,Title,Slug,Pub,Sort,Color,Status,Created At,Updated At',
 			'field' => [
 				'id',

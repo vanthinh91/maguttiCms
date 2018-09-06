@@ -16,20 +16,20 @@
 					<ul class="nav-tabs">
 						<li class="active">
 							<a href="#content_tab" data-toggle="tab">
-								{{icon('file-text-o')}} {{trans('admin.label.content')}}
+								{{icon('file-alt')}} {{trans('admin.label.content')}}
 							</a>
 						</li>
 						@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'.showSeo')  == 1)
 							<li>
 								<a href="#seo_tab" data-toggle="tab">
-									{{icon('google')}} {{trans('admin.label.seo')}}
+									{{icon('globe')}} {{trans('admin.label.seo')}}
 								</a>
 							</li>
 						@endif
 						@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'.showMedia')  == 1 && $article->id!='')
 							<li>
 								<a href="#media_tab" data-toggle="tab">
-									{{icon('file-image-o')}} {{trans('admin.label.media')}}
+									{{icon('image')}} {{trans('admin.label.media')}}
 								</a>
 							</li>
 						@endif
