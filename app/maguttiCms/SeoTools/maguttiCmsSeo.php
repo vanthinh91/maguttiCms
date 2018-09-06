@@ -6,9 +6,8 @@ use App\maguttiCms\Website\Facades\ImgHelper;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /**
- * Class maguttiCmsSeoTrait
- *
- *
+ * Trait MaguttiCmsSeoTrait
+ * @package App\maguttiCms\SeoTools
  */
 trait MaguttiCmsSeoTrait
 {
