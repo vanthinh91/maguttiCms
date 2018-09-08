@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
 
         \App\Console\Commands\SetupRedis::class,
         \App\Console\Commands\GenerateSitemap::class,
+        Commands\GenerateResource::class
 
     ];
 
