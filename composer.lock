@@ -1903,7 +1903,7 @@
             ],
             "description": "Query Builder Helpers",
             "homepage": "https://github.com/marcoax/MaguttiBuilders",
-            "time": "2018-08-25 12:57:14"
+            "time": "2018-08-25T12:57:14+00:00"
         },
         {
             "name": "markbaker/complex",
@@ -2624,7 +2624,7 @@
                 "video",
                 "video processing"
             ],
-            "time": "2018-08-06 20:02:43"
+            "time": "2018-08-06T20:02:43+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",
@@ -4803,26 +4803,26 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v5.6.33",
+            "version": "v5.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/collect.git",
-                "reference": "d7381736dca44ac17d0805a25191b094e5a22446"
+                "reference": "87c1e7eb0a2252748fa2fc1824e97f2fc892788f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/collect/zipball/d7381736dca44ac17d0805a25191b094e5a22446",
-                "reference": "d7381736dca44ac17d0805a25191b094e5a22446",
+                "url": "https://api.github.com/repos/tightenco/collect/zipball/87c1e7eb0a2252748fa2fc1824e97f2fc892788f",
+                "reference": "87c1e7eb0a2252748fa2fc1824e97f2fc892788f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1.3",
-                "symfony/var-dumper": ">=3.1.10"
+                "php": "^7.1.3",
+                "symfony/var-dumper": "^4.1"
             },
             "require-dev": {
-                "mockery/mockery": "~1.0",
-                "nesbot/carbon": "~1.20",
-                "phpunit/phpunit": "~7.0"
+                "mockery/mockery": "^1.0",
+                "nesbot/carbon": "^1.26.3",
+                "phpunit/phpunit": "^7.0"
             },
             "type": "library",
             "autoload": {
@@ -4849,7 +4849,7 @@
                 "collection",
                 "laravel"
             ],
-            "time": "2018-08-09T16:56:26+00:00"
+            "time": "2018-09-06T15:55:11+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
