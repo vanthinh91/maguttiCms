@@ -6,7 +6,7 @@
                 @if($view_name=='admin-edit')
                     <a  class="btn btn-default btn-lg "
                         href="#"
-                        onclick="document.getElementById('edit_form').submit()"
+                        onclick="document.getElementById('edit-form').submit()"
                         title="{!! trans('admin.label.save')!!}"
                         data-toggle="tooltip"
                         data-placement="bottom" rel="tooltip">
