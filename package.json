@@ -1,40 +1,35 @@
-APP_ENV=local
-APP_DEBUG=true
-APP_KEY=J46rQ0K8pLdRnaY1yWj7h0fSVh6ngndd
-APP_HTTPS=false
-
-DB_HOST=localhost
-DB_DATABASE=quantofa_net
-DB_USERNAME=root
-DB_PASSWORD=
-
-# Without Redis
-CACHE_DRIVER=array
-SESSION_DRIVER=file
-QUEUE_DRIVER=sync
-
-# With Redis
-#REDIS_HOST=127.0.0.1
-#REDIS_PREFIX=9reaBBPkUUE7N+QE6SSkLI692mdBNytbKgGDGjIb1zo=
-#CACHE_DRIVER=redis
-#QUEUE_DRIVER=redis
-
-# Google Captcha
-CAPTCHA_SECRET=6LeqLy4UAAAAAA49zpmBVLSPFLOjQnHqMhJKqkhd
-CAPTCHA_SITEKEY=6LeqLy4UAAAAAO4MdoPDt-CP1xPvFFummQl_9aTe
-
-
-APP_ENV=local
-APP_KEY=base64:RMXDg7sE8AXF2sFE1k/yRFueReq/0uWLqQCEZGBZey4=
-APP_DEBUG=true
-APP_URL=http://quantofa_net.test/
-APP_HTTPS=false
-
-DB_HOST=localhost
-DB_DATABASE=quantofa_net
-DB_USERNAME=root
-DB_PASSWORD=
-
-CACHE_DRIVER=array
-SESSION_DRIVER=file
-QUEUE_DRIVER=sync
+{
+  "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.2.0",
+    "axios": "^0.15.3",
+    "bootstrap-sass": "^3.3.7",
+    "cross-env": "^3.2.3",
+    "exports-loader": "^0.6.4",
+    "jquery": "^3.3.1",
+    "laravel-mix": "0.*",
+    "lodash": "^4.17.10",
+    "vue": "^2.5.16"
+  },
+  "dependencies": {
+    "@fancyapps/fancybox": "^3.3.5",
+    "animate.css": "^3.7.0",
+    "bootbox": "^4.4.0",
+    "jquery-colorbox": "^1.6.4",
+    "js-cookie": "^2.2.0",
+    "material-design-icons": "^3.0.1",
+    "npm": "^6.4.0",
+    "owl.carousel": "^2.3.4",
+    "smokejs": "^3.1.0",
+    "wowjs": "^1.1.3"
+  }
+}
