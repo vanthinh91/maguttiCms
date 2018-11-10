@@ -144,7 +144,7 @@ class User extends Authenticatable
             'label'    => 'Password',
             'display'  => 1,
             'template' => 'password', /*TODO*/
-            'validation' =>'alpha_num|min:6|confirmed'
+            'validation' =>'alpha_num|min:8|confirmed'
         ];
         $this->fieldspec['is_active'] = [
             'type'     => 'boolean',

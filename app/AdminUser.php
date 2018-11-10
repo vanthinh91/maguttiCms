@@ -125,7 +125,8 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
             'hidden'   => 0,
             'label'    => trans('admin.label.password'),
             'display'  => 1,
-            'template' => 'password'
+            'template' => 'password',
+            'validation' =>'alpha_num|min:8|confirmed'
         ];
 		$this->fieldspec['locale'] = [
             'type'        => 'locale',
