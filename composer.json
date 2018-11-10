@@ -58,7 +58,6 @@
       "app/maguttiCms/Tools/Enums.php"
     ]
   },
-
   "extra": {
     "laravel": {
       "dont-discover": [
