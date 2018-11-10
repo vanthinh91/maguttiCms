@@ -26,6 +26,7 @@ return [
         'created_at'    => 'Created at',
 		'created_by'    => 'Created by',
 		'dashboard'		=> 'Dashboard',
+        'date'          => 'Date',
 		'delete'        => 'Delete',
 		'description'   => 'Description',
         'doc'           => 'Document',
@@ -33,6 +34,7 @@ return [
         'download'      => 'Download',
         'edit'	        => 'Edit',
 		'email'			=> 'Email',
+        'eu'            => 'Eu',
 		'export'        => 'Export',
 		'ext_url'		=> 'External url',
 		'first_name'	=> 'Name',
@@ -43,6 +45,7 @@ return [
         'image_media_id'=> 'Image from Library',
 		'insert'		=> 'Insert',
 		'is_active'		=> 'Status',
+        'iso_code'      => 'Iso Code',
 		'languages'		=> 'Languages',
 		'last_name'		=> 'Surname',
 		'link'			=> 'Link',
@@ -93,6 +96,7 @@ return [
 		'file_count'	=> '{count} files selected',
 		'value'			=> 'Value',
         'view'          => 'View',
+        'vat'           => 'Vat '
     ],
     'message'   => [
         'add_new_customer'    => 'Add New Customer',
