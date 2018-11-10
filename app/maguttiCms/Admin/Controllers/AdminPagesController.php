@@ -250,7 +250,8 @@ class AdminPagesController extends Controller
         $model = new  $this->modelClass;
         $article = $model::whereId($this->id)->firstOrFail();
         $article->delete();
-        session()->flash('success', 'The items ' . $article->title . ' has been deleted!')->important();
+        flash('success', 'The items ' . $article->title . ' has been deleted!');
+
         return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->models));
     }
 

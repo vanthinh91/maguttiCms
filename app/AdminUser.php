@@ -121,7 +121,7 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
         ];
         $this->fieldspec['password']    = [
             'type'     => 'password',
-            'required' => 1,
+            'required' => 0,
             'hidden'   => 0,
             'label'    => trans('admin.label.password'),
             'display'  => 1,
