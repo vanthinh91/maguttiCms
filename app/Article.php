@@ -129,6 +129,7 @@ class Article extends Model
             'hidden'   => 0,
             'label'    => trans('admin.label.title'),
             'display'  => 1,
+            'validation' =>'required'
         ];
         $this->fieldspec['subtitle'] = [
             'type'     => 'string',

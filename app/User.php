@@ -96,6 +96,7 @@ class User extends Authenticatable
             'hidden'   => 0,
             'label'    => 'Name',
             'display'  => 1,
+            'validation' =>'required'
         ];
         $this->fieldspec['email'] = [
             'type'     => 'string',
@@ -103,6 +104,7 @@ class User extends Authenticatable
             'hidden'   => 0,
             'label'    => 'Email',
             'display'  => 1,
+            'validation' =>'required|Between:3,64|Email|is_unique'
         ];
         $this->fieldspec['role'] = [
             'type'          => 'relation',
@@ -141,7 +143,8 @@ class User extends Authenticatable
             'hidden'   => 0,
             'label'    => 'Password',
             'display'  => 1,
-            'template' => 'password' /*TODO*/
+            'template' => 'password', /*TODO*/
+            'validation' =>'alpha_num|min:6|confirmed'
         ];
         $this->fieldspec['is_active'] = [
             'type'     => 'boolean',

@@ -38,6 +38,7 @@ class HpSlider extends Model
             'hidden'    => 0,
             'label'     => trans('admin.label.title'),
             'display'   => 1,
+            'validation' =>'required'
         ];
 
         $this->fieldspec['description'] = [

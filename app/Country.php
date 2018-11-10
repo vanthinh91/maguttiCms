@@ -43,6 +43,7 @@ class Country extends Model
             'hidden'    => 0,
             'label'     => trans('admin.label.name'),
             'display'   => 1,
+            'validation' =>'required'
         ];
 
         $this->fieldspec['iso_code'] = [
@@ -51,6 +52,7 @@ class Country extends Model
             'hidden'    => 0,
             'label'     => 'ISO',
             'display'   => 1,
+            'validation' =>'required|Between:1,3'
         ];
         $this->fieldspec['id_continent'] = [
             'type'          => 'relation',
