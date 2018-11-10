@@ -67,7 +67,7 @@ class Country extends Model
 
         $this->fieldspec['eu'] = [
             'type'      => 'boolean',
-            'required'  =>true,
+            'required'  => 1,
             'hidden'    => 0,
             'label'     => "Eu",
             'display'   => 1

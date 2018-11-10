@@ -8,9 +8,7 @@ return [
 			'password' => 'alpha_num|min:6|confirmed',
 			'password_confirmation' => 'alpha_num|min:6',
 		],
-		'articles' => [
-			'title' => 'required',
-		],
+
 		'contacts' => [
 			'name'	  => 'required',
 			'company' => 'required',
@@ -35,9 +33,7 @@ return [
 		'hpsliders' => [
 			'title' => 'required',
 		],
-		'news' => [
-			'title'  => 'required',
-		],
+
 		'products' => [
 			'title' => 'required',
 		],
@@ -52,9 +48,7 @@ return [
 			'title' => 'required',
 			'code' => 'required',
 		],
-		'tags' => [
-			'title' => 'required',
-		],
+
 		'roles' => [
 			'name' => 'required',
 			'display_name' => 'required',

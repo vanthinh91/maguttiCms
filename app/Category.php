@@ -64,7 +64,7 @@ class Category extends Model
             'required' => 0,
             'label' => trans('admin.label.category'),
             'hidden' => 0,
-            'display' => 1,
+            'display' => 0,
         ];
 
         $this->fieldspec['title'] = [
@@ -99,20 +99,22 @@ class Category extends Model
         $this->fieldspec['image'] = [
             'type' => 'media',
             'pkey' => 0,
-            'required' => 1,
+            'required' => 0,
             'hidden' => 0,
             'label' => trans('admin.label.image'),
             'mediaType' => 'Img',
             'display' => 1,
+            'validation'=>'sometimes|required|mimes:jpeg,jpg,png,gif'
         ];
         $this->fieldspec['banner'] = [
             'type' => 'media',
             'pkey' => 0,
-            'required' => 1,
+            'required' => 0,
             'hidden' => 0,
             'label' => trans('admin.label.banner'),
             'mediaType' => 'Img',
             'display' => 0,
+            'validation'=>'sometimes|required|mimes:jpeg,jpg,png,gif'
         ];
 
         $this->fieldspec['sort'] = [

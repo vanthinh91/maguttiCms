@@ -72,6 +72,7 @@ class HpSlider extends Model
             'label'     => trans('admin.label.image'),
             'mediaType' => 'Img',
             'display'   => 1,
+            'validation'=>'sometimes|required|mimes:jpeg,jpg,png,gif'
 
         ];
         $this->fieldspec['sort'] = [
