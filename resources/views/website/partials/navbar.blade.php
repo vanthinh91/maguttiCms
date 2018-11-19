@@ -21,6 +21,7 @@
 		<div class="collapse navbar-collapse navbar-responsive-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				{{-- pages --}}
+
                 <?php
                 $menu = App\Article::menuItems()->get();
                 $top = $menu->where('parent_id',0);
@@ -65,7 +66,11 @@
 					@endif
 
 				@endforeach
-
+				{{-- modal search --}}
+				<li class="" data-toggle="modal"
+					data-target="#fsModalSearch">
+					<a href="#">{{icon('search', 'fa-lg')}}</a>
+				</li>
 				{{-- login --}}
 				@if (!Auth::guard()->check())
 					<li><a href="{{url_locale('users/login')}}">Login</a></li>
