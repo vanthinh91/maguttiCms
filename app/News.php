@@ -218,7 +218,23 @@ class News extends Model
    |  Scopes & Mutator
    |--------------------------------------------------------------------------
    */
-	public function scopeLatest($query, $limit = 5)    {
-		$query->where('pub',1)->translatedContent()->limit($limit)->orderBy('date', 'desc');
-	}
+    /*
+   |--------------------------------------------------------------------------
+   |  Scopes & Mutator
+   |--------------------------------------------------------------------------
+   */
+    public function scopeLatestPublished($query,$limit = 5)
+    {
+        return $query->published()->translatedContent()->latest()->limit($limit);
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('pub', 1)->where('date', '<=', Carbon::now());
+    }
+
+    public function scopeByDate($query)
+    {
+        return $query->orderBy('date', 'desc');
+    }
 }

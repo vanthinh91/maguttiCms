@@ -2,7 +2,7 @@
 @inject('posts','App\News')
 <h3>Latest news</h3>
 <div class="row">
-	@foreach ( $posts->Latest(4)->get() as $_post )
+	@foreach ( $posts->LatestPublished(100)->get() as $_post )
 		<div class="col-xs-12 col-sm-6 col-md-12">
 			<div class="row">
 				<div class="col-xs-4 mb10">
