@@ -218,11 +218,7 @@ class News extends Model
    |  Scopes & Mutator
    |--------------------------------------------------------------------------
    */
-    /*
-   |--------------------------------------------------------------------------
-   |  Scopes & Mutator
-   |--------------------------------------------------------------------------
-   */
+
     public function scopeLatestPublished($query,$limit = 5)
     {
         return $query->published()->translatedContent()->latest()->limit($limit);

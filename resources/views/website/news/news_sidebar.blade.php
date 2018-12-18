@@ -12,9 +12,7 @@
 				</div>
 				<div class="col-xs-8 mb10">
 					<h4>
-						<a href="{{$_post->getPermalink()}}">
-							{{ $_post->title }}
-						</a>
+						<a href="{{$_post->getPermalink()}}">{{ $_post->title }}</a>
 					</h4>
 					<p>{{ $_post->getFormattedDate() }}</p>
 				</div>
