@@ -7,7 +7,7 @@
 
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400"/>
 	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.plugins').'uploadifive/uploadifive.css')!!}">
-	<link rel="stylesheet" href="{{ config('maguttiCms.admin.path.public').mix('cms/css/vendor.css') }}">
+	<link rel="stylesheet" href="{{ asset(config('maguttiCms.admin.path.cms_css').'vendor.css') }}">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.plugins').'selectize/selectize.bootstrap3.css') !!}">

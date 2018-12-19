@@ -1,9 +1,9 @@
 @mixin breakpoint-up($size) {
 	@if( $size == 'sm' ) {
 		@media (min-width: 768px) { @content; }
-	} @elseif ( $size == 'md' ) {
+	} @else if ( $size == 'md' ) {
 		@media (min-width: 992px) { @content; }
-	} @elseif ( $size == 'lg' ) {
+	} @else if ( $size == 'lg' ) {
 		@media (min-width: 1200px) { @content; }
 	}
 }
@@ -11,9 +11,9 @@
 @mixin breakpoint-down($size) {
 	@if( $size == 'sm' ) {
 		@media (max-width: 767px) { @content; }
-	} @elseif ( $size == 'md' ) {
+	} @else if ( $size == 'md' ) {
 		@media (max-width: 991px) { @content; }
-	} @elseif ( $size == 'lg' ) {
+	} @else if ( $size == 'lg' ) {
 		@media (max-width: 1199px) { @content; }
 	}
 }

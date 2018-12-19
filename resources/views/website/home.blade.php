@@ -5,6 +5,6 @@
 <main class="container">
     <h1>{!! $article->title !!}</h1>
     <h2>{!! $article->subtitle !!}</h2>
-	{!! $article->description !!}
+	{!! $article->description !!}<button type="button" class="btn btn-default" aria-label="Left Align">
 </main>
 @endsection

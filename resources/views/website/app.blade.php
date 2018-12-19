@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Raleway:300,400,600" rel="stylesheet">
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="{{ config('maguttiCms.admin.path.public').mix('website/css/vendor.css') }}">
+    <link rel="stylesheet" href="{{ config('maguttiCms.admin.path.public').'/website/css/vendor.css' }}">
     <link rel="stylesheet" href="{{ config('maguttiCms.admin.path.public').mix('website/css/app.css') }}">
 
     @include('website.partials.widgets_mobile_app')
@@ -61,7 +61,7 @@
 @include('website.partials.js_localization')
 
 <!-- JS Implementing Plugins -->
-<script type="text/javascript" src="{{ config('maguttiCms.admin.path.public').mix('/website/js/vendor.js') }}"></script>
+<script type="text/javascript" src="{{ config('maguttiCms.admin.path.public').'/website/js/vendor.js' }}"></script>
 <script type="text/javascript" src="{{ config('maguttiCms.admin.path.public').mix('/website/js/app.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {

@@ -1,4 +1,4 @@
-const { mix } = require('laravel-mix');
+const mix = require('laravel-mix');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Fo development Management
@@ -9,10 +9,13 @@ const { mix } = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-mix.sass('resources/assets/sass/vendor.scss','public/website/css/');
+if(mix.inProduction()) {
+    mix.sass('resources/assets/sass/vendor.scss','public/website/css/');
+    mix.sass('resources/assets/sass/admin/vendor.scss', 'public/cms/css/')
+}
 mix.sass('resources/assets/sass/app.scss', 	 'public/website/css/');
 mix.sass('resources/assets/sass/admin.scss', 'public/cms/css/');
-mix.sass('resources/assets/sass/admin/vendor.scss', 'public/cms/css/');
+
 
 mix.js('resources/assets/js/vendor.js',            'public/website/js');
 mix.js('resources/assets/js/app.js',               'public/website/js');
@@ -22,11 +25,14 @@ mix.js('resources/assets/js/cms.js',               'public/cms/js/cms.js');
 mix.js('resources/assets/js/header.js',            'public/cms/js/header.js');
 mix.js('resources/assets/js/lara-file-manager.js', 'public/cms/js');
 
-if (mix.config.inProduction) {
+
+if (mix.inProduction()) {
     mix.version();
 }
+
 mix.browserSync({
     host: 'localhost',
     port: 8000,
     proxy: 'http://127.0.0.1:8000/'
 });
+
