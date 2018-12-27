@@ -27,12 +27,7 @@
     "srmklive/paypal": "=1.6.1",
     "tymon/jwt-auth": "^0.5.10",
     "vinkla/shield": "^2.3",
-    "zizaco/entrust": "5.2.x-dev",
-    "barryvdh/laravel-debugbar": "^2.4",
-    "barryvdh/laravel-cors": "^0.9.2"
-
-
-
+    "zizaco/entrust": "5.2.x-dev"
 
   },
 
