@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/header.js":
-/*!***************************************!*\
-  !*** ./resources/assets/js/header.js ***!
-  \***************************************/
+/***/ "./resources/js/header.js":
+/*!********************************!*\
+  !*** ./resources/js/header.js ***!
+  \********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -154,13 +154,13 @@ $(function () {
 /***/ }),
 
 /***/ 5:
-/*!*********************************************!*\
-  !*** multi ./resources/assets/js/header.js ***!
-  \*********************************************/
+/*!**************************************!*\
+  !*** multi ./resources/js/header.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\web\magutti\maguttiCms\resources\assets\js\header.js */"./resources/assets/js/header.js");
+module.exports = __webpack_require__(/*! D:\web\magutti\maguttiCms\resources\js\header.js */"./resources/js/header.js");
 
 
 /***/ })

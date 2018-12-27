@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/cmsvendor.js":
-/*!******************************************!*\
-  !*** ./resources/assets/js/cmsvendor.js ***!
-  \******************************************/
+/***/ "./resources/js/cmsvendor.js":
+/*!***********************************!*\
+  !*** ./resources/js/cmsvendor.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -115,13 +115,13 @@
 /***/ }),
 
 /***/ 3:
-/*!************************************************!*\
-  !*** multi ./resources/assets/js/cmsvendor.js ***!
-  \************************************************/
+/*!*****************************************!*\
+  !*** multi ./resources/js/cmsvendor.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\web\magutti\maguttiCms\resources\assets\js\cmsvendor.js */"./resources/assets/js/cmsvendor.js");
+module.exports = __webpack_require__(/*! D:\web\magutti\maguttiCms\resources\js\cmsvendor.js */"./resources/js/cmsvendor.js");
 
 
 /***/ })

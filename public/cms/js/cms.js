@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/cms.js":
-/*!************************************!*\
-  !*** ./resources/assets/js/cms.js ***!
-  \************************************/
+/***/ "./resources/js/cms.js":
+/*!*****************************!*\
+  !*** ./resources/js/cms.js ***!
+  \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -458,13 +458,13 @@ window.Cms = function () {
 /***/ }),
 
 /***/ 4:
-/*!******************************************!*\
-  !*** multi ./resources/assets/js/cms.js ***!
-  \******************************************/
+/*!***********************************!*\
+  !*** multi ./resources/js/cms.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\web\magutti\maguttiCms\resources\assets\js\cms.js */"./resources/assets/js/cms.js");
+module.exports = __webpack_require__(/*! D:\web\magutti\maguttiCms\resources\js\cms.js */"./resources/js/cms.js");
 
 
 /***/ })

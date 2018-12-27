@@ -42882,10 +42882,10 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/bootstrap.js":
-/*!******************************************!*\
-  !*** ./resources/assets/js/bootstrap.js ***!
-  \******************************************/
+/***/ "./resources/js/bootstrap.js":
+/*!***********************************!*\
+  !*** ./resources/js/bootstrap.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -42925,10 +42925,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/assets/js/gmaps.js":
-/*!**************************************!*\
-  !*** ./resources/assets/js/gmaps.js ***!
-  \**************************************/
+/***/ "./resources/js/gmaps.js":
+/*!*******************************!*\
+  !*** ./resources/js/gmaps.js ***!
+  \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -43025,10 +43025,10 @@ window.gMap = function () {
 
 /***/ }),
 
-/***/ "./resources/assets/js/jquery.maCookieEu.js":
-/*!**************************************************!*\
-  !*** ./resources/assets/js/jquery.maCookieEu.js ***!
-  \**************************************************/
+/***/ "./resources/js/jquery.maCookieEu.js":
+/*!*******************************************!*\
+  !*** ./resources/js/jquery.maCookieEu.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -43095,10 +43095,10 @@ window.gMap = function () {
 
 /***/ }),
 
-/***/ "./resources/assets/js/vendor.js":
-/*!***************************************!*\
-  !*** ./resources/assets/js/vendor.js ***!
-  \***************************************/
+/***/ "./resources/js/vendor.js":
+/*!********************************!*\
+  !*** ./resources/js/vendor.js ***!
+  \********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -43107,7 +43107,7 @@ window.gMap = function () {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js"); // require('jquery-colorbox');
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // require('jquery-colorbox');
 
 
 __webpack_require__(/*! @fancyapps/fancybox */ "./node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js");
@@ -43124,22 +43124,22 @@ window.wow = new WOW.WOW({
 window.Cookies = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
 window.bootbox = __webpack_require__(/*! bootbox */ "./node_modules/bootbox/bootbox.js");
 
-__webpack_require__(/*! ./gmaps.js */ "./resources/assets/js/gmaps.js");
+__webpack_require__(/*! ./gmaps.js */ "./resources/js/gmaps.js");
 
-__webpack_require__(/*! ./jquery.maCookieEu.js */ "./resources/assets/js/jquery.maCookieEu.js");
+__webpack_require__(/*! ./jquery.maCookieEu.js */ "./resources/js/jquery.maCookieEu.js");
 
-__webpack_require__(/*! ../plugins/jquery.pb-filter.js */ "./resources/assets/plugins/jquery.pb-filter.js");
+__webpack_require__(/*! ../plugins/jquery.pb-filter.js */ "./resources/plugins/jquery.pb-filter.js");
 
-__webpack_require__(/*! ../plugins/pb-suggest/jquery.pb-suggest.js */ "./resources/assets/plugins/pb-suggest/jquery.pb-suggest.js");
+__webpack_require__(/*! ../plugins/pb-suggest/jquery.pb-suggest.js */ "./resources/plugins/pb-suggest/jquery.pb-suggest.js");
 
-__webpack_require__(/*! ../plugins/pb-overlay/jquery.pb-overlay.js */ "./resources/assets/plugins/pb-overlay/jquery.pb-overlay.js");
+__webpack_require__(/*! ../plugins/pb-overlay/jquery.pb-overlay.js */ "./resources/plugins/pb-overlay/jquery.pb-overlay.js");
 
 /***/ }),
 
-/***/ "./resources/assets/plugins/jquery.pb-filter.js":
-/*!******************************************************!*\
-  !*** ./resources/assets/plugins/jquery.pb-filter.js ***!
-  \******************************************************/
+/***/ "./resources/plugins/jquery.pb-filter.js":
+/*!***********************************************!*\
+  !*** ./resources/plugins/jquery.pb-filter.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -43269,10 +43269,10 @@ $(function () {
 
 /***/ }),
 
-/***/ "./resources/assets/plugins/pb-overlay/jquery.pb-overlay.js":
-/*!******************************************************************!*\
-  !*** ./resources/assets/plugins/pb-overlay/jquery.pb-overlay.js ***!
-  \******************************************************************/
+/***/ "./resources/plugins/pb-overlay/jquery.pb-overlay.js":
+/*!***********************************************************!*\
+  !*** ./resources/plugins/pb-overlay/jquery.pb-overlay.js ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -43633,10 +43633,10 @@ window.Overlay = Overlay;
 
 /***/ }),
 
-/***/ "./resources/assets/plugins/pb-suggest/jquery.pb-suggest.js":
-/*!******************************************************************!*\
-  !*** ./resources/assets/plugins/pb-suggest/jquery.pb-suggest.js ***!
-  \******************************************************************/
+/***/ "./resources/plugins/pb-suggest/jquery.pb-suggest.js":
+/*!***********************************************************!*\
+  !*** ./resources/plugins/pb-suggest/jquery.pb-suggest.js ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -43859,10 +43859,10 @@ jQuery.fn.extend({
 
 /***/ }),
 
-/***/ "./resources/assets/sass/admin.scss":
-/*!******************************************!*\
-  !*** ./resources/assets/sass/admin.scss ***!
-  \******************************************/
+/***/ "./resources/sass/admin.scss":
+/*!***********************************!*\
+  !*** ./resources/sass/admin.scss ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -43870,10 +43870,10 @@ jQuery.fn.extend({
 
 /***/ }),
 
-/***/ "./resources/assets/sass/app.scss":
-/*!****************************************!*\
-  !*** ./resources/assets/sass/app.scss ***!
-  \****************************************/
+/***/ "./resources/sass/app.scss":
+/*!*********************************!*\
+  !*** ./resources/sass/app.scss ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -43882,15 +43882,15 @@ jQuery.fn.extend({
 /***/ }),
 
 /***/ 0:
-/*!*****************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/vendor.js ./resources/assets/sass/app.scss ./resources/assets/sass/admin.scss ***!
-  \*****************************************************************************************************************/
+/*!********************************************************************************************!*\
+  !*** multi ./resources/js/vendor.js ./resources/sass/app.scss ./resources/sass/admin.scss ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\web\magutti\maguttiCms\resources\assets\js\vendor.js */"./resources/assets/js/vendor.js");
-__webpack_require__(/*! D:\web\magutti\maguttiCms\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
-module.exports = __webpack_require__(/*! D:\web\magutti\maguttiCms\resources\assets\sass\admin.scss */"./resources/assets/sass/admin.scss");
+__webpack_require__(/*! D:\web\magutti\maguttiCms\resources\js\vendor.js */"./resources/js/vendor.js");
+__webpack_require__(/*! D:\web\magutti\maguttiCms\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! D:\web\magutti\maguttiCms\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

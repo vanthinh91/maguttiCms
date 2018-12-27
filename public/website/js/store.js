@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/store.js":
-/*!**************************************!*\
-  !*** ./resources/assets/js/store.js ***!
-  \**************************************/
+/***/ "./resources/js/store.js":
+/*!*******************************!*\
+  !*** ./resources/js/store.js ***!
+  \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -272,13 +272,13 @@ window.Store = function () {
 /***/ }),
 
 /***/ 2:
-/*!********************************************!*\
-  !*** multi ./resources/assets/js/store.js ***!
-  \********************************************/
+/*!*************************************!*\
+  !*** multi ./resources/js/store.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\web\magutti\maguttiCms\resources\assets\js\store.js */"./resources/assets/js/store.js");
+module.exports = __webpack_require__(/*! D:\web\magutti\maguttiCms\resources\js\store.js */"./resources/js/store.js");
 
 
 /***/ })

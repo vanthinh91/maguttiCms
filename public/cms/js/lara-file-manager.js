@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/lara-file-manager.js":
-/*!**************************************************!*\
-  !*** ./resources/assets/js/lara-file-manager.js ***!
-  \**************************************************/
+/***/ "./resources/js/lara-file-manager.js":
+/*!*******************************************!*\
+  !*** ./resources/js/lara-file-manager.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -232,13 +232,13 @@ $(function () {
 /***/ }),
 
 /***/ 6:
-/*!********************************************************!*\
-  !*** multi ./resources/assets/js/lara-file-manager.js ***!
-  \********************************************************/
+/*!*************************************************!*\
+  !*** multi ./resources/js/lara-file-manager.js ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\web\magutti\maguttiCms\resources\assets\js\lara-file-manager.js */"./resources/assets/js/lara-file-manager.js");
+module.exports = __webpack_require__(/*! D:\web\magutti\maguttiCms\resources\js\lara-file-manager.js */"./resources/js/lara-file-manager.js");
 
 
 /***/ })
