@@ -2,7 +2,6 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 /* All of the other imports comes after the bootstrap so we can overwrite it ! */
 
-
 // Font Awesome
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~@fortawesome/fontawesome-free/scss/solid";
@@ -13,11 +12,11 @@
 
 // Plugin
 // @import "node_modules/jquery-colorbox/example4/colorbox";
-@import "node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min";
-@import "node_modules/owl.carousel/dist/assets/owl.carousel.min";
-@import "node_modules/smokejs/dist/css/smoke.min";
-@import "node_modules/animate.css/animate.min";
+@import "~@fancyapps/fancybox/dist/jquery.fancybox.min";
+@import "~owl.carousel/dist/assets/owl.carousel.min";
+@import "~smokejs/dist/css/smoke.min";
+@import "~animate.css/animate.min";
 
 // GF plugins
-@import "resources/assets/plugins/pb-overlay/pb-overlay";
-@import "resources/assets/plugins/pb-suggest/pb-suggest";
+@import "resources/plugins/pb-overlay/pb-overlay";
+@import "resources/plugins/pb-suggest/pb-suggest";
