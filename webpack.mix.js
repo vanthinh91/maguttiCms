@@ -26,9 +26,9 @@ mix.js('resources/assets/js/header.js',            'public/cms/js/header.js');
 mix.js('resources/assets/js/lara-file-manager.js', 'public/cms/js');
 
 
-if (mix.inProduction()) {
+//if (mix.inProduction()) {
     mix.version();
-}
+//}
 
 mix.browserSync({
     host: 'localhost',
