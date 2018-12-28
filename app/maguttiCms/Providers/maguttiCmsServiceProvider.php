@@ -1,11 +1,7 @@
 <?php namespace App\maguttiCms\Providers;
 
-use App\Setting;
+use App\maguttiCms\Composer\ViewShareSettingComposer;
 use Illuminate\Support\ServiceProvider;
-
-/*
- *  maguttiCms
- */
 use DB;
 use Event;
 use Validator;
@@ -17,7 +13,7 @@ use Validator;
 */
 class LaraServiceProvider extends ServiceProvider
 {
-    private $site_settings;
+
 
     /**
      * Bootstrap any application services.
@@ -26,21 +22,15 @@ class LaraServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /*
-          * GF_ma for maguttiCms
-          * simple query debugger
-          * use http://framework_base.dev/admin/list/articles?sql-debug=1
-          */
-
 
         view()->composer('*', function($view){
             $view_name = str_replace('.', '-', $view->getName());
             view()->share('view_name', $view_name);
         });
-
-        $site_settings = Setting::all()->pluck('value','key');
-        view()->share('site_settings', $site_settings);
-
+        /*
+         * share site_setting to fe views
+         */
+        view()->composer('website/*', ViewShareSettingComposer::class);
 
 
         /*
@@ -93,6 +83,6 @@ class LaraServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        $this->app->singleton(ViewShareComposer::class);
+        $this->app->singleton(ViewShareSettingComposer::class);
     }
 }
