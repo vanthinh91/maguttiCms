@@ -33,9 +33,10 @@
 						else if ($page->link)
 							$page_link = $page->link;
 						else
-							$page_link = $page->getPermalink();
+						$page_link = $page->getPermalink();
 						$page_title = ($page->menu_title) ? $page->menu_title : $page->title;
                    		$children = $menu->where('parent_id',$page->id) ;
+
                     ?>
 
 						@if($children->count()>0)

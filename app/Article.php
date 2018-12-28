@@ -54,7 +54,7 @@ class Article extends Model
 
     public function parent()
     {
-        return $this->belongsTo('App\Article', 'parent_id', 'id');
+        return $this->hasOne('App\Article','id','parent_id');
     }
 
     public function children()
@@ -62,10 +62,6 @@ class Article extends Model
         return $this->hasMany('App\Article', 'parent_id', 'id');
     }
 
-    public function parentPage()
-    {
-        return $this->hasOne('App\Article','id','id_parent');
-    }
 
     /*
     |--------------------------------------------------------------------------
