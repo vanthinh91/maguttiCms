@@ -1,11 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Marco Asperti
- * Date: 28/12/2018
- * Time: 16:14
- */
-namespace App\maguttiCms\Composer;
+<?php namespace App\maguttiCms\Composer;
 use App\Setting;
 use Illuminate\View\View;
 
@@ -22,7 +15,7 @@ class ViewShareSettingComposer
      */
     public function __construct()
     {
-        $this->site_settings = Setting::select('value','key')->get()->pluck('value','key');;
+        $this->site_settings = Setting::select('value','key')->get()->pluck('value','key');
     }
 
     /**
