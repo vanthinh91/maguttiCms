@@ -1,5 +1,6 @@
 <?php namespace App\maguttiCms\Providers;
 
+use App\Setting;
 use Illuminate\Support\ServiceProvider;
 
 /*
@@ -8,9 +9,6 @@ use Illuminate\Support\ServiceProvider;
 use DB;
 use Event;
 use Validator;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Blade;
-
 /*
 |--------------------------------------------------------------------------
 | common maguttiCms service providers
@@ -19,6 +17,8 @@ use Illuminate\Support\Facades\Blade;
 */
 class LaraServiceProvider extends ServiceProvider
 {
+    private $site_settings;
+
     /**
      * Bootstrap any application services.
      *
@@ -31,10 +31,20 @@ class LaraServiceProvider extends ServiceProvider
           * simple query debugger
           * use http://framework_base.dev/admin/list/articles?sql-debug=1
           */
+
+
         view()->composer('*', function($view){
             $view_name = str_replace('.', '-', $view->getName());
             view()->share('view_name', $view_name);
         });
+
+
+
+        view()->composer('website/*', function(){
+            $this->site_settings = Setting::all()->pluck('value','key');
+            view()->share('site_settings', $this->site_settings);
+        });
+
 
         /*
          * GF_ma for maguttiCms

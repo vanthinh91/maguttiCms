@@ -21,13 +21,13 @@
 			</div>
 			<div class="col-xs-12 col-md-4 text-right">
 				<p>
-					<a href="https://www.iubenda.com/privacy-policy/{{ Setting::getOption('iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}" class="iubenda-nostyle no-brand iubenda-embed " title="{{ trans('website.privacy')}}">
+					<a href="https://www.iubenda.com/privacy-policy/{{ data_get($site_settings,'iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}" class="iubenda-nostyle no-brand iubenda-embed " title="{{ trans('website.privacy')}}">
 						{{ trans('website.privacy')}}
 					</a> |
-					<a href="https://www.iubenda.com/privacy-policy/{{ Setting::getOption('iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}/cookie-policy" class="iubenda-nostyle no-brand iubenda-embed " title="{{ trans('website.cookie')}}">
+					<a href="https://www.iubenda.com/privacy-policy/{{ data_get($site_settings,'iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}/cookie-policy" class="iubenda-nostyle no-brand iubenda-embed " title="{{ trans('website.cookie')}}">
 						{{ trans('website.cookie')}}
 					</a> |
-					<a href="{{ Setting::getOption('credits_url') }}" target="_blank">Credits</a>
+					<a href="{{ data_get($site_settings,'credits_url') }}" target="_blank">Credits</a>
 				</p>
 			</div>
 		</div>

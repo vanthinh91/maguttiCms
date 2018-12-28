@@ -5,11 +5,8 @@ use App\FaqCategory;
 use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 use App\maguttiCms\Website\Repos\News\NewsRepositoryInterface;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redirect;
 use Input;
 use Validator;
-use App\Article;
-use App\News;
 use App\Product;
 use Domain;
 
@@ -46,6 +43,7 @@ class PagesController extends Controller
     {
         $this->articleRepo = $article;
         $this->newsRepo    = $news;
+
     }
 
     /**
