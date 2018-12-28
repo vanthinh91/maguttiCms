@@ -1,19 +1,19 @@
 <?php namespace App\maguttiCms\Providers;
 
-use App\maguttiCms\Composer\ViewShareSettingComposer;
-use Illuminate\Support\ServiceProvider;
 use DB;
 use Event;
 use Validator;
+use Illuminate\Support\ServiceProvider;
+use App\maguttiCms\Composer\ViewShareSettingComposer;
 /*
 |--------------------------------------------------------------------------
 | common maguttiCms service providers
 |--------------------------------------------------------------------------
 | here  will'be set all the common action
 */
+
 class LaraServiceProvider extends ServiceProvider
 {
-
 
     /**
      * Bootstrap any application services.
@@ -23,7 +23,13 @@ class LaraServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        view()->composer('*', function($view){
+        /*
+        |--------------------------------------------------------------------------
+        |  SHARE VARIABLES TO VIEWS
+        |--------------------------------------------------------------------------
+        */
+
+        view()->composer('*', function ($view) {
             $view_name = str_replace('.', '-', $view->getName());
             view()->share('view_name', $view_name);
         });
@@ -31,7 +37,6 @@ class LaraServiceProvider extends ServiceProvider
          * share site_setting to fe views
          */
         view()->composer('website/*', ViewShareSettingComposer::class);
-
 
         /*
          * GF_ma for maguttiCms
@@ -43,13 +48,12 @@ class LaraServiceProvider extends ServiceProvider
         }
         if (env('APP_ENV') === 'local') {
             Event::listen('kernel.handled', function ($request, $response) {
-                if ( $request->has('sql-debug') ) {
+                if ($request->has('sql-debug')) {
                     $queries = DB::getQueryLog();
                     dd($queries);
                 }
             });
         }
-
 
         /*
         |--------------------------------------------------------------------------
@@ -57,16 +61,14 @@ class LaraServiceProvider extends ServiceProvider
         |--------------------------------------------------------------------------
         */
 
-        Validator::extend('is_unique', function($attribute, $value, $parameters, $validator) {
+        Validator::extend('is_unique', function ($attribute, $value, $parameters, $validator) {
 
-            $model  = request()->segment(3);
-            $config = config('maguttiCms.admin.list.section.' .$model);
-            $id     = (request()->segment(4))?:null;
-            if(getModelFromString($config['model'])::where($attribute,$value)->where('id','!=',$id)->count()) return false;
+            $model = request()->segment(3);
+            $config = config('maguttiCms.admin.list.section.' . $model);
+            $id = (request()->segment(4)) ?: null;
+            if (getModelFromString($config['model'])::where($attribute, $value)->where('id', '!=', $id)->count()) return false;
             return true;
         });
-
-
 
         /*
         |--------------------------------------------------------------------------
