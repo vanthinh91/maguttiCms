@@ -38,12 +38,9 @@ class LaraServiceProvider extends ServiceProvider
             view()->share('view_name', $view_name);
         });
 
+        $site_settings = Setting::all()->pluck('value','key');
+        view()->share('site_settings', $site_settings);
 
-
-        view()->composer('website/*', function(){
-            $this->site_settings = Setting::all()->pluck('value','key');
-            view()->share('site_settings', $this->site_settings);
-        });
 
 
         /*
@@ -96,5 +93,6 @@ class LaraServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->singleton(ViewShareComposer::class);
     }
 }
