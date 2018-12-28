@@ -9,7 +9,7 @@ class ArticleBuilder extends LaraCmsBuilder
      */
     public function menuItems()
     {
-        return $this->with(['parent.translations', 'parent' => function ($query) {
+        return $this->with(['parent' => function ($query) {
             $query->published()->menu();
         }])->published()->menu()->orderBy('sort', 'Asc');
     }
