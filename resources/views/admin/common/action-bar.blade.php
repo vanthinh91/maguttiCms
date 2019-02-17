@@ -83,7 +83,7 @@
 				@if (config('maguttiCms.admin.option.action-bar.show-labels'))
 					{{trans('admin.label.export')}}
 				@endif
-				{{icon('file-excel-o')}}
+				{{icon('file-excel')}}
 			</a>
 		@endif
 		@if ($pageConfig['create'])
