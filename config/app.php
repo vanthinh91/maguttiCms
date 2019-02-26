@@ -12,7 +12,8 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'maguttiCms',
+
+    'name' => env('APP_NAME', 'maguttiCms'),
 
     /*
     |--------------------------------------------------------------------------
@@ -53,6 +54,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'asset_url' => env('ASSET_URL', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -79,7 +81,7 @@ return [
     */
 
 
-    'locale' => 'en',
+    'locale' => 'it',
     'locales' => ['en' => 'English', 'it' => 'Italiano', 'es' => 'Spanish', 'fr' => 'French'],
 
     /*
@@ -97,6 +99,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Faker Locale
+    |--------------------------------------------------------------------------
+    |
+    | This locale will be used by the Faker PHP library when generating fake
+    | data for your database seeds. For example, this will be used to get
+    | localized telephone numbers, street address information and more.
+    |
+    */
+    'faker_locale' => 'en_US',
+
+    /*
+    |--------------------------------------------------------------------------
     | Encryption Key
     |--------------------------------------------------------------------------
     |
@@ -109,23 +123,6 @@ return [
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Logging Configuration
-    |--------------------------------------------------------------------------
-    |
-    | Here you may configure the log settings for your application. Out of
-    | the box, Laravel uses the Monolog PHP logging library. This gives
-    | you a variety of powerful log handlers / formatters to utilize.
-    |
-    | Available Settings: "single", "daily", "syslog", "errorlog"
-    |
-    */
-
-    'log' => env('APP_LOG', 'daily'),
-
-    'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
     /*
     |--------------------------------------------------------------------------
@@ -166,8 +163,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-
-
         /*
          * Package Service Providers...
          */
@@ -183,41 +178,39 @@ return [
         App\Providers\RouteServiceProvider::class,
 
 
-       /*
-       |--------------------------------------------------------------------------
-       | Vendor Service Providers...
-       |--------------------------------------------------------------------------
-       */
+        /*
+        |--------------------------------------------------------------------------
+        | Vendor Service Providers...
+        |--------------------------------------------------------------------------
+        */
 
-
+        Spatie\Sitemap\SitemapServiceProvider::class,
         'hisorange\BrowserDetect\Provider\BrowserDetectService',
         Collective\Html\HtmlServiceProvider::class,
         'Zizaco\Entrust\EntrustServiceProvider',
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
-    	Vinkla\Shield\ShieldServiceProvider::class,
+        Vinkla\Shield\ShieldServiceProvider::class,
         "Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider",
-		Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
 
 
-       /*
-       |--------------------------------------------------------------------------
-       | MaguttiCms Service Providers...
-       |--------------------------------------------------------------------------
-       */
+        /*
+        |--------------------------------------------------------------------------
+        | maguttiCms Service Providers...
+        |--------------------------------------------------------------------------
+        */
         App\maguttiCms\Providers\LaraServiceProvider::class,
         App\maguttiCms\Providers\SystemServiceProvider::class,
-
-
         'App\maguttiCms\Notifications\FlashServiceProvider',
+
+        /* maguttiCmsADMIN */
         App\maguttiCms\Admin\Providers\AdminFormServiceProvider::class,
         App\maguttiCms\Admin\Providers\AdminListServiceProvider::class,
-        App\maguttiCms\Website\Providers\WebsiteDbServiceProvider::class,
 
-        // MaguttiCmsfe
+        /* maguttiCmsFE */
+        App\maguttiCms\Website\Providers\WebsiteDbServiceProvider::class,
         App\maguttiCms\Website\Providers\HtmlSocialServiceProvider::class,
         App\maguttiCms\Website\Providers\WebsiteDecoratorServiceProvider::class,
-
-
     ],
 
     /*
@@ -234,9 +227,11 @@ return [
     'aliases' => [
 
         'App' => Illuminate\Support\Facades\App::class,
+        'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
         'Blade' => Illuminate\Support\Facades\Blade::class,
+        'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
         'Bus' => Illuminate\Support\Facades\Bus::class,
         'Cache' => Illuminate\Support\Facades\Cache::class,
         'Config' => Illuminate\Support\Facades\Config::class,
@@ -248,7 +243,6 @@ return [
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
-        'Input' => Illuminate\Support\Facades\Input::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
@@ -263,6 +257,7 @@ return [
         'Schema' => Illuminate\Support\Facades\Schema::class,
         'Session' => Illuminate\Support\Facades\Session::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
+        'Str' => Illuminate\Support\Str::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
@@ -274,35 +269,32 @@ return [
         |--------------------------------------------------------------------------
         */
 
-
-        'BrowserDetect'         => 'hisorange\BrowserDetect\Facade\Parser',
-        'Form'                  => Collective\Html\FormFacade::class,
-        'Html'                  => Collective\Html\HtmlFacade::class,
-        'Entrust'               => 'Zizaco\Entrust\EntrustFacade',
-        'Carbon'				=> 'Carbon\Carbon',
-        'Slugify'               => 'Cocur\Slugify\Bridge\Laravel\SlugifyFacade',
-
-
+        'BrowserDetect' => 'hisorange\BrowserDetect\Facade\Parser',
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Entrust' => 'Zizaco\Entrust\EntrustFacade',
+        'Carbon' => 'Carbon\Carbon',
+        'Slugify' => 'Cocur\Slugify\Bridge\Laravel\SlugifyFacade',
+        'Input' => Illuminate\Support\Facades\Input::class,
 
         /*
          |--------------------------------------------------------------------------
-         | maguttiCms Class Aliases
+         | laraCms Class Aliases
          |--------------------------------------------------------------------------
         */
+
         'AdminForm' => App\maguttiCms\Admin\Facades\AdminForm::class,
         'AdminFormImageRelation' => App\maguttiCms\Admin\Facades\AdminFormImageRelation::class,
-        'AdminDecorator'  => App\maguttiCms\Admin\Facades\AdminDecorator::class,
+        'AdminDecorator' => App\maguttiCms\Admin\Facades\AdminDecorator::class,
         'AdminList' => App\maguttiCms\Admin\Facades\AdminList::class,
-        'Flash'     => 'Helpers\Notifications\Flash',
-        'HtmlHelper'=> App\maguttiCms\Website\Facades\HtmlHelper::class,
-        'StoreHelper'=> App\maguttiCms\Website\Facades\StoreHelper::class,
-        'SEO'       => Artesaos\SEOTools\Facades\SEOTools::class,
-        'SEOMeta'   => Artesaos\SEOTools\Facades\SEOMeta::class,
-        'Setting'   => \App\maguttiCms\Tools\SettingHelper::class,
-		'Stringable' => App\maguttiCms\Tools\Stringable::class,
+        'Flash' => 'Helpers\Notifications\Flash',
+        'HtmlHelper' => App\maguttiCms\Website\Facades\HtmlHelper::class,
+        'StoreHelper' => App\maguttiCms\Website\Facades\StoreHelper::class,
+        'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
+        'SEOMeta' => Artesaos\SEOTools\Facades\SEOMeta::class,
+        'Setting' => \App\maguttiCms\Tools\SettingHelper::class,
+        'Stringable' => App\maguttiCms\Tools\Stringable::class,
         'ImgHelper' => App\maguttiCms\Website\Facades\ImgHelper::class,
-        'HtmlSocial'=> App\maguttiCms\Website\Facades\HtmlSocial::class,
-
+        'HtmlSocial' => App\maguttiCms\Website\Facades\HtmlSocial::class,
     ],
-
 ];
