@@ -20,14 +20,14 @@
 								{{icon('file-text-o')}} {{trans('admin.label.content')}}
 							</a>
 						</li>
-						@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'.showSeo')  == 1)
+						@if ( config('maguttiCms.admin.list.section.'.strtolower(Str::plural($pageConfig['model'])).'.showSeo')  == 1)
 							<li>
 								<a href="#seo_tab" data-toggle="tab">
 									{{icon('google')}} {{trans('admin.label.seo')}}
 								</a>
 							</li>
 						@endif
-						@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'.showMedia')  == 1 && $article->id!='')
+						@if ( config('maguttiCms.admin.list.section.'.strtolower(Str::plural($pageConfig['model'])).'.showMedia')  == 1 && $article->id!='')
 							<li>
 								<a href="#media_tab" data-toggle="tab">
 									{{icon('file-image-o')}} {{trans('admin.label.media')}}
@@ -39,16 +39,16 @@
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="content_tab">
 							{{ AdminForm::get($article) }}
-							@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'.password')  == 1)
+							@if ( config('maguttiCms.admin.list.section.'.strtolower(Str::plural($pageConfig['model'])).'.password')  == 1)
 								@include('admin.helper.password')
 							@endif
 						</div>
-						@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'.showSeo')  == 1)
+						@if ( config('maguttiCms.admin.list.section.'.strtolower(Str::plural($pageConfig['model'])).'.showSeo')  == 1)
 							<div role="tabpanel" class="tab-pane" id="seo_tab">
 								{{ AdminForm::getSeo( $article ) }}
 							</div>
 						@endif
-						@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'.showMedia')  == 1 && $article->id!='')
+						@if ( config('maguttiCms.admin.list.section.'.strtolower(Str::plural($pageConfig['model'])).'.showMedia')  == 1 && $article->id!='')
 							<div role="tabpanel" class="tab-pane" id="media_tab">
 								@include('admin.helper.form_uploadifive')
 							</div>

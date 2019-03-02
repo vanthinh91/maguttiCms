@@ -96,7 +96,7 @@ class WebsiteFormController extends Controller
             $destinationPath =  config('maguttiCms.admin.path.user_upload').'/'.$model_name; // upload path
             $extension 		 = $newMedia->getClientOriginalExtension(); // getting image extension
             $name 			 = basename($newMedia->getClientOriginalName(),'.'.$extension);
-            $fileName 		 = str_slug(time().'_'.$name).".".$extension; // renameing image
+            $fileName 		 = Str::slug(time().'_'.$name).".".$extension; // renameing image
             $newMedia->move($destinationPath, $fileName); // uploading file to given path
             $model->$media = $model_name.'/'.$fileName;
         }

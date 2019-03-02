@@ -74,7 +74,7 @@ class UploadManager {
     public function fileNameHandler()
     {
         if($this->verifyIfFileExist()) {
-            $newFileName = str_slug(rand(10000,99999).'_'.$this->getFileBaseName()).".".$this->getFileExtension();
+            $newFileName = Str::slug(rand(10000,99999).'_'.$this->getFileBaseName()).".".$this->getFileExtension();
             $this->setFileFullName($newFileName);
         }
         return $this;

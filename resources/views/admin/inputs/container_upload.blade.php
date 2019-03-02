@@ -22,7 +22,7 @@
 						@if ($properties['mediaType'] == 'Img')
 							<img class="img-thumb" src="{{ImgHelper::get_cached($model->$key, ['w' => 100, 'h' => 100, 'q' => 50], isset($properties['disk'])? $properties['disk']: '', isset($properties['folder'])? $properties['folder']: '')}}">
 						@else
-							<a href="/admin/file_view/{{strtolower(str_plural(class_basename($model))).'/'.$model->id.'/'.$key}}" target="_blank" class="btn btn-primary btn-block">
+							<a href="/admin/file_view/{{strtolower(Str::plural(class_basename($model))).'/'.$model->id.'/'.$key}}" target="_blank" class="btn btn-primary btn-block">
 								{{icon('eye')}}{{trans('admin.label.view')}}
 							</a>
 						@endif

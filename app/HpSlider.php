@@ -12,7 +12,7 @@ class HpSlider extends Model
 
     public function setSlugAttribute($value)
     {
-        $slug = ($value=='')? str_slug($this->title) :str_slug($value);
+        $slug = ($value=='')? Str::slug($this->title) :Str::slug($value);
         if( $this->id!='') $count =self::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->where('id', '!=', $this->id)->count();
         else $count =self::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
         $this->attributes['slug'] =$count ? "{$slug}-{$count}" : $slug;

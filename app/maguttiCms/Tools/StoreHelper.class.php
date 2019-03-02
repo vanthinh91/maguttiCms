@@ -299,7 +299,7 @@ class StoreHelper {
 			'total_cost'          => $costs['total'],
 			'billing_address_id'  => $billing_address_id,
 			'shipping_address_id' => $shipping_address_id,
-			'token'               => str_random(32)
+			'token'               => Str::random(32)
 		]);
 
 		$cart->status = CART_SENT;
@@ -426,7 +426,7 @@ class StoreHelper {
 				$provider->setCurrency(config('maguttiCms.store.currency'));
 				$options = self::getPaypalPaymentOptions();
 				$order = $payment->order;
-				$payment->code = $order->id.'-'.str_random(10);
+				$payment->code = $order->id.'-'.Str::random(10);
 				$payment->save();
 				$data = self::getPaypalPaymentData($order, $payment->code);
 				$response = $provider->addOptions($options)->setExpressCheckout($data);

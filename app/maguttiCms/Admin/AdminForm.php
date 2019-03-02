@@ -1,11 +1,12 @@
 <?php namespace App\maguttiCms\Admin;
 
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Form;
 use App;
-use App\Media;
 
 use App\maguttiCms\Admin\Facades\AdminFormImageRelation;
+use App\Media;
 
 /**
 * Class AdminForm
@@ -73,7 +74,7 @@ class AdminForm {
 			$this->model->fieldspec = $this->model->getFieldSpec();
 			foreach (config('app.locales') as $locale => $value) {
 				if (config('app.locale') != $locale) {
-					$target = "language_box_" . str_slug($value) . "_" . str_random(160);
+					$target = "language_box_" . Str::slug($value) . "_" . Str::random(160);
 					$this->html .= $this->containerLanguage($locale, $value, $target);
 					$this->html .= "<div class=\"collapse language_box\" id=\"" . $target . "\">";
 					foreach ($this->model->translatedAttributes as $attribute) {

@@ -15,7 +15,7 @@
 	<div id="errorBox">@include('admin.common.error')</div>
 	{{ Form::model($article,['id'=>'media-edit-form','class' =>'form-horizontal']) }}
 	{{ AdminForm::get( $article ) }}
-	@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'s.password')  == 1)
+	@if ( config('maguttiCms.admin.list.section.'.strtolower(Str::plural($pageConfig['model'])).'s.password')  == 1)
 		@include('admin.helper.password')
 	@endif
 	<hr>

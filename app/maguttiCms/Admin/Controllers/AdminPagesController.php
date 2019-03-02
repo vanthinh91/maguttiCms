@@ -1,8 +1,8 @@
 <?php namespace App\maguttiCms\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Validator;
 use Input;
 
@@ -37,7 +37,7 @@ class AdminPagesController extends Controller
     {
         $this->model = $model;
         $this->config = config('maguttiCms.admin.list.section.' . $this->model);
-        $this->models = strtolower(str_plural($this->config['model']));
+        $this->models = strtolower(Str::plural($this->config['model']));
         $this->modelClass = 'App\\' . $this->config['model'];
     }
 

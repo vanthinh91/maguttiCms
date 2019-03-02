@@ -129,48 +129,48 @@ function ma_get_upload_from_repository($doc)
 function ma_get_admin_list_url($model)
 {
     $path = '/admin/list';
-    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(str_plural(class_basename($model)));
-    return URL::to($path . '/' . str_plural($modelName));
+    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(Str::plural(class_basename($model)));
+    return URL::to($path . '/' . Str::plural($modelName));
 }
 
 function ma_get_admin_create_url($model)
 {
     $path = '/admin/create';
-    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(str_plural(class_basename($model)));
-    return URL::to($path . '/' . str_plural($modelName));
+    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(Str::plural(class_basename($model)));
+    return URL::to($path . '/' . Str::plural($modelName));
 }
 
 function ma_get_admin_edit_url($model)
 {
     $path = '/admin/edit';
-    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(str_plural(class_basename($model)));
-    return URL::to($path . '/' . str_plural($modelName) . '/' . $model->id);
+    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(Str::plural(class_basename($model)));
+    return URL::to($path . '/' . Str::plural($modelName) . '/' . $model->id);
 }
 function ma_get_admin_view_url($model)
 {
     $path = '/admin/view';
-    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(str_plural(class_basename($model)));
-    return URL::to($path . '/' . str_plural($modelName) . '/' . $model->id);
+    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(Str::plural(class_basename($model)));
+    return URL::to($path . '/' . Str::plural($modelName) . '/' . $model->id);
 }
 
 function ma_get_admin_editmodal_url($model)
 {
     $path = '/admin/editmodal';
-    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(str_plural(class_basename($model)));
-    return URL::to($path . '/' . str_plural($modelName) . '/' . $model->id);
+    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(Str::plural(class_basename($model)));
+    return URL::to($path . '/' . Str::plural($modelName) . '/' . $model->id);
 }
 
 function ma_get_admin_delete_url($model)
 {
     $path = '/admin/delete';
-    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(str_plural(class_basename($model)));
-    return URL::to($path . '/' . str_plural($modelName) . '/' . $model->id);
+    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(Str::plural(class_basename($model)));
+    return URL::to($path . '/' . Str::plural($modelName) . '/' . $model->id);
 }
 
 function ma_get_admin_preview_url($model)
 {
-    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(str_plural(class_basename($model)));
-    $resourcePath = ($modelName != 'articles') ? str_plural($modelName) . '/' . $model->slug : $model->slug;
+    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(Str::plural(class_basename($model)));
+    $resourcePath = ($modelName != 'articles') ? Str::plural($modelName) . '/' . $model->slug : $model->slug;
     $path = LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(), URL::to($resourcePath));
     return URL::to($path);
 }
@@ -178,8 +178,8 @@ function ma_get_admin_preview_url($model)
 function ma_get_admin_copy_url($model)
 {
     $path = '/admin/duplicate';
-    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(str_plural(class_basename($model)));
-    return URL::to($path . '/' . str_plural($modelName) . '/' . $model->id);
+    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(Str::plural(class_basename($model)));
+    return URL::to($path . '/' . Str::plural($modelName) . '/' . $model->id);
 }
 
 
@@ -187,8 +187,8 @@ function ma_get_admin_export_url($model)
 {
 
     $path = '/admin/exportlist';
-    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(str_plural(class_basename($model)));
-    return URL::to($path . '/' . str_plural($modelName));
+    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(Str::plural(class_basename($model)));
+    return URL::to($path . '/' . Str::plural($modelName));
 }
 
 /**

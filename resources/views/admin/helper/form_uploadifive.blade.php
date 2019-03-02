@@ -1,4 +1,4 @@
-@if ( config('maguttiCms'.strtolower(str_plural($pageConfig['model'])).'.showMediaCategory')  == 1 && $article->id!='')
+@if ( config('maguttiCms'.strtolower(Str::plural($pageConfig['model'])).'.showMediaCategory')  == 1 && $article->id!='')
 	@inject('domain','App\Domain')
 	<div class="col-md-12">
 		<div class="form-group">
@@ -23,7 +23,7 @@
 	<i class="fa fa-download"></i> {!! trans('admin.label.upload_file')!!}
 </a>
 
-@if ( config('maguttiCms.admin.list.section.'.strtolower(str_plural($pageConfig['model'])).'.showMediaImages')  == 1)
+@if ( config('maguttiCms.admin.list.section.'.strtolower(Str::plural($pageConfig['model'])).'.showMediaImages')  == 1)
 	<hr/>
 	<div id="imagesList">
 		<h3>{!!trans('admin.message.media_image_gallery') !!}</h3>
@@ -32,7 +32,7 @@
 		</ul>
 	</div>
 @endif
-@if ( config('maguttiCms'.strtolower(str_plural($pageConfig['model'])).'.showMediaDoc')  == 1)
+@if ( config('maguttiCms'.strtolower(Str::plural($pageConfig['model'])).'.showMediaDoc')  == 1)
 	<hr/>
 	<div id="docsList">
 		<h3>{!!trans('admin.message.media_doc_gallery') !!}</h3>

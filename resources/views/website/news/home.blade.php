@@ -20,7 +20,7 @@
 						</h3>
 						<span>{{ Carbon::parse($_post->date)->format('d/m/Y') }}</span>
 						<p>
-							{!! str_limit($_post->description, 200) !!}
+							{!! Str::limit($_post->description, 200) !!}
 						</p>
 						<div class="read-more">
 							<a href="{{ $_post->getPermalink() }}" class="read-more mb5">{!! trans('website.read_more') !!}</a>

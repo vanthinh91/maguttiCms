@@ -28,7 +28,7 @@ class GenerateResource extends Command
      */
     public function handle()
     {
-        list($resource, $table) = [$r = ucfirst($this->argument('resource')), snake_case(str_plural($r))];
+        list($resource, $table) = [$r = ucfirst($this->argument('resource')), snake_case(Str::plural($r))];
         $this->call('make:model', ['name' => $resource]);
         $this->call('make:controller', ['name' => 'Api/DataTables/'. $resource . 'DataTable']);
         $this->call('make:migration', ['name' => 'create_' . $table . '_table']);

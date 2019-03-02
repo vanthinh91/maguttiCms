@@ -45,7 +45,7 @@ class ExportHelper {
 	{
 		$this->model = $model;
 		$this->config = config('maguttiCms.admin.list.section.' . $this->model);
-		$this->models = strtolower(str_plural($this->config['model']));
+		$this->models = strtolower(Str::plural($this->config['model']));
 		$this->modelClass = 'App\\' . $this->config['model'];
 		$this->setFilename($this->config['model'].'_'.date('Y-m-d').'.xlsx');
 		return $this;
