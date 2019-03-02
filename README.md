@@ -2,12 +2,12 @@
 
 
 ## About maguttiCms
-Open source multilingual Laravel 5.7 CMS with simple shopping cart.
+Open source multilingual Laravel 5.8 CMS with simple shopping cart.
 
 ## Version
-5.7
+5.8
 
-maguttiCms is released using Laravel 5.7.XX
+maguttiCms is released using Laravel 5.8.XX
 
 ### How to Install
  
