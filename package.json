@@ -23,8 +23,8 @@
     "resolve-url-loader": "^2.3.2",
     "sass": "^1.17.2",
     "sass-loader": "^7.1.0",
-    "vue": "^2.6.7",
-    "vue-template-compiler": "^2.6.7"
+    "vue": "^2.6.8",
+    "vue-template-compiler": "^2.6.8"
   },
   "dependencies": {
     "@fancyapps/fancybox": "^3.5.6",

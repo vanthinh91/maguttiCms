@@ -1,1 +1,286 @@
-!function(t){var e={};function r(o){if(e[o])return e[o].exports;var n=e[o]={i:o,l:!1,exports:{}};return t[o].call(n.exports,n,n.exports,r),n.l=!0,n.exports}r.m=t,r.c=e,r.d=function(t,e,o){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:o})},r.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var o=Object.create(null);if(r.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var n in t)r.d(o,n,function(e){return t[e]}.bind(null,n));return o},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,"a",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p="/",r(r.s=2)}({2:function(t,e,r){t.exports=r("Jc6O")},Jc6O:function(t,e){var r=".cart-count",o=".cart-total",n=".cart-preview",a="#cart-buttons",c=".cart-item-block",i=".cart-item-add",u=".cart-item-remove",d=".cart-item-quantity",s=".cart-item-total",f=".order-preview",l=".order-products-cost",p=".order-shipping-cost",m=".order-vat-cost",v=".order-total-cost";window.Store=function(){function t(t){var e=t.toFixed(StoreConfig.decimals).split(".");return e[0]=e[0].replace(/\B(?=(\d{3})+(?!\d))/g,StoreConfig.thousands_separator),formatted_price=e.join(StoreConfig.decimal_separator),StoreConfig.prepend_currency&&(formatted_price=StoreConfig.currency_symbol+" "+formatted_price),StoreConfig.append_currency&&(formatted_price+=" "+config("maguttiCms.store.currency_symbol")),formatted_price}function e(){var e=0;$(c).each(function(){var r=$(this),o=r.data("price")*r.find(d).first().val();r.find(s).first().text(t(o)),e+=o}),$(o).text(t(e))}function y(){var e=$("#order-cart").val(),r=$("#order-billing-address").val(),o=$("#order-shipping-address").val();$.ajax({type:"POST",url:"/api/store/order-calc",data:{cart:e,address:o||r,_token:Laravel.csrfToken},dataType:"json",success:function(e){$(l).text(t(e.products)),$(p).text(t(e.shipping)),$(m).text(t(e.vat)),$(v).text(t(e.total))},error:function(t){}})}return{init:function(){$(document).on("change",d,function(){var t=$(this);$(i).data("quantity",Math.max(t.val(),1))}),$(document).on("click",i,function(t){t.preventDefault();var e=$(this),o=e.data("product-code"),n=e.data("product-model-code"),a=e.data("quantity");$.ajax({type:"POST",url:"/api/store/cart-item-add",data:{product_code:o,product_model_code:n,quantity:a,_token:Laravel.csrfToken},dataType:"json",success:function(t){$(r).text(t.cart_count),$.each(t.alerts,function(){$.smkAlert({text:this.text,type:this.type,time:this.time})})},error:function(t){$.smkAlert({text:"Error",type:"danger",time:5})}})}),$(document).on("click",u,function(t){t.preventDefault();var o=$(this),n=o.data("id");$.ajax({type:"POST",url:"/api/store/cart-item-remove",data:{cart_item_id:n,_token:Laravel.csrfToken},dataType:"json",success:function(t){$(r).text(t.cart_count),o.closest(c).remove(),e(),$(c).length||$(a).remove(),$.each(t.alerts,function(){$.smkAlert({text:this.text,type:this.type,time:this.time})})},error:function(t){$.smkAlert({text:"Error",type:"danger",time:5})}})}),$(n).change(function(){e()}),$(f).change(function(){y()}),$(f).length&&y()}}}()}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./resources/js/store.js":
+/*!*******************************!*\
+  !*** ./resources/js/store.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var CART_COUNT = '.cart-count';
+var CART_TOTAL = '.cart-total';
+var CART_PREVIEW = '.cart-preview'; //triggers preview calculations
+
+var CART_BUTTONS = '#cart-buttons';
+var ITEM_BLOCK = '.cart-item-block';
+var ITEM_ADD = '.cart-item-add';
+var ITEM_REMOVE = '.cart-item-remove';
+var ITEM_QUANTITY = '.cart-item-quantity';
+var ITEM_TOTAL = '.cart-item-total';
+var ORDER_PREVIEW = '.order-preview'; //triggers preview calculations
+
+var ORDER_PRODUCTS = '.order-products-cost';
+var ORDER_SHIPPING = '.order-shipping-cost';
+var ORDER_VAT = '.order-vat-cost';
+var ORDER_TOTAL = '.order-total-cost';
+
+window.Store = function () {
+  function formatPrice(price) {
+    var parts = price.toFixed(StoreConfig.decimals).split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, StoreConfig.thousands_separator);
+    formatted_price = parts.join(StoreConfig.decimal_separator);
+
+    if (StoreConfig.prepend_currency) {
+      formatted_price = StoreConfig.currency_symbol + ' ' + formatted_price;
+    }
+
+    if (StoreConfig.append_currency) {
+      formatted_price += ' ' + config('maguttiCms.store.currency_symbol');
+    }
+
+    return formatted_price;
+  }
+
+  function handleCartItemQuantity() {
+    $(document).on('change', ITEM_QUANTITY, function () {
+      var elem = $(this);
+      $(ITEM_ADD).data('quantity', Math.max(elem.val(), 1));
+    });
+  }
+
+  function handleCartItemAdd() {
+    $(document).on('click', ITEM_ADD, function (e) {
+      e.preventDefault();
+      var elem = $(this);
+      var product_code = elem.data('product-code');
+      var product_model_code = elem.data('product-model-code');
+      var quantity = elem.data('quantity');
+      $.ajax({
+        type: 'POST',
+        url: '/api/store/cart-item-add',
+        data: {
+          product_code: product_code,
+          product_model_code: product_model_code,
+          quantity: quantity,
+          _token: Laravel.csrfToken
+        },
+        dataType: 'json',
+        success: function success(response) {
+          $(CART_COUNT).text(response.cart_count);
+          $.each(response.alerts, function () {
+            $.smkAlert({
+              text: this.text,
+              type: this.type,
+              time: this.time
+            });
+          });
+        },
+        error: function error(response) {
+          $.smkAlert({
+            text: 'Error',
+            type: 'danger',
+            time: 5
+          });
+        }
+      });
+    });
+  }
+
+  function handleCartItemRemove() {
+    $(document).on('click', ITEM_REMOVE, function (e) {
+      e.preventDefault();
+      var elem = $(this);
+      var id = elem.data('id');
+      $.ajax({
+        type: 'POST',
+        url: '/api/store/cart-item-remove',
+        data: {
+          cart_item_id: id,
+          _token: Laravel.csrfToken
+        },
+        dataType: 'json',
+        success: function success(response) {
+          $(CART_COUNT).text(response.cart_count);
+          elem.closest(ITEM_BLOCK).remove();
+          calcCartPreview();
+          if (!$(ITEM_BLOCK).length) $(CART_BUTTONS).remove();
+          $.each(response.alerts, function () {
+            $.smkAlert({
+              text: this.text,
+              type: this.type,
+              time: this.time
+            });
+          });
+        },
+        error: function error(response) {
+          $.smkAlert({
+            text: 'Error',
+            type: 'danger',
+            time: 5
+          });
+        }
+      });
+    });
+  }
+
+  function calcCartPreview() {
+    var total = 0;
+    $(ITEM_BLOCK).each(function () {
+      var elem = $(this);
+      var price = elem.data('price');
+      var quantity = elem.find(ITEM_QUANTITY).first().val();
+      var partial = price * quantity;
+      elem.find(ITEM_TOTAL).first().text(formatPrice(partial));
+      total += partial;
+    });
+    $(CART_TOTAL).text(formatPrice(total));
+  }
+
+  function handleCartPreview() {
+    $(CART_PREVIEW).change(function () {
+      calcCartPreview();
+    });
+  }
+
+  function calcOrderPreview() {
+    var cart = $('#order-cart').val();
+    var billing = $('#order-billing-address').val();
+    var shipping = $('#order-shipping-address').val();
+    $.ajax({
+      type: 'POST',
+      url: '/api/store/order-calc',
+      data: {
+        cart: cart,
+        address: shipping || billing,
+        _token: Laravel.csrfToken
+      },
+      dataType: 'json',
+      success: function success(response) {
+        $(ORDER_PRODUCTS).text(formatPrice(response.products));
+        $(ORDER_SHIPPING).text(formatPrice(response.shipping));
+        $(ORDER_VAT).text(formatPrice(response.vat));
+        $(ORDER_TOTAL).text(formatPrice(response.total));
+      },
+      error: function error(response) {}
+    });
+  }
+
+  function handleOrderPreview() {
+    $(ORDER_PREVIEW).change(function () {
+      calcOrderPreview();
+    });
+    if ($(ORDER_PREVIEW).length) calcOrderPreview();
+  }
+
+  return {
+    init: function init() {
+      handleCartItemQuantity();
+      handleCartItemAdd();
+      handleCartItemRemove();
+      handleCartPreview();
+      handleOrderPreview();
+    }
+  };
+}();
+
+/***/ }),
+
+/***/ 2:
+/*!*************************************!*\
+  !*** multi ./resources/js/store.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! /Users/asperti/web/magutti/maguttiCms/resources/js/store.js */"./resources/js/store.js");
+
+
+/***/ })
+
+/******/ });
