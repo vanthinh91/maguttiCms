@@ -50,8 +50,10 @@ class AdminPagesController extends Controller
     }
 
     /**
-     * Show the index list of a model.
-     * @return Response
+     * @param Request $request
+     * @param $model
+     * @param string $sub
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function lista(Request $request, $model, $sub = '')
     {
