@@ -38,8 +38,6 @@ class Tool {
     }
 	
 	/******************************** SEO E GESTIONE PAGINE URL ********************/
-
-	
 	/**
 	* url della  pagina ma_curPageURL
 	*
@@ -58,8 +56,7 @@ class Tool {
 		}
 		return $pageURL;
 	}
-
-
+	
     /**
 	* return check   URL is  in the  current domain
 	* @param  string $url   

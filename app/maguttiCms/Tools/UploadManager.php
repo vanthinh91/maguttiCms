@@ -4,7 +4,8 @@ use Input;
 Use Form;
 Use App;
 
-class UploadManager {
+class UploadManager
+{
 
     protected $model;
 
@@ -21,29 +22,30 @@ class UploadManager {
      * @param $model
      * @return $this
      */
-	public function init($media, $request, $disk = '', $folder = '') {
-		$this->media	= $media;
-        $this->request	= $request;
+    public function init($media, $request, $disk = '', $folder = '')
+    {
+        $this->media = $media;
+        $this->request = $request;
 
-		if ($disk) {
-			$this->destinationStorage = $disk;
-			$this->destinationPath = $folder;
-		}
-		else {
-			$this->destinationStorage = 'media';
-			$this->destinationPath = '';
-		}
+        if ($disk) {
+            $this->destinationStorage = $disk;
+            $this->destinationPath = $folder;
+        } else {
+            $this->destinationStorage = 'media';
+            $this->destinationPath = '';
+        }
 
-		return $this;
-	}
+        return $this;
+    }
 
-	protected function prepareMediaToUpload() {
+    protected function prepareMediaToUpload()
+    {
         if (Input::hasFile($this->media) && Input::file($this->media)->isValid()) {
             $this->newMedia = Input::file($this->media);
             $this->setFileFullName($this->newMedia->getClientOriginalName());
-			if ($this->destinationStorage == 'media' && !$this->destinationPath) {
-				$this->destinationPath = $this->getMediaType();
-			}
+            if ($this->destinationStorage == 'media' && !$this->destinationPath) {
+                $this->destinationPath = $this->getMediaType();
+            }
             $this->fileNameHandler();
             return true;
         }
@@ -55,7 +57,8 @@ class UploadManager {
      * file to given path;
      * @return $this
      */
-    public function store() {
+    public function store()
+    {
         if ($this->prepareMediaToUpload()) {
             $this->request->file($this->media)->storeAs(
                 $this->destinationPath,
@@ -63,7 +66,7 @@ class UploadManager {
                 $this->destinationStorage
             );
         }
-        return  $this;
+        return $this;
     }
 
     /**
@@ -73,8 +76,8 @@ class UploadManager {
      */
     public function fileNameHandler()
     {
-        if($this->verifyIfFileExist()) {
-            $newFileName = Str::slug(rand(10000,99999).'_'.$this->getFileBaseName()).".".$this->getFileExtension();
+        if ($this->verifyIfFileExist()) {
+            $newFileName = Str::slug(rand(10000, 99999) . '_' . $this->getFileBaseName()) . "." . $this->getFileExtension();
             $this->setFileFullName($newFileName);
         }
         return $this;
@@ -83,7 +86,8 @@ class UploadManager {
     /**
      * @return string
      */
-    public function getDestinationPath() {
+    public function getDestinationPath()
+    {
         return $this->destinationPath;
     }
 
@@ -91,30 +95,34 @@ class UploadManager {
      *
      * @return bool
      */
-    protected function verifyIfFileExist(){
-        return \Storage::disk($this->destinationStorage)->exists($this->destinationPath.'/'.$this->getFileFullName());
+    protected function verifyIfFileExist()
+    {
+        return \Storage::disk($this->destinationStorage)->exists($this->destinationPath . '/' . $this->getFileFullName());
     }
 
     /**
      * @return mixed
      */
-    protected function getFileExtension() {
-        return $this->fileExtension   = $this->newMedia->getClientOriginalExtension(); // getting image extension
+    protected function getFileExtension()
+    {
+        return $this->fileExtension = $this->newMedia->getClientOriginalExtension(); // getting image extension
     }
 
 
     /**
      * @return mixed
      */
-    public function getFileBaseName() {
-        return $this->fileBaseName  = basename($this->newMedia->getClientOriginalName(),'.'.$this->newMedia->getClientOriginalExtension());
+    public function getFileBaseName()
+    {
+        return $this->fileBaseName = basename($this->newMedia->getClientOriginalName(), '.' . $this->newMedia->getClientOriginalExtension());
     }
 
     /**
      * @return string
      */
-    public function getMediaType() {
-        return $this->mediaType = (is_image($this->newMedia->getMimeType()) == 'image')? 'images': 'docs';
+    public function getMediaType()
+    {
+        return $this->mediaType = (is_image($this->newMedia->getMimeType()) == 'image') ? 'images' : 'docs';
     }
 
     /**
@@ -139,15 +147,14 @@ class UploadManager {
      */
     public function getFileDetails()
     {
-
         return [
-            'basename'  => $this->getFileBaseName(),
-            'fullName'  => $this->getFileFullName(),
+            'basename' => $this->getFileBaseName(),
+            'fullName' => $this->getFileFullName(),
             'extension' => $this->getFileExtension(),
-            'fullPath'  => $this->getDestinationPath(),
-            'mimeType'  => $this->newMedia->getMimeType(),
+            'fullPath' => $this->getDestinationPath(),
+            'mimeType' => $this->newMedia->getMimeType(),
             'mediaType' => $this->getMediaType(),
-            'size'      => $this->newMedia->getClientSize(),
+            'size' => $this->newMedia->getClientSize(),
         ];
     }
 }
