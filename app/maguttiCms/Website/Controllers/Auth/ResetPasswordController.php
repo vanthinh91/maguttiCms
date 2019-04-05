@@ -46,11 +46,7 @@ class ResetPasswordController extends Controller
         );
     }
 
-    protected function sendResetResponse($response)
-    {
-        $this->redirectPath  = $this->localePrefix.'/users/dashboard';
-        return redirect($this->redirectPath)->with('status', trans($response));
-    }
+    
 
     protected function resetPassword($user, $password)
     {
