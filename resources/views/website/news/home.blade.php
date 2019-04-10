@@ -28,6 +28,8 @@
                     </article><!--/news -->
 				</div>
             @endforeach
+
+			{{ $news->links() }}
         </div> <!-- / newscontainer -->
 		<div class="col-xs-12 col-md-3">
 			@include('website.news.news_sidebar')

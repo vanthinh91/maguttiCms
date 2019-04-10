@@ -15,7 +15,7 @@ class APIController extends Controller
     /**
      * @return mixed
      */
-    public function subscribeNewsletter( AjaxFormRequest $request  ) {
+    public function subscribeNewsletter(AjaxFormRequest $request) {
         $validator = Validator::make($request->all(), $request->rules());
 
         if ($validator->fails()) {
@@ -23,21 +23,18 @@ class APIController extends Controller
                 'success' => false,
                 'errors' => $validator->getMessageBag()->toArray()
             ));
-
-        }else {
-
+        } else {
           // INSERT RECORD IN DATABASE
           $newsletter = new Newsletter;
-          $newsletter->email = sanitizeParameter( $request->email );
+		  $newsletter->locale = get_locale();
+          $newsletter->email = sanitizeParameter($request->email);
           $saved = $newsletter->save();
 
           return response()->json(array(
             'status'=>'ok',
             'msg'   =>  trans('website.mail_message.subscribe_newsletter_feedback')
           ));
-
         }
-
     }
 
 	public function updateGhost(AjaxFormRequest $request)

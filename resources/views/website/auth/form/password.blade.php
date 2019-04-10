@@ -1,4 +1,19 @@
-@include('flash::notification')
+@if ($errors->any())
+	<div class='text-center alert alert-info'>
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">{{icon('times')}}</button>
+		{{icon('exclamation-circle', 'fa-3x')}}
+		@foreach ( $errors->all() as $error)
+			<p>{{ $error }}</p>
+		@endforeach
+	</div>
+@endif
+@if (session('status'))
+	<div class="text-center alert alert-info">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">{{icon('times')}}</button>
+		{{icon('exclamation-circle', 'fa-3x')}}
+		<p>{!! session('status') !!}</p>
+	</div>
+@endif
 <form method="POST" action="{{ url_locale('/password/email') }} ">
 	{{ csrf_field() }}
 	<div class="form-group">

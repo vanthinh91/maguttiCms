@@ -21,29 +21,27 @@
 		<div class="collapse navbar-collapse navbar-responsive-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				{{-- pages --}}
-
-                <?php
-                $menu = App\Article::menuItems()->get();
-                $top = $menu->where('parent_id',0);
+				<?php
+					$menu = $pages->menuItems()->get();
+					$top = $menu->where('parent_id',0);
                 ?>
-				@foreach( $top as $index => $page)
+				@foreach( $top  as $index => $page)
 					<?php
 						if ($page->slug == 'home')
 							$page_link = '/';
 						else if ($page->link)
 							$page_link = $page->link;
 						else
-						$page_link = $page->getPermalink();
+							$page_link = $page->getPermalink();
 						$page_title = ($page->menu_title) ? $page->menu_title : $page->title;
-                   		$children = $menu->where('parent_id',$page->id) ;
-
-                    ?>
-
-						@if($children->count()>0)
+						$children = $children = $menu->where('parent_id',$page->id) ;
+					?>
+					@if($children->count()>0)
 						<li class="dropdown {{ (!empty($article) && ($article->id == $page->id || $article->parent_id == $page->id)) ? 'active' : '' }}">
-							<a href="#" class=" nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $page_title }} <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="{{$page_title}}">
+								{{ $page_title }} {{HtmlHelper::createFAIcon('caret-down', 'ml5')}}
+							</a>
 							<ul class="dropdown-menu">
-
 								@foreach ($children as $index => $child)
 									<?php
 										if ($child->slug == 'home')
@@ -55,23 +53,22 @@
 										$child_title = ( $child->menu_title ) ? $child->menu_title : $child->title;
 									?>
 									<li class="{{ (!empty($article) && $child->id == $article->id) ? 'active' : '' }}">
-										<a href="{{ $child_link }}">{{ $child_title }}</a>
+										<a href="{{ $child_link }}" title="{{$child_title}}">
+											{{ $child_title }}
+										</a>
 									</li>
 								@endforeach
 							</ul>
 						</li>
 					@else
 						<li class="{{ (!empty($article) && $article->id == $page->id) ? 'active' : '' }}">
-							<a href="{{ $page_link }}">{{ $page_title }}</a>
+							<a href="{{ $page_link }}" title="{{$page_title}}">
+								{{ $page_title }}
+							</a>
 						</li>
 					@endif
-
 				@endforeach
-				{{-- modal search --}}
-				<li class="" data-toggle="modal"
-					data-target="#fsModalSearch">
-					<a href="#">{{icon('search', 'fa-lg')}}</a>
-				</li>
+
 				{{-- login --}}
 				@if (!Auth::guard()->check())
 					<li><a href="{{url_locale('users/login')}}">Login</a></li>

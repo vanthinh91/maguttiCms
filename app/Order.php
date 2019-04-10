@@ -10,10 +10,12 @@ class Order extends Model
 		'cart_id',
 		'products_cost',
 		'shipping_cost',
+		'discount_amount',
 		'vat_cost',
 		'total_cost',
 		'billing_address_id',
 		'shipping_address_id',
+		'discount_code',
 		'token',
     ];
     protected $fieldspec = [];
@@ -48,6 +50,11 @@ class Order extends Model
 	public function shipping_address()
 	{
 		return $this->belongsTo('App\Address', 'shipping_address_id');
+	}
+
+	public function discount()
+	{
+		return $this->belongsTo('App\Discount', 'discount_code', 'code');
 	}
 
     function getFieldSpec()

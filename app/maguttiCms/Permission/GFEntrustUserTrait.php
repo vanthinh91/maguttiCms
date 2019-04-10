@@ -19,8 +19,8 @@ trait GFEntrustUserTrait
     {
         $userPrimaryKey = $this->primaryKey;
         $cacheKey = 'entrust_roles_for_'.$this->getTable().'_'.$this->$userPrimaryKey;
-
-        return Cache::tags($this->role_user_table)->remember($cacheKey, Config::get('cache.ttl'), function () {
+        // se non configurato valore della cache di 10 secondi
+        return Cache::tags($this->role_user_table)->remember($cacheKey, Config::get('cache.ttl',10), function () {
             return $this->roles()->get();
         });
     }

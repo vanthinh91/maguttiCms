@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'public'         => '',
 	'repository'     => 'media/',
 	'img_repository' => 'media/images/',
 	'img_save'       => 'media/images/cache/',

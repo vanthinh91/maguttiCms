@@ -9,6 +9,8 @@
 						{!! AdminForm::buildSuggestableField($key, $search_item, trans('admin.label.'.$search_item['label'])) !!}
 					@elseif ($search_item['type'] == 'integer')
 						{!! Form::number($search_item['field'],'', ['class' => 'form-control', 'placeholder' => trans('admin.label.'.$search_item['label'])]) !!}
+					@elseif ($search_item['type'] == 'date_range')
+						{!! Form::text($key,'', ['class' => 'form-control', 'placeholder' => trans('admin.label.'.strtolower($search_item['label']))]) !!}
 					@else
 						{!! Form::text($search_item['field'],'', ['class' => 'form-control', 'placeholder' => trans('admin.label.'.$search_item['label'])]) !!}
 					@endif

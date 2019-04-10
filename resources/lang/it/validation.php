@@ -87,14 +87,26 @@ return [
     |
     */
 
-    'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
-       '*' => [
-              'is_unique'                 => 'Valore :attribute già presente.',
-       ]
-    ],
+	'custom' => [
+		'attribute-name' => [
+			'rule-name' => 'custom-message',
+		],
+		'password' => [
+			'regex' => 'Il formato della password non è valido',
+		],
+		'g-recaptcha-response' => [
+			'*'  => 'Sei Un robot? Selezionare non sono un robot.',
+		],
+		'*' => [
+			'is_unique' => 'Valore :attribute già presente.',
+		],
+		'email' => [
+			'unique' => 'L\'email scelta è già stata registrata',
+		],
+		'password' => [
+			'regex' => 'Il formato della password non è valido'
+		]
+	],
 
     /*
     |--------------------------------------------------------------------------

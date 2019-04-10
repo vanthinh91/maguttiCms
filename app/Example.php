@@ -174,6 +174,7 @@ class Example extends Model
             'display'       => 1,
             'hidden'        => 0,
             'multiple'      => 1,
+			'order_raw'		=> 'FIELD(id, %s)',
         ];
         $this->fieldspec['title'] = [
             'type'     => 'string',
@@ -216,6 +217,21 @@ class Example extends Model
             'mediaType' => 'Img',
             'display'   => 1,
         ];
+        $this->fieldspec['image_crop'] = [
+            'type'      => 'media',
+            'required'  => 0,
+            'hidden'    => 0,
+            'label'     => 'File upload with client-side crop',
+            'mediaType' => 'Img',
+            'display'   => 1,
+			'cropper'	=> [
+				'width'		=> 400,
+				'height'	=> 400,
+				'ratio'		=> 1,
+				'fill'		=> '#ffffff',
+				'extension' => 'jpg'
+			]
+        ];
         $this->fieldspec['doc'] = [
             'type'        => 'media',
             'required'    => 0,
@@ -253,6 +269,15 @@ class Example extends Model
             'cssClass'        => 'datepicker',
             //'cssClass'      => 'datepicker',
             'cssClassElement' => 'col-sm-3',
+        ];
+		$this->fieldspec['map'] = [
+            'type'      => 'map',
+            'required'  => false,
+            'hidden'    => 0,
+            'label'     => 'Posizione',
+            'extraMsg'  => '',
+            'display'   => 1,
+            'cssClassElement' => 'col-sm-10'
         ];
         $this->fieldspec['sort'] = [
             'type'     => 'integer',

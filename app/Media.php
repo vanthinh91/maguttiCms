@@ -10,7 +10,7 @@ class Media extends Model
 
 	protected   $table = 'media';
 	public      $translatedAttributes = ['title','alt','description'];
-	protected   $fillable = ['title','description','sort','media_category_id'];
+	protected   $fillable = ['title','description','sort','media_category_id','pub'];
 	protected   $fieldspec = [];
 
 

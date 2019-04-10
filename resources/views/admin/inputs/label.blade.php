@@ -1,5 +1,5 @@
 <label for="{{$properties['label']}}">
-	{{$properties['label']}}
+	{!! $properties['label'] !!}
 	@if (isset($properties['required']) && $properties['required'])
 		<mark>*</mark>
 	@endif

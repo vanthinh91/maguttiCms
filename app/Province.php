@@ -10,12 +10,20 @@ class Province extends Model
     protected $fillable  = ['title','code','state_id','country_id'];
     protected $fieldspec = [];
 
-    public function state() {
+    public function state()
+	{
         return $this->belongsTo('App\State');
     }
-    public function country() {
+
+    public function country()
+	{
         return $this->belongsTo('App\Country');
     }
+
+	public function cities()
+	{
+		return $this->hasMany('App\City', 'province_code', 'code');
+	}
 
     function getFieldSpec ()
         // set the specifications for this database table
@@ -56,6 +64,7 @@ class Province extends Model
             'required'  => true,
             'hidden'    => 0,
             'label'     => 'title',
+            'extraMsg'  => '',
             'display'   =>  1,
         ];
         $this->fieldspec['code']    = [
@@ -63,13 +72,14 @@ class Province extends Model
             'required'  => true,
             'hidden'    => 0,
             'label'     => 'Code',
+            'extraMsg'  => '',
             'display'   =>  1,
         ];
         $this->fieldspec['pub'] = [
             'type'     => 'boolean',
             'required' => false,
             'hidden'   => 0,
-            'label'    => trans('admin.label.publish'),
+            'label'    => trans('admin.label.active'),
             'display'  => 1
         ];
         return $this->fieldspec;

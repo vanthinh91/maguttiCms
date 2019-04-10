@@ -70,8 +70,6 @@ class User extends Authenticatable
     {
         if ($password != '') {
             $this->attributes['password'] = bcrypt($password);
-            // set also the real password only for demo purpose must not fillable
-            $this->attributes['real_password'] = $password;
         }
     }
 
@@ -96,7 +94,6 @@ class User extends Authenticatable
             'hidden'   => 0,
             'label'    => 'Name',
             'display'  => 1,
-            'validation' =>'required'
         ];
         $this->fieldspec['email'] = [
             'type'     => 'string',
@@ -104,7 +101,6 @@ class User extends Authenticatable
             'hidden'   => 0,
             'label'    => 'Email',
             'display'  => 1,
-            'validation' =>'required|Between:3,64|Email|is_unique'
         ];
         $this->fieldspec['role'] = [
             'type'          => 'relation',
@@ -143,8 +139,8 @@ class User extends Authenticatable
             'hidden'   => 0,
             'label'    => 'Password',
             'display'  => 1,
-            'template' => 'password', /*TODO*/
-            'validation' =>'alpha_num|min:8|confirmed'
+            'template' => 'password',
+            'validation' => 'min:10|confirmed|regex:'.config('maguttiCms.security.password_regex'),
         ];
         $this->fieldspec['is_active'] = [
             'type'     => 'boolean',

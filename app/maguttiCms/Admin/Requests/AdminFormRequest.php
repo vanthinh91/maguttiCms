@@ -5,38 +5,40 @@ use Input;
 
 class AdminFormRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized
-     * to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
+	/**
+	* Determine if the user is authorized
+	* to make this request.
+	*
+	* @return bool
+	*/
+	public function authorize()
+	{
+		return true;
+	}
 
-        return true;
-    }
+	/**
+	* Get the validation rules that
+	* apply to the request.
+	*
+	* @return array
+	*/
+	public function rules()
+	{
+		$model = ($this::segment(2)=='create')? $this::segment(count($this::segments())): $this::segment(count($this::segments())-1);
 
-    /**
-     * Get the validation rules that
-     * apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        $model = ($this::segment(2) == 'create') ? $this::segment(count($this::segments())) : $this::segment(count($this::segments()) - 1);
-        $this->config = config('maguttiCms.admin.list.section.' . $model);
+		//Metodo Standard sarà rimosso
+		$rules = config('maguttiCms.admin.form_validation.'.$model);
 
-        $this->modelClass = 'App\\' . $this->config['model'];
-        $this->model = new $this->modelClass;
-        $rules = [];
-        foreach ($this->model->getFieldSpec() as $key => $property) {
+		$curModel = getModelFromString(config('maguttiCms.admin.list.section.'.$model)['model']);
+		$obj = new $curModel;
 
-            if (data_get($property, 'validation'))
-                $rules[$key] = $property['validation'];
-            else if (data_get($property, 'required') == 1 && $key != 'id') $rules[$key] = 'required';
-        }
-        return $rules;
-    }
+		foreach($obj->getFieldspec() as $key => $field) {
+			if (data_get($field,'validation') != '') {
+				$rules[$key] = $field['validation'];
+			} else if (data_get($field, 'required') && in_array($key, $obj->getFillable())) {
+				$rules[$key] = "required";
+			}
+		};
+		return $rules;
+	}
 }

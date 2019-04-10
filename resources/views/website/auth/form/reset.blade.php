@@ -1,4 +1,14 @@
-@include('flash::notification')
+@if ($errors->any())
+	<div class='text-center alert alert-info'>
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">{{icon('times')}}</button>
+		{{icon('exclamation-circle', 'fa-3x')}}
+
+		@foreach ( $errors->all() as $error)
+			<p>{{ $error }}</p>
+		@endforeach
+	</div>
+@endif
+
 <form class="form-horizontal" role="form" method="POST" action="{{url_locale('/password/reset')}}">
 	{{ csrf_field() }}
 	<input type="hidden" name="token" value="{{ $token }}">

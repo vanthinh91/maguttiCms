@@ -4,7 +4,7 @@
 		<div id="item_media_{!! $media->id!!}_text" class="caption">{!! $media->title!!}</div>
         <div class="actions">
             <a href="{{  ma_get_admin_editmodal_url($media) }}" data-toggle="modal"    data-target="#modal-media">
-				{{icon('pencil')}}
+				{{icon('pencil-alt')}}
 			</a>
             <a href=" {!!   ma_get_doc_from_repository($media->file_name) !!}" class="red" target="_new">
 				{{icon('eye')}}

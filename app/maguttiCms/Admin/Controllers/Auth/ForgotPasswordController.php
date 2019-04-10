@@ -19,9 +19,9 @@ class ForgotPasswordController extends Controller
     | your application to your users. Feel free to explore this trait.
     |
     */
-    protected $guard   = 'admin';
-    protected $redirectTo   = '/admin/';
-    protected $broker       = 'admin';
+    protected $guard      = 'admin';
+    protected $redirectTo = '/admin/';
+    protected $broker     = 'admin';
     use SendsPasswordResetEmails;
 
     /**
@@ -32,7 +32,6 @@ class ForgotPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-
     }
 
     public function showLinkRequestForm()
@@ -49,6 +48,4 @@ class ForgotPasswordController extends Controller
     {
         return Password::broker('admin');
     }
-
-
 }

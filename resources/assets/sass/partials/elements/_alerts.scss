@@ -1,0 +1,31 @@
+.alert {
+	border-radius: 0;
+	border: 0;
+	position: relative;
+	.close {
+		position: absolute;
+		float: none;
+		top: 15px;
+		right: 15px;
+	}
+}
+
+@keyframes smkAlertAnimation {
+	from {transform: translateY(100%);}
+	to {transform: translateY(0%);}
+}
+
+.smk-alert-content {
+	max-width: calc(100% - 40px);
+}
+
+.smk-alert-content-top-right,
+.smk-alert-content-top-left {
+	top: 20px+$navbar-height-mobile;
+	@include breakpoint-up($navbar-trigger) {
+		top: 20px+$navbar-height;
+	};
+	.smk-alert {
+		animation: smkAlertAnimation 0.5s ease-in-out;
+	}
+}

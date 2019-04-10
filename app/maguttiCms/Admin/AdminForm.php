@@ -1,12 +1,12 @@
 <?php namespace App\maguttiCms\Admin;
 
-use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Form;
+use Str;
 use App;
+use App\Media;
 
 use App\maguttiCms\Admin\Facades\AdminFormImageRelation;
-use App\Media;
 
 /**
 * Class AdminForm
@@ -61,7 +61,7 @@ class AdminForm {
 		$this->html = "";
 		$this->model = $model;
 		foreach ($this->model->getFieldSpec() as $key => $property) {
-			if (starts_with($key, 'seo') == $this->showSeo)
+            if (Str::startsWith($key, 'seo') == $this->showSeo)
 				$this->formModelHandler($property, $key, $this->model->$key);
 		}
 
@@ -80,7 +80,7 @@ class AdminForm {
 					foreach ($this->model->translatedAttributes as $attribute) {
 						$value = (isset($this->model->translate($locale)->$attribute)) ? $this->model->translate($locale)->$attribute : '';
 						$this->property = $this->model->fieldspec[$attribute];
-						if (starts_with($attribute, 'seo') == $this->showSeo)
+						if (Str::startsWith($attribute, 'seo') == $this->showSeo)
 							$this->formModelHandler($this->model->fieldspec[$attribute], $attribute.'_'.$locale, $value);
 					}
 					$this->html .= "</div>";
@@ -108,86 +108,107 @@ class AdminForm {
 			$value = $this->property['default_value'];
 		}
 
+		$field_properties = ['class' => ' form-control '.$cssClass];
+		if (data_get($this->property, 'required', false)) {
+
+			//$field_properties['required'] = true;
+		}
+
 		if ($isLangField || $this->property['display'] != 1) {
 
 		}
 		elseif (isset($this->property['hidden']) && $this->property['hidden'] && $this->property['type'] != 'relation') {
-			$formElement = Form::hidden($key, $value , array('class' => ' form-control '.$cssClass));
+			$formElement = Form::hidden($key, $value, $field_properties);
 		}
 		elseif ($this->property['type'] == 'string') {
-			$formElement = Form::text($key, $value , array('class' => ' form-control '.$cssClass));
+			$formElement = Form::text($key, $value, $field_properties);
 		}
 		elseif ($this->property['type'] == 'readonly') {
-			$formElement = Form::text($key, $value , array('readonly' => 'true','class' => ' form-control '.$cssClass));
+			$field_properties['readonly'] = true;
+			$formElement = Form::text($key, $value, $field_properties);
 		}
 		elseif ($this->property['type'] == 'date' || $this->property['type'] == 'date-readonly') {
 			$value = ($value) ? Carbon::parse($value)->format('d-m-Y') :date('d-m-Y');
-			$formElement = ($this->property['type'] =='date-readonly')?$formElement = Form::text($key, $value , array('readonly' => 'true','class' => ' form-control '.$cssClass)):Form::text($key, $value , array('class' => ' form-control '.$cssClass));
-			$cssClassElement = (isset($this->property['cssClassElement']))	 ? $this->property['cssClassElement'] : 'col-md-2';
+			if ($this->property['type'] =='date-readonly') {
+				$field_properties['readonly'] = true;
+				Form::text($key, $value , $field_properties);
+			} else {
+				Form::text($key, $value , $field_properties);
+			}
+			$cssClassElement = (isset($this->property['cssClassElement']))? $this->property['cssClassElement']: 'col-md-2';
 		}
 		elseif ($this->property['type'] == 'integer' && $this->property['display'] == 1) {
 			$cssClassElement = (isset($this->property['cssClassElement']))?$this->property['cssClassElement']:'col-md-2';
-			$formElement = Form::number($key, $value , array(
-				'class' => ' form-control '.$cssClass,
-				'min' => $intMin,
-				'max' => $intMax,
-				'step' => $intStep
-			));
+			$field_properties['min'] = $intMin;
+			$field_properties['max'] = $intMax;
+			$field_properties['step'] = $intStep;
+			$formElement = Form::number($key, $value, $field_properties);
 		}
 		elseif ($this->property['type'] == 'color') {
 			$formElement = '<div class="color-picker input-group colorpicker-component">';
-			$formElement .= Form::text($key, $value , array('class' => ' form-control '.$cssClass));
+			$formElement .= Form::text($key, $value, $field_properties);
 			$formElement .= '<span class="input-group-addon"><i></i></span>';
 			$formElement .= '</div>';
 		}
 		elseif ($this->property['type'] == 'text' && $this->property['display']== 1) {
-			$h =(isset($this->property['h']))?$this->property['h']:300;
-			$formElement = Form::textarea($key, $value.'' , array('class' => 'form-control '.$cssClass,'style'=>'height:'.$h.'px'));
+			$h = (isset($this->property['h']))? $this->property['h']: 300;
+			$field_properties['style'] = 'height:'.$h.'px';
+			$formElement = Form::textarea($key, $value.'' , $field_properties);
 		}
 		elseif ($this->property['type'] == 'boolean' && $this->property['display']== 1) {
+			$modelName = strtolower(class_basename($this->model));
+			$booleanInputId = $key .'_'. $modelName .'_'. $this->model->id;
+
 			//$formElement = Form::checkbox($key, 1 , $this->model->$key);
-			$activeNo=($value!='1')?' active':'';
-			$activeYes=($value	=='1')?'active':'';
+			$activeNo = ($value != '1')? ' active': '';
+			$activeYes = ($value == '1')? 'active': '';
 			$formElement.="<div class=\"btn-group\" data-toggle=\"buttons\">\n";
-			$formElement.=' <button class="btn btn-default '.$activeYes.'" onclick="$(\'#'.$key.'\').val(1)">
-			<input type="radio" name="options" autocomplete="off" '.$activeYes.'>'.trans('admin.label.btn_yes').'
-			</button>';
-			$formElement.=' <button class="btn btn-default '.$activeNo.'" onclick="$(\'#'.$key.'\').val(0)">
-			<input type="radio" name="options" autocomplete="off" '.$activeNo.'> '.trans('admin.label.btn_no').'
-			</button>';
+			$formElement.=' <button type="button" class="btn btn-default '.$activeYes.'" onclick="$(\'#'.$booleanInputId.'\').val(1)">
+					<input type="radio" name="options" autocomplete="off" '.$activeYes.'>'.trans('admin.label.btn_yes').'
+				</button>';
+			$formElement.=' <button type="button" class="btn btn-default '.$activeNo.'" onclick="$(\'#'.$booleanInputId.'\').val(0)">
+					<input type="radio" name="options" autocomplete="off" '.$activeNo.'> '.trans('admin.label.btn_no').'
+				</button>';
 			$formElement.="</div>\n";
-			$formElement .= Form::hidden($key, $value , array('id'=> $key,'class' => ' form-control '.$cssClass));
+			$formElement .= Form::hidden($key, $value , array('id'=> $booleanInputId,'class' => ' form-control '.$cssClass));
 
 		}
 		elseif ($this->property['type'] == 'locale' && $this->property['display']) {
 			$formElement = view('admin.inputs.locale', ['properties' => $this->property, 'key' => $key, 'value' => $value]);
 		}
 		elseif ($this->property['type'] =='media' && $this->property['display']) {
-			$formElement = view('admin.inputs.file', ['properties' => $this->property, 'key' => $key]);
+			if (isset($this->property['cropper'])) {
+				$formElement = view('admin.inputs.cropper', ['properties' => $this->property, 'key' => $key, 'cropperConfig' => collect($this->property['cropper'])]);
+			} else {
+				$formElement = view('admin.inputs.file', ['properties' => $this->property, 'key' => $key]);
+			}
 		}
 		elseif ($this->property['type'] =='relation' && $this->property['display']) {
-			$objRelation = $this->getRelation();
-			$selected = (isset($this->property['relation_name']) && $this->property['relation_name']!='') ? $this->model->{$this->property['relation_name']}->pluck('id')->toArray():'';
+		    $selected = (isset($this->property['relation_name']) && $this->property['relation_name']!='') ? $this->model->{$this->property['relation_name']}->pluck('id')->toArray():'';
+            $objRelation = $this->getRelation( $selected );
 			$formElement = $this->getComboRelation($objRelation,$key,$value,$selected);
 		}
 		elseif ($this->property['type'] =='relation_set' && $this->property['display']) {
-            $objRelation = $this->getRelation();
-            $selected = ($value!='')?explode(',',$value):'';
+		    $selected = ($value!='')?explode(',',$value):'';
+            $objRelation = $this->getRelation( $selected );
             $formElement   = $this->getComboRelation( $objRelation,$key,$value,$selected);
         }
 		elseif ($this->property['type'] =='relation_tree' && $this->property['display']) {
-			$objRelation = $this->getRelation();
-			$selected = (isset($this->property['relation_name']) && $this->property['relation_name']!='') ? $this->model->{$this->property['relation_name']}->pluck('id')->toArray():'';
+		    $selected = (isset($this->property['relation_name']) && $this->property['relation_name']!='') ? $this->model->{$this->property['relation_name']}->pluck('id')->toArray():'';
+            $objRelation = $this->getRelation();
 			$objRelation = (new AdminTree)->setProperty($this->property)->getTreeRelation($objRelation,0);
 			$formElement = $this->getComboRelation($objRelation, $key, $value, $selected);
 		}
 		elseif ($this->property['type'] =='relationimage' && $this->property['display']) {
-			$objRelation = $this->getRelation();
-			$selected = (isset($this->property['relation_name']) && $this->property['relation_name']!='') ? $this->model->{$this->property['relation_name']}->pluck('id')->toArray():'';
+		    $selected = (isset($this->property['relation_name']) && $this->property['relation_name']!='') ? $this->model->{$this->property['relation_name']}->pluck('id')->toArray():'';
+            $objRelation = $this->getRelation();
 			$formElement .= AdminFormImageRelation::setProperty($this->property)->getThumbRelation($objRelation, $key, $value, $selected);
 		}
 		elseif ($this->property['type'] == 'select' && $this->property['display'] && is_array($this->property['select_data'])) {
 			$formElement = AdminFormSelect::withOptions($this->property['select_data'])->withName($key)->withSelected($value ?: '')->render();
+		}
+		else if($this->property['type'] =='map'  && $this->property['display']== 1) {
+			$formElement  .= view('admin.inputs.map', ['properties' => $this->property, 'key' => $key, 'model' => $this->model]);;
 		}
 
 		if ($formElement && $this->property['type'] =='media'){
@@ -195,8 +216,8 @@ class AdminForm {
 				$this->html .= $this->containerUploadifive($formElement, $cssClassElement, $key, $value);
 			}
 			elseif (isset($this->property['filemanager']) && $this->property['filemanager']) {
-				$media = Media::where('id', $this->model->$key)->first();
-				$this->html .= $this->containerFileManager($formElement, $cssClassElement, $key, $value, $media);
+                $media = Media::where('id', $value)->first();
+                $this->html .= view('admin.inputs.container_manager', ['properties' => $this->property, 'css_class' => $cssClassElement, 'key' => $key, 'model' => $this->model, 'value' => $value, 'media' => $media]);
 			}
 			else {
 				$this->html .= $this->containerMedia($formElement, $cssClassElement, $key);
@@ -206,6 +227,12 @@ class AdminForm {
 			$this->html .= $this->container($formElement, $cssClassElement);
 	}
 
+    /**
+     * @param $formElement
+     * @param string $cssClass
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     */
 	function container($formElement, $cssClass = '') {
 		// GF_ma gestione campo hidden
 		if (isset($this->property['hidden']) && $this->property['hidden'])
@@ -224,27 +251,32 @@ class AdminForm {
 	}
 
 	public function containerFileManager($formElement, $cssClass = "", $key, $value, $media) {
-		return view('admin.inputs.container_manager', ['properties' => $this->property, 'form_element' => $formElement, 'css_class' => $cssClass, 'key' => $key, 'model' => $this->model, 'value' => $value, 'media' => $media]);
 	}
 
 	function extraMsgHandler() {
 		return (isset($this->property['extraMsg'])) ? $this->property['extraMsg'] :'';
 	}
 
-	/**
-	* GET RELATION DATA
-	* CAN BE FILTERED
-	* @return mixed
-	*/
-	public function getRelation() {
+    /**
+     * @param string $selected
+     * @return mixed
+     */
+	public function getRelation( $selected = '' ) {
 		$relationModel = "App\\".$this->property['model'] ;
 		$model = new $relationModel;
-		$orderField = (isset($this->property['order_field']))? $this->property['order_field']: $this->property['label_key'];
+		$orderField = (data_get($this->property,'order_field'))? $this->property['order_field']: $this->property['label_key'];
 		$order = 'ASC';
 		$query = $model::select(); //$relationModel;
 
-		if (isset($model->translatedAttributes) && in_array($this->property['label_key'],$model->translatedAttributes)) return $this->getTranslatableRelation();
-		else {
+		if (data_get($this->property,'orderRaw') && count($selected)) {
+			$orderRaw = sprintf($this->property['orderRaw'], implode(', ', $selected));
+		} else {
+			$orderRaw = false;
+		}
+
+		if (isset($model->translatedAttributes) && in_array($this->property['label_key'],$model->translatedAttributes)) {
+			return $this->getTranslatableRelation();
+		} else {
 			/** filter condition */
 			if (isset($this->property['filter'])){
 				foreach($this->property['filter'] as $column => $value)
@@ -255,8 +287,13 @@ class AdminForm {
 			if (data_get($this->property,'whereRaw')){
 				$query->whereRaw($this->property['whereRaw']);
 			}
-			$relationObj = $query->orderBy($orderField,$order)->get();
-			return $relationObj ;
+			if ($orderRaw) {
+
+				$relationObj = $query->orderByRaw($orderRaw)->get();
+			} else {
+				$relationObj = $query->orderBy($orderField,$order)->get();
+			}
+			return $relationObj;
 		}
 	}
 

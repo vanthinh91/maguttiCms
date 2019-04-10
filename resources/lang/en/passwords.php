@@ -15,9 +15,10 @@ return [
 
     'password'  => 'Passwords must be at least six characters and match the confirmation.',
     'reset'     => 'Your password has been reset!',
-    'sent'      => 'We have e-mailed your password reset link!',
+    'sent'      => 'We have e-mailed your password reset link, if your e-mail address has been found in our database',
     'token'     => 'This password reset token is invalid.',
-    'user'      => "We can't find a user with that e-mail address.",
+    'user'      => "We have e-mailed your password reset link, if your e-mail address has been found in our database",
+    'invalid'   => 'Invalid data',
 
     'mail_reset_button'     =>'Reset password',
     'mail_reset_body'       =>'You are receiving this email because we received a password reset request for your account.',

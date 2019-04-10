@@ -18,7 +18,7 @@ return [
 	],
 
 	'shipping' => [
-		'enabled' => false,
+		'enabled' => true,
 		'free_threshold' => 20,
 		'percentage' => 0.1,
 		'fixed' => 10,
@@ -39,6 +39,10 @@ return [
 		'thousands_separator' => '',
 		'prepend_currency' => 1,
 		'append_currency' => 0,
+	],
+
+	'discount' => [
+		'apply_to_shipping' => false
 	],
 
 	// currency

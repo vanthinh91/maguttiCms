@@ -1,6 +1,6 @@
 <?php
-use Illuminate\Http\Request;
-use Cocur\Slugify\Bridge\Laravel\SlugifyFacade;
+
+use Illuminate\Support\Str;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,6 +17,7 @@ function ma_get_doc_path_from_repository($doc)
     $path = config('maguttiCms.admin.path.doc_repository');
     return public_path($path . $doc);
 }
+
 function ma_get_doc_from_repository($doc)
 {
     $path = config('maguttiCms.admin.path.doc_repository');
@@ -30,13 +31,14 @@ function ma_get_doc_from_repository($doc)
  * @param bool $absolute
  * @return string
  */
-function ma_get_image_path_from_repository($img,$absolute=true)
+function ma_get_image_path_from_repository($img, $absolute = true)
 {
     $path = config('maguttiCms.admin.path.img_repository');
-	if (file_exists($path.$img))
-  		return ($absolute == true ) ? asset($path.$img) : $path.$img;
-	else
-		return ($absolute == true ) ? asset($path.'placeholder.png') : $path.'placeholder.png';
+    if (file_exists($path . $img)) {
+        return ($absolute == true) ? asset($path . $img) : $path . $img;
+    } else {
+        return ($absolute == true) ? asset($path . 'placeholder.png') : $path . 'placeholder.png';
+    }
 }
 
 /**
@@ -59,7 +61,7 @@ function ma_get_image_from_repository($img, $absolute = true)
  */
 function ma_get_image_from_repository_if_exists($img, $absolute = true)
 {
-    return ($img!='')?ma_get_image_path_from_repository($img, $absolute):"";
+    return ($img != '') ? ma_get_image_path_from_repository($img, $absolute) : "";
 }
 
 /**
@@ -77,7 +79,9 @@ function ma_get_image_on_the_fly($asset, $w, $h, $type = 'jpg')
     if ($asset != '') {
         $img = Image::make(ma_get_image_from_repository($asset, false))->fit($w, $h)->encode($type);
         return 'data:image/' . $type . ';base64,' . base64_encode($img);
-    } else return null;
+    } else {
+        return null;
+    }
 }
 
 /**
@@ -112,8 +116,11 @@ function ma_get_image_on_the_fly_cached($asset, $w, $h, $type = 'jpg', $fit = 1)
             $image->encode($dataImage['type']);
         });
         return 'data:image/' . $type . ';base64,' . base64_encode($img);
-    } else return ma_get_image_path_from_repository($asset);
+    } else {
+        return ma_get_image_path_from_repository($asset);
+    }
 }
+
 /*******************     USER UPLOAD    *****************/
 function ma_get_upload_from_repository($doc)
 {
@@ -130,6 +137,7 @@ function ma_get_admin_list_url($model)
 {
     $path = '/admin/list';
     $modelName = (!is_object($model)) ? strtolower($model) : strtolower(Str::plural(class_basename($model)));
+
     return URL::to($path . '/' . Str::plural($modelName));
 }
 
@@ -146,6 +154,7 @@ function ma_get_admin_edit_url($model)
     $modelName = (!is_object($model)) ? strtolower($model) : strtolower(Str::plural(class_basename($model)));
     return URL::to($path . '/' . Str::plural($modelName) . '/' . $model->id);
 }
+
 function ma_get_admin_view_url($model)
 {
     $path = '/admin/view';
@@ -163,6 +172,13 @@ function ma_get_admin_editmodal_url($model)
 function ma_get_admin_delete_url($model)
 {
     $path = '/admin/delete';
+    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(Str::plural(class_basename($model)));
+    return URL::to($path . '/' . Str::plural($modelName) . '/' . $model->id);
+}
+
+function ma_get_admin_impersonated_url($model)
+{
+    $path = '/admin/impersonated';
     $modelName = (!is_object($model)) ? strtolower($model) : strtolower(Str::plural(class_basename($model)));
     return URL::to($path . '/' . Str::plural($modelName) . '/' . $model->id);
 }
@@ -196,7 +212,7 @@ function ma_get_admin_export_url($model)
  */
 function is_image($mimeType)
 {
-    return starts_with($mimeType, 'image/');
+    return Str::startsWith($mimeType, 'image/');
 }
 
 if (!function_exists('flash')) {
@@ -229,8 +245,9 @@ function getModelFromString($string, $namespace = "\\App\\")
  * @return bool
  *
  */
-function get_ip()  {
-    $ip = FALSE;
+function get_ip()
+{
+    $ip = false;
     // If HTTP_CLIENT_IP is set, then give it priority
     if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
         $ip = $_SERVER["HTTP_CLIENT_IP"];
@@ -243,12 +260,15 @@ function get_ip()  {
     if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 
         // Put the IP's into an array which we shall work with shortly.
-        $ips = explode (", ", $_SERVER['HTTP_X_FORWARDED_FOR']);
-        if ($ip) { array_unshift($ips, $ip); $ip = FALSE; }
+        $ips = explode(", ", $_SERVER['HTTP_X_FORWARDED_FOR']);
+        if ($ip) {
+            array_unshift($ips, $ip);
+            $ip = false;
+        }
 
         for ($i = 0; $i < count($ips); $i++) {
             // Skip RFC 1918 IP's 10.0.0.0/8, 172.16.0.0/12 and 192.168.0.0/16
-            if (!preg_match ("/^(10|172\.16|192\.168)\./i", $ips[$i])) {
+            if (!preg_match("/^(10|172\.16|192\.168)\./i", $ips[$i])) {
                 if (version_compare(phpversion(), "5.0.0", ">=")) {
                     if (ip2long($ips[$i]) != false) {
                         $ip = $ips[$i];
@@ -263,7 +283,7 @@ function get_ip()  {
             }
         }
     }
-    $Ip=($ip)? $ip : $_SERVER['REMOTE_ADDR'];
+    $Ip = ($ip) ? $ip : $_SERVER['REMOTE_ADDR'];
     return $Ip;
 }
 
@@ -277,10 +297,12 @@ function sanitizeParameter($parameter)
     return htmlspecialchars($parameter, ENT_QUOTES, 'utf-8');
 }
 
-function ma_sluggy($stringa,$separator='-',$locale='')
+function ma_sluggy($stringa, $separator = '-', $locale = '')
 {
-    $locale = ($locale) ? :app()->getLocale();
-    if ($locale == 'zh') return $stringa;
+    $locale = ($locale) ?: app()->getLocale();
+    if ($locale == 'zh') {
+        return $stringa;
+    }
     return Slugify::slugify($stringa, $separator);
 }
 
@@ -292,14 +314,41 @@ function ma_sluggy($stringa,$separator='-',$locale='')
 
 function ma_get_file_from_storage($file, $disk = '', $folder = '')
 {
-	if ($disk)
-		$storage = Storage::disk($disk);
-	else
-		$storage = Storage::disk('media');
-	if ($folder)
-		$image = asset($storage->url($folder.'/'.$file));
-	else
-		$image = asset($storage->url('images/'.$file));
+    if ($disk) {
+        $storage = Storage::disk($disk);
+    } else {
+        $storage = Storage::disk('media');
+    }
+    if ($folder) {
+        $image = asset($storage->url($folder . '/' . $file));
+    } else {
+        $image = asset($storage->url('images/' . $file));
+    }
 
-	return $image;
+    return $image;
+}
+
+/*******************  AUTH HELPER **************/
+
+/*
+|--------------------------------------------------------------------------
+|  Admin role
+|--------------------------------------------------------------------------
+*/
+
+// This method is used to check the admin role
+function cmsUserHasRole($role)
+{
+    return (auth('admin')->user()->hasRole($role)) ? 1 : 0;
+}
+
+function cmsUserIsOwner($model_id, $user_id)
+{
+    return (cmsUserHasRole(['su', 'admin']) || $model_id == $user_id) ? 1 : 0;
+}
+
+// current_auth_user
+function auth_user($guard = '')
+{
+    return ($guard != '') ? auth()->guard()->user() : auth()->user();
 }

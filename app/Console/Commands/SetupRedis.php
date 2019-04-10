@@ -66,8 +66,8 @@ class SetupRedis extends Command
     protected function setPrefixInEnvironmentFile($prefix)
     {
         file_put_contents($this->laravel->environmentFilePath(), str_replace(
-            'REDIS_PREFIX=' . env('REDIS_PREFIX'),
-            'REDIS_PREFIX=' . $prefix,
+            'CACHE_PREFIX=' . env('CACHE_PREFIX'),
+            'CACHE_PREFIX=' . $prefix,
             file_get_contents($this->laravel->environmentFilePath())
         ));
     }

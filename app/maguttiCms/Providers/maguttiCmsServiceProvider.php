@@ -1,9 +1,13 @@
 <?php namespace App\maguttiCms\Providers;
 
+
 use DB;
 use Event;
 use Validator;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+
 use App\maguttiCms\Composer\ViewShareSettingComposer;
 /*
 |--------------------------------------------------------------------------
@@ -11,10 +15,8 @@ use App\maguttiCms\Composer\ViewShareSettingComposer;
 |--------------------------------------------------------------------------
 | here  will'be set all the common action
 */
-
-class LaraServiceProvider extends ServiceProvider
+class MaguttiServiceProvider extends ServiceProvider
 {
-
     /**
      * Bootstrap any application services.
      *
@@ -22,17 +24,21 @@ class LaraServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         /*
         |--------------------------------------------------------------------------
         |  SHARE VARIABLES TO VIEWS
         |--------------------------------------------------------------------------
         */
 
-        view()->composer('*', function ($view) {
+        /**
+         *  Share  view name
+         */
+        view()->composer('*', function($view){
             $view_name = str_replace('.', '-', $view->getName());
             view()->share('view_name', $view_name);
         });
+
+
         /*
          * share site_setting to fe views
          */
@@ -48,7 +54,7 @@ class LaraServiceProvider extends ServiceProvider
         }
         if (env('APP_ENV') === 'local') {
             Event::listen('kernel.handled', function ($request, $response) {
-                if ($request->has('sql-debug')) {
+                if ( $request->has('sql-debug') ) {
                     $queries = DB::getQueryLog();
                     dd($queries);
                 }
@@ -57,18 +63,23 @@ class LaraServiceProvider extends ServiceProvider
 
         /*
         |--------------------------------------------------------------------------
-        |  LARACMS VALIDATION CUSTOM DIRECTIVE
+        |  MAGUTTICMS VALIDATION CUSTOM DIRECTIVE
         |--------------------------------------------------------------------------
         */
 
-        Validator::extend('is_unique', function ($attribute, $value, $parameters, $validator) {
+        Validator::extend('is_unique', function($attribute, $value, $parameters, $validator) {
 
-            $model = request()->segment(3);
-            $config = config('maguttiCms.admin.list.section.' . $model);
-            $id = (request()->segment(4)) ?: null;
-            if (getModelFromString($config['model'])::where($attribute, $value)->where('id', '!=', $id)->count()) return false;
+            $model  = request()->segment(3);
+            $config = config('maguttiCms.admin.list.section.' .$model);
+            $id     = (request()->segment(4))?:null;
+            if(getModelFromString($config['model'])::where($attribute,$value)->where('id','!=',$id)->count()) return false;
             return true;
         });
+
+        Validator::extend(
+            'recaptcha',
+            'App\\Rules\\GoogleRecaptcha@passes'
+        );
 
         /*
         |--------------------------------------------------------------------------
@@ -84,7 +95,6 @@ class LaraServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
         $this->app->singleton(ViewShareSettingComposer::class);
     }
 }

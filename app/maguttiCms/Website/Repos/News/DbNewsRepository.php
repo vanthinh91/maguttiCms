@@ -43,8 +43,8 @@ class DbNewsRepository extends DbRepository implements NewsRepositoryInterface
 	/**
 	* @return mixed
 	*/
-	function  getPublished()
+	function getPublished()
 	{
-		return $this->published()->where('date','<=',Carbon::now())->orderBy('date', 'desc')->get();
+		return $this->published()->where('date','<=',Carbon::now())->orderBy('date', 'desc')->paginate(10);
 	}
 }

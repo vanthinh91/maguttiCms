@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
  * Class AdminUserHelperTrait
  * @package App\maguttiCms\Admin\Helpers
  */
-
 trait AdminUserTrackerTrait
 {
     /*
@@ -29,19 +28,24 @@ trait AdminUserTrackerTrait
 
     protected function setCreatedByAttribute()
     {
-        if($this->fieldIsFillable('created_by'))$this->model->created_by = auth($this->getGuard())->user()->id;
+        if ($this->fieldIsFillable('created_by')) {
+            $this->model->created_by = auth($this->getGuard())->user()->id;
+        }
     }
 
     protected function setUpdatedByAttribute()
     {
-        if($this->fieldIsFillable('updated_by'))$this->model->updated_by = auth($this->getGuard())->user()->id;
+        if ($this->fieldIsFillable('updated_by')) {
+            $this->model->updated_by = auth($this->getGuard())->user()->id;
+        }
     }
 
     public function hackedBy(Model $model)
-
     {
         $this->model = $model;
-        if ($this->model->id == '') $this->setCreatedByAttribute();
+        if ($this->model->id == '') {
+            $this->setCreatedByAttribute();
+        }
         $this->setUpdatedByAttribute();
     }
 
@@ -69,9 +73,6 @@ trait AdminUserTrackerTrait
      */
     protected function fieldIsFillable($field)
     {
-        return  (in_array($field,$this->model->getFillable())) ?true:false;
+        return (in_array($field, $this->model->getFillable())) ? true : false;
     }
 }
-
-
-

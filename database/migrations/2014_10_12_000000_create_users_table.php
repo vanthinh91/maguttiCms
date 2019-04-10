@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->date('dob');
             $table->date('expire_date');
-            $table->string('real_password', 255)->nullable();
+
             $table->tinyInteger('is_active')->default(1);
             $table->rememberToken();
             $table->timestamps();

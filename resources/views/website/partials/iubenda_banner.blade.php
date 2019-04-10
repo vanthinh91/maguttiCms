@@ -52,13 +52,13 @@
 	var _iub = _iub || [];
 	_iub.csConfiguration = {
 		"lang": "{{ LaravelLocalization::getCurrentLocale() }}",
-		"siteId": "{{ Setting::getOption('iubenda_site') }}",
+		"siteId": "{{ data_get($site_settings,'iubenda_site') }}",
 		"banner": {
 			"slideDown": false,
 			"applyStyles": false
 		},
 		"consentOnScroll": false,
-		"cookiePolicyId": "{{ Setting::getOption('iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}"
+		"cookiePolicyId": "{{ data_get($site_settings,'iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}"
 	};
 </script>
 <script type="text/javascript" src="//cdn.iubenda.com/cookie_solution/safemode/iubenda_cs.js" charset="UTF-8" async></script>

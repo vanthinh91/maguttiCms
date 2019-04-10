@@ -7,20 +7,19 @@ return [
 	*/
 	'item_per_pages' => 25,
 	'section' => [
+
 		'articles' => [
             'model' => 'Article',
             'title' => 'Pages',
             'icon' => 'newspaper',
-            'fieldLabel' => 'ID,Parent,Image,Title,Slug,Pub,Menu,Sort,Created At,Updated At',
             'field' => ['id',
                 'parent' => ['type' => 'relation', 'relation' => 'parent', 'field' => 'title'],
                 'image'  => ['type' => 'image', 'field' => 'image'],
-                'title'  => ['type' => 'text', 'field' => 'title',' orderable'=>true],
-                'slug'   => ['type' => 'text', 'field' => 'slug',' orderable'=>true],
-                'pub' => ['type' => 'boolean', 'field' => 'pub','editable' => true],
+                'title'  => ['type' => 'text', 'field' => 'title', 'orderable'=> true, 'order_field' =>'article_translations.title'],
+                'slug'   => ['type' => 'text', 'field' => 'slug', 'orderable'=> true ,'order_field' =>'article_translations.slug'],
+                'pub' => ['type' => 'boolean', 'field' => 'pub','editable' => true, 'orderable'=>true],
                 'top_menu' => ['type' => 'boolean', 'field' => 'top_menu','editable' => true],
                 'sort' => ['type' => 'editable', 'field' => 'sort', 'orderable'=>true],
-
                 'created_at' => ['type' => 'date', 'field' => 'created_at', 'orderable'=>true],
                 'updated_at' => ['type' => 'date', 'field' => 'updated_at', 'orderable'=>true],
             ],
@@ -67,7 +66,7 @@ return [
 			'foreignJoinKey'    => 'article_id',
             'localJoinKey'      => 'id',
             'whereFilter'       => 'locale="it" ',
-            'orderBy'           => 'article_translations.title,sort',
+            'orderBy'           => 'sort,article_translations.title',
             'orderType'         => 'ASC',
             'withRelation'      => ['translations','parent.translations'], // array
             'edit' => 1,
@@ -79,7 +78,7 @@ return [
             'view' => 0,
             'selectable' => 1,
             'showMedia' => 1,
-            'showMediaCategory' => 0,
+            'showMediaCategory' => 1,
             'showMediaImages' => 1,
             'showMediaDoc' => 1,
             'showSeo' => 1,
@@ -90,13 +89,13 @@ return [
                     'action' =>['add']
                 ],
             ],
+			'roles' =>['su', 'admin', 'user']
         ],
 
 		'hpsliders' => [
 			'model' => 'HpSlider',
 			'title' => 'Home Sliders',
-			'icon' => 'image',
-			'fieldLabel' => 'ID,Image,Title,Pub,Sort,Created At,Updated At',
+			'icon'  => 'image',
 			'field' => [
 				'id',
 				'image' => ['type' => 'image', 'field' => 'image'],
@@ -122,13 +121,13 @@ return [
 					'action' =>['add']
 				],
 			],
+			'roles' =>['su', 'admin', 'user']
 		],
 
 		'media' => [
 			'model' => 'Media',
 			'title' => 'Media',
-			'icon' => 'files-o',
-			'fieldLabel' => 'ID,Media,Title,Pub,Sort,Created At,Updated At',
+			'icon' => 'file',
 			'field' => [
 				'id',
 				'image' => ['type' => 'image', 'field' => 'file_name'],
@@ -154,12 +153,12 @@ return [
 					'action' =>['add']
 				],
 			],
+			'roles' => ['su']
 		],
 		'news' => [
 			'model' => 'News',
 			'title' => 'News',
 			'icon' => 'bullhorn',
-			'fieldLabel' => 'ID,Date,Image,Title,Slug,Pub,Sort,Created At,Updated At',
 			'field' => [
 				'id',
 				'date',
@@ -201,16 +200,16 @@ return [
 					'action' =>['add']
 				],
 			],
+			'roles' =>['su', 'admin', 'user']
 		],
 		'newsletters' => [
 			'model' => 'Newsletter',
 			'title' => 'Newsletter',
-			'icon' => 'envelope',
-			'fieldLabel' => 'ID,Email,Active,Created At',
+			'icon' => 'envelope-open-text',
 			'field' => [
 				'id',
+				'locale' => ['type' => 'locale', 'field' => 'locale'],
 				'email',
-				'pub' => ['type' => 'boolean', 'field' => 'pub','editable' => true],
 				'created_at' => ['type' => 'date', 'field' => 'created_at'],
 			],
 			'orderBy' => 'created_at',
@@ -225,17 +224,17 @@ return [
 			'showMedia' => 0,
 			'showSeo' => 0,
 			'menu' => [
-				'home' => false,
+				'home' => true,
 				'top-bar' =>[
-					'show' => false,
+					'show' => true,
 				],
 			],
+			'roles' =>['su', 'admin']
 		],
 		'tags' => [
 			'model' => 'Tag',
 			'title' => 'TagsNews',
 			'icon'  => 'tag',
-			'fieldLabel' => 'ID,Title,Slug,Created At,Updated At',
 			'field' => [
 				'id',
 				'title',
@@ -257,13 +256,13 @@ return [
 					'action' =>['add']
 				],
 			],
+			'roles' =>['su', 'admin', 'user']
 		],
 
 		'products' => [
 			'model' => 'Product',
 			'title' => 'Product',
 			'icon' => 'cube',
-			'fieldLabel' => 'ID,Category,Image,Title,Pub,Sort,Created At,Updated At',
 			'field' => [
 				'id',
 				'category' => ['type' => 'relation', 'relation' => 'category', 'field' => 'title'],
@@ -299,13 +298,13 @@ return [
 					]
 				],
 			],
+			'roles' =>['su', 'admin', 'user']
 		],
 
 		'categories' => [
 			'model' => 'Category',
 			'title' => 'Product Categories',
 			'icon' => 'folder',
-			'fieldLabel' => 'ID,Image,Title,Slug,Pub,Sort,Created At,Updated At',
 			'field' => [
 				'id',
 				//'parent' => ['type' => 'relation', 'relation' => 'parentCategory', 'field' => 'title'],
@@ -337,13 +336,13 @@ return [
 					'action' =>['add']
 				],
 			],
+			'roles' =>['su', 'admin', 'user']
 		],
 
 		'productmodels' => [
 			'model' => 'ProductModel',
 			'title' => 'Models',
 			'icon' => 'folder',
-			'fieldLabel' => 'ID,Image,Product,Model,Pub,Sort',
 			'field' => [
 				'id',
 				'image'   => ['type' => 'image', 'field' => 'image'],
@@ -370,13 +369,13 @@ return [
 					'action' =>['add']
 				],
 			],
+			'roles' =>['su', 'admin', 'user']
 		],
 
 		'domains' => [
 			'model' => 'Domain',
 			'title' => 'Domain',
 			'icon' => 'folder',
-			'fieldLabel' => 'ID,Domain,Title,Value,Pub,Sort,Updated At',
 			'field' => [
 				'id',
 				'domain',
@@ -405,13 +404,13 @@ return [
 					'action' =>['add']
 				],
 			],
+			'roles' =>['su']
 		],
 
 		'settings' => [
 			'model' => 'Setting',
 			'title' => 'Setting',
 			'icon' => 'wrench',
-			'fieldLabel' => 'ID,Domain,Key,Value,Description,Updated At',
 			'field' => [
 				'id',
 				'domain',
@@ -439,12 +438,12 @@ return [
 					'action' =>['add']
 				],
 			],
+			'roles' =>['su']
 		],
 		'contacts' => [
 			'model' => 'Contact',
 			'icon'  => 'envelope',
 			'title' => 'Info Request',
-			'fieldLabel' => 'ID,Email,Name,Surname,Company,Message,Requested Product,Read,Created At,Updated At',
 			'field' => [
 				'id',
 				'email'      => ['type' => 'text', 'field' => 'email'],
@@ -472,13 +471,13 @@ return [
 				'top-bar' =>[
 					'show' => true
 				],
-			]
+			],
+			'roles' =>['su', 'admin', 'user']
 		],
 		'roles' => [
 			'model' => 'Role',
 			'icon' => 'graduation-cap',
 			'title' => 'Roles',
-			'fieldLabel' => 'ID,Name,DisplayName, Description,Created At,Updated At',
 			'field' => [
 				'id',
 				'name' => ['type' => 'editable', 'field' => 'name'],
@@ -500,7 +499,6 @@ return [
 			'model' => 'Social',
 			'icon' => 'share-alt',
 			'title' => 'Social',
-			'fieldLabel' => 'ID,Social,Icon,Link,Active,Created At,Updated At',
 			'field' => [
 				'id',
 				'title' => ['type' => 'editable', 'field' => 'title'],
@@ -522,17 +520,17 @@ return [
 			'menu' => [
 				'home' => true,
 			],
+			'roles' =>['su', 'admin', 'user']
 		],
 		'users' => [
 			'model' => 'User',
 			'icon' => 'users',
 			'title' => 'Users',
-			'fieldLabel' => 'ID,Email,Name,Password,Active,Created At,Updated At',
 			'field' => [
 				'id',
 				'email' => ['type' => 'editable', 'field' => 'email'],
 				'name' => ['type' => 'editable', 'field' => 'name'],
-				'real_password' => ['type' => 'text', 'field' => 'real_password'],
+
 				'is_active' => ['type' => 'boolean', 'field' => 'is_active','editable' => true],
 				'created_at' => ['type' => 'date', 'field' => 'created_at'],
 				'updated_at' => ['type' => 'date', 'field' => 'updated_at'],
@@ -549,6 +547,7 @@ return [
 			'copy' => 0,
 			'preview' => 0,
 			'view' => 0,
+            'impersonated' =>1,
 			'selectable' => 1,
 			'password' => 1,
 			'menu' => [
@@ -558,24 +557,20 @@ return [
 					'action' =>['add']
 				],
 			],
-			'roles' =>[
-				'su',
-				'admin',
-			]
+			'roles' =>['su', 'admin']
 		],
 
 		'orders' => [
 			'model' => 'Order',
 			'title' => 'Orders',
 			'icon' => 'shopping-cart',
-			'fieldLabel' => 'ID,Date,User,Products,Goods cost,Total,Payment,Transaction,Payment date,Paid',
 			'field' => [
 				'id',
 				'created_at' => ['type' => 'date', 'field' => 'created_at', 'orderable' => true],
-				'user'  => ['type' => 'text', 'field' => 'user_display', 'orderable' => true],
-				'product'  => ['type' => 'text', 'field' => 'products_display', 'class' => 'text-left'],
+				'user_id'  => ['type' => 'text', 'field' => 'user_display', 'orderable' => true],
+				'products'  => ['type' => 'text', 'field' => 'products_display', 'class' => 'text-left'],
 				'products_cost'  => ['type' => 'text', 'field' => 'products_cost_display'],
-				'order_total'  => ['type' => 'text', 'field' => 'total_cost_display'],
+				'total_cost'  => ['type' => 'text', 'field' => 'total_cost_display'],
 				'payment'  => ['type' => 'text', 'field' => 'payment_method_display'],
 				'payment_transaction' => ['type' => 'relation', 'relation' => 'payment', 'field' => 'transaction'],
 				'payment_date' => ['type' => 'relation', 'relation' => 'payment', 'field' => 'created_at'],
@@ -604,13 +599,13 @@ return [
 					'action' =>['add']
 				],
 			],
+			'roles' =>['su', 'admin']
 		],
 
 		'paymentmethods' => [
 			'model' => 'PaymentMethod',
 			'title' => 'Payment Methods',
 			'icon' => 'credit-card',
-			'fieldLabel' => 'ID,Title,Code,Active',
 			'field' => [
 				'id',
 				'title'  => ['type' => 'text', 'field' => 'title'],
@@ -640,19 +635,58 @@ return [
 					'action' =>['add']
 				],
 			],
+			'roles' =>['su']
+		],
+
+		'discounts' => [
+			'model' => 'Discount',
+			'title' => 'Discount',
+			'icon' => 'tags',
+			'field' => [
+				'id',
+				'id',
+				'code'  => ['type' => 'text', 'field' => 'code', 'orderable' => true],
+				'amount'  => ['type' => 'text', 'field' => 'amount', 'orderable' => true],
+                'date_start' => ['type' => 'text', 'field' => 'date_start', 'orderable' => true],
+                'date_end' => ['type' => 'text', 'field' => 'date_end', 'orderable' => true],
+				'uses' => ['type' => 'text', 'field' => 'uses', 'orderable' => true],
+				'available_display' => ['type' => 'false', 'field' => 'available_display', 'orderable' => true],
+				'pub' => ['type' => 'boolean', 'field' => 'pub','orderable' => true, 'editable' => true],
+			],
+			'orderBy'           => 'created_at',
+			'orderType'         => 'DESC',
+			'edit' => 1,
+			'export_csv' => 0,
+			'delete' => 0,
+			'create' => 1,
+			'copy' => 0,
+			'preview' => 0,
+			'view' => 0,
+			'selectable' => 0,
+			'showMedia' => 0,
+			'showMediaCategory' => 0,
+			'showMediaImages' => 0,
+			'showMediaDoc' => 0,
+			'showSeo' => 0,
+			'menu' => [
+				'home' => true,
+				'top-bar' =>[
+					'show' => true,
+					'action' => ['add']
+				],
+			],
+			'roles' =>['su', 'admin']
 		],
 
 		'adminusers' => [
 			'model' => 'AdminUser',
-			'icon' => 'users',
+			'icon'  => 'users',
 			'title' => 'Admin',
-			'fieldLabel' => 'ID,Email,First Name,Last,Password,Active,Created At,Updated At',
 			'field' => [
 				'id',
 				'email' => ['type' => 'editable', 'field' => 'email'],
 				'first_name' => ['type' => 'editable', 'field' => 'first_name'],
 				'last_name' => ['type' => 'editable', 'field' => 'last_name'],
-				'real_password' => ['type' => 'text', 'field' => 'real_password'],
 				'is_active' => ['type' => 'boolean', 'field' => 'is_active','editable' => true],
 				'created_at' => ['type' => 'date', 'field' => 'created_at'],
 				'updated_at' => ['type' => 'date', 'field' => 'updated_at'],
@@ -667,6 +701,7 @@ return [
 			'view' => 0,
 			'selectable' => 1,
 			'password' => 1,
+            'impersonated' =>1,
 			'editTemplate' => 'admin.adminuser.edit',
 			'menu' => [
 				'tool' =>[
@@ -674,25 +709,22 @@ return [
 					'action' =>['add']
 				],
 			],
-			'roles' =>[
-				'su',
-				'admin',
-			]
+			'roles' =>['su', 'admin']
 		],
 
 		'examples' => [
 			'model' => 'Example',
 			'title' => 'Example',
-			'icon' => 'at',
-			'fieldLabel' => 'ID,Article,Article 2,Image,Image from  Library,Title,Slug,Pub,Sort,Color,Status,Created At,Updated At',
+			'icon' => 'graduation-cap',
 			'field' => [
 				'id',
-				'article' => ['type' => 'relation', 'relation' => 'article', 'field' => 'title'],
-				'article_2' => ['type' => 'relation', 'relation' => 'article_2', 'field' => 'title'],
+                'date'  => ['type' => 'text', 'field' => 'date','orderable'=>true],
+                'article' => ['type' => 'relation', 'relation' => 'article', 'field' => 'title'],
+                'article_2' => ['type' => 'relation', 'relation' => 'article_2', 'field' => 'title', 'orderable'=>true,'order_field' =>'article_translations.title'],
 				'image'  => ['type' => 'image', 'field' => 'image'],
 				'image_media_id'  => ['type' => 'relation_image', 'relation'=>'imageMedia', 'field' => 'file_name'],
 				'title'  => ['type' => 'text', 'field' => 'title','orderable'=>true],
-				'slug'   => ['type' => 'text', 'field' => 'slug','orderable'=>true],
+				'slug'   => ['type' => 'text', 'field' => 'slug','orderable'=>true,'order_field' =>'article_translations.title'],
 				'pub' => ['type' => 'boolean', 'field' => 'pub','orderable'=>true,'editable'=>false],
 				'sort' => ['type' => 'editable', 'field' => 'sort', 'orderable'=>true],
 				'color' => ['type' => 'color', 'field' => 'color'],
@@ -713,10 +745,7 @@ return [
 				'updated_at' => ['type' => 'date', 'field' => 'updated_at','orderable'=>true],
 			],
 			'field_searchable' => [
-				/*
-				* This is the 'relation' version which builds a dropdown input for the corresponding relation.
-				* It should be only used when there are only a few records to show.
-				*/
+
 				'article_id' => [
 					'label'    => 'article',
 					'type'     => 'relation',
@@ -732,7 +761,7 @@ return [
 				* It should be used when there are a lot of records to filter.
 				*/
 				'article_2_id' => [
-					'label'       => 'article_2',
+					'label'       => 'Article 2',
 					'type'        => 'suggest',
 					'model'       => 'article',
 					'value'       => 'id',
@@ -740,9 +769,12 @@ return [
 					'is_accessor' => 0,
 					'where'       => '1 = 1',
 				],
+                //'date'   => ['type' => 'date', 'label' => 'date_format', 'field' => 'date'],
+                'from_date' => ['type' => 'date_range', 'label' => 'data_from', 'field' => 'date', 'class' => 'col-xs-6 col-sm-1'],
+                'to_date'   => ['type' => 'date_range', 'label' => 'data_to', 'field' => 'date', 'class' => 'col-xs-6 col-sm-1'],
 				'title'   => ['type' => 'text', 'label' => 'title', 'field' => 'title'],
 				'slug'    => ['type' => 'text', 'label' => 'slug', 'field' => 'slug'],
-				'sort'    => ['type' => 'text', 'label' => 'sort', 'field' => 'sort'],
+				'sort'    => ['type' => 'text', 'label' => 'sort', 'field' => 'sort','mode'=>'strict'],
 			],
 			'field_exportable' => [
 				'id'     => ['type' => 'integer', 'field' => 'id', 'label' => 'id'],
@@ -754,6 +786,8 @@ return [
 			'joinTable'         => "article_translations",
 			'foreignJoinKey'    => 'article_id',
 			'localJoinKey'      => 'id',
+            'joinFields'        => ['article_translations.id'],
+
 			'whereFilter'       => 'locale="it" ',
 			'orderBy'           => 'article_translations.title,sort',
 			'orderType'         => 'ASC',
@@ -767,17 +801,27 @@ return [
 			'view' => 0,
 			'selectable' => 1,
 			'showMedia' => 1,
+			'showMediaCropper' => 1,
+			'mediaCropper' => [
+				'width'		=> 400,
+				'height'	=> 400,
+				'ratio'		=> 1,
+				'fill'		=> 'transparent',
+				'format'	=> 'jpeg',
+				'extension' => 'jpg'
+			],
 			'showMediaCategory' => 0,
 			'showMediaImages' => 1,
-			'showMediaDoc' => 1,
+			'showMediaDoc' => 0,
 			'showSeo' => 1,
 			'menu' => [
 				'home' => true,
 				'top-bar' =>[
-					'show' => true,
+					'show' => false,
 					'action' =>['add']
 				],
 			],
+			'roles' =>['su', 'admin', 'user']
 		],
 
 		/************************  LOCALIZATION **********************/
@@ -785,7 +829,6 @@ return [
 			'model' => 'Country',
 			'title' => 'Country',
 			'icon' => 'folder',
-			'fieldLabel' => 'ID,Country,ISO CODE,VAT%,Eu,Pub,Updated At',
 			'field' => [
 				'id',
 				'name' => ['type' => 'editable', 'field' => 'name'],
@@ -817,16 +860,13 @@ return [
 					'action' =>['add']
 				],
 			],
-			'roles' =>[
-				'su',
-			]
+			'roles' =>['su']
 		],
 
 		'provinces' => [
 			'model' => 'Province',
 			'icon' => 'flag',
 			'title' => 'Province',
-			'fieldLabel' => 'ID,State/Regione,Code,Name,Pub,Created At,Updated At',
 			'field' => [
 				'id',
 				'state' => ['type' => 'relation', 'field' => 'title',  'relation' => 'state'],
@@ -852,15 +892,12 @@ return [
 					'action' =>['add']
 				],
 			],
-			'roles' =>[
-				'su',
-			]
+			'roles' => ['su']
 		],
 		'states' => [
 			'model' => 'State',
 			'icon' => 'flag',
 			'title' => 'State',
-			'fieldLabel' => 'ID,Country,Name,Pub,Created At,Updated At',
 			'field' => [
 				'id',
 				'country' => ['type' => 'relation', 'field' => 'name', 'relation' => 'country'],
@@ -885,10 +922,7 @@ return [
 					'action' =>['add']
 				],
 			],
-			'roles' =>[
-				'su',
-				'admin',
-			]
+			'roles' => ['su']
 		],
 	],
 ];

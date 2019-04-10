@@ -53,7 +53,7 @@ return [
 		'back' => 'Torna al carrello',
 		'resume' => 'Riepilogo prodotti',
 		'addresses' => 'Indirizzi',
-		'totals' => 'Riepologo costi',
+		'totals' => 'Riepilogo costi',
 		'confirm' => 'Conferma l\'acquisto',
 		'payment' => 'Modalità di pagamento',
 		'billing' => 'Indirizzo di fatturazione',
@@ -62,6 +62,12 @@ return [
 		'shipping_cost' => 'Spese di spedizione',
 		'vat_cost' => 'Iva',
 		'total_cost' => 'Totale ordine',
+		'discount' => [
+			'title' => 'Coupon sconto',
+			'insert' => 'Hai un codice di sconto? Inseriscilo qui.',
+			'valid' => 'Coupon valido: sconto %s%%',
+			'invalid' => 'Questo codice non è valido.'
+		]
 	],
 
 	'payment' => [

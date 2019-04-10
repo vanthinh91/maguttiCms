@@ -15,14 +15,12 @@ return [
 
     'password'  => 'La password deve essere di almeno sei caratteri oppure le password non coincidono.',
     'reset'     => 'La tua password è stata reimpostata',
-    'sent'      => 'Abbiamo inviato al tuo indirizzo email un link per il reset della password!',
+    'sent'      => 'Se presente nel nostro database, abbiamo inviato all\'indirizzo email da voi inserito un link per il reset della password!',
     'token'     => 'Token per il reset della password non valido',
-    'user'      => "Email non trovato.",
+    'user'      => 'Se presente nel nostro database, abbiamo inviato all\'indirizzo email da voi inserito un link per il reset della password!',
+    'invalid'   => 'Dati non validi',
     'mail_reset_button'     =>'Reset password',
     'mail_reset_body'       =>'Ti abbiamo mandato questo messaggio perchè hai richiesto il reset della password.',
     'mail_reset_footer'     =>'Se non hai richiesto il reset della password ignora questo messaggio.',
     'mail_reset_subject'    =>'Notifica richiesta reset password',
-
-
-
 ];

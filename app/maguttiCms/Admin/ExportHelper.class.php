@@ -5,109 +5,62 @@
  * Class ExportHelper
  * @package App\maguttiCms\Tools
  */
-class ExportHelper {
+class ExportHelper
+{
 
-	/**
-	 * @var
+    /**
+     * @var
      */
-	protected $model;
-	/**
-	 * @var
+    protected $model;
+
+    /**
+     * @var
      */
-	protected $models;
-	/**
-	 * @var
+    protected $modelClass;
+    /**
+     * @var
      */
-	protected $modelClass;
-	/**
-	 * @var
+    protected $config;
+
+
+    /**
+     * @var
      */
-	protected $config;
-	/**
-	 * @var array
+    protected $fileName;
+
+    /**
+     * @var
      */
-	protected $itemsArray= array();
-	/**
-	 * @var array
+    protected $request;
+
+    /**
+     * @param $model
+     * @return $this
      */
-	protected $labelArray= array();
 
-	/**
-	 * @var
-	 */
-	protected $fileName;
+    protected  $itemsArray=[];
 
-	/**
-	 * @param $model
-	 * @return $this
+
+    /**
+     * @return mixed
      */
-	public function init($model)
-	{
-		$this->model = $model;
-		$this->config = config('maguttiCms.admin.list.section.' . $this->model);
-		$this->models = strtolower(Str::plural($this->config['model']));
-		$this->modelClass = 'App\\' . $this->config['model'];
-		$this->setFilename($this->config['model'].'_'.date('Y-m-d').'.xlsx');
-		return $this;
-	}
+    public function getFileName()
+    {
+        return $this->fileName;
+    }
 
-	/**
-	 * @return array
-     */
-	public function   getDataToExport(){
-		// Define the Excel spreadsheet headers
-		$this->itemsArray[] = $this->setHeader();
-		$model = new  $this->modelClass;
-		$items = $model::get();
-		foreach($items as  $item){
-			$this->itemsArray[] = $this->getCurItemData($item);
-		}
-		return $this->itemsArray;
-	}
+    public function setFilename($name)
+    {
+        $this->fileName = $name;
+        return $this;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getFileName()
-	{
-		return $this->fileName;
-	}
-
-
-	public function   setFilename( $name ){
-
-		$this->fileName = $name ;
-		return $this;
-	}
-
-
-	/**
-	 * @return array
-     */
-	protected   function setHeader(){
-
-     	foreach( $this->config['field_exportable'] as $field ) {
-			array_push( $this->labelArray,$field['label']);
-		}
-		return $this->labelArray;
-	}
-
-	/**
-	 * @param $item
-	 * @return mixed
-     */
-	protected   function getCurItemData($item){
-		$dataArray = array();
-		foreach( $this->config['field_exportable'] as $field ) {
-            $a = $field['field'];
-			if($field['type']=='text')	array_push( $dataArray,$item->$a);
-			if($field['type']=='relation')  {
-				if(isset($item->{$field['relation']}->{$field['field']})) array_push( $dataArray,$item->{$field['relation']}->{$field['field']});
-			    else  array_push( $dataArray,'');
-			}
-			if($field['type']=='integer')	array_push( $dataArray,$item->$a);
-			if($field['type']=='datetime')	array_push( $dataArray,$item->$a->format('m-d-Y h:m'));
-		}
-		return $dataArray;
-	}
+    public function getHeadersFromConfig()
+    {
+        return collect($this->config['field_exportable'])->pluck('label')->toArray();
+    }
+    static function exportFilename($filename)
+    {
+        return $filename . '_' . date('Y-m-d') . '.xlsx';
+    }
 }

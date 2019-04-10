@@ -16,7 +16,7 @@
 		<img src="{!! ImgHelper::get_cached($media->file_name, config('maguttiCms.image.admin')) !!}" alt="{!! $media->title!!}" border="0">
 		<div class="actions">
 			<a href="{{ ma_get_admin_editmodal_url($media) }}" data-target="#modal-media">
-				{{icon('pencil')}}
+				{{icon('pencil-alt')}}
 			</a>
 			<a href=" {!! ma_get_image_from_repository($media->file_name) !!}" target="_blank">
 				{{icon('eye')}}
@@ -41,7 +41,6 @@
 
 			// load the url and show modal on success
 			$('#modal-media .modal-content').load(target, function() {
-				console.log(target);
 				$('#modal-media').modal('show');
 			});
 		});

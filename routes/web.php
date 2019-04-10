@@ -16,22 +16,26 @@ use App\maguttiCms\Middleware\AdminRole;
 
 Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['adminauth', 'setlocaleadmin']), function () {
 
-    Route::get('/',                         '\App\maguttiCms\Admin\Controllers\AdminPagesController@home');
-    Route::get('/list/{section?}/{sub?}',   '\App\maguttiCms\Admin\Controllers\AdminPagesController@lista')->middleware(AdminRole::class);
-    Route::get('/create/{section}',         '\App\maguttiCms\Admin\Controllers\AdminPagesController@create')->middleware(AdminRole::class);
-    Route::post('/create/{section}',        '\App\maguttiCms\Admin\Controllers\AdminPagesController@store');
+    Route::get('/',                                 '\App\maguttiCms\Admin\Controllers\AdminPagesController@home');
+    Route::get('/list/{section?}/{sub?}',           '\App\maguttiCms\Admin\Controllers\AdminPagesController@lista')->middleware(AdminRole::class);
+    Route::get('/create/{section}',                 '\App\maguttiCms\Admin\Controllers\AdminPagesController@create')->middleware(AdminRole::class);
+    Route::post('/create/{section}',                '\App\maguttiCms\Admin\Controllers\AdminPagesController@store');
 
+    Route::get('/edit/{section}/{id?}/{type?}',     '\App\maguttiCms\Admin\Controllers\AdminPagesController@edit');
+    Route::post('/edit/{section}/{id?}',            '\App\maguttiCms\Admin\Controllers\AdminPagesController@update');
 
-    Route::get('/edit/{section}/{id?}/{type?}', '\App\maguttiCms\Admin\Controllers\AdminPagesController@edit');
-    Route::post('/edit/{section}/{id?}',        '\App\maguttiCms\Admin\Controllers\AdminPagesController@update');
-
-	Route::get('/file_view/{section}/{id}/{key}', '\App\maguttiCms\Admin\Controllers\AdminPagesController@file_view');
+	Route::get('/file_view/{section}/{id}/{key}',   '\App\maguttiCms\Admin\Controllers\AdminPagesController@file_view');
 
     Route::get('/editmodal/{section}/{id?}/{type?}','\App\maguttiCms\Admin\Controllers\AdminPagesController@editmodal');
     Route::post('/editmodal/{section}/{id?}',       '\App\maguttiCms\Admin\Controllers\AdminPagesController@updatemodal');
     Route::get('/delete/{section}/{id?}',           '\App\maguttiCms\Admin\Controllers\AdminPagesController@destroy');
 
-    Route::get('/duplicate/{section}/{id?}/{type?}', '\App\maguttiCms\Admin\Controllers\AdminPagesController@duplicate');
+    Route::get('/duplicate/{section}/{id?}/{type?}','\App\maguttiCms\Admin\Controllers\AdminPagesController@duplicate');
+
+    Route::group(array( 'prefix' => 'impersonated','middleware' => ['adminimpersonate']), function () {
+        Route::get('/adminusers/{id?}',  '\App\maguttiCms\Admin\Controllers\AdminImpersonateController@impersonateadmin');
+        Route::get('/users/{id?}',   '\App\maguttiCms\Admin\Controllers\AdminImpersonateController@impersonateuser');
+    });
 
     /*
     |--------------------------------------------------------------------------
@@ -50,6 +54,7 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
         */
         Route::post('uploadifiveSingle/',                    '\App\maguttiCms\Admin\Controllers\AjaxController@uploadifiveSingle');
         Route::post('uploadifiveMedia/',                    '\App\maguttiCms\Admin\Controllers\AjaxController@uploadifiveMedia');
+        Route::post('cropperMedia/',                    '\App\maguttiCms\Admin\Controllers\AjaxController@cropperMedia');
         Route::get('updateHtml/media/{model?}','\App\maguttiCms\Admin\Controllers\AjaxController@updateModelMediaList');
         Route::get('updateHtml/{mediaType?}/{model?}/{id?}','\App\maguttiCms\Admin\Controllers\AjaxController@updateMediaList');
         Route::get('updateMediaSortList/',                  '\App\maguttiCms\Admin\Controllers\AjaxController@updateMediaSortList');
@@ -67,7 +72,6 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
 
     });
 
-    Route::get('export/{model?}',               '\App\maguttiCms\Admin\Controllers\ExportController@model');
     Route::get('/exportlist/{section?}/{sub?}', '\App\maguttiCms\Admin\Controllers\AdminExportController@lista');
 });
 
@@ -77,18 +81,27 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
 |--------------------------------------------------------------------------
 */
 Route::group(array('prefix' => 'admin'), function () {
-
     // Admin Auth and Password routes...
     Route::get('login',  '\App\maguttiCms\Admin\Controllers\Auth\LoginController@showLoginForm');
     Route::post('login', '\App\maguttiCms\Admin\Controllers\Auth\LoginController@login');
     Route::get('logout', '\App\maguttiCms\Admin\Controllers\Auth\LoginController@logout');
-
 
     // Password Reset Routes...
     Route::get('password/reset',         '\App\maguttiCms\Admin\Controllers\Auth\ForgotPasswordController@showLinkRequestForm');
 	Route::post('password/email',        '\App\maguttiCms\Admin\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail');
 	Route::post('password/reset',        '\App\maguttiCms\Admin\Controllers\Auth\ResetPasswordController@reset');
 	Route::get('password/reset/{token}', '\App\maguttiCms\Admin\Controllers\Auth\ResetPasswordController@showResetForm');
+});
+
+// api
+Route::group(['prefix' => 'api'], function () {
+	Route::post('/update-ghost',		'\App\maguttiCms\Website\Controllers\APIController@updateGhost');
+
+	// store
+	Route::post('/store/cart-item-add',		'\App\maguttiCms\Website\Controllers\StoreAPIController@storeCartItemAdd');
+	Route::post('/store/cart-item-remove',	'\App\maguttiCms\Website\Controllers\StoreAPIController@storeCartitemRemove');
+	Route::get('/store/order-calc',		'\App\maguttiCms\Website\Controllers\StoreAPIController@storeOrderCalc');
+	Route::get('/store/order-discount',	'\App\maguttiCms\Website\Controllers\StoreAPIController@storeOrderDiscount');
 });
 
 /*
@@ -132,29 +145,24 @@ Route::group([
     Route::get('/news/{slug}',          '\App\maguttiCms\Website\Controllers\PagesController@news');
     Route::get(LaravelLocalization::transRoute("routes.category"),	'\App\maguttiCms\Website\Controllers\ProductsController@category');
     Route::get(LaravelLocalization::transRoute("routes.products"),	'\App\maguttiCms\Website\Controllers\ProductsController@products');
-    Route::get('/contacts/',		    '\App\maguttiCms\Website\Controllers\PagesController@contacts');
+	Route::get(LaravelLocalization::transRoute("routes.contacts"),	'\App\maguttiCms\Website\Controllers\PagesController@contacts');
     Route::post('/contacts/',		    '\App\maguttiCms\Website\Controllers\WebsiteFormController@getContactUsForm');
 
 	Route::get('/cart/',				'\App\maguttiCms\Website\Controllers\StoreController@cart')->middleware('storeenabled');
-	Route::get('/order-login/',		'\App\maguttiCms\Website\Controllers\StoreController@orderLogin')->middleware(['storeenabled']);
+	Route::get('/order-login/',		    '\App\maguttiCms\Website\Controllers\StoreController@orderLogin')->middleware(['storeenabled']);
 	Route::get('/order-submit/',		'\App\maguttiCms\Website\Controllers\StoreController@orderSubmit')->middleware(['storeenabled']);
 	Route::post('/order-submit/',		'\App\maguttiCms\Website\Controllers\StoreController@orderCreate')->middleware(['storeenabled', 'auth']);
 	Route::get('/order-review/{token}',	'\App\maguttiCms\Website\Controllers\StoreController@orderReview')->middleware(['storeenabled', 'auth']);
 	Route::post('/order-payment/',		'\App\maguttiCms\Website\Controllers\StoreController@orderPayment')->middleware(['storeenabled', 'auth']);
-	Route::get('/order-payment-cancel/{token}',		'\App\maguttiCms\Website\Controllers\StoreController@orderCancel')->middleware(['storeenabled', 'auth']);
-	Route::get('/order-payment-confirm/{token}',	'\App\maguttiCms\Website\Controllers\StoreController@orderConfirm')->middleware(['storeenabled', 'auth']);
-	Route::get('/order-payment-result/{token}',		'\App\maguttiCms\Website\Controllers\StoreController@orderResult')->middleware(['storeenabled', 'auth']);
+	Route::get('/order-payment-cancel/{token}',	'\App\maguttiCms\Website\Controllers\StoreController@orderCancel')->middleware(['storeenabled', 'auth']);
+	Route::get('/order-payment-confirm/{token}','\App\maguttiCms\Website\Controllers\StoreController@orderConfirm')->middleware(['storeenabled', 'auth']);
+	Route::get('/order-payment-result/{token}',	'\App\maguttiCms\Website\Controllers\StoreController@orderResult')->middleware(['storeenabled', 'auth']);
+
+	// Seo landing pages
+	foreach (config('maguttiCms.website.seolanding') as $_link) {
+		Route::get($_link['route'],		    '\App\maguttiCms\Website\Controllers\SeoLandingController@'.$_link['method'])->where($_link['constraints']);
+	}
 
     Route::get('/{parent}/{child}', '\App\maguttiCms\Website\Controllers\PagesController@pages');
     Route::get('/{parent?}/', '\App\maguttiCms\Website\Controllers\PagesController@pages');
-});
-
-// api
-Route::group(['prefix' => 'api'], function () {
-	Route::post('/update-ghost',		'\App\maguttiCms\Website\Controllers\APIController@updateGhost');
-
-	// store
-	Route::post('/store/cart-item-add',		'\App\maguttiCms\Website\Controllers\StoreAPIController@storeCartitemAdd');
-	Route::post('/store/cart-item-remove',	'\App\maguttiCms\Website\Controllers\StoreAPIController@storeCartitemRemove');
-	Route::post('/store/order-calc',		'\App\maguttiCms\Website\Controllers\StoreAPIController@storeOrderCalc');
 });

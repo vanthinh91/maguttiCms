@@ -8,6 +8,7 @@ return [
 			'message' => 'required',
 			'privacy' => 'required',
 			'email'   => 'required|Between:3,64|Email',
+            'g-recaptcha-response'=>'sometimes|required|recaptcha'
 		],
 
 		'newsletter' => [
@@ -33,7 +34,15 @@ return [
 			'order_id'          => 'required|numeric',
 			'payment_method_id' => 'required|numeric'
 		],
-        'update-ghost' => [],
+
+		'order-calc' => [
+			'cart' => 'required|numeric',
+			'address' => 'required'
+		],
+
+		'order-discount' => [
+			'code' => 'required|alpha_num'
+		],
 
 		'address-new' => [
 			'street'     => 'required',

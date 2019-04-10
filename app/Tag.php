@@ -42,21 +42,21 @@ class Tag extends Model
             'type'     => 'integer',
             'minvalue' => 0,
             'pkey'     => 'y',
-            'required' => true,
+            'required' => 1,
             'label'    => 'id',
             'hidden'   => 1,
             'display'  => 0,
         ];
         $this->fieldspec['title']   = [
             'type'      => 'string',
-            'required'  => true,
+            'required'  => 1,
             'hidden'    => 0,
             'label'     => 'Title',
             'display'   => 1,
         ];
         $this->fieldspec['slug'] = [
             'type'      => 'string',
-            'required'  => false,
+            'required'  => 0,
             'hidden'    => 0,
             'label'     => 'Slug',
             'display'   => 1,

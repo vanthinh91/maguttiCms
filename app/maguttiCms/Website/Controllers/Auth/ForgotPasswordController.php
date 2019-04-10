@@ -19,7 +19,7 @@ class ForgotPasswordController extends Controller
 
     use SendsPasswordResetEmails;
 
-    use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
+    use \App\maguttiCms\SeoTools\maguttiCmsSeoTrait;
     protected  $articleRepo;
 
     public function __construct(ArticleRepositoryInterface $article)
@@ -33,6 +33,6 @@ class ForgotPasswordController extends Controller
         $article = $this->articleRepo->getBySlug('home');
         $this->setSeo($article);
         \SEO::setTitle( trans('message.password_forgot') );
-        return view('website.auth.password');
+        return view('website.auth.password',compact('article'));
     }
 }

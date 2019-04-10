@@ -67,9 +67,9 @@
 	</section>
 	<div class="container"><hr></div>
 	<section class="container">
-		<h3>{{trans('store.order.totals')}}</h3>
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
+				<h3>{{trans('store.order.totals')}}</h3>
 				<table class="table">
 					<tbody>
 						<tr>
@@ -79,6 +79,10 @@
 						<tr>
 							<th>{{trans('store.order.shipping_cost')}}</th>
 							<td class="order-shipping-cost"></td>
+						</tr>
+						<tr>
+							<th>{{trans('store.order.discount.title')}}</th>
+							<td class="order-discount"></td>
 						</tr>
 						<tr>
 							<th>{{trans('store.order.vat_cost')}}</th>
@@ -94,6 +98,13 @@
 				</table>
 			</div>
 			<div class="col-xs-12 col-sm-6">
+				<h3>{{trans('store.order.discount.title')}}</h3>
+				<p>{{trans('store.order.discount.insert')}}</p>
+				<input id="order-discount-input" type="text" name="discount_code" class="form-control order-preview">
+				<div id="order-discount-alert">
+					<div class="alert"></div>
+				</div>
+				<hr>
 				<button type="submit" class="btn btn-primary pull-right" href="{{url_locale('cart')}}">
 					{{trans('store.order.confirm')}}
 				</button>

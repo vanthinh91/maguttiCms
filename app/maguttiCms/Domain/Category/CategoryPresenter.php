@@ -12,7 +12,7 @@ trait CategoryPresenter
     function getFullSlug($locale=''){
 		/** @var  JSP  trick */
         $locale = ($locale)?:app()->getLocale();
-        return  str_replace('{category?}',$this->{'slug:'.$locale},trans('routes.category',array(),$locale));
+        return preg_replace('/\{category\??\}/', $this->{'slug:'.$locale}, trans('routes.category', array(), $locale));
     }
 
     public function getPermalink($locale='')

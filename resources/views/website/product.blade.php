@@ -17,9 +17,7 @@
 				{{trans('store.product.price')}}: {{StoreHelper::formatProductPrice($product)}}
 				<hr>
 				<input class="form-control cart-item-quantity" type="number" name="quantity" value="1" min="1" autocomplete="off">
-				<a href="" class="btn btn-primary cart-item-add"
-				    data-product-code="{{$product->code}}"
-				    data-quantity="1">
+				<a href="" class="btn btn-primary cart-item-add" data-product-code="{{$product->code}}" data-quantity="1">
 					{{trans('store.items.add')}}
 				</a>
 			@endif

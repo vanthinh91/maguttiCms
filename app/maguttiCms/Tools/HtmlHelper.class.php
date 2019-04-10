@@ -1,6 +1,6 @@
 <?php namespace App\maguttiCms\Tools;
 
-use App\Setting;
+use App\maguttiCms\Tools\SettingHelper;
 
 /**
 * Class Setting
@@ -44,8 +44,14 @@ class HtmlHelper {
 		$set = ($force_set)? $force_set: config('maguttiCms.website.option.icons');
 
 		switch ($set) {
-			case 'fa':
-				if ((count($arr_icons) == 1) || ($forceicon !== false)) {
+			case 'fontello':
+				$output = '<i class="icon-'.$arr_icons[0].' '.$str_classes.'"></i>';
+				break;
+			case 'mi':
+				$output = '<i class="material-icons '.$str_classes.'">'.$arr_icons[0].'</i>';
+				break;
+			default:
+				if ((count($arr_icons) == 1)) {
 					//simple icon
 					$output = '<i class="fas fa-'.$arr_icons[0].' '.$str_classes.'"></i>';
 				}
@@ -57,9 +63,6 @@ class HtmlHelper {
 					$output .= '<i class="fas fa-'.$arr_icons[1].' fa-stack-1x fa-inverse"></i>';
 					$output .= '</span>';
 				}
-				break;
-			case 'mi':
-				$output = '<i class="material-icons '.$str_classes.'">'.$arr_icons[0].'</i>';
 				break;
 		}
 
@@ -98,16 +101,16 @@ class HtmlHelper {
 		</picture>";
 	}
 
-    /**
+	/**
      * GF_ma
      * @param $text
      * @param $index
      * @return string
      */
-    public  function content_part($text,$index=1) {
-        $array = explode('<!-- pagebreak -->',$text);
-        $index = (int)$index-1;
-	    return (isset($array[$index])) ? $array[$index]:'';
+    public  function content_part($text, $index = 0) {
+        $array = preg_split('/<p><!-- pagebreak --><\/p>|<!-- pagebreak -->/', $text);
+        $index = (int)$index;
+	    return (sizeOf($array) > $index)? $array[$index]: '';
     }
 
     /**
@@ -122,5 +125,16 @@ class HtmlHelper {
 	public static function getYoutubeUrl($id)
 	{
 		return 'https://www.youtube-nocookie.com/embed/'.$id.'?rel=0';
+	}
+
+	public function getStaticMap($lat, $lng, $zoom = 10, $width = 512, $height = 512)
+	{
+		$key = SettingHelper::getOption('GMAPS_KEY');
+		if ($key) {
+			$base_url = 'https://maps.googleapis.com/maps/api/staticmap?center=%d,%d&zoom=%d&scale=false&size=%dx%d&maptype=roadmap&format=jpg&visual_refresh=true&markers=%d,%d&key=%s';
+			return sprintf($base_url, $lat, $lng, $zoom, $width, $height, $lat, $lng, $key);
+		} else {
+			return 'https://via.placeholder.com/'.$width.'x'.$height;
+		}
 	}
 }

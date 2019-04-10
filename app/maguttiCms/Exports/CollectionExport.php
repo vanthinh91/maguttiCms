@@ -7,6 +7,7 @@
  */
 
 namespace App\maguttiCms\Exports;
+
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -17,7 +18,7 @@ class CollectionExport implements FromCollection, WithHeadings
 
     function __construct($data)
     {
-        $this->data =$data;
+        $this->data = $data;
     }
 
     public function collection()
@@ -34,6 +35,4 @@ class CollectionExport implements FromCollection, WithHeadings
     {
         return [];
     }
-
 }
-

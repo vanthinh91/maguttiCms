@@ -10,7 +10,7 @@ class Product extends Model
 
 	protected $with = ['translations'];
 
-    protected $fillable  = ['category_id','code','price','title','subtitle','description','video','slug','sort','pub'];
+    protected $fillable  = ['category_id','code','price','title','subtitle','description','video','slug','sort','pub', 'permalink'];
     protected $fieldspec = [];
 
     /*
@@ -19,7 +19,7 @@ class Product extends Model
     |--------------------------------------------------------------------------
     */
     public $translatedAttributes = ['title','slug','subtitle','description',
-                                    'seo_title','seo_description'];
+                                    'seo_title','seo_description', 'permalink'];
     public $sluggable            =  ['slug'=>['field'=>'title','updatable'=>false,'translatable'=>1]];
 
     /*
@@ -60,7 +60,7 @@ class Product extends Model
             'model'       => 'Category',
             'foreign_key' => 'id',
             'label_key'   => 'title',
-            'label'       => 'Category',
+            'label'       => trans('admin.label.category'),
             'hidden'      => 0,
             'required'    => 1,
             'display'     => 1,
@@ -69,14 +69,14 @@ class Product extends Model
             'type'     => 'string',
             'required' => 1,
             'hidden'   => 0,
-            'label'    => 'Code',
+            'label'    => trans('admin.label.code'),
             'display'  => 1,
         ];
 		$this->fieldspec['price'] = [
             'type'     => 'integer',
             'required' => 1,
             'hidden'   => 0,
-            'label'    => 'Price',
+            'label'    => trans('admin.label.price'),
             'display'  => 1,
 			'step'     => 0.01
         ];
@@ -84,21 +84,28 @@ class Product extends Model
             'type'     => 'string',
             'required' => 1,
             'hidden'   => 0,
-            'label'    => 'Title',
+            'label'    => trans('admin.label.title'),
             'display'  => 1,
         ];
         $this->fieldspec['slug'] = [
             'type'     => 'string',
-            'required' => 1,
+            'required' => 0,
             'hidden'   => 0,
-            'label'    => 'Slug',
+            'label'    => trans('admin.label.slug'),
+            'display'  => 1,
+        ];
+        $this->fieldspec['permalink'] = [
+            'type'     => 'string',
+            'required' => 0,
+            'hidden'   => 0,
+            'label'    => trans('admin.label.permalink'),
             'display'  => 1,
         ];
         $this->fieldspec['subtitle'] = [
             'type'     => 'string',
             'required' => false,
             'hidden'   => 0,
-            'label'    => 'Subtitle',
+            'label'    => trans('admin.label.subtitle'),
             'display'  => 1,
         ];
         $this->fieldspec['description'] = [
@@ -107,7 +114,7 @@ class Product extends Model
             'h'         => 300,
             'required'  => false,
             'hidden'    => 0,
-            'label'     => 'Description',
+            'label'     => trans('admin.label.description'),
             'cssClass'  => 'wyswyg',
             'display'   => 1,
         ];
@@ -115,7 +122,7 @@ class Product extends Model
             'type'      => 'media',
             'required'  => false,
             'hidden'    => 0,
-            'label'     => 'Image*',
+            'label'     => trans('admin.label.image'),
             'mediaType' => 'Img',
             'display'   => 1
         ];
@@ -123,7 +130,7 @@ class Product extends Model
 			'type'      => 'media',
 			'required'  => false,
 			'hidden'    => 0,
-			'label'     => 'Document',
+			'label'     => trans('admin.label.doc'),
 			'mediaType' => 'Doc',
 			'display'   => 1
 		];
@@ -131,14 +138,14 @@ class Product extends Model
             'type'      => 'string',
             'required'  => false,
             'hidden'    => 1,
-            'label'     => 'Video Code YouTube',
+            'label'     => trans('admin.label.video'),
             'lang'      => 0,
             'display'   => 1,
         ];
         $this->fieldspec['sort'] = [
             'type'     => 'integer',
             'required' => false,
-            'label'    => 'Order',
+            'label'    => trans('admin.label.sort'),
             'hidden'   => 0,
             'display'  => 1,
         ];

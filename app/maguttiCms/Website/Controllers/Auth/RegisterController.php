@@ -23,7 +23,7 @@ class RegisterController extends Controller
     */
 
 
-    use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
+    use \App\maguttiCms\SeoTools\maguttiCmsSeoTrait;
 
 
     use RegistersUsers;
@@ -71,7 +71,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:10|confirmed|regex:'.config('maguttiCms.security.password_regex'),
         ]);
     }
 
@@ -100,9 +100,12 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-		if ($request->redirectTo) {
-			$this->redirectTo = $request->redirectTo;
-		}
+        if ($request->redirectTo) {
+            // If the redirect to path is in white list.
+            if(in_array($request->redirectTo, config('maguttiCms.security.redirectTo')) == true) {
+               $this->redirectTo = $request->redirectTo;
+            }
+        }
 
         event(new Registered($user = $this->create($request->all())));
 

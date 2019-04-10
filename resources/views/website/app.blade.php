@@ -18,8 +18,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Raleway:300,400,600" rel="stylesheet">
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="{{ config('maguttiCms.admin.path.public').'/website/css/vendor.css' }}">
-    <link rel="stylesheet" href="{{ config('maguttiCms.admin.path.public').mix('website/css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('website/css/vendor.css') }}">
+    <link rel="stylesheet" href="{{ mix('website/css/app.css') }}">
 
     @include('website.partials.widgets_mobile_app')
 
@@ -28,8 +28,11 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- GA -->
+    {{-- GA --}}
     @include('website.partials.widgets_ga')
+
+    {{-- captcha --}}
+    @include('website.partials.widgets_captcha')
 
     {{-- iubenda --}}
     {{-- @include('website.partials.iubenda_banner') --}}
@@ -38,7 +41,6 @@
 @include('website.partials.navbar')
 @yield('content')
 @include('website.partials.footer')
-@include('website.partials.modal_search')
 {{-- default js to show in all pages --}}
 <script type="text/javascript">
     var urlAjaxHandler  = "{{ url_locale('/') }}";
@@ -61,22 +63,19 @@
 @include('website.partials.js_localization')
 
 <!-- JS Implementing Plugins -->
-<script type="text/javascript" src="{{ config('maguttiCms.admin.path.public').'/website/js/vendor.js' }}"></script>
-<script type="text/javascript" src="{{ config('maguttiCms.admin.path.public').mix('/website/js/app.js') }}"></script>
+<script type="text/javascript" src="{{ mix('/website/js/vendor.js') }}"></script>
+<script type="text/javascript" src="{{ mix('/website/js/app.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         App.init();
     });
-
-
 </script>
 @if (store_enabled())
-    <script type="text/javascript" src="{{ config('maguttiCms.admin.path.public').mix('/website/js/store.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('/website/js/store.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             Store.init();
         });
-        ;
     </script>
 @endif
 

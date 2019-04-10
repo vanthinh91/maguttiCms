@@ -11,9 +11,11 @@
 				<div id="box_{{$key}}_{{$model->id}}" class="media-saved">
 					<div>
 						@if ($properties['mediaType'] == 'Img')
-							<img class="img-thumb" src="{{ImgHelper::get_cached($model->$key, config('maguttiCms.image.admin'), isset($properties['disk'])? $properties['disk']: '', isset($properties['folder'])? $properties['folder']: '')}}">
+							<a href="{{ma_get_image_from_repository($model->$key)}}" target="_blank" >
+								<img class="img-thumb" src="{{ImgHelper::get_cached($model->$key, config('maguttiCms.image.admin'), isset($properties['disk'])? $properties['disk']: '', isset($properties['folder'])? $properties['folder']: '')}}">
+							</a>
 						@else
-							<a href="{{ma_get_doc_from_repository($key)}}" target="_blank" class="btn btn-primary">
+							<a href="{{ma_get_doc_from_repository($model->$key)}}" target="_blank" class="btn btn-primary">
 								{{trans('admin.label.view')}}
 							</a>
 						@endif

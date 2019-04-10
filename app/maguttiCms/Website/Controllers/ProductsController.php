@@ -1,6 +1,7 @@
 <?php
 
 namespace App\maguttiCms\Website\Controllers;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
@@ -18,25 +19,25 @@ use App\Domain;
 */
 class ProductsController extends Controller
 {
-	use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
+	use \App\maguttiCms\SeoTools\maguttiCmsSeoTrait;
 	/**
 	* @var
 	*/
-	protected  $template;
+	protected $template;
 
 	/**
 	* @var ArticleRepositoryInterface
 	*/
-	protected  $articleRepo;
+	protected $articleRepo;
 
 	/**
 	* @var ProductRepositoryInterface
 	*/
-	protected  $productRepo;
+	protected $productRepo;
 	/**
 	* @var CategoryRepositoryInterface
 	*/
-	protected  $categoryRepo;
+	protected $categoryRepo;
 
 	/**
 	* ProductsController constructor.
@@ -44,7 +45,8 @@ class ProductsController extends Controller
 	* @param ProductRepositoryInterface $product
 	* @param CategoryRepositoryInterface $product
 	*/
-	public function __construct(ArticleRepositoryInterface $article, ProductRepositoryInterface $product, CategoryRepositoryInterface $category){
+	public function __construct(ArticleRepositoryInterface $article, ProductRepositoryInterface $product, CategoryRepositoryInterface $category)
+	{
 		$this->articleRepo = $article;
 		$this->productRepo = $product;
 		$this->categoryRepo = $category;
@@ -54,15 +56,21 @@ class ProductsController extends Controller
 	* @param string $product_slug
 	* @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	*/
-	public function category($category_slug = '') {
+	public function category($category_slug = '')
+	{
 		$article = $this->articleRepo->getBySlug('products');
 		if ($category_slug == '') {
-            // lista categorie
+			// lista categorie
 			$categories = Category::published()->get();
 			$this->setSeo($article);
 			return view('website.categories', ['article' => $article, 'categories' => $categories]);
-		}
-		else {
+			/*
+			$categories = Category::published()->get();
+			$product  = $this->productRepo->getPublished();
+			$this->setSeo($article);
+			return view('website.products', compact('article', 'products', 'categories')); //LISTA PRODOTTI
+			*/
+		} else {
 			// categoria singola
 			$category = $this->categoryRepo->getBySlug($category_slug);
 			if ($category) {
@@ -70,34 +78,28 @@ class ProductsController extends Controller
 				$locale_article = $category;
 				$products = $category->products()->published()->orderBy('sort')->get();
 				return view('website.category', compact('article', 'category', 'products', 'locale_article'));
+			} else {
+				return redirect('/');
 			}
-			else return redirect('/');
 		}
 	}
 
-    /**
-     * @param string $product_slug
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function products($category_slug = '', $product_slug='' ) {
-      	$article = $this->articleRepo->getBySlug('products');
-        if ($product_slug == '' ) {
-			$categories = Category::published()->get();
-            $product  = $this->productRepo->getPublished();
-            $this->setSeo($article);
-            return view('website.products', compact('article', 'products', 'categories')); //LISTA PRODOTTI
-        }
-		else {
-			// singolo prodotto
-			$article = $this->articleRepo->getBySlug('prodotti');
-			$product = $this->productRepo->getBySlug($product_slug);
-			if ($product) {
-				$category = $product->category;
-				$locale_article = $product;
-				$this->setSeo($product);
-				return view('website.product', compact('article', 'product', 'category', 'locale_article'));
-			}
-			else return redirect('/');
+	/**
+	* @param string $product_slug
+	* @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	*/
+	public function products($category_slug, $product_slug)
+	{
+		$article = $this->articleRepo->getBySlug('products');
+		// singolo prodotto
+		$product = $this->productRepo->getBySlug($product_slug);
+		if ($product) {
+			$category = $product->category;
+			$locale_article = $product;
+			$this->setSeo($product);
+			return view('website.product', compact('article', 'product', 'category', 'locale_article'));
+		} else {
+			return redirect('/');
 		}
-    }
+	}
 }

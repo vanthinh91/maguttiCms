@@ -22,6 +22,7 @@ class ResetPasswordController extends Controller
     |
     */
     protected $redirectTo   = '/admin';
+    protected $redirectPath = '/admin';
     protected $guard        = 'admin';
     protected $broker       = 'admin';
 
@@ -35,10 +36,8 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->localePrefix    = get_locale();
-        $this->redirectTo      = $this->localePrefix.'/admin';
-        $this->redirectPath    = $this->localePrefix.'/admin';
-
+        $this->redirectTo      = '/admin';
+        $this->redirectPath    = '/admin';
     }
 
     protected function guard()
@@ -46,7 +45,7 @@ class ResetPasswordController extends Controller
         return Auth::guard('admin');
     }
 
-     function broker()
+    public function broker()
     {
         return Password::broker('admin');
     }
@@ -63,9 +62,26 @@ class ResetPasswordController extends Controller
             'password' => $password,
             'remember_token' => Str::random(60),
         ])->save();
-
         $this->guard()->login($user);
     }
 
+    protected function rules()
+    {
+        return [
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:6|regex:'.config('maguttiCms.security.password_regex'),
+        ];
+    }
 
+    protected function sendResetFailedResponse(Request $request, $response)
+    {
+        if ($response == 'passwords.user') {
+            $response = 'passwords.invalid';
+        }
+
+        return redirect()->back()
+            ->withInput($request->only('email'))
+            ->withErrors(['email' => trans($response)]);
+    }
 }

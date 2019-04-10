@@ -12,7 +12,6 @@ class Article extends Model
 {
     use  GFTranslatableHelperTrait;
     use \Dimsav\Translatable\Translatable;
-
     use \App\maguttiCms\Domain\Article\ArticlePresenter;
 
 	protected $with = ['translations'];
@@ -54,14 +53,13 @@ class Article extends Model
 
     public function parent()
     {
-        return $this->hasOne('App\Article','id','parent_id');
+        return $this->belongsTo('App\Article', 'parent_id', 'id');
     }
 
     public function children()
     {
         return $this->hasMany('App\Article', 'parent_id', 'id');
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -125,7 +123,6 @@ class Article extends Model
             'hidden'   => 0,
             'label'    => trans('admin.label.title'),
             'display'  => 1,
-            'validation' =>'required'
         ];
         $this->fieldspec['subtitle'] = [
             'type'     => 'string',
@@ -136,7 +133,7 @@ class Article extends Model
         ];
         $this->fieldspec['slug'] = [
             'type'     => 'string',
-            'required' => 1,
+            'required' => 0,
             'hidden'   => 0,
             'label'    => trans('admin.label.slug'),
             'display'  => 1,
@@ -155,7 +152,7 @@ class Article extends Model
             'type'     => 'text',
             'size'     => 600,
             'h'        => 100,
-            'required' => 'n',
+            'required' => 0,
             'hidden'   => 0,
             'label'    => trans('admin.label.additional'),
             'cssClass' => 'wyswyg',
@@ -176,6 +173,7 @@ class Article extends Model
             'mediaType' => 'Img',
             'display'   => 1,
 			'disk'      => 'media',
+			'accept'	=> '.jpg'
         ];
         $this->fieldspec['doc'] = [
             'type'        => 'media',
@@ -186,6 +184,7 @@ class Article extends Model
             'mediaType'   => 'Doc',
             'display'     => 1,
 			'uploadifive' => 1,
+			'accept'	=> '.pdf'
         ];
         $this->fieldspec['sort'] = [
             'type'     => 'integer',
@@ -238,6 +237,7 @@ class Article extends Model
             'label'    => trans('admin.seo.no-index'),
             'display'  => 1
         ];
+
         return $this->fieldspec;
     }
 }

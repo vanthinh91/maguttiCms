@@ -12,15 +12,16 @@
 	</div>
 	<div class="form-group">
 		<input type="password" class="form-control" name="password" placeholder="{{ trans('website.password') }}" required>
-	</div>
-	<div class="form-group">
 		<input type="password" class="form-control" name="password_confirmation" placeholder="{{ trans('message.password_confirm') }}" required>
+		<div class="alert alert-info">
+			{{trans('website.message.password')}}
+		</div>
 	</div>
 	<div class="form-group">
 		<div class="form-checkbox">
 			<input type="checkbox" class="form-input" name="privacy" value="1" id="privacy" required>
 			<label for="privacy">
-				<a href="https://www.iubenda.com/privacy-policy/{{ Setting::getOption('iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}" class="iubenda-nostyle no-brand iubenda-embed " title="{{ trans('website.privacy')}}">
+				<a href="https://www.iubenda.com/privacy-policy/{{ data_get($site_settings,'iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}" class="iubenda-nostyle no-brand iubenda-embed " title="{{ trans('website.privacy')}}">
 					{{trans('website.message.privacy')}}
 				</a>
 			</label>

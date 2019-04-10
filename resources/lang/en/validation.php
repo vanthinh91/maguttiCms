@@ -91,11 +91,16 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+		'password' => [
+			'regex' => 'The password format is invalid',
+		],
+        'g-recaptcha-response' => [
+            '*'  => 'Are You a robot? Select I\'m not a robot.',
+        ],
         '*' => [
-            'is_unique'                 => 'The :attribute is already present.',
+            'is_unique' => 'The :attribute is already present.',
         ]
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes

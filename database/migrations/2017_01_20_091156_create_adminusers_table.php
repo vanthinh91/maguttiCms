@@ -23,7 +23,6 @@ class CreateAdminusersTable extends Migration
             $table->string('last_name', 255);
             $table->string('email')->unique();
             $table->string('password', 60)->nullable();;
-            $table->string('real_password', 255)->nullable();
             $table->tinyInteger('is_active')->default(1);
             $table->rememberToken();
             $table->integer('created_by')->nullable();

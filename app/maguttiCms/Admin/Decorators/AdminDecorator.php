@@ -76,4 +76,28 @@ class AdminDecorator
         return ($key == $value) ? $selected : '';
     }
 
+	public function getBooleanOn()
+	{
+		$string = '';
+		if (config('maguttiCms.admin.option.list.show-bool-icons')) {
+			$string .= icon('check');
+		}
+		if (config('maguttiCms.admin.option.list.show-bool-labels')) {
+			$string .= trans('admin.label.active_on');
+		}
+		return $string;
+	}
+
+	public function getBooleanOff()
+	{
+		$string = '';
+		if (config('maguttiCms.admin.option.list.show-bool-icons')) {
+			$string .= icon('times');
+		}
+		if (config('maguttiCms.admin.option.list.show-bool-labels')) {
+			$string .= trans('admin.label.active_off');
+		}
+		return $string;
+	}
+
 }

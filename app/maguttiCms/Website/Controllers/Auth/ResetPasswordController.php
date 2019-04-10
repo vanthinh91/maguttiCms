@@ -4,6 +4,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 
 class ResetPasswordController extends Controller
 {
@@ -21,32 +22,51 @@ class ResetPasswordController extends Controller
     use ResetsPasswords;
     protected $redirectTo   = '/users/dashboard';
     protected $redirectPath = '/users/dashboard';
-    var $localePrefix;
+    public $localePrefix;
+    use \App\maguttiCms\SeoTools\maguttiCmsSeoTrait;
+    protected $articleRepo;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ArticleRepositoryInterface $article)
     {
         $this->middleware('guest');
         $this->localePrefix    = get_locale();
         $this->redirectTo      = $this->localePrefix.'/users/dashboard';
         $this->redirectPath    = $this->localePrefix.'/users/dashboard';
-
+        $this->articleRepo = $article;
     }
 
     public function showResetForm(Request $request, $token = null)
     {
-
-        \SEO::setTitle( trans(trans('message.password_reset')) );
+        $article = $this->articleRepo->getBySlug('home');
+        $this->setSeo($article);
+        \SEO::setTitle(trans(trans('message.password_reset')));
 
         return view('website.auth.reset')->with(
-            ['token' => $token, 'email' => $request->email]
+            ['token' => $token, 'email' => $request->email,'article'=>$article]
         );
     }
 
-    
+    /**
+     * Get the response for a failed password reset.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendResetFailedResponse(Request $request, $response)
+    {
+        if ($response=='passwords.user') {
+            $response="passwords.invalid";
+        }
+
+        return redirect()->back()
+            ->withInput($request->only('email'))
+            ->withErrors(['email' => trans($response)]);
+    }
 
     protected function resetPassword($user, $password)
     {
@@ -56,5 +76,24 @@ class ResetPasswordController extends Controller
         ])->save();
 
         $this->guard()->login($user);
+    }
+
+    protected function rules()
+    {
+        return [
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:10|regex:'.config('maguttiCms.security.password_regex'),
+        ];
+    }
+
+    /**
+     * Get the password reset validation error messages.
+     *
+     * @return array
+     */
+    protected function validationErrorMessages()
+    {
+        return [];
     }
 }

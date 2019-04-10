@@ -132,7 +132,7 @@
 				@endforeach
 			</ul>
 			<div class="footer">
-				{{config('maguttiCms.admin.option.title')}} {{ App::VERSION() }}
+				{{config('maguttiCms.admin.option.title')}} {{ App::VERSION() }} - {{phpversion()}}
 			</div>
 		</nav>
 	@endif

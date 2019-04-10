@@ -12,7 +12,7 @@ use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 class LoginController extends Controller
 {
 
-    use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
+    use \App\maguttiCms\SeoTools\maguttiCmsSeoTrait;
 
     /*
     |--------------------------------------------------------------------------
@@ -116,11 +116,15 @@ class LoginController extends Controller
      */
 	 public function login(Request $request)
      {
+
          $this->validateLogin($request);
 
- 		if ($request->redirectTo) {
- 			$this->redirectTo = $request->redirectTo;
- 		}
+         if ($request->redirectTo) {
+              // If the redirect to path is in white list.
+              if(in_array($request->redirectTo, config('maguttiCms.security.redirectTo')) == true) {
+                 $this->redirectTo = $request->redirectTo;
+              }
+          }
 
          // If the class is using the ThrottlesLogins trait, we can automatically throttle
          // the login attempts for this application. We'll key this by the username and
@@ -201,4 +205,6 @@ class LoginController extends Controller
         return $this->authenticated($request, $this->guard()->user())
                 ?: redirect()->intended($this->redirectPath());
     }
+
+
 }

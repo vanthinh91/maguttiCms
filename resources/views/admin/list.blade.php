@@ -22,7 +22,16 @@
 							<thead>
 								<tr>
 									{{ AdminList::initList($pageConfig)->getListHeader() }}
-									@if ($pageConfig['edit'] || $pageConfig['copy']||$pageConfig['view']||$pageConfig['delete'])
+									@if (
+											$admin_can_edit
+											&& (
+												data_get($pageConfig, 'edit')
+												|| data_get($pageConfig, 'copy')
+												|| data_get($pageConfig, 'view')
+												|| data_get($pageConfig, 'delete')
+												|| data_get($pageConfig, 'impersonated')
+											)
+										)
 										<th>{!! trans('admin.label.actions')!!}</th>
 									@endif
 								</tr>
@@ -41,12 +50,12 @@
 											<td class="{{isset($label['class'])? $label['class']: ''}}">
 												@if (is_array($label))
 													@if ( $label['type'] == 'date' )
-														{!! $article->{$label['field']}->format('d/m/Y') !!}
-													@elseif ( $label['type'] == 'upload' )
+														{!! Carbon::parse($article->{$label['field']})->format('d/m/Y') !!}
+													@elseif ($label['type'] == 'upload')
 														<a href=" {!! ma_get_upload_from_repository($article->{$label['field']}) !!}" target="_new" download>
 															{!! trans('admin.label.download')!!}
 														</a>
-													@elseif ( $label['type'] == 'image' && $article->{$label['field']} != '' )
+													@elseif ($label['type'] == 'image' && $article->{$label['field']} != '')
 														@php
 															$field = $fieldspec[$label['field']];
 															$disk = isset($field['disk'])? $field['disk']: '';
@@ -60,61 +69,43 @@
 															<img src="{{$thumb}}"  class="img-thumb">
 														</a>
 													@elseif ($label['type'] == 'boolean')
-														@if (data_get($label,'editable'))
-															@if (data_get($label, 'relation'))
-																@php
+														@php
+															if (data_get($label, 'relation')) {
 																$relationObj = AdminDecorator::getBooleanRelation($article, $label);
-																@endphp
-																@if ($relationObj)
-																	<div class="bool-toggle" data-list-boolean ="{!! $label['model'].'_'.$relationObj->id !!}" data-list-name ="{!! $label['field']!!}">
-																		<span class="bool-on {{($relationObj->{$label['field']})? '' : 'hidden'}}">
-																			@if (config('maguttiCms.admin.option.list.show-bool-icons'))
-																				{{icon('check')}}
-																			@endif
-																			@if (config('maguttiCms.admin.option.list.show-bool-labels'))
-																				{{trans('admin.label.active_on')}}
-																			@endif
-																		</span>
-																		<span class="bool-off {{($relationObj->{$label['field']})? 'hidden' : ''}}">
-																			@if (config('maguttiCms.admin.option.list.show-bool-icons'))
-																				{{icon('times')}}
-																			@endif
-																			@if (config('maguttiCms.admin.option.list.show-bool-labels'))
-																				{{trans('admin.label.active_off')}}
-																			@endif
-																		</span>
-																	</div>
-																@endif
-															@else
-																<div class="bool-toggle" data-list-boolean ="{!! $pageConfig['model'].'_'.$article->id !!}" data-list-name ="{!! $label['field']!!}">
-																	<span class="bool-on {{($article->{$label['field']})? '' : 'hidden'}}">
-																		@if (config('maguttiCms.admin.option.list.show-bool-icons'))
-																			{{icon('check')}}
-																		@endif
-																			@if (config('maguttiCms.admin.option.list.show-bool-labels'))
-																			{{trans('admin.label.active_on')}}
-																		@endif
+															} else {
+																$relationObj = null;
+															}
+															if ($relationObj) {
+																$value = $relationObj->{$label['field']};
+																$model = $label['model'];
+																$id = $relationObj->id;
+															} else {
+																$value = $article->{$label['field']};
+																$model = $pageConfig['model'];
+																$id = $article->id;
+															}
+														@endphp
+														@if (data_get($label, 'relation') && $relationObj || !data_get($label, 'relation'))
+															@if (data_get($label, 'editable') && $admin_can_edit)
+																<div class="bool-toggle" data-list-boolean="{!! $model.'_'.$id !!}" data-list-name ="{!! $label['field']!!}">
+																	<span class="bool-on {{($value)? '' : 'hidden'}}">
+																		{{AdminDecorator::getBooleanOn()}}
 																	</span>
-																	<span class="bool-off {{($article->{$label['field']})? 'hidden' : ''}}">
-																		@if (config('maguttiCms.admin.option.list.show-bool-icons'))
-																			{{icon('times')}}
-																		@endif
-																		@if (config('maguttiCms.admin.option.list.show-bool-labels'))
-																			{{trans('admin.label.active_off')}}
-																		@endif
+																	<span class="bool-off {{($value)? 'hidden' : ''}}">
+																		{{AdminDecorator::getBooleanOff()}}
 																	</span>
 																</div>
+															@else
+																<div class="bool-toggle">
+																	@if ($value == 1)
+																		<i class="text-success">{{AdminDecorator::getBooleanOn()}}</i>
+																	@else
+																		<i class="text-danger">{{AdminDecorator::getBooleanOff()}}</i>
+																	@endif
+																</div>
 															@endif
-														@else
-															<div class="bool-toggle">
-																@if($article->{$label['field']} == 1)
-																	<i class="text-success"></i>
-																@else
-																	<i class="text-danger"></i>
-																@endif
-															</div>
 														@endif
-													@elseif ($label['type'] == 'editable')
+													@elseif ($label['type'] == 'editable' && $admin_can_edit)
 														<input
 															id="{!! $pageConfig['model'].'_'.$label['field'].'_'.$article->id !!}"
 															class="form-control"
@@ -122,14 +113,15 @@
 															type="text" value="{{ $article->{$label['field']}  }}"
 															data-list-value ="{!! $pageConfig['model'].'_'.$article->id !!}"
 															data-list-name ="{!! $label['field']!!}"
+															autocomplete="off"
 														/>
 													@elseif ($label['type'] == 'relation')
-														@if( isset($label['editable']) && $label['editable'])
-															<?php
-															$relationObj     = AdminDecorator::getRelation($label);
-															$selectObjValue  = AdminDecorator::getSelectRelationItemValue($label,$article->{$label['field']});
-															$emptyLabel		 = (isset($label['label_empty']) && $label['label_empty'])? $label['label_empty']: '';
-															?>
+														@if(isset($label['editable']) && $label['editable'] && $admin_can_edit)
+															@php
+																$relationObj     = AdminDecorator::getRelation($label);
+																$selectObjValue  = AdminDecorator::getSelectRelationItemValue($label,$article->{$label['field']});
+																$emptyLabel		 = (isset($label['label_empty']) && $label['label_empty'])? $label['label_empty']: '';
+															@endphp
 															<select id="{!! $pageConfig['model'].'_'.$label['field'].'_'.$article->id !!}"
 																name="{!! $label['field'] !!}"
 																data-list-value ="{!! $pageConfig['model'].'_'.$article->id !!}"
@@ -139,7 +131,7 @@
 																@if ($emptyLabel)
 																	<option value="">{{ $emptyLabel }}</option>
 																@endif
-																@foreach( $relationObj as $item )
+																@foreach($relationObj as $item)
 																	<option
 																	<?php echo AdminDecorator::selectedHandler($item->{$label['foreign_key']}, $article->{$label['field']}); ?>
 																	value="{{ $item->{$label['foreign_key']} }}"
@@ -157,12 +149,14 @@
 														@endif
 													@elseif ($label['type'] == 'relation_image')
 														@if($article->{$label['relation']} != null)
-															<a href="{!! ma_get_image_from_repository($article->{$label['relation']}->{$label['field']} ) !!}" class="red" target="_new">
+															<a href="{!! ma_get_image_from_repository($article->{$label['relation']}->{$label['field']}) !!}" class="red" target="_new">
 																<img src="{!! ImgHelper::get_cached($article->{$label['relation']}->{$label['field']}, config('maguttiCms.image.admin')) !!}" class="img-thumb">
 															</a>
 														@endif
 													@elseif ($label['type'] == 'color')
-														<div style="width:40px; height: 40px; border-radius: 5px !important; background-color: {{ $article->{$label['field']} }}"></div>
+														<div class="color" style="background-color: {{ $article->{$label['field']} }}"></div>
+													@elseif ($label['type'] == 'locale')
+														<img class="flag" src="{{asset('website/images/flags/'.$article->{$label['field']}.'.png')}}" alt="{{ $article->{$label['field']} }} flag">
 													@else
 														{!! $article->{$label['field']} !!}
 													@endif
@@ -171,7 +165,15 @@
 												@endif
 											</td>
 										@endforeach
-										@if ($pageConfig['edit'] || $pageConfig['copy'] || $pageConfig['view'] || $pageConfig['delete'])
+										@if (
+												$admin_can_edit
+												&& (
+													data_get($pageConfig, 'edit')
+													|| data_get($pageConfig, 'copy')
+													|| data_get($pageConfig, 'view')
+													|| data_get($pageConfig, 'delete')
+												)
+											)
 											<td class="list-actions">
 												@if ($pageConfig['edit'])
 													<a href="{{  ma_get_admin_edit_url($article) }}" class="btn btn-info"   data-role="edit-item">
@@ -203,6 +205,11 @@
 														@if (config('maguttiCms.admin.option.list.show-labels'))
 															{!! trans('admin.label.delete')!!}
 														@endif
+													</a>
+												@endif
+												@if (data_get($pageConfig,'impersonated') && cmsUserHasRole('su'))
+													<a href="{{  ma_get_admin_impersonated_url($article) }}" target="new" class="btn btn-warning">
+														{{icon('users')}}
 													</a>
 												@endif
 											</td>

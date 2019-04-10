@@ -62,6 +62,12 @@ return [
 		'shipping_cost' => 'Shipping cost',
 		'vat_cost' => 'VAT',
 		'total_cost' => 'Order total',
+		'discount' => [
+			'title' => 'Discount coupon',
+			'insert' => 'If you have a discount coupon code type it here.',
+			'valid' => 'Coupon found: sconto %s%%',
+			'invalid' => 'This code is invalid.'
+		]
 	],
 
 	'payment' => [

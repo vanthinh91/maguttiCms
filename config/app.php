@@ -184,7 +184,6 @@ return [
         |--------------------------------------------------------------------------
         */
 
-        Spatie\Sitemap\SitemapServiceProvider::class,
         'hisorange\BrowserDetect\Provider\BrowserDetectService',
         Collective\Html\HtmlServiceProvider::class,
         'Zizaco\Entrust\EntrustServiceProvider',
@@ -199,7 +198,7 @@ return [
         | maguttiCms Service Providers...
         |--------------------------------------------------------------------------
         */
-        App\maguttiCms\Providers\LaraServiceProvider::class,
+        App\maguttiCms\Providers\MaguttiServiceProvider::class,
         App\maguttiCms\Providers\SystemServiceProvider::class,
         'App\maguttiCms\Notifications\FlashServiceProvider',
 
@@ -279,7 +278,7 @@ return [
 
         /*
          |--------------------------------------------------------------------------
-         | laraCms Class Aliases
+         | maguttiCms Class Aliases
          |--------------------------------------------------------------------------
         */
 
@@ -295,6 +294,7 @@ return [
         'Setting' => \App\maguttiCms\Tools\SettingHelper::class,
         'Stringable' => App\maguttiCms\Tools\Stringable::class,
         'ImgHelper' => App\maguttiCms\Website\Facades\ImgHelper::class,
+        'SeoLandingHelper' => App\maguttiCms\Website\Facades\SeoLandingHelper::class,
         'HtmlSocial' => App\maguttiCms\Website\Facades\HtmlSocial::class,
     ],
 ];

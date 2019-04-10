@@ -2,19 +2,14 @@
 
 namespace App\maguttiCms\Admin\Controllers;
 
-
-use App\Article;
+use App\maguttiCms\Exports\AdminListExporter;
 use App\maguttiCms\Exports\CollectionExport;
-use App\maguttiCms\Tools\ExportHelper;
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Input;
-
 use Maatwebsite\Excel\Facades\Excel;
 use Validator;
+use Input;
 
+use App\maguttiCms\Tools\ExportHelper;
 
 /**
  * Class AdminExportController
@@ -30,18 +25,21 @@ class AdminExportController extends Controller
     protected $config;
     protected $id;
 
-
     /**
-     * @param Request $request
      * @param $model
      * @param string $sub
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function lista(Request $request, $model, $sub = '')
+    public function lista($model, $sub = '')
     {
-
-        $ExportHelper = new  ExportHelper();
-        $data     = $ExportHelper->init($model)->getDataToExport();
-        $filename = $ExportHelper->getFileName();
-        return Excel::download(new CollectionExport($data), $filename);
+        if(request()->filled('debug'))return  ExportHelper::exportFilename($model) ;
+        return Excel::download(new AdminListExporter($model), ExportHelper::exportFilename($model));
+    }
+    public function list_from_collection($model, $sub = '')
+    {
+        $ExportHelper = new AdminListExporter($model);
+        $data         = $ExportHelper->addHeader()->getDataToExport();
+        if(request()->filled('debug'))return  $ExportHelper->getFileName() ;
+        return Excel::download(new CollectionExport($data), $ExportHelper->getFileName() );
     }
 }

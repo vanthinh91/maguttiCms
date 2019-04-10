@@ -20,6 +20,7 @@ class AdminResetPasswordNotification extends Notification
     public function __construct($token)
     {
         $this->token = $token;
+
     }
 
     /**
@@ -41,11 +42,12 @@ class AdminResetPasswordNotification extends Notification
      */
     public function toMail($notifiable)
     {
+
         return (new MailMessage)
-            ->subject(trans('passwords.mail_reset_subject').' - '.config('app.name'))
+            ->subject(trans('passwords.mail_reset_subject').' - '.config('maguttiCms.website.option.app.name'))
             ->greeting(trans('website.mail_message.greeting'))
             ->line(trans('passwords.mail_reset_body'))
-            ->action(trans('passwords.mail_reset_button'), url( url_locale('admin/password/reset'), $this->token))
+            ->action(trans('passwords.mail_reset_button'), url( 'admin/password/reset').'/'.$this->token)
             ->line(trans('passwords.mail_reset_footer'));
     }
 
@@ -62,4 +64,3 @@ class AdminResetPasswordNotification extends Notification
         ];
     }
 }
-

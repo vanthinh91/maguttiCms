@@ -11,19 +11,28 @@ trait ProductPresenter
     |  Seo & Meta
     |--------------------------------------------------------------------------
     */
-    function getFullSlug($locale=''){
+    function getFullSlug($locale = ''){
         /** @var  JSP  trick */
         $locale = ($locale)?:app()->getLocale();
 		$trans_url = trans('routes.products', array(),$locale);
 		$trans_url = str_replace('{category}', $this->category->{'slug:'.$locale}, $trans_url);
-		$trans_url = str_replace('{product}', $this->{'slug:'.$locale}, $trans_url);
+		$trans_url = preg_replace('/\{product\??\}/', $this->{'slug:'.$locale}, $trans_url);
         return $trans_url;
     }
 
-    public function getPermalink($locale='')
+	public function makePermalink($locale = '')
+	{
+		$locale = ($locale)? $locale: get_locale();
+		$this->translate($locale)->permalink = $this->getFullSlug($locale);
+		$this->save();
+	}
+
+    public function getPermalink($locale = '')
     {
-        $url =  $this->getFullSlug($locale);
-        return url_locale($url);
+		if (!$this->permalink) {
+			$this->makePermalink($locale);
+		}
+		return url_locale($this->permalink);
     }
 
     public function getInfoPermalink() {

@@ -46,6 +46,7 @@ class Contact extends Model
             'hidden'   => 0,
             'label'    => trans('admin.label.email'),
             'display'  => 1,
+            'validation'   => 'required|Between:3,64|Email',
         ];
         $this->fieldspec['name'] = [
             'type'     => 'readonly',

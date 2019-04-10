@@ -15,8 +15,8 @@ class News extends Model
 
 	protected $with = ['translations'];
 
-	protected  $fillable  = ['title','description','date','sort','pub'];
-	protected  $fieldspec = [];
+	protected  $fillable        = ['title','description','date','sort','pub'];
+	protected  $fieldspec       = [];
 
 	/*
     |--------------------------------------------------------------------------
@@ -87,6 +87,7 @@ class News extends Model
             'type'     => 'integer',
             'minvalue' => 0,
             'pkey'     => 1,
+            'required' => 1,
             'label'    => 'id',
             'hidden'   => 1,
             'display'  => 0,
@@ -149,7 +150,7 @@ class News extends Model
 		$this->fieldspec['link'] = [
 			'type'      => 'string',
 			'size'      => 600,
-			'required'  => 0,
+			'required'  => 1,
 			'hidden'    => 0,
 			'label'     => 'External url',
 			'display'=>0,
@@ -218,19 +219,18 @@ class News extends Model
    |  Scopes & Mutator
    |--------------------------------------------------------------------------
    */
+   public function scopeLatestPublished($query,$limit = 5)
+   {
+	   return $query->published()->translatedContent()->latest()->limit($limit);
+   }
 
-    public function scopeLatestPublished($query,$limit = 5)
-    {
-        return $query->published()->translatedContent()->latest()->limit($limit);
-    }
+   public function scopePublished($query)
+   {
+	   return $query->where('pub', 1)->where('date', '<=', Carbon::now());
+   }
 
-    public function scopePublished($query)
-    {
-        return $query->where('pub', 1)->where('date', '<=', Carbon::now());
-    }
-
-    public function scopeByDate($query)
-    {
-        return $query->orderBy('date', 'desc');
-    }
+   public function scopeByDate($query)
+   {
+	   return $query->orderBy('date', 'desc');
+   }
 }

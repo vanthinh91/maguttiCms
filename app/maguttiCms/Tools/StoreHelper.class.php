@@ -9,6 +9,7 @@ use App\OrderItem;
 use App\Payment;
 use App\PaymentMethod;
 use App\SpecialPrice;
+use App\Discount;
 use Illuminate\Http\Request;
 use App\maguttiCms\PayPal\GFExpressCheckout;
 
@@ -43,11 +44,9 @@ class StoreHelper {
 	// product display
 	public static function canViewPrices()
 	{
-		if (self::isStoreEnabled() && (Auth::user() || !config('maguttiCms.store.private_prices'))) {
-
-		}
-		return true;
+		return self::isStoreEnabled() && (Auth::user() || !config('maguttiCms.store.private_prices'));
 	}
+	
 	public static function getProductPrice($product)
 	{
 		if ($user = Auth::user()) {
@@ -105,7 +104,7 @@ class StoreHelper {
 		if (!$cart)
 			$cart = self::getSessionCart();
 		if ($cart)
-			return $cart->cart_items()->sum('quantity');
+			return $cart->cart_items()->count();
 		else
 			return 0;
 	}
@@ -162,12 +161,12 @@ class StoreHelper {
 		if (!$cart)
 			$cart = self::cartCreate();
 
-		$cart_item = CartItem::firstOrCreate([
-			'cart_id'            => $cart->id,
-			'product_code'       => $product_code,
-			'product_model_code' => $product_model_code,
+        $cart_item = CartItem::firstOrCreate([
+            'cart_id'            => $cart->id,
+            'product_code'       => $product_code,
+            'product_model_code' => $product_model_code,
 
-		]);
+        ]);
         $cart_item->increment('quantity',(int)$quantity);
 
 		if ($cart_item)
@@ -264,39 +263,110 @@ class StoreHelper {
 		return round($vat, 2);
 	}
 
+	/////	DISCOUNTS	/////
+
+	// check discount validity
+	public static function checkDiscount($discount)
+	{
+		if (!$discount->pub) {
+			return false;
+		}
+		if (!$discount->available()) {
+			return false;
+		}
+		if (!$discount->inPeriod()) {
+			return false;
+		}
+
+		return true;
+	}
+
+	public static function getDiscount($code)
+	{
+		$discount = Discount::where('code', strtoupper($code))->first();
+		if ($discount) {
+			if (self::checkDiscount($discount)) {
+				return $discount;
+			}
+		}
+		return false;
+	}
+
+	public static function getDiscountPercentage($code)
+	{
+		$discount = self::getDiscount($code);
+		if ($discount) {
+			return $discount->amount;
+		} else {
+			return 0;
+		}
+	}
+
 	/////	ORDERS	/////
 
 	// order cost calculation
-	public static function calcCosts($cart, $address)
+	public static function calcCosts($cart, $address, $discount_code)
 	{
+		// discount variables
+		$discount = (float)self::getDiscountPercentage($discount_code);
+		$discount_ratio = $discount / 100;
+		$discount_amount = 0;
+
+		// product cost
 		$products = self::getCartTotal($cart);
-		$shipping = self::calcShipping($cart, $products, $address);
-		$vat = self::calcVat($cart, $products, $shipping);
-		$total = $products + $shipping + $vat;
+		$discount_amount += $products * $discount_ratio;
+		$products_discounted = $products * (1 - $discount_ratio);
+
+		// shipping cost
+		$shipping = self::calcShipping($cart, $products_discounted, $address);
+		$shipping_discounted = $shipping;
+		if (config('store.discount.apply_to_shipping')) {
+			$discount_amount += $shipping * $discount_ratio;
+			$shipping_discounted = $shipping * (1 - $discount_ratio);
+		}
+
+		// vat
+		$vat = self::calcVat($cart, $products_discounted, $shipping_discounted);
+		$total = $products_discounted + $shipping_discounted + $vat;
 
 		return [
 			'products' => $products,
 			'shipping' => $shipping,
+			'discount' => -$discount_amount,
 			'vat' => $vat,
 			'total' => $total,
 		];
 	}
 
 	// order creation
-	public static function orderCreate($cart, $billing_address_id, $shipping_address_id)
+	public static function orderCreate($cart, $billing_address_id, $shipping_address_id, $discount_code)
 	{
+		if (!StoreHelper::getDiscount($discount_code)) {
+			$discount_code = '';
+		}
+
 		$cart_items = $cart->cart_items()->with('product')->get();
 		$address = Address::find($shipping_address_id);
-		$costs = self::calcCosts($cart, $address);
+		$costs = self::calcCosts($cart, $address, $discount_code);
+
+		// fallback for carts without a user id
+		if ($cart->user_id) {
+			$user_id = $cart->user_id;
+		} else {
+			$user = Auth::user();
+			$user_id = $user->id;
+		}
 
 		// order creation
 		$order = Order::create([
-			'user_id'             => $cart->user_id,
+			'user_id'             => $user_id,
 			'cart_id'             => $cart->id,
 			'products_cost'       => $costs['products'],
 			'shipping_cost'       => $costs['shipping'],
+			'discount_amount'	  => $costs['discount'],
 			'vat_cost'            => $costs['vat'],
 			'total_cost'          => $costs['total'],
+			'discount_code'		  => $discount_code,
 			'billing_address_id'  => $billing_address_id,
 			'shipping_address_id' => $shipping_address_id,
 			'token'               => Str::random(32)

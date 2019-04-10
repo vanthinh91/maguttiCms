@@ -1,0 +1,29 @@
+//
+// Breadcrumbs
+// --------------------------------------------------
+
+
+.breadcrumb {
+	padding: 0.5em;
+	margin-bottom: 1em;
+	background-color: $color-5;
+	color: inherit;
+	border-radius: $border-radius-button;
+	> li {
+		display: inline-block;
+		+ li:before {
+			padding: 0 0.5em;
+			color: inherit;
+		}
+		> a {
+			@include animate();
+			&:hover {
+				color: $color-primary;
+			}
+		}
+	}
+
+	> .active {
+		color: $color-4;
+	}
+}

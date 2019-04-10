@@ -22,7 +22,6 @@ return [
     'more_info'     => 'Continue',
     'name'          => 'Name',
     'newsletters_placeholder' => 'Type your  email',
-    'password'      => 'Password',
     'phone'         => 'Telephone',
     'please_select' => 'Please select',
     'privacy'		=> 'Privacy Policy',
@@ -30,6 +29,7 @@ return [
     'send'          => 'Send',
     'subject'       => 'Subject',
     'surname'       => 'Surname',
+    'pagination'    => 'Page :x of :y',
 
 	'ghost' => [
 		'updated' => 'Value updated',
@@ -50,6 +50,7 @@ return [
         'privacy'           => 'I accept terms and conditions of use and read the privacy note.',
         'required_field'    => 'Required field (*)',
 		'product_request'	=> 'Information request for product',
+		'password'			=> 'The password must contain upper case and lower case letters, numbers and special characters',
 
         /**************************   COOKIE  ****************************/
         'cookie'            => 'This website or the related devices use cookies, which are necessary to the working and to the purposes showed in the cookie policy.If you\'d like to know more about it or deny your approval to all or some cookies, please consult the cookie policy. If you click on Accept or go on with the surfing, you accept then the cookie use.',

@@ -30,6 +30,7 @@ return [
 	'send'                    => 'Invia',
 	'subject'                 => 'Oggetto',
 	'surname'                 => 'Cognome',
+	'pagination'			  => 'Pagina :x di :y',
 
 	'ghost' => [
 		'updated' => 'Valore aggiornato',
@@ -42,7 +43,7 @@ return [
 	],
 	'news' => [
 		'latest'            => 'Ultime News',
-		'share_on'          => 'Condividi su'
+		'share_on'          => 'Condividi su',
 	],
 
     'message' => [
@@ -50,6 +51,7 @@ return [
         'privacy'			=> 'Acconsento al trattamento dei dati',
         'required_field'	=> 'I campi contrassegnati con (*) sono obbligatori',
         'product_request'	=> 'Richiesta informazioni per il prodotto',
+		'password'			=> 'La password deve avere  almeno 10 caratteri e deve contenere lettere maiuscole e minuscole, numeri e caratteri speciali',
 
         /**************************   COOKIE  ****************************/
         'cookie'			=>'Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di cookie necessari al funzionamento ed utili alle finalità illustrate nella cookie policy. Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, consulta la cookie policy. Cliccando su \'Accetto\' o proseguendo la navigazione acconsenti all’uso dei cookie.',

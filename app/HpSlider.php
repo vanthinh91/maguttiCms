@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Str;
 class HpSlider extends Model
 {
     protected $table = 'hpsliders';
@@ -38,7 +38,6 @@ class HpSlider extends Model
             'hidden'    => 0,
             'label'     => trans('admin.label.title'),
             'display'   => 1,
-            'validation' =>'required'
         ];
 
         $this->fieldspec['description'] = [
@@ -72,7 +71,6 @@ class HpSlider extends Model
             'label'     => trans('admin.label.image'),
             'mediaType' => 'Img',
             'display'   => 1,
-            'validation'=>'sometimes|required|mimes:jpeg,jpg,png,gif'
 
         ];
         $this->fieldspec['sort'] = [
@@ -81,7 +79,6 @@ class HpSlider extends Model
             'label'     => trans('admin.label.position'),
             'hidden'    => 0,
             'display'   => 1,
-            'cssInputSize'  => 'col-md-8 col-lg-4',
         ];
         $this->fieldspec['is_active'] = [
             'type'      => 'boolean',

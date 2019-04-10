@@ -10,10 +10,8 @@ class Social extends Model
     protected $fillable = ['title', 'description','link','icon','sort','is_active'];
     protected $fieldspec = [];
 
-
     function getFieldSpec ()
     {
-
         $this->fieldspec['id'] = [
             'type'     => 'integer',
             'minvalue' => 0,
@@ -56,13 +54,11 @@ class Social extends Model
         ];
         $this->fieldspec['description'] = [
             'type'      => 'text',
-            'size'      => 600,
-            'h'         => 300,
-            'required'  => 1,
+            'required'  => 0,
             'hidden'    => 0,
             'label'     => 'Description',
             'cssClass'  => 'wyswyg',
-            'display'   => 1,
+            'display'   => 0,
         ];
         $this->fieldspec['sort'] = [
             'type'     => 'integer',

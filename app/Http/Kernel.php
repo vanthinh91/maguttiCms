@@ -54,12 +54,20 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-		'shield' => \App\Http\Middleware\GF_ShieldMiddleware::class,
 
+
+        /*
+        |--------------------------------------------------------------------------
+        | maguttiCms Middleware
+        |--------------------------------------------------------------------------
+        */
+
+        'shield' => \App\maguttiCms\Middleware\GFShieldMiddleware::class,
         'adminauth' => \App\maguttiCms\Middleware\AdminAuthenticate::class,
 		'storeenabled' => \App\Http\Middleware\StoreEnabled::class,
 		'usercart' => \App\Http\Middleware\UserCart::class,
 		'setlocaleadmin'  => \App\maguttiCms\Middleware\SetLocaleAdmin::class,
+        'adminimpersonate'  => \App\maguttiCms\Middleware\AdminImpersonate::class,
 
         /*
         |--------------------------------------------------------------------------

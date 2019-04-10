@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    |MaguttiCms Login Controller
+    |maguttiCms Login Controller
     |--------------------------------------------------------------------------
     |
     | This controller handles the registration of new users, as well as the

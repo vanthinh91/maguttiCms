@@ -3,10 +3,10 @@
 	<main id="login-main">
 		<div id="login-block">
 			<div class="card">
-				<img src="{!! asset(config('maguttiCms.admin.path.cms').'/images/logo.png')!!}" alt="CMS Login">
+				<img src="{!! asset('cms/images/logo.png')!!}" alt="CMS Login">
 				<hr>
 				<form method="post">
-					<h3>Login</h3>
+					<h3>Accedi</h3>
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
 							@foreach ($errors->all() as $error)
@@ -32,6 +32,11 @@
 						</div>
 						<div class="col-xs-6">
 							<button type="submit" class="btn btn-primary btn-block">Login</button>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-xs-12">
+							<a href="{{ URL::to('/admin/password/reset/') }}">@lang('message.password_forgot')? </a>
 						</div>
 					</div>
 				</form>

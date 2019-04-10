@@ -1,3 +1,4 @@
+
 <div id="social-newsletter" class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 mb10">
@@ -15,7 +16,7 @@
 				<h6>{!! config('maguttiCms.website.option.app.name')!!}</h6>
 				<p>
 					© <?php echo date('Y'); ?> {!! config('maguttiCms.website.option.app.legal')!!}<br>
-					{!! config('maguttiCms.website.option.app.name')!!} - {!! config('maguttiCms.website.option.app.locality')!!} - P.IVA {!! config('maguttiCms.website.option.app.vat')!!}<br>
+					{!! config('maguttiCms.website.option.app.address')!!} - {!! config('maguttiCms.website.option.app.locality')!!} - P.IVA {!! config('maguttiCms.website.option.app.vat')!!}<br>
 					Tel: {!! config('maguttiCms.website.option.app.phone')!!} - Fax: {!! config('maguttiCms.website.option.app.fax') !!} - <a href="mailto:{!! config('maguttiCms.website.option.app.email') !!}">{!! config('maguttiCms.website.option.app.email') !!}</a><br>
 				</p>
 			</div>

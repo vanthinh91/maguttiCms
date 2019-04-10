@@ -54,7 +54,7 @@ class StoreController extends Controller
 
 	public function orderLogin()
 	{
-		$redirectTo = url_locale('order-submit');
+		$redirectTo = 'order-submit';
 		$with_register = true;
 		return view('website.store.order_login', compact('redirectTo', 'with_register'));
 	}
@@ -86,7 +86,9 @@ class StoreController extends Controller
 		else
 			$shipping_address_id = 0;
 
-		$order = StoreHelper::orderCreate($cart, $billing_address_id, $shipping_address_id);
+		$discount_code = $request->discount_code;
+
+		$order = StoreHelper::orderCreate($cart, $billing_address_id, $shipping_address_id, $discount_code);
 
 		if ($order) {
 			StoreHelper::forgetSessionCart();

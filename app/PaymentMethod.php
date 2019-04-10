@@ -42,7 +42,7 @@ class PaymentMethod extends Model
             'type'     => 'boolean',
             'required' => 0,
             'hidden'   => 0,
-            'label'    => 'Boolean',
+            'label'    => 'Active',
             'display'  => 1
         ];
 

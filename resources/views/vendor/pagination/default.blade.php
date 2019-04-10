@@ -4,7 +4,7 @@
         @if ($paginator->onFirstPage())
             <li class="disabled"><span>{{HtmlHelper::createFAIcon('chevron-left')}}</span></li>
         @else
-            <li><a href="{{ $paginator->previousPageUrl() }}" rel="prev">{{HtmlHelper::createFAIcon('chevron-left')}}</a></li>
+            <li><a href="{{ preg_replace('/\?page=[1]$/', '', $paginator->previousPageUrl()) }}">{{HtmlHelper::createFAIcon('chevron-left')}}</a></li>
         @endif
 
         {{-- Pagination Elements --}}
@@ -20,7 +20,7 @@
                     @if ($page == $paginator->currentPage())
                         <li class="active"><span>{{ $page }}</span></li>
                     @else
-                        <li><a href="{{ $url }}">{{ $page }}</a></li>
+                        <li><a href="{{ preg_replace('/\?page=[1]$/', '', $url) }}">{{ $page }}</a></li>
                     @endif
                 @endforeach
             @endif
@@ -28,7 +28,7 @@
 
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
-            <li><a href="{{ $paginator->nextPageUrl() }}" rel="next">{{HtmlHelper::createFAIcon('chevron-right')}}</a></li>
+            <li><a href="{{ $paginator->nextPageUrl() }}">{{HtmlHelper::createFAIcon('chevron-right')}}</a></li>
         @else
             <li class="disabled"><span>{{HtmlHelper::createFAIcon('chevron-right')}}</span></li>
         @endif

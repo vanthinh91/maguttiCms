@@ -46,7 +46,7 @@ class Setting extends Model
         ];
         $this->fieldspec['value'] = [
             'type'      => 'string',
-            'required'  => true,
+            'required'  => 0,
             'hidden'    => 0,
             'label'     => 'Value',
             'display'   => 1,

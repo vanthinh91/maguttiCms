@@ -54,9 +54,9 @@
 </section>
 <div class="container"><hr></div>
 <section class="container">
-	<h3>{{trans('store.order.totals')}}</h3>
 	<div class="row">
 		<div class="col-xs-12 col-sm-6">
+			<h3>{{trans('store.order.totals')}}</h3>
 			<table class="table">
 				<tbody>
 					<tr>
@@ -67,6 +67,12 @@
 						<tr>
 							<th>{{trans('store.order.shipping_cost')}}</th>
 							<td>{{StoreHelper::formatPrice($order->shipping_cost)}}</td>
+						</tr>
+					@endif
+					@if ($order->discount_code)
+						<tr>
+							<th>{{trans('store.order.discount.title')}}</th>
+							<td>{{StoreHelper::formatPrice($order->discount_amount)}}</td>
 						</tr>
 					@endif
 					@if (config('maguttiCms.store.vat.apply_to_products') || config('maguttiCms.store.vat.apply_to_shipping'))
@@ -83,6 +89,12 @@
 					</tr>
 				</tfoot>
 			</table>
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			@if ($discount = $order->discount)
+				<h3>{{trans('store.order.discount.title')}}</h3>
+				{{$discount->code}}: -{{$discount->amount}}%
+			@endif
 		</div>
 	</div>
 </section>

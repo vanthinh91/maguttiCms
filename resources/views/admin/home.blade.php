@@ -2,7 +2,7 @@
 @section('title', 'Admin Control Panel')
 @section('content')
 	<main id="home-buttons" class="container-fluid">
-		<h1>MaguttiCms Admin</h1>
+		<h1>maguttiCms Admin</h1>
 		<div class="row">
 			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
 				<a href="{{ URL::to('') }}" target="_new">

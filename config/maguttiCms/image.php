@@ -1,8 +1,7 @@
 <?php
 
 return [
-	'size_limit' => 4096,
-	'image_matte' => '#ffffff',
+	'size_limit' => 2048,
 	'defaults' => [
 		'w' => 640,
 		'h' => 480,
@@ -12,6 +11,7 @@ return [
 		'q' => '70',
 		'e' => 1,
 		'a' => 0,
+		'matte' => '#ffffff',
 		'filter' => []
 	],
 	'thumbnail' => [

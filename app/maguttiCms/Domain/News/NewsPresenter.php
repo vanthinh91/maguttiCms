@@ -3,26 +3,28 @@ namespace App\maguttiCms\Domain\News;
 use App\maguttiCms\Tools\Stringable;
 
 trait NewsPresenter
-
 {
+
     /*
     |--------------------------------------------------------------------------
-    |  Seo & Meta
+    |  This method return the news permalink.
     |--------------------------------------------------------------------------
     */
-    function getFullSlug($locale=''){
-        $locale = ($locale)?:app()->getLocale();
-        return  'news/'.$this->{'slug:'.$locale};
-    }
-
-
     public function getPermalink($locale='')
     {
-        $url =  $this->getFullSlug($locale);
-        return url_locale($url);
+        $locale = ($locale) ? $locale : app()->getLocale();
+
+        return url_locale('news/'. $this->{'slug:'. $locale});
     }
 
-	public function getExcerpt($length = 200) {
-		return Stringable::truncate($this->description, $length);
-	}
+    /*
+    |--------------------------------------------------------------------------
+    |  This method return the news excerpt.
+    |--------------------------------------------------------------------------
+    */
+    public function getExcerpt($length = 200)
+    {
+        return Stringable::truncate($this->description, $length);
+    }
+
 }

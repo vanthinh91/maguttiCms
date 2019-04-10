@@ -1,6 +1,5 @@
 <?php namespace App\maguttiCms\Website\Controllers;
 
-
 use App\maguttiCms\Website\Requests\WebsiteFormRequest;
 use App\maguttiCms\Mailers\SystemMailer;
 use App\Http\Controllers\Controller;
@@ -9,6 +8,7 @@ use App\FaqCategory;
 use App\Article;
 use App\Contact;
 use App\Product;
+use App\maguttiCms\Tools\SettingHelper as Setting;
 use Validator;
 use Input;
 
@@ -49,7 +49,7 @@ class WebsiteFormController extends Controller
         $article = Article::where('slug', '=', $slug)->first();
 
         /****************** send confirm email ***************/
-        $data = $request->only('name','surname', 'email', 'company', 'subject', 'request_product_id');
+        $data = $request->only('name', 'surname', 'email', 'company', 'subject', 'request_product_id');
 
         $data['messageLines'] = explode("\n", $model->message);
         $data['mailSubject'] = trans('website.mail_message.contact') . ': ' . $model->name . ' ' . $model->company;
@@ -57,7 +57,6 @@ class WebsiteFormController extends Controller
         if ($model->request_product_id) {
             $product_name = Product::where('id', $model->request_product_id)->first();
             $product_name = $product_name->title;
-
         } else {
             $product_name = "";
         }
@@ -95,7 +94,7 @@ class WebsiteFormController extends Controller
             $model_name = strtolower(class_basename($model));
             $destinationPath =  config('maguttiCms.admin.path.user_upload').'/'.$model_name; // upload path
             $extension 		 = $newMedia->getClientOriginalExtension(); // getting image extension
-            $name 			 = basename($newMedia->getClientOriginalName(),'.'.$extension);
+            $name 			 = basename($newMedia->getClientOriginalName(), '.'.$extension);
             $fileName 		 = Str::slug(time().'_'.$name).".".$extension; // renameing image
             $newMedia->move($destinationPath, $fileName); // uploading file to given path
             $model->$media = $model_name.'/'.$fileName;

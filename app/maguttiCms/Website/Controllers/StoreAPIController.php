@@ -43,7 +43,7 @@ class StoreAPIController extends Controller
 
 	public function storeCartItemRemove(AjaxFormRequest $request)
 	{
-		$result = StoreHelper::cartItemRemove($request->get('cart_item_id'));
+		$result = StoreHelper::cartItemRemove($request->id);
 		if ($result) {
 			array_push($this->response['alerts'], [
 				'text'	=> trans('store.alerts.remove_success'),
@@ -66,12 +66,28 @@ class StoreAPIController extends Controller
 	{
 		$cart = StoreHelper::getSessionCart();
 		if ($cart && $cart->id = $request->cart) {
-			$result = StoreHelper::calcCosts($cart, $request->address);
+			$result = StoreHelper::calcCosts($cart, $request->address, $request->discount_code);
 			if ($result)
 				return response()->json($result);
 			else
 				return response()->json(false);
 		}
 		return response()->json(false);
+	}
+
+	public function storeOrderDiscount(AjaxformRequest $request)
+	{
+		$discount = StoreHelper::getDiscount($request->code);
+		if ($discount) {
+			return response()->json([
+				'valid' => true,
+				'message' => sprintf(trans('store.order.discount.valid'), $discount->amount)
+			]);
+		} else {
+			return response()->json([
+				'valid' => false,
+				'message' => trans('store.order.discount.invalid')
+			]);
+		}
 	}
 }

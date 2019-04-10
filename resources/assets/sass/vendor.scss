@@ -1,0 +1,27 @@
+// Variables
+@import "variables";
+
+// Bootstrap
+//@import "~bootstrap/dist/css/bootstrap.css";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Font Awesome
+@import "~@fortawesome/fontawesome-free/css/solid.min";
+@import "~@fortawesome/fontawesome-free/css/brands.min";
+@import "~@fortawesome/fontawesome-free/css/fontawesome.min";
+// Material Icons
+// @import "node_modules/material-design-icons/iconfont/material-icons";
+
+// Plugin
+@import "~@fancyapps/fancybox/dist/jquery.fancybox.css";
+@import "~owl.carousel/dist/assets/owl.carousel.min";
+@import "~smokejs/dist/css/smoke.min";
+@import "~animate.css/animate.min";
+
+// GF plugins
+@import "resources/assets/plugins/pb-overlay/pb-overlay";
+@import "resources/assets/plugins/pb-suggest/pb-suggest";
+
+// helpers
+@import "gf-helper.scss";
+// @import "gf-helper-print.scss";
