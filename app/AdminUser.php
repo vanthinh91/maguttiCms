@@ -48,7 +48,8 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
 	 */
 	public function setPasswordAttribute($password)
 	{
-		if ($password !='') {
+
+	    if ($password !='') {
 			$this->attributes['password'] = bcrypt($password);
 		}
 	}
@@ -126,7 +127,7 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
 			'label'      => trans('admin.label.password'),
 			'display'    => 1,
 			'template'   => 'password',
-			'validation' => 'min:10|confirmed|regex:'.config('maguttiCms.security.password_regex'),
+			'validation' => 'nullable|min:10|confirmed|regex:'.config('maguttiCms.security.password_regex'),
 		];
 		$this->fieldspec['locale'] = [
 			'type'        => 'locale',
