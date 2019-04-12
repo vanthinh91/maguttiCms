@@ -15,8 +15,15 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+
+        /*
+        |--------------------------------------------------------------------------
+        | maguttiCms Middleware
+        |--------------------------------------------------------------------------
+        */
+
         //'Clockwork\Support\Laravel\ClockworkMiddleware',
-        \App\Http\Middleware\ForceSSLMiddleware::class
+        \App\maguttiCms\Middleware\ForceSSLMiddleware::class
     ];
 
     /**
@@ -64,8 +71,8 @@ class Kernel extends HttpKernel
 
         'shield' => \App\maguttiCms\Middleware\GFShieldMiddleware::class,
         'adminauth' => \App\maguttiCms\Middleware\AdminAuthenticate::class,
-		'storeenabled' => \App\Http\Middleware\StoreEnabled::class,
-		'usercart' => \App\Http\Middleware\UserCart::class,
+		'storeenabled' => \App\maguttiCms\Middleware\StoreEnabled::class,
+		'usercart' => \App\maguttiCms\Middleware\UserCart::class,
 		'setlocaleadmin'  => \App\maguttiCms\Middleware\SetLocaleAdmin::class,
         'adminimpersonate'  => \App\maguttiCms\Middleware\AdminImpersonate::class,
 
