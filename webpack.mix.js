@@ -15,7 +15,7 @@ require('laravel-mix-merge-manifest');
 
 if (mix.config.production || mix.config.development) {
 	mix.sass('resources/assets/sass/vendor.scss', 'public/website/css/');
-	// mix.js('resources/assets/js/cmsvendor.js', 'public/cms/js/cmsvendor.js');
+
 	mix.js('resources/assets/js/vendor.js', 'public/website/js');
 	mix.version();
 } else {
@@ -25,6 +25,7 @@ if (mix.config.production || mix.config.development) {
 mix.sass('resources/assets/sass/admin.scss' , 'public/cms/css/');
 mix.js('resources/assets/js/header.js',            'public/cms/js/header.js');
 mix.js('resources/assets/js/cms.js',               'public/cms/js/cms.js');
+mix.js('resources/assets/js/appcms.js', 'public/cms/js/appcms.js');
 
 mix.sass('resources/assets/sass/app.scss'   , 'public/website/css/');
 mix.js('resources/assets/js/app.js',               'public/website/js');

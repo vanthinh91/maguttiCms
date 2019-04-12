@@ -4,6 +4,8 @@
 	<title>{!! config('maguttiCms.admin.option.title') !!}</title>
 	<!-- Latest compiled and minified CSS -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
 
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400"/>
 	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.plugins').'uploadifive/uploadifive.css')!!}">
