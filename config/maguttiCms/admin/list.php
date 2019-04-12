@@ -786,7 +786,7 @@ return [
 			'joinTable'         => "article_translations",
 			'foreignJoinKey'    => 'article_id',
 			'localJoinKey'      => 'id',
-            'joinFields'        => ['article_translations.id'],
+            'joinFields'        => ['article_translations.id as translation_id'],
 
 			'whereFilter'       => 'locale="it" ',
 			'orderBy'           => 'article_translations.title,sort',
