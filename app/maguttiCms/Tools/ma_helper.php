@@ -350,5 +350,5 @@ function cmsUserIsOwner($model_id, $user_id)
 // current_auth_user
 function auth_user($guard = '')
 {
-    return ($guard != '') ? auth()->guard()->user() : auth()->user();
+    return ($guard != '') ? auth($guard)->user() : auth()->user();
 }

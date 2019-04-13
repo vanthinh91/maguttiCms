@@ -58,7 +58,8 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
         Route::get('updateHtml/media/{model?}','\App\maguttiCms\Admin\Controllers\AjaxController@updateModelMediaList');
         Route::get('updateHtml/{mediaType?}/{model?}/{id?}','\App\maguttiCms\Admin\Controllers\AjaxController@updateMediaList');
         Route::get('updateMediaSortList/',                  '\App\maguttiCms\Admin\Controllers\AjaxController@updateMediaSortList');
-        Route::get('api/suggest', ['as' => 'api.suggest', 'uses' => '\App\maguttiCms\Admin\Controllers\AjaxController@suggest']);
+        Route::get('suggest', ['as' => 'api.suggest', 'uses' => '\App\maguttiCms\Admin\Controllers\AjaxController@suggest']);
+        Route::get('dashboard','\App\MaguttiCms\Api\V1\Controllers\AdminServicesController@dashboard');
 
         /*
         |--------------------------------------------------------------------------
