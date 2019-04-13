@@ -1,6 +1,5 @@
 <?php namespace App\MaguttiCms\Api\V1\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Url;
 use Validator;
 use Illuminate\Http\Request;

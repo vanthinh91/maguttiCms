@@ -1790,33 +1790,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      items: null,
-      itemss: [{
-        title: 'Website',
-        url: 'http://magutticms.test',
-        target: false,
-        iconClass: 'fas fa-globe'
-      }, {
-        title: 'Pages',
-        url: 'http://magutticms.test/admin/list/articles',
-        target: false,
-        iconClass: 'fas fa-newspaper'
-      }, {
-        title: 'Slides',
-        url: 'http://magutticms.test/admin/list/articles',
-        target: false,
-        iconClass: 'fas fa-newspaper'
-      }, {
-        title: 'News',
-        url: 'http://magutticms.test/admin/list/news',
-        target: false,
-        iconClass: 'fas fa-bullhorn'
-      }, {
-        title: 'Newsletter',
-        url: 'http://magutticms.test/admin/list/newsletters',
-        target: false,
-        iconClass: 'fas fa-envelope-open-text'
-      }]
+      items: null
     };
   },
   mounted: function mounted() {
