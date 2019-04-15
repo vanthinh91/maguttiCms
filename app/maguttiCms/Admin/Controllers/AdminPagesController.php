@@ -90,7 +90,7 @@ class AdminPagesController extends Controller
 
 		$admin_can_edit = Auth::guard('admin')->user()->hasRole(['su', 'admin']);
 
-		return view('admin.list', ['articles' => $articles, 'pageConfig' => collect($this->config), 'fieldspec' => $fieldspec, 'model' => $this->models, 'admin_can_edit' => $admin_can_edit]);
+		return view('admin.list', ['articles' => $articles, 'pageConfig' => collect($this->config), 'fieldspec' => $fieldspec, 'model' => $this->models]);
 	}
 
 	/**
