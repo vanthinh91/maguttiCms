@@ -23,14 +23,13 @@
 								<tr>
 									{{ AdminList::initList($pageConfig)->getListHeader() }}
 									@if (
-											$admin_can_edit
-											&& (
-												data_get($pageConfig, 'edit')
-												|| data_get($pageConfig, 'copy')
-												|| data_get($pageConfig, 'view')
-												|| data_get($pageConfig, 'delete')
-												|| data_get($pageConfig, 'impersonated')
-											)
+
+											data_get($pageConfig, 'edit')
+											|| data_get($pageConfig, 'copy')
+											|| data_get($pageConfig, 'view')
+											|| data_get($pageConfig, 'delete')
+											|| data_get($pageConfig, 'impersonated')
+
 										)
 										<th>{!! trans('admin.label.actions')!!}</th>
 									@endif
@@ -86,7 +85,7 @@
 															}
 														@endphp
 														@if (data_get($label, 'relation') && $relationObj || !data_get($label, 'relation'))
-															@if (data_get($label, 'editable') && $admin_can_edit)
+															@if (data_get($label, 'editable'))
 																<div class="bool-toggle" data-list-boolean="{!! $model.'_'.$id !!}" data-list-name ="{!! $label['field']!!}">
 																	<span class="bool-on {{($value)? '' : 'hidden'}}">
 																		{{AdminDecorator::getBooleanOn()}}
@@ -105,7 +104,7 @@
 																</div>
 															@endif
 														@endif
-													@elseif ($label['type'] == 'editable' && $admin_can_edit)
+													@elseif ($label['type'] == 'editable')
 														<input
 															id="{!! $pageConfig['model'].'_'.$label['field'].'_'.$article->id !!}"
 															class="form-control"
@@ -116,7 +115,7 @@
 															autocomplete="off"
 														/>
 													@elseif ($label['type'] == 'relation')
-														@if(isset($label['editable']) && $label['editable'] && $admin_can_edit)
+														@if(isset($label['editable']) && $label['editable'])
 															@php
 																$relationObj     = AdminDecorator::getRelation($label);
 																$selectObjValue  = AdminDecorator::getSelectRelationItemValue($label,$article->{$label['field']});
@@ -166,13 +165,13 @@
 											</td>
 										@endforeach
 										@if (
-												$admin_can_edit
-												&& (
+
+
 													data_get($pageConfig, 'edit')
 													|| data_get($pageConfig, 'copy')
 													|| data_get($pageConfig, 'view')
 													|| data_get($pageConfig, 'delete')
-												)
+
 											)
 											<td class="list-actions">
 												@if ($pageConfig['edit'])
