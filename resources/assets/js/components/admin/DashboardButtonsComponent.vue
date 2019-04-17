@@ -23,7 +23,7 @@
             }
         },
         mounted() {
-            console.log('Component mounted.')
+
         },methods: {
             fetchData: function () {
                 var self = this;
@@ -39,7 +39,6 @@
             },
             refresh({data}) {
                 this.items = data.data
-                console.log(this.items)
             },
 
         }

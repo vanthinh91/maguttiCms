@@ -1,39 +1,31 @@
-<template>
-    <span>
-      <side-bar-items v-for="(item, index) in items"  :key="index" :currentSection = currentSection :item="item"></side-bar-items>
-    </span>
-</template>
 <script>
-    import SideBarItems from './SideBarItems'
+
     import {HTTP} from '../../mixins/http-common';
-    import helper     from '../../mixins/helper';
+    import helper from '../../mixins/helper';
     export default {
         mixins: [helper],
-        components: {
-            SideBarItems,
-        },
+        template: require('../admin/template/side-bar-item.html'),
+        props: ['item','currentSection'],
         // Fetches posts when the component is created.
         created() {
-            this.fetchData();
+
         },
         data() {
             return {
-                items:null,
-                currentSection:null
+                open: false
             }
         },
-
         mounted() {
-            console.log('Side Bar  mounted.')
+            console.log('Side Bar sub menu mounted.')
             this.currentSection = this.getCurrentModel();
-        },methods: {
+        }, methods: {
             fetchData: function () {
                 var self = this;
                 return HTTP.get(this.url())
                     .then(this.refresh)
                     .catch(e => {
                         self.errors.push(e)
-                        self.showMessage(e.message,self.ERROR_CLASS);
+                        self.showMessage(e.message, self.ERROR_CLASS);
                     })
             },
             url() {
@@ -42,9 +34,7 @@
             refresh({data}) {
                 this.items = data.data
             },
-            vai(data) {
-                alert(data)
-            },
         },
+
     }
 </script>

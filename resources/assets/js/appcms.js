@@ -22,6 +22,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('dashboard-component', require('./components/admin/DashboardButtonsComponent').default);
+Vue.component('side-bar-component', require('./components/admin/SideBar').default);
 
 
 /**

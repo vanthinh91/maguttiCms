@@ -19,8 +19,6 @@
             }
         },
 
-        mounted() {
-            console.log('Component mounted button' + this.item)
-        }
+        mounted() {}
     }
 </script>

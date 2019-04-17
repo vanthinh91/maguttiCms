@@ -87,6 +87,19 @@
 						margin-right: 0.5em;
 					}
 				}
+				.nav-sub-item {
+					background-color: lighten($color-primary, 15);
+					padding: 0rem ;
+					list-style: none;
+
+					@include breakpoint-up($header-trigger) {
+
+					};
+					i {
+						margin-left: 2.5rem;
+						margin-right: 0em;
+					}
+				}
 			}
 		}
 
@@ -176,5 +189,12 @@
 				}
 			}
 		}
+	}
+}
+.header .nav  ul.nav-sub-item {
+	padding-left:2.5rem;
+	padding-top:0.5rem;
+	> li > a {
+		padding:0.5rem 0;
 	}
 }

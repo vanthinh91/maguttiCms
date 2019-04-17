@@ -97,39 +97,7 @@
 						{{icon('th')}}{{trans('admin.label.dashboard')}}
 					</a>
 				</li>
-				@foreach(config('maguttiCms.admin.list.section') as $_code => $_section)
-					@if (isset($_section['menu']['top-bar']['show']) && $_section['menu']['top-bar']['show']==true  && Auth::guard('admin')->user()->canViewSection($_section))
-						@if (isset($_section['menu']['top-bar']['submodel']))
-							<li>
-								<a href="#" class="nav-sub-toggle">
-									{{icon($_section['icon'])}}{{ trans('admin.models.'.$_code) }}{{icon('caret-down', 'dropdown-icon')}}
-								</a>
-								<ul class="nav-sub">
-									<li>
-										<a href="{{ ma_get_admin_list_url($_section['model']) }}" class="{{($_section['model'] == $current_model)? 'current': ''}}">
-											{{icon($_section['icon'])}}{{ trans('admin.models.'.$_code) }}
-										</a>
-									</li>
-									@if (isset($_section['menu']['top-bar']['submodel']))
-										@foreach($_section['menu']['top-bar']['submodel'] as $_submodel_code => $_submodel)
-											<li>
-												<a href="{{ma_get_admin_list_url($_submodel['model']) }}" class="{{($_submodel['model'] == $current_model)? 'current': ''}}">
-													{{icon($_section['icon'])}}{{ucfirst(trans('admin.models.'.$_submodel_code))}}
-												</a>
-											</li>
-										@endforeach
-									@endif
-								</ul>
-							</li>
-						@else
-							<li>
-								<a href="{{ ma_get_admin_list_url($_section['model']) }}" class="{{($_section['model'] == $current_model)? 'current': ''}}">
-									{{icon($_section['icon'])}} {{ trans('admin.models.'.$_code) }}
-								</a>
-							</li>
-						@endif
-					@endif
-				@endforeach
+				<side-bar-component></side-bar-component>
 			</ul>
 			<div class="footer">
 				{{config('maguttiCms.admin.option.title')}} {{ App::VERSION() }} - {{phpversion()}}

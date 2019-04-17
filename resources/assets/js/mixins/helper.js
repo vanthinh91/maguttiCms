@@ -22,7 +22,11 @@ export default {
             }
 
             return this.path;
+        },
+        getCurrentModel() {
+            let parsedUrl = window.location.pathname.split(/[//]+/);
+            this.path = parsedUrl.pop();
+            return (isNaN(this.path)) ? this.path: parsedUrl.pop();
         }
     }
-
 }

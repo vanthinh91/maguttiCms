@@ -60,6 +60,7 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
         Route::get('updateMediaSortList/',                  '\App\maguttiCms\Admin\Controllers\AjaxController@updateMediaSortList');
         Route::get('suggest', ['as' => 'api.suggest', 'uses' => '\App\maguttiCms\Admin\Controllers\AjaxController@suggest']);
         Route::get('dashboard','\App\MaguttiCms\Api\V1\Controllers\AdminServicesController@dashboard');
+        Route::get('nav-bar','\App\MaguttiCms\Api\V1\Controllers\AdminServicesController@navbar');
 
         /*
         |--------------------------------------------------------------------------

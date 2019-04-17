@@ -485,6 +485,15 @@ header.header .nav ul {
   margin-left: 0;
   margin-right: 0.5em;
 }
+.header .nav > ul li .nav-sub-item {
+  background-color: #262626;
+  padding: 0rem;
+  list-style: none;
+}
+.header .nav > ul li .nav-sub-item i {
+  margin-left: 2.5rem;
+  margin-right: 0em;
+}
 .header .nav.vertical {
   position: fixed;
   left: auto;
@@ -574,6 +583,14 @@ header.header .nav ul {
     margin-left: 0;
     margin-right: 0.5em;
   }
+}
+
+.header .nav ul.nav-sub-item {
+  padding-left: 2.5rem;
+  padding-top: 0.5rem;
+}
+.header .nav ul.nav-sub-item > li > a {
+  padding: 0.5rem 0;
 }
 
 #sidebar {

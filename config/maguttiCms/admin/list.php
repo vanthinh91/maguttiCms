@@ -86,8 +86,10 @@ return [
                 'home' => true,
                 'top-bar' => [
                     'show' => true,
-                    'action' => ['add']
+                    'action' => ['add'],
+
                 ],
+
             ]
         ],
 

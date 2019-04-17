@@ -42,6 +42,38 @@ class AdminServicesController extends ApiController
         return $this->apiResponse();
     }
 
+    public function navbar(Request $request)
+    {
+        $this->request = $request;
+        $data = collect();
+        $data->push([
+            'title' => 'Web site',
+            'url' => url()->to(''),
+            'iconClass' => 'fas fa-globe',
+            'target' => "_new",
+            'section' => '',
+            'submenu' =>[]
+        ]);
+
+        foreach ($this->getNavBarItems() as $_code => $section) {
+            $data->push([
+                'title' => trans('admin.models.' . $_code),
+                'url' => ma_get_admin_list_url($section['model']),
+                'iconClass' => 'fas fa-' . $section['icon'],
+                'target' => null,
+                'section' => $_code,
+                'submenu' => $this->getNavBarSubItems($section)
+               ]
+            );
+        }
+        if ($data) {
+            $this->setData($data);
+            $this->responseSuccess();
+        } else $this->setEnableLog(false)->responseWithError();
+
+        return $this->apiResponse();
+    }
+
     function getDashBoardItems(){
 
         return collect($this->config['section'])->where('menu.home')->filter(
@@ -57,5 +89,26 @@ class AdminServicesController extends ApiController
                 return auth_user('admin')->canViewSection($section);
             }
         );
+    }
+
+    function getNavBarSubItems($section){
+        $data = collect();
+
+        if(isset($section['menu']['top-bar']['submodel'])){
+            foreach ($section['menu']['top-bar']['submodel'] as $_code => $item ){
+                $data->push([
+                    'title' => trans('admin.models.' . $_code),
+                    'url' => ma_get_admin_list_url($_code),
+                    'iconClass' => 'fas fa-' . $section['icon'],
+                    'target' => null,
+                    'section' => $_code,
+
+                ]);
+            }
+        }
+
+
+        return $data;
+
     }
 }

@@ -30,14 +30,16 @@
 	</script>
 </head>
 <body class="{{(!Auth::guard('admin')->check())? 'login': ''}}">
+<div id="app">
 	@if (Auth::guard('admin')->check())
 		@include('admin.common.navbar')
 	@endif
 	@yield('content')
+</div>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="{{ mix('/cms/js/appcms.js') }}"></script>
+
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="{!! asset(config('maguttiCms.admin.path.plugins').'custom-scrollbar/jquery.mCustomScrollbar.concat.min.js')!!}"></script>
 	<script src="{!! asset(config('maguttiCms.admin.path.plugins').'notify.min.js')!!}"></script>
@@ -47,6 +49,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.1/cropper.min.js" charset="utf-8"></script>
 	<script src="{{ mix('/cms/js/cms.js') }}"></script>
 	<script src="{{ mix('/cms/js/header.js') }}"></script>
+<script type="text/javascript" src="{{ mix('/cms/js/appcms.js') }}"></script>
 	<script>
 	$(document).ready(function() {
 		Cms.init();
