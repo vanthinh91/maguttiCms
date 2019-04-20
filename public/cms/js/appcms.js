@@ -1840,6 +1840,7 @@ __webpack_require__.r(__webpack_exports__);
   // Fetches posts when the component is created.
   created: function created() {
     this.fetchData();
+    this.currentSection = this.getCurrentModel();
   },
   data: function data() {
     return {
@@ -1849,7 +1850,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log('Side Bar  mounted.');
-    this.currentSection = this.getCurrentModel();
   },
   methods: {
     fetchData: function fetchData() {
@@ -1892,7 +1892,9 @@ __webpack_require__.r(__webpack_exports__);
   template: __webpack_require__(/*! ../admin/template/side-bar-item.html */ "./resources/assets/js/components/admin/template/side-bar-item.html"),
   props: ['item', 'currentSection'],
   // Fetches posts when the component is created.
-  created: function created() {},
+  created: function created() {
+    this.setOpen();
+  },
   data: function data() {
     return {
       open: false
@@ -1900,7 +1902,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log('Side Bar sub menu mounted.');
-    this.currentSection = this.getCurrentModel();
   },
   methods: {
     fetchData: function fetchData() {
@@ -1916,6 +1917,15 @@ __webpack_require__.r(__webpack_exports__);
     refresh: function refresh(_ref) {
       var data = _ref.data;
       this.items = data.data;
+    },
+    setOpen: function setOpen() {
+      var open = false;
+      var section = this.currentSection;
+      this.item.submenu.forEach(function (item) {
+        if (item.section === section) open = true;
+        console.log(item.section + ' ' + section);
+      });
+      this.open = open;
     }
   }
 });
@@ -31212,7 +31222,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<li v-if=\"item.submenu.length\">\n    <a href=\"#\" :class=\"item.section==currentSection?'current':''\" class=\"nav-sub-toggle\" v-on:click.prevent=\"open=!open\">\n        <i :class=\"item.iconClass\"></i>{{item.title}}<i class=\"fas fa-caret-down dropdown-icon\"></i>\n    </a>\n    <ul v-if=\"open\" class=\"nav-sub-item\">\n        <li>\n            <a :href=\"item.url\" :target=\"item.target ? item.target : null\"\n               :class=\"item.section==currentSection?'current':''\">\n                <i :class=\"item.iconClass\"></i>{{item.title}}\n            </a>\n        </li>\n        <li v-for=\"(sub_item, index) in item.submenu\" :key=\"index\">\n            <a :href=\"sub_item.url\" :target=\"sub_item.target ? sub_item.target : null\"\n               :class=\"sub_item.section==currentSection?'current':''\">\n                <i :class=\"sub_item.iconClass\"></i>{{sub_item.title}}\n            </a>\n        </li>\n    </ul>\n</li>\n<li v-else>\n    <a  :href=\"item.url\" :target=\"item.target ? item.target : null\"\n        :class=\"item.section==currentSection?'current':''\">\n        <i :class=\"item.iconClass\"></i>{{item.title}}\n    </a>\n</li>";
+module.exports = "<li v-if=\"item.submenu.length\">\n    <a href=\"#\"  :class=\"item.section==currentSection?'current':''\"  class=\"nav-sub-toggle\" v-on:click.prevent=\"open=!open\">\n        <i :class=\"item.iconClass\"></i>{{item.title}}<i class=\"fas fa-caret-down dropdown-icon\"></i>\n    </a>\n    <transition name=\"fade\">\n    <ul v-if=\"open\" class=\"nav-sub-item\">\n        <li>\n            <a :href=\"item.url\" :target=\"item.target ? item.target : null\"\n               :class=\"item.section==currentSection?'current':''\">\n                <i :class=\"item.iconClass\"></i>{{item.title}}\n            </a>\n        </li>\n        <li v-for=\"(sub_item, index) in item.submenu\" :key=\"index\">\n            <a :href=\"sub_item.url\" :target=\"sub_item.target ? sub_item.target : null\"\n               :class=\"sub_item.section==currentSection?'current':''\">\n                <i :class=\"sub_item.iconClass\"></i>{{sub_item.title}}\n            </a>\n        </li>\n    </ul>\n    </transition>\n</li>\n<li v-else>\n    <a  :href=\"item.url\" :target=\"item.target ? item.target : null\"\n        :class=\"item.section==currentSection?'current':''\">\n        <i :class=\"item.iconClass\"></i>{{item.title}}\n    </a>\n</li>\n";
 
 /***/ }),
 
@@ -31252,6 +31262,7 @@ __webpack_require__.r(__webpack_exports__);
     getCurrentModel: function getCurrentModel() {
       var parsedUrl = window.location.pathname.split(/[//]+/);
       this.path = parsedUrl.pop();
+      console.log(this.path);
       return isNaN(this.path) ? this.path : parsedUrl.pop();
     }
   }

@@ -4,7 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('./bootstrap_fe');
 
 require('@fancyapps/fancybox');
 require('owl.carousel');

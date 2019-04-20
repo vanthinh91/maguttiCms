@@ -1,7 +1,8 @@
 <li v-if="item.submenu.length">
-    <a href="#" :class="item.section==currentSection?'current':''" class="nav-sub-toggle" v-on:click.prevent="open=!open">
+    <a href="#"  :class="item.section==currentSection?'current':''"  class="nav-sub-toggle" v-on:click.prevent="open=!open">
         <i :class="item.iconClass"></i>{{item.title}}<i class="fas fa-caret-down dropdown-icon"></i>
     </a>
+    <transition name="fade">
     <ul v-if="open" class="nav-sub-item">
         <li>
             <a :href="item.url" :target="item.target ? item.target : null"
@@ -16,6 +17,7 @@
             </a>
         </li>
     </ul>
+    </transition>
 </li>
 <li v-else>
     <a  :href="item.url" :target="item.target ? item.target : null"

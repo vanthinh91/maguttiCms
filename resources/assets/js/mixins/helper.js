@@ -26,6 +26,7 @@ export default {
         getCurrentModel() {
             let parsedUrl = window.location.pathname.split(/[//]+/);
             this.path = parsedUrl.pop();
+            console.log(this.path)
             return (isNaN(this.path)) ? this.path: parsedUrl.pop();
         }
     }

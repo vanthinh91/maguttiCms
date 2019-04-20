@@ -15,6 +15,7 @@
         // Fetches posts when the component is created.
         created() {
             this.fetchData();
+            this.currentSection = this.getCurrentModel();
         },
         data() {
             return {
@@ -25,7 +26,7 @@
 
         mounted() {
             console.log('Side Bar  mounted.')
-            this.currentSection = this.getCurrentModel();
+
         },methods: {
             fetchData: function () {
                 var self = this;

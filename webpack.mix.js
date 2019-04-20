@@ -13,9 +13,9 @@ require('laravel-mix-merge-manifest');
  |
 */
 
+
 if (mix.config.production || mix.config.development) {
 	mix.sass('resources/assets/sass/vendor.scss', 'public/website/css/');
-
 	mix.js('resources/assets/js/vendor.js', 'public/website/js');
 	mix.version();
 } else {

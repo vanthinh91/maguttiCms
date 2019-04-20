@@ -198,7 +198,10 @@ return [
                 'home' => true,
                 'top-bar' => [
                     'show' => true,
-                    'action' => ['add']
+                    'action' => ['add'],
+                    'submodel' => [
+                         'tags' => ['label' => 'Tags', 'model' => 'tags', 'add' => 1, 'icon' => 'tag']
+                    ]
                 ],
             ],
             'roles' => ['su', 'admin', 'user']
@@ -294,8 +297,8 @@ return [
                     'show' => true,
                     'action' => ['add'],
                     'submodel' => [
-                        'categories' => ['label' => 'Product Categories', 'model' => 'category', 'add' => 1],
-                        'productmodels' => ['label' => 'Models', 'model' => 'productmodel', 'add' => 1]
+                        'categories' => ['label' => 'Product Categories', 'model' => 'category', 'add' => 1,'icon' => 'folder',],
+                        'productmodels' => ['label' => 'Models', 'model' => 'productmodel', 'add' => 1,'icon' => 'folder',]
                     ]
                 ],
             ],

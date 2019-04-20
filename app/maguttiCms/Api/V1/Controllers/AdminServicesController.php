@@ -62,7 +62,7 @@ class AdminServicesController extends ApiController
                 'iconClass' => 'fas fa-' . $section['icon'],
                 'target' => null,
                 'section' => $_code,
-                'submenu' => $this->getNavBarSubItems($section)
+                'submenu' => $this->getNavBarSubItems($section,$_code)
                ]
             );
         }
@@ -91,7 +91,7 @@ class AdminServicesController extends ApiController
         );
     }
 
-    function getNavBarSubItems($section){
+    function getNavBarSubItems($section,$parent){
         $data = collect();
 
         if(isset($section['menu']['top-bar']['submodel'])){
@@ -99,7 +99,7 @@ class AdminServicesController extends ApiController
                 $data->push([
                     'title' => trans('admin.models.' . $_code),
                     'url' => ma_get_admin_list_url($_code),
-                    'iconClass' => 'fas fa-' . $section['icon'],
+                    'iconClass' => 'fas fa-' . $item['icon'],
                     'target' => null,
                     'section' => $_code,
 

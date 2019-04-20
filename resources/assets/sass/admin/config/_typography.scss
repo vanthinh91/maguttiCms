@@ -41,3 +41,9 @@ label {
 	margin-bottom: 0.5em;
 	font-weight: 700;
 }
+.fade-enter-active, .fade-leave-active {
+	transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to  {
+	opacity: 0;
+}
