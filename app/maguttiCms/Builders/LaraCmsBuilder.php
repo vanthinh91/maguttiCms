@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
  * Class maguttiCmsBuilder
  * @package App\maguttiCms\Builders
  */
-class maguttiCmsBuilder extends Builder
+class laraCmsBuilder extends Builder
 {
     public  function status($status){
         return $this->where('is_active',$status);

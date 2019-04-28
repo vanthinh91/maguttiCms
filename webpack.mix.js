@@ -23,7 +23,7 @@ if (mix.config.production || mix.config.development) {
 }
 
 mix.sass('resources/assets/sass/admin.scss' , 'public/cms/css/');
-mix.js('resources/assets/js/header.js',            'public/cms/js/header.js');
+mix.js('resources/assets/js/header.js',        'public/cms/js/header.js');
 mix.js('resources/assets/js/cms.js',               'public/cms/js/cms.js');
 mix.js('resources/assets/js/appcms.js', 'public/cms/js/appcms.js');
 
