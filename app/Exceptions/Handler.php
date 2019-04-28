@@ -44,7 +44,7 @@ class Handler extends ExceptionHandler
 						['error' => $exception->getMessage(), 'file' => $exception->getFile(), 'line' => $exception->getLine(), 'trace' => $exception->getTrace()],
 						function ($message) {
 							$message->subject(trans('Laravel Error on '.config('maguttiCms.website.option.app.name')));
-							$message->from('maguttiCms@gfstudio.com', config('maguttiCms.website.option.app.name'));
+							//$message->from('hello@magutti.com', config('maguttiCms.website.option.app.name'));
 							$message->to(config('maguttiCms.developer.email'));
 						}
 					);
