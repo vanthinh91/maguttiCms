@@ -52,7 +52,7 @@ class RegistrationController extends ApiController
             $user = User::registerFromApi($request->all());
             if($user){
                 Mail::to( $user->email )->send(new UserRegistered($user));
-                //Mail::to( 'mywowo.gfstudio.com@gmail.com' )->send(new UserRegistered($user));
+                //Mail::to( 'mywowo.Magutti.com@gmail.com' )->send(new UserRegistered($user));
                 $this->setStatus('OK');
                 if($request->has("data")){
                     $stream  = json_decode($request->data);
