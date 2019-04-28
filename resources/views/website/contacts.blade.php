@@ -33,6 +33,13 @@
 				{{config('maguttiCms.website.option.app.lng')}},	// lng
 				'{{asset('website/images/map_marker.png')}}',	// icon image
 				"<div class='mapPop'><b>{!! config('maguttiCms.website.option.app.name')!!}</b><br>{!! config('maguttiCms.website.option.app.address')!!}<br>{!! config('maguttiCms.website.option.app.locality')!!}<br></div>", //popup window content
+			],
+			[
+				'{!! config('maguttiCms.website.option.app.name')!!}',	//title
+				{{config('maguttiCms.website.option.app.lng')}},	// lat
+				{{config('maguttiCms.website.option.app.lat')}},	// lng
+				'{{asset('website/images/map_marker.png')}}',	// icon image
+				"<div class='mapPop'><b>{!! config('maguttiCms.website.option.app.name')!!}</b><br>{!! config('maguttiCms.website.option.app.address')!!}<br>{!! config('maguttiCms.website.option.app.locality')!!}<br></div>", //popup window content
 			]
 		];
 		var gmap_config = {

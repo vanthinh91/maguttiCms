@@ -43,8 +43,8 @@ window.gMap = function () {
 				infowindow.open(map, this);
 			});
 			bounds.extend(siteLatLng);
-
-			if (map_markers.length==1) {
+			map.fitBounds(bounds);
+			if (marker_config.length==1) {
 				zoomChangeBoundsListener = google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
 					if (map.getZoom()) {
 						map.setZoom(gmap_config.zoomLevel);
@@ -52,9 +52,7 @@ window.gMap = function () {
 				});
 				setTimeout(function() {google.maps.event.removeListener(zoomChangeBoundsListener);}, 2000);
 			}
-			else {
-				map.fitBounds(bounds);
-			}
+
 		}
 
 		if (curMarker != '') {
