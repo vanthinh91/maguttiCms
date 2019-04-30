@@ -12,6 +12,7 @@ use App\SpecialPrice;
 use App\Discount;
 use Illuminate\Http\Request;
 use App\maguttiCms\PayPal\GFExpressCheckout;
+use Illuminate\Support\Str;
 
 class StoreHelper {
 	/////	STORE	/////
