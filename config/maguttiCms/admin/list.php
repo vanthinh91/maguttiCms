@@ -206,35 +206,6 @@ return [
             ],
             'roles' => ['su', 'admin', 'user']
         ],
-        'newsletters' => [
-            'model' => 'Newsletter',
-            'title' => 'Newsletter',
-            'icon' => 'envelope-open-text',
-            'field' => [
-                'id',
-                'locale' => ['type' => 'locale', 'field' => 'locale'],
-                'email',
-                'created_at' => ['type' => 'date', 'field' => 'created_at'],
-            ],
-            'orderBy' => 'created_at',
-            'orderType' => 'DESC',
-            'edit' => 0,
-            'delete' => 1,
-            'create' => 0,
-            'copy' => 0,
-            'preview' => 0,
-            'view' => 0,
-            'selectable' => 1,
-            'showMedia' => 0,
-            'showSeo' => 0,
-            'menu' => [
-                'home' => true,
-                'top-bar' => [
-                    'show' => true,
-                ],
-            ],
-            'roles' => ['su', 'admin']
-        ],
         'tags' => [
             'model' => 'Tag',
             'title' => 'TagsNews',
@@ -256,13 +227,12 @@ return [
             'menu' => [
                 'home' => false,
                 'top-bar' => [
-                    'show' => true,
+                    'show' => false,
                     'action' => ['add']
                 ],
             ],
             'roles' => ['su', 'admin', 'user']
         ],
-
         'products' => [
             'model' => 'Product',
             'title' => 'Product',
@@ -304,7 +274,35 @@ return [
             ],
             'roles' => ['su', 'admin', 'user']
         ],
-
+        'newsletters' => [
+            'model' => 'Newsletter',
+            'title' => 'Newsletter',
+            'icon' => 'envelope-open-text',
+            'field' => [
+                'id',
+                'locale' => ['type' => 'locale', 'field' => 'locale'],
+                'email',
+                'created_at' => ['type' => 'date', 'field' => 'created_at'],
+            ],
+            'orderBy' => 'created_at',
+            'orderType' => 'DESC',
+            'edit' => 0,
+            'delete' => 1,
+            'create' => 0,
+            'copy' => 0,
+            'preview' => 0,
+            'view' => 0,
+            'selectable' => 1,
+            'showMedia' => 0,
+            'showSeo' => 0,
+            'menu' => [
+                'home' => true,
+                'top-bar' => [
+                    'show' => true,
+                ],
+            ],
+            'roles' => ['su', 'admin']
+        ],
         'categories' => [
             'model' => 'Category',
             'title' => 'Product Categories',
