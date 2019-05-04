@@ -5,6 +5,7 @@ return [
 	'img_repository' => 'media/images/',
 	'img_save'       => 'media/images/cache/',
 	'doc_repository' => 'media/docs/',
+    'public'         => '',
 
 	'media_img_repository' => 'media/images/',
 	'media_doc_repository' => 'media/docs/',
