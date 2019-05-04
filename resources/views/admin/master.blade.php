@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.common_css').'ma_helper.css')!!}">
 	<link rel="stylesheet" href="{!! asset(config('maguttiCms.admin.path.cms_css').'bootstrap-theme.css')!!}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.1/cropper.min.css">
-	<link rel="stylesheet" href="{{ mix('cms/css/admin.css') }}">
+	<link rel="stylesheet" href="{{ asset(mix('cms/css/admin.css')) }}">
 	<link rel="icon" href="{!! asset('/favicon.jpg') !!}" type="any" sizes="20x20">
 	<script>
 		// init  some   global  variable
@@ -47,9 +47,9 @@
 	<script src="{!! asset(config('maguttiCms.admin.path.plugins').'colorpicker/js/bootstrap-colorpicker.min.js')!!}"></script>
 	<script src="{!! asset(config('maguttiCms.admin.path.plugins').'bootbox.js') !!}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.1/cropper.min.js" charset="utf-8"></script>
-	<script src="{{ mix('/cms/js/cms.js') }}"></script>
-	<script src="{{ mix('/cms/js/header.js') }}"></script>
-<script type="text/javascript" src="{{ mix('/cms/js/appcms.js') }}"></script>
+	<script src="{{ asset(mix('/cms/js/cms.js')) }}"></script>
+	<script src="{{ asset(mix('/cms/js/header.js')) }}"></script>
+<script type="text/javascript" src="{{ asset(mix('/cms/js/appcms.js')) }}"></script>
 	<script>
 	$(document).ready(function() {
 		Cms.init();
