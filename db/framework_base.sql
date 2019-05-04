@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Apr 30, 2019 alle 14:30
--- Versione del server: 5.7.22
--- Versione PHP: 7.2.4
+-- Creato il: Mag 04, 2019 alle 12:58
+-- Versione del server: 5.7.24
+-- Versione PHP: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `maguttiCms`
+-- Database: `magutticms`
 --
 
 -- --------------------------------------------------------
@@ -131,7 +131,7 @@ CREATE TABLE `articles` (
 
 INSERT INTO `articles` (`id`, `domain`, `parent_id`, `menu_title`, `title`, `subtitle`, `intro`, `abstract`, `description`, `slug`, `doc`, `image`, `banner`, `link`, `sort`, `pub`, `ignore_slug_translation`, `top_menu`, `template_id`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, '', 0, NULL, '', NULL, NULL, NULL, '', 'home', '', '', '', '', 0, 1, 0, 0, 0, 0, '2016-07-04 06:54:35', '2018-06-11 09:57:11'),
-(2, '', 0, NULL, '', NULL, NULL, NULL, '', 'company', '', 'ff0000.png', '', '', 100, 0, 0, 0, 0, 0, '2016-07-04 06:56:59', '2018-01-29 13:24:31'),
+(2, '', NULL, NULL, '', NULL, NULL, NULL, '', 'company', NULL, 'ff0000.png', '', NULL, 100, 1, 0, 1, NULL, 0, '2016-07-04 06:56:59', '2019-05-04 12:58:21'),
 (3, '', 0, NULL, '', NULL, NULL, NULL, '', 'privacy', '', '', '', '', 2000, 1, 0, 0, 0, 0, '2016-07-04 07:11:17', '2017-08-01 14:33:01'),
 (4, '', 0, NULL, '', NULL, NULL, NULL, '', 'contacts', '', '', '', '', 400, 1, 0, 1, 0, 0, '2016-07-04 07:11:39', '2017-08-01 14:32:40'),
 (5, '', 0, NULL, '', NULL, NULL, NULL, '', 'products', '', '', '', '', 200, 1, 0, 1, 0, 0, '2016-07-04 07:20:37', '2018-01-25 11:03:49'),
@@ -174,8 +174,8 @@ CREATE TABLE `article_translations` (
 INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_title`, `title`, `subtitle`, `intro`, `description`, `abstract`, `seo_title`, `seo_description`, `seo_no_index`, `created_at`, `updated_at`) VALUES
 (1, 1, 'it', 'home', 'Home', 'Home', 'LaraCms', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>', '', '', '', '0', '2016-07-04 07:53:04', '2017-08-01 15:12:25'),
 (2, 1, 'en', 'home', 'Home', 'Home', '', NULL, '', '', '', '', '', '2016-07-04 07:53:04', '2017-08-01 15:52:32'),
-(3, 2, 'it', 'azienda', 'Azienda', 'Azienda', '', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '', '', '', '2016-07-04 07:53:13', '2018-01-29 13:24:31'),
-(4, 2, 'en', '', '', '', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a liber', '', '', '', '', '', '2016-07-04 07:53:13', '2018-01-29 13:24:31'),
+(3, 2, 'it', 'azienda', 'Azienda', 'Azienda', NULL, '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', NULL, NULL, NULL, '2016-07-04 07:53:13', '2019-05-04 12:58:21'),
+(4, 2, 'en', 'company', 'Company', 'Company', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a liber', NULL, NULL, NULL, NULL, NULL, '2016-07-04 07:53:13', '2019-05-04 12:58:21'),
 (5, 3, 'it', 'privacy', 'Privacy', 'Privacy', '', NULL, '', '', '', '', '', '2016-07-04 07:53:28', '2017-08-01 14:33:01'),
 (6, 3, 'en', 'privacy', 'Privacy', 'Privacy', '', NULL, '', '', '', '', '', '2016-07-04 07:53:28', '2017-08-01 14:33:01'),
 (7, 5, 'it', 'prodotti', '', 'Categorie', '', NULL, '', '', '', '', '', '2016-07-04 07:53:38', '2018-01-25 11:03:49'),
@@ -193,7 +193,9 @@ INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_
 (21, 10, 'it', 'profile', 'Profile', 'Profile', 'Profile', NULL, '', '', '', '', '', '2016-08-10 07:17:38', '2017-08-01 14:33:37'),
 (22, 10, 'en', 'user-profile', 'User profile', 'User profile', '', NULL, '', '', '', '', '', '2016-08-10 07:17:38', '2017-08-01 14:33:37'),
 (23, 11, 'it', 'register', '', 'Registrazione', '', NULL, '', '', '', '', '', '2017-08-01 16:13:57', '2017-08-01 16:13:57'),
-(24, 11, 'en', 'register', '', 'Register', '', NULL, '', '', '', '', '', '2017-08-01 16:13:57', '2017-08-01 16:13:57');
+(24, 11, 'en', 'register', '', 'Register', '', NULL, '', '', '', '', '', '2017-08-01 16:13:57', '2017-08-01 16:13:57'),
+(25, 2, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-04 12:58:21', '2019-05-04 12:58:21'),
+(26, 2, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-04 12:58:21', '2019-05-04 12:58:21');
 
 -- --------------------------------------------------------
 
@@ -8938,52 +8940,6 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `migrations_ok`
---
-
-DROP TABLE IF EXISTS `migrations_ok`;
-CREATE TABLE `migrations_ok` (
-  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dump dei dati per la tabella `migrations_ok`
---
-
-INSERT INTO `migrations_ok` (`migration`, `batch`) VALUES
-('2014_10_12_000000_create_users_table', 1),
-('2014_10_12_100000_create_password_resets_table', 1),
-('2015_08_23_104442_create_products_table', 1),
-('2015_08_23_123427_add_paid_to_products', 1),
-('2015_08_27_133226_create_articles_table', 1),
-('2015_08_28_101039_add_media_to_articles_table', 1),
-('2015_08_29_151840_entrust_setup_tables', 1),
-('2015_08_29_173518_add_is_active_to_users_table', 1),
-('2015_12_06_191101_create_object_translation_table', 1),
-('2015_12_07_161911_article_translations', 1),
-('2015_12_20_135234_add_password_real_to_users_table', 1),
-('2015_12_23_205357_create_socials_table', 2),
-('2015_12_26_180448_create_hpsliders', 3),
-('2015_12_28_173515_add_subtitle_intro_abstract_to_article_table', 4),
-('2015_12_28_173917_add_subtitle_abstract_to_article_translations_table', 4),
-('2016_01_03_185806_add_subtitle_intro_to_article_translations', 5),
-('2016_01_03_190819_create_news_table', 6),
-('2016_01_03_190932_create_news_translations_table', 7),
-('2016_01_03_191050_create_media_table', 8),
-('2016_01_03_191145_create_media_translations_table', 9),
-('2016_01_09_213704_create_tags_table', 10),
-('2016_01_23_141830_create_contact_table', 11),
-('2016_01_23_141830_create_contacts_table', 12),
-('2016_01_27_195512_create_adminusers_table', 12),
-('2016_07_06_154403_create_newsletters_table', 13),
-('2016_08_04_150202_create_adminuser_role', 14),
-('2016_08_09_125134_create_countries_table', 15),
-('2016_08_09_135031_create_settings_table', 16);
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `news`
 --
 
@@ -10045,7 +10001,7 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT per la tabella `article_translations`
 --
 ALTER TABLE `article_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT per la tabella `carts`

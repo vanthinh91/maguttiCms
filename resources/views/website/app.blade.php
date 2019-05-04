@@ -18,8 +18,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Raleway:300,400,600" rel="stylesheet">
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="{{ mix('website/css/vendor.css') }}">
-    <link rel="stylesheet" href="{{ mix('website/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset(mix('website/css/vendor.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('website/css/app.css')) }}">
 
     @include('website.partials.widgets_mobile_app')
 
@@ -46,7 +46,6 @@
     var urlAjaxHandler  = "{{ url_locale('/') }}";
     var _LANG           = "{{ get_locale() }}";
     var _WEBSITE_NAME	= "{!! config('maguttiCms.website.option.app.name')!!}";
-    var imageScroll     = "{!! asset(config('maguttiCms.admin.path.assets').'website/images/up.png') !!}";
     window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>;
     @if (store_enabled())
         window.StoreConfig = {
@@ -63,15 +62,15 @@
 @include('website.partials.js_localization')
 
 <!-- JS Implementing Plugins -->
-<script type="text/javascript" src="{{ mix('/website/js/vendor.js') }}"></script>
-<script type="text/javascript" src="{{ mix('/website/js/app.js') }}"></script>
+<script type="text/javascript" src="{{ asset(mix('/website/js/vendor.js')) }}"></script>
+<script type="text/javascript" src="{{ asset(mix('/website/js/app.js')) }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         App.init();
     });
 </script>
 @if (store_enabled())
-    <script type="text/javascript" src="{{ mix('/website/js/store.js') }}"></script>
+    <script type="text/javascript" src="{{ asset(mix('/website/js/store.js')) }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             Store.init();
