@@ -1,0 +1,28 @@
+.footer {
+    border-top: 1px solid rgba($secondary, 0.1);
+    padding: 2.5rem 0;
+
+    &-social {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        margin: 0;
+
+        @include media-breakpoint-up(md) {
+            justify-content: flex-end;
+        }
+
+        > li {
+            margin: 0 0.25rem;
+
+            > a {
+                @include animate();
+            }
+        }
+
+        .fa-stack .fa-inverse {
+            color: #ffffff;
+        }
+    }
+}

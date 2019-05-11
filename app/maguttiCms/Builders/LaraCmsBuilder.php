@@ -5,10 +5,10 @@ namespace App\maguttiCms\Builders;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Class maguttiCmsBuilder
+ * Class LaraCmsBuilder
  * @package App\maguttiCms\Builders
  */
-class laraCmsBuilder extends Builder
+class LaraCmsBuilder extends Builder
 {
     public  function status($status){
         return $this->where('is_active',$status);

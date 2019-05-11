@@ -21,13 +21,14 @@ class CreateProductTranslationsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_id');
             $table->string('locale', 255);
-            $table->string('title', 255);
-            $table->string('subtitle', 255);
-            $table->text('description');
+            $table->string('title', 255)->nullable();
+            $table->string('subtitle', 255)->nullable();
+            $table->text('description')->nullable();
             $table->string('doc', 255)->nullable();
             $table->string('seo_title', 255)->nullable();
             $table->string('seo_description', 255)->nullable();
             $table->string('seo_keywords', 255)->nullable();
+            $table->string('seo_no_index', 255)->nullable();
             $table->unsignedInteger('created_by');
             $table->unsignedInteger('update_by');
             $table->timestamps();

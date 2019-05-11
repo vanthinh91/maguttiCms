@@ -14,20 +14,13 @@ class CreateDomainsTable extends Migration
     {
         Schema::create('domains', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('domain', 100);
-            $table->string('title', 255);
-            $table->text('value');
-            $table->integer('sort');
-            $table->tinyInteger('pub')->nullable()->default(1);
+            $table->string('domain', 100)->nullable();
+            $table->string('title', 255)->nullable();
+            $table->text('value')->nullable();
+            $table->boolean('pub')->nullable()->default(1);
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->nullableTimestamps();
-
-
-            
-
-            
-
         });
     }
 

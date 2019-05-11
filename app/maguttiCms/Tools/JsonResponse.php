@@ -1,4 +1,4 @@
-<?php namespace App\MaguttiCms\Tools;
+<?php namespace App\maguttiCms\Tools;
 /**
  * Class JsonResponseTrait
  *

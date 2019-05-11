@@ -21,7 +21,7 @@ return [
 		],
 
 		'cart-item-remove' => [
-			'cart_item_id' => 'required',
+			'id' => 'required',
 		],
 
 		'order-submit' => [
@@ -42,6 +42,13 @@ return [
 
 		'order-discount' => [
 			'code' => 'required|alpha_num'
+		],
+
+		'update-ghost' => [
+			'id' => 'required|numeric',
+			'model' => 'required',
+			'field' => 'required',
+			'value' => 'required',
 		],
 
 		'address-new' => [

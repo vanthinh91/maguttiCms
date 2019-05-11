@@ -19,10 +19,10 @@ class CreateNewslettersTable extends Migration
     {
         Schema::create('newsletters', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 255);
+            $table->string('name', 255)->nullable();
             $table->string('email', 255);
-            $table->integer('sort');
-            $table->tinyInteger('is_active')->nullable()->default(1);
+            $table->integer('sort')->nullable();
+            $table->boolean('is_active')->nullable()->default(1);
             $table->timestamps();
         });
     }

@@ -1,0 +1,21 @@
+h1,.h1, h2,.h2, h3,.h3{
+	font-family: $font-family-title;
+	margin: 0.7em 0 0.7em;
+	font-weight: 300;
+	&:first-child {margin-top: 0;}
+	&:last-child {margin-bottom: 0;}
+}
+
+h4, .h4,h5,.h5, h6,.h6 {
+	font-family: $font-family-title;
+	margin: 0.5em 0 0.5em;
+	font-weight: 300;
+	&:first-child {margin-top: 0;}
+	&:last-child {margin-bottom: 0;}
+}
+.pointer {
+	cursor: pointer;
+}
+
+
+

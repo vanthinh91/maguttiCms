@@ -19,7 +19,7 @@ class Product extends Model
     |--------------------------------------------------------------------------
     */
     public $translatedAttributes = ['title','slug','subtitle','description',
-                                    'seo_title','seo_description', 'permalink'];
+                                    'seo_title','seo_description', 'seo_no_index','permalink'];
     public $sluggable            =  ['slug'=>['field'=>'title','updatable'=>false,'translatable'=>1]];
 
     /*

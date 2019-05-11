@@ -1,10 +1,10 @@
-<?php namespace App\MaguttiCms\Api\V1\Controllers;
+<?php namespace App\maguttiCms\Api\V1\Controllers;
 
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\MaguttiCms\Tools\JsonResponseTrait;
+use App\maguttiCms\Tools\JsonResponseTrait;
 
 
 /**

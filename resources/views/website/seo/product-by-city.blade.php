@@ -1,16 +1,21 @@
 @extends('website.app')
 @section('content')
-	<!--=== Content Part ===-->
-	<main class="container">
-		<h1 class="bordered">{{ $article->title }}</h1>
-		{!! $article->description !!}
-		<ul>
-			@foreach ($province->cities()->inRandomOrder()->take(10)->get() as $_city)
-				<li>{{$_city->name}}</li>
-			@endforeach
-		</ul>
-		<div id="seo-map"></div>
+
+	<main class="my-5">
+        <div class="container">
+            <h1 class="text-primary">{{ $article->title }}</h1>
+			{!! $article->description !!}
+
+			<ul>
+				@foreach ($province->cities()->inRandomOrder()->take(10)->get() as $_city)
+					<li>{{$_city->name}}</li>
+				@endforeach
+			</ul>
+
+			<div id="seo-map" class="google-maps"></div>
+		</div>
 	</main>
+
 @endsection
 
 @section('footerjs')

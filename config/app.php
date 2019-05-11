@@ -13,7 +13,7 @@ return [
     */
 
 
-    'name' => env('APP_NAME', 'maguttiCms'),
+    'name' => env('APP_NAME', 'Magutti Cms'),
 
     /*
     |--------------------------------------------------------------------------
@@ -209,6 +209,7 @@ return [
         /* maguttiCmsFE */
         App\maguttiCms\Website\Providers\WebsiteDbServiceProvider::class,
         App\maguttiCms\Website\Providers\HtmlSocialServiceProvider::class,
+        App\maguttiCms\Website\Providers\HtmlMenuServiceProvider::class,
         App\maguttiCms\Website\Providers\WebsiteDecoratorServiceProvider::class,
     ],
 
@@ -296,5 +297,6 @@ return [
         'ImgHelper' => App\maguttiCms\Website\Facades\ImgHelper::class,
         'SeoLandingHelper' => App\maguttiCms\Website\Facades\SeoLandingHelper::class,
         'HtmlSocial' => App\maguttiCms\Website\Facades\HtmlSocial::class,
+        'HtmlMenu'=> App\maguttiCms\Website\Facades\HtmlMenu::class
     ],
 ];

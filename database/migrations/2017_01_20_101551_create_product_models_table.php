@@ -21,16 +21,17 @@ class CreateProductModelsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_id');
             $table->string('title', 255);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('image', 255)->nullable();
-            $table->integer('sort');
-            $table->tinyInteger('pub')->nullable()->default(1);
-            $table->integer('created_by');
+
             $table->unsignedInteger('finishing_id')->nullable();
-            $table->string('code', 100);
+            $table->string('code', 100)->nullable();
             $table->integer('color_id')->nullable();
             $table->string('feature', 255)->nullable();
-            $table->string('doc', 255);
+            $table->string('doc', 255)->nullable();
+            $table->integer('sort')->nullable();
+            $table->boolean('pub')->nullable()->default(1);
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

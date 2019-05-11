@@ -21,7 +21,7 @@ class CreateDomainTranslationsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('domain_id');
             $table->string('locale', 255);
-            $table->string('title', 255);
+            $table->string('title', 255)->nullable();
             $table->nullableTimestamps();
             $table->unique(['domain_id', 'locale'], 'domains_translations_domain_id_locale_unique');
             $table->index('locale', 'domains_translations_locale_index');

@@ -13,43 +13,42 @@
 						{{$pageConfig->get('help')}}
 						<hr>
 					@endif
-					<ul class="nav-tabs">
-						<li class="active">
-							<a href="#content_tab" data-toggle="tab">
+					<ul class="nav nav-tabs">
+						<li class="nav-item">
+							<a href="#content_tab" class="nav-link active" data-toggle="tab" role="tab" aria-controls="content" aria-selected="true">
 								{{icon('file-alt')}} {{trans('admin.label.content')}}
 							</a>
 						</li>
 						@if ($pageConfig->get('showSeo') == 1)
-							<li>
-								<a href="#seo_tab" data-toggle="tab">
-									{{icon('globe-africa')}} {{trans('admin.label.seo')}}
-								</a>
-							</li>
+						<li class="nav-item">
+							<a href="#seo_tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="seo" aria-selected="false">
+								{{icon('globe-africa')}} {{trans('admin.label.seo')}}
+							</a>
+						</li>
 						@endif
 						@if ($pageConfig->get('showMedia') == 1 && $article->id!='')
-							<li>
-								<a href="#media_tab" data-toggle="tab">
-									{{icon('image')}} {{trans('admin.label.media')}}
-								</a>
-							</li>
+						<li class="nav-item">
+							<a href="#media_tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="media" aria-selected="false">
+								{{icon('image')}} {{trans('admin.label.media')}}
+							</a>
+						</li>
 						@endif
 					</ul>
 					<!-- Tab panes -->
 					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane active" id="content_tab">
+						<div class="tab-pane fade show active" id="content_tab" role="tabpanel" aria-labelledby="content_tab">
 							{{ AdminForm::get( $article ) }}
 							@if ($pageConfig->get('password') == 1)
 								@include('admin.helper.password')
 							@endif
-
 						</div>
 						@if ($pageConfig->get('showSeo') == 1)
-							<div role="tabpanel" class="tab-pane" id="seo_tab">
+							<div class="tab-pane fade" id="seo_tab" role="tabpanel" aria-labelledby="seo_tab">
 								{{ AdminForm::getSeo( $article ) }}
 							</div>
 						@endif
 						@if ($pageConfig->get('showMedia') == 1 && $article->id!='')
-							<div role="tabpanel" class="tab-pane" id="media_tab">
+							<div class="tab-pane fade" id="media_tab" role="tabpanel" aria-labelledby="media_tab">
 								@if ($pageConfig->get('showMediaCropper'))
 									@include('admin.helper.form_mediacropper', ['cropperConfig' => collect($pageConfig->get('mediaCropper'))])
 								@else

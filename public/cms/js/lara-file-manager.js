@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/lara-file-manager.js":
-/*!**************************************************!*\
-  !*** ./resources/assets/js/lara-file-manager.js ***!
-  \**************************************************/
+/***/ "./resources/js/admin/lara-file-manager.js":
+/*!*************************************************!*\
+  !*** ./resources/js/admin/lara-file-manager.js ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -231,14 +231,14 @@ $(function () {
 
 /***/ }),
 
-/***/ 5:
-/*!********************************************************!*\
-  !*** multi ./resources/assets/js/lara-file-manager.js ***!
-  \********************************************************/
+/***/ 6:
+/*!*******************************************************!*\
+  !*** multi ./resources/js/admin/lara-file-manager.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/web01/siti-laravel/maguttiCms/resources/assets/js/lara-file-manager.js */"./resources/assets/js/lara-file-manager.js");
+module.exports = __webpack_require__(/*! /Users/asperti/web/magutti/maguttiCms/resources/js/admin/lara-file-manager.js */"./resources/js/admin/lara-file-manager.js");
 
 
 /***/ })

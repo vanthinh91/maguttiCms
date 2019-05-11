@@ -81,7 +81,7 @@ class AdminForm {
 						$value = (isset($this->model->translate($locale)->$attribute)) ? $this->model->translate($locale)->$attribute : '';
 						$this->property = $this->model->fieldspec[$attribute];
 						if (Str::startsWith($attribute, 'seo') == $this->showSeo)
-							$this->formModelHandler($this->model->fieldspec[$attribute], $attribute.'_'.$locale, $value);
+							$this->formModelHandler($this->model->fieldspec[$attribute], $attribute.'_'.$locale, $value,$locale);
 					}
 					$this->html .= "</div>";
 				}
@@ -89,9 +89,9 @@ class AdminForm {
 		}
 	}
 
-	private function formModelHandler($property, $key, $value = '') {
+	private function formModelHandler($property, $key, $value = '', $locale='') {
 		$this->property  = $property;
-		$cssClass        = (isset($this->property['cssClass']))? $this->property['cssClass']: '';
+		$this->cssClass        = (isset($this->property['cssClass']))? $this->property['cssClass']: '';
 		$cssClassElement = (isset($this->property['cssClassElement']))? $this->property['cssClassElement']: '';
 		$isLangField     = isset($this->property['lang']) && $this->property['lang'];
 		$intMin			 = (isset($this->property['min']))? $this->property['min']: '';
@@ -108,9 +108,8 @@ class AdminForm {
 			$value = $this->property['default_value'];
 		}
 
-		$field_properties = ['class' => ' form-control '.$cssClass];
+		$field_properties = ['class' => ' form-control '.$this->cssClass];
 		if (data_get($this->property, 'required', false)) {
-
 			//$field_properties['required'] = true;
 		}
 
@@ -147,7 +146,7 @@ class AdminForm {
 		elseif ($this->property['type'] == 'color') {
 			$formElement = '<div class="color-picker input-group colorpicker-component">';
 			$formElement .= Form::text($key, $value, $field_properties);
-			$formElement .= '<span class="input-group-addon"><i></i></span>';
+			$formElement .= '<span class="input-group-text input-group-addon"><i></i></span>';
 			$formElement .= '</div>';
 		}
 		elseif ($this->property['type'] == 'text' && $this->property['display']== 1) {
@@ -156,22 +155,7 @@ class AdminForm {
 			$formElement = Form::textarea($key, $value.'' , $field_properties);
 		}
 		elseif ($this->property['type'] == 'boolean' && $this->property['display']== 1) {
-			$modelName = strtolower(class_basename($this->model));
-			$booleanInputId = $key .'_'. $modelName .'_'. $this->model->id;
-
-			//$formElement = Form::checkbox($key, 1 , $this->model->$key);
-			$activeNo = ($value != '1')? ' active': '';
-			$activeYes = ($value == '1')? 'active': '';
-			$formElement.="<div class=\"btn-group\" data-toggle=\"buttons\">\n";
-			$formElement.=' <button type="button" class="btn btn-default '.$activeYes.'" onclick="$(\'#'.$booleanInputId.'\').val(1)">
-					<input type="radio" name="options" autocomplete="off" '.$activeYes.'>'.trans('admin.label.btn_yes').'
-				</button>';
-			$formElement.=' <button type="button" class="btn btn-default '.$activeNo.'" onclick="$(\'#'.$booleanInputId.'\').val(0)">
-					<input type="radio" name="options" autocomplete="off" '.$activeNo.'> '.trans('admin.label.btn_no').'
-				</button>';
-			$formElement.="</div>\n";
-			$formElement .= Form::hidden($key, $value , array('id'=> $booleanInputId,'class' => ' form-control '.$cssClass));
-
+            $formElement = (new AdminCheckBox($this))->getCheckBox($value,$key);
 		}
 		elseif ($this->property['type'] == 'locale' && $this->property['display']) {
 			$formElement = view('admin.inputs.locale', ['properties' => $this->property, 'key' => $key, 'value' => $value]);
@@ -196,7 +180,7 @@ class AdminForm {
 		elseif ($this->property['type'] =='relation_tree' && $this->property['display']) {
 		    $selected = (isset($this->property['relation_name']) && $this->property['relation_name']!='') ? $this->model->{$this->property['relation_name']}->pluck('id')->toArray():'';
             $objRelation = $this->getRelation();
-			$objRelation = (new AdminTree)->setProperty($this->property)->getTreeRelation($objRelation,0);
+			$objRelation = (new AdminTree($this))->getTreeRelation($objRelation,0);
 			$formElement = $this->getComboRelation($objRelation, $key, $value, $selected);
 		}
 		elseif ($this->property['type'] =='relationimage' && $this->property['display']) {
@@ -215,14 +199,14 @@ class AdminForm {
 			if (isset($this->property['uploadifive']) && $this->property['uploadifive']) {
 				$this->html .= $this->containerUploadifive($formElement, $cssClassElement, $key, $value);
 			}
-			elseif (isset($this->property['filemanager']) && $this->property['filemanager']) {
-                $media = Media::where('id', $value)->first();
-                $this->html .= view('admin.inputs.container_manager', ['properties' => $this->property, 'css_class' => $cssClassElement, 'key' => $key, 'model' => $this->model, 'value' => $value, 'media' => $media]);
-			}
 			else {
-				$this->html .= $this->containerMedia($formElement, $cssClassElement, $key);
+				$this->html .= $this->containerMedia($formElement, $cssClassElement, $key,$value,$locale);
 			}
 		}
+        elseif ( $this->property['type'] =='filemanager') {
+            $media = Media::where('id', $value)->first();
+            $this->html .= view('admin.inputs.container_manager', ['properties' => $this->property, 'css_class' => $cssClassElement, 'key' => $key, 'model' => $this->model, 'value' => $value, 'media' => $media,'locale' => $locale]);
+        }
 		elseif ($formElement)
 			$this->html .= $this->container($formElement, $cssClassElement);
 	}
@@ -242,15 +226,15 @@ class AdminForm {
 		return $html;
 	}
 
-	function containerMedia($formElement, $cssClass = "", $key) {
-		return view('admin.inputs.container_media', ['properties' => $this->property, 'form_element' => $formElement, 'css_class' => $cssClass, 'key' => $key, 'model' => $this->model]);
+	function containerMedia($formElement, $cssClass = "", $key,$value,$locale='') {
+		return view('admin.inputs.container_media', ['properties' => $this->property, 'form_element' => $formElement, 'css_class' => $cssClass, 'key' => $key, 'model' => $this->model,'value'=>$value,'locale' => $locale]);
 	}
 
 	public function containerUploadifive($formElement, $cssClass = "", $key, $value) {
 		return view('admin.inputs.container_upload', ['properties' => $this->property, 'form_element' => $formElement, 'css_class' => $cssClass, 'key' => $key, 'model' => $this->model, 'value' => $value]);
 	}
 
-	public function containerFileManager($formElement, $cssClass = "", $key, $value, $media) {
+	public function containerFileManager($formElement, $cssClass = "", $key, $value, $media,$locale='') {
 	}
 
 	function extraMsgHandler() {
@@ -437,4 +421,12 @@ class AdminForm {
 		data-placeholder='$placeholder'
 		data-where='{$additionalWhereClause}'></select>";
 	}
+
+    /**
+     * @return mixed
+     */
+    public function getProperty()
+    {
+        return $this->property;
+    }
 }

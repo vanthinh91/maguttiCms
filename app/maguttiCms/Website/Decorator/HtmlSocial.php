@@ -8,7 +8,7 @@ use Carbon\Carbon;
  * Class HtmlSocial
  * @package App\maguttiCms\Website\Decorator
  */
-class HtmlSocial extends maguttiCmsDecorator
+class HtmlSocial extends MaguttiCmsDecorator
 {
 
     /**
@@ -54,9 +54,14 @@ class HtmlSocial extends maguttiCmsDecorator
                 $this->html .= '<a href="mailto:' . $item->link . '">';
             }
             else {
-                $this->html .= '<a href="' . $item->link . '" target="_new">';
+                $this->html .= '<a href="' . $item->link . '" target="_blank">';
             }
-            $this->html .= '<i class="fab '.$item->icon.' fa-lg"></i>';
+
+            $this->html .= '<span class="fa-stack">';
+                $this->html .= '<i class="fa fa-circle fa-stack-2x"></i>';
+                $this->html .= '<i class="fab '.$item->icon.' fa-stack-1x fa-inverse"></i>';
+            $this->html .= '</span>';
+
             $this->html .= '</a>';
             $this->html .= '</li>';
         }

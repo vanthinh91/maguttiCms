@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Redirect;
 class ReservedAreaController extends Controller
 
 {
-	use \App\maguttiCms\SeoTools\maguttiCmsSeoTrait;
+	use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
     /**
      * @var
      */

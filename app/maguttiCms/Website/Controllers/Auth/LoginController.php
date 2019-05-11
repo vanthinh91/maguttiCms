@@ -12,7 +12,7 @@ use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 class LoginController extends Controller
 {
 
-    use \App\maguttiCms\SeoTools\maguttiCmsSeoTrait;
+    use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
 
     /*
     |--------------------------------------------------------------------------
@@ -57,8 +57,8 @@ class LoginController extends Controller
 
         $this->articleRepo          = $article;
         $this->localePrefix         = get_locale();
-        $this->redirectTo           = $this->localePrefix.'/';
-        $this->redirectPath         = $this->localePrefix.'/';
+        $this->redirectTo           = $this->localePrefix.'/users/dashboard';
+        $this->redirectPath         = $this->localePrefix.'/users/dashboard';
         $this->loginPath            = $this->localePrefix.'/users/login';
         $this->redirectAfterLogout  = $this->localePrefix.'/users/login';
 

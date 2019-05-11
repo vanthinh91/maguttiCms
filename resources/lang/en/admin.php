@@ -143,7 +143,6 @@ return [
 		'discounts' => 'Discounts',
 		'domains' => 'Domains',
 		'events' => 'Events',
-        'examples' => 'Examples',
 		'hpsliders' => 'Slides',
 		'media' => 'Media',
 		'news' => 'News',

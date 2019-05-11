@@ -1,0 +1,19 @@
+.owl-carousel {
+
+    .owl-dots {
+        margin: 15px 0;
+        text-align: center;
+
+        .owl-dot {
+            background-color: rgba($secondary, 0.25);
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            margin: 0 3px;
+
+            &.active {
+                background-color: $primary;
+            }
+        }
+    }
+}

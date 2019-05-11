@@ -129,8 +129,8 @@ class Media extends Model
 
 	public function url() {
 		switch ($this->collection_name) {
-			case 'images': return get_image($this->file_name); break;
-			case 'docs': return get_doc($this->file_name); break;
+			case 'images': return ma_get_image_from_repository($this->file_name); break;
+			case 'docs': return ma_get_idoc_from_repository($this->file_name); break;
 		}
 	}
 

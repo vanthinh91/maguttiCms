@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mag 04, 2019 alle 12:58
+-- Creato il: Mag 10, 2019 alle 23:29
 -- Versione del server: 5.7.24
 -- Versione PHP: 7.2.14
 
@@ -28,7 +28,6 @@ SET time_zone = "+00:00";
 -- Struttura della tabella `addresses`
 --
 
-DROP TABLE IF EXISTS `addresses`;
 CREATE TABLE `addresses` (
   `id` int(11) UNSIGNED NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -52,7 +51,6 @@ CREATE TABLE `addresses` (
 -- Struttura della tabella `adminusers`
 --
 
-DROP TABLE IF EXISTS `adminusers`;
 CREATE TABLE `adminusers` (
   `id` int(10) UNSIGNED NOT NULL,
   `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -80,7 +78,6 @@ INSERT INTO `adminusers` (`id`, `first_name`, `last_name`, `email`, `password`, 
 -- Struttura della tabella `adminuser_role`
 --
 
-DROP TABLE IF EXISTS `adminuser_role`;
 CREATE TABLE `adminuser_role` (
   `adminuser_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
@@ -99,7 +96,6 @@ INSERT INTO `adminuser_role` (`adminuser_id`, `role_id`) VALUES
 -- Struttura della tabella `articles`
 --
 
-DROP TABLE IF EXISTS `articles`;
 CREATE TABLE `articles` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -148,7 +144,6 @@ INSERT INTO `articles` (`id`, `domain`, `parent_id`, `menu_title`, `title`, `sub
 -- Struttura della tabella `article_translations`
 --
 
-DROP TABLE IF EXISTS `article_translations`;
 CREATE TABLE `article_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `article_id` int(10) UNSIGNED NOT NULL,
@@ -172,7 +167,7 @@ CREATE TABLE `article_translations` (
 --
 
 INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_title`, `title`, `subtitle`, `intro`, `description`, `abstract`, `seo_title`, `seo_description`, `seo_no_index`, `created_at`, `updated_at`) VALUES
-(1, 1, 'it', 'home', 'Home', 'Home', 'LaraCms', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>', '', '', '', '0', '2016-07-04 07:53:04', '2017-08-01 15:12:25'),
+(1, 1, 'it', 'home', 'Home', 'Home', 'MaguttiCms', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>', '', '', '', '0', '2016-07-04 07:53:04', '2017-08-01 15:12:25'),
 (2, 1, 'en', 'home', 'Home', 'Home', '', NULL, '', '', '', '', '', '2016-07-04 07:53:04', '2017-08-01 15:52:32'),
 (3, 2, 'it', 'azienda', 'Azienda', 'Azienda', NULL, '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', NULL, NULL, NULL, '2016-07-04 07:53:13', '2019-05-04 12:58:21'),
 (4, 2, 'en', 'company', 'Company', 'Company', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a liber', NULL, NULL, NULL, NULL, NULL, '2016-07-04 07:53:13', '2019-05-04 12:58:21'),
@@ -203,7 +198,6 @@ INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_
 -- Struttura della tabella `carts`
 --
 
-DROP TABLE IF EXISTS `carts`;
 CREATE TABLE `carts` (
   `id` int(11) UNSIGNED NOT NULL,
   `status` tinyint(4) DEFAULT NULL,
@@ -218,7 +212,6 @@ CREATE TABLE `carts` (
 -- Struttura della tabella `cart_items`
 --
 
-DROP TABLE IF EXISTS `cart_items`;
 CREATE TABLE `cart_items` (
   `id` int(11) UNSIGNED NOT NULL,
   `cart_id` int(11) NOT NULL,
@@ -235,7 +228,6 @@ CREATE TABLE `cart_items` (
 -- Struttura della tabella `categories`
 --
 
-DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `id` int(10) UNSIGNED NOT NULL,
   `parent_id` int(10) UNSIGNED DEFAULT NULL,
@@ -270,7 +262,6 @@ INSERT INTO `categories` (`id`, `parent_id`, `title`, `abstract`, `description`,
 -- Struttura della tabella `category_translations`
 --
 
-DROP TABLE IF EXISTS `category_translations`;
 CREATE TABLE `category_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
@@ -306,7 +297,6 @@ INSERT INTO `category_translations` (`id`, `slug`, `category_id`, `locale`, `tit
 -- Struttura della tabella `cities`
 --
 
-DROP TABLE IF EXISTS `cities`;
 CREATE TABLE `cities` (
   `id` int(11) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -8295,7 +8285,6 @@ INSERT INTO `cities` (`id`, `name`, `province_code`, `registry_code`, `created_a
 -- Struttura della tabella `contacts`
 --
 
-DROP TABLE IF EXISTS `contacts`;
 CREATE TABLE `contacts` (
   `id` int(10) UNSIGNED NOT NULL,
   `request_product_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -8325,7 +8314,6 @@ INSERT INTO `contacts` (`id`, `request_product_id`, `subject`, `message`, `name`
 -- Struttura della tabella `countries`
 --
 
-DROP TABLE IF EXISTS `countries`;
 CREATE TABLE `countries` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -8599,7 +8587,6 @@ INSERT INTO `countries` (`id`, `name`, `iso_code`, `id_continent`, `eu`, `vat`, 
 -- Struttura della tabella `discounts`
 --
 
-DROP TABLE IF EXISTS `discounts`;
 CREATE TABLE `discounts` (
   `id` int(11) UNSIGNED NOT NULL,
   `code` varchar(20) NOT NULL DEFAULT '',
@@ -8626,7 +8613,6 @@ INSERT INTO `discounts` (`id`, `code`, `amount`, `description`, `date_start`, `d
 -- Struttura della tabella `domains`
 --
 
-DROP TABLE IF EXISTS `domains`;
 CREATE TABLE `domains` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -8654,7 +8640,6 @@ INSERT INTO `domains` (`id`, `domain`, `title`, `value`, `sort`, `pub`, `created
 -- Struttura della tabella `domain_translations`
 --
 
-DROP TABLE IF EXISTS `domain_translations`;
 CREATE TABLE `domain_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain_id` int(10) UNSIGNED NOT NULL,
@@ -8680,60 +8665,27 @@ INSERT INTO `domain_translations` (`id`, `domain_id`, `locale`, `title`, `update
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `errors`
---
-
-DROP TABLE IF EXISTS `errors`;
-CREATE TABLE `errors` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `message` varchar(256) NOT NULL,
-  `file` varchar(256) NOT NULL,
-  `line` int(11) NOT NULL,
-  `trace` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dump dei dati per la tabella `errors`
---
-
-INSERT INTO `errors` (`id`, `message`, `file`, `line`, `trace`, `created_at`, `updated_at`) VALUES
-(1, 'Class App\\LaraCms\\Website\\Controllers\\Auth\\Request does not exist', '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php', 25, '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php\\n\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/ImplicitRouteBinding.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/ForceSSLMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/public/index.php\\n/Users/web08/.composer/vendor/laravel/valet/server.php', '2018-06-20 07:23:25', '2018-06-20 07:23:25'),
-(2, 'Class App\\LaraCms\\Website\\Controllers\\Auth\\Request does not exist', '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php', 25, '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php\\n\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/ImplicitRouteBinding.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/ForceSSLMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/public/index.php\\n/Users/web08/.composer/vendor/laravel/valet/server.php', '2018-06-20 07:25:40', '2018-06-20 07:25:40'),
-(3, 'Class App\\LaraCms\\Website\\Controllers\\Auth\\Request does not exist', '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php', 25, '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php\\n\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/ImplicitRouteBinding.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/ForceSSLMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/public/index.php\\n/Users/web08/.composer/vendor/laravel/valet/server.php', '2018-06-20 07:27:30', '2018-06-20 07:27:30'),
-(4, 'Class \'App\\LaraCms\\Website\\Controllers\\Auth\\Registered\' not found', '/Users/web08/REPOLARAVEL/framework_base/app/laraCms/Website/Controllers/Auth/RegisterController.php', 108, '\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Controller.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/RedirectIfAuthenticated.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/UserCart.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/mcamara/laravel-localization/src/Mcamara/LaravelLocalization/Middleware/LaravelLocalizationRedirectFilter.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/GF_ShieldMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/ForceSSLMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/public/index.php\\n/Users/web08/.composer/vendor/laravel/valet/server.php', '2018-06-20 07:34:54', '2018-06-20 07:34:54'),
-(5, 'Invalid argument supplied for foreach() (View: /Users/web08/REPOLARAVEL/framework_base/resources/views/website/partials/seo_links.blade.php) (View: /Users/web08/REPOLARAVEL/framework_base/resources/views/website/partials/seo_links.blade.php) (View: /Users/', '/Users/web08/REPOLARAVEL/framework_base/storage/framework/views/4abd497e6513f78c7eaa912f245734db27ac5d33.php', 3, '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/View.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/View.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/View.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Http/Response.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/symfony/http-foundation/Response.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/UserCart.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/mcamara/laravel-localization/src/Mcamara/LaravelLocalization/Middleware/LaravelLocalizationRedirectFilter.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/LaraCms/Middleware/GFShieldMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/ForceSSLMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/public/index.php\\n/Users/web08/.composer/vendor/laravel/valet/server.php', '2019-03-22 14:55:44', '2019-03-22 14:55:44'),
-(6, 'View [website.seo.product-by-city] not found.', '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php', 137, '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Factory.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php\\n/Users/web08/REPOLARAVEL/framework_base/app/LaraCms/Website/Controllers/SeoLandingController.php\\n\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Controller.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/UserCart.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/mcamara/laravel-localization/src/Mcamara/LaravelLocalization/Middleware/LaravelLocalizationRedirectFilter.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/LaraCms/Middleware/GFShieldMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/ForceSSLMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/public/index.php\\n/Users/web08/.composer/vendor/laravel/valet/server.php', '2019-03-22 14:59:06', '2019-03-22 14:59:06'),
-(7, 'View [website.seo.product-by-city] not found.', '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php', 137, '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Factory.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php\\n/Users/web08/REPOLARAVEL/framework_base/app/LaraCms/Website/Controllers/SeoLandingController.php\\n\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Controller.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/UserCart.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/mcamara/laravel-localization/src/Mcamara/LaravelLocalization/Middleware/LaravelLocalizationRedirectFilter.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/LaraCms/Middleware/GFShieldMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/ForceSSLMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/public/index.php\\n/Users/web08/.composer/vendor/laravel/valet/server.php', '2019-03-22 14:59:32', '2019-03-22 14:59:32'),
-(8, 'Call to undefined method App\\Province::cities() (View: /Users/web08/REPOLARAVEL/framework_base/resources/views/website/seo/product-by-city.blade.php)', '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php', 50, '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/View.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/View.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/View.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Http/Response.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/symfony/http-foundation/Response.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/UserCart.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/mcamara/laravel-localization/src/Mcamara/LaravelLocalization/Middleware/LaravelLocalizationRedirectFilter.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/LaraCms/Middleware/GFShieldMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/ForceSSLMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/public/index.php\\n/Users/web08/.composer/vendor/laravel/valet/server.php', '2019-03-22 14:59:53', '2019-03-22 14:59:53');
-INSERT INTO `errors` (`id`, `message`, `file`, `line`, `trace`, `created_at`, `updated_at`) VALUES
-(9, 'SQLSTATE[42S02]: Base table or view not found: 1146 Table \'framework_base.discounts\' doesn\'t exist (SQL: select count(*) as aggregate from `discounts`)', '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Database/Connection.php', 664, '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Database/Connection.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Database/Connection.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php\\n/Users/web08/REPOLARAVEL/framework_base/app/laraCms/Admin/Controllers/AdminPagesController.php\\n\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Controller.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Route.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/laraCms/Middleware/AdminRole.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/laraCms/Middleware/SetLocaleAdmin.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/laraCms/Middleware/AdminAuthenticate.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/ForceSSLMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/public/index.php\\n/Users/web08/.composer/vendor/laravel/valet/server.php', '2019-03-22 15:12:31', '2019-03-22 15:12:31'),
-(10, 'SQLSTATE[42S22]: Column not found: 1054 Unknown column \'orders.discount_code\' in \'where clause\' (SQL: select count(*) as aggregate from `orders` where `orders`.`discount_code` = TESTSCONTO and `orders`.`discount_code` is not null) (View: /Users/web08/REPOL', '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Database/Connection.php', 664, '/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/View.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/View.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/View.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Http/Response.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/symfony/http-foundation/Response.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/laraCms/Middleware/AdminRole.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/laraCms/Middleware/SetLocaleAdmin.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/laraCms/Middleware/AdminAuthenticate.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Router.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/app/Http/Middleware/ForceSSLMiddleware.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\\n/Users/web08/REPOLARAVEL/framework_base/public/index.php\\n/Users/web08/.composer/vendor/laravel/valet/server.php', '2019-03-22 15:13:32', '2019-03-22 15:13:32');
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `examples`
 --
 
-DROP TABLE IF EXISTS `examples`;
 CREATE TABLE `examples` (
   `id` int(10) UNSIGNED NOT NULL,
   `article_id` int(11) DEFAULT NULL,
+  `color` varchar(7) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date` date DEFAULT NULL,
   `article_2_id` int(11) DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
+  `article_3_id` int(11) DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci,
   `description_2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slug` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image_crop` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `image_media_id` int(11) DEFAULT NULL,
-  `sort` int(11) DEFAULT '0',
-  `pub` tinyint(4) DEFAULT '1',
-  `color` varchar(7) COLLATE utf8_unicode_ci DEFAULT '0',
-  `date` date DEFAULT NULL,
+  `image_media_id` smallint(6) DEFAULT NULL,
+  `status_id` smallint(6) DEFAULT NULL,
+  `sort` smallint(6) DEFAULT NULL,
+  `pub` tinyint(1) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -8742,8 +8694,8 @@ CREATE TABLE `examples` (
 -- Dump dei dati per la tabella `examples`
 --
 
-INSERT INTO `examples` (`id`, `article_id`, `article_2_id`, `title`, `description`, `description_2`, `slug`, `doc`, `image`, `image_crop`, `image_media_id`, `sort`, `pub`, `color`, `date`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, '', '', NULL, NULL, '', 'test.png', '', NULL, 10, 1, '#80b0f0', '2017-08-09', '2017-08-23 10:20:05', '2017-08-23 12:09:33');
+INSERT INTO `examples` (`id`, `article_id`, `color`, `date`, `article_2_id`, `article_3_id`, `title`, `description`, `description_2`, `slug`, `doc`, `image`, `image_crop`, `image_media_id`, `status_id`, `sort`, `pub`, `created_at`, `updated_at`) VALUES
+(1, 5, '#3b486c', '2019-05-07', 10, 7, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 2, 10, 1, '2019-05-07 15:34:44', '2019-05-07 15:41:41');
 
 -- --------------------------------------------------------
 
@@ -8751,7 +8703,6 @@ INSERT INTO `examples` (`id`, `article_id`, `article_2_id`, `title`, `descriptio
 -- Struttura della tabella `example_article`
 --
 
-DROP TABLE IF EXISTS `example_article`;
 CREATE TABLE `example_article` (
   `example_id` int(10) UNSIGNED NOT NULL,
   `article_id` int(10) UNSIGNED NOT NULL,
@@ -8765,8 +8716,8 @@ CREATE TABLE `example_article` (
 
 INSERT INTO `example_article` (`example_id`, `article_id`, `created_at`, `updated_at`) VALUES
 (1, 8, NULL, NULL),
-(1, 7, NULL, NULL),
-(1, 1, NULL, NULL);
+(1, 5, NULL, NULL),
+(1, 4, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -8774,20 +8725,20 @@ INSERT INTO `example_article` (`example_id`, `article_id`, `created_at`, `update
 -- Struttura della tabella `example_translations`
 --
 
-DROP TABLE IF EXISTS `example_translations`;
 CREATE TABLE `example_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `example_id` int(10) UNSIGNED NOT NULL,
-  `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
+  `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci,
   `description_2` text COLLATE utf8_unicode_ci,
+  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image_media_id` int(4) DEFAULT NULL,
   `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `seo_no_index` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `update_by` int(11) DEFAULT NULL,
+  `seo_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `seo_no_index` tinyint(1) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -8796,9 +8747,11 @@ CREATE TABLE `example_translations` (
 -- Dump dei dati per la tabella `example_translations`
 --
 
-INSERT INTO `example_translations` (`id`, `example_id`, `locale`, `slug`, `title`, `description`, `description_2`, `seo_title`, `seo_description`, `seo_no_index`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'it', 'lorem-ipsum', 'Lorem ipsum', 'Lorem ipsum dolor sit amet consectetur adipisci elit', '<p>Lorem ipsum dolor sit amet consectetur adipisci elit&nbsp;</p>', '', '', '', 0, 0, '2017-08-23 10:20:05', '2017-08-23 10:20:05'),
-(2, 1, 'en', '', '', '', '', '', '', '', 0, 0, '2017-08-23 10:20:05', '2017-08-23 10:20:05');
+INSERT INTO `example_translations` (`id`, `example_id`, `slug`, `locale`, `title`, `description`, `description_2`, `image`, `image_media_id`, `seo_title`, `seo_description`, `seo_keywords`, `seo_no_index`, `created_at`, `updated_at`) VALUES
+(9, 1, 'titolo', 'it', 'Titolo', NULL, NULL, '95748-card-3.jpg', NULL, NULL, NULL, NULL, 0, '2019-05-07 15:41:06', '2019-05-07 15:41:41'),
+(10, 1, '', 'en', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 15:41:06', '2019-05-07 15:41:06'),
+(11, 1, '', 'es', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 15:41:06', '2019-05-07 15:41:06'),
+(12, 1, '', 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 15:41:06', '2019-05-07 15:41:06');
 
 -- --------------------------------------------------------
 
@@ -8806,7 +8759,6 @@ INSERT INTO `example_translations` (`id`, `example_id`, `locale`, `slug`, `title
 -- Struttura della tabella `hpsliders`
 --
 
-DROP TABLE IF EXISTS `hpsliders`;
 CREATE TABLE `hpsliders` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -8827,8 +8779,8 @@ CREATE TABLE `hpsliders` (
 --
 
 INSERT INTO `hpsliders` (`id`, `title`, `description`, `icon`, `image`, `link`, `slug`, `sort`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'laraCms Slier', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', '', 'laracms-slier', 200, 1, 0, '2016-12-27 17:34:38', '2017-08-02 13:17:01'),
-(2, 'laraCms 5.3', 'A modular multilingual CMS built with Laravel 5.3', NULL, 'header1.jpg', '', 'laracms-53', 100, 1, 0, '2016-12-27 18:18:09', '2017-08-02 14:04:31');
+(1, 'maguttiCms 5.8 slider', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', NULL, 'magutticms-58-slider', 200, 1, 0, '2016-12-27 17:34:38', '2019-05-10 23:16:41'),
+(2, 'maguttiCms 5.8', 'A modular multilingual CMS built with Laravel 5.8', NULL, 'header1.jpg', NULL, '8', 100, 1, 0, '2016-12-27 18:18:09', '2019-05-10 23:16:15');
 
 -- --------------------------------------------------------
 
@@ -8836,7 +8788,6 @@ INSERT INTO `hpsliders` (`id`, `title`, `description`, `icon`, `image`, `link`, 
 -- Struttura della tabella `media`
 --
 
-DROP TABLE IF EXISTS `media`;
 CREATE TABLE `media` (
   `id` int(10) UNSIGNED NOT NULL,
   `media_category_id` int(10) UNSIGNED NOT NULL,
@@ -8871,7 +8822,6 @@ INSERT INTO `media` (`id`, `media_category_id`, `model_id`, `model_type`, `colle
 -- Struttura della tabella `media_translations`
 --
 
-DROP TABLE IF EXISTS `media_translations`;
 CREATE TABLE `media_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `media_id` int(10) UNSIGNED NOT NULL,
@@ -8897,8 +8847,8 @@ INSERT INTO `media_translations` (`id`, `media_id`, `locale`, `title`, `alt`, `d
 -- Struttura della tabella `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -8907,35 +8857,36 @@ CREATE TABLE `migrations` (
 -- Dump dei dati per la tabella `migrations`
 --
 
-INSERT INTO `migrations` (`migration`, `batch`) VALUES
-('2014_10_12_000000_create_users_table', 1),
-('2014_10_12_100000_create_password_resets_table', 1),
-('2015_08_23_104442_create_products_table', 1),
-('2015_08_23_123427_add_paid_to_products', 1),
-('2015_08_27_133226_create_articles_table', 1),
-('2015_08_28_101039_add_media_to_articles_table', 1),
-('2015_08_29_151840_entrust_setup_tables', 1),
-('2015_08_29_173518_add_is_active_to_users_table', 1),
-('2015_12_06_191101_create_object_translation_table', 1),
-('2015_12_07_161911_article_translations', 1),
-('2015_12_20_135234_add_password_real_to_users_table', 1),
-('2015_12_23_205357_create_socials_table', 2),
-('2015_12_26_180448_create_hpsliders', 3),
-('2015_12_28_173515_add_subtitle_intro_abstract_to_article_table', 4),
-('2015_12_28_173917_add_subtitle_abstract_to_article_translations_table', 4),
-('2016_01_03_185806_add_subtitle_intro_to_article_translations', 5),
-('2016_01_03_190819_create_news_table', 6),
-('2016_01_03_190932_create_news_translations_table', 7),
-('2016_01_03_191050_create_media_table', 8),
-('2016_01_03_191145_create_media_translations_table', 9),
-('2016_01_09_213704_create_tags_table', 10),
-('2016_01_23_141830_create_contact_table', 11),
-('2016_01_23_141830_create_contacts_table', 12),
-('2016_01_27_195512_create_adminusers_table', 12),
-('2016_07_06_154403_create_newsletters_table', 13),
-('2016_08_04_150202_create_adminuser_role', 14),
-('2016_08_09_125134_create_countries_table', 15),
-('2016_08_09_135031_create_settings_table', 16);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(53, '2014_10_12_000000_create_users_table', 1),
+(54, '2014_10_12_100000_create_password_resets_table', 1),
+(55, '2017_01_20_091156_create_adminusers_table', 1),
+(56, '2017_01_20_091156_create_articles_table', 1),
+(57, '2017_01_20_091157_create_article_translations_table', 1),
+(58, '2017_01_20_091158_create_categories_table', 1),
+(59, '2017_01_20_091158_create_category_translations_table', 1),
+(60, '2017_01_20_091159_create_countries_table', 1),
+(61, '2017_01_20_091712_create_hpsliders_table', 1),
+(62, '2017_01_20_091712_create_media_table', 1),
+(63, '2017_01_20_091713_create_media_translations_table', 1),
+(64, '2017_01_20_091713_create_news_table', 1),
+(65, '2017_01_20_091714_create_news_translations_table', 1),
+(66, '2017_01_20_091715_create_newsletters_table', 1),
+(67, '2017_01_20_091719_create_products_table', 1),
+(68, '2017_01_20_091720_create_product_translations_table', 1),
+(69, '2017_01_20_091856_create_provinces_table', 1),
+(70, '2017_01_20_091857_create_settings_table', 1),
+(71, '2017_01_20_091857_create_socials_table', 1),
+(72, '2017_01_20_091858_create_states_table', 1),
+(73, '2017_01_20_091858_create_tags_table', 1),
+(74, '2017_01_20_091859_create_news_tag_table', 1),
+(75, '2017_01_20_091859_create_tag_translations_table', 1),
+(76, '2017_01_20_101551_create_product_models_table', 1),
+(77, '2017_01_20_101558_create_product_model_translations_table', 1),
+(78, '2017_02_02_133516_entrust_setup_tables', 1),
+(79, '2017_02_02_143850_create_domains_table', 1),
+(80, '2017_02_02_143948_create_domain_translations_table', 1),
+(81, '2019_05_07_171738_create_examples_table', 2);
 
 -- --------------------------------------------------------
 
@@ -8943,7 +8894,6 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 -- Struttura della tabella `news`
 --
 
-DROP TABLE IF EXISTS `news`;
 CREATE TABLE `news` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -8966,7 +8916,10 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `domain`, `date`, `title`, `description`, `slug`, `doc`, `image`, `link`, `sort`, `pub`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, '', '2017-07-11', '', '', 'pinoscotto11', '96281-dedprifxoaaxql6.jpg', 'DEDpRifXoAAXql6.jpg', NULL, 0, 1, 0, '2017-07-11 07:18:08', '2017-08-02 09:21:57');
+(1, '', '2017-07-11', '', '', 'pinoscotto11', '96281-dedprifxoaaxql6.jpg', 'DEDpRifXoAAXql6.jpg', NULL, 0, 1, 0, '2017-07-11 05:18:08', '2019-05-10 23:14:39'),
+(2, '', '2019-05-07', '', '', NULL, NULL, 'home-icone-news.png', NULL, NULL, 1, NULL, '2019-05-07 05:16:44', '2019-05-07 05:18:22'),
+(3, '', '2019-04-17', '', '', NULL, NULL, 'slide-2.jpg', NULL, NULL, 1, NULL, '2019-05-07 05:17:21', '2019-05-10 23:14:48'),
+(4, '', '2019-03-07', '', '', NULL, NULL, 'slide-6.jpg', NULL, NULL, 1, NULL, '2019-05-07 05:18:08', '2019-05-07 05:20:18');
 
 -- --------------------------------------------------------
 
@@ -8974,7 +8927,6 @@ INSERT INTO `news` (`id`, `domain`, `date`, `title`, `description`, `slug`, `doc
 -- Struttura della tabella `newsletters`
 --
 
-DROP TABLE IF EXISTS `newsletters`;
 CREATE TABLE `newsletters` (
   `id` int(10) UNSIGNED NOT NULL,
   `locale` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
@@ -8989,7 +8941,6 @@ CREATE TABLE `newsletters` (
 -- Struttura della tabella `news_tag`
 --
 
-DROP TABLE IF EXISTS `news_tag`;
 CREATE TABLE `news_tag` (
   `news_id` int(10) UNSIGNED NOT NULL,
   `tag_id` int(10) UNSIGNED NOT NULL,
@@ -9003,7 +8954,6 @@ CREATE TABLE `news_tag` (
 -- Struttura della tabella `news_translations`
 --
 
-DROP TABLE IF EXISTS `news_translations`;
 CREATE TABLE `news_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -9027,8 +8977,22 @@ CREATE TABLE `news_translations` (
 --
 
 INSERT INTO `news_translations` (`id`, `slug`, `news_id`, `locale`, `title`, `description`, `abstract`, `subtitle`, `intro`, `seo_title`, `seo_description`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 'titolo-della-news-1', 1, 'it', 'Titolo della news 1', '<p>wqeqweqweqw</p>', NULL, NULL, NULL, '', '', 0, 0, '2017-07-11 07:18:08', '2017-08-02 09:21:57'),
-(2, 'news-one-title', 1, 'en', 'News  one  title', '', NULL, NULL, NULL, '', '', 0, 0, '2017-07-11 07:18:08', '2017-08-02 09:21:57');
+(1, 'titolo-della-news-1', 1, 'it', 'Titolo della news 1', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, 0, 0, '2017-07-11 05:18:08', '2019-05-07 05:17:44'),
+(2, 'news-one-title', 1, 'en', 'News  one  title', '<p>description</p>', NULL, NULL, NULL, NULL, NULL, 0, 0, '2017-07-11 05:18:08', '2019-05-10 23:14:39'),
+(3, 'news-numero-due', 2, 'it', 'News Numero due', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:16:44', '2019-05-07 05:16:44'),
+(4, 'news-2', 2, 'en', 'News 2', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:16:44', '2019-05-07 05:18:22'),
+(5, '', 2, 'es', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:16:44', '2019-05-07 05:16:44'),
+(6, '', 2, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:16:44', '2019-05-07 05:16:44'),
+(7, 'news-numero-3', 3, 'it', 'News Numero 3', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:17:21', '2019-05-07 05:17:21'),
+(8, 'news-3', 3, 'en', 'News 3', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:17:21', '2019-05-07 05:18:35'),
+(9, '', 3, 'es', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:17:21', '2019-05-07 05:17:21'),
+(10, '', 3, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:17:21', '2019-05-07 05:17:21'),
+(11, '', 1, 'es', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:17:44', '2019-05-07 05:17:44'),
+(12, '', 1, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:17:44', '2019-05-07 05:17:44'),
+(13, 'news-numero-4', 4, 'it', 'News Numero 4', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:18:08', '2019-05-07 05:18:08'),
+(14, 'news-4', 4, 'en', 'News 4', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:18:08', '2019-05-07 05:18:08'),
+(15, '', 4, 'es', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:18:08', '2019-05-07 05:18:08'),
+(16, '', 4, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:18:08', '2019-05-07 05:18:08');
 
 -- --------------------------------------------------------
 
@@ -9036,7 +9000,6 @@ INSERT INTO `news_translations` (`id`, `slug`, `news_id`, `locale`, `title`, `de
 -- Struttura della tabella `orders`
 --
 
-DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `id` int(11) UNSIGNED NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -9060,7 +9023,6 @@ CREATE TABLE `orders` (
 -- Struttura della tabella `order_items`
 --
 
-DROP TABLE IF EXISTS `order_items`;
 CREATE TABLE `order_items` (
   `id` int(11) UNSIGNED NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -9079,7 +9041,6 @@ CREATE TABLE `order_items` (
 -- Struttura della tabella `password_resets`
 --
 
-DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9092,7 +9053,6 @@ CREATE TABLE `password_resets` (
 -- Struttura della tabella `payments`
 --
 
-DROP TABLE IF EXISTS `payments`;
 CREATE TABLE `payments` (
   `id` int(11) UNSIGNED NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -9112,7 +9072,6 @@ CREATE TABLE `payments` (
 -- Struttura della tabella `payment_methods`
 --
 
-DROP TABLE IF EXISTS `payment_methods`;
 CREATE TABLE `payment_methods` (
   `id` int(11) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL DEFAULT '',
@@ -9136,7 +9095,6 @@ INSERT INTO `payment_methods` (`id`, `title`, `code`, `is_active`, `created_at`,
 -- Struttura della tabella `permissions`
 --
 
-DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE `permissions` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9152,7 +9110,6 @@ CREATE TABLE `permissions` (
 -- Struttura della tabella `permission_role`
 --
 
-DROP TABLE IF EXISTS `permission_role`;
 CREATE TABLE `permission_role` (
   `permission_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
@@ -9164,7 +9121,6 @@ CREATE TABLE `permission_role` (
 -- Struttura della tabella `products`
 --
 
-DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` int(10) UNSIGNED NOT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9201,7 +9157,6 @@ INSERT INTO `products` (`id`, `code`, `category_id`, `title`, `subtitle`, `descr
 -- Struttura della tabella `product_models`
 --
 
-DROP TABLE IF EXISTS `product_models`;
 CREATE TABLE `product_models` (
   `id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
@@ -9220,7 +9175,6 @@ CREATE TABLE `product_models` (
 -- Struttura della tabella `product_model_translations`
 --
 
-DROP TABLE IF EXISTS `product_model_translations`;
 CREATE TABLE `product_model_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `product_model_id` int(10) NOT NULL,
@@ -9239,7 +9193,6 @@ CREATE TABLE `product_model_translations` (
 -- Struttura della tabella `product_translations`
 --
 
-DROP TABLE IF EXISTS `product_translations`;
 CREATE TABLE `product_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
@@ -9276,7 +9229,6 @@ INSERT INTO `product_translations` (`id`, `product_id`, `locale`, `slug`, `title
 -- Struttura della tabella `provinces`
 --
 
-DROP TABLE IF EXISTS `provinces`;
 CREATE TABLE `provinces` (
   `id` int(10) NOT NULL,
   `country_id` int(8) NOT NULL,
@@ -9412,7 +9364,6 @@ INSERT INTO `provinces` (`id`, `country_id`, `state_id`, `title`, `slug`, `sort`
 -- Struttura della tabella `roles`
 --
 
-DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9438,7 +9389,6 @@ INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, 
 -- Struttura della tabella `role_user`
 --
 
-DROP TABLE IF EXISTS `role_user`;
 CREATE TABLE `role_user` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
@@ -9458,7 +9408,6 @@ INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 -- Struttura della tabella `settings`
 --
 
-DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
   `id` int(10) UNSIGNED NOT NULL,
   `key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9475,7 +9424,7 @@ CREATE TABLE `settings` (
 
 INSERT INTO `settings` (`id`, `key`, `value`, `description`, `domain`, `created_at`, `updated_at`) VALUES
 (1, 'GA_CODE', 'UA-', 'Codice  google  analitycs', 'GA', '2016-08-09 12:01:24', '2016-08-09 12:28:06'),
-(2, 'credits_url', 'https://www.gfstudio.com', 'url credits', 'webiste', '2016-08-09 12:29:05', '2016-12-29 14:35:06'),
+(2, 'credits_url', 'https://magutti.com', 'url credits', 'webiste', '2016-08-09 12:29:05', '2016-12-29 14:35:06'),
 (3, 'GMAPS_KEY', '', 'Google maps apy key', '', '2016-12-27 17:28:54', '2016-12-29 09:24:44'),
 (4, 'iubenda_code_it', 'asd', '', '', '2018-06-05 07:08:21', '2018-06-05 07:08:21'),
 (5, 'iubenda_code_en', 'fgh', '', '', '2018-06-05 07:10:35', '2018-06-05 07:10:35'),
@@ -9489,7 +9438,6 @@ INSERT INTO `settings` (`id`, `key`, `value`, `description`, `domain`, `created_
 -- Struttura della tabella `socials`
 --
 
-DROP TABLE IF EXISTS `socials`;
 CREATE TABLE `socials` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9519,7 +9467,6 @@ INSERT INTO `socials` (`id`, `title`, `description`, `icon`, `image`, `link`, `s
 -- Struttura della tabella `special_prices`
 --
 
-DROP TABLE IF EXISTS `special_prices`;
 CREATE TABLE `special_prices` (
   `id` int(11) UNSIGNED NOT NULL,
   `product_code` varchar(255) NOT NULL DEFAULT '',
@@ -9535,7 +9482,6 @@ CREATE TABLE `special_prices` (
 -- Struttura della tabella `states`
 --
 
-DROP TABLE IF EXISTS `states`;
 CREATE TABLE `states` (
   `id` int(10) NOT NULL,
   `country_id` int(8) NOT NULL,
@@ -9577,7 +9523,6 @@ INSERT INTO `states` (`id`, `country_id`, `title`, `zone`, `created_at`, `update
 -- Struttura della tabella `tags`
 --
 
-DROP TABLE IF EXISTS `tags`;
 CREATE TABLE `tags` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9603,7 +9548,6 @@ INSERT INTO `tags` (`id`, `title`, `slug`, `created_by`, `update_by`, `created_a
 -- Struttura della tabella `tag_translations`
 --
 
-DROP TABLE IF EXISTS `tag_translations`;
 CREATE TABLE `tag_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `tag_id` int(10) UNSIGNED NOT NULL,
@@ -9631,7 +9575,6 @@ INSERT INTO `tag_translations` (`id`, `tag_id`, `locale`, `title`, `created_at`,
 -- Struttura della tabella `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9650,7 +9593,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `gender`, `password`, `remember_token`, `list_code`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'GFstudio User', 'user@gfstudio.com', 'M', '$2y$10$XmrieXL.VXNw1sw4rYlxsu0B8acy8skQ2ABtls0zAp6jaOduBXZqW', 'taeEe1GVsBFZh2Ui9qELCV9Aaqb93wu5iQcs1oD8qhv4HHkj4o7XBsZDUOXW', '', 1, '2017-07-07 13:37:30', '2018-06-14 12:04:28');
+(1, 'Magutti User', 'user@magutti.com', 'M', '$2y$10$fhRhYYRj2tgq1/jmaUkgH.y7AW2lcDrdEIsn5GP35aLVsEQWWCBh6', 'taeEe1GVsBFZh2Ui9qELCV9Aaqb93wu5iQcs1oD8qhv4HHkj4o7XBsZDUOXW', '', 1, '2017-07-07 13:37:30', '2018-06-14 12:04:28');
 
 --
 -- Indici per le tabelle scaricate
@@ -9756,16 +9699,11 @@ ALTER TABLE `domain_translations`
   ADD KEY `domains_translations_locale_index` (`locale`);
 
 --
--- Indici per le tabelle `errors`
---
-ALTER TABLE `errors`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indici per le tabelle `examples`
 --
 ALTER TABLE `examples`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `examples_slug_unique` (`slug`);
 
 --
 -- Indici per le tabelle `example_article`
@@ -9779,8 +9717,8 @@ ALTER TABLE `example_article`
 --
 ALTER TABLE `example_translations`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `example_translations_example_id_locale_unique` (`example_id`,`locale`),
-  ADD KEY `example_translations_locale_unique` (`locale`);
+  ADD UNIQUE KEY `examples_translations_example_id_locale_unique` (`example_id`,`locale`),
+  ADD KEY `examples_translations_locale_index` (`locale`);
 
 --
 -- Indici per le tabelle `hpsliders`
@@ -9805,31 +9743,10 @@ ALTER TABLE `media_translations`
   ADD KEY `media_translations_locale_index` (`locale`);
 
 --
--- Indici per le tabelle `news`
+-- Indici per le tabelle `migrations`
 --
-ALTER TABLE `news`
+ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `newsletters`
---
-ALTER TABLE `newsletters`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `news_tag`
---
-ALTER TABLE `news_tag`
-  ADD KEY `news_tag_news_id_index` (`news_id`),
-  ADD KEY `news_tag_tag_id_index` (`tag_id`);
-
---
--- Indici per le tabelle `news_translations`
---
-ALTER TABLE `news_translations`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `news_translations_news_id_locale_unique` (`news_id`,`locale`),
-  ADD KEY `news_translations_locale_index` (`locale`);
 
 --
 -- Indici per le tabelle `orders`
@@ -10064,22 +9981,16 @@ ALTER TABLE `domain_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
--- AUTO_INCREMENT per la tabella `errors`
---
-ALTER TABLE `errors`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
 -- AUTO_INCREMENT per la tabella `examples`
 --
 ALTER TABLE `examples`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `example_translations`
 --
 ALTER TABLE `example_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `hpsliders`
@@ -10100,22 +10011,10 @@ ALTER TABLE `media_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT per la tabella `news`
+-- AUTO_INCREMENT per la tabella `migrations`
 --
-ALTER TABLE `news`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT per la tabella `newsletters`
---
-ALTER TABLE `newsletters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT per la tabella `news_translations`
---
-ALTER TABLE `news_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT per la tabella `orders`
@@ -10249,23 +10148,16 @@ ALTER TABLE `domain_translations`
   ADD CONSTRAINT `domains_translations_domain_id_foreign` FOREIGN KEY (`domain_id`) REFERENCES `domains` (`id`) ON DELETE CASCADE;
 
 --
+-- Limiti per la tabella `example_translations`
+--
+ALTER TABLE `example_translations`
+  ADD CONSTRAINT `examples_translations_example_id_foreign` FOREIGN KEY (`example_id`) REFERENCES `examples` (`id`) ON DELETE CASCADE;
+
+--
 -- Limiti per la tabella `media_translations`
 --
 ALTER TABLE `media_translations`
   ADD CONSTRAINT `media_translations_media_id_foreign` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE CASCADE;
-
---
--- Limiti per la tabella `news_tag`
---
-ALTER TABLE `news_tag`
-  ADD CONSTRAINT `news_tag_news_id_foreign` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `news_tag_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE;
-
---
--- Limiti per la tabella `news_translations`
---
-ALTER TABLE `news_translations`
-  ADD CONSTRAINT `news_translations_news_id_foreign` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `permission_role`

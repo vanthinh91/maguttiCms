@@ -1,5 +1,4 @@
 <div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	<h4 class="modal-title">
 		<i class="fa fa-file-text-o"></i>
 		@if( $article->title!='')
@@ -10,6 +9,10 @@
 			Create new  {{ $pageConfig['model'] }}
 		@endif
 	</h4>
+
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
 </div>
 <div class="modal-body">
 	<div id="errorBox">@include('admin.common.error')</div>
@@ -20,12 +23,12 @@
 	@endif
 	<hr>
 	<div class="row">
-		<div class="col-xs-6">
+		<div class="col-6">
 			<button type="reset" class="btn btn-danger btn-lg btn-block" data-dismiss="modal">
 				{{icon('times')}} Close
 			</button>
 		</div>
-		<div class="col-xs-6">
+		<div class="col-6">
 			<button type="submit" class="btn btn-success btn-lg btn-block">
 				{{icon('save')}} Save
 			</button>

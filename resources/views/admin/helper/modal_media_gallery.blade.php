@@ -2,7 +2,7 @@
 
         @forelse($medias as $media)
 
-        <li id="box_media_{!! $media->id!!}" class="thumbnail mf10 pf10">
+        <li id="box_media_{!! $media->id!!}" class="img-thumbnail mf10 pf10">
             <div id="item_media_{!! $media->id!!}_text" class="caption text-center">
                 @if( $media->media_category_id > 0 ){!! $media->media_category->title !!}<br> @endif
                 @if( $media->title !=  $media->file_name)

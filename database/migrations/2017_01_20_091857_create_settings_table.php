@@ -21,7 +21,7 @@ class CreateSettingsTable extends Migration
             $table->increments('id');
             $table->string('key', 255)->unique();
             $table->string('value', 255);
-            $table->string('description', 255);
+            $table->string('description', 255)->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->string('domain', 255)->nullable();

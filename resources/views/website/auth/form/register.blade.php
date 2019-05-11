@@ -1,6 +1,6 @@
 @include('flash::notification')
 <form method="post" action="{{url_locale('register')}}">
-	{!! csrf_field() !!}
+	@csrf
 	@if (isset($redirectTo))
 		<input type="hidden" name="redirectTo" value="{{$redirectTo}}">
 	@endif
@@ -12,7 +12,11 @@
 	</div>
 	<div class="form-group">
 		<input type="password" class="form-control" name="password" placeholder="{{ trans('website.password') }}" required>
+	</div>
+	<div class="form-group">
 		<input type="password" class="form-control" name="password_confirmation" placeholder="{{ trans('message.password_confirm') }}" required>
+	</div>
+	<div class="form-group">
 		<div class="alert alert-info">
 			{{trans('website.message.password')}}
 		</div>

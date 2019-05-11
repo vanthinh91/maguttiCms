@@ -22,7 +22,7 @@
 						<input type="password" class="form-control" name="password" placeholder="Password">
 					</div>
 					<div class="form-group row">
-						<div class="col-xs-6">
+						<div class="col-6">
 							<div class="form-checkbox">
 								<input type="checkbox" name="remember">
 								<label>
@@ -30,7 +30,7 @@
 								</label>
 							</div>
 						</div>
-						<div class="col-xs-6">
+						<div class="col-6">
 							<button type="submit" class="btn btn-primary btn-block">Login</button>
 						</div>
 					</div>

@@ -1,24 +1,22 @@
-<!--=== news side bar ===-->
 @inject('posts','App\News')
-<h3>Latest news</h3>
-<div class="row">
-	@foreach ( $posts->LatestPublished(100)->get() as $_post )
-		<div class="col-xs-12 col-sm-6 col-md-12">
-			<div class="row">
-				<div class="col-xs-4 mb10">
-					<a href="{{ $_post->getPermalink() }}">
-						<img class="img-responsive"  src="{!! ImgHelper::get($_post->image,config('maguttiCms.image.small')) !!}">
-					</a>
-				</div>
-				<div class="col-xs-8 mb10">
-					<h4>
-						<a href="{{$_post->getPermalink()}}">
-							{{ $_post->title }}
-						</a>
-					</h4>
-					<p>{{ $_post->getFormattedDate() }}</p>
-				</div>
-			</div>
+
+<aside class="mt-5 mt-md-0">
+	<h5 class="text-muted">Latest news</h5>
+
+	@foreach ($posts->LatestPublished(6)->get() as $latest_post)
+	<div class="row">
+		<div class="col-4 col-sm-4">
+			<a href="{{ $latest_post->getPermalink() }}">
+				<img class="img-responsive" src="{{ ImgHelper::get($latest_post->image,config('maguttiCms.image.small')) }}">
+			</a>
 		</div>
+		<div class="col-8 col-sm-8">
+			<a class="d-block" href="{{ $latest_post->getPermalink() }}">{{ $latest_post->title }}</a>
+			<small>
+				<i class="fa fa-clock mr-1"></i>
+				{{ $latest_post->getFormattedDate() }}
+			</small>
+		</div>
+	</div>
 	@endforeach
-</div>
+</aside>

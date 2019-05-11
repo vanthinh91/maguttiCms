@@ -3,25 +3,29 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">File Manager</h4>
-				<ul class="nav-tabs">
-					<li class="active">
-						<a href="#tab-upload" data-toggle="tab" id="file-manager-upload">Upload File</a>
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link active" href="#tab-upload" id="file-manager-upload" data-toggle="tab" role="tab" aria-controls="upload" aria-selected="true">Upload File</a>
 					</li>
-					<li>
-						<a href="#tab-images" data-toggle="tab" id="file-manager-list">Library</a>
+					<li class="nav-item">
+						<a class="nav-link" href="#tab-images" id="file-manager-list" data-toggle="tab" role="tab" aria-controls="list" aria-selected="false">Library</a>
 					</li>
 				</ul>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
 			<div class="modal-body">
 				<div class="tab-content">
-					<div id="tab-upload" class="tab-pane active">
+					<div id="tab-upload" class="tab-pane fade show active" role="tabpanel" aria-labelledby="file-manager-upload">
 						<fieldset class="alert alert-info">
 							<input name="upload-input" type="file" class="btn btn-primary">
 							<div id="queue-modal" class="queue">{!!trans('admin.message.media_drag') !!}</div>
 						</fieldset>
 					</div>
-					<div id="tab-images" class="tab-pane">
+
+					<div id="tab-images" class="tab-pane fade" role="tabpanel" aria-labelledby="file-manager-list">
 						<div class="row">
 							<div id="tab-images-gallery" class="col-md-8 col-xs-12">
 								<div class="loading text-center">

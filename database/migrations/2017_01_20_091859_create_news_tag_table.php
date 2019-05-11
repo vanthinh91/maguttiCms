@@ -21,7 +21,6 @@ class CreateNewsTagTable extends Migration
             $table->unsignedInteger('news_id');
             $table->unsignedInteger('tag_id');
             $table->timestamps();
-
             $table->index('news_id', 'news_tag_news_id_index');
             $table->index('tag_id', 'news_tag_tag_id_index');
 

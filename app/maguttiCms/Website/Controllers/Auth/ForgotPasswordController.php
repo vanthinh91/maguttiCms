@@ -19,7 +19,7 @@ class ForgotPasswordController extends Controller
 
     use SendsPasswordResetEmails;
 
-    use \App\maguttiCms\SeoTools\maguttiCmsSeoTrait;
+    use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
     protected  $articleRepo;
 
     public function __construct(ArticleRepositoryInterface $article)

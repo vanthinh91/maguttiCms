@@ -16,6 +16,6 @@ class AdminImpersonate
      */
     public function handle($request, Closure $next)
     {
-       return (Auth::guard('admin')->user()->isSu() ) ? $next($request) : redirect('/admin');
+       return (auth_user('admin')->isSu() ) ? $next($request) : redirect('/admin');
     }
 }

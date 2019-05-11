@@ -3,6 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use App\maguttiCms\Builders\ArticleBuilder;
 use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use \App\maguttiCms\Domain\Article\ArticlePresenter;
 
 /**
  * Class Article
@@ -10,11 +11,12 @@ use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
  */
 class Article extends Model
 {
-    use  GFTranslatableHelperTrait;
     use \Dimsav\Translatable\Translatable;
-    use \App\maguttiCms\Domain\Article\ArticlePresenter;
 
-	protected $with = ['translations'];
+    use ArticlePresenter;
+    use  GFTranslatableHelperTrait;
+
+    protected $with = ['translations'];
 
     protected $fillable = ['title', 'subtitle',  'abstract', 'description',
                            'slug', 'sort', 'pub','top_menu', 'parent_id',
@@ -26,7 +28,7 @@ class Article extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  Sluggable & Trnslateble
+    |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
     public $translatedAttributes = ['menu_title', 'title','slug',
@@ -38,7 +40,7 @@ class Article extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  RELATION
+    |  RELATIONS
     |--------------------------------------------------------------------------
     */
     public function template()

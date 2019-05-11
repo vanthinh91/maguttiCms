@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/store.js":
-/*!**************************************!*\
-  !*** ./resources/assets/js/store.js ***!
-  \**************************************/
+/***/ "./resources/js/website/store.js":
+/*!***************************************!*\
+  !*** ./resources/js/website/store.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -151,7 +151,7 @@ window.Store = function () {
           product_code: product_code,
           product_model_code: product_model_code,
           quantity: quantity,
-          _token: Laravel.csrfToken
+          _token: $('meta[name="csrf-token"]').attr('content')
         },
         dataType: 'json',
         success: function success(response) {
@@ -185,7 +185,7 @@ window.Store = function () {
         url: '/api/store/cart-item-remove',
         data: {
           id: id,
-          _token: Laravel.csrfToken
+          _token: $('meta[name="csrf-token"]').attr('content')
         },
         dataType: 'json',
         success: function success(response) {
@@ -243,7 +243,7 @@ window.Store = function () {
         cart: cart,
         address: shipping || billing,
         discount_code: discount_code,
-        _token: Laravel.csrfToken
+        _token: $('meta[name="csrf-token"]').attr('content')
       },
       dataType: 'json',
       success: function success(response) {
@@ -278,7 +278,7 @@ window.Store = function () {
       dataType: 'json',
       data: {
         code: code,
-        _token: Laravel.csrfToken
+        _token: $('meta[name="csrf-token"]').attr('content')
       }
     }).fail(function () {
       $(ORDER_DISCOUNT_ALERT).hide();
@@ -307,14 +307,14 @@ window.Store = function () {
 
 /***/ }),
 
-/***/ 4:
-/*!********************************************!*\
-  !*** multi ./resources/assets/js/store.js ***!
-  \********************************************/
+/***/ 2:
+/*!*********************************************!*\
+  !*** multi ./resources/js/website/store.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/web01/siti-laravel/maguttiCms/resources/assets/js/store.js */"./resources/assets/js/store.js");
+module.exports = __webpack_require__(/*! /Users/asperti/web/magutti/maguttiCms/resources/js/website/store.js */"./resources/js/website/store.js");
 
 
 /***/ })

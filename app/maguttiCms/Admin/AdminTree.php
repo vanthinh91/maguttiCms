@@ -6,17 +6,13 @@ use App;
  * Class AdminTree
  * @package App\maguttiCms\Admin
  */
-class AdminTree  {
+class AdminTree  extends AdminFormComponent {
 
     protected  $tree_collection;
     protected  $level;
-    protected  $property;
 
-    public function setProperty($property)
-    {
-        $this->property = $property;
-        return $this;
-    }
+
+
 
     public function getTreeRelation($obj,$parent=0,$level=0) {
 

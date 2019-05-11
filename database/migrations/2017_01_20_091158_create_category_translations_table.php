@@ -21,7 +21,8 @@ class CreateCategoryTranslationsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('category_id');
             $table->string('locale', 255);
-            $table->string('title', 255);
+            $table->string('title', 255)->nullable();
+            $table->string('slug', 255)->nullable();
             $table->text('description')->nullable();
             $table->string('seo_title', 255)->nullable();
             $table->string('seo_description', 255)->nullable();
@@ -31,6 +32,8 @@ class CreateCategoryTranslationsTable extends Migration
             $table->timestamps();
             $table->unique(['category_id', 'locale'], 'categories_translations_category_id_locale_unique');
             $table->index('locale', 'categories_translations_locale_index');
+            $table->foreign('category_id', 'category_translations_category_id_foreign')->references('id')->on('categoriesFcatego')->onDelete('CASCADE
+')->onUpdate('RESTRICT');
 
         });
     }

@@ -17,8 +17,8 @@
 				</div>
 			@endforeach
 			<div>
-				<button type="submit" class="btn btn-default" >
-					{{icon('search')}}{{ trans('admin.label.search') }}
+				<button type="submit" class="btn btn-default">
+					{{icon('search')}} {{ trans('admin.label.search') }}
 				</button>
 			</div>
 		</div>

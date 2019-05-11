@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\maguttiCms\Builders\LaraCmsBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Str;
 class HpSlider extends Model
@@ -9,6 +10,16 @@ class HpSlider extends Model
     protected $table = 'hpsliders';
     protected $fillable = ['title', 'description','slug','link','sort','is_active'];
     protected $fieldspec = [];
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Builder & Repo
+    |--------------------------------------------------------------------------
+    */
+    function newEloquentBuilder($query)
+    {
+        return new LaraCmsBuilder($query);
+    }
 
     public function setSlugAttribute($value)
     {
@@ -71,7 +82,6 @@ class HpSlider extends Model
             'label'     => trans('admin.label.image'),
             'mediaType' => 'Img',
             'display'   => 1,
-
         ];
         $this->fieldspec['sort'] = [
             'type'      => 'integer',
@@ -89,10 +99,6 @@ class HpSlider extends Model
             'display'   => 1
         ];
         return $this->fieldspec;
-    }
-
-    public function scopeActive($query)    {
-        $query->where('is_active', '=',1 );
     }
 
 }

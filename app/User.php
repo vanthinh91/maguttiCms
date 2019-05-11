@@ -140,7 +140,7 @@ class User extends Authenticatable
             'label'    => 'Password',
             'display'  => 1,
             'template' => 'password',
-            'validation' => 'min:10|confirmed|regex:'.config('maguttiCms.security.password_regex'),
+            'validation' => 'nullable|min:10|confirmed|regex:'.config('maguttiCms.security.password_regex'),
         ];
         $this->fieldspec['is_active'] = [
             'type'     => 'boolean',

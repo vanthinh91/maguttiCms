@@ -12,23 +12,26 @@
 */
 
 
+use App\maguttiCms\Middleware\AdminDeleteRole;
+use App\maguttiCms\Middleware\AdminEditRole;
 use App\maguttiCms\Middleware\AdminRole;
+use App\maguttiCms\Middleware\AdminStoreRole;
 
 Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['adminauth', 'setlocaleadmin']), function () {
 
     Route::get('/',                                 '\App\maguttiCms\Admin\Controllers\AdminPagesController@home');
     Route::get('/list/{section?}/{sub?}',           '\App\maguttiCms\Admin\Controllers\AdminPagesController@lista')->middleware(AdminRole::class);
     Route::get('/create/{section}',                 '\App\maguttiCms\Admin\Controllers\AdminPagesController@create')->middleware(AdminRole::class);
-    Route::post('/create/{section}',                '\App\maguttiCms\Admin\Controllers\AdminPagesController@store');
+    Route::post('/create/{section}',                '\App\maguttiCms\Admin\Controllers\AdminPagesController@store')->middleware(AdminStoreRole::class);
 
-    Route::get('/edit/{section}/{id?}/{type?}',     '\App\maguttiCms\Admin\Controllers\AdminPagesController@edit');
-    Route::post('/edit/{section}/{id?}',            '\App\maguttiCms\Admin\Controllers\AdminPagesController@update');
+    Route::get('/edit/{section}/{id?}/{type?}',     '\App\maguttiCms\Admin\Controllers\AdminPagesController@edit')->middleware(AdminEditRole::class);
+    Route::post('/edit/{section}/{id?}',            '\App\maguttiCms\Admin\Controllers\AdminPagesController@update')->middleware(AdminStoreRole::class);
 
 	Route::get('/file_view/{section}/{id}/{key}',   '\App\maguttiCms\Admin\Controllers\AdminPagesController@file_view');
 
     Route::get('/editmodal/{section}/{id?}/{type?}','\App\maguttiCms\Admin\Controllers\AdminPagesController@editmodal');
     Route::post('/editmodal/{section}/{id?}',       '\App\maguttiCms\Admin\Controllers\AdminPagesController@updatemodal');
-    Route::get('/delete/{section}/{id?}',           '\App\maguttiCms\Admin\Controllers\AdminPagesController@destroy');
+    Route::get('/delete/{section}/{id?}',           '\App\maguttiCms\Admin\Controllers\AdminPagesController@destroy')->middleware(AdminDeleteRole::class);
 
     Route::get('/duplicate/{section}/{id?}/{type?}','\App\maguttiCms\Admin\Controllers\AdminPagesController@duplicate');
 
@@ -58,10 +61,15 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
         Route::get('updateHtml/media/{model?}','\App\maguttiCms\Admin\Controllers\AjaxController@updateModelMediaList');
         Route::get('updateHtml/{mediaType?}/{model?}/{id?}','\App\maguttiCms\Admin\Controllers\AjaxController@updateMediaList');
         Route::get('updateMediaSortList/',                  '\App\maguttiCms\Admin\Controllers\AjaxController@updateMediaSortList');
-        Route::get('suggest', ['as' => 'api.suggest', 'uses' => '\App\maguttiCms\Admin\Controllers\AjaxController@suggest']);
-        Route::get('dashboard','\App\MaguttiCms\Api\V1\Controllers\AdminServicesController@dashboard');
-        Route::get('nav-bar','\App\MaguttiCms\Api\V1\Controllers\AdminServicesController@navbar');
 
+        /*
+        |--------------------------------------------------------------------------
+        | API LIBRARY
+        |--------------------------------------------------------------------------
+        */
+        Route::get('api/suggest', ['as' => 'api.suggest', 'uses' => '\App\maguttiCms\Admin\Controllers\AjaxController@suggest']);
+        Route::get('dashboard','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@dashboard');
+        Route::get('nav-bar','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@navbar');
         /*
         |--------------------------------------------------------------------------
         | FILE MANANGER

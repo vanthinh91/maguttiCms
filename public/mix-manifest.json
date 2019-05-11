@@ -4,9 +4,12 @@
     "/cms/js/lara-file-manager.js": "/cms/js/lara-file-manager.js",
     "/website/js/app.js": "/website/js/app.js",
     "/website/js/store.js": "/website/js/store.js",
-    "/website/js/vendor.js": "/website/js/vendor.js?id=252b1e4964c4054ec772",
-    "/website/css/vendor.css": "/website/css/vendor.css?id=92cc9af4dfb2e9f442a8",
+    "/website/js/vendor.js": "/website/js/vendor.js",
+    "/website/css/vendor.css": "/website/css/vendor.css",
     "/cms/css/admin.css": "/cms/css/admin.css",
     "/website/css/app.css": "/website/css/app.css",
+    "/cms/js/cmsvendor.js": "/cms/js/cmsvendor.js",
+    "/cms/css/app.css": "/cms/css/app.css",
+    "/cms/css/vendor.css": "/cms/css/vendor.css",
     "/cms/js/appcms.js": "/cms/js/appcms.js"
 }

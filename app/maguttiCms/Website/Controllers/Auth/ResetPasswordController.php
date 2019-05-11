@@ -23,7 +23,7 @@ class ResetPasswordController extends Controller
     protected $redirectTo   = '/users/dashboard';
     protected $redirectPath = '/users/dashboard';
     public $localePrefix;
-    use \App\maguttiCms\SeoTools\maguttiCmsSeoTrait;
+    use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
     protected $articleRepo;
     /**
      * Create a new controller instance.

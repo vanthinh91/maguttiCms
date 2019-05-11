@@ -22,11 +22,11 @@ class CreateHpslidersTable extends Migration
             $table->string('title', 255);
             $table->text('description');
             $table->string('icon', 255)->nullable();
-            $table->string('image', 255);
+            $table->string('image', 255)->nullable();
             $table->string('link', 255)->nullable();
             $table->string('slug', 255);
-            $table->integer('sort');
-            $table->tinyInteger('is_active')->nullable()->default(1);
+            $table->integer('sort')->nullable();
+            $table->boolean('is_active')->nullable()->default(1);
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();

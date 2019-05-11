@@ -21,22 +21,22 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('domain', 255);
             $table->integer('parent_id');
-            $table->integer('template_id');
+            $table->integer('template_id')->nullable();
             $table->string('menu_title', 255)->nullable();
             $table->string('title', 255)->nullable();
             $table->string('subtitle', 255)->nullable();
             $table->string('intro', 255)->nullable();
             $table->string('abstract', 255)->nullable();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('slug', 255)->nullable();
             $table->string('doc', 255)->nullable();
             $table->string('image', 255)->nullable();
             $table->string('banner', 255)->nullable();
             $table->string('link', 255)->nullable();
             $table->integer('sort')->nullable();
-            $table->tinyInteger('pub')->nullable()->default(1);
-            $table->tinyInteger('top_menu')->nullable()->default(1);
-            $table->integer('template_id')->nullable();
+            $table->boolean('pub')->nullable()->default(1);
+            $table->boolean('top_menu')->nullable()->default(1);
+
             $table->timestamps();
         });
     }

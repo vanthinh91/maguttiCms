@@ -24,10 +24,10 @@ class CreateCategoriesTable extends Migration
             $table->text('abstract')->nullable();
             $table->text('description')->nullable();
             $table->string('slug', 255)->unique()->nullable();
-            $table->string('image', 255);
-            $table->string('doc', 255);
-            $table->integer('sort');
-            $table->tinyInteger('pub')->nullable()->default(1);
+            $table->string('image', 255)->nullable();
+            $table->string('doc', 255)->nullable();
+            $table->integer('sort')->nullable();
+            $table->boolean('pub')->nullable()->default(1);
             $table->string('seo_title', 255)->nullable();
             $table->string('seo_description', 255)->nullable();
             $table->string('seo_keywords', 255)->nullable();

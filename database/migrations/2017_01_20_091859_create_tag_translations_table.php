@@ -21,7 +21,7 @@ class CreateTagTranslationsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('tag_id');
             $table->string('locale', 255);
-            $table->string('title', 255);
+            $table->string('title', 255)->nullable();
             $table->timestamps();
 
             $table->unique(['tag_id', 'locale'], 'tag_translations_tag_id_locale_unique');

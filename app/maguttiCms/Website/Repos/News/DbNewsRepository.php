@@ -45,6 +45,10 @@ class DbNewsRepository extends DbRepository implements NewsRepositoryInterface
 	*/
 	function getPublished()
 	{
-		return $this->published()->where('date','<=',Carbon::now())->orderBy('date', 'desc')->paginate(10);
+
+		return $this->published()
+            ->where('date','<=',Carbon::now())
+            ->orderBy('date', 'desc')
+            ->paginate(config('maguttiCms.website.option.pagination.news_index'));
 	}
 }

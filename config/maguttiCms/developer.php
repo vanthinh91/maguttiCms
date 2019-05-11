@@ -1,6 +1,6 @@
 <?php
 
 return [
-	'name' => 'Lara CMS',
+	'name' => 'MarcoAx for Magutti CMS',
 	'email' => ''
 ];

@@ -47,7 +47,7 @@ class StoreHelper {
 	{
 		return self::isStoreEnabled() && (Auth::user() || !config('maguttiCms.store.private_prices'));
 	}
-	
+
 	public static function getProductPrice($product)
 	{
 		if ($user = Auth::user()) {

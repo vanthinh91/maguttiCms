@@ -19,13 +19,19 @@ class CreateProductModelTranslationsTable extends Migration
     {
         Schema::create('product_model_translations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_model_id');
+            $table->unsignedInteger('product_model_id');
             $table->string('locale', 255);
             $table->string('title', 255);
             $table->text('description');
             $table->unsignedInteger('created_by');
             $table->unsignedInteger('update_by');
             $table->timestamps();
+            $table->unique(['product_model_id', 'locale'], 'product_model_translations_product_model_id_locale_unique');
+            $table->index('locale', 'product_model_translations_locale_index');
+
+            $table->foreign('product_model_id', 'product_model_translations_product_model_id_foreign')->references('id')->on('product_models')->onDelete('CASCADE
+')->onUpdate('RESTRICT');
+
         });
     }
 

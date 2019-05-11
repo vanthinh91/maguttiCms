@@ -1,0 +1,3 @@
+@mixin animate($speed: 0.35) {
+    transition: all #{$speed}s ease-in-out;
+}

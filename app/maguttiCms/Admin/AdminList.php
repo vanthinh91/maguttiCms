@@ -45,12 +45,27 @@ class AdminList
         $nF = 0; //  field number
         foreach ($this->property['field'] as $_code => $_item) {
             $html .= "<th class=\"middle-vertical-align\">\n";
-            $html .= is_array($_item) ? trans('admin.label.' . $_code) : trans('admin.label.' . $_item);
+            $html .= $this->getHeaderItemLabel($_item, $_code);
             $html .= $this->getOrderableField($_code);
             $html .= "</th>\n";
             $nF++;
         }
         echo $html;
+    }
+
+    /**
+     * Gestione etichetta per header delle liste
+     * se non presente nelle traduzioni prende
+     * il valore del config
+     * @param $_item
+     * @param $_code
+     * @return array|\Illuminate\Contracts\Translation\Translator|string|null
+     */
+    function getHeaderItemLabel($_item, $_code)
+    {
+        $label = is_array($_item) ? $_code : $_item;
+        $full_label_path = 'admin.label.' . $label;
+        return (\Lang::has($full_label_path)) ? trans($full_label_path) : ucwords(str_replace('_', ' ', $label));
     }
 
 

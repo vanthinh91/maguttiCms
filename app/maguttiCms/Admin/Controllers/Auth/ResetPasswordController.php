@@ -70,7 +70,7 @@ class ResetPasswordController extends Controller
         return [
             'token' => 'required',
             'email' => 'required|email',
-            'password' => 'required|confirmed|min:6|regex:'.config('maguttiCms.security.password_regex'),
+            'password' => 'required|confirmed|min:10|regex:'.config('maguttiCms.security.password_regex'),
         ];
     }
 

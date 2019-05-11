@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/app.js":
-/*!************************************!*\
-  !*** ./resources/assets/js/app.js ***!
-  \************************************/
+/***/ "./resources/js/website/app.js":
+/*!*************************************!*\
+  !*** ./resources/js/website/app.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -168,15 +168,6 @@ window.App = function () {
     $(".lightbox").fancybox();
   }
 
-  function handleWow() {
-    window.wow.init({
-      mobile: false,
-      // default
-      live: false // default
-
-    });
-  }
-
   function handleScrollTo() {
     $(document).on('click', '.scroll-to', function (e) {
       e.preventDefault();
@@ -209,7 +200,7 @@ window.App = function () {
             model: model,
             field: field,
             value: value,
-            _token: Laravel.csrfToken
+            _token: $('meta[name="csrf-token"]').attr('content')
           },
           dataType: 'json',
           success: function success(response) {
@@ -275,7 +266,6 @@ window.App = function () {
       handleBootstrap();
       handleNewsletter();
       handleLightBox();
-      handleWow();
       handleScrollTo();
       handleGhostInputs();
       handleNavbar();
@@ -339,14 +329,14 @@ function trans(keystring) {
 
 /***/ }),
 
-/***/ 3:
-/*!******************************************!*\
-  !*** multi ./resources/assets/js/app.js ***!
-  \******************************************/
+/***/ 1:
+/*!*******************************************!*\
+  !*** multi ./resources/js/website/app.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/web01/siti-laravel/maguttiCms/resources/assets/js/app.js */"./resources/assets/js/app.js");
+module.exports = __webpack_require__(/*! /Users/asperti/web/magutti/maguttiCms/resources/js/website/app.js */"./resources/js/website/app.js");
 
 
 /***/ })

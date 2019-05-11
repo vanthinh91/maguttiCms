@@ -21,8 +21,8 @@ class CreateNewsTranslationsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('news_id');
             $table->string('locale', 255);
-            $table->string('title', 255);
-            $table->text('description');
+            $table->string('title', 255)->nullable();
+            $table->text('description')->nullable();
             $table->text('abstract')->nullable();
             $table->string('subtitle', 255)->nullable();
             $table->string('intro', 255)->nullable();

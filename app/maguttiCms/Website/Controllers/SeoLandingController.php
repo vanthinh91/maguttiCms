@@ -4,17 +4,16 @@ namespace App\maguttiCms\Website\Controllers;
 
 use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redirect;
 use Input;
 use Validator;
-use App\Article;
-use App\City;
+
 use App\Province;
-use App\maguttiCms\Tools\SeoLandingHelper;
+use App\maguttiCms\SeoTools\SeoLandingHelper;
+use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
 
 class SeoLandingController extends Controller
 {
-    use \App\maguttiCms\SeoTools\maguttiCmsSeoTrait;
+    use MaguttiCmsSeoTrait;
     /**
      * @var
      */
@@ -56,8 +55,8 @@ class SeoLandingController extends Controller
 		$article->title = SeoLandingHelper::replaceTags($article->title, compact('product', 'city'));
 		$article->subtitle = SeoLandingHelper::replaceTags($article->subtitle, compact('product', 'city'));
 		$article->description = SeoLandingHelper::replaceTags($article->description, compact('product', 'city'));
-		$article->seoTitle = SeoLandingHelper::replaceTags($article->seoTitle, compact('product', 'city'));
-		$article->seoDescription = SeoLandingHelper::replaceTags($article->seoDescription, compact('product', 'city'));
+		$article->seo_title = SeoLandingHelper::replaceTags($article->seo_title, compact('product', 'city'));
+		$article->seo_description = SeoLandingHelper::replaceTags($article->seo_description, compact('product', 'city'));
 
 		$this->setSeo($article);
 

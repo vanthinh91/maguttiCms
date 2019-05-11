@@ -21,8 +21,8 @@ class CreateMediaTranslationsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('media_id');
             $table->string('locale', 255);
-            $table->string('title', 255);
-            $table->text('description');
+            $table->string('title', 255)->nullable();;
+            $table->text('description')->nullable();;
             $table->timestamps();
 
             $table->unique(['media_id', 'locale'], 'media_translations_media_id_locale_unique');

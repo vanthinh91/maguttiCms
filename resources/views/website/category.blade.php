@@ -1,13 +1,16 @@
 @extends('website.app')
 @section('content')
-	<main class="container">
-		<h1>{{ $category->title }}</h1>
-		@foreach ($products as $_product)
+
+	<main class="my-5">
+		<div class="container">
+			<h1 class="text-primary">{{ $category->title }}</h1>
+
 			<ul>
-				<li>
-					<a href="{{$_product->getPermalink()}}">{{$_product->title}}</a>
-				</li>
+				@foreach ($products as $product)
+					<li><a href="{{ $product->getPermalink() }}">{{ $product->title }}</a></li>
+				@endforeach
 			</ul>
-		@endforeach
+		</div>
 	</main>
+
 @endsection

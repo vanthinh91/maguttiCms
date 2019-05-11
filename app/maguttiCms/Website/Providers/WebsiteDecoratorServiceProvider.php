@@ -27,6 +27,6 @@ class WebsiteDecoratorServiceProvider extends ServiceProvider
       App::bind('HtmlHelper', function() {return new \App\maguttiCms\Tools\HtmlHelper;});
       App::bind('StoreHelper', function() {return new \App\maguttiCms\Tools\StoreHelper;});
       App::bind('ImgHelper', function() {return new \App\maguttiCms\Tools\ImgHelper;});
-      App::bind('SeoLandingHelper', function() {return new \App\maguttiCms\Tools\SeoLandingHelper;});
+      App::bind('SeoLandingHelper', function() {return new \App\maguttiCms\SeoTools\SeoLandingHelper;});
     }
 }

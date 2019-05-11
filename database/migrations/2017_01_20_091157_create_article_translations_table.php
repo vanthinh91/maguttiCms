@@ -23,10 +23,10 @@ class CreateArticleTranslationsTable extends Migration
             $table->string('slug',255)->nullable();
             $table->string('locale', 255);
             $table->string('menu_title', 255)->nullable();
-            $table->string('title', 255);
+            $table->string('title', 255)->nullable();
             $table->string('subtitle', 255)->nullable();
             $table->string('intro', 255)->nullable();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->text('abstract')->nullable();
             $table->string('seo_title', 255)->nullable();
             $table->string('seo_description', 255)->nullable();

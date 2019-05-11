@@ -1,15 +1,47 @@
 <?php
 
 use Illuminate\Support\Str;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Support\Facades\Storage;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Article;
 
+use App\maguttiCms\Tools\Tool;
+use App\maguttiCms\Tools\HtmlHelper;
+use App\maguttiCms\Tools\StoreHelper;
+
+
+
+/*
+|--------------------------------------------------------------------------
+|  Localization  and Permalink
+|--------------------------------------------------------------------------
+*/
+
+function get_locale()
+{
+    return LaravelLocalization::getCurrentLocale();
+}
+
+function url_locale($url)
+{
+    return LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(), URL::to($url));
+}
+
+// This function return the route slug url
+function route_url_locale($slug)
+{
+    return url_locale(trans('routes.'. $slug));
+}
+
+function page_permalink_by_id($page_id, $locale='')
+{
+    return Article::getPermalinkById($page_id, $locale);
+}
 /*
 |--------------------------------------------------------------------------
 |   PATH HELPERS / SHORTCUTS
 |--------------------------------------------------------------------------
 */
-
 
 /*******************     DOC    *****************/
 function ma_get_doc_path_from_repository($doc)
@@ -121,6 +153,15 @@ function ma_get_image_on_the_fly_cached($asset, $w, $h, $type = 'jpg', $fit = 1)
     }
 }
 
+/**
+ * Is the mime type an image
+ */
+function is_image($mimeType)
+{
+    return Str::startsWith($mimeType, 'image/');
+}
+
+
 /*******************     USER UPLOAD    *****************/
 function ma_get_upload_from_repository($doc)
 {
@@ -207,13 +248,6 @@ function ma_get_admin_export_url($model)
     return URL::to($path . '/' . Str::plural($modelName));
 }
 
-/**
- * Is the mime type an image
- */
-function is_image($mimeType)
-{
-    return Str::startsWith($mimeType, 'image/');
-}
 
 if (!function_exists('flash')) {
     function flash($message = null)
@@ -226,66 +260,8 @@ if (!function_exists('flash')) {
     }
 }
 
-/**
- * This method is used to pull a model out of the ioc container given its name as string.
- *
- * @param $string
- * @param string $namespace
- *
- * @return \Illuminate\Foundation\Application|mixed
- */
-function getModelFromString($string, $namespace = "\\App\\")
-{
-    return app($namespace . ucfirst($string));
-}
 
-/**
- *
- * get the  real user IP
- * @return bool
- *
- */
-function get_ip()
-{
-    $ip = false;
-    // If HTTP_CLIENT_IP is set, then give it priority
-    if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
-        $ip = $_SERVER["HTTP_CLIENT_IP"];
-    }
 
-    // User is behind a proxy and check that we discard RFC1918 IP addresses
-    // if they are behind a proxy then only figure out which IP belongs to the
-    // user.  Might not need any more hackin if there is a squid reverse proxy
-    // infront of apache.
-    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-
-        // Put the IP's into an array which we shall work with shortly.
-        $ips = explode(", ", $_SERVER['HTTP_X_FORWARDED_FOR']);
-        if ($ip) {
-            array_unshift($ips, $ip);
-            $ip = false;
-        }
-
-        for ($i = 0; $i < count($ips); $i++) {
-            // Skip RFC 1918 IP's 10.0.0.0/8, 172.16.0.0/12 and 192.168.0.0/16
-            if (!preg_match("/^(10|172\.16|192\.168)\./i", $ips[$i])) {
-                if (version_compare(phpversion(), "5.0.0", ">=")) {
-                    if (ip2long($ips[$i]) != false) {
-                        $ip = $ips[$i];
-                        break;
-                    }
-                } else {
-                    if (ip2long($ips[$i]) != -1) {
-                        $ip = $ips[$i];
-                        break;
-                    }
-                }
-            }
-        }
-    }
-    $Ip = ($ip) ? $ip : $_SERVER['REMOTE_ADDR'];
-    return $Ip;
-}
 
 /*
 |--------------------------------------------------------------------------
@@ -328,7 +304,6 @@ function ma_get_file_from_storage($file, $disk = '', $folder = '')
     return $image;
 }
 
-/*******************  AUTH HELPER **************/
 
 /*
 |--------------------------------------------------------------------------
@@ -339,7 +314,7 @@ function ma_get_file_from_storage($file, $disk = '', $folder = '')
 // This method is used to check the admin role
 function cmsUserHasRole($role)
 {
-    return (auth('admin')->user()->hasRole($role)) ? 1 : 0;
+    return (auth_user('admin')->hasRole($role)) ? 1 : 0;
 }
 
 function cmsUserIsOwner($model_id, $user_id)
@@ -351,4 +326,58 @@ function cmsUserIsOwner($model_id, $user_id)
 function auth_user($guard = '')
 {
     return ($guard != '') ? auth($guard)->user() : auth()->user();
+}
+
+
+/*
+|--------------------------------------------------------------------------
+|  STORE
+|--------------------------------------------------------------------------
+*/
+function store_currency()
+{
+    return config('maguttiCms.store.currency_symbol');
+}
+
+function store_enabled()
+{
+    return StoreHelper::isStoreEnabled();
+}
+
+
+/*
+|--------------------------------------------------------------------------
+|  HELPERS
+|--------------------------------------------------------------------------
+*/
+
+// icons
+function icon($icons, $classes = '', $force_set = '', $echo = true)
+{
+    return Htmlhelper::createFAIcon($icons, $classes, $force_set, $echo);
+}
+
+// development
+function loremImage($width = 800, $height = 800)
+{
+    return 'https://picsum.photos/'.$width.'/'.$height.'?image='.rand(0, 1000);
+}
+
+
+function generate_password()
+{
+    return Tool::generatePassword();
+}
+
+/**
+ * This method is used to pull a model out of the ioc container given its name as string.
+ *
+ * @param $string
+ * @param string $namespace
+ *
+ * @return \Illuminate\Foundation\Application|mixed
+ */
+function getModelFromString($string, $namespace = "\\App\\")
+{
+    return app($namespace . ucfirst($string));
 }

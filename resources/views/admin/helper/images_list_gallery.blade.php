@@ -1,5 +1,5 @@
 @forelse($article->media()->where('collection_name', 'images')->orderBy('sort')->get() as $media)
-	<li id="box_media_{!! $media->id!!}" class="thumbnail">
+	<li id="box_media_{!! $media->id!!}" class="img-thumbnail">
 		<div id="item_media_{!! $media->id!!}_text" class="caption">
 			@if ($media->media_category_id)
 				<span class="media-category">

@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/cms.js":
-/*!************************************!*\
-  !*** ./resources/assets/js/cms.js ***!
-  \************************************/
+/***/ "./resources/js/admin/cms.js":
+/*!***********************************!*\
+  !*** ./resources/js/admin/cms.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -181,7 +181,7 @@ window.Cms = function () {
       var field = $(this).data('list-name');
       var onObj = $(this).find(".bool-on");
       var offObj = $(this).find(".bool-off");
-      var value = onObj.hasClass('hidden') ? 1 : 0;
+      var value = onObj.hasClass('d-none') ? 1 : 0;
       $.ajax({
         url: urlAjaxHandlerCms + 'update/updateItemField/' + itemArray[0] + '/' + itemArray[1],
         data: {
@@ -194,8 +194,8 @@ window.Cms = function () {
         cache: false,
         success: function success(response) {
           //  suppress
-          onObj.toggleClass('hidden');
-          offObj.toggleClass('hidden');
+          onObj.toggleClass('d-none');
+          offObj.toggleClass('d-none');
           $.notify(response.message, "success");
         },
         error: function error(xhr, _ajaxOptions, thrownError) {
@@ -372,7 +372,8 @@ window.Cms = function () {
         branding: false,
         statusbar: false,
         height: 200,
-        toolbar: "insertfile undo redo | styleselect | bold italic | bullist numlist outdent indent | link | code"
+        toolbar: "insertfile undo redo | styleselect | bold italic | bullist numlist outdent indent | link | code",
+        convert_urls: false
       });
     },
     initColorPicker: function initColorPicker() {
@@ -479,6 +480,7 @@ window.Cms = function () {
         var itemArray = curItem.id.split('-');
         var field = itemArray[1];
         var boxObj = $("#box_" + itemArray[1] + "_" + itemArray[2]);
+        var curLocale = $(obj).data('locale');
 
         if (confirmed) {
           $.ajax({
@@ -486,7 +488,8 @@ window.Cms = function () {
             data: {
               model: _CURMODEL,
               field: field,
-              value: value
+              value: value,
+              locale: curLocale
             },
             type: "GET",
             dataType: 'json',
@@ -596,7 +599,7 @@ window.Cms = function () {
               filename: $('#cropper-filename-' + key).val(),
               myImgType: $('#myImgType').val(),
               model: _CURMODEL,
-              _token: Laravel.csrfToken
+              _token: $('meta[name="csrf-token"]').attr('content')
             }
           }).done(function (response) {
             updateMediaContainers(response);
@@ -620,14 +623,14 @@ window.Cms = function () {
 
 /***/ }),
 
-/***/ 1:
-/*!******************************************!*\
-  !*** multi ./resources/assets/js/cms.js ***!
-  \******************************************/
+/***/ 4:
+/*!*****************************************!*\
+  !*** multi ./resources/js/admin/cms.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/web01/siti-laravel/maguttiCms/resources/assets/js/cms.js */"./resources/assets/js/cms.js");
+module.exports = __webpack_require__(/*! /Users/asperti/web/magutti/maguttiCms/resources/js/admin/cms.js */"./resources/js/admin/cms.js");
 
 
 /***/ })

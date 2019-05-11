@@ -1,17 +1,18 @@
 <?php namespace App;
 
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\URL;
+
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use \App\maguttiCms\Domain\Article\ArticlePresenter;
 
 class Example extends Model
 {
-    use  GFTranslatableHelperTrait;
     use \Dimsav\Translatable\Translatable;
-    use \App\maguttiCms\Domain\Article\ArticlePresenter;
+
+    use ArticlePresenter;
+    use  GFTranslatableHelperTrait;
 
     protected $with = ['translations'];
 
@@ -27,6 +28,8 @@ class Example extends Model
         'pub',
         'article_id',
         'article_2_id',
+        'article_3_id',
+        'status_id',
         'image_media_id'
     ];
     protected $fieldspec = [];
@@ -43,6 +46,8 @@ class Example extends Model
         'slug',
         'description',
         'description_2',
+        'image',
+        'image_media_id',
         'seo_title',
         'seo_description',
         'seo_no_index'
@@ -252,13 +257,12 @@ class Example extends Model
             'display'  => 1,
         ];
         $this->fieldspec['image_media_id'] = [
-            'type'        => 'media',
+            'type'        => 'filemanager',
             'required'    => false,
             'hidden'      => 0,
             'label'       => 'Image File Manager',
             'mediaType'   => 'Img',
             'display'     => 1,
-            'filemanager' => 1
         ];
         $this->fieldspec['date'] = [
             'type'            => 'string',

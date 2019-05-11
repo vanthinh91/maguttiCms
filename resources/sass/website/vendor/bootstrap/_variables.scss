@@ -1,0 +1,30 @@
+// Colors.
+$primary: #317D65;
+$secondary: #010202;
+$custom-btn: purple;
+
+// Body.
+$body-bg: #ffffff;
+$body-color: $secondary;
+// link
+$link-color:$primary;
+$link-hover-color:$custom-btn;
+
+  // Typography
+$font-family-sans-serif: "Montserrat",sans-serif;
+$font-family-title: 	"Expletus", sans-serif;
+$font-family-subtitle: 	"Expletus", sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.5;
+
+// Theme colors.
+$theme-colors: (
+  "custom": $custom-btn
+);
+
+// Navbar collapse
+//** Point at which the navbar becomes uncollapsed.
+// $grid-float-breakpoint:     $screen-sm-min;
+
+//** Point at which the navbar begins collapsing.
+// $grid-float-breakpoint-max: ($grid-float-breakpoint - 1);

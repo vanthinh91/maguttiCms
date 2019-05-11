@@ -13,11 +13,10 @@ return [
         'email'	   => 'hello@magutti.com',
     ],
     'email' => [
-        'default'	   => 'hello@magutti.com',
-        'footer'       => '© Copyright Magutti',
+        'footer'     => 'Questo messaggio è stato inviato da un indirizzo email utilizzato solo per le notifiche e non abilitato alla ricezione. Si prega di non rispondere a questo messaggio.'
     ],
-    'news' => [
-        'item_home'	  => '3',
+    'pagination' => [
+        'news_index' => 3,
     ],
     'images' => [
         'gallery'	  => '1',

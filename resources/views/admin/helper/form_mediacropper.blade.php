@@ -1,14 +1,14 @@
 @include('admin.helper.media_category')
 <input id="itemId" name="itemId" type="hidden" value="{!! $article->id!!}">
-<div class="form-file">
+<div class="form-file p-2 bg-light">
 	<input id="cropper-upload-media" type="file" data-selected-caption="{{trans('admin.label.file_count')}}" data-empty-caption="{{trans('admin.label.upload_file')}}" {!!(array_key_exists('accept', $pageConfig['mediaCropper']))? 'accept="' .$pageConfig['mediaCropper']['accept'].'"': '' !!}>
 	<label for="cropper-upload-media">{{trans('admin.label.upload_file')}}</label>
 </div>
 <div id="cropper-toolbar-media" class="cropper-toolbar">
-	<button type="button" class="btn btn-default" id="cropper-zoom-in-media">{{icon('plus')}}{{ trans('admin.cropper.zoom_in') }}</button>
-	<button type="button" class="btn btn-default" id="cropper-zoom-out-media">{{icon('minus')}}{{ trans('admin.cropper.zoom_out') }}</button>
-	<button type="button" class="btn btn-info" id="cropper-preview-media" data-toggle="modal" data-target="#cropper-preview-modal-media">{{icon('eye')}}{{trans('admin.cropper.preview')}}</button>
-	<button type="button" class="btn btn-success" id="cropper-save-media">{{icon('save')}}{{trans('admin.cropper.save')}}</button>
+	<button type="button" class="btn btn-default" id="cropper-zoom-in-media">{{icon('plus')}}<span class="d-none d-lg-inline-block">{{ trans('admin.cropper.zoom_in')}}</span> </button>
+	<button type="button" class="btn btn-default" id="cropper-zoom-out-media">{{icon('minus')}}<span class="d-none d-lg-inline-block">{{ trans('admin.cropper.zoom_out') }}</span> </button>
+	<button type="button" class="btn btn-info" id="cropper-preview-media" data-toggle="modal" data-target="#cropper-preview-modal-media">{{icon('eye')}}<span class="d-none d-lg-inline-block">{{trans('admin.cropper.preview')}}</span></button>
+	<button type="button" class="btn btn-success" id="cropper-save-media">{{icon('save')}}<span class="d-none d-lg-inline-block">{{trans('admin.cropper.save')}}</span> </button>
 </div>
 <div class="cropper-wrapper">
 	<img id="cropper-container-media" class="cropper-container">
@@ -20,8 +20,11 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">{{icon('times')}}</button>
 				<h4 class="modal-title">Preview</h4>
+
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
 			<div class="modal-body">
 				<img id="cropper-preview-image-media" src="" class="img-responsive cropper-preview">

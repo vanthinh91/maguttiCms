@@ -1,0 +1,20 @@
+.navbar {
+
+    .navbar-brand {
+        width: 170px;
+
+        @include media-breakpoint-up(lg) {
+            width: 250px;
+        }
+    }
+
+    .navbar-call {
+        display: block;
+        margin-left: auto;
+        margin-right: 5px;
+
+        @include media-breakpoint-up(lg) {
+            display: none;
+        }
+    }
+}

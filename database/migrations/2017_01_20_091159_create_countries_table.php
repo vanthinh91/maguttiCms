@@ -24,7 +24,7 @@ class CreateCountriesTable extends Migration
             $table->integer('id_continent')->nullable();
             $table->tinyInteger('eu')->nullable();
             $table->decimal('vat', 4, 1)->nullable();
-            $table->tinyInteger('is_active')->default(1);
+            $table->boolean('is_active')->default(1);
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();

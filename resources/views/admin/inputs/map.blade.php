@@ -1,10 +1,10 @@
 <div class="row mb5">
-	<div class="col-xs-7">
+	<div class="col-7">
 		<input class="form-control" id="address" type="text">
 		<input name="lat" type="hidden">
 		<input name="lng" type="hidden">
 	</div>
-	<div class="col-xs-5">
+	<div class="col-5">
 		<button class="btn btn-primary btn-block" id="address-search">
 			<i class="fa fa-search"></i>Cerca
 		</button>

@@ -23,11 +23,20 @@ class AjaxController extends Controller
 			if ($this->request->input('field')) {
 				$field = $this->request->input('field');
 				$value = $this->request->input('value');
+                $locale = ($this->request->filled('locale'))?$this->request->get('locale'):null;
 				$modelClass = 'App\\' . $model;
 				$object = $modelClass::whereId($id)->firstOrFail();
-				$object->$field = $value;
-				$object->save();
-				$this->responseContainer['status'] = 'ok';
+				if($locale){
+                    $attribute = substr($field, 0, -3);
+                    $object->translateOrNew($locale)->$attribute = $value;
+                }
+				else {
+                    $object->$field = $value;
+
+                }
+                $object->save();
+
+                $this->responseContainer['status'] = 'ok';
 				$this->responseContainer['message'] = 'Data has been updated';
 				$this->responseContainer['data'] = $object;
 			}

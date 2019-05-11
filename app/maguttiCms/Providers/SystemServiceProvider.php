@@ -23,7 +23,7 @@ class SystemServiceProvider extends ServiceProvider
                     die('CACHE_PREFIX not specified. App killed');
 
                 if (!preg_match('/^.{44}\z/', $prefix))
-                    die('CACHE_PREFIX must be a random string of at least 44 characters (php artisan laracms:setup-redis)');
+                    die('CACHE_PREFIX must be a random string of at least 44 characters (php artisan magutti:setup-redis)');
             }
         }
     }

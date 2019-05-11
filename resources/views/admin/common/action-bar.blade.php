@@ -1,15 +1,16 @@
 <div id="action-bar">
-	<h1>
+	<h1 class="mb-0">
 		@if (isset($article))
 			@if ($article->title!='')
-				{{trans('admin.label.edit')}} {{ $article->title }}
+				{{trans('admin.label.edit')}} <strong>{{ $article->title }}</strong>
 			@elseif( $article->name!='')
-				{{trans('admin.label.edit')}} {{ $article->name }}
+				{{trans('admin.label.edit')}} <strong>{{ $article->name }}</strong>
 			@endif
 		@else
 			{{trans('admin.models.'.$model)}}
 		@endif
 	</h1>
+
 	<div class="actions">
 		<button id="toolbar_deleteButtonHandler" class="btn btn-danger btn-lg"  data-role="deleteAll"
 			rel="tooltip"

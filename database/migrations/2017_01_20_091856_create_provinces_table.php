@@ -22,8 +22,8 @@ class CreateProvincesTable extends Migration
             $table->integer('country_id');
             $table->integer('state_id');
             $table->string('title', 255);
-            $table->string('code', 32);
-            $table->integer('pub')->default(1);
+            $table->string('code', 32)->nullable();
+            $table->boolean('pub')->default(1);
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();

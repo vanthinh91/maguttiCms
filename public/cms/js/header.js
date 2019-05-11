@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/header.js":
-/*!***************************************!*\
-  !*** ./resources/assets/js/header.js ***!
-  \***************************************/
+/***/ "./resources/js/admin/header.js":
+/*!**************************************!*\
+  !*** ./resources/js/admin/header.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -103,7 +103,7 @@ var Header = {
   query_h: window.matchMedia('(min-width: ' + SIZE_H + 'px)'),
   // navbar
   initNavbar: function initNavbar() {
-    $('.nav-toggle').on('click', function (e) {
+    $('.header .nav-toggle').on('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
       var target = $(this).attr('href');
@@ -112,26 +112,26 @@ var Header = {
         $(target).toggleClass('open');
 
         if (!Header.query_m.matches) {
-          $('.nav').not(target).slideUp();
+          $('.header .nav').not(target).slideUp();
         }
       } else {
         if (!Header.query_m.matches) {
-          $('.nav').not(target).removeClass('open');
+          $('.header .nav').not(target).removeClass('open');
           $(target).slideToggle(ANIMATION_TIMING);
         }
       }
     });
-    $('.nav-sub-toggle').on('click', function (e) {
+    $('.header .nav-sub-toggle').on('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
-      $(this).closest('li').siblings().find('.nav-sub').slideUp(ANIMATION_TIMING);
-      $(this).siblings('.nav-sub').slideToggle(ANIMATION_TIMING);
+      $(this).closest('li').siblings().find('.header .nav-sub').slideUp(ANIMATION_TIMING);
+      $(this).siblings('.header .nav-sub').slideToggle(ANIMATION_TIMING);
     });
     $('html').on('click', function () {
-      $('.nav-sub-toggle').siblings('.nav-sub').slideUp(ANIMATION_TIMING);
+      $('.header .nav-sub-toggle').siblings('.nav-sub').slideUp(ANIMATION_TIMING);
 
       if (!Header.query_m.matches) {
-        $('.nav').each(function () {
+        $('.header .nav').each(function () {
           if ($(this).hasClass('vertical')) {
             if ($(this).hasClass('open')) {
               $(this).removeClass('open');
@@ -142,7 +142,7 @@ var Header = {
     });
     $(window).on('resize', function () {
       if (Header.query_m.matches) {
-        $('.nav').css('display', '');
+        $('.header .nav').css('display', '');
       }
     });
   }
@@ -153,38 +153,14 @@ $(function () {
 
 /***/ }),
 
-/***/ "./resources/assets/sass/admin.scss":
-/*!******************************************!*\
-  !*** ./resources/assets/sass/admin.scss ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/app.scss":
-/*!****************************************!*\
-  !*** ./resources/assets/sass/app.scss ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!*****************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/header.js ./resources/assets/sass/admin.scss ./resources/assets/sass/app.scss ***!
-  \*****************************************************************************************************************/
+/***/ 5:
+/*!********************************************!*\
+  !*** multi ./resources/js/admin/header.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/web01/siti-laravel/maguttiCms/resources/assets/js/header.js */"./resources/assets/js/header.js");
-__webpack_require__(/*! /Users/web01/siti-laravel/maguttiCms/resources/assets/sass/admin.scss */"./resources/assets/sass/admin.scss");
-module.exports = __webpack_require__(/*! /Users/web01/siti-laravel/maguttiCms/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/asperti/web/magutti/maguttiCms/resources/js/admin/header.js */"./resources/js/admin/header.js");
 
 
 /***/ })

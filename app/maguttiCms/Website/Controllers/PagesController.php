@@ -16,7 +16,7 @@ use Domain;
 
 class PagesController extends Controller
 {
-	use \App\maguttiCms\SeoTools\maguttiCmsSeoTrait;
+	use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
 	/**
 	* @var
 	*/
@@ -87,6 +87,7 @@ class PagesController extends Controller
 	public function contacts()
 	{
 		$article = $this->articleRepo->getBySlug('contatti');
+		$this->setSeo($article);
 		$parameter = Input::get('product_id');
 
 		if ($parameter && !is_array($parameter)) {
@@ -109,7 +110,7 @@ class PagesController extends Controller
 			$news = $this->newsRepo->getPublished();
 			$this->setSeo($article);
 			$this->setPagination($news);
-			return view('website.news.home', compact('article', 'news'));
+			return view('website.news.index', compact('article', 'news'));
 		} else {
 			$news = $this->newsRepo->getBySlug($slug, app()->getLocale());
 			if ($news) {

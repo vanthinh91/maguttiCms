@@ -20,13 +20,11 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
 
-
         /*
         |--------------------------------------------------------------------------
         | maguttiCms Middleware
         |--------------------------------------------------------------------------
         */
-
         //'Clockwork\Support\Laravel\ClockworkMiddleware',
         \App\maguttiCms\Middleware\ForceSSLMiddleware::class
     ];
@@ -41,6 +39,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
@@ -63,9 +62,12 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
 
         /*
@@ -76,10 +78,9 @@ class Kernel extends HttpKernel
 
         'shield' => \App\maguttiCms\Middleware\GFShieldMiddleware::class,
         'adminauth' => \App\maguttiCms\Middleware\AdminAuthenticate::class,
-        'localone'  => \App\MaguttiCms\Middleware\Localization::class,
-		'storeenabled' => \App\maguttiCms\Middleware\StoreEnabled::class,
-		'usercart' => \App\maguttiCms\Middleware\UserCart::class,
-		'setlocaleadmin'  => \App\maguttiCms\Middleware\SetLocaleAdmin::class,
+        'storeenabled' => \App\maguttiCms\Middleware\StoreEnabled::class,
+        'usercart' => \App\maguttiCms\Middleware\UserCart::class,
+        'setlocaleadmin'  => \App\maguttiCms\Middleware\SetLocaleAdmin::class,
         'adminimpersonate'  => \App\maguttiCms\Middleware\AdminImpersonate::class,
 
         /*
@@ -99,6 +100,7 @@ class Kernel extends HttpKernel
         'ability'               => \Zizaco\Entrust\Middleware\EntrustAbility::class,
 
     ];
+
     /**
      * The priority-sorted list of middleware.
      *
@@ -114,4 +116,5 @@ class Kernel extends HttpKernel
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,
     ];
+
 }
