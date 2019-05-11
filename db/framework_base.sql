@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mag 10, 2019 alle 23:29
+-- Creato il: Mag 11, 2019 alle 12:11
 -- Versione del server: 5.7.24
 -- Versione PHP: 7.2.14
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 -- Struttura della tabella `addresses`
 --
 
+DROP TABLE IF EXISTS `addresses`;
 CREATE TABLE `addresses` (
   `id` int(11) UNSIGNED NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -51,6 +52,7 @@ CREATE TABLE `addresses` (
 -- Struttura della tabella `adminusers`
 --
 
+DROP TABLE IF EXISTS `adminusers`;
 CREATE TABLE `adminusers` (
   `id` int(10) UNSIGNED NOT NULL,
   `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -70,7 +72,7 @@ CREATE TABLE `adminusers` (
 --
 
 INSERT INTO `adminusers` (`id`, `first_name`, `last_name`, `email`, `password`, `real_password`, `remember_token`, `is_active`, `locale`, `created_at`, `updated_at`) VALUES
-(3, 'magutti', 'Admin', 'cmsadmin@magutti.com', '$2y$10$fhRhYYRj2tgq1/jmaUkgH.y7AW2lcDrdEIsn5GP35aLVsEQWWCBh6', 'password', 'Uhfr8SqVv5bFc0dE4QOzSJQROavjPGwNmb7HKedNLoSbGsnTOgEd6fup3KT5', 1, 'en', '0000-00-00 00:00:00', '2019-04-10 20:00:46');
+(3, 'magutti', 'Admin', 'cmsadmin@magutti.com', '$2y$10$fhRhYYRj2tgq1/jmaUkgH.y7AW2lcDrdEIsn5GP35aLVsEQWWCBh6', 'password', 'fKAq40o9EtjkAisGCjBrfarwazZsK9S8JzqhYPssgg6VmvXer9BWGCgBR8op', 1, 'en', '0000-00-00 00:00:00', '2019-04-10 20:00:46');
 
 -- --------------------------------------------------------
 
@@ -78,6 +80,7 @@ INSERT INTO `adminusers` (`id`, `first_name`, `last_name`, `email`, `password`, 
 -- Struttura della tabella `adminuser_role`
 --
 
+DROP TABLE IF EXISTS `adminuser_role`;
 CREATE TABLE `adminuser_role` (
   `adminuser_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
@@ -96,6 +99,7 @@ INSERT INTO `adminuser_role` (`adminuser_id`, `role_id`) VALUES
 -- Struttura della tabella `articles`
 --
 
+DROP TABLE IF EXISTS `articles`;
 CREATE TABLE `articles` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -144,6 +148,7 @@ INSERT INTO `articles` (`id`, `domain`, `parent_id`, `menu_title`, `title`, `sub
 -- Struttura della tabella `article_translations`
 --
 
+DROP TABLE IF EXISTS `article_translations`;
 CREATE TABLE `article_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `article_id` int(10) UNSIGNED NOT NULL,
@@ -198,6 +203,7 @@ INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_
 -- Struttura della tabella `carts`
 --
 
+DROP TABLE IF EXISTS `carts`;
 CREATE TABLE `carts` (
   `id` int(11) UNSIGNED NOT NULL,
   `status` tinyint(4) DEFAULT NULL,
@@ -212,6 +218,7 @@ CREATE TABLE `carts` (
 -- Struttura della tabella `cart_items`
 --
 
+DROP TABLE IF EXISTS `cart_items`;
 CREATE TABLE `cart_items` (
   `id` int(11) UNSIGNED NOT NULL,
   `cart_id` int(11) NOT NULL,
@@ -228,6 +235,7 @@ CREATE TABLE `cart_items` (
 -- Struttura della tabella `categories`
 --
 
+DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `id` int(10) UNSIGNED NOT NULL,
   `parent_id` int(10) UNSIGNED DEFAULT NULL,
@@ -262,6 +270,7 @@ INSERT INTO `categories` (`id`, `parent_id`, `title`, `abstract`, `description`,
 -- Struttura della tabella `category_translations`
 --
 
+DROP TABLE IF EXISTS `category_translations`;
 CREATE TABLE `category_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
@@ -297,6 +306,7 @@ INSERT INTO `category_translations` (`id`, `slug`, `category_id`, `locale`, `tit
 -- Struttura della tabella `cities`
 --
 
+DROP TABLE IF EXISTS `cities`;
 CREATE TABLE `cities` (
   `id` int(11) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -8285,6 +8295,7 @@ INSERT INTO `cities` (`id`, `name`, `province_code`, `registry_code`, `created_a
 -- Struttura della tabella `contacts`
 --
 
+DROP TABLE IF EXISTS `contacts`;
 CREATE TABLE `contacts` (
   `id` int(10) UNSIGNED NOT NULL,
   `request_product_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -8314,6 +8325,7 @@ INSERT INTO `contacts` (`id`, `request_product_id`, `subject`, `message`, `name`
 -- Struttura della tabella `countries`
 --
 
+DROP TABLE IF EXISTS `countries`;
 CREATE TABLE `countries` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -8587,6 +8599,7 @@ INSERT INTO `countries` (`id`, `name`, `iso_code`, `id_continent`, `eu`, `vat`, 
 -- Struttura della tabella `discounts`
 --
 
+DROP TABLE IF EXISTS `discounts`;
 CREATE TABLE `discounts` (
   `id` int(11) UNSIGNED NOT NULL,
   `code` varchar(20) NOT NULL DEFAULT '',
@@ -8613,6 +8626,7 @@ INSERT INTO `discounts` (`id`, `code`, `amount`, `description`, `date_start`, `d
 -- Struttura della tabella `domains`
 --
 
+DROP TABLE IF EXISTS `domains`;
 CREATE TABLE `domains` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -8640,6 +8654,7 @@ INSERT INTO `domains` (`id`, `domain`, `title`, `value`, `sort`, `pub`, `created
 -- Struttura della tabella `domain_translations`
 --
 
+DROP TABLE IF EXISTS `domain_translations`;
 CREATE TABLE `domain_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain_id` int(10) UNSIGNED NOT NULL,
@@ -8668,6 +8683,7 @@ INSERT INTO `domain_translations` (`id`, `domain_id`, `locale`, `title`, `update
 -- Struttura della tabella `examples`
 --
 
+DROP TABLE IF EXISTS `examples`;
 CREATE TABLE `examples` (
   `id` int(10) UNSIGNED NOT NULL,
   `article_id` int(11) DEFAULT NULL,
@@ -8703,6 +8719,7 @@ INSERT INTO `examples` (`id`, `article_id`, `color`, `date`, `article_2_id`, `ar
 -- Struttura della tabella `example_article`
 --
 
+DROP TABLE IF EXISTS `example_article`;
 CREATE TABLE `example_article` (
   `example_id` int(10) UNSIGNED NOT NULL,
   `article_id` int(10) UNSIGNED NOT NULL,
@@ -8725,6 +8742,7 @@ INSERT INTO `example_article` (`example_id`, `article_id`, `created_at`, `update
 -- Struttura della tabella `example_translations`
 --
 
+DROP TABLE IF EXISTS `example_translations`;
 CREATE TABLE `example_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `example_id` int(10) UNSIGNED NOT NULL,
@@ -8759,6 +8777,7 @@ INSERT INTO `example_translations` (`id`, `example_id`, `slug`, `locale`, `title
 -- Struttura della tabella `hpsliders`
 --
 
+DROP TABLE IF EXISTS `hpsliders`;
 CREATE TABLE `hpsliders` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -8788,6 +8807,7 @@ INSERT INTO `hpsliders` (`id`, `title`, `description`, `icon`, `image`, `link`, 
 -- Struttura della tabella `media`
 --
 
+DROP TABLE IF EXISTS `media`;
 CREATE TABLE `media` (
   `id` int(10) UNSIGNED NOT NULL,
   `media_category_id` int(10) UNSIGNED NOT NULL,
@@ -8822,6 +8842,7 @@ INSERT INTO `media` (`id`, `media_category_id`, `model_id`, `model_type`, `colle
 -- Struttura della tabella `media_translations`
 --
 
+DROP TABLE IF EXISTS `media_translations`;
 CREATE TABLE `media_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `media_id` int(10) UNSIGNED NOT NULL,
@@ -8847,6 +8868,7 @@ INSERT INTO `media_translations` (`id`, `media_id`, `locale`, `title`, `alt`, `d
 -- Struttura della tabella `migrations`
 --
 
+DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -8894,6 +8916,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Struttura della tabella `news`
 --
 
+DROP TABLE IF EXISTS `news`;
 CREATE TABLE `news` (
   `id` int(10) UNSIGNED NOT NULL,
   `domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -8927,6 +8950,7 @@ INSERT INTO `news` (`id`, `domain`, `date`, `title`, `description`, `slug`, `doc
 -- Struttura della tabella `newsletters`
 --
 
+DROP TABLE IF EXISTS `newsletters`;
 CREATE TABLE `newsletters` (
   `id` int(10) UNSIGNED NOT NULL,
   `locale` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
@@ -8941,6 +8965,7 @@ CREATE TABLE `newsletters` (
 -- Struttura della tabella `news_tag`
 --
 
+DROP TABLE IF EXISTS `news_tag`;
 CREATE TABLE `news_tag` (
   `news_id` int(10) UNSIGNED NOT NULL,
   `tag_id` int(10) UNSIGNED NOT NULL,
@@ -8954,6 +8979,7 @@ CREATE TABLE `news_tag` (
 -- Struttura della tabella `news_translations`
 --
 
+DROP TABLE IF EXISTS `news_translations`;
 CREATE TABLE `news_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -9000,6 +9026,7 @@ INSERT INTO `news_translations` (`id`, `slug`, `news_id`, `locale`, `title`, `de
 -- Struttura della tabella `orders`
 --
 
+DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `id` int(11) UNSIGNED NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -9023,6 +9050,7 @@ CREATE TABLE `orders` (
 -- Struttura della tabella `order_items`
 --
 
+DROP TABLE IF EXISTS `order_items`;
 CREATE TABLE `order_items` (
   `id` int(11) UNSIGNED NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -9041,6 +9069,7 @@ CREATE TABLE `order_items` (
 -- Struttura della tabella `password_resets`
 --
 
+DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9053,6 +9082,7 @@ CREATE TABLE `password_resets` (
 -- Struttura della tabella `payments`
 --
 
+DROP TABLE IF EXISTS `payments`;
 CREATE TABLE `payments` (
   `id` int(11) UNSIGNED NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -9072,6 +9102,7 @@ CREATE TABLE `payments` (
 -- Struttura della tabella `payment_methods`
 --
 
+DROP TABLE IF EXISTS `payment_methods`;
 CREATE TABLE `payment_methods` (
   `id` int(11) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL DEFAULT '',
@@ -9095,6 +9126,7 @@ INSERT INTO `payment_methods` (`id`, `title`, `code`, `is_active`, `created_at`,
 -- Struttura della tabella `permissions`
 --
 
+DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE `permissions` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9110,6 +9142,7 @@ CREATE TABLE `permissions` (
 -- Struttura della tabella `permission_role`
 --
 
+DROP TABLE IF EXISTS `permission_role`;
 CREATE TABLE `permission_role` (
   `permission_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
@@ -9121,6 +9154,7 @@ CREATE TABLE `permission_role` (
 -- Struttura della tabella `products`
 --
 
+DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` int(10) UNSIGNED NOT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9157,6 +9191,7 @@ INSERT INTO `products` (`id`, `code`, `category_id`, `title`, `subtitle`, `descr
 -- Struttura della tabella `product_models`
 --
 
+DROP TABLE IF EXISTS `product_models`;
 CREATE TABLE `product_models` (
   `id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
@@ -9175,6 +9210,7 @@ CREATE TABLE `product_models` (
 -- Struttura della tabella `product_model_translations`
 --
 
+DROP TABLE IF EXISTS `product_model_translations`;
 CREATE TABLE `product_model_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `product_model_id` int(10) NOT NULL,
@@ -9193,6 +9229,7 @@ CREATE TABLE `product_model_translations` (
 -- Struttura della tabella `product_translations`
 --
 
+DROP TABLE IF EXISTS `product_translations`;
 CREATE TABLE `product_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
@@ -9229,6 +9266,7 @@ INSERT INTO `product_translations` (`id`, `product_id`, `locale`, `slug`, `title
 -- Struttura della tabella `provinces`
 --
 
+DROP TABLE IF EXISTS `provinces`;
 CREATE TABLE `provinces` (
   `id` int(10) NOT NULL,
   `country_id` int(8) NOT NULL,
@@ -9364,6 +9402,7 @@ INSERT INTO `provinces` (`id`, `country_id`, `state_id`, `title`, `slug`, `sort`
 -- Struttura della tabella `roles`
 --
 
+DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9389,6 +9428,7 @@ INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, 
 -- Struttura della tabella `role_user`
 --
 
+DROP TABLE IF EXISTS `role_user`;
 CREATE TABLE `role_user` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL
@@ -9408,6 +9448,7 @@ INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 -- Struttura della tabella `settings`
 --
 
+DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
   `id` int(10) UNSIGNED NOT NULL,
   `key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9426,11 +9467,14 @@ INSERT INTO `settings` (`id`, `key`, `value`, `description`, `domain`, `created_
 (1, 'GA_CODE', 'UA-', 'Codice  google  analitycs', 'GA', '2016-08-09 12:01:24', '2016-08-09 12:28:06'),
 (2, 'credits_url', 'https://magutti.com', 'url credits', 'webiste', '2016-08-09 12:29:05', '2016-12-29 14:35:06'),
 (3, 'GMAPS_KEY', '', 'Google maps apy key', '', '2016-12-27 17:28:54', '2016-12-29 09:24:44'),
-(4, 'iubenda_code_it', 'asd', '', '', '2018-06-05 07:08:21', '2018-06-05 07:08:21'),
-(5, 'iubenda_code_en', 'fgh', '', '', '2018-06-05 07:10:35', '2018-06-05 07:10:35'),
-(6, 'iubenda_site', 'jkl', '', '', '2018-06-05 07:10:49', '2018-06-05 07:10:49'),
+(4, 'iubenda_code_it', NULL, '', '', '2018-06-05 07:08:21', '2019-05-11 12:06:46'),
+(5, 'iubenda_code_en', NULL, '', '', '2018-06-05 07:10:35', '2019-05-11 12:06:47'),
+(6, 'iubenda_site', NULL, '', '', '2018-06-05 07:10:49', '2019-05-11 12:07:00'),
 (7, 'captcha_site', '', '', '', '2018-08-10 15:00:00', '2018-08-10 15:00:00'),
-(8, 'captcha_secret', '', '', '', '2018-08-10 15:00:00', '2018-08-10 15:00:00');
+(8, 'captcha_secret', '', '', '', '2018-08-10 15:00:00', '2018-08-10 15:00:00'),
+(9, 'LNG', '9.432586', 'google maps longitude', 'GMAPS', '2019-05-01 06:53:24', '2019-05-11 12:08:00'),
+(10, 'LAT', '46.138065', 'google maps latitude', 'GMAPS', '2019-05-01 06:55:27', '2019-05-11 12:08:16'),
+(11, 'THEME_COLOR', '#9a9c00', 'name=\"theme-color\" content=\"THEME_COLOR\"', 'THEME', '2019-05-02 18:04:54', '2019-05-02 18:13:52');
 
 -- --------------------------------------------------------
 
@@ -9438,6 +9482,7 @@ INSERT INTO `settings` (`id`, `key`, `value`, `description`, `domain`, `created_
 -- Struttura della tabella `socials`
 --
 
+DROP TABLE IF EXISTS `socials`;
 CREATE TABLE `socials` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9467,6 +9512,7 @@ INSERT INTO `socials` (`id`, `title`, `description`, `icon`, `image`, `link`, `s
 -- Struttura della tabella `special_prices`
 --
 
+DROP TABLE IF EXISTS `special_prices`;
 CREATE TABLE `special_prices` (
   `id` int(11) UNSIGNED NOT NULL,
   `product_code` varchar(255) NOT NULL DEFAULT '',
@@ -9482,6 +9528,7 @@ CREATE TABLE `special_prices` (
 -- Struttura della tabella `states`
 --
 
+DROP TABLE IF EXISTS `states`;
 CREATE TABLE `states` (
   `id` int(10) NOT NULL,
   `country_id` int(8) NOT NULL,
@@ -9523,6 +9570,7 @@ INSERT INTO `states` (`id`, `country_id`, `title`, `zone`, `created_at`, `update
 -- Struttura della tabella `tags`
 --
 
+DROP TABLE IF EXISTS `tags`;
 CREATE TABLE `tags` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9548,6 +9596,7 @@ INSERT INTO `tags` (`id`, `title`, `slug`, `created_by`, `update_by`, `created_a
 -- Struttura della tabella `tag_translations`
 --
 
+DROP TABLE IF EXISTS `tag_translations`;
 CREATE TABLE `tag_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `tag_id` int(10) UNSIGNED NOT NULL,
@@ -9575,6 +9624,7 @@ INSERT INTO `tag_translations` (`id`, `tag_id`, `locale`, `title`, `created_at`,
 -- Struttura della tabella `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -9593,7 +9643,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `gender`, `password`, `remember_token`, `list_code`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Magutti User', 'user@magutti.com', 'M', '$2y$10$fhRhYYRj2tgq1/jmaUkgH.y7AW2lcDrdEIsn5GP35aLVsEQWWCBh6', 'taeEe1GVsBFZh2Ui9qELCV9Aaqb93wu5iQcs1oD8qhv4HHkj4o7XBsZDUOXW', '', 1, '2017-07-07 13:37:30', '2018-06-14 12:04:28');
+(1, 'Magutti User', 'user@magutti.com', 'M', '$2y$10$lHD.KhLYqqtHRQuXH6PKXODXFlgcQ8UZ6l7.3vaaeLSP1qgxSUszu', 'XuvhEKuwvGBWY9o9Fogsjvr2WR8HrUhidF7X7NupnhglXVBFr1NnmmELygdQ', '', 1, '2017-07-07 13:37:30', '2019-05-11 10:53:21');
 
 --
 -- Indici per le tabelle scaricate
@@ -10086,7 +10136,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT per la tabella `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT per la tabella `socials`
