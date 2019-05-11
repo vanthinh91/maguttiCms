@@ -30,7 +30,6 @@ preset Bootstrap 4
 - XML PHP Extension
 - Ctype PHP Extension
 - JSON PHP Extension
-
  
   
 License
