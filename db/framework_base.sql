@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mag 11, 2019 alle 12:11
+-- Creato il: Mag 12, 2019 alle 16:06
 -- Versione del server: 5.7.24
 -- Versione PHP: 7.2.14
 
@@ -8317,7 +8317,8 @@ CREATE TABLE `contacts` (
 
 INSERT INTO `contacts` (`id`, `request_product_id`, `subject`, `message`, `name`, `surname`, `company`, `email`, `status`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, '', 'testsoggetto', 'testmessaggio', 'testnome', 'testcognome', 'testazienda', 'testmail@testdomain.test', 0, 0, '2019-03-08 14:31:27', '2019-03-08 14:31:27'),
-(2, '2', 'testsoggetto', 'testmessaggio', 'testnome', 'testcognome', 'testazienda', 'testmail@testdomain.test', 0, 0, '2019-03-08 14:32:01', '2019-03-08 14:32:01');
+(2, '2', 'testsoggetto', 'testmessaggio', 'testnome', 'testcognome', 'testazienda', 'testmail@testdomain.test', 0, 0, '2019-03-08 14:32:01', '2019-03-08 14:32:01'),
+(3, '', '1', '111', 'Angelo marco Asperti', 'Asperti', '1', 'marcoasperti@gmail.com', 0, 0, '2019-05-11 12:21:06', '2019-05-11 12:21:06');
 
 -- --------------------------------------------------------
 
@@ -8804,6 +8805,35 @@ INSERT INTO `hpsliders` (`id`, `title`, `description`, `icon`, `image`, `link`, 
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `hp_slider_translations`
+--
+
+DROP TABLE IF EXISTS `hp_slider_translations`;
+CREATE TABLE `hp_slider_translations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `hp_slider_id` int(10) UNSIGNED NOT NULL,
+  `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `update_by` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `hp_slider_translations`
+--
+
+INSERT INTO `hp_slider_translations` (`id`, `hp_slider_id`, `locale`, `title`, `description`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 'en', 'maguttiCms 5.8 V2', 'free open source CMS based on the Laravel PHP Framework', 0, 0, '2019-05-12 16:05:28', '2019-05-12 16:06:10'),
+(2, 1, 'it', NULL, NULL, 0, 0, '2019-05-12 16:05:28', '2019-05-12 16:05:28'),
+(3, 1, 'es', NULL, NULL, 0, 0, '2019-05-12 16:05:28', '2019-05-12 16:05:28'),
+(4, 1, 'fr', NULL, NULL, 0, 0, '2019-05-12 16:05:28', '2019-05-12 16:05:28');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `media`
 --
 
@@ -8908,7 +8938,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (78, '2017_02_02_133516_entrust_setup_tables', 1),
 (79, '2017_02_02_143850_create_domains_table', 1),
 (80, '2017_02_02_143948_create_domain_translations_table', 1),
-(81, '2019_05_07_171738_create_examples_table', 2);
+(81, '2019_05_07_171738_create_examples_table', 2),
+(82, '2019_05_10_091157_create_hpslider_translations_table', 3);
 
 -- --------------------------------------------------------
 
@@ -9778,6 +9809,12 @@ ALTER TABLE `hpsliders`
   ADD UNIQUE KEY `hpsliders_slug_unique` (`slug`);
 
 --
+-- Indici per le tabelle `hp_slider_translations`
+--
+ALTER TABLE `hp_slider_translations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indici per le tabelle `media`
 --
 ALTER TABLE `media`
@@ -10004,7 +10041,7 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT per la tabella `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `countries`
@@ -10034,7 +10071,7 @@ ALTER TABLE `domain_translations`
 -- AUTO_INCREMENT per la tabella `examples`
 --
 ALTER TABLE `examples`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `example_translations`
@@ -10047,6 +10084,12 @@ ALTER TABLE `example_translations`
 --
 ALTER TABLE `hpsliders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT per la tabella `hp_slider_translations`
+--
+ALTER TABLE `hp_slider_translations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `media`
@@ -10064,7 +10107,7 @@ ALTER TABLE `media_translations`
 -- AUTO_INCREMENT per la tabella `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT per la tabella `orders`

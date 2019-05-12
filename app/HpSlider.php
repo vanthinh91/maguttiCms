@@ -5,8 +5,15 @@ namespace App;
 use App\maguttiCms\Builders\LaraCmsBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Str;
+
+/**
+ * Class HpSlider
+ * @package App
+ */
 class HpSlider extends Model
 {
+    use \Dimsav\Translatable\Translatable;
+
     protected $table = 'hpsliders';
     protected $fillable = ['title', 'description','slug','link','sort','is_active'];
     protected $fieldspec = [];
@@ -20,6 +27,13 @@ class HpSlider extends Model
     {
         return new LaraCmsBuilder($query);
     }
+
+    /*
+|--------------------------------------------------------------------------
+|  Sluggable & Translateble
+|--------------------------------------------------------------------------
+*/
+    public $translatedAttributes    = ['title','description'];
 
     public function setSlugAttribute($value)
     {
