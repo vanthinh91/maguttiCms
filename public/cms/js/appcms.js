@@ -1821,6 +1821,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_chars_counter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/chars-counter */ "./resources/js/mixins/chars-counter.js");
 //
 //
 //
@@ -1833,25 +1834,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_chars_counter__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
     return {
-      remainingCount: 140,
-      hasError: false
+      message: ''
     };
   },
-  props: ['name', 'seo_text', 'maxCount'],
-  methods: {
-    countdown: function countdown() {
-      this.remainingCount = this.maxCount - this.seo_text.length;
-      this.hasError = this.remainingCount < 0;
-    }
-  },
   mounted: function mounted() {
-    this.remainingCount = this.maxCount - this.seo_text.length;
-    console.log('Component mountedseo ');
+    this.message = this.seo_text;
+    this.countdown();
   }
 });
 
@@ -1866,6 +1859,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_chars_counter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/chars-counter */ "./resources/js/mixins/chars-counter.js");
 //
 //
 //
@@ -1875,25 +1869,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_chars_counter__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
     return {
-      remainingCount: 140,
-      hasError: false
+      message: ''
     };
   },
-  props: ['name', 'seo_text', 'maxCount'],
-  methods: {
-    countdown: function countdown() {
-      this.remainingCount = this.maxCount - this.seo_text.length;
-      this.hasError = this.remainingCount < 0;
-    }
-  },
   mounted: function mounted() {
-    this.remainingCount = this.maxCount - this.seo_text.length;
+    this.message = this.seo_text;
     this.countdown();
-    console.log('Component mountedseo ');
   }
 });
 
@@ -2581,20 +2567,20 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.seo_text,
-            expression: "seo_text"
+            value: _vm.message,
+            expression: "message"
           }
         ],
         staticClass: "form-control",
         attrs: { type: "text", name: _vm.name },
-        domProps: { value: _vm.seo_text },
+        domProps: { value: _vm.message },
         on: {
           keyup: _vm.countdown,
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.seo_text = $event.target.value
+            _vm.message = $event.target.value
           }
         }
       }),
@@ -2602,22 +2588,16 @@ var render = function() {
       _c("div", { staticClass: "input-group-append" }, [
         _c(
           "span",
-          {
-            staticClass: "input-group-text",
-            class: { "text-danger": _vm.hasError },
-            attrs: { id: "basic-addon2" }
-          },
-          [_vm._v(_vm._s(_vm.remainingCount))]
+          { staticClass: "input-group-text", class: _vm.classErrorObject },
+          [_vm._v(" " + _vm._s(_vm.remainingCount) + " ")]
         )
       ])
     ]),
     _vm._v(" "),
     _vm.hasError
-      ? _c(
-          "div",
-          { staticClass: "float-left", class: { "text-danger": _vm.hasError } },
-          [_vm._v("maximum length exceeded")]
-        )
+      ? _c("div", { staticClass: "float-left", class: _vm.classErrorObject }, [
+          _vm._v("Max length exceeded")
+        ])
       : _vm._e()
   ])
 }
@@ -2651,16 +2631,13 @@ var render = function() {
         _vm._v("\n        Max Chars " + _vm._s(_vm.maxCount) + " - "),
         _c(
           "span",
-          {
-            staticClass: "mx-1 inline-block",
-            class: { "text-danger": _vm.hasError }
-          },
+          { staticClass: "mx-1 inline-block", class: _vm.classErrorObject },
           [_vm._v(" Left  " + _vm._s(_vm.remainingCount))]
         ),
         _vm._v(" "),
         _vm.hasError
-          ? _c("span", { class: { "text-danger": _vm.hasError } }, [
-              _vm._v(" (Maximum length exceeded) ")
+          ? _c("span", { class: _vm.classErrorObject }, [
+              _vm._v(" (Max length exceeded) ")
             ])
           : _vm._e()
       ]
@@ -2671,20 +2648,20 @@ var render = function() {
         {
           name: "model",
           rawName: "v-model",
-          value: _vm.seo_text,
-          expression: "seo_text"
+          value: _vm.message,
+          expression: "message"
         }
       ],
       staticClass: "form-control",
       attrs: { name: _vm.name, rows: "8" },
-      domProps: { value: _vm.seo_text },
+      domProps: { value: _vm.message },
       on: {
         keyup: _vm.countdown,
         input: function($event) {
           if ($event.target.composing) {
             return
           }
-          _vm.seo_text = $event.target.value
+          _vm.message = $event.target.value
         }
       }
     })
@@ -15275,6 +15252,42 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 module.exports = "<li v-if=\"item.submenu.length\">\n    <a href=\"#\"  :class=\"item.section==currentSection?'current':''\"  class=\"nav-sub-toggle\" v-on:click.prevent=\"open=!open\">\n        <i :class=\"item.iconClass\"></i>{{item.title}}<i class=\"fas fa-caret-down dropdown-icon\"></i>\n    </a>\n    <transition name=\"fade\">\n    <ul v-if=\"open\" class=\"nav-sub-item\">\n        <li>\n            <a :href=\"item.url\" :target=\"item.target ? item.target : null\"\n               :class=\"item.section==currentSection?'current':''\">\n                <i :class=\"item.iconClass\"></i>{{item.title}}\n            </a>\n        </li>\n        <li v-for=\"(sub_item, index) in item.submenu\" :key=\"index\">\n            <a :href=\"sub_item.url\" :target=\"sub_item.target ? sub_item.target : null\"\n               :class=\"sub_item.section==currentSection?'current':''\">\n                <i :class=\"sub_item.iconClass\"></i>{{sub_item.title}}\n            </a>\n        </li>\n    </ul>\n    </transition>\n</li>\n<li v-else>\n    <a  :href=\"item.url\" :target=\"item.target ? item.target : null\"\n        :class=\"item.section==currentSection?'current':''\">\n        <i :class=\"item.iconClass\"></i>{{item.title}}\n    </a>\n</li>\n";
+
+/***/ }),
+
+/***/ "./resources/js/mixins/chars-counter.js":
+/*!**********************************************!*\
+  !*** ./resources/js/mixins/chars-counter.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      SUCCESS_CLASS: 'success',
+      ERROR_CLASS: 'text-danger',
+      remainingCount: 0,
+      hasError: false
+    };
+  },
+  props: ['name', 'seo_text', 'maxCount'],
+  methods: {
+    countdown: function countdown() {
+      this.remainingCount = this.maxCount - this.message.length;
+      this.hasError = this.remainingCount < 0;
+    }
+  },
+  computed: {
+    classErrorObject: function classErrorObject() {
+      return {
+        'text-danger': this.hasError
+      };
+    }
+  }
+});
 
 /***/ }),
 
