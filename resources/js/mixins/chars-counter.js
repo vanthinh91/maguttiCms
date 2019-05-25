@@ -1,8 +1,6 @@
 export default {
     data() {
         return {
-            SUCCESS_CLASS: 'success',
-            ERROR_CLASS: 'text-danger',
             remainingCount: 0,
             hasError: false,
          }
@@ -21,5 +19,4 @@ export default {
             }
         }
     },
-
 }

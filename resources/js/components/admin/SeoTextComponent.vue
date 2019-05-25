@@ -1,7 +1,7 @@
 <template>
     <div>
         <span class="input-group-text" id="basic-addon2" >
-            Max Chars {{maxCount}} - <span class="mx-1 inline-block" :class=classErrorObject > Left  {{remainingCount}}</span>
+            Max Chars: {{maxCount}} - <span class="mx-1 inline-block" :class=classErrorObject > Left:  {{remainingCount}}</span>
             <span v-if="hasError" :class=classErrorObject> (Max length exceeded) </span>
         </span>
         <textarea  class="form-control" v-on:keyup="countdown" v-model="message" v-bind:name="name" rows="8"></textarea>

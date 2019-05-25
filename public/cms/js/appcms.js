@@ -2628,11 +2628,11 @@ var render = function() {
       "span",
       { staticClass: "input-group-text", attrs: { id: "basic-addon2" } },
       [
-        _vm._v("\n        Max Chars " + _vm._s(_vm.maxCount) + " - "),
+        _vm._v("\n        Max Chars: " + _vm._s(_vm.maxCount) + " - "),
         _c(
           "span",
           { staticClass: "mx-1 inline-block", class: _vm.classErrorObject },
-          [_vm._v(" Left  " + _vm._s(_vm.remainingCount))]
+          [_vm._v(" Left:  " + _vm._s(_vm.remainingCount))]
         ),
         _vm._v(" "),
         _vm.hasError
@@ -15267,8 +15267,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      SUCCESS_CLASS: 'success',
-      ERROR_CLASS: 'text-danger',
       remainingCount: 0,
       hasError: false
     };
