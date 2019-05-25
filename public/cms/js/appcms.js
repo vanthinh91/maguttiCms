@@ -1834,6 +1834,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_chars_counter__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -1860,6 +1861,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_chars_counter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/chars-counter */ "./resources/js/mixins/chars-counter.js");
+//
+//
 //
 //
 //
@@ -2590,6 +2593,20 @@ var render = function() {
           "span",
           { staticClass: "input-group-text", class: _vm.classErrorObject },
           [_vm._v(" " + _vm._s(_vm.remainingCount) + " ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "input-group-text",
+            attrs: {
+              "data-toggle": "tooltip",
+              "data-placement": "left",
+              title: "Clear"
+            },
+            on: { click: _vm.clearInput }
+          },
+          [_c("i", { staticClass: "fas fa-eraser" })]
         )
       ])
     ]),
@@ -15276,6 +15293,10 @@ __webpack_require__.r(__webpack_exports__);
     countdown: function countdown() {
       this.remainingCount = this.maxCount - this.message.length;
       this.hasError = this.remainingCount < 0;
+    },
+    clearInput: function clearInput() {
+      this.message = '';
+      this.countdown();
     }
   },
   computed: {

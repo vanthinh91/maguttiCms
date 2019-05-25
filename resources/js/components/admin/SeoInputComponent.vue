@@ -5,6 +5,7 @@
                    v-on:keyup="countdown" v-model="message" v-bind:name="name">
             <div class="input-group-append">
                 <span class="input-group-text" :class=classErrorObject> {{remainingCount}} </span>
+                <span @click="clearInput" class="input-group-text" data-toggle="tooltip" data-placement="left" title="Clear"> <i class="fas fa-eraser"></i> </span>
             </div>
         </div>
         <div v-if="hasError" class="float-left" :class=classErrorObject >Max length exceeded</div>
@@ -23,5 +24,6 @@
             this.message=this.seo_text;
             this.countdown();
         },
+
     }
 </script>

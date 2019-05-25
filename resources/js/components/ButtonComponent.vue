@@ -1,10 +1,8 @@
 <template>
-
-        <button @click="show = !show" class="btn " :class="[!show ? activeClass : 'btn-danger']">
-            <span v-if="show">x</span>
-            <span v-if="!show">v</span>
-        </button>
-
+    <button @click="show = !show" class="btn " :class="[!show ? activeClass : 'btn-danger']">
+        <span v-if="show">x</span>
+        <span v-if="!show">v</span>
+    </button>
 </template>
 
 <script>

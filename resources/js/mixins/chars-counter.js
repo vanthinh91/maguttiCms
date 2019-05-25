@@ -10,6 +10,10 @@ export default {
         countdown: function () {
             this.remainingCount = this.maxCount - this.message.length;
             this.hasError = this.remainingCount < 0;
+        },
+        clearInput: function () {
+            this.message='';
+            this.countdown();
         }
     },
     computed: {
@@ -19,4 +23,5 @@ export default {
             }
         }
     },
+
 }
