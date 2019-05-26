@@ -27,8 +27,6 @@
                 if(this.message.length>30 || this.message.length<8){
                     this.hasError=true;
                 }
-
-
             },
             uppercaseMessages:function () {
                 this.hasError=false;
