@@ -5,7 +5,7 @@
                    v-on:keyup="countdown" v-model="message" v-bind:name="name">
             <div class="input-group-append">
                 <span class="input-group-text" :class=classErrorObject> {{remainingCount}} </span>
-                <span @click="clearInput" class="input-group-text" data-toggle="tooltip" data-placement="left" title="Clear"> <i class="fas fa-eraser"></i> </span>
+                <clear-btn @reset="clearInput" class="input-group-text"></clear-btn>
             </div>
         </div>
         <div v-if="hasError" class="float-left" :class=classErrorObject >Max length exceeded</div>
@@ -13,8 +13,10 @@
 </template>
 <script>
     import counterChars from '../../mixins/chars-counter';
+    import clearBtn from './partial/ClearInputBtnComponent';
     export default {
         mixins: [counterChars],
+        components: {clearBtn},
         data() {
             return {
                 message:'',
@@ -24,6 +26,5 @@
             this.message=this.seo_text;
             this.countdown();
         },
-
     }
 </script>
