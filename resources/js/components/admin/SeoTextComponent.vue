@@ -20,7 +20,7 @@
             }
         },
         mounted() {
-            this.message=this.seo_text;
+            this.message=this.input_text;
             this.countdown();
         },
     }

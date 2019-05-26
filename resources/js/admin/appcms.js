@@ -23,6 +23,7 @@ Vue.component('dashboard-component', require('./../components/admin/DashboardBut
 Vue.component('side-bar-component', require('./../components/admin/SideBar').default);
 Vue.component('seo-input-component', require('./../components/admin/SeoInputComponent').default);
 Vue.component('seo-text-component', require('./../components/admin/SeoTextComponent').default);
+Vue.component('clearable-input-component', require('./../components/admin/ClearableInputComponent').default);
 
 
 /**

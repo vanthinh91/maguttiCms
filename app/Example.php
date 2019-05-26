@@ -189,7 +189,7 @@ class Example extends Model
             'display'  => 1,
         ];
         $this->fieldspec['slug'] = [
-            'type'     => 'string',
+            'type'     => 'string_clearable',
             'required' => 0,
             'hidden'   => 0,
             'label'    => 'Sluggable',

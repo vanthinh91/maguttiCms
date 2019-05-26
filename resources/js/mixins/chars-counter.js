@@ -5,7 +5,7 @@ export default {
             hasError: false,
          }
     },
-    props: ['name','seo_text','maxCount'],
+    props: ['name','input_text','maxCount'],
     methods: {
         countdown: function () {
             this.remainingCount = this.maxCount - this.message.length;

@@ -122,18 +122,21 @@ class AdminForm {
 		elseif ($this->property['type'] == 'string') {
 			$formElement = Form::text($key, $value, $field_properties);
 		}
+        elseif ($this->property['type'] == 'string_clearable'){
+            $formElement = '<clearable-input-component name="'.$key.'" input_text="'.$value.'"></seo-text-component>';
+        }
 		elseif ($this->property['type'] == 'seo_string'){
             $formElement = '<seo-input-component 
                             max-count="'.data_get($this->property,'max',63).'" 
                             name="'.$key.'" 
-                            seo_text="'.$value.'">
+                            input_text="'.$value.'">
                             </seo-text-component>';
         }
         elseif ($this->property['type'] == 'seo_text'){
             $formElement = '<seo-text-component 
                             max-count="'.data_get($this->property,'max',158).'" 
                             name="'.$key.'" 
-                            seo_text="'.$value.'">
+                            input_text="'.$value.'">
                             </seo-text-component>';
         }
 		elseif ($this->property['type'] == 'readonly') {
