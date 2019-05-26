@@ -19,4 +19,7 @@
 			<a href="{{ma_get_admin_preview_url($article)}}" target="_new">{{icon('eye')}}{!! trans('admin.message.view_page')!!}</a>
 		</li>
 	@endif
+		<li>
+	<pin-input-component name="pin" input_text="Code111000"></pin-input-component>
+		</li>
 </ul>
