@@ -30,4 +30,13 @@ class AdminServicesController
         ($data) ? $this->setData($data)->responseSuccess(): $this->setEnableLog(false)->responseWithError();
         return $this->apiResponse();
     }
+
+    public function generator( Request $request)
+    {
+        $this->request = $request;
+        $this->setData($this->request->data['model'])->responseSuccess();
+        return $this->apiResponse();
+    }
+
+
 }

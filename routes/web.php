@@ -49,8 +49,7 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
 
         Route::get('update/{method}/{model?}/{id?}',        '\App\maguttiCms\Admin\Controllers\AjaxController@update');
         Route::get('delete/{model?}/{id?}',                 '\App\maguttiCms\Admin\Controllers\AjaxController@delete');
-
-        /*
+         /*
         |--------------------------------------------------------------------------
         | MEDIA LIBRARY
         |--------------------------------------------------------------------------
@@ -70,6 +69,9 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
         Route::get('api/suggest', ['as' => 'api.suggest', 'uses' => '\App\maguttiCms\Admin\Controllers\AjaxController@suggest']);
         Route::get('dashboard','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@dashboard');
         Route::get('nav-bar','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@navbar');
+        Route::post('service/generator','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@generator');
+
+
         /*
         |--------------------------------------------------------------------------
         | FILE MANANGER

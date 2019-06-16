@@ -1,31 +1,26 @@
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+import Vue from 'vue';
 
 
-window.Vue = require('vue');
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+import Modal from '../plugins/modal/ModalPlugin';
+import ConfirmButton from './../components/admin/ConfirmButton';
+import ConfirmDialog from './../components/admin/ConfirmDialog';
+import GeneratorInputComponent from './../components/admin/GeneratorInputComponent';
 
 Vue.component('dashboard-component', require('./../components/admin/DashboardButtonsComponent').default);
 Vue.component('side-bar-component', require('./../components/admin/SideBar').default);
 Vue.component('seo-input-component', require('./../components/admin/SeoInputComponent').default);
 Vue.component('seo-text-component', require('./../components/admin/SeoTextComponent').default);
 Vue.component('clearable-input-component', require('./../components/admin/ClearableInputComponent').default);
-Vue.component('pin-input-component', require('./../components/admin/PinInputComponent').default);
+Vue.component('generator-input-component', GeneratorInputComponent);
 
+
+Vue.component('confirm-button', ConfirmButton);
+Vue.component('confirm-dialog', ConfirmDialog)
+
+
+window.Vue = Vue;
+Vue.use(Modal);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33,6 +28,26 @@ Vue.component('pin-input-component', require('./../components/admin/PinInputComp
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app'
+new Vue({
+    el: '#app',
+
+    methods: {
+        confirm(message) {
+            this.$modal.dialog(message)
+                .then(confirmed => {
+                    if (confirmed) {
+                        // Proceed. Submit ajax request, etc.
+                        alert(message);
+                    } else {
+                        // Optionally override the button visibility and labels.
+                       /* this.$modal.dialog('Okay, canceled', {
+                            cancelButton: 'Close',
+                            confirmButton: false
+                        });
+
+                        */
+                    }
+                });
+        }
+    }
 });

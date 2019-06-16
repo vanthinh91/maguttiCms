@@ -182,14 +182,26 @@ class Example extends Model
 			'order_raw'		=> 'FIELD(id, %s)',
         ];
         $this->fieldspec['title'] = [
-            'type'     => 'string',
+            'type' => 'vue_component',
             'required' => 1,
-            'hidden'   => 0,
-            'label'    => 'Text',
-            'display'  => 1,
+            'hidden' => 0,
+            'label' => 'Text',
+            'display' => 1,
+            'component-name' => 'generator-input-component',
+
+            'component-data' => [
+                'length' => '20',
+                'unique' => true,
+                'model' =>'Example',
+                'label' =>'Genera Pin',
+                'field' =>'title',
+                'generator'=>'generatePin',
+
+            ]
         ];
         $this->fieldspec['slug'] = [
-            'type'     => 'string_clearable',
+            'type' => 'vue_component',
+            'component-name'=> 'clearable-input-component',
             'required' => 0,
             'hidden'   => 0,
             'label'    => 'Sluggable',

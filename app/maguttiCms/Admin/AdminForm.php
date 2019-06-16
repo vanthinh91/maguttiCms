@@ -122,9 +122,10 @@ class AdminForm {
 		elseif ($this->property['type'] == 'string') {
 			$formElement = Form::text($key, $value, $field_properties);
 		}
-        elseif ($this->property['type'] == 'string_clearable'){
-            $formElement = '<clearable-input-component name="'.$key.'" input_text="'.$value.'"></seo-text-component>';
+        elseif ($this->property['type'] == 'vue_component'){
+            $formElement = (new AdminVueComponent($this))->getComponent($value,$key);
         }
+
 		elseif ($this->property['type'] == 'seo_string'){
             $formElement = '<seo-input-component 
                             max-count="'.data_get($this->property,'max',63).'" 
