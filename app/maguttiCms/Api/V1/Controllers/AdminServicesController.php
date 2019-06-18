@@ -2,6 +2,9 @@
 
 use App\maguttiCms\Admin\DashBoardComponent;
 use App\maguttiCms\Admin\NavBarComponent;
+use App\maguttiCms\Tools\CodeGeneratorHelper;
+use App\maguttiCms\Tools\Tool;
+use DemeterChain\C;
 use Url;
 use Validator;
 use Illuminate\Http\Request;
@@ -19,7 +22,7 @@ class AdminServicesController
     {
         $this->request = $request;
         $data = (new DashBoardComponent($this->request))->getData();
-        ($data) ? $this->setData($data)->responseSuccess(): $this->setEnableLog(false)->responseWithError();
+        ($data) ? $this->setData($data)->responseSuccess() : $this->setEnableLog(false)->responseWithError();
         return $this->apiResponse();
     }
 
@@ -27,14 +30,15 @@ class AdminServicesController
     {
         $this->request = $request;
         $data = (new NavBarComponent($this->request))->getData();
-        ($data) ? $this->setData($data)->responseSuccess(): $this->setEnableLog(false)->responseWithError();
+        ($data) ? $this->setData($data)->responseSuccess() : $this->setEnableLog(false)->responseWithError();
         return $this->apiResponse();
     }
 
-    public function generator( Request $request)
+    public function generator(Request $request)
     {
         $this->request = $request;
-        $this->setData($this->request->data['model'])->responseSuccess();
+        $data = (new CodeGeneratorHelper())->handleGenerator($this->request->data,$this->request->value);
+        $this->setData($data)->responseSuccess();
         return $this->apiResponse();
     }
 

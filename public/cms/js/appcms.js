@@ -1983,6 +1983,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_http_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../mixins/http-common */ "./resources/js/mixins/http-common.js");
 /* harmony import */ var _mixins_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/helper */ "./resources/js/mixins/helper.js");
+/* harmony import */ var _partial_ClearInputBtnComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./partial/ClearInputBtnComponent */ "./resources/js/components/admin/partial/ClearInputBtnComponent.vue");
 //
 //
 //
@@ -1994,9 +1995,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    clearBtn: _partial_ClearInputBtnComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   data: function data() {
     return {
       message: '',
@@ -2015,6 +2023,9 @@ __webpack_require__.r(__webpack_exports__);
         self.errors.push(e);
         self.showMessage(e.message, self.ERROR_CLASS);
       });
+    },
+    clearInput: function clearInput() {
+      this.message = '';
     },
     url: function url() {
       return '/admin/api/service/generator';
@@ -3678,25 +3689,35 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group-append" }, [
-        _c(
-          "span",
-          {
+      _c(
+        "div",
+        { staticClass: "input-group-append" },
+        [
+          _c(
+            "span",
+            {
+              staticClass: "input-group-text",
+              attrs: {
+                "data-toggle": "tooltip",
+                "data-placement": "left",
+                title: _vm.label
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "fas fa-cogs",
+                on: { click: _vm.updateInput }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _c("clear-btn", {
             staticClass: "input-group-text",
-            attrs: {
-              "data-toggle": "tooltip",
-              "data-placement": "left",
-              title: _vm.label
-            }
-          },
-          [
-            _c("i", {
-              staticClass: "fas fa-cogs",
-              on: { click: _vm.updateInput }
-            })
-          ]
-        )
-      ])
+            on: { reset: _vm.clearInput }
+          })
+        ],
+        1
+      )
     ])
   ])
 }

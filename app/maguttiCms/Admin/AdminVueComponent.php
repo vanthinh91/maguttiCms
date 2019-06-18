@@ -45,7 +45,6 @@ class AdminVueComponent extends AdminFormComponent
                   name="' . $key . '" 
                   input_text="' . $value . '"
                   '.$this->getComponentProperties().'
-                  
                   :data=' . json_encode($this->getProperty()->get('component-data')) . '>
                 </' . $this->getComponentName() . '>';
     }

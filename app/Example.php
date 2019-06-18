@@ -1,6 +1,7 @@
 <?php namespace App;
 
 
+use App\maguttiCms\Tools\CodeGeneratorHelper;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -96,6 +97,11 @@ class Example extends Model
         return $this->belongsTo('App\Media', 'image_media_id', 'id');
     }
 
+    function generatePin(){
+
+        return (new CodeGeneratorHelper())->defineType('number')->generateToken(5);
+    }
+
     /*
     |--------------------------------------------------------------------------
     |  DATE ATTRIBUTE
@@ -188,15 +194,15 @@ class Example extends Model
             'label' => 'Text',
             'display' => 1,
             'component-name' => 'generator-input-component',
-
             'component-data' => [
-                'length' => '20',
+                'length' => '10',
                 'unique' => true,
                 'model' =>'Example',
                 'label' =>'Genera Pin',
                 'field' =>'title',
-                'generator'=>'generatePin',
-
+                //'generator'=>'generatePin',
+                'usePrefix'=>true,
+                'type'  =>'string'
             ]
         ];
         $this->fieldspec['slug'] = [
