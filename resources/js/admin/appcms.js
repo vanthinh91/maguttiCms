@@ -6,6 +6,7 @@ import Modal from '../plugins/modal/ModalPlugin';
 import ConfirmButton from './../components/admin/ConfirmButton';
 import ConfirmDialog from './../components/admin/ConfirmDialog';
 import GeneratorInputComponent from './../components/admin/GeneratorInputComponent';
+import ListComponent from './../components/admin/ListComponent';
 
 Vue.component('dashboard-component', require('./../components/admin/DashboardButtonsComponent').default);
 Vue.component('side-bar-component', require('./../components/admin/SideBar').default);
@@ -13,6 +14,8 @@ Vue.component('seo-input-component', require('./../components/admin/SeoInputComp
 Vue.component('seo-text-component', require('./../components/admin/SeoTextComponent').default);
 Vue.component('clearable-input-component', require('./../components/admin/ClearableInputComponent').default);
 Vue.component('generator-input-component', GeneratorInputComponent);
+Vue.component('list-component', ListComponent);
+
 
 
 Vue.component('confirm-button', ConfirmButton);
