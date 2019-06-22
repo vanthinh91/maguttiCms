@@ -6,7 +6,7 @@ use App\maguttiCms\Tools\Stringable;
 class Media extends Model
 {
 	use \Dimsav\Translatable\Translatable;
-	use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+	use  \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 	protected   $table = 'media';
 	public      $translatedAttributes = ['title','alt','description'];
@@ -82,7 +82,7 @@ class Media extends Model
 			'type'      => 'text',
 			'size'      => 600,
 			'h'         => 100,
-			'required'  => true,
+			'required'  => false,
 			'hidden'    => 0,
 			'label'     => 'Description',
 			'cssClass'  => 'smallArea',

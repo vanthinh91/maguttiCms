@@ -1,6 +1,6 @@
 <?php namespace App\maguttiCms\Tools;
 
-use App\Setting;
+
 
 /**
  * Class Setting

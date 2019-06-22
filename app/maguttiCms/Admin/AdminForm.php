@@ -14,9 +14,15 @@ use App\maguttiCms\Admin\Facades\AdminFormImageRelation;
 * @package App\maguttiCms\Admin
 */
 class AdminForm {
+
+    public $model;
+    public $cssClass;
+
 	protected $html;
 	protected $property;
 	protected $showSeo;
+	protected $headerLabelRow;
+	protected $cssRow;
 
 	public function get($model)
 	{
@@ -91,12 +97,12 @@ class AdminForm {
 
 	private function formModelHandler($property, $key, $value = '', $locale='') {
 		$this->property  = $property;
-		$this->cssClass        = (isset($this->property['cssClass']))? $this->property['cssClass']: '';
-		$cssClassElement = (isset($this->property['cssClassElement']))? $this->property['cssClassElement']: '';
-		$isLangField     = isset($this->property['lang']) && $this->property['lang'];
-		$intMin			 = (isset($this->property['min']))? $this->property['min']: '';
-		$intMax			 = (isset($this->property['max']))? $this->property['max']: '';
-		$intStep		 = (isset($this->property['step']))? $this->property['step']: '';
+		$this->cssClass  = data_get($this->property,'cssClass','');
+		$cssClassElement = data_get($this->property,'cssClassElement','');
+		$isLangField     = data_get($this->property,'lang','');
+		$intMin			 = data_get($this->property,'min','');
+		$intMax			 = data_get($this->property,'max','');
+		$intStep		 = data_get($this->property,'step','');
 		$formElement     = '';
 
 		/**
@@ -109,10 +115,6 @@ class AdminForm {
 		}
 
 		$field_properties = ['class' => ' form-control '.$this->cssClass];
-		if (data_get($this->property, 'required', false)) {
-			//$field_properties['required'] = true;
-		}
-
 		if ($isLangField || $this->property['display'] != 1) {
 
 		}
@@ -125,17 +127,19 @@ class AdminForm {
         elseif ($this->property['type'] == 'vue_component'){
             $formElement = (new AdminVueComponent($this))->getComponent($value,$key);
         }
-
-		elseif ($this->property['type'] == 'seo_string'){
+        elseif ($this->property['type'] == 'string_clearable'){
+            $formElement = '<clearable-input-component name="'.$key.'" input_text="'.$value.'"></seo-text-component>';
+        }
+        elseif ($this->property['type'] == 'seo_string'){
             $formElement = '<seo-input-component 
-                            max-count="'.data_get($this->property,'max',63).'" 
+                            max-count="'.data_get($this->property,'max',config('seotools.lara_setting.title')).'" 
                             name="'.$key.'" 
                             input_text="'.$value.'">
                             </seo-text-component>';
         }
         elseif ($this->property['type'] == 'seo_text'){
             $formElement = '<seo-text-component 
-                            max-count="'.data_get($this->property,'max',158).'" 
+                            max-count="'.data_get($this->property,'max',config('seotools.lara_setting.description')).'" 
                             name="'.$key.'" 
                             input_text="'.$value.'">
                             </seo-text-component>';
@@ -290,7 +294,6 @@ class AdminForm {
 				$query->whereRaw($this->property['whereRaw']);
 			}
 			if ($orderRaw) {
-
 				$relationObj = $query->orderByRaw($orderRaw)->get();
 			} else {
 				$relationObj = $query->orderBy($orderField,$order)->get();
@@ -311,7 +314,7 @@ class AdminForm {
 		$orderField = (isset($this->property['order_field']))? $this->property['order_field']: $this->property['label_key'];
 		$order = 'ASC';
 		$table = with(new $relationModel)->getTable();
-		$translationTable = strtolower(snake_case($this->property['model']));
+		$translationTable = strtolower(Str::snake($this->property['model']));
 		$a = (isset($this->property['foreign_key'])) ? $this->property['foreign_key'] : 'id';
 		$query = $relationModel::join($translationTable.'_translations as t', 't.'.$translationTable.'_id', '=', $table.'.id')
 			->where('locale', app()->getLocale())

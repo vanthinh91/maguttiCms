@@ -19,7 +19,7 @@ use App\Domain;
 */
 class ProductsController extends Controller
 {
-	use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
+	use  \App\maguttiCms\SeoTools\LaraCmsSeoTrait;
 	/**
 	* @var
 	*/

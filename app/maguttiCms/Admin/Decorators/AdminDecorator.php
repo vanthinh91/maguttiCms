@@ -33,11 +33,7 @@ class AdminDecorator
 
         $query = $model::select(); //$relationModel;
         /**  filter  condition */
-        if (isset($this->property['filter'])) {
-            foreach ($this->property['filter'] as $column => $value) {
-                $query->where($column, '=', $value);
-            }
-        }
+        $this->addFilters($query)->addQueryScope($query);
         $relationObj = $query->orderBy($orderField, $order)->get();
         return $relationObj;
     }
@@ -99,5 +95,27 @@ class AdminDecorator
 		}
 		return $string;
 	}
+
+
+    //  aggiunge un query scope alla  query
+    public function addQueryScope($query)
+    {
+        if (data_get($this->property,'scopes')) {
+            foreach ($this->property['scopes'] as $scope) {
+                $query->{$scope}();
+            }
+        }
+        return $this;
+    }
+
+    public function addFilters($query)
+    {
+        if (data_get($this->property,'filter')) {
+            foreach ($this->property['filter'] as $column => $value) {
+                $query->where($column, '=', $value);
+            }
+        }
+        return $this;
+    }
 
 }

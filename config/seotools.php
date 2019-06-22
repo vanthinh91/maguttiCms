@@ -46,4 +46,11 @@ return [
           //'site'        => '@LuizVinicius73',
         ],
     ],
+    /**
+     *   MaguttiCms custom settings
+     */
+    'lara_setting' => [
+        'title' => '65',
+        'description' => '160'
+    ],
 ];

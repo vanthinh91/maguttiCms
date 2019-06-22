@@ -2,6 +2,7 @@
 
 namespace App\maguttiCms\Admin\Controllers;
 
+use App\maguttiCms\Exports\ExportHelper;
 use App\maguttiCms\Exports\AdminListExporter;
 use App\maguttiCms\Exports\CollectionExport;
 use App\Http\Controllers\Controller;
@@ -9,7 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Validator;
 use Input;
 
-use App\maguttiCms\Tools\ExportHelper;
+
 
 /**
  * Class AdminExportController

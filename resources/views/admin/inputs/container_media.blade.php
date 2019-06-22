@@ -1,8 +1,8 @@
 <div class="row form-group">
-	<div class="col-xs-12 col-sm-3 col-lg-2">
+	<div class="col-12 col-sm-3 col-lg-2">
 		@include('admin.inputs.label')
 	</div>
-	<div class="col-xs-12 col-sm-9 col-md-10">
+	<div class="col-12 col-sm-9 col-md-10">
 		<div class="media-cont">
 			<div class="media-input">
 				{!!$form_element!!}

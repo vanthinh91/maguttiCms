@@ -22,26 +22,25 @@ window.App = function () {
 	}
 
 	function handleNewsletter() {
-		$('#form-newsletter').on('submit', function(e) {
+		$('#form-newsletter').on('submit', function (e) {
 			e.preventDefault();
 			$.ajax({
-				type : 'POST',
-				url : urlAjaxHandler+"/api/newsletter",
-				data : $( "#form-newsletter" ).serialize(),
-				dataType : 'json',
-				success : function(response) {
+				type: 'POST',
+				url: urlAjaxHandler + "/api/newsletter",
+				data: $("#form-newsletter").serialize(),
+				dataType: 'json',
+				success: function (response) {
 					var msgHtml = '';
-					if (response.status=='ok') {
+					if (response.status == 'ok') {
 						msgHtml += '<h4>' + response.msg + '</h4>';
-					}
-					else {
-						$.each( response.errors , function( _key, value ) {
+					} else {
+						$.each(response.errors, function (_key, value) {
 							msgHtml += '<h4>' + value[0] + '</h4>'; //showing only the first error.
 						});
 					}
 					updateModalAlertMsg(msgHtml);
 				},
-				error : function() {
+				error: function () {
 					updateModalAlertMsg('Error');
 				}
 			});
@@ -50,15 +49,15 @@ window.App = function () {
 
 	// checkboxes and radio
 	function initCheckboxes() {
-		$(document).on('change', 'input[type="checkbox"], input[type="radio"]', function() {
+		$(document).on('change', 'input[type="checkbox"], input[type="radio"]', function () {
 			let elem = $(this);
 			if (elem.is('input[type="radio"]')) {
-				$('input[type="radio"][name="' + elem.attr('name') + '"]').each(function() {
+				$('input[type="radio"][name="' + elem.attr('name') + '"]').each(function () {
 					updateCheckbox($(this));
 				});
 			} else
-			updateCheckbox($(this));
-		}).each(function() {
+				updateCheckbox($(this));
+		}).each(function () {
 			updateCheckbox($(this));
 		});
 	}
@@ -73,10 +72,18 @@ window.App = function () {
 
 	function handleLightBox() {
 		$(".lightbox").fancybox();
+		$(".lightbox-iframe").fancybox({
+			type: 'iframe',
+			iframe: {
+				css: {
+					width: '800px',
+				}
+			}
+		});
 	}
 
 	function handleScrollTo() {
-		$(document).on('click', '.scroll-to', function(e) {
+		$(document).on('click', '.scroll-to', function (e) {
 			e.preventDefault();
 			App.scrollTo($(this).attr('href'));
 		});
@@ -86,34 +93,34 @@ window.App = function () {
 	}
 
 	function handleGhostInputs() {
-		$('.form-ghost').each(function() {
+		$('.form-ghost').each(function () {
 			let elem = $(this);
 			elem.data('original', elem.val());
-		}).blur(function(e) {
+		}).blur(function (e) {
 			e.preventDefault();
 
 			let elem = $(this);
 
 			if (elem.val() != elem.data('original')) {
-				let id  = elem.data('id');
-				let model  = elem.data('model');
-				let field  = elem.data('field');
-				let value  = elem.val();
+				let id = elem.data('id');
+				let model = elem.data('model');
+				let field = elem.data('field');
+				let value = elem.val();
 
 				$.ajax({
-					type : 'POST',
-					url : '/api/update-ghost',
-					data : {
-						id : id,
+					type: 'POST',
+					url: '/api/update-ghost',
+					data: {
+						id: id,
 						model: model,
 						field: field,
 						value: value,
 						_token: $('meta[name="csrf-token"]').attr('content')
 					},
-					dataType : 'json',
-					success : function(response) {
+					dataType: 'json',
+					success: function (response) {
 						elem.data('original', value);
-						$.each(response.alerts, function() {
+						$.each(response.alerts, function () {
 							$.smkAlert({
 								text: this.text,
 								type: this.type,
@@ -121,7 +128,7 @@ window.App = function () {
 							});
 						});
 					},
-					error : function() {
+					error: function () {
 						$.smkAlert({
 							text: trans('website.ghost.error'),
 							type: 'danger',
@@ -136,7 +143,7 @@ window.App = function () {
 
 	function handleNavbar() {
 		let WINDOW = $(window);
-		WINDOW.on('scroll', function() {
+		WINDOW.on('scroll', function () {
 			checkNavbar();
 		});
 		checkNavbar();
@@ -156,18 +163,18 @@ window.App = function () {
 	}
 
 	function initOverrideInvalid() {
-        var offset = $('.navbar-fixed-top').outerHeight() + 30;
+		var offset = $('.navbar-fixed-top').outerHeight() + 30;
 
-        document.addEventListener('invalid', function(e) {
-            $(e.target).addClass('invalid');
-            $('html, body').animate({
-                scrollTop: $($(".invalid")[0]).offset().top - offset
-            }, 0);
-        }, true);
-        document.addEventListener('change', function(e) {
-            $(e.target).removeClass('invalid');
-        }, true);
-    }
+		document.addEventListener('invalid', function (e) {
+			$(e.target).addClass('invalid');
+			$('html, body').animate({
+				scrollTop: $($(".invalid")[0]).offset().top - offset
+			}, 0);
+		}, true);
+		document.addEventListener('change', function (e) {
+			$(e.target).removeClass('invalid');
+		}, true);
+	}
 
 	return {
 		init: function () {
@@ -181,24 +188,26 @@ window.App = function () {
 			initOverrideInvalid();
 		},
 
-		scrollTo: function(hash) {
+		scrollTo: function (hash) {
 			var margin_top = $("nav").outerHeight();
 			var elem_top = $(hash).offset().top;
-			$('html, body').stop().animate({'scrollTop': elem_top - margin_top}, 500);
+			$('html, body').stop().animate({
+				'scrollTop': elem_top - margin_top
+			}, 500);
 		},
 
-		formValidation: function(selector) {
-			$('#'+selector).submit(function (event) {
+		formValidation: function (selector) {
+			$('#' + selector).submit(function (event) {
 				event.preventDefault();
 
 				$.ajax({
 					type: 'POST',
 					url: urlAjaxHandler + '/api/' + selector,
-					data: $('#'+selector).serialize(),
+					data: $('#' + selector).serialize(),
 					dataType: 'json',
 					success: function (response) {
 						if (response.status == 'ok') {
-							$('#'+selector).hide();
+							$('#' + selector).hide();
 							$('#response').show().text(response.msg);
 						} else {
 							$.each(response.errors, function (key, _value) {
@@ -206,7 +215,7 @@ window.App = function () {
 							});
 
 							$('html, body').animate({
-								scrollTop: $('#'+selector).offset().top - $('nav').height()
+								scrollTop: $('#' + selector).offset().top - $('nav').height()
 							}, 1200, 'swing');
 						}
 					}
@@ -218,22 +227,22 @@ window.App = function () {
 
 /******************************** MODAL ************************/
 function updateModalAlertMsg($htmlContent) {
-	bootbox.alert($htmlContent, function() {});
+	bootbox.alert($htmlContent, function () {});
 }
 
 function updateModalBoxMsg($htmlContent) {
-	bootbox.confirm($htmlContent, function() {});
+	bootbox.confirm($htmlContent, function () {});
 }
 
 /*********************************  localize *********************/
 function trans(keystring) {
 	var key_array = keystring.split('.');
 	var temp_localization = JS_LOCALIZATION;
-	$.each(key_array, function() {
+	$.each(key_array, function () {
 		temp_localization = temp_localization[this];
 	});
-	if (typeof(temp_localization) == 'string')
-	return temp_localization;
+	if (typeof (temp_localization) == 'string')
+		return temp_localization;
 	else
-	return keystring;
+		return keystring;
 }

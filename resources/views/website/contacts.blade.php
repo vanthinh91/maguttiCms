@@ -1,12 +1,12 @@
 @extends('website.app')
 @section('content')
 
-	<div id="google-map" class="google-maps"></div>
+	<div id="map"></div>
 
 	<section class="my-5">
-		<div class="container">
+        <div class="container">
 			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-md-4">
+				<div class="col-12 col-sm-6 col-md-4">
 					<address>
 						<h3 class="text-primary">{{ config('maguttiCms.website.option.app.name') }}</h3>
 
@@ -15,11 +15,11 @@
 
 							{{ config('maguttiCms.website.option.app.locality') }}<br>
 
-							{{ icon('phone', 'fa-rotate-90 mr-2') }} Tel {{ config('maguttiCms.website.option.app.phone') }}<br>
+							{{ icon('phone', 'fa-rotate-90 fa-fw') }} Tel {{ config('maguttiCms.website.option.app.phone') }}<br>
 
-							{{ icon('fax', 'fa-lg mr-2') }} Fax {{ config('maguttiCms.website.option.app.fax') }}<br>
+							{{ icon('fax', 'fa-fw') }} Fax {{ config('maguttiCms.website.option.app.fax') }}<br>
 
-							{{ icon('envelope', 'fa-lg mr-2') }}
+							{{ icon('envelope', 'fa-fw') }}
 							<a href="mailto:{{ config('maguttiCms.website.option.app.email') }}">
 								{{ config('maguttiCms.website.option.app.email') }}
 							</a>
@@ -27,7 +27,7 @@
 					</address>
 				</div>
 
-				<div class="col-xs-12 col-sm-6 col-md-8">
+				<div class="col-12 col-sm-6 col-md-8">
 					@include('website.form.contact')
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 @endsection
 @section('footerjs')
 	@parent
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{data_get($site_settings,'GMAPS_KEY')}}"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{data_get($site_settings,'GMAPS_KEY')}}"></script>
 
 	<script type="text/javascript">
 		var marker_config = [
@@ -48,22 +48,22 @@
 				'{{asset('website/images/map_marker.png')}}',	// icon image
 				"<div class='mapPop'><b>{!! config('maguttiCms.website.option.app.name')!!}</b><br>{!! config('maguttiCms.website.option.app.address')!!}<br>{!! config('maguttiCms.website.option.app.locality')!!}<br></div>", //popup window content
 			],
-			[
-				'{!! config('maguttiCms.website.option.app.name')!!}',	//title
+            [
+                '{!! config('maguttiCms.website.option.app.name')!!}',	//title
 				{{data_get($site_settings,'LNG')}},	// lat - test
 				{{data_get($site_settings,'LAT')}},	// lng - test
-				'{{asset('website/images/map_marker.png')}}',	// icon image
-				"<div class='mapPop'><b>{!! config('maguttiCms.website.option.app.name')!!}</b><br>{!! config('maguttiCms.website.option.app.address')!!}<br>{!! config('maguttiCms.website.option.app.locality')!!}<br></div>", //popup window content
-			]
+                '{{asset('website/images/map_marker.png')}}',	// icon image
+                "<div class='mapPop'><b>{!! config('maguttiCms.website.option.app.name')!!}</b><br>{!! config('maguttiCms.website.option.app.address')!!}<br>{!! config('maguttiCms.website.option.app.locality')!!}<br></div>", //popup window content
+            ]
 		];
 		var gmap_config = {
-			mapElement: 'google-map',
-			zoomLevel: 12,
+			mapElement: 'map',
+        	zoomLevel: 12,
 			mapStyles: [],
-			marker_config: marker_config
+        	marker_config: marker_config
 		};
-		jQuery(document).ready(function() {
-			gMap.init();
-		});
-	</script>
+        jQuery(document).ready(function() {
+            gMap.init();
+        });
+    </script>
 @endsection

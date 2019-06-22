@@ -41,9 +41,11 @@
 									<tr id="row_{!! $article->id !!}">
 										@if ($pageConfig['selectable'])
 											<td class="selectable-column">
-												<div class="form-checkbox">
-													<input type="checkbox" value="{!! $article->id !!}" id="list_{!! $article->id !!}" name="list[{!! $article->id !!}]" class="checkbox" autocomplete="off">
+												<div class="custom-control custom-checkbox">
+													<input type="checkbox" value="{!! $article->id !!}" id="list_{!! $article->id !!}" name="list[{!! $article->id !!}]" class="custom-control-input" autocomplete="off">
+													<label class="custom-control-label text-left" for="list_{!! $article->id !!}"> </label>
 												</div>
+
 											</td>
 										@endif
 										@foreach($labels=$pageConfig['field'] as $label)
@@ -223,7 +225,7 @@
 			</div>
 		@endif
 		@if ($articles->render())
-			<div class="pagination">{!! $articles->render() !!}</div>
+			<div class="pagination mt-4">{!! $articles->render() !!}</div>
 		@endif
 	</main>
 @endsection

@@ -101,7 +101,7 @@ return [
 			'is_unique' => 'Valore :attribute già presente.',
 		],
 		'email' => [
-			'unique' => 'L\'email scelta è già già presente',
+			'unique' => 'L\'email scelta è già presente',
 		],
 		'password' => [
 			'regex' => 'Il formato della password non è valido'

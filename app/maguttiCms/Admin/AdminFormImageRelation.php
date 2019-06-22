@@ -57,9 +57,9 @@ class AdminFormImageRelation  {
         $relationModel   =  "App\\".$this->property['model'] ;
         $objMedia        = $relationModel::find($item->{$this->a});
 
-        $html ="<div class=\"col-4 col-md-2\"><a href=\"#\" 
+        $html ="<div class=\"col-4 col-md-2\"><a href=\"#\"
                      data-image-relation=\"".$this->field."\"  data-image-id =\"".$item->{$this->a}."\" class=\"thumbnail ".$class."\">";
-            $html .="<img src=\"".ma_get_image_from_repository($objMedia->image)."\" alt=\"".$item->title."\" class='img-responsive '>";
+            $html .="<img src=\"".ma_get_image_from_repository($objMedia->image)."\" alt=\"".$item->title."\" class='img-fluid'>";
         $html .="</a></div>";
         return $html;
     }

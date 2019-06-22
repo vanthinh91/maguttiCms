@@ -36,13 +36,12 @@ trait SearchableTrait
 
     public function addSelect($objBuilder)
     {
-        return ($this->configHasProperty('addSelect')) ? $this->mainTableSelect($objBuilder)->addSelect($this->config['addSelect']) : '';
+        return ($this->configHasProperty('addSelect')) ? $objBuilder->addSelect($this->config['addSelect']) : '';
     }
 
     public function selectSub($objBuilder)
     {
-        return ($this->configHasProperty('selectSub')) ? $this->mainTableSelect($objBuilder)->selectSub($this->config['selectSub']['query'],
-            $this->config['selectSub']['field']) : '';
+        return ($this->configHasProperty('selectSub')) ? $objBuilder->selectSub($this->config['selectSub']['query'], $this->config['selectSub']['field']) : '';
     }
 
 

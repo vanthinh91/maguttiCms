@@ -2,7 +2,7 @@ window.urlAjaxHandlerCms = _SERVER_PATH + '/admin/api/'; // percorso  del conten
 
 window.curItem;
 
-window.Cms = function() {
+window.Cms = function () {
 	function handleBootstrap() {
 		$('[data-toggle="tooltip"]').tooltip();
 
@@ -17,22 +17,24 @@ window.Cms = function() {
 	}
 
 	function handleToggle() {
-		jQuery('.list-toggle').on('click', function() {
+		jQuery('.list-toggle').on('click', function () {
 			jQuery(this).toggleClass('active');
 		});
 	}
 	// checkboxes and radio
 	function initCheckboxes() {
-		$('input[type="checkbox"], input[type="radio"]').change(function() {
+
+
+		$('input[type="checkbox"], input[type="radio"]').change(function () {
 			var elem = $(this);
 			if (elem.is('input[type="radio"]')) {
-				$('input[type="radio"][name="' + elem.attr('name') + '"]').each(function() {
+				$('input[type="radio"][name="' + elem.attr('name') + '"]').each(function () {
 					updateCheckbox($(this));
 				});
 			} else {
 				updateCheckbox($(this));
 			}
-		}).each(function() {
+		}).each(function () {
 			updateCheckbox($(this));
 		});
 	}
@@ -51,7 +53,7 @@ window.Cms = function() {
 	}
 
 	function listHandler() {
-		$(':input[data-list-value]').on('change', function() {
+		$(':input[data-list-value]').on('change', function () {
 			var value = $(this).val();
 			var itemArray = $(this).data('list-value').split('_');
 			var field = $(this).data('list-name');
@@ -68,17 +70,17 @@ window.Cms = function() {
 				type: "GET",
 				dataType: 'json',
 				cache: false,
-				success: function(response) {
+				success: function (response) {
 					//  suppress
 					$.notify(response.message, "success");
 				},
-				error: function(xhr, _ajaxOptions, thrownError) {
+				error: function (xhr, _ajaxOptions, thrownError) {
 					$.notify("Something went Wrong please" + xhr.responseText + thrownError);
 				}
 			});
 		});
 
-		$('[data-list-boolean]').on('click', function() {
+		$('[data-list-boolean]').on('click', function () {
 			var itemArray = $(this).data('list-boolean').split('_');
 			var field = $(this).data('list-name');
 			var onObj = $(this).find(".bool-on");
@@ -94,24 +96,24 @@ window.Cms = function() {
 				type: "GET",
 				dataType: 'json',
 				cache: false,
-				success: function(response) {
+				success: function (response) {
 					//  suppress
 					onObj.toggleClass('d-none');
 					offObj.toggleClass('d-none');
 					$.notify(response.message, "success");
 				},
-				error: function(xhr, _ajaxOptions, thrownError) {
+				error: function (xhr, _ajaxOptions, thrownError) {
 					$.notify("Something went Wrong please" + xhr.responseText + thrownError);
 				}
 			});
 		});
 
 
-		$('[data-role="delete-item"]').on('click', function(e) {
+		$('[data-role="delete-item"]').on('click', function (e) {
 			e.preventDefault();
 			var curItem = this;
 			bootbox.setLocale(_LOCALE);
-			bootbox.confirm("<h4>Are you sure?</h4>", function(confirmed) {
+			bootbox.confirm("<h4>Are you sure?</h4>", function (confirmed) {
 				if (confirmed) {
 					location.href = curItem.href;
 				}
@@ -119,26 +121,26 @@ window.Cms = function() {
 		});
 
 		// gestione check box liste
-		$('input.checkbox').click(function() {
-			if ($("input.checkbox:checked").length > 0)
+	    $('input[type="checkbox"].custom-control-input').on('change',function () {
+    		if ($("input.custom-control-input:checked").length > 0)
 				$('#toolbar_deleteButtonHandler').stop().fadeIn();
 			else
 				$('#toolbar_deleteButtonHandler').stop().fadeOut();
 		});
 
-		$('#toolbar_editButtonHandler').on('click', function(e) {
+		$('#toolbar_editButtonHandler').on('click', function (e) {
 			e.preventDefault();
 			//  redirect to edit page
 			location.href = $('#row_' + curItem + ' [data-role="edit-item"] ')[0].href;
 		});
 
-		$('#toolbar_deleteButtonHandler').on('click', function(e) {
+		$('#toolbar_deleteButtonHandler').on('click', function (e) {
 			e.preventDefault();
 			//  redirect to edit page
 			bootbox.setLocale(_LOCALE);
-			bootbox.confirm("<h4>Are you sure?</h4>", function(confirmed) {
+			bootbox.confirm("<h4>Are you sure?</h4>", function (confirmed) {
 				if (confirmed) {
-					$('input.checkbox:checked').each(function() {
+					$('input[type="checkbox"].custom-control-input:checked').each(function () {
 						$('#row_' + $(this).val()).fadeOut('1000');
 						deleteUrl = $('#row_' + $(this).val() + ' [data-role="delete-item"] ')[0].href;
 						// Do delete
@@ -148,7 +150,7 @@ window.Cms = function() {
 							type: "GET",
 							dataType: 'json',
 							cache: false,
-							error: function(xhr, _ajaxOptions, thrownError) {
+							error: function (xhr, _ajaxOptions, thrownError) {
 								$.notify("Something went Wrong please" + xhr.responseText + thrownError);
 							}
 						});
@@ -162,22 +164,22 @@ window.Cms = function() {
 	function initOverrideInvalid() {
 		var offset = $('header').outerHeight() + 30;
 
-		document.addEventListener('invalid', function(e) {
+		document.addEventListener('invalid', function (e) {
 			$(e.target).addClass('invalid');
 			$('html, body').animate({
 				scrollTop: $($(".invalid")[0]).offset().top - offset
 			}, 0);
 		}, true);
-		document.addEventListener('change', function(e) {
+		document.addEventListener('change', function (e) {
 			$(e.target).removeClass('invalid');
 		}, true);
 	}
 
 	function handleSidebar() {
-		$('#sidebar').on('click', function(e) {
+		$('#sidebar').on('click', function (e) {
 			e.stopPropagation();
 		});
-		$('html, body').on('click', function() {
+		$('html, body').on('click', function () {
 			$('#sidebar').removeClass('open');
 		});
 	}
@@ -202,32 +204,32 @@ window.Cms = function() {
 	}
 
 	return {
-		init: function() {
+		init: function () {
 			handleBootstrap();
 			//handleIEFixes();
 			listHandler();
 			handleFlashMessage();
 			handleToggle();
 			handleSidebar();
-			initCheckboxes();
+			//initCheckboxes();
 			initOverrideInvalid();
 		},
 
-		initDatePicker: function() {
+		initDatePicker: function () {
 			$(".datepicker").datepicker({
 				dateFormat: "dd-mm-yy"
 			});
 		},
 
-		initUploadifiveSingle: function() {
-			$('.file_upload_single').each(function() {
+		initUploadifiveSingle: function () {
+			$('.file_upload_single').each(function () {
 				var elem = $(this);
 				elem.uploadifive({
 					'auto': true,
 					//'checkScript'      : 'check-exists.php',
 					'queueID': 'queue_' + elem.data('key'),
 					'uploadScript': urlAjaxHandlerCms + 'uploadifiveSingle',
-					'onAddQueueItem': function() {
+					'onAddQueueItem': function () {
 						this.data('uploadifive').settings.formData = {
 							'timestamp': '1451682058',
 							'token': '4b9fe8f26d865150e4b26b2a839d4f2b',
@@ -238,7 +240,7 @@ window.Cms = function() {
 							"_token": $('[name=_token]').val()
 						};
 					},
-					'onUploadComplete': function(_file, data) {
+					'onUploadComplete': function (_file, data) {
 						var responseObj = jQuery.parseJSON(data);
 						var filename = responseObj.filename;
 						$('[name="' + elem.data('key') + '"]').val(filename);
@@ -246,14 +248,14 @@ window.Cms = function() {
 				});
 			});
 		},
-		initUploadifiveMedia: function() {
+		initUploadifiveMedia: function () {
 			var elem = $('#file_upload_media');
 			elem.uploadifive({
 				'auto': true,
 				//'checkScript'      : 'check-exists.php',
 				'queueID': 'queue_media',
 				'uploadScript': urlAjaxHandlerCms + 'uploadifiveMedia',
-				'onAddQueueItem': function() {
+				'onAddQueueItem': function () {
 					this.data('uploadifive').settings.formData = {
 						'timestamp': '1451682058',
 						'token': '4b9fe8f26d865150e4b26b2a839d4f2b',
@@ -264,7 +266,7 @@ window.Cms = function() {
 						"_token": $('[name=_token]').val()
 					};
 				},
-				'onUploadComplete': function(_file, data) {
+				'onUploadComplete': function (_file, data) {
 					let responseObj = jQuery.parseJSON(data);
 					if (responseObj.status == 'ko') {
 						alert(responseObj.error);
@@ -277,7 +279,7 @@ window.Cms = function() {
 			});
 		},
 
-		initTinymce: function() {
+		initTinymce: function () {
 
 			tinymce.init({
 				selector: "textarea.wyswyg",
@@ -291,33 +293,34 @@ window.Cms = function() {
 				statusbar: false,
 				height: 200,
 				toolbar: "insertfile undo redo | styleselect | bold italic | bullist numlist outdent indent | link | code",
-				convert_urls: false
+				convert_urls: false,
+				allow_unsafe_link_target: true
 			});
 		},
 
-		initColorPicker: function() {
+		initColorPicker: function () {
 			$('.color-picker').colorpicker({
 				'format': 'hex'
 			});
 		},
 
-		initFiles: function() {
+		initFiles: function () {
 			let inputs = $('.form-file').find('input[type="file"]');
-			inputs.each(function() {
+			inputs.each(function () {
 				let elem = $(this),
 					label = elem.siblings('label').first();
-				elem.on('change', function() {
+				elem.on('change', function () {
 					Cms.updateFile(elem, label);
 				});
-				elem.on('focus', function() {
+				elem.on('focus', function () {
 					elem.addClass('has-focus');
 				});
-				elem.on('blur', function() {
+				elem.on('blur', function () {
 					elem.removeClass('has-focus');
 				});
 			});
 		},
-		updateFile: function(elem, label) {
+		updateFile: function (elem, label) {
 			let fileName = '';
 			files = elem[0].files;
 			if (files && files.length > 1)
@@ -331,37 +334,37 @@ window.Cms = function() {
 				label.html(elem.data('empty-caption'));
 		},
 
-		initSortableList: function(object) {
+		initSortableList: function (object) {
 			$(object).sortable({
 				revert: true,
 				items: "li:not(.sort-disabled)",
-				update: function() {
+				update: function () {
 					var order = $(object).sortable('serialize');
 					$("#info").load(urlAjaxHandlerCms + "updateMediaSortList?" + order);
 				}
 			});
 			$("ul#simpleGallery").disableSelection();
 		},
-		initImageRelationList: function() {
-			$('[data-image-relation]').on('click', function() {
+		initImageRelationList: function () {
+			$('[data-image-relation]').on('click', function () {
 				var targetField = $(this).data('image-relation');
 				var targetFieldValue = $(this).data('image-id');
 				$("#" + targetField).val(targetFieldValue);
-				$('[data-image-relation="' + targetField + '"]').each(function() {
+				$('[data-image-relation="' + targetField + '"]').each(function () {
 					$(this).removeClass('active');
 					$(this).addClass('inactive');
 				});
 				$(this).addClass('active');
 			});
 		},
-		initMediaModal: function() {
-			$(document).on('submit', '#media-edit-form', function(ev) {
+		initMediaModal: function () {
+			$(document).on('submit', '#media-edit-form', function (ev) {
 				ev.preventDefault();
 
 				var fields = $(this).serializeArray();
 				var fields_object = {};
 
-				$.each(fields, function(_i, v) {
+				$.each(fields, function (_i, v) {
 					fields_object[v['name']] = v['value'];
 				});
 
@@ -375,29 +378,32 @@ window.Cms = function() {
 					dataType: 'json',
 					url: $(this).attr('action'),
 					data: $(this).serialize(),
-					success: function(response) {
-						var errorsHtml = '<div class="alert alert-info"><ul>';
-						errorsHtml += '<li>' + response.status + '</li>'; //showing only the first error.
+					success: function (response) {
+
+
+						let errorsHtml = '<div class="alert alert-info"><ul>';
+						errorsHtml += `<li>${response.status}</li>`; //showing only the first error.
 						errorsHtml += '</ul></div>';
 						$('#errorBox').html(errorsHtml);
-						var id = '#box_media_' + fields_object.id;
+                        $('.modal-body').animate({scrollTop:0},200);
+						let id = '#box_media_' + fields_object.id;
 						$(id + ' .media-title').text(fields_object.title);
 						$(id + ' .media-category').text(media_category_title);
 					},
-					error: function(data) {
-						var errors = data.responseJSON;
-						var errorsHtml = '<div class="alert alert-danger"><ul>';
-
-						$.each(errors, function(_key, value) {
-							errorsHtml += '<li>' + value[0] + '</li>'; //showing only the first error.
+					error: function (data) {
+						let response = data.responseJSON;
+						let errorsHtml = '<div class="alert alert-danger"><ul>';
+						$.each(response.errors, function (key, value) {
+							errorsHtml += `<li>${value}</li>`;
 						});
 						errorsHtml += '</ul></div>';
 						$('#errorBox').html(errorsHtml);
-					}
+                        $('.modal-body').animate({scrollTop:0},200);
+          			}
 				});
 			});
 		},
-		initDateTimePicker: function() {
+		initDateTimePicker: function () {
 			$('.datetimepicker').datetimepicker({
 				controlType: 'select',
 				oneLine: true,
@@ -408,15 +414,15 @@ window.Cms = function() {
 			});
 		},
 
-		deleteImages: function(obj) {
+		deleteImages: function (obj) {
 			bootbox.setLocale(_LOCALE);
-			bootbox.confirm("<h4>Are you sure?</h4>", function(confirmed) {
+			bootbox.confirm("<h4>Are you sure?</h4>", function (confirmed) {
 				var curItem = obj;
 				var value = "";
 				var itemArray = curItem.id.split('-');
 				var field = itemArray[1];
 				var boxObj = $("#box_" + itemArray[1] + "_" + itemArray[2]);
-                var curLocale =$(obj).data('locale')
+				var curLocale = $(obj).data('locale')
 
 				if (confirmed) {
 					$.ajax({
@@ -425,12 +431,12 @@ window.Cms = function() {
 							model: _CURMODEL,
 							field: field,
 							value: value,
-                            locale : curLocale,
-                        },
+							locale: curLocale,
+						},
 						type: "GET",
 						dataType: 'json',
 						cache: false,
-						success: function(response) {
+						success: function (response) {
 							// set input value as null
 							$('input[name=' + itemArray[1] + ']').val('');
 
@@ -439,7 +445,7 @@ window.Cms = function() {
 							// hide  the   media  preview  container
 							boxObj.hide();
 						},
-						error: function(xhr, _ajaxOptions, thrownError) {
+						error: function (xhr, _ajaxOptions, thrownError) {
 							$.notify("Something went Wrong please" + xhr.responseText + thrownError);
 						}
 					});
@@ -447,9 +453,9 @@ window.Cms = function() {
 			});
 		},
 
-		deleteItem: function(obj) {
+		deleteItem: function (obj) {
 			bootbox.setLocale(_LOCALE);
-			bootbox.confirm("<h4>Are you sure?</h4>", function(confirmed) {
+			bootbox.confirm("<h4>Are you sure?</h4>", function (confirmed) {
 				var curItem = obj;
 				var itemArray = curItem.id.split('_');
 				var boxObj = $("#box_" + itemArray[1] + "_" + itemArray[2]);
@@ -460,13 +466,13 @@ window.Cms = function() {
 						type: "GET",
 						dataType: 'json',
 						cache: false,
-						success: function(response) {
+						success: function (response) {
 							//  suppress
 							$.notify(response.message, "success");
 							// hide  the   media  preview  container
 							boxObj.hide();
 						},
-						error: function(xhr, _ajaxOptions, thrownError) {
+						error: function (xhr, _ajaxOptions, thrownError) {
 							$.notify("Something went Wrong please" + xhr.responseText + thrownError);
 
 						}
@@ -475,10 +481,10 @@ window.Cms = function() {
 			});
 		},
 
-		initCropper: function(key, cropper_options, file_options) {
+		initCropper: function (key, cropper_options, file_options) {
 			let container = document.getElementById('cropper-container-' + key);
 			let cropper = createCropper(container, cropper_options);
-			$('#cropper-upload-' + key).on('change', function() {
+			$('#cropper-upload-' + key).on('change', function () {
 				var files = this.files;
 
 				if (cropper && files && files.length) {
@@ -510,7 +516,7 @@ window.Cms = function() {
 				if (cropper) {
 					cropper.zoom(0.1);
 					// there is no zoom end event to call this with
-					setTimeout(function() {
+					setTimeout(function () {
 						updateCropper(key, cropper, file_options);
 					}, 100);
 				}
@@ -520,7 +526,7 @@ window.Cms = function() {
 				if (cropper) {
 					cropper.zoom(-0.1);
 					// there is no zoom end event to call this with
-					setTimeout(function() {
+					setTimeout(function () {
 						updateCropper(key, cropper, file_options);
 					}, 100);
 				}
@@ -540,12 +546,12 @@ window.Cms = function() {
 							model: _CURMODEL,
 							_token: $('meta[name="csrf-token"]').attr('content')
 						}
-					}).done(function(response) {
+					}).done(function (response) {
 						updateMediaContainers(response);
 						cropper.destroy();
 						container.src = '';
 						$('#cropper-upload-' + key).val('').trigger('change');
-					}).fail(function(xhr, _ajaxOptions, thrownError) {
+					}).fail(function (xhr, _ajaxOptions, thrownError) {
 						$.notify("Something went Wrong please" + xhr.responseText + thrownError);
 					});
 				}

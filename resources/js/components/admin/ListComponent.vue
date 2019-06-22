@@ -4,7 +4,7 @@
         <form class="form-inline" v-on:submit.prevent>
             <input type="text" class="form-control mb-2 mr-sm-2" v-model.lazy="contact.id" placeholder="id">
             <label class="sr-only">Name</label>
-            <input ref="name" type="text" class="form-control mb-2 mr-sm-2" v-model.lazy="contact.name" placeholder="name">
+            <input  type="text" class="form-control mb-2 mr-sm-2" v-model.lazy="contact.name" placeholder="name">
 
             <label class="sr-only">Surname</label>
             <input type="text" class="form-control" v-model="contact.surname" placeholder="surname">
@@ -20,8 +20,7 @@
             <li class="py-1">{{ index }} {{ contact.name }} - {{ contact.surname }}
                 <input type='text' v-model="contact.name" class="form-control mb-2 mr-sm-2">
 
-                <i @click="deleteItem(index)"
-                                                                                       class="px-1 fas fa-trash"></i>
+                <i @click="deleteItem(index)"                                                                                       class="px-1 fas fa-trash"></i>
                 <i @click="editItem(index)" class="px-1 fas fa-edit"></i>
 
                 <i @click="aggiorna(contact)" class="px-1 fas fa-save">s</i>
@@ -64,7 +63,7 @@
                 this.selectedItem = index;
                 this.contact = Object.assign({}, this.list[this.selectedItem]);
                 this.isEdit = true;
-                this.setFocus();
+                //this.setFocus();
             },
             clearForm(){
                 this.contact = {};

@@ -4,7 +4,7 @@
     <main class="my-5">
 		<div class="container">
             <div class="row">
-                <div class="col-xs-12 col-md-9">
+                <div class="col-12 col-md-9">
                     <article>
                         <h1 class="text-primary mb-3">{{ $news->title }}</h1>
                         <h5 class="text-muted mb-4">
@@ -22,7 +22,7 @@
                     @include('website.news.news_share')
                 </div>
 
-                <div class="col-xs-12 col-md-3">
+                <div class="col-12 col-md-3">
                     @include('website.news.news_sidebar')
                 </div>
             </div>

@@ -39,14 +39,14 @@
 
             <h3>{{trans('store.order.addresses')}}</h3>
         	<div class="row">
-        		<div class="col-xs-12 col-sm-6">
+        		<div class="col-12 col-sm-6">
         			<label>{{trans('store.order.billing')}}</label>
         			<p>
         				{!!$order->billing_address->display_block!!}
         			</p>
         		</div>
         		@if ($order->billing_address_id != $order->shipping_address_id && StoreHelper::isShippingEnabled())
-        			<div class="col-xs-12 col-sm-6">
+        			<div class="col-12 col-sm-6">
         				<label>{{trans('store.order.shipping')}}</label>
         				<p>
         					{!!$order->shipping_address->display_block!!}
@@ -58,7 +58,7 @@
             <hr />
 
             <div class="row">
-        		<div class="col-xs-12 col-sm-6">
+        		<div class="col-12 col-sm-6">
         			<h3>{{trans('store.order.totals')}}</h3>
         			<table class="table">
         				<tbody>
@@ -93,7 +93,7 @@
         				</tfoot>
         			</table>
         		</div>
-        		<div class="col-xs-12 col-sm-6">
+        		<div class="col-12 col-sm-6">
         			@if ($discount = $order->discount)
         				<h3>{{trans('store.order.discount.title')}}</h3>
         				{{$discount->code}}: -{{$discount->amount}}%
@@ -116,7 +116,7 @@
         			{{ csrf_field() }}
         			<input type="hidden" name="order_id" value="{{$order->id}}">
         			<div class="row">
-        				<div class="col-xs-12 col-sm-6">
+        				<div class="col-12 col-sm-6">
         					@foreach ($payment_methods as $_method)
         						<div class="form-radio">
         							<input type="radio" name="payment_method_id" value="{{$_method->id}}">
@@ -125,7 +125,7 @@
         						</div>
         					@endforeach
         				</div>
-        				<div class="col-xs-12 col-sm-6">
+        				<div class="col-12 col-sm-6">
         					<button type="submit" class="btn btn-primary pull-right">
         						{{trans('store.payment.pay')}}
         					</button>

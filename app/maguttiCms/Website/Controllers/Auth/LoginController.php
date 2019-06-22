@@ -12,7 +12,7 @@ use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 class LoginController extends Controller
 {
 
-    use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
+    use  \App\maguttiCms\SeoTools\LaraCmsSeoTrait;
 
     /*
     |--------------------------------------------------------------------------

@@ -142,7 +142,6 @@ return [
 		'countries' => 'Nations',
 		'discounts' => 'Discounts',
 		'domains' => 'Domains',
-        'examples' => 'Admin Form Fields Examples',
 		'events' => 'Events',
 		'hpsliders' => 'Slides',
 		'media' => 'Media',

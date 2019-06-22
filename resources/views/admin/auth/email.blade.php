@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('admin.service')
 <!-- Main Content -->
 @section('content')
 	<main id="login-main">
@@ -19,12 +19,12 @@
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/password/email') }}">
 					{{ csrf_field() }}
 					<div class="form-group">
-						<div class="col-xs-12">
+						<div class="col-12">
 							<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"  placeholder="E-Mail Address" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-xs-12">
+						<div class="col-12">
 							<button type="submit" class="btn btn-block btn-primary">
 								{{ trans('message.password_sent_reset_link') }}
 							</button>

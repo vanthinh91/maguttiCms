@@ -8,7 +8,7 @@ use Carbon\Carbon;
  * Class HtmlSocial
  * @package App\maguttiCms\Website\Decorator
  */
-class HtmlSocial extends MaguttiCmsDecorator
+class HtmlSocial extends maguttiCmsDecorator
 {
 
     /**
@@ -48,7 +48,7 @@ class HtmlSocial extends MaguttiCmsDecorator
      */
     function createSocialBar()
     {
-        foreach ($this->model->whereIsActive(1)->get() as $item) {
+        foreach ($this->model->published()->get() as $item) {
             $this->html .= '<li>';
             if (filter_var($item->link, FILTER_VALIDATE_EMAIL)) {
                 $this->html .= '<a href="mailto:' . $item->link . '">';
@@ -59,7 +59,7 @@ class HtmlSocial extends MaguttiCmsDecorator
 
             $this->html .= '<span class="fa-stack">';
                 $this->html .= '<i class="fa fa-circle fa-stack-2x"></i>';
-                $this->html .= '<i class="fab '.$item->icon.' fa-stack-1x fa-inverse"></i>';
+                $this->html .= '<i class="fab fa-'.$item->icon.' fa-stack-1x fa-inverse"></i>';
             $this->html .= '</span>';
 
             $this->html .= '</a>';

@@ -117,7 +117,9 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
 			'whereRaw'      => ($this->isSu())?'':'name != "su"',
 			'display'       => 1,
 			'multiple'      => 1,
-			'validation'    => 'required'
+			'validation'    => 'required',
+            'roles'         => ['su','admin']
+
 		];
 		$this->fieldspec['password']    = [
 			'type'       => 'password',
@@ -126,7 +128,7 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
 			'label'      => trans('admin.label.password'),
 			'display'    => 1,
 			'template'   => 'password',
-			'validation' => 'nullable|min:10|confirmed|regex:'.config('maguttiCms.admin.list.section.adminusers.createsecurity.password_regex'),
+			'validation' => 'nullable|min:10|confirmed|regex:'.config('maguttiCms.security.password_regex'),
 		];
 		$this->fieldspec['locale'] = [
 			'type'        => 'locale',

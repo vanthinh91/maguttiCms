@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    |maguttiCms Login Controller
+    |MaguttiCms Login Controller
     |--------------------------------------------------------------------------
     |
     | This controller handles the registration of new users, as well as the
@@ -73,7 +73,7 @@ class AuthController extends Controller
 
                 // Make sure that the user is authorized.
                 if ($auth->user()->is_active == 1)
-                    return redirect()->action('\App\maguttiCms\Admin\Controllers\AdminPagesController@home');
+                    return redirect()->action(' \App\maguttiCms\Admin\Controllers\AdminPagesController@home');
                 else {
 
                     Auth::guard('admin')->logout();

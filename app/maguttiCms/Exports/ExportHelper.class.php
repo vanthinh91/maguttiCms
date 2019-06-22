@@ -1,6 +1,6 @@
-<?php namespace App\maguttiCms\Tools;
+<?php
 
-
+namespace App\maguttiCms\Exports;
 /**
  * Class ExportHelper
  * @package App\maguttiCms\Tools

@@ -36847,7 +36847,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/admin/bootstrap.js");
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/asperti/web/magutti/maguttiCms/resources/js/admin/cmsvendor.js */"./resources/js/admin/cmsvendor.js");
+module.exports = __webpack_require__(/*! /Users/web01/siti-laravel/maguttiCms/resources/js/admin/cmsvendor.js */"./resources/js/admin/cmsvendor.js");
 
 
 /***/ })

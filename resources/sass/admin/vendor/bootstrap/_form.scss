@@ -266,3 +266,19 @@ select.btn-select > option {
 		height: 2em;
 	}
 }
+
+.custom-control {
+	padding-left: 2.5rem;
+
+	.custom-control-label {
+		line-height: 2rem;
+
+		&:before,
+		&:after {
+			top: 0;
+			left: -2.5rem;
+			width: 2rem;
+			height: 2rem;
+		}
+	}
+}

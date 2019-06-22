@@ -1,3 +1,22 @@
 html {
-    font-size: 16px;
+	font-size: $font-size-sm;
+	@include media-breakpoint-up(lg) {
+		font-size: $font-size-lg;
+	}
+	@include media-breakpoint-up(xl) {
+		font-size: $font-size-base;
+	}
+}
+
+body {
+	margin-top: $navbar-height-mobile;
+	@include media-breakpoint-up($navbar-trigger) {
+		margin-top: $navbar-height;
+	}
+}
+
+a {
+	&:focus {
+		outline: 0;
+	}
 }

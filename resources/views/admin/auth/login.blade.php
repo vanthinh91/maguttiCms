@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('admin.service')
 @section('content')
 	<main id="login-main">
 		<div id="login-block">
@@ -23,22 +23,18 @@
 					</div>
 					<div class="form-group row">
 						<div class="col-6">
-							<div class="form-checkbox">
-								<input type="checkbox" name="remember">
-								<label>
-									@lang('message.remember_me')
-								</label>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" name="remember" class="custom-control-input" id="remember">
+								<label class="custom-control-label text-left" for="remember">@lang('message.remember_me')</label>
 							</div>
 						</div>
 						<div class="col-6">
 							<button type="submit" class="btn btn-primary btn-block">Login</button>
 						</div>
 					</div>
-					<div class="form-group row">
-						<div class="col-xs-12">
-							<a href="{{ URL::to('/admin/password/reset/') }}">@lang('message.password_forgot')? </a>
-						</div>
-					</div>
+					<a href="{{ URL::to('/admin/password/reset/') }}">
+						@lang('message.password_forgot')
+					</a>
 				</form>
 			</div>
 		</div>

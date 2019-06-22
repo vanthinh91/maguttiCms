@@ -44,6 +44,41 @@ trait ArticlePresenter
         return $page->getPermalink($locale);
     }
 
+
+    /**
+     * This method is used to get menu item link.
+     *
+     *
+     * @return mixed
+     */
+    function getNavTitleAttribute()
+    {
+        return ($this->menu_title) ? $this->menu_title : $this->title;
+    }
+
+
+    /**
+     * This method is used to get menu item link.
+     *
+     *
+     * @return string
+     */
+
+    function getNavLinkAttribute()
+    {
+        if ($this->slug == 'home') {
+            return $page_link = '/';
+        } elseif ($this->link) {
+            return $page_link = $this->link;
+        } else {
+            return $page_link = $this->getPermalink();
+        }
+    }
+    function getNavCssClassAttribute()
+    {
+      return "nav-item-".$this->{'slug:'. config('app.locale')};
+    }
+
     /**
     * GESTIONE OPZIONALE META
     * PER I SOCIALS
@@ -56,5 +91,18 @@ trait ArticlePresenter
         \SEO::opengraph()->addProperty('description',$description);
         \SEO::twitter()->addValue('title',$title);
         \SEO::twitter()->addValue('description',$description);
+    }
+
+
+    /**
+     *
+     *  his method is used to get seo alt title.
+     *
+     * @return mixed
+     */
+
+    function getAltSeoTitleAttribute()
+    {
+        return ($this->seo_title)?:$this->nav_title;
     }
 }

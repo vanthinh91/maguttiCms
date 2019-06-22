@@ -1,7 +1,7 @@
 <?php
 return [
     'title'	   => 'maguttiCms',
-    'email'    => 'hello@magutti.com',
+    'email'    => 'info@gfstudio.com',
 	'sidebar' => [
 		'show-add' => 0
 	],

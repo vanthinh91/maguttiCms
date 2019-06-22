@@ -1,9 +1,9 @@
 @extends('website.app')
 @section('content')
 
-	<main class="my-5 bg">
+	<main class="my-5">
         <div class="container">
-            <h1 class="text-secondary">{{ $article->title }}</h1>
+            <h1 class="text-primary">{{ $article->title }}</h1>
 
 			<ul>
 				@foreach ($categories as $category)

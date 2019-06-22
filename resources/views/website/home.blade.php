@@ -36,8 +36,22 @@
             @if($article->image)
             <img src="{{ ma_get_image_from_repository($article->image) }}" alt="" class="img-fluid">
             @endif
-
-            <a href="#" class="btn btn-lg btn-custom mt-4">Custom button</a>
+			<div class="">
+				<a href="#" class="btn btn-lg">Custom button</a>
+				<a href="#" class="btn btn-lg btn-primary">Custom button</a>
+				<a href="#" class="btn btn-lg btn-secondary">Custom button</a>
+				<a href="#" class="btn btn-lg btn-accent">Custom button</a>
+				<a href="#" class="btn btn-lg btn-color-4">Custom button</a>
+				<a href="#" class="btn btn-lg btn-color-5">Custom button</a>
+			</div>
+			<div class="">
+				<a href="#" class="btn btn-lg btn-outline">Custom button</a>
+				<a href="#" class="btn btn-lg btn-outline-primary">Custom button</a>
+				<a href="#" class="btn btn-lg btn-outline-secondary">Custom button</a>
+				<a href="#" class="btn btn-lg btn-outline-accent">Custom button</a>
+				<a href="#" class="btn btn-lg btn-outline-color-4">Custom button</a>
+				<a href="#" class="btn btn-lg btn-outline-color-5">Custom button</a>
+			</div>
         </div>
     </section>
 

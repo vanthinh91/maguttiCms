@@ -64,5 +64,4 @@ class AdminVueComponent extends AdminFormComponent
     {
         return ($this->getProperty()->get('component-data')) ? $this->getAttributes($this->getProperty()->get('component-data')) : '';
     }
-
 }

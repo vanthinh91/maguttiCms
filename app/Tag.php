@@ -1,6 +1,6 @@
 <?php namespace App;
 use Illuminate\Database\Eloquent\Model;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use  \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class Tag extends Model
 {

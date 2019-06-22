@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use  \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class Cart extends Model
 {

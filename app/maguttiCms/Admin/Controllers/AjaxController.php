@@ -14,8 +14,6 @@ class AjaxController extends Controller
 	private $responseContainer = ['status' => 'ko', 'message' => '', 'error' => '', 'data' => ''];
 	protected $request;
 
-
-
 	public function update($action, $model, $id = '', Request $request)
 	{
 		$this->request = $request;

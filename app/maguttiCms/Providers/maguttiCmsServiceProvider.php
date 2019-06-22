@@ -63,7 +63,7 @@ class MaguttiServiceProvider extends ServiceProvider
 
         /*
         |--------------------------------------------------------------------------
-        |  maguttiCms VALIDATION CUSTOM DIRECTIVE
+        |  MaguttiCms VALIDATION CUSTOM DIRECTIVE
         |--------------------------------------------------------------------------
         */
 

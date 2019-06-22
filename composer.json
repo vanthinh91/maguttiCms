@@ -41,16 +41,16 @@
     "autoload": {
         "classmap": [
             "database",
-          "app/maguttiCms",
-          "app/maguttiCms/Sluggable"
+            "app/maguttiCms",
+            "app/maguttiCms/Sluggable"
         ],
         "psr-4": {
             "App\\": "app/"
         },
         "files": [
-          "app/maguttiCms/Tools/ma_helper.php",
-          "app/maguttiCms/Tools/Stringable.class.php",
-          "app/maguttiCms/Tools/Enums.php"
+            "app/maguttiCms/Tools/ma_helper.php",
+            "app/maguttiCms/Tools/Stringable.class.php",
+            "app/maguttiCms/Tools/Enums.php"
         ]
     },
 

@@ -1,8 +1,8 @@
 <?php
 return [
     'app' => [
-        'name'	   => 'maguttiCms',
-		'legal'		=> 'maguttiCms Framework',
+        'name'	   => 'LaraCms',
+		'legal'		=> 'MaguttiCms Framework',
         'address'  => '5.3 maguttiCms Street',
         'locality' => 'Bergamo - Italy',
         'lat'      => '45.612310',
@@ -10,7 +10,7 @@ return [
         'phone'	   => '+39 0363.123456',
         'fax'	   => '+39 035.123456',
         'vat'	   => 'XXXXXXXXX',
-        'email'	   => 'hello@magutti.com',
+        'email'	   => 'info@gfstudio.com',
     ],
     'email' => [
         'footer'     => 'Questo messaggio è stato inviato da un indirizzo email utilizzato solo per le notifiche e non abilitato alla ricezione. Si prega di non rispondere a questo messaggio.'

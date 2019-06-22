@@ -13,7 +13,7 @@ return [
     */
 
 
-    'name' => env('APP_NAME', 'Magutti Cms'),
+    'name' => env('APP_NAME', 'Lara Cms'),
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
     */
 
 
-    'locale' => 'en',
+    'locale' => 'it',
     'locales' => ['en' => 'English', 'it' => 'Italiano', 'es' => 'Spanish', 'fr' => 'French'],
 
     /*

@@ -3,10 +3,10 @@
 
 	<main id="home-buttons">
 		<div class="container-fluid">
-			<h1 class="h3 text-secondary text-center text-uppercase">maguttiCms Admin</h1>
+			<h1 class="h3 text-secondary text-center text-uppercase">MaguttiCms Admin</h1>
 			<dashboard-component></dashboard-component>
 			{{-- <div class="row">
-				<div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
+				<div class="col-12 col-sm-4 col-md-3 col-lg-2">
 					<a href="{{ URL::to('') }}" target="_new">
 						<div class="button">
 							{{icon('globe')}}
@@ -17,7 +17,7 @@
 
 				@foreach (config('maguttiCms.admin.list.section') as $_code => $section)
 					@if (isset($section['menu']['home']) && $section['menu']['home'] && Auth::guard('admin')->user()->canViewSection($section))
-						<div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
+						<div class="col-12 col-sm-4 col-md-3 col-lg-2">
 							<a href="{{ ma_get_admin_list_url($section['model']) }}">
 								<div class="button">
 									{{ icon($section['icon']) }}

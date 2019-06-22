@@ -27,7 +27,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<img id="cropper-preview-image-media" src="" class="img-responsive cropper-preview">
+				<img id="cropper-preview-image-media" src="" class="img-fluid cropper-preview">
 			</div>
 		</div>
 	</div>
