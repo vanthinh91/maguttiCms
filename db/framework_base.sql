@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mag 12, 2019 alle 16:06
+-- Creato il: Giu 22, 2019 alle 13:05
 -- Versione del server: 5.7.24
 -- Versione PHP: 7.2.14
 
@@ -72,7 +72,7 @@ CREATE TABLE `adminusers` (
 --
 
 INSERT INTO `adminusers` (`id`, `first_name`, `last_name`, `email`, `password`, `real_password`, `remember_token`, `is_active`, `locale`, `created_at`, `updated_at`) VALUES
-(3, 'magutti', 'Admin', 'cmsadmin@magutti.com', '$2y$10$fhRhYYRj2tgq1/jmaUkgH.y7AW2lcDrdEIsn5GP35aLVsEQWWCBh6', 'password', 'fKAq40o9EtjkAisGCjBrfarwazZsK9S8JzqhYPssgg6VmvXer9BWGCgBR8op', 1, 'en', '0000-00-00 00:00:00', '2019-04-10 20:00:46');
+(3, 'magutti', 'Admin', 'cmsadmin@magutti.com', '$2y$10$fhRhYYRj2tgq1/jmaUkgH.y7AW2lcDrdEIsn5GP35aLVsEQWWCBh6', 'password', 'A86YDNrXLhNgomNa77UWyzBMOcrbkhtcbEXTg0VWSjL84U9l4D2C3HaL4Z6U', 1, 'en', '0000-00-00 00:00:00', '2019-04-10 20:00:46');
 
 -- --------------------------------------------------------
 
@@ -206,7 +206,7 @@ INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_
 DROP TABLE IF EXISTS `carts`;
 CREATE TABLE `carts` (
   `id` int(11) UNSIGNED NOT NULL,
-  `status` tinyint(4) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT '0',
   `user_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -9107,6 +9107,14 @@ CREATE TABLE `password_resets` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dump dei dati per la tabella `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('user@magutti.com', '$2y$10$nJXdKBQUeiyZ1sNwrWxlAeMPUqCMN4C0sZjBJ2LOxwXv7wrgoriGy', '2019-06-22 12:57:39'),
+('cmsadmin@magutti.com', '$2y$10$KgF9dxkzTiXJ7NNvnyGoheRhAc8XQymclR2c0TW63zBeUIkhELlpy', '2019-06-22 12:57:50');
+
 -- --------------------------------------------------------
 
 --
@@ -9284,8 +9292,8 @@ CREATE TABLE `product_translations` (
 --
 
 INSERT INTO `product_translations` (`id`, `product_id`, `locale`, `slug`, `title`, `subtitle`, `description`, `doc`, `permalink`, `seo_title`, `seo_description`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'it', 'prodotto-a', 'Prodotto A', '', '', NULL, NULL, '', '', 0, 0, '2017-08-02 10:09:39', '2018-06-13 14:48:28'),
-(2, 1, 'en', 'product-number-1', 'Product number 1', '', '', NULL, NULL, '', '', 0, 0, '2017-08-02 10:09:39', '2017-08-02 10:09:39'),
+(1, 1, 'it', 'prodotto-a', 'Prodotto A', '', '', NULL, 'prodotti/prima-categoria/prodotto-a', '', '', 0, 0, '2017-08-02 10:09:39', '2019-06-22 13:03:19'),
+(2, 1, 'en', 'product-number-1', 'Product number 1', '', '', NULL, 'products/first-category/product-number-1', '', '', 0, 0, '2017-08-02 10:09:39', '2019-06-22 13:03:43'),
 (3, 2, 'it', 'prodotto-b', 'Prodotto B', '', '', NULL, NULL, '', '', 0, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
 (4, 2, 'en', 'product-b', 'Product B', '', '', NULL, NULL, '', '', 0, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
 (5, 3, 'it', 'prodotto-c', 'Prodotto C', '', '', NULL, NULL, '', '', 0, 0, '2018-06-13 14:50:05', '2018-06-13 14:50:05'),
@@ -9522,7 +9530,7 @@ CREATE TABLE `socials` (
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sort` int(11) DEFAULT NULL,
-  `is_active` tinyint(4) DEFAULT '1',
+  `pub` tinyint(4) DEFAULT '1',
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -9532,10 +9540,10 @@ CREATE TABLE `socials` (
 -- Dump dei dati per la tabella `socials`
 --
 
-INSERT INTO `socials` (`id`, `title`, `description`, `icon`, `image`, `link`, `sort`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'facebook', NULL, 'fa-facebook', '', 'http://www.facebook.com', 10, 1, 0, '2016-08-09 12:50:01', '2016-08-09 10:50:01'),
-(2, 'Twitter', '', 'fa-twitter', '', 'http://www.twitter.com', 20, 1, 0, '2016-06-28 12:58:53', '2016-06-28 10:58:53'),
-(3, 'Linkedin', '', 'fa-linkedin', '', 'http://www.linkedin.com', 30, 1, 0, '2016-06-28 12:58:59', '2016-06-28 10:58:59');
+INSERT INTO `socials` (`id`, `title`, `description`, `icon`, `image`, `link`, `sort`, `pub`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 'facebook', NULL, 'facebook', '', 'http://www.facebook.com', 10, 1, 0, '2016-08-09 12:50:01', '2016-08-09 10:50:01'),
+(2, 'Twitter', '', 'twitter', '', 'http://www.twitter.com', 20, 1, 0, '2016-06-28 12:58:53', '2016-06-28 10:58:53'),
+(3, 'Linkedin', '', 'linkedin', '', 'http://www.linkedin.com', 30, 1, 0, '2016-06-28 12:58:59', '2016-06-28 10:58:59');
 
 -- --------------------------------------------------------
 
