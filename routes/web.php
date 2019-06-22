@@ -72,6 +72,17 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
         Route::post('service/generator','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@generator');
 
 
+        Route::group(['prefix' => 'services'], function () {
+            /** free willy  routes */
+            Route::get('/{model}',           '\App\MaguttiCms\Api\V1\Controllers\ServicesController@modellist');
+            Route::get('/{model}/tags/{tag}','\App\MaguttiCms\Api\V1\Controllers\ServicesController@getByTags');
+            Route::get('/{model}/{id}',   '\App\MaguttiCms\Api\V1\Controllers\ServicesController@show');
+            Route::put('/{model}/{id}',   '\App\MaguttiCms\Api\V1\Controllers\ServicesController@update');
+            Route::post ('/{model}',      '\App\MaguttiCms\Api\V1\Controllers\ServicesController@create');
+            Route::delete('/{model}/{id}','\App\MaguttiCms\Api\V1\Controllers\ServicesController@show');
+            Route::delete('/{model}/{id}','\App\MaguttiCms\Api\V1\Controllers\ServicesController@delete');
+        });
+
         /*
         |--------------------------------------------------------------------------
         | FILE MANANGER

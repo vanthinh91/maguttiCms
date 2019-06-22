@@ -11,6 +11,11 @@
             <label class="sr-only">email</label>
             <input type="text" class="form-control" v-model="contact.email" placeholder="email">
 
+            <select v-model="contact.social" class="form-control">
+                <!-- inline object literal -->
+
+                <option v-for="node in items" :value="node.id">{{node.title}}</option>
+            </select>
             <button v-if="isEdit==false" @click.prevent="addItem" class="btn btn-primary mb-2"><i
                     class="fas fa-plus"></i> Add</button>
             <button v-else="isEdit==true" @click.prevent="updateItem" class="btn btn-primary mb-2"><i
@@ -30,19 +35,38 @@
     </div>
 </template>
 <script>
-
+    import {HTTP} from './../../mixins/http-common';
+    import helper from '../../mixins/helper';
     export default {
-
+        mixins: [helper],
+        props: ['currentSection'],
         data() {
             return {
                 contact: {},
                 errors:[],
                 selectedItem: '',
                 isEdit: false,
-                list: []
+                list: [],
+                items: []
             }
         },
         methods: {
+            fetchData: function () {
+                let self = this;
+                return HTTP.get(this.url())
+                    .then(this.refresh)
+                    .catch(e => {
+                        self.errors.push(e);
+                        self.showMessage(e.message, self.ERROR_CLASS);
+                    })
+            },
+            url() {
+                return '/admin/api/services/social';
+            },
+            refresh({data}) {
+                this.items = data.data.data;
+                console.log(this.items)
+            },
             addItem() {
                 if(!this.checkForm(this.contact)) return;
                 this.list.push(Object.assign({}, this.contact));
@@ -64,7 +88,7 @@
                 this.selectedItem = index;
                 this.contact = Object.assign({}, this.list[this.selectedItem]);
                 this.isEdit = true;
-                this.setFocus();
+                //.this.setFocus();
             },
             clearForm(){
                 this.contact = {};
@@ -95,6 +119,9 @@
         },
         mounted() {
             console.log('LIST')
+        },
+        created() {
+            this.fetchData();
         },
     }
 </script>
