@@ -1,5 +1,5 @@
 @include('flash::notification')
-{{ Form::open(array('action' => ' \App\maguttiCms\Website\Controllers\WebsiteFormController@getContactUsForm')) }}
+{{ Form::open(array('action' => '\App\maguttiCms\Website\Controllers\WebsiteFormController@getContactUsForm')) }}
 	<div class="row">
 		@if(isset($request_product_id))
 			@if(isset($product))

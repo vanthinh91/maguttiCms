@@ -130,7 +130,7 @@ class AdminPagesController extends Controller
         /*TODO da  cancellare ?? */
         if ($this->modelClass == 'App\AdminUser') {
             if (!cmsUserHasRole('su') && $article->hasRole('su')) {
-                return redirect(action(' \App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->model));
+                return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->model));
             }
         }
         $pageTemplate = data_get($this->config,'editTemplate','admin.edit');
@@ -169,7 +169,7 @@ class AdminPagesController extends Controller
         $article = $this->modelClass::whereId($this->id)->firstOrFail();
         if ($this->modelClass == 'App\AdminUser') {
             if (!cmsUserHasRole('su') && $article->hasRole('su')) {
-                return redirect(action(' \App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->model));
+                return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->model));
             }
         }
         return view('admin.editmodal', ['article' => $article, 'pageConfig' => collect($this->config)]);
@@ -259,7 +259,7 @@ class AdminPagesController extends Controller
         $article = $this->modelClass::whereId($id)->firstOrFail();
         $article->delete();
         session()->flash('success', 'The items ' . $article->title . ' has been deleted!');
-        return redirect(action(' \App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->models));
+        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->models));
     }
 
 
