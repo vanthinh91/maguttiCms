@@ -214,8 +214,8 @@ window.Cms = function () {
       });
     }); // gestione check box liste
 
-    $('input.checkbox').click(function () {
-      if ($("input.checkbox:checked").length > 0) $('#toolbar_deleteButtonHandler').stop().fadeIn();else $('#toolbar_deleteButtonHandler').stop().fadeOut();
+    $('input[type="checkbox"].custom-control-input').on('change', function () {
+      if ($("input.custom-control-input:checked").length > 0) $('#toolbar_deleteButtonHandler').stop().fadeIn();else $('#toolbar_deleteButtonHandler').stop().fadeOut();
     });
     $('#toolbar_editButtonHandler').on('click', function (e) {
       e.preventDefault(); //  redirect to edit page
@@ -228,7 +228,7 @@ window.Cms = function () {
       bootbox.setLocale(_LOCALE);
       bootbox.confirm("<h4>Are you sure?</h4>", function (confirmed) {
         if (confirmed) {
-          $('input.checkbox:checked').each(function () {
+          $('input[type="checkbox"].custom-control-input:checked').each(function () {
             $('#row_' + $(this).val()).fadeOut('1000');
             deleteUrl = $('#row_' + $(this).val() + ' [data-role="delete-item"] ')[0].href; // Do delete
 
@@ -297,8 +297,8 @@ window.Cms = function () {
       listHandler();
       handleFlashMessage();
       handleToggle();
-      handleSidebar();
-      initCheckboxes();
+      handleSidebar(); //initCheckboxes();
+
       initOverrideInvalid();
     },
     initDatePicker: function initDatePicker() {
@@ -373,7 +373,8 @@ window.Cms = function () {
         statusbar: false,
         height: 200,
         toolbar: "insertfile undo redo | styleselect | bold italic | bullist numlist outdent indent | link | code",
-        convert_urls: false
+        convert_urls: false,
+        allow_unsafe_link_target: true
       });
     },
     initColorPicker: function initColorPicker() {
@@ -442,22 +443,28 @@ window.Cms = function () {
           data: $(this).serialize(),
           success: function success(response) {
             var errorsHtml = '<div class="alert alert-info"><ul>';
-            errorsHtml += '<li>' + response.status + '</li>'; //showing only the first error.
+            errorsHtml += "<li>".concat(response.status, "</li>"); //showing only the first error.
 
             errorsHtml += '</ul></div>';
             $('#errorBox').html(errorsHtml);
+            $('.modal-body').animate({
+              scrollTop: 0
+            }, 200);
             var id = '#box_media_' + fields_object.id;
             $(id + ' .media-title').text(fields_object.title);
             $(id + ' .media-category').text(media_category_title);
           },
           error: function error(data) {
-            var errors = data.responseJSON;
+            var response = data.responseJSON;
             var errorsHtml = '<div class="alert alert-danger"><ul>';
-            $.each(errors, function (_key, value) {
-              errorsHtml += '<li>' + value[0] + '</li>'; //showing only the first error.
+            $.each(response.errors, function (key, value) {
+              errorsHtml += "<li>".concat(value, "</li>");
             });
             errorsHtml += '</ul></div>';
             $('#errorBox').html(errorsHtml);
+            $('.modal-body').animate({
+              scrollTop: 0
+            }, 200);
           }
         });
       });
@@ -630,7 +637,7 @@ window.Cms = function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/web01/siti-laravel/maguttiCms/resources/js/admin/cms.js */"./resources/js/admin/cms.js");
+module.exports = __webpack_require__(/*! /Users/asperti/web/magutti/maguttiCms/resources/js/admin/cms.js */"./resources/js/admin/cms.js");
 
 
 /***/ })

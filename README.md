@@ -1,36 +1,42 @@
-# maguttiCms
-GFStudio laravel CMS
+![maguttiCms](http://www.magutti.com/public/website/images/logo_colore.png)
 
-# V 5.5.4
 
-a### Image Responsive Usage Sample
-```
-{!! HtmlHelper::setHtmlTagAttributes(['alt' => '', 'class' => 'img-fluid'])->get_responsive($article->image) !!}
-```
+## About maguttiCms
+Open source multilingual Laravel 5.8 CMS with simple shopping cart.
 
-### Enable HTTPS
-- set APP_HTTPS=true in .env file
+## Version
+5.8 - Bootstrap 4
 
-### Enable FileManager
-To enable the filemanager you have to:
-- Add the field in fillable array;
-- Create an image field with parameter ```'filemanager' => 1```
-- Create the imageMedia relationship:
-```
-public function imageMedia()
-{
-  return $this->hasOne('App\Media','id','image');
-}
-```
+maguttiCms is released using Laravel 5.8.XX
+preset Bootstrap 4
 
+### How to Install
+ 
+ - copy files in your local directory
+ - rename env.example to .env file and set your db connection data
+ - run composer install
+ - run php artisan key:generate
+ - create db tables importing framework_base.sql file located under the db folder
+ - to login in the admin panel (http://yourpath/admin)
+   - email: cmsadmin@magutti.com
+   - password: password
+   
+### Server Requirements
+- PHP >= 7.1.3
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
+- Ctype PHP Extension
+- JSON PHP Extension
+ 
+  
 License
 =======
 Code released under the MIT license
 
+Security Vulnerabilities
+=======
+If you discover a security vulnerability within maguttiCms, please send an e-mail to  at hello@magutti.com. All security vulnerabilities will be promptly addressed.
 
-HTTPS in uso:
-Versione PHP in uso:
-Versione MySQL in uso:
-Librerie aggiuntive PHP installate: Nessuna
-Librerie aggiuntive Server installate: Nessuna
-Accessi FTP per clienti:

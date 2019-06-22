@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -166,6 +166,14 @@ window.App = function () {
 
   function handleLightBox() {
     $(".lightbox").fancybox();
+    $(".lightbox-iframe").fancybox({
+      type: 'iframe',
+      iframe: {
+        css: {
+          width: '800px'
+        }
+      }
+    });
   }
 
   function handleScrollTo() {
@@ -329,14 +337,14 @@ function trans(keystring) {
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!*******************************************!*\
   !*** multi ./resources/js/website/app.js ***!
   \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/web01/siti-laravel/maguttiCms/resources/js/website/app.js */"./resources/js/website/app.js");
+module.exports = __webpack_require__(/*! /Users/asperti/web/magutti/maguttiCms/resources/js/website/app.js */"./resources/js/website/app.js");
 
 
 /***/ })

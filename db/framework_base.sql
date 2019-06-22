@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Giu 07, 2019 alle 15:57
--- Versione del server: 5.7.22
--- Versione PHP: 7.2.4
+-- Creato il: Mag 12, 2019 alle 16:06
+-- Versione del server: 5.7.24
+-- Versione PHP: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `framework_base`
+-- Database: `magutticms`
 --
 
 -- --------------------------------------------------------
@@ -59,6 +59,7 @@ CREATE TABLE `adminusers` (
   `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `real_password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `is_active` tinyint(4) NOT NULL DEFAULT '1',
   `locale` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -70,8 +71,8 @@ CREATE TABLE `adminusers` (
 -- Dump dei dati per la tabella `adminusers`
 --
 
-INSERT INTO `adminusers` (`id`, `first_name`, `last_name`, `email`, `password`, `remember_token`, `is_active`, `locale`, `created_at`, `updated_at`) VALUES
-(3, 'GF', 'Admin', 'hello@magutti.com', '$2y$10$vC9c7VrAVK7LhXoTgWMIF.LQvgNCHN7/g/aDXjiYjlmSnxPM.CK1K', 'i57xldsH7Qpjps6jljA6u2BCQgFuYbJuK3fIrEOZUkrr7vK0J8NETi2LsF6u', 1, 'it', '0000-00-00 00:00:00', '2017-01-09 10:57:41');
+INSERT INTO `adminusers` (`id`, `first_name`, `last_name`, `email`, `password`, `real_password`, `remember_token`, `is_active`, `locale`, `created_at`, `updated_at`) VALUES
+(3, 'magutti', 'Admin', 'cmsadmin@magutti.com', '$2y$10$fhRhYYRj2tgq1/jmaUkgH.y7AW2lcDrdEIsn5GP35aLVsEQWWCBh6', 'password', 'fKAq40o9EtjkAisGCjBrfarwazZsK9S8JzqhYPssgg6VmvXer9BWGCgBR8op', 1, 'en', '0000-00-00 00:00:00', '2019-04-10 20:00:46');
 
 -- --------------------------------------------------------
 
@@ -130,7 +131,7 @@ CREATE TABLE `articles` (
 
 INSERT INTO `articles` (`id`, `domain`, `parent_id`, `menu_title`, `title`, `subtitle`, `intro`, `abstract`, `description`, `slug`, `doc`, `image`, `banner`, `link`, `sort`, `pub`, `ignore_slug_translation`, `top_menu`, `template_id`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, '', 0, NULL, '', NULL, NULL, NULL, '', 'home', '', '', '', '', 0, 1, 0, 0, 0, 0, '2016-07-04 06:54:35', '2018-06-11 09:57:11'),
-(2, '', 0, NULL, '', NULL, NULL, NULL, '', 'company', '', 'ff0000.png', '', '', 100, 1, 0, 1, 0, 0, '2016-07-04 06:56:59', '2018-01-29 13:24:31'),
+(2, '', NULL, NULL, '', NULL, NULL, NULL, '', 'company', NULL, 'ff0000.png', '', NULL, 100, 1, 0, 1, NULL, 0, '2016-07-04 06:56:59', '2019-05-04 12:58:21'),
 (3, '', 0, NULL, '', NULL, NULL, NULL, '', 'privacy', '', '', '', '', 2000, 1, 0, 0, 0, 0, '2016-07-04 07:11:17', '2017-08-01 14:33:01'),
 (4, '', 0, NULL, '', NULL, NULL, NULL, '', 'contacts', '', '', '', '', 400, 1, 0, 1, 0, 0, '2016-07-04 07:11:39', '2017-08-01 14:32:40'),
 (5, '', 0, NULL, '', NULL, NULL, NULL, '', 'products', '', '', '', '', 200, 1, 0, 1, 0, 0, '2016-07-04 07:20:37', '2018-01-25 11:03:49'),
@@ -171,10 +172,10 @@ CREATE TABLE `article_translations` (
 --
 
 INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_title`, `title`, `subtitle`, `intro`, `description`, `abstract`, `seo_title`, `seo_description`, `seo_no_index`, `created_at`, `updated_at`) VALUES
-(1, 1, 'it', 'home', 'Home', 'Home', 'maguttiCms', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>', '', '', '', '0', '2016-07-04 07:53:04', '2017-08-01 15:12:25'),
+(1, 1, 'it', 'home', 'Home', 'Home', 'MaguttiCms', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>', '', '', '', '0', '2016-07-04 07:53:04', '2017-08-01 15:12:25'),
 (2, 1, 'en', 'home', 'Home', 'Home', '', NULL, '', '', '', '', '', '2016-07-04 07:53:04', '2017-08-01 15:52:32'),
-(3, 2, 'it', 'azienda', 'Azienda', 'Azienda', '', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '', '', '', '2016-07-04 07:53:13', '2018-01-29 13:24:31'),
-(4, 2, 'en', '', '', '', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a liber', '', '', '', '', '', '2016-07-04 07:53:13', '2018-01-29 13:24:31'),
+(3, 2, 'it', 'azienda', 'Azienda', 'Azienda', NULL, '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', NULL, NULL, NULL, '2016-07-04 07:53:13', '2019-05-04 12:58:21'),
+(4, 2, 'en', 'company', 'Company', 'Company', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a liber', NULL, NULL, NULL, NULL, NULL, '2016-07-04 07:53:13', '2019-05-04 12:58:21'),
 (5, 3, 'it', 'privacy', 'Privacy', 'Privacy', '', NULL, '', '', '', '', '', '2016-07-04 07:53:28', '2017-08-01 14:33:01'),
 (6, 3, 'en', 'privacy', 'Privacy', 'Privacy', '', NULL, '', '', '', '', '', '2016-07-04 07:53:28', '2017-08-01 14:33:01'),
 (7, 5, 'it', 'prodotti', '', 'Categorie', '', NULL, '', '', '', '', '', '2016-07-04 07:53:38', '2018-01-25 11:03:49'),
@@ -192,7 +193,9 @@ INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_
 (21, 10, 'it', 'profile', 'Profile', 'Profile', 'Profile', NULL, '', '', '', '', '', '2016-08-10 07:17:38', '2017-08-01 14:33:37'),
 (22, 10, 'en', 'user-profile', 'User profile', 'User profile', '', NULL, '', '', '', '', '', '2016-08-10 07:17:38', '2017-08-01 14:33:37'),
 (23, 11, 'it', 'register', '', 'Registrazione', '', NULL, '', '', '', '', '', '2017-08-01 16:13:57', '2017-08-01 16:13:57'),
-(24, 11, 'en', 'register', '', 'Register', '', NULL, '', '', '', '', '', '2017-08-01 16:13:57', '2017-08-01 16:13:57');
+(24, 11, 'en', 'register', '', 'Register', '', NULL, '', '', '', '', '', '2017-08-01 16:13:57', '2017-08-01 16:13:57'),
+(25, 2, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-04 12:58:21', '2019-05-04 12:58:21'),
+(26, 2, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-04 12:58:21', '2019-05-04 12:58:21');
 
 -- --------------------------------------------------------
 
@@ -203,18 +206,11 @@ INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_
 DROP TABLE IF EXISTS `carts`;
 CREATE TABLE `carts` (
   `id` int(11) UNSIGNED NOT NULL,
-  `status` tinyint(4) DEFAULT '0',
+  `status` tinyint(4) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dump dei dati per la tabella `carts`
---
-
-INSERT INTO `carts` (`id`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 0, 1, '2019-05-07 07:13:25', '2019-05-07 07:13:59');
 
 -- --------------------------------------------------------
 
@@ -233,13 +229,6 @@ CREATE TABLE `cart_items` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dump dei dati per la tabella `cart_items`
---
-
-INSERT INTO `cart_items` (`id`, `cart_id`, `product_code`, `product_model_code`, `quantity`, `created_at`, `updated_at`) VALUES
-(1, 1, 'PRDB', NULL, 1, '2019-05-07 07:13:25', '2019-05-07 07:13:25');
-
 -- --------------------------------------------------------
 
 --
@@ -255,14 +244,13 @@ CREATE TABLE `categories` (
   `description` text COLLATE utf8_unicode_ci,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `banner` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `sort` int(11) DEFAULT NULL,
-  `pub` tinyint(1) DEFAULT '1',
+  `pub` tinyint(4) DEFAULT '1',
   `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `seo_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -271,10 +259,10 @@ CREATE TABLE `categories` (
 -- Dump dei dati per la tabella `categories`
 --
 
-INSERT INTO `categories` (`id`, `parent_id`, `title`, `abstract`, `description`, `slug`, `image`, `doc`, `sort`, `pub`, `seo_title`, `seo_description`, `seo_keywords`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:26:48', '2019-05-02 16:26:48'),
-(2, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:26:58', '2019-05-02 16:26:58'),
-(3, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:27:07', '2019-05-02 16:27:07');
+INSERT INTO `categories` (`id`, `parent_id`, `title`, `abstract`, `description`, `slug`, `image`, `banner`, `doc`, `sort`, `pub`, `seo_title`, `seo_description`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 0, '', NULL, NULL, 'identity', '', '', '', 0, 1, NULL, NULL, 0, '2016-07-04 06:29:04', '2018-06-13 14:43:39'),
+(2, 0, '', NULL, NULL, 'research', '', '', '', 10, 1, NULL, NULL, 0, '2016-12-26 12:16:23', '2018-06-13 14:44:31'),
+(3, 0, '', NULL, NULL, 'start-up', '', '', '', 20, 1, NULL, NULL, 0, '2016-12-27 18:33:25', '2018-06-13 14:45:00');
 
 -- --------------------------------------------------------
 
@@ -285,16 +273,15 @@ INSERT INTO `categories` (`id`, `parent_id`, `title`, `abstract`, `description`,
 DROP TABLE IF EXISTS `category_translations`;
 CREATE TABLE `category_translations` (
   `id` int(10) UNSIGNED NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `category_id` int(10) UNSIGNED NOT NULL,
   `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `description` text COLLATE utf8_unicode_ci,
   `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `seo_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
+  `created_by` int(10) UNSIGNED DEFAULT NULL,
+  `update_by` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -303,19 +290,15 @@ CREATE TABLE `category_translations` (
 -- Dump dei dati per la tabella `category_translations`
 --
 
-INSERT INTO `category_translations` (`id`, `category_id`, `locale`, `slug`, `title`, `description`, `seo_title`, `seo_description`, `seo_keywords`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'it', 'prima-categoria', 'Prima Categoria', NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:26:48', '2019-05-02 16:26:48'),
-(2, 1, 'en', 'first-category', 'First Category', NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:26:48', '2019-05-02 16:26:48'),
-(3, 1, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:26:48', '2019-05-02 16:26:48'),
-(4, 1, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:26:48', '2019-05-02 16:26:48'),
-(5, 2, 'it', 'seconda-categoria', 'Seconda Categoria', NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:26:58', '2019-05-02 16:26:58'),
-(6, 2, 'en', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:26:58', '2019-05-02 16:26:58'),
-(7, 2, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:26:58', '2019-05-02 16:26:58'),
-(8, 2, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:26:58', '2019-05-02 16:26:58'),
-(9, 3, 'it', 'terza-categoria', 'Terza Categoria', NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:27:07', '2019-05-02 16:27:07'),
-(10, 3, 'en', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:27:07', '2019-05-02 16:27:07'),
-(11, 3, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:27:07', '2019-05-02 16:27:07'),
-(12, 3, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-02 16:27:07', '2019-05-02 16:27:07');
+INSERT INTO `category_translations` (`id`, `slug`, `category_id`, `locale`, `title`, `description`, `seo_title`, `seo_description`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
+(1, 'prima-categoria', 1, 'it', 'Prima Categoria', NULL, '', '', 0, 0, '2016-07-04 06:29:04', '2018-06-13 14:43:39'),
+(2, 'first-category', 1, 'en', 'First Category', NULL, '', '', 0, 0, '2016-07-04 06:29:04', '2018-06-13 14:43:39'),
+(3, 'second-category', 2, 'en', 'Second Category', NULL, '', '', 0, 0, '2016-12-26 12:16:23', '2018-06-13 14:44:31'),
+(4, 'seconda-categoria', 2, 'it', 'Seconda Categoria', NULL, '', '', 0, 0, '2016-12-26 12:16:23', '2018-06-13 14:44:31'),
+(5, 'thid-category', 3, 'en', 'Third Category', NULL, '', '', 0, 0, '2016-12-27 18:33:25', '2018-06-13 14:45:00'),
+(6, 'terza-category', 3, 'it', 'Terza Categoria', NULL, '', '', 0, 0, '2016-12-27 18:33:25', '2018-06-13 14:45:00'),
+(7, 'nuova-categoria', 4, 'it', 'Nuova categoria', NULL, '', '', 0, 0, '2017-08-02 13:16:28', '2017-08-02 13:16:28'),
+(8, 'new-category', 4, 'en', 'New category', NULL, '', '', 0, 0, '2017-08-02 13:16:28', '2017-08-02 13:16:28');
 
 -- --------------------------------------------------------
 
@@ -8334,7 +8317,8 @@ CREATE TABLE `contacts` (
 
 INSERT INTO `contacts` (`id`, `request_product_id`, `subject`, `message`, `name`, `surname`, `company`, `email`, `status`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, '', 'testsoggetto', 'testmessaggio', 'testnome', 'testcognome', 'testazienda', 'testmail@testdomain.test', 0, 0, '2019-03-08 14:31:27', '2019-03-08 14:31:27'),
-(2, '2', 'testsoggetto', 'testmessaggio', 'testnome', 'testcognome', 'testazienda', 'testmail@testdomain.test', 0, 0, '2019-03-08 14:32:01', '2019-03-08 14:32:01');
+(2, '2', 'testsoggetto', 'testmessaggio', 'testnome', 'testcognome', 'testazienda', 'testmail@testdomain.test', 0, 0, '2019-03-08 14:32:01', '2019-03-08 14:32:01'),
+(3, '', '1', '111', 'Angelo marco Asperti', 'Asperti', '1', 'marcoasperti@gmail.com', 0, 0, '2019-05-11 12:21:06', '2019-05-11 12:21:06');
 
 -- --------------------------------------------------------
 
@@ -8697,23 +8681,6 @@ INSERT INTO `domain_translations` (`id`, `domain_id`, `locale`, `title`, `update
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `errors`
---
-
-DROP TABLE IF EXISTS `errors`;
-CREATE TABLE `errors` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `message` varchar(256) NOT NULL,
-  `file` varchar(256) NOT NULL,
-  `line` int(11) NOT NULL,
-  `trace` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `examples`
 --
 
@@ -8832,8 +8799,37 @@ CREATE TABLE `hpsliders` (
 --
 
 INSERT INTO `hpsliders` (`id`, `title`, `description`, `icon`, `image`, `link`, `slug`, `sort`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'maguttiCms Slier', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', '', 'maguttiCms-slier', 200, 1, 0, '2016-12-27 17:34:38', '2017-08-02 13:17:01'),
-(2, 'maguttiCms 5.3', 'A modular multilingual CMS built with Laravel 5.3', NULL, 'header1.jpg', '', 'maguttiCms-53', 100, 1, 0, '2016-12-27 18:18:09', '2017-08-02 14:04:31');
+(1, 'maguttiCms 5.8 slider', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', NULL, 'magutticms-58-slider', 200, 1, 0, '2016-12-27 17:34:38', '2019-05-10 23:16:41'),
+(2, 'maguttiCms 5.8', 'A modular multilingual CMS built with Laravel 5.8', NULL, 'header1.jpg', NULL, '8', 100, 1, 0, '2016-12-27 18:18:09', '2019-05-10 23:16:15');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `hp_slider_translations`
+--
+
+DROP TABLE IF EXISTS `hp_slider_translations`;
+CREATE TABLE `hp_slider_translations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `hp_slider_id` int(10) UNSIGNED NOT NULL,
+  `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `update_by` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `hp_slider_translations`
+--
+
+INSERT INTO `hp_slider_translations` (`id`, `hp_slider_id`, `locale`, `title`, `description`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 'en', 'maguttiCms 5.8 V2', 'free open source CMS based on the Laravel PHP Framework', 0, 0, '2019-05-12 16:05:28', '2019-05-12 16:06:10'),
+(2, 1, 'it', NULL, NULL, 0, 0, '2019-05-12 16:05:28', '2019-05-12 16:05:28'),
+(3, 1, 'es', NULL, NULL, 0, 0, '2019-05-12 16:05:28', '2019-05-12 16:05:28'),
+(4, 1, 'fr', NULL, NULL, 0, 0, '2019-05-12 16:05:28', '2019-05-12 16:05:28');
 
 -- --------------------------------------------------------
 
@@ -8868,8 +8864,7 @@ CREATE TABLE `media` (
 
 INSERT INTO `media` (`id`, `media_category_id`, `model_id`, `model_type`, `collection_name`, `title`, `alt`, `description`, `file_name`, `file_ext`, `disk`, `size`, `manipulations`, `pub`, `sort`, `created_at`, `updated_at`) VALUES
 (2, 0, 2, 'App\\Article', 'images', '', NULL, '', 'ff0000.png', 'png', '', 14594, '', 1, NULL, '2018-05-03 09:55:26', '2018-05-03 09:55:26'),
-(3, 0, 2, 'App\\Article', 'images', '', NULL, '', '24524-00ff00.png', 'png', '', 14903, '', 1, NULL, '2018-05-03 09:56:11', '2018-05-03 09:56:11'),
-(4, 0, 3, 'App\\Example', 'images', '', NULL, NULL, '25721-card-3.jpg', 'jpg', 'media', 36935, NULL, 1, NULL, '2019-05-07 15:39:23', '2019-05-07 15:39:23');
+(3, 0, 2, 'App\\Article', 'images', '', NULL, '', '24524-00ff00.png', 'png', '', 14903, '', 1, NULL, '2018-05-03 09:56:11', '2018-05-03 09:56:11');
 
 -- --------------------------------------------------------
 
@@ -8895,8 +8890,7 @@ CREATE TABLE `media_translations` (
 
 INSERT INTO `media_translations` (`id`, `media_id`, `locale`, `title`, `alt`, `description`, `created_at`, `updated_at`) VALUES
 (2, 2, 'it', 'ff0000.png', NULL, '', '2018-05-03 09:55:26', '2018-05-03 09:55:26'),
-(3, 3, 'it', '24524-00ff00.png', NULL, '', '2018-05-03 09:56:11', '2018-05-03 09:56:11'),
-(4, 4, 'it', '25721-card-3.jpg', NULL, NULL, '2019-05-07 15:39:23', '2019-05-07 15:39:23');
+(3, 3, 'it', '24524-00ff00.png', NULL, '', '2018-05-03 09:56:11', '2018-05-03 09:56:11');
 
 -- --------------------------------------------------------
 
@@ -8944,7 +8938,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (78, '2017_02_02_133516_entrust_setup_tables', 1),
 (79, '2017_02_02_143850_create_domains_table', 1),
 (80, '2017_02_02_143948_create_domain_translations_table', 1),
-(81, '2019_05_07_171738_create_examples_table', 2);
+(81, '2019_05_07_171738_create_examples_table', 2),
+(82, '2019_05_10_091157_create_hpslider_translations_table', 3);
 
 -- --------------------------------------------------------
 
@@ -8975,10 +8970,10 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `domain`, `date`, `title`, `description`, `slug`, `doc`, `image`, `link`, `sort`, `pub`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, '', '2017-07-11', '', '', 'pinoscotto11', '96281-dedprifxoaaxql6.jpg', 'DEDpRifXoAAXql6.jpg', NULL, 0, 1, 0, '2017-07-11 07:18:08', '2019-05-07 07:18:46'),
-(2, '', '2019-05-07', '', '', NULL, NULL, 'home-icone-news.png', NULL, NULL, 1, NULL, '2019-05-07 07:16:44', '2019-05-07 07:18:22'),
-(3, '', '2019-04-17', '', '', NULL, NULL, 'slide-2.jpg', NULL, NULL, 1, NULL, '2019-05-07 07:17:21', '2019-05-07 07:20:32'),
-(4, '', '2019-03-07', '', '', NULL, NULL, 'slide-6.jpg', NULL, NULL, 1, NULL, '2019-05-07 07:18:08', '2019-05-07 07:20:18');
+(1, '', '2017-07-11', '', '', 'pinoscotto11', '96281-dedprifxoaaxql6.jpg', 'DEDpRifXoAAXql6.jpg', NULL, 0, 1, 0, '2017-07-11 05:18:08', '2019-05-10 23:14:39'),
+(2, '', '2019-05-07', '', '', NULL, NULL, 'home-icone-news.png', NULL, NULL, 1, NULL, '2019-05-07 05:16:44', '2019-05-07 05:18:22'),
+(3, '', '2019-04-17', '', '', NULL, NULL, 'slide-2.jpg', NULL, NULL, 1, NULL, '2019-05-07 05:17:21', '2019-05-10 23:14:48'),
+(4, '', '2019-03-07', '', '', NULL, NULL, 'slide-6.jpg', NULL, NULL, 1, NULL, '2019-05-07 05:18:08', '2019-05-07 05:20:18');
 
 -- --------------------------------------------------------
 
@@ -9039,22 +9034,22 @@ CREATE TABLE `news_translations` (
 --
 
 INSERT INTO `news_translations` (`id`, `slug`, `news_id`, `locale`, `title`, `description`, `abstract`, `subtitle`, `intro`, `seo_title`, `seo_description`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 'titolo-della-news-1', 1, 'it', 'Titolo della news 1', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, 0, 0, '2017-07-11 07:18:08', '2019-05-07 07:17:44'),
-(2, 'news-one-title', 1, 'en', 'News  one  title', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2017-07-11 07:18:08', '2019-05-07 07:17:44'),
-(3, 'news-numero-due', 2, 'it', 'News Numero due', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 07:16:44', '2019-05-07 07:16:44'),
-(4, 'news-2', 2, 'en', 'News 2', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 07:16:44', '2019-05-07 07:18:22'),
-(5, '', 2, 'es', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 07:16:44', '2019-05-07 07:16:44'),
-(6, '', 2, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 07:16:44', '2019-05-07 07:16:44'),
-(7, 'news-numero-3', 3, 'it', 'News Numero 3', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 07:17:21', '2019-05-07 07:17:21'),
-(8, 'news-3', 3, 'en', 'News 3', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 07:17:21', '2019-05-07 07:18:35'),
-(9, '', 3, 'es', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 07:17:21', '2019-05-07 07:17:21'),
-(10, '', 3, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 07:17:21', '2019-05-07 07:17:21'),
-(11, '', 1, 'es', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 07:17:44', '2019-05-07 07:17:44'),
-(12, '', 1, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 07:17:44', '2019-05-07 07:17:44'),
-(13, 'news-numero-4', 4, 'it', 'News Numero 4', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 07:18:08', '2019-05-07 07:18:08'),
-(14, 'news-4', 4, 'en', 'News 4', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 07:18:08', '2019-05-07 07:18:08'),
-(15, '', 4, 'es', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 07:18:08', '2019-05-07 07:18:08'),
-(16, '', 4, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 07:18:08', '2019-05-07 07:18:08');
+(1, 'titolo-della-news-1', 1, 'it', 'Titolo della news 1', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, 0, 0, '2017-07-11 05:18:08', '2019-05-07 05:17:44'),
+(2, 'news-one-title', 1, 'en', 'News  one  title', '<p>description</p>', NULL, NULL, NULL, NULL, NULL, 0, 0, '2017-07-11 05:18:08', '2019-05-10 23:14:39'),
+(3, 'news-numero-due', 2, 'it', 'News Numero due', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:16:44', '2019-05-07 05:16:44'),
+(4, 'news-2', 2, 'en', 'News 2', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:16:44', '2019-05-07 05:18:22'),
+(5, '', 2, 'es', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:16:44', '2019-05-07 05:16:44'),
+(6, '', 2, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:16:44', '2019-05-07 05:16:44'),
+(7, 'news-numero-3', 3, 'it', 'News Numero 3', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:17:21', '2019-05-07 05:17:21'),
+(8, 'news-3', 3, 'en', 'News 3', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:17:21', '2019-05-07 05:18:35'),
+(9, '', 3, 'es', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:17:21', '2019-05-07 05:17:21'),
+(10, '', 3, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:17:21', '2019-05-07 05:17:21'),
+(11, '', 1, 'es', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:17:44', '2019-05-07 05:17:44'),
+(12, '', 1, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:17:44', '2019-05-07 05:17:44'),
+(13, 'news-numero-4', 4, 'it', 'News Numero 4', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:18:08', '2019-05-07 05:18:08'),
+(14, 'news-4', 4, 'en', 'News 4', '<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:18:08', '2019-05-07 05:18:08'),
+(15, '', 4, 'es', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:18:08', '2019-05-07 05:18:08'),
+(16, '', 4, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 05:18:08', '2019-05-07 05:18:08');
 
 -- --------------------------------------------------------
 
@@ -9206,7 +9201,6 @@ CREATE TABLE `products` (
   `sort` int(11) DEFAULT NULL,
   `pub` tinyint(4) DEFAULT '1',
   `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `seo_no_index'` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -9217,10 +9211,10 @@ CREATE TABLE `products` (
 -- Dump dei dati per la tabella `products`
 --
 
-INSERT INTO `products` (`id`, `code`, `category_id`, `title`, `subtitle`, `description`, `slug`, `price`, `image`, `doc`, `video`, `sort`, `pub`, `seo_title`, `seo_no_index'`, `seo_description`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'PRDA', 1, '', '', '', NULL, 10, 'A.png', NULL, '', 0, 1, NULL, NULL, NULL, 0, '2017-08-02 10:09:39', '2018-06-13 14:48:28'),
-(2, 'PRDB', 2, '', '', '', NULL, 20, 'B.png', NULL, '', 10, 1, NULL, NULL, NULL, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
-(3, 'PRDC', 3, '', '', '', NULL, 30, 'Cpng.png', NULL, '', 0, 1, NULL, NULL, NULL, 0, '2018-06-13 14:50:05', '2018-06-13 14:50:05');
+INSERT INTO `products` (`id`, `code`, `category_id`, `title`, `subtitle`, `description`, `slug`, `price`, `image`, `doc`, `video`, `sort`, `pub`, `seo_title`, `seo_description`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 'PRDA', 1, '', '', '', NULL, 10, 'A.png', NULL, '', 0, 1, NULL, NULL, 0, '2017-08-02 10:09:39', '2018-06-13 14:48:28'),
+(2, 'PRDB', 2, '', '', '', NULL, 20, 'B.png', NULL, '', 10, 1, NULL, NULL, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
+(3, 'PRDC', 3, '', '', '', NULL, 30, 'Cpng.png', NULL, '', 0, 1, NULL, NULL, 0, '2018-06-13 14:50:05', '2018-06-13 14:50:05');
 
 -- --------------------------------------------------------
 
@@ -9279,7 +9273,6 @@ CREATE TABLE `product_translations` (
   `permalink` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `seo_no_index` int(1) DEFAULT NULL,
   `created_by` int(10) UNSIGNED DEFAULT NULL,
   `update_by` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -9290,13 +9283,13 @@ CREATE TABLE `product_translations` (
 -- Dump dei dati per la tabella `product_translations`
 --
 
-INSERT INTO `product_translations` (`id`, `product_id`, `locale`, `slug`, `title`, `subtitle`, `description`, `doc`, `permalink`, `seo_title`, `seo_description`, `seo_no_index`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'it', 'prodotto-a', 'Prodotto A', '', '', NULL, NULL, '', '', NULL, 0, 0, '2017-08-02 10:09:39', '2018-06-13 14:48:28'),
-(2, 1, 'en', 'product-number-1', 'Product number 1', '', '', NULL, NULL, '', '', NULL, 0, 0, '2017-08-02 10:09:39', '2017-08-02 10:09:39'),
-(3, 2, 'it', 'prodotto-b', 'Prodotto B', '', '', NULL, 'prodotti/seconda-categoria/prodotto-b', '', '', NULL, 0, 0, '2018-06-13 14:49:32', '2019-05-07 07:13:21'),
-(4, 2, 'en', 'product-b', 'Product B', '', '', NULL, NULL, '', '', NULL, 0, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
-(5, 3, 'it', 'prodotto-c', 'Prodotto C', '', '', NULL, NULL, '', '', NULL, 0, 0, '2018-06-13 14:50:05', '2018-06-13 14:50:05'),
-(6, 3, 'en', 'product-c', 'Product C', '', '', NULL, NULL, '', '', NULL, 0, 0, '2018-06-13 14:50:05', '2018-06-13 14:50:05');
+INSERT INTO `product_translations` (`id`, `product_id`, `locale`, `slug`, `title`, `subtitle`, `description`, `doc`, `permalink`, `seo_title`, `seo_description`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 'it', 'prodotto-a', 'Prodotto A', '', '', NULL, NULL, '', '', 0, 0, '2017-08-02 10:09:39', '2018-06-13 14:48:28'),
+(2, 1, 'en', 'product-number-1', 'Product number 1', '', '', NULL, NULL, '', '', 0, 0, '2017-08-02 10:09:39', '2017-08-02 10:09:39'),
+(3, 2, 'it', 'prodotto-b', 'Prodotto B', '', '', NULL, NULL, '', '', 0, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
+(4, 2, 'en', 'product-b', 'Product B', '', '', NULL, NULL, '', '', 0, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
+(5, 3, 'it', 'prodotto-c', 'Prodotto C', '', '', NULL, NULL, '', '', 0, 0, '2018-06-13 14:50:05', '2018-06-13 14:50:05'),
+(6, 3, 'en', 'product-c', 'Product C', '', '', NULL, NULL, '', '', 0, 0, '2018-06-13 14:50:05', '2018-06-13 14:50:05');
 
 -- --------------------------------------------------------
 
@@ -9503,17 +9496,16 @@ CREATE TABLE `settings` (
 
 INSERT INTO `settings` (`id`, `key`, `value`, `description`, `domain`, `created_at`, `updated_at`) VALUES
 (1, 'GA_CODE', 'UA-', 'Codice  google  analitycs', 'GA', '2016-08-09 12:01:24', '2016-08-09 12:28:06'),
-(2, 'credits_url', 'https://www.gfstudio.com', 'url credits', 'webiste', '2016-08-09 12:29:05', '2016-12-29 14:35:06'),
-(3, 'GMAPS_KEY', NULL, 'Google maps apy key', 'GMAPS', '2016-12-27 17:28:54', '2019-05-03 09:27:36'),
-(4, 'iubenda_code_it', 'asd', '', '', '2018-06-05 07:08:21', '2018-06-05 07:08:21'),
-(5, 'iubenda_code_en', 'fgh', '', '', '2018-06-05 07:10:35', '2018-06-05 07:10:35'),
-(6, 'iubenda_site', 'jkl', '', '', '2018-06-05 07:10:49', '2018-06-05 07:10:49'),
+(2, 'credits_url', 'https://magutti.com', 'url credits', 'webiste', '2016-08-09 12:29:05', '2016-12-29 14:35:06'),
+(3, 'GMAPS_KEY', '', 'Google maps apy key', '', '2016-12-27 17:28:54', '2016-12-29 09:24:44'),
+(4, 'iubenda_code_it', NULL, '', '', '2018-06-05 07:08:21', '2019-05-11 12:06:46'),
+(5, 'iubenda_code_en', NULL, '', '', '2018-06-05 07:10:35', '2019-05-11 12:06:47'),
+(6, 'iubenda_site', NULL, '', '', '2018-06-05 07:10:49', '2019-05-11 12:07:00'),
 (7, 'captcha_site', '', '', '', '2018-08-10 15:00:00', '2018-08-10 15:00:00'),
 (8, 'captcha_secret', '', '', '', '2018-08-10 15:00:00', '2018-08-10 15:00:00'),
-(9, 'LAT', '45.612310', 'Latitudine', 'GMAPS', '2019-05-03 09:28:24', '2019-05-03 09:28:24'),
-(10, 'LNG', '9.694187', 'Longitude', 'GMAPS', '2019-05-03 09:28:52', '2019-05-03 09:28:52'),
-(11, 'GA_SITE_VERIFICATION', NULL, 'google-site-verification key', 'GA', '2019-05-03 09:39:08', '2019-05-03 09:39:55'),
-(12, 'THEME_COLOR', '#C82F2B', 'Meta content  theme-color', 'THEME', '2019-05-03 09:41:07', '2019-05-03 09:41:07');
+(9, 'LNG', '9.432586', 'google maps longitude', 'GMAPS', '2019-05-01 06:53:24', '2019-05-11 12:08:00'),
+(10, 'LAT', '46.138065', 'google maps latitude', 'GMAPS', '2019-05-01 06:55:27', '2019-05-11 12:08:16'),
+(11, 'THEME_COLOR', '#9a9c00', 'name=\"theme-color\" content=\"THEME_COLOR\"', 'THEME', '2019-05-02 18:04:54', '2019-05-02 18:13:52');
 
 -- --------------------------------------------------------
 
@@ -9530,7 +9522,7 @@ CREATE TABLE `socials` (
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sort` int(11) DEFAULT NULL,
-  `pub` tinyint(4) DEFAULT '1',
+  `is_active` tinyint(4) DEFAULT '1',
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -9540,10 +9532,10 @@ CREATE TABLE `socials` (
 -- Dump dei dati per la tabella `socials`
 --
 
-INSERT INTO `socials` (`id`, `title`, `description`, `icon`, `image`, `link`, `sort`, `pub`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'facebook', NULL, 'facebook', '', 'http://www.facebook.com', 10, 1, 0, '2016-08-09 12:50:01', '2016-08-09 10:50:01'),
-(2, 'Twitter', '', 'twitter', '', 'http://www.twitter.com', 20, 1, 0, '2016-06-28 12:58:53', '2016-06-28 10:58:53'),
-(3, 'Linkedin', '', 'linkedin', '', 'http://www.linkedin.com', 30, 1, 0, '2016-06-28 12:58:59', '2016-06-28 10:58:59');
+INSERT INTO `socials` (`id`, `title`, `description`, `icon`, `image`, `link`, `sort`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 'facebook', NULL, 'fa-facebook', '', 'http://www.facebook.com', 10, 1, 0, '2016-08-09 12:50:01', '2016-08-09 10:50:01'),
+(2, 'Twitter', '', 'fa-twitter', '', 'http://www.twitter.com', 20, 1, 0, '2016-06-28 12:58:53', '2016-06-28 10:58:53'),
+(3, 'Linkedin', '', 'fa-linkedin', '', 'http://www.linkedin.com', 30, 1, 0, '2016-06-28 12:58:59', '2016-06-28 10:58:59');
 
 -- --------------------------------------------------------
 
@@ -9640,7 +9632,7 @@ CREATE TABLE `tag_translations` (
   `id` int(10) UNSIGNED NOT NULL,
   `tag_id` int(10) UNSIGNED NOT NULL,
   `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -9682,7 +9674,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `gender`, `password`, `remember_token`, `list_code`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'MaguttiCms User', 'user@gfstudio.com', 'M', '$2y$10$XmrieXL.VXNw1sw4rYlxsu0B8acy8skQ2ABtls0zAp6jaOduBXZqW', 'taeEe1GVsBFZh2Ui9qELCV9Aaqb93wu5iQcs1oD8qhv4HHkj4o7XBsZDUOXW', '', 1, '2017-07-07 13:37:30', '2018-06-14 12:04:28');
+(1, 'Magutti User', 'user@magutti.com', 'M', '$2y$10$lHD.KhLYqqtHRQuXH6PKXODXFlgcQ8UZ6l7.3vaaeLSP1qgxSUszu', 'XuvhEKuwvGBWY9o9Fogsjvr2WR8HrUhidF7X7NupnhglXVBFr1NnmmELygdQ', '', 1, '2017-07-07 13:37:30', '2019-05-11 10:53:21');
 
 --
 -- Indici per le tabelle scaricate
@@ -9788,12 +9780,6 @@ ALTER TABLE `domain_translations`
   ADD KEY `domains_translations_locale_index` (`locale`);
 
 --
--- Indici per le tabelle `errors`
---
-ALTER TABLE `errors`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indici per le tabelle `examples`
 --
 ALTER TABLE `examples`
@@ -9823,6 +9809,12 @@ ALTER TABLE `hpsliders`
   ADD UNIQUE KEY `hpsliders_slug_unique` (`slug`);
 
 --
+-- Indici per le tabelle `hp_slider_translations`
+--
+ALTER TABLE `hp_slider_translations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indici per le tabelle `media`
 --
 ALTER TABLE `media`
@@ -9842,33 +9834,6 @@ ALTER TABLE `media_translations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `news`
---
-ALTER TABLE `news`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `newsletters`
---
-ALTER TABLE `newsletters`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `news_tag`
---
-ALTER TABLE `news_tag`
-  ADD KEY `news_tag_news_id_index` (`news_id`),
-  ADD KEY `news_tag_tag_id_index` (`tag_id`);
-
---
--- Indici per le tabelle `news_translations`
---
-ALTER TABLE `news_translations`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `news_translations_news_id_locale_unique` (`news_id`,`locale`),
-  ADD KEY `news_translations_locale_index` (`locale`);
 
 --
 -- Indici per le tabelle `orders`
@@ -10040,19 +10005,19 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT per la tabella `article_translations`
 --
 ALTER TABLE `article_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT per la tabella `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `categories`
@@ -10064,7 +10029,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT per la tabella `category_translations`
 --
 ALTER TABLE `category_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `cities`
@@ -10076,7 +10041,7 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT per la tabella `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `countries`
@@ -10103,16 +10068,10 @@ ALTER TABLE `domain_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
--- AUTO_INCREMENT per la tabella `errors`
---
-ALTER TABLE `errors`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT per la tabella `examples`
 --
 ALTER TABLE `examples`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `example_translations`
@@ -10127,40 +10086,28 @@ ALTER TABLE `hpsliders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT per la tabella `hp_slider_translations`
+--
+ALTER TABLE `hp_slider_translations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT per la tabella `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `media_translations`
 --
 ALTER TABLE `media_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
-
---
--- AUTO_INCREMENT per la tabella `news`
---
-ALTER TABLE `news`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT per la tabella `newsletters`
---
-ALTER TABLE `newsletters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT per la tabella `news_translations`
---
-ALTER TABLE `news_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT per la tabella `orders`
@@ -10232,7 +10179,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT per la tabella `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT per la tabella `socials`
@@ -10288,12 +10235,6 @@ ALTER TABLE `article_translations`
   ADD CONSTRAINT `article_translations_article_id_foreign` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE;
 
 --
--- Limiti per la tabella `category_translations`
---
-ALTER TABLE `category_translations`
-  ADD CONSTRAINT `category_translations_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
-
---
 -- Limiti per la tabella `domain_translations`
 --
 ALTER TABLE `domain_translations`
@@ -10310,19 +10251,6 @@ ALTER TABLE `example_translations`
 --
 ALTER TABLE `media_translations`
   ADD CONSTRAINT `media_translations_media_id_foreign` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE CASCADE;
-
---
--- Limiti per la tabella `news_tag`
---
-ALTER TABLE `news_tag`
-  ADD CONSTRAINT `news_tag_news_id_foreign` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `news_tag_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE;
-
---
--- Limiti per la tabella `news_translations`
---
-ALTER TABLE `news_translations`
-  ADD CONSTRAINT `news_translations_news_id_foreign` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `permission_role`

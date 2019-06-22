@@ -22,7 +22,7 @@ header.header {
 			list-style: none;
 		}
 	}
-	background-color: $primary;
+	background-color: $secondary;
 	color: $color-1;
 	@include shadow(4);
 	@include media-breakpoint-up($header-trigger) {
