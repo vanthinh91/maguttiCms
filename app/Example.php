@@ -1,12 +1,11 @@
 <?php namespace App;
 
 
-use App\maguttiCms\Tools\CodeGeneratorHelper;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
-use \App\maguttiCms\Domain\Article\ArticlePresenter;
+use  \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use  \App\maguttiCms\Domain\Article\ArticlePresenter;
 
 class Example extends Model
 {
@@ -97,11 +96,6 @@ class Example extends Model
         return $this->belongsTo('App\Media', 'image_media_id', 'id');
     }
 
-    function generatePin(){
-
-        return (new CodeGeneratorHelper())->defineType('number')->generateToken(5);
-    }
-
     /*
     |--------------------------------------------------------------------------
     |  DATE ATTRIBUTE
@@ -185,25 +179,15 @@ class Example extends Model
             'display'       => 1,
             'hidden'        => 0,
             'multiple'      => 1,
+            'relationSaveMethod' =>'saveArticles',
 			'order_raw'		=> 'FIELD(id, %s)',
         ];
         $this->fieldspec['title'] = [
-            'type' => 'vue_component',
+            'type'     => 'string',
             'required' => 1,
-            'hidden' => 0,
-            'label' => 'Text',
-            'display' => 1,
-            'component-name' => 'generator-input-component',
-            'component-data' => [
-                'length' => '10',
-                'unique' => true,
-                'model' =>'Example',
-                'label' =>'Genera Pin',
-                'field' =>'title',
-                //'generator'=>'generatePin',
-                'usePrefix'=>true,
-                'type'  =>'string'
-            ]
+            'hidden'   => 0,
+            'label'    => 'Text',
+            'display'  => 1,
         ];
         $this->fieldspec['slug'] = [
             'type' => 'vue_component',
@@ -212,6 +196,42 @@ class Example extends Model
             'hidden'   => 0,
             'label'    => 'Sluggable',
             'display'  => 1,
+        ];
+
+        $this->fieldspec['code'] = [
+            'type' => 'vue_component',
+            'required' => 1,
+            'hidden' => 0,
+            'label' => 'Codice (Possibile utilizzare prefisso)',
+            'display' => 1,
+            'component-name' => 'generator-input-component',
+            'component-data' => [
+                'length' => '10',
+                'unique' => true,
+                'model' =>'Example',
+                'label' =>'Genera Codice',
+                'field' =>'title',
+                //'generator'=>'generatePin',
+                'usePrefix'=>true,
+                'type'  =>'string'
+            ]
+        ];
+        $this->fieldspec['password'] = [
+            'type' => 'vue_component',
+            'required' => 1,
+            'hidden' => 0,
+            'label' => 'Password',
+            'display' => 1,
+            'component-name' => 'generator-input-component',
+            'component-data' => [
+                'length' => '15',
+                'unique' => false,
+                'label' =>'Genera Password',
+                'field' =>'title',
+                //'generator'=>'generatePin',
+                'usePrefix'=>false,
+                'type'  =>'password'
+            ]
         ];
         $this->fieldspec['description'] = [
             'type'     => 'text',
@@ -292,7 +312,7 @@ class Example extends Model
             //'cssClass'      => 'datepicker',
             'cssClassElement' => 'col-sm-3',
         ];
-	        $this->fieldspec['map'] = [
+		$this->fieldspec['map'] = [
             'type'      => 'map',
             'required'  => false,
             'hidden'    => 0,
@@ -316,15 +336,14 @@ class Example extends Model
             'display'  => 1
         ];
         $this->fieldspec['seo_title'] = [
-            'type'     => 'seo_string',
+            'type'     => 'string',
             'required' => 0,
             'hidden'   => 0,
             'label'    => trans('admin.seo.title'),
             'display'  => 1,
-            'max'      => 65
         ];
         $this->fieldspec['seo_description'] = [
-            'type'     => 'seo_text',
+            'type'     => 'text',
             'size'     => 600,
             'h'        => 300,
             'hidden'   => 0,

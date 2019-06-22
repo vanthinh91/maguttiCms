@@ -19,12 +19,13 @@ use App\maguttiCms\Middleware\AdminStoreRole;
 
 Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['adminauth', 'setlocaleadmin']), function () {
 
-    Route::get('/',                                 '\App\maguttiCms\Admin\Controllers\AdminPagesController@home');
+    Route::get('/',                                 '\App\maguttiCms\Admin\Controllers\AdminPagesController@home')->name('admin_dashboard');
     Route::get('/list/{section?}/{sub?}',           '\App\maguttiCms\Admin\Controllers\AdminPagesController@lista')->middleware(AdminRole::class);
+    Route::get('/view/{section}/{id?}/{type?}',     '\App\maguttiCms\Admin\Controllers\AdminPagesController@view')->middleware(AdminRole::class);
     Route::get('/create/{section}',                 '\App\maguttiCms\Admin\Controllers\AdminPagesController@create')->middleware(AdminRole::class);
     Route::post('/create/{section}',                '\App\maguttiCms\Admin\Controllers\AdminPagesController@store')->middleware(AdminStoreRole::class);
 
-    Route::get('/edit/{section}/{id?}/{type?}',     '\App\maguttiCms\Admin\Controllers\AdminPagesController@edit')->middleware(AdminEditRole::class);
+    Route::get('/edit/{section}/{id?}/{type?}',     '\App\maguttiCms\Admin\Controllers\AdminPagesController@edit')->middleware(AdminEditRole::class)->name('admin_edit');
     Route::post('/edit/{section}/{id?}',            '\App\maguttiCms\Admin\Controllers\AdminPagesController@update')->middleware(AdminStoreRole::class);
 
 	Route::get('/file_view/{section}/{id}/{key}',   '\App\maguttiCms\Admin\Controllers\AdminPagesController@file_view');
@@ -49,7 +50,8 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
 
         Route::get('update/{method}/{model?}/{id?}',        '\App\maguttiCms\Admin\Controllers\AjaxController@update');
         Route::get('delete/{model?}/{id?}',                 '\App\maguttiCms\Admin\Controllers\AjaxController@delete');
-         /*
+
+        /*
         |--------------------------------------------------------------------------
         | MEDIA LIBRARY
         |--------------------------------------------------------------------------
@@ -69,9 +71,14 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
         Route::get('api/suggest', ['as' => 'api.suggest', 'uses' => '\App\maguttiCms\Admin\Controllers\AjaxController@suggest']);
         Route::get('dashboard','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@dashboard');
         Route::get('nav-bar','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@navbar');
-        Route::post('service/generator','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@generator');
 
+        /*
+        |--------------------------------------------------------------------------
+        | API SERVICES LIBRARY
+        |--------------------------------------------------------------------------
+        */
 
+        Route::post('services/generator','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@generator');
         /*
         |--------------------------------------------------------------------------
         | FILE MANANGER
@@ -92,17 +99,22 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
 | ADMIN AUTH
 |--------------------------------------------------------------------------
 */
-Route::group(array('prefix' => 'admin'), function () {
-    // Admin Auth and Password routes...
-    Route::get('login',  '\App\maguttiCms\Admin\Controllers\Auth\LoginController@showLoginForm');
-    Route::post('login', '\App\maguttiCms\Admin\Controllers\Auth\LoginController@login');
-    Route::get('logout', '\App\maguttiCms\Admin\Controllers\Auth\LoginController@logout');
+Route::group(['prefix' => 'admin'], function () {
 
-    // Password Reset Routes...
-    Route::get('password/reset',         '\App\maguttiCms\Admin\Controllers\Auth\ForgotPasswordController@showLinkRequestForm');
-	Route::post('password/email',        '\App\maguttiCms\Admin\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail');
-	Route::post('password/reset',        '\App\maguttiCms\Admin\Controllers\Auth\ResetPasswordController@reset');
-	Route::get('password/reset/{token}', '\App\maguttiCms\Admin\Controllers\Auth\ResetPasswordController@showResetForm');
+    Route::group(['middleware' => 'guest:admin'], function() {
+
+        // Admin Auth and Password routes...
+        Route::get('login',                  '\App\maguttiCms\Admin\Controllers\Auth\LoginController@showLoginForm');
+        Route::post('login',                 '\App\maguttiCms\Admin\Controllers\Auth\LoginController@login');
+
+        // Password Reset Routes...
+        Route::get('password/reset',         '\App\maguttiCms\Admin\Controllers\Auth\ForgotPasswordController@showLinkRequestForm');
+        Route::post('password/email',        '\App\maguttiCms\Admin\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail');
+        Route::post('password/reset',        '\App\maguttiCms\Admin\Controllers\Auth\ResetPasswordController@reset');
+        Route::get('password/reset/{token}', '\App\maguttiCms\Admin\Controllers\Auth\ResetPasswordController@showResetForm');
+    });
+
+    Route::get('logout', '\App\maguttiCms\Admin\Controllers\Auth\LoginController@logout');
 });
 
 // api

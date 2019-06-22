@@ -29,7 +29,7 @@ class AdminListServiceProvider extends ServiceProvider
         });
         App::bind('AdminDecorator', function()
         {
-            return new \App\maguttiCms\Admin\Decorators\AdminDecorator();
+            return new  \App\maguttiCms\Admin\Decorators\AdminDecorator();
         });
 
     }

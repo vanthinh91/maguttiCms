@@ -8,11 +8,13 @@ return [
 			'message' => 'required',
 			'privacy' => 'required',
 			'email'   => 'required|Between:3,64|Email',
+			'request_product_id' => 'exists:products,id',
             'g-recaptcha-response'=>'sometimes|required|recaptcha'
 		],
 
 		'newsletter' => [
 			'email' => 'required|Between:3,64|Email|unique:newsletters',
+			'privacy' => 'required'
 		],
 
 		'cart-item-add' => [

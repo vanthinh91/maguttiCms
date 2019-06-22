@@ -1,20 +1,143 @@
 .navbar {
+	background-color: $navbar-background;
+	color: $navbar-color;
+	padding-top: $navbar-height-padding-mobile;
+	padding-bottom: $navbar-height-padding-mobile;
+	padding-left: $navbar-width-padding-mobile;
+	padding-right: $navbar-width-padding-mobile;
+	@include media-breakpoint-up($navbar-trigger) {
+		padding-top: $navbar-height-padding;
+		padding-bottom: $navbar-height-padding;
+		padding-left: $navbar-width-padding;
+		padding-right: $navbar-width-padding;
+	};
 
-    .navbar-brand {
-        width: 170px;
+	.navbar-toggler,
+	.navbar-call {
+		font-size: 1em;
+		padding: 0;
+		text-align: center;
+		width: $navbar-height-content-mobile;
+		line-height: $navbar-height-content-mobile;
+	}
 
-        @include media-breakpoint-up(lg) {
-            width: 250px;
-        }
+	.navbar-call {
+		display: block;
+		margin-left: auto;
+		margin-right: 5px;
+
+		@include media-breakpoint-up($navbar-trigger) {
+			display: none;
+		}
+	}
+
+	> .container,
+    > .container-fluid {
+		padding-right: 0;
+		padding-left: 0;
     }
+}
 
-    .navbar-call {
-        display: block;
-        margin-left: auto;
-        margin-right: 5px;
+.navbar-brand {
+	padding-top: 0;
+	padding-bottom: 0;
+	height: $navbar-height-logo-mobile;
+	@include media-breakpoint-up($navbar-trigger) {
+		height: $navbar-height-logo;
+	}
+	img {
+		height: 100%;
+		display: block;
+	}
+}
 
-        @include media-breakpoint-up(lg) {
-            display: none;
-        }
-    }
+.navbar-nav {
+	overflow: auto;
+	max-height: 50vh;
+	margin-top: $navbar-height-padding-mobile;
+	@include media-breakpoint-up($navbar-trigger) {
+		margin-top: 0;
+		overflow: visible;
+		max-height: auto;
+	};
+	.nav-link {
+		padding-top: 0;
+		padding-bottom: 0;
+		height: $navbar-height-content-mobile;
+		line-height: $navbar-height-content-mobile;
+		@include animate();
+
+		color: $navbar-item-color;
+		background-color: $navbar-item-background;
+		@include hover-focus {
+			color: $navbar-item-color-hover;
+			background-color: $navbar-item-background-hover;
+		}
+		&.active {
+			color: $navbar-item-color-active;
+			background-color: $navbar-item-background-active;
+		}
+	}
+
+	.dropdown-menu {
+	}
+}
+
+.navbar-expand {
+	@each $breakpoint in map-keys($grid-breakpoints) {
+		$next: breakpoint-next($breakpoint, $grid-breakpoints);
+		$infix: breakpoint-infix($next, $grid-breakpoints);
+
+		&#{$infix} {
+			@include media-breakpoint-down($breakpoint) {
+				> .container,
+				> .container-fluid {
+					padding-right: 0;
+					padding-left: 0;
+				}
+			}
+
+			@include media-breakpoint-up($next) {
+				// flex-flow: row nowrap;
+				// justify-content: flex-start;
+
+				.navbar-nav {
+					// flex-direction: row;
+
+					.dropdown-menu {
+						// position: absolute;
+					}
+
+					.nav-item {
+						margin-right: $navbar-item-margin;
+						margin-left: $navbar-item-margin;
+					}
+
+					.nav-link {
+						padding-right: $navbar-item-padding;
+						padding-left: $navbar-item-padding;
+						height: $navbar-height-content;
+						line-height: $navbar-height-content;
+					}
+				}
+
+				// For nesting containers, have to redeclare for alignment purposes
+				// > .container,
+				// > .container-fluid {
+				// 	flex-wrap: nowrap;
+				// }
+
+				// .navbar-collapse {
+				// 	display: flex !important; // stylelint-disable-line declaration-no-important
+				//
+				// 	// Changes flex-bases to auto because of an IE10 bug
+				// 	flex-basis: auto;
+				// }
+
+				// .navbar-toggler {
+				// 	display: none;
+				// }
+			}
+		}
+	}
 }

@@ -29,10 +29,13 @@ trait ProductPresenter
 
     public function getPermalink($locale = '')
     {
-		if (!$this->permalink) {
+        $permalink = $this->{'permalink:'. $locale };
+
+		if (!$permalink) {
 			$this->makePermalink($locale);
 		}
-		return url_locale($this->permalink);
+
+		return url_locale($permalink);
     }
 
     public function getInfoPermalink() {

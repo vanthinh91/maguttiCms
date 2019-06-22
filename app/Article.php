@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 use App\maguttiCms\Builders\ArticleBuilder;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
-use \App\maguttiCms\Domain\Article\ArticlePresenter;
+use  \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use  \App\maguttiCms\Domain\Article\ArticlePresenter;
 
 /**
  * Class Article
@@ -133,8 +133,10 @@ class Article extends Model
             'label'    => trans('admin.label.subtitle'),
             'display'  => 1,
         ];
+
         $this->fieldspec['slug'] = [
-            'type'     => 'string',
+            'type'     => 'vue_component',
+            'component-name'=> 'clearable-input-component',
             'required' => 0,
             'hidden'   => 0,
             'label'    => trans('admin.label.slug'),
@@ -217,14 +219,15 @@ class Article extends Model
             'display'  => 1
         ];
         $this->fieldspec['seo_title'] = [
-            'type'     => 'string',
+            'type'     => 'seo_string',
             'required' => 0,
             'hidden'   => 0,
             'label'    => trans('admin.seo.title'),
             'display'  => 1,
+            'max'      => 65
         ];
         $this->fieldspec['seo_description'] = [
-            'type'     => 'text',
+            'type'     => 'seo_text',
             'size'     => 600,
             'h'        => 300,
             'hidden'   => 0,

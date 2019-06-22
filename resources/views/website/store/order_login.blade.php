@@ -7,14 +7,14 @@
 
             <hr>
         	<div class="row">
-        		<div class="col-xs-12 col-sm-6">
+        		<div class="col-12 col-sm-6">
         			<h3>{{trans('store.order.login')}}</h3>
         			@include('website.auth.form.login')
         		</div>
-        		<div class="col-xs-12">
+        		<div class="col-12">
         			<hr>
         		</div>
-        		<div class="col-xs-12 col-sm-6">
+        		<div class="col-12 col-sm-6">
         			<h3>{{trans('store.order.register')}}</h3>
         			@include('website.auth.form.register')
         		</div>

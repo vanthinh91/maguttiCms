@@ -22,7 +22,7 @@ class Kernel extends HttpKernel
 
         /*
         |--------------------------------------------------------------------------
-        | maguttiCms Middleware
+        | MaguttiCms Middleware
         |--------------------------------------------------------------------------
         */
         //'Clockwork\Support\Laravel\ClockworkMiddleware',
@@ -72,20 +72,20 @@ class Kernel extends HttpKernel
 
         /*
         |--------------------------------------------------------------------------
-        | maguttiCms Middleware
+        | MaguttiCms Middleware
         |--------------------------------------------------------------------------
         */
 
         'shield' => \App\maguttiCms\Middleware\GFShieldMiddleware::class,
         'adminauth' => \App\maguttiCms\Middleware\AdminAuthenticate::class,
         'storeenabled' => \App\maguttiCms\Middleware\StoreEnabled::class,
-        'usercart' => \App\maguttiCms\Middleware\UserCart::class,
-        'setlocaleadmin'  => \App\maguttiCms\Middleware\SetLocaleAdmin::class,
+        'usercart' =>  \App\maguttiCms\Middleware\UserCart::class,
+        'setlocaleadmin'  =>  \App\maguttiCms\Middleware\SetLocaleAdmin::class,
         'adminimpersonate'  => \App\maguttiCms\Middleware\AdminImpersonate::class,
 
         /*
         |--------------------------------------------------------------------------
-        | maguttiCms add-ons
+        | MaguttiCms add-ons
         |--------------------------------------------------------------------------
         */
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Social extends Model
 {
     protected $table = 'socials';
-    protected $fillable = ['title', 'description','link','icon','sort','is_active'];
+    protected $fillable = ['title', 'description', 'link', 'icon', 'sort', 'pub'];
     protected $fieldspec = [];
 
     function getFieldSpec ()
@@ -67,7 +67,7 @@ class Social extends Model
             'hidden'   => 0,
             'display'  => 1,
         ];
-        $this->fieldspec['is_active'] = [
+        $this->fieldspec['pub'] = [
             'type'     => 'boolean',
             'required' => 0,
             'hidden'   => 0,
@@ -76,4 +76,9 @@ class Social extends Model
         ];
       return $this->fieldspec;
     }
+
+	public function scopePublished($query)
+	{
+		return $query->where('pub', 1);
+	}
 }

@@ -1,4 +1,4 @@
-{{ Form::open(array('id' => 'form-newsletter', 'name' => 'form-newsletter', 'action' => '\App\maguttiCms\Website\Controllers\APIController@subscribeNewsletter')) }}
+{{ Form::open(array('id' => 'form-newsletter', 'name' => 'form-newsletter', 'action' => ' \App\maguttiCms\Website\Controllers\APIController@subscribeNewsletter')) }}
 	<div class="form-inline">
 		<div class="form-group">
 			<div class="input-group">

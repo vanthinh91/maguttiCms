@@ -8,7 +8,7 @@
 
 namespace App\maguttiCms\Website\Decorator;
 
-class MaguttiCmsDecorator
+class maguttiCmsDecorator
 {
     protected  $html;
     protected  $model;

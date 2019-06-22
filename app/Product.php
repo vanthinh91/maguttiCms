@@ -1,12 +1,16 @@
 <?php namespace App;
+
 use Illuminate\Database\Eloquent\Model;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use  \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use  \App\maguttiCms\Domain\Product\ProductPresenter;
+use App\maguttiCms\Builders\ProductBuilder;
+
 
 class Product extends Model
 {
     use GFTranslatableHelperTrait;
     use \Dimsav\Translatable\Translatable;
-    use \App\maguttiCms\Domain\Product\ProductPresenter;
+    use ProductPresenter;
 
 	protected $with = ['translations'];
 
@@ -43,6 +47,22 @@ class Product extends Model
     public function media() {
         return $this->morphMany('App\Media', 'model');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Builder & Repo
+    |--------------------------------------------------------------------------
+    */
+    function newEloquentBuilder($query)
+    {
+        return new ProductBuilder($query);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Fieldspec
+    |--------------------------------------------------------------------------
+    */
 
     function getFieldSpec ()
     {
@@ -182,7 +202,4 @@ class Product extends Model
         return $this->fieldspec;
     }
 
-	public function scopePublished($query) {
-        $query->where('pub', 1)->orderBy('sort', 'ASC');
-    }
 }

@@ -360,7 +360,7 @@ function icon($icons, $classes = '', $force_set = '', $echo = true)
 // development
 function loremImage($width = 800, $height = 800)
 {
-    return 'https://picsum.photos/'.$width.'/'.$height.'?image='.rand(0, 1000);
+    return 'https://picsum.photos/id/'.rand(0, 1000).'/'.$width.'/'.$height;
 }
 
 

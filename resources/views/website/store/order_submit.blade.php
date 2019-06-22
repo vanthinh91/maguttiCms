@@ -42,7 +42,7 @@
         		<input id="order-cart" type="hidden" name="cart_id" value="{{$cart->id}}">
         		<h3>{{trans('store.order.addresses')}}</h3>
         		<div class="row">
-        			<div class="col-xs-12 col-sm-6">
+        			<div class="col-12 col-sm-6">
         				<label>{{trans('store.order.billing')}}</label>
         				<select id="order-shipping-address" class="form-control order-preview" name="billing_address_id" required>
         					@foreach ($addresses as $_address)
@@ -51,7 +51,7 @@
         				</select>
         			</div>
         			@if (StoreHelper::isShippingEnabled())
-        				<div class="col-xs-12 col-sm-6">
+        				<div class="col-12 col-sm-6">
         					<label>{{trans('store.order.shipping')}}</label>
         					<select id="order-shipping-address" class="form-control order-preview" name="shipping_address_id">
         						<option></option>
@@ -61,7 +61,7 @@
         					</select>
         				</div>
         			@endif
-        			<div class="col-xs-12 mt30">
+        			<div class="col-12 mt30">
         				<a class="btn btn-primary" href="{{url_locale('/users/address-new')}}">
         					{{trans('store.address.new')}}
         				</a>
@@ -71,7 +71,7 @@
                 <hr />
 
         		<div class="row">
-        			<div class="col-xs-12 col-sm-6">
+        			<div class="col-12 col-sm-6">
         				<h3>{{trans('store.order.totals')}}</h3>
         				<table class="table">
         					<tbody>
@@ -100,7 +100,7 @@
         					</tfoot>
         				</table>
         			</div>
-        			<div class="col-xs-12 col-sm-6">
+        			<div class="col-12 col-sm-6">
         				<h3>{{trans('store.order.discount.title')}}</h3>
         				<p>{{trans('store.order.discount.insert')}}</p>
         				<input id="order-discount-input" type="text" name="discount_code" class="form-control order-preview">

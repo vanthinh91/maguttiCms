@@ -1,6 +1,7 @@
 <?php namespace App\maguttiCms\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\App;
 
 class SystemServiceProvider extends ServiceProvider
@@ -23,8 +24,16 @@ class SystemServiceProvider extends ServiceProvider
                     die('CACHE_PREFIX not specified. App killed');
 
                 if (!preg_match('/^.{44}\z/', $prefix))
-                    die('CACHE_PREFIX must be a random string of at least 44 characters (php artisan magutti:setup-redis)');
+                    die('CACHE_PREFIX must be a random string of at least 44 characters (php artisan laracms:setup-redis)');
             }
+        }
+
+        // Set the Throttler plugin for Mailtrap.
+        if (env('MAIL_HOST', '') == 'smtp.mailtrap.io') {
+
+            // Mailtrap has a rate limit of 2 emails per 10 seconds.
+            Mail::getSwiftMailer()
+                ->registerPlugin(new \Swift_Plugins_ThrottlerPlugin(10, \Swift_Plugins_ThrottlerPlugin::MESSAGES_PER_MINUTE));
         }
     }
 

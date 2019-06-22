@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-4 col-sm-4">
 			<a href="{{ $latest_post->getPermalink() }}">
-				<img class="img-responsive" src="{{ ImgHelper::get($latest_post->image,config('maguttiCms.image.small')) }}">
+				<img class="img-fluid" src="{{ ImgHelper::get($latest_post->image,config('maguttiCms.image.small')) }}">
 			</a>
 		</div>
 		<div class="col-8 col-sm-8">

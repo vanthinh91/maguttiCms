@@ -33,22 +33,14 @@ class DbNewsRepository extends DbRepository implements NewsRepositoryInterface
         $this->model = $model;
     }
 
-	function  getLatest($limit){
-		if ($limit == 1)
-			return $this->model->latest($limit)->first();
-		else
-			return $this->model->latest($limit)->get();
-	}
-
 	/**
 	* @return mixed
 	*/
 	function getPublished()
 	{
 
-		return $this->published()
-            ->where('date','<=',Carbon::now())
-            ->orderBy('date', 'desc')
-            ->paginate(config('maguttiCms.website.option.pagination.news_index'));
+		return $this->model->published()
+               ->latest('date')
+               ->paginate(config('maguttiCms.website.option.pagination.news_index'));
 	}
 }

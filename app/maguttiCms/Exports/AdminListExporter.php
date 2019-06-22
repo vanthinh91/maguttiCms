@@ -13,7 +13,7 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
 use App\maguttiCms\Searchable\SearchableTrait;
-use App\maguttiCms\Tools\ExportHelper;
+
 
 /**
  * Class AdminListExporter
@@ -26,6 +26,7 @@ class AdminListExporter extends  ExportHelper implements FromCollection, WithHea
 
     function __construct($model)
     {
+
         $this->config = config('maguttiCms.admin.list.section.' . $model);
         $this->modelClass = 'App\\' . $this->config['model'];
         $this->setFilename($this->config['model'] . '_' . date('Y-m-d') . '.xlsx');

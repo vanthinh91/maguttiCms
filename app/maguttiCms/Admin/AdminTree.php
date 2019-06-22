@@ -10,12 +10,7 @@ class AdminTree  extends AdminFormComponent {
 
     protected  $tree_collection;
     protected  $level;
-
-
-
-
     public function getTreeRelation($obj,$parent=0,$level=0) {
-
         if($obj->where($this->property['tree_field'], $parent)) {
             $level++;
             if(data_get($this->property,'order_field')) $obj->sortBy($this->property['order_field']);
@@ -27,7 +22,6 @@ class AdminTree  extends AdminFormComponent {
         }
         return $this->tree_collection;
     }
-
 
     function  createSeparator($level){
         return ($level>1) ? "|".str_repeat("__",$level):'';

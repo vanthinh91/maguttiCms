@@ -1,17 +1,19 @@
 <?php namespace App;
+
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\URL;
 
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
+use  \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use  \App\maguttiCms\Domain\News\NewsPresenter;
+use App\maguttiCms\Builders\NewsBuilder;
 
 class News extends Model
 {
 
     use GFTranslatableHelperTrait;
     use \Dimsav\Translatable\Translatable;
-    use \App\maguttiCms\Domain\News\NewsPresenter;
+    use NewsPresenter;
 
 	protected $with = ['translations'];
 
@@ -44,10 +46,21 @@ class News extends Model
     {
         if(!empty($values))
         {
+            $values = array_filter($values);
             $this->tags()->sync($values);
         } else {
             $this->tags()->detach();
         }
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Builder & Repo
+    |--------------------------------------------------------------------------
+    */
+    function newEloquentBuilder($query)
+    {
+        return new NewsBuilder($query);
     }
 
     /*
@@ -142,7 +155,7 @@ class News extends Model
             'foreign_key'   => 'id',
 			'label_key'     => 'title',
 			'label'         => 'Tags',
-            'required'      => 0,
+            'required'      => 1,
 			'display'       => 1,
             'hidden'        => 0,
 			'multiple'      => 1
@@ -214,23 +227,5 @@ class News extends Model
 	}
 
 
-   /*
-   |--------------------------------------------------------------------------
-   |  Scopes & Mutator
-   |--------------------------------------------------------------------------
-   */
-   public function scopeLatestPublished($query,$limit = 5)
-   {
-	   return $query->published()->translatedContent()->latest()->limit($limit);
-   }
 
-   public function scopePublished($query)
-   {
-	   return $query->where('pub', 1)->where('date', '<=', Carbon::now());
-   }
-
-   public function scopeByDate($query)
-   {
-	   return $query->orderBy('date', 'desc');
-   }
 }

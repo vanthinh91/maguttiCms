@@ -12,7 +12,10 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
+	'login' => 'Login',
+	'logout' => 'Logout',
+	'dashboard' => 'Dashboard',
+	'profile' => 'Profilo utente',
     'failed' => 'Nessun Record trovato con le tue  credenziali.',
     'throttle' => 'Troppi tentativi di login attendi :seconds secondi.',
     'unauthorized' => 'Questo account è stato disabilitato.',

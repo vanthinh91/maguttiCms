@@ -13,17 +13,23 @@ require('laravel-mix-merge-manifest');
  |
 */
 
+if (mix.config.production || mix.config.development) {
+	mix.sass('resources/sass/website/vendor.scss', 'public/website/css')
+	mix.js('resources/js/website/vendor.js', 'public/website/js')
+	mix.sass('resources/sass/admin/vendor.scss', 'public/cms/css/')
+	mix.js('resources/js/admin/cmsvendor.js', 'public/cms/js/cmsvendor.js')
+	mix.version();
+}
+
 /*
  |--------------------------------------------------------------------------
  | Website
  |--------------------------------------------------------------------------
 */
 
-mix.sass('resources/sass/website/vendor.scss', 'public/website/css')
-   .sass('resources/sass/website/app.scss', 'public/website/css')
-   .js('resources/js/website/vendor.js', 'public/website/js')
-   .js('resources/js/website/app.js', 'public/website/js')
-   .js('resources/js/website/store.js', 'public/website/js');
+mix.sass('resources/sass/website/app.scss', 'public/website/css')
+mix.js('resources/js/website/app.js', 'public/website/js')
+mix.js('resources/js/website/store.js', 'public/website/js');
 
 /*
 |--------------------------------------------------------------------------
@@ -31,12 +37,10 @@ mix.sass('resources/sass/website/vendor.scss', 'public/website/css')
 |--------------------------------------------------------------------------
 */
 
-mix.sass('resources/sass/admin/vendor.scss', 'public/cms/css/')
-   .sass('resources/sass/admin/app.scss', 'public/cms/css/')
-   .js('resources/js/admin/cmsvendor.js', 'public/cms/js/cmsvendor.js')
-   .js('resources/js/admin/cms.js', 'public/cms/js/cms.js')
-   .js('resources/js/admin/header.js', 'public/cms/js/header.js')
-   .js('resources/js/admin/lara-file-manager.js', 'public/cms/js')
-   .js('resources/js/admin/appcms.js', 'public/cms/js/');
+mix.sass('resources/sass/admin/app.scss', 'public/cms/css/')
+mix.js('resources/js/admin/cms.js', 'public/cms/js/cms.js')
+mix.js('resources/js/admin/header.js', 'public/cms/js/header.js')
+mix.js('resources/js/admin/lara-file-manager.js', 'public/cms/js')
+mix.js('resources/js/admin/appcms.js', 'public/cms/js/');
 
 mix.mergeManifest();

@@ -9,7 +9,7 @@ use App\maguttiCms\Website\Facades\ImgHelper;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Support\Str;
 
-trait MaguttiCmsSeoTrait
+trait LaraCmsSeoTrait
 {
     protected $title;
     protected $image;
@@ -17,7 +17,7 @@ trait MaguttiCmsSeoTrait
     protected $url;
     protected $query_strings = ['page'];
 
-    public static function bootMaguttiSeoTrait()
+    public static function bootLaraCmsSeoTrait()
     {
         static::created(function($item){
             // Index the itemcompo
@@ -62,7 +62,7 @@ trait MaguttiCmsSeoTrait
 
     public function setDescription()
     {
-        SEO::setDescription( Str::limit( $this->tagHandler('description'), 150 ) );
+        SEO::setDescription( Str::limit( $this->tagHandler('description'), config('seotools.lara_setting.description') ) );
     }
 
     public function setNoIndex()

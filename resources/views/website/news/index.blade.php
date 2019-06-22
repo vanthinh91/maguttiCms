@@ -8,7 +8,7 @@
 			<div class="row">
 
 				@foreach ($news as $post)
-				<div class="col-xs-12 col-sm-6 col-lg-4 mb-4">
+				<div class="col-12 col-sm-6 col-lg-4 mb-4">
 					<article class="card box-shadow">
 						<img class="card-img-top" src="{{ ImgHelper::get($post->image, config('maguttiCms.image.defaults')) }}" alt="{{ $post->title }}">
 						<div class="card-body">

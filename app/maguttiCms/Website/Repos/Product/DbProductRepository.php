@@ -36,6 +36,6 @@ class DbProductRepository extends DbRepository implements ProductRepositoryInter
      */
     function  getPublished()
     {
-        return $this->published()->orderBy('sort')->get();
+        return $this->model->published()->orderBy('sort')->get();
     }
 }

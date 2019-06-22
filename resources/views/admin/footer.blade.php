@@ -1,3 +1,3 @@
 <footer>
-	© {{date('Y')}} Magutti CMS
+	© {{date('Y')}} MAGUTTI CMS
 </footer>

@@ -1,14 +1,14 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use  \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 
 class Category extends Model
 {
     use \Dimsav\Translatable\Translatable;
     use GFTranslatableHelperTrait;
-    use \App\maguttiCms\Domain\Category\CategoryPresenter;
+    use  \App\maguttiCms\Domain\Category\CategoryPresenter;
 
     protected $with = ['translations'];
 

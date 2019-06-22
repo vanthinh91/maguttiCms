@@ -9,11 +9,11 @@ use Validator;
 
 use App\Province;
 use App\maguttiCms\SeoTools\SeoLandingHelper;
-use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
+use  \App\maguttiCms\SeoTools\LaraCmsSeoTrait;
 
 class SeoLandingController extends Controller
 {
-    use MaguttiCmsSeoTrait;
+    use LaraCmsSeoTrait;
     /**
      * @var
      */

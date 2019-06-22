@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="marcoax" />
+    <meta name="author" content="MaguttiCms" />
     <meta name="google-site-verification" content="{{data_get($site_settings,'GA_SITE_VERIFICATION')}}" />
     <meta name="theme-color" content="{{data_get($site_settings,'THEME_COLOR')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -12,10 +12,10 @@
     {{-- Meta SEO --}}
     {!! SEO::generate() !!}
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300i,400,500i,700,900i|Expletus+Sans:400,400i,700,700i" rel="stylesheet">
     <link href="{{ asset('website/images/icon.png') }}" type="image/PNG" rel="icon">
     <link href="{{ asset(mix('website/css/vendor.css')) }}" rel="stylesheet">
     <link href="{{ asset(mix('website/css/app.css')) }}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Railway|Open+Sans:400,700" rel="stylesheet">
 
     @include('website.partials.widgets_mobile_app')
 

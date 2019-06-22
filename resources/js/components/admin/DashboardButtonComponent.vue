@@ -1,5 +1,5 @@
 <template>
-    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
+    <div class="col-12 col-sm-4 col-md-3 col-lg-2">
         <a :href="item.url" :target="item.target ? item.target : null">
             <div class="button">
                 <i :class="item.iconClass"></i>

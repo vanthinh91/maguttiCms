@@ -27,13 +27,13 @@
 
 					<div id="tab-images" class="tab-pane fade" role="tabpanel" aria-labelledby="file-manager-list">
 						<div class="row">
-							<div id="tab-images-gallery" class="col-md-8 col-xs-12">
+							<div id="tab-images-gallery" class="col-md-8 col-12">
 								<div class="loading text-center">
 									<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
 									<span class="sr-only">Loading...</span>
 								</div>
 							</div>
-							<div id="sidebar-content" class="col-md-4 col-xs-12">
+							<div id="sidebar-content" class="col-md-4 col-12">
 							</div>
 						</div>
 					</div>

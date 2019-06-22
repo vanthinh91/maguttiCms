@@ -1,19 +1,19 @@
 <?php namespace App\maguttiCms\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Validator;
 use Input;
 use Auth;
 
-use \App\maguttiCms\Admin\Helpers\AdminUserTrackerTrait;
+
+use App\maguttiCms\Admin\AdminFormFieldsProcessor as AdminFormFieldsProcessor;
 use App\maguttiCms\Admin\Helpers\ModelReplicatorTrait;
 use App\maguttiCms\Admin\Requests\AdminFormRequest;
 use App\maguttiCms\Searchable\SearchableTrait;
 use App\maguttiCms\Sluggable\SluggableTrait;
-use App\maguttiCms\Tools\UploadManager;
-
 
 /**
  * Class AdminPagesController
@@ -23,7 +23,6 @@ class AdminPagesController extends Controller
 {
     use SluggableTrait;
     use SearchableTrait;
-    use AdminUserTrackerTrait;
     use ModelReplicatorTrait;
 
     protected $model;
@@ -32,7 +31,9 @@ class AdminPagesController extends Controller
     protected $curObject;
     protected $request;
     protected $config;
+    protected $fieldSpecs;
     protected $id;
+
 
     /**
      * @param $model
@@ -46,6 +47,7 @@ class AdminPagesController extends Controller
     }
 
     /**
+     * ADMIN HOME PAGE
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function home()
@@ -63,6 +65,7 @@ class AdminPagesController extends Controller
         $this->init($model);
         $models = new $this->modelClass;
         $objBuilder = $models::query();
+
         $this->setCurModel($models);
         $this->addSelect($objBuilder);
         $this->selectSub($objBuilder);
@@ -70,7 +73,6 @@ class AdminPagesController extends Controller
         $this->whereFilter($objBuilder);
         $this->searchFilter($objBuilder);
         $this->orderFilter($objBuilder);
-
         $this->withRelation($objBuilder);
 
         if ($this->isTranslatableField($this->sort)) {
@@ -84,7 +86,6 @@ class AdminPagesController extends Controller
                 });
             }
         }
-
         $articles = $objBuilder->paginate(config('maguttiCms.admin.list.item_per_pages'));
         $articles->appends(request()->input())->links(); // paginazione con parametri di ricerca
         $fieldspec = $models->getFieldspec();
@@ -125,43 +126,37 @@ class AdminPagesController extends Controller
     {
         $this->id = $id;
         $this->init($model);
-        $model = new  $this->modelClass;
-        $article = $model::whereId($this->id)->firstOrFail();
-
-        /*TODO
-           da  cancellare ??
-
-        */
+        $article = $this->modelClass::whereId($this->id)->firstOrFail();
+        /*TODO da  cancellare ?? */
         if ($this->modelClass == 'App\AdminUser') {
             if (!cmsUserHasRole('su') && $article->hasRole('su')) {
-                return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->model));
+                return redirect(action(' \App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->model));
             }
         }
-
-        /** @var  gestione pageTemplate */
-        $this->pageTemplate = (isset($this->config['editTemplate'])) ? $this->config['editTemplate'] : 'admin.edit';
-        return view($this->pageTemplate, ['article' => $article, 'pageConfig' => collect($this->config)]);
+        $pageTemplate = data_get($this->config,'editTemplate','admin.edit');
+        return view($pageTemplate, ['article' => $article, 'pageConfig' => collect($this->config)]);
     }
 
     /**
-     *
-     * GF_ma view controller
+     * VIEW RESOURCE
      * @param $model
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-
     public function view($model, $id)
     {
         $this->id = $id;
         $this->init($model);
-        $model = new  $this->modelClass;
-        $article = $model::whereId($this->id)->firstOrFail();
-        $this->pageTemplate = (isset($this->config['viewTemplate'])) ? $this->config['viewTemplate'] : 'admin.view';
-        return view($this->pageTemplate, ['article' => $article, 'pageConfig' => collect($this->config)]);
+        $article = $this->modelClass::whereId($this->id)->firstOrFail();
+        $pageTemplate = data_get($this->config,'viewTemplate','admin.view');
+        return view($pageTemplate, ['article' => $article, 'pageConfig' => collect($this->config)]);
     }
 
     /**
+     *
+     * Show the form for editing
+     * in modal window
+     *
      * @param $model
      * @param $id
      *
@@ -171,15 +166,12 @@ class AdminPagesController extends Controller
     {
         $this->id = $id;
         $this->init($model);
-        $model = new  $this->modelClass;
-        $article = $model::whereId($this->id)->firstOrFail();
-
+        $article = $this->modelClass::whereId($this->id)->firstOrFail();
         if ($this->modelClass == 'App\AdminUser') {
             if (!cmsUserHasRole('su') && $article->hasRole('su')) {
-                return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->model));
+                return redirect(action(' \App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->model));
             }
         }
-
         return view('admin.editmodal', ['article' => $article, 'pageConfig' => collect($this->config)]);
     }
 
@@ -195,19 +187,15 @@ class AdminPagesController extends Controller
     public function store($model, AdminFormRequest $request)
     {
         $this->init($model);
-        $this->request = $request;
         $model = new  $this->modelClass;
         $article = new $model;
-        // input data Handler
-        $this->requestFieldHandler($article);
-
+        (new AdminFormFieldsProcessor($request))->requestFieldHandler($article);
         session()->flash('success', 'The item <strong>' . $article->title . '</strong> has been created!');
-        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@edit',
-            $this->models . '/' . $article->id));
+        return redirect()->route('admin_edit',['model' =>$this->models, 'id' => $article->id ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update resource in storage
      *
      * @param $model
      * @param  int $id
@@ -218,13 +206,25 @@ class AdminPagesController extends Controller
     public function update($model, $id, AdminFormRequest $request)
     {
         $this->init($model);
-        $this->request = $request;
-        $model = new  $this->modelClass;
-        $article = $model::whereId($id)->firstOrFail();
-        // input data Handler
-        $this->requestFieldHandler($article);
-        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@edit',
-            $this->models . '/' . $article->id));
+        $article = $this->modelClass::whereId($id)->firstOrFail();
+        (new AdminFormFieldsProcessor($request))->requestFieldHandler($article);
+        return redirect()->route('admin_edit',['model' =>$this->models, 'id' => $article->id ]);
+    }
+
+    /**
+     * Update resource in storage
+     * in modal window
+     *
+     * @param $model
+     * @param $id
+     * @param AdminFormRequest $request
+     */
+    public function updatemodal($model, $id, AdminFormRequest $request)
+    {
+        $this->init($model);
+        $article = $this->modelClass::whereId($id)->firstOrFail();
+        (new AdminFormFieldsProcessor($request))->requestFieldHandler($article);
+        echo json_encode(array('status' => $this->config['model'] . ' Has been update'));
     }
 
 
@@ -237,203 +237,60 @@ class AdminPagesController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-
-
     public function duplicate($model, $id)
     {
         $this->init($model);
         $article = $this->duplicateModel($id);
-        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@edit',
-            $this->models . '/' . $article->id));
+        return redirect(route('admin_edit',['model' =>$this->models, 'id' => $article->id ]));
     }
 
-    /**
-     * Update the specified resource
-     * in storage.
-     *
-     * @param $model
-     * @param  int $id
-     * @param AdminFormRequest $request
-     *
-     * @return Response
-     */
-    public function updatemodal($model, $id, AdminFormRequest $request)
-    {
-        $this->init($model);
-        $this->request = $request;
-        $model = new  $this->modelClass;
-        $article = $model::whereId($id)->firstOrFail();
-        // input data Handler
-        $this->requestFieldHandler($article);
-        echo json_encode(array('status' => $this->config['model'] . ' Has been update'));
-    }
+
 
     /**
-     * Remove the specified resource
-     * from storage.
+     * Delete resource in storage
      *
      * @param $model
      * @param $id
-     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($model, $id)
     {
         $this->init($model);
-
-        $this->id = $id;
-        $model = new  $this->modelClass;
-        $article = $model::whereId($this->id)->firstOrFail();
+        $article = $this->modelClass::whereId($id)->firstOrFail();
         $article->delete();
         session()->flash('success', 'The items ' . $article->title . ' has been deleted!');
-        return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->models));
+        return redirect(action(' \App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->models));
     }
 
-    /**
-     * @param $article
-     */
-    public function requestFieldHandler($article)
-    {
-        foreach ($article->getFillable() as $a) {
-            if ($this->request->has($a)) {
-                $article->$a = $this->request->get($a);
-            }
-        }
-
-        if (isset($article->sluggable)) {
-            foreach ($article->sluggable as $key => $a) {
-                if (!$this->slugIsTranslatable($a)) {
-                    $slug_value = $this->request->get($key);
-                    $source_value = $this->request->get($a['field']);
-                    $article->$key = $this->setSlugAttributes($a)
-                        ->sluggy($article, $slug_value, $source_value);
-                }
-            }
-        }
-
-        /** tiene traccia dell'utente che ha fatto le modifiche */
-        $this->hackedBy($article);
-
-        $this->processMedia($article);
-
-        $article->save();
-
-        // many to many relation
-        /* TODO -> create  dimanic  check roles */
-        if (method_exists($article, 'saveRoles')) {
-            if (auth('admin')->user()->isAdmin()) {
-                $article->saveRoles($this->request->get('role'));
-            }
-        }
-        if (method_exists($article, 'saveTags')) {
-            $article->saveTags($this->request->get('tag'));
-        }
-        if (method_exists($article, 'saveArticles')) {
-            $article->saveArticles($this->request->get('example_articles'));
-        }
-        if (method_exists($article, 'saveCountries')) {
-            $article->saveCountries($this->request->get('country'));
-        }
-
-        // translatable
-        if (isset($article->translatedAttributes) && count($article->translatedAttributes) > 0) {
-
-
-            foreach (config('app.locales') as $locale => $value) {
-                foreach ($article->translatedAttributes as $attribute) {
-                    // se è un attributo sluggabile;
-                    if (isset($article->sluggable) && $this->attributeIsSluggable($attribute, $article->sluggable)) {
-                        $attribute_to_slug = (config('app.locale') != $locale) ? $attribute . '_' . $locale : $attribute;
-                        $string_value = $this->setSlugAttributes($a)
-                            ->sluggyTranslatable($article, $this->request->get($attribute_to_slug), $locale);
-
-                        $article->translateOrNew($locale)->$attribute = $string_value;
-                    } elseif ($article->getFieldSpec()[$attribute]['type'] != 'media') {
-                        if (config('app.locale') != $locale) {
-                            $article->translateOrNew($locale)->$attribute = $this->request->get($attribute . '_' . $locale);
-                        } else {
-                            $article->translateOrNew($locale)->$attribute = $this->request->get($attribute);
-                        }
-                    }
-                }
-                $article->save();
-            }
-        }
-    }
 
     /**
-     * Perform the media upload
+     *  view / download file
+     *
      * @param $model
-     * @param $media
+     * @param $id
+     * @param $key
+     * @return \Illuminate\Http\Response
      */
-    private function mediaHandler($model, $media, $disk = '', $folder = '')
+    public function file_view($model, $id, $key)
     {
-        $UM = new UploadManager;
+        $this->id = $id;
+        $this->init($model);
+        $article = $this->modelClass::whereId($this->id)->firstOrFail();
 
-        $model->$media = ($UM->init($media, $this->request, $disk,
-            $folder)->store()->getFileFullName()) ?: $model->$media;
-    }
-
-    private function mediaHandlerLocale($model, $media, $disk = '', $folder = '', $locale)
-    {
-        $UM = new UploadManager;
-        $media_locale = $media;
-        if (config('app.locale') != $locale) {
-            $media_locale = $media . '_' . $locale;
-        }
-        $model->translateOrNew($locale)->$media = ($UM->init($media_locale, $this->request, $disk,
-            $folder)->store()->getFileFullName()) ?: $model->translateOrNew($locale)->$media;
-
-    }
-
-    private function cropperHandler($model, $media, $disk = '', $folder = '')
-    {
-        $data = $this->request->$media;
-
-        if (!$data) {
-            return false;
-        }
-
-        $config = $model->getFieldSpec();
-        $config = $config[$media];
-        $config = collect($config['cropper']);
-
-        $disk = $disk ?: 'media';
-        $folder = $folder ?: 'images';
-
-        $UM = new UploadManager;
-        $file_details = ($UM->init($media, $this->request, $disk, $folder)->storeData($data,
-            $this->request->{$media . '-filename'}, $config));
-
-        $model->$media = $file_details['fullName'] ?: $model->$media;
-    }
-
-    /**
-     * PROCESS ALL THE
-     * MEDIA FILES
-     * @param $model
-     */
-    private function processMedia($model)
-    {
-        foreach ($model->getFieldSpec() as $key => $field) {
-           if ($field['type'] == 'media') {
-                $disk = (isset($field['disk'])) ? $field['disk'] : '';
-                $folder = (isset($field['folder'])) ? $field['folder'] : '';
-
-                if ($this->isTranslatableField($key)) {
-                    foreach (config('app.locales') as $locale => $value) {
-                        $this->mediaHandlerLocale($model, $key, $disk, $folder, $locale);
-                        $model->save();
-                    }
-                } else {
-                    (isset($field['cropper'])) ? $this->cropperHandler($model, $key, $disk,
-                        $folder) : $this->mediaHandler($model, $key, $disk, $folder);
-                }
+        if ($article) {
+            $file = $this->get_file($article, $key);
+            if ($file['file']) {
+                return response()->make($file['file'], 200, [
+                    'Content-Type' => $file['mime'],
+                    'Content-Disposition' => 'inline; filename="' . $article->$key . '"'
+                ]);
             }
         }
     }
 
-    // questa funzione recupera solo i file non immagine. Per le immagini è già presente l'anteprima.
+    /*
+     * get file from storage
+     */
     public function get_file($object, $key)
     {
         $fields = $object->getFieldSpec();
@@ -450,24 +307,6 @@ class AdminPagesController extends Controller
             ];
         } else {
             return false;
-        }
-    }
-
-    public function file_view($model, $id, $key)
-    {
-        $this->id = $id;
-        $this->init($model);
-        $model = new $this->modelClass;
-        $article = $model::whereId($this->id)->firstOrFail();
-
-        if ($article) {
-            $file = $this->get_file($article, $key);
-            if ($file['file']) {
-                return response()->make($file['file'], 200, [
-                    'Content-Type' => $file['mime'],
-                    'Content-Disposition' => 'inline; filename="' . $article->$key . '"'
-                ]);
-            }
         }
     }
 }
