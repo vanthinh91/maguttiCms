@@ -1,8 +1,8 @@
 <?php
 return [
     'app' => [
-        'name'	   => 'LaraCms',
-		'legal'		=> 'MaguttiCms Framework',
+        'name'	   => 'MaguttiCms',
+		'legal'	   => 'MaguttiCms Framework',
         'address'  => '5.3 maguttiCms Street',
         'locality' => 'Bergamo - Italy',
         'lat'      => '45.612310',
