@@ -298,7 +298,7 @@ class Example extends Model
             'hidden'    => 0,
             'label'     => 'Posizione',
             'extraMsg'  => '',
-            'display'   => 0,
+            'display'   => 1,
             'cssClassElement' => 'col-sm-10'
         ];
         $this->fieldspec['sort'] = [

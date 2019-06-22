@@ -21,4 +21,4 @@
 	@endif
 </ul>
 
-<list-component></list-component>
+

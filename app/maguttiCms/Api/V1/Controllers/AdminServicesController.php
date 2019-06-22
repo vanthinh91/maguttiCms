@@ -42,13 +42,5 @@ class AdminServicesController
         return $this->apiResponse();
     }
 
-    public function model(Request $request)
-    {
-        $this->request = $request;
-        $data = (new CodeGeneratorHelper())->handleGenerator($this->request->data,$this->request->value);
-        $this->setData($data)->responseSuccess();
-        return $this->apiResponse();
-    }
-
 
 }
