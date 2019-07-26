@@ -1,12 +1,16 @@
 <?php namespace App;
 
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 use Illuminate\Database\Eloquent\Model;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
+
 use App\maguttiCms\Tools\Stringable;
 
 class Media extends Model
 {
-	use \Dimsav\Translatable\Translatable;
-	use  \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+	use Translatable;
+    use  GFTranslatableHelperTrait;
 
 	protected   $table = 'media';
 	public      $translatedAttributes = ['title','alt','description'];

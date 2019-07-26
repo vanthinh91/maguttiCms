@@ -1,6 +1,9 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
+
 use  \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 use  \App\maguttiCms\Domain\Product\ProductPresenter;
 use App\maguttiCms\Builders\ProductBuilder;
@@ -9,7 +12,7 @@ use App\maguttiCms\Builders\ProductBuilder;
 class Product extends Model
 {
     use GFTranslatableHelperTrait;
-    use \Dimsav\Translatable\Translatable;
+    use Translatable;
     use ProductPresenter;
 
 	protected $with = ['translations'];

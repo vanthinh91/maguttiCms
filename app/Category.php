@@ -1,12 +1,14 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 use  \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 
 class Category extends Model
 {
-    use \Dimsav\Translatable\Translatable;
+    use Translatable;
     use GFTranslatableHelperTrait;
     use  \App\maguttiCms\Domain\Category\CategoryPresenter;
 
