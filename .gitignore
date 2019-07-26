@@ -77,8 +77,7 @@ clockwork
 /.idea
 /_ide_helper.php
 >>>>>>> origin/master
-.env
-.env
+.en
 npm-shrinkwrap.json
 
 *.env
