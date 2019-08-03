@@ -184,7 +184,8 @@ return [
         |--------------------------------------------------------------------------
         */
 
-        'hisorange\BrowserDetect\Provider\BrowserDetectService',
+
+
         Collective\Html\HtmlServiceProvider::class,
         'Zizaco\Entrust\EntrustServiceProvider',
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
@@ -269,13 +270,15 @@ return [
         |--------------------------------------------------------------------------
         */
 
-        'BrowserDetect' => 'hisorange\BrowserDetect\Facade\Parser',
+        //'Browser' => hisorange\BrowserDetect\Facade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Entrust' => 'Zizaco\Entrust\EntrustFacade',
         'Carbon' => 'Carbon\Carbon',
         'Slugify' => 'Cocur\Slugify\Bridge\Laravel\SlugifyFacade',
         'Input' => Illuminate\Support\Facades\Input::class,
+
+
 
         /*
          |--------------------------------------------------------------------------
