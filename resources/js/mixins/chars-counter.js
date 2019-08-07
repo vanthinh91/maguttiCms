@@ -23,5 +23,10 @@ export default {
             }
         }
     },
+    watch: {
+        message: function () {
+            this.countdown();
+        }
+    },
 
 }

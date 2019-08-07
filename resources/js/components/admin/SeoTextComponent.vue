@@ -5,7 +5,7 @@
             <span v-if="hasError" :class=classErrorObject> (Max length exceeded) </span>
             <clear-btn @reset="clearInput"></clear-btn>
         </span>
-        <textarea  class="form-control" v-on:keyup="countdown" v-model="message" v-bind:name="name" rows="8"></textarea>
+        <textarea  class="form-control" v-model="message" v-bind:name="name" rows="8"></textarea>
     </div>
 </template>
 <script>
@@ -23,5 +23,6 @@
             this.message=this.input_text;
             this.countdown();
         },
+
     }
 </script>

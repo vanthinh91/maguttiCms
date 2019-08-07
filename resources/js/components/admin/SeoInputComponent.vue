@@ -1,8 +1,7 @@
 <template>
     <div>
         <div class="input-group mb-3">
-            <input type="text" class="form-control"
-                   v-on:keyup="countdown" v-model="message" v-bind:name="name">
+            <input type="text" class="form-control" v-model="message" v-bind:name="name">
             <div class="input-group-append">
                 <span class="input-group-text" :class=classErrorObject> {{remainingCount}} </span>
                 <clear-btn @reset="clearInput" class="input-group-text"></clear-btn>
