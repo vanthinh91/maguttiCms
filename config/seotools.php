@@ -42,12 +42,11 @@ return [
          * The default values to be used by the twitter cards generator.
          */
         'defaults' => [
-          //'card'        => 'summary',
-          //'site'        => '@LuizVinicius73',
+
         ],
     ],
     /**
-     *   MaguttiCms custom settings
+     *   maguttiCMS custom settings
      */
     'lara_setting' => [
         'title' => '65',

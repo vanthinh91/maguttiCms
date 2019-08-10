@@ -138,7 +138,7 @@ Route::group([
   'middleware' => ['shield', 'localizationRedirect', 'usercart']
 ], function () {
 	// Api
-	Route::post('/api/newsletter','\App\maguttiCms\Website\Controllers\APIController@subscribeNewsletter');
+	Route::post('/api/newsletter',			'\App\maguttiCms\Website\Controllers\APIController@subscribeNewsletter');
 
     // Authentication routes...
     Route::get('users/login', '\App\maguttiCms\Website\Controllers\Auth\LoginController@showLoginForm')->name('users/login');

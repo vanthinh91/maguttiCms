@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use App\maguttiCms\Domain\Admin\AdminAcl;
 use App\maguttiCms\Permission\GFEntrustUserTrait;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +18,9 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
 {
 	use Authenticatable, CanResetPassword;
 	use Notifiable;
-	/*Gf_ma for maguttiCms*/
-	use AdminUserPresenter;
 
+	use AdminUserPresenter;
+	use AdminAcl;
 	use GFEntrustUserTrait;
 
 	protected  $role_user_table  = "adminuser_role";
@@ -64,6 +65,8 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
 			$this->roles()->detach();
 		}
 	}
+
+
 
 	/**
 	 * @return array
@@ -147,70 +150,7 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
 		return $this->fieldspec;
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| SIMPLE ACL ROLE
-	|--------------------------------------------------------------------------
-	|
 
-	/**
-	 * GF_ma gestione semplice delle sezioni
-	 * in base hai ruoli
-	 * @param $section
-	 * @return bool
-	 */
-	public function canViewSection($section)
-	{
-		if (!isset($section['roles'])) {
-			return true;
-		}
-		if ($this->hasRole($section['roles'])) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 *
-	 * @return int
-	 */
-	public function isSu()
-	{
-		return Auth::guard('admin')->user()->hasRole(['su']);
-	}
-
-	/**
-	 * GF_ma utenti con ruolo
-	 * su or  admin
-	 * @return int
-	 */
-	public function isAdmin()
-	{
-		return Auth::guard('admin')->user()->hasRole(['su','admin']);
-	}
-	/**
-	 *
-	 * GF_ma semplice gestione assegnazione ruoli
-	 * solo admin e su possono asegnare
-	 * i ruoli agli utenti del cms
-	 * @return int
-	 */
-	public function hideEditRole()
-	{
-		return !$this->isAdmin();
-	}
-
-	/**
-	 *
-	 * GF_ma gestione funzionalità
-	 * di delete per ruolo
-	 * @return int
-	 */
-	public function canDelete()
-	{
-		return Auth::guard('admin')->user()->hasRole(['su','admin']);
-	}
 
 	/*
 	|--------------------------------------------------------------------------

@@ -36,13 +36,14 @@ use Image;
 /**
  * imgHelper
  */
-class ImgHelper {
+class ImgHelper
+{
 	protected $path_repository;
 	protected $path_save;
 	protected $cache_time;
 	protected $defaults;
 
-	function __construct()
+	public function __construct()
 	{
 		$this->path_repository = config('maguttiCms.admin.path.img_repository');
 		$this->path_save = config('maguttiCms.admin.path.img_save');
@@ -58,16 +59,18 @@ class ImgHelper {
 
 	// receives filename
 	// returns absolute path to image or placeholder if missing
-	private function resolve_path ($file_name, $absolute)
+	private function resolve_path($file_name, $absolute)
 	{
 		if ($absolute) {
-			if (@getimagesize($file_name))
-		  		return $file_name;
+			if (@getimagesize($file_name)) {
+				return $file_name;
+			}
 		} else {
 			if ($file_name && file_exists($this->path_repository.$file_name)) {
 				$metadata = @getimagesize($this->path_repository.$file_name);
-				if ($metadata[0] <= $this->size_limit && $metadata[1] <= $this->size_limit)
+				if ($metadata[0] <= $this->size_limit && $metadata[1] <= $this->size_limit) {
 					return $this->path_repository.$file_name;
+				}
 			}
 		}
 		return $this->path_repository.'placeholder.png';
@@ -99,7 +102,7 @@ class ImgHelper {
 
 	// returns the resampled image object
 	// if one dimension is missing, the other is calculated automatically, keeping aspect ratio
-	private function resample ($obj, $args)
+	private function resample($obj, $args)
 	{
 		$c = $this->arg($args, 'c');
 		$p = $this->arg($args, 'p');
@@ -107,21 +110,21 @@ class ImgHelper {
 		//determine original and final width, height and ratio
 		$w_original = $obj->width();
 		$h_original = $obj->height();
-		$r_original = $w_original/$h_original;
+		$r_original = $w_original / $h_original;
 		$w_final = isset($args['w'])? preg_replace('/([A-Za-z])+/', '', $args['w']): null;
 		$h_final = isset($args['h'])? preg_replace('/([A-Za-z])+/', '', $args['h']): null;
 
 		if (!$w_final || !$h_final) {
 			$r_final = $r_original;
 		} else {
-			$r_final = $w_final/$h_final;
+			$r_final = $w_final / $h_final;
 		}
 
 		if (!$h_final) {
-			$h_final = round($w_final/$r_final);
+			$h_final = round($w_final / $r_final);
 		}
 		if (!$w_final) {
-			$w_final = round($h_final*$r_final);
+			$w_final = round($h_final * $r_final);
 		}
 
 		switch ($c) {
@@ -129,20 +132,31 @@ class ImgHelper {
 				$obj->resize($w_final, $h_final);
 				break;
 			case 'best':
-				if ($r_original >= $r_final)
-					$obj->resize($w_final, null, function ($constraint) {$constraint->aspectRatio(); });
-				else
-					$obj->resize(null, $h_final, function ($constraint) {$constraint->aspectRatio(); });
+				if ($r_original >= $r_final) {
+					$obj->resize($w_final, null, function ($constraint) {
+						$constraint->aspectRatio();
+					});
+				} else {
+					$obj->resize(null, $h_final, function ($constraint) {
+						$constraint->aspectRatio();
+					});
+				}
 				break;
 			case 'contain':
-				if ($r_original >= $r_final)
-					$obj->resize($w_final, null, function ($constraint) {$constraint->aspectRatio(); });
-				else
-					$obj->resize(null, $h_final, function ($constraint) {$constraint->aspectRatio(); });
+				if ($r_original >= $r_final) {
+					$obj->resize($w_final, null, function ($constraint) {
+						$constraint->aspectRatio();
+					});
+				} else {
+					$obj->resize(null, $h_final, function ($constraint) {
+						$constraint->aspectRatio();
+					});
+				}
 				$obj->resizeCanvas($w_final, $h_final, $p);
 				break;
 			default:
-				$obj->fit($w_final, $h_final, function () {}, $p);
+				$obj->fit($w_final, $h_final, function () {
+				}, $p);
 				break;
 		}
 		return $obj;
@@ -181,7 +195,7 @@ class ImgHelper {
 	}
 
 	// calculates a new image and returns the path to it
-	public function get ($src, $args = array(), $disk = '', $folder = '')
+	public function get($src, $args = array(), $disk = '', $folder = '')
 	{
 		$new_name = $this->make_new_name($src, $args);
 
@@ -213,15 +227,17 @@ class ImgHelper {
 			// save the generated image;
 			$obj->save($this->path_save.$new_name, $q);
 
-			if ($this->arg($args, 'e'))
+			if ($this->arg($args, 'e')) {
 				echo '/'.$this->path_save.$new_name;
-			else
+			} else {
 				return '/'.$this->path_save.$new_name;
+			}
 		}
 	}
 
 	// checks if image exists and returns the path to it. creates it anew if not.
-	public function get_cached($src, $args = array(), $disk = '', $folder = '') {
+	public function get_cached($src, $args = array(), $disk = '', $folder = '')
+	{
 		$new_name = $this->make_new_name($src, $args);
 
 		if (file_exists($this->path_save.$new_name)) {

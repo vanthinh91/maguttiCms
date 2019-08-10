@@ -23,7 +23,7 @@ class RegisterController extends Controller
     */
 
 
-    use  \App\maguttiCms\SeoTools\LaraCmsSeoTrait;
+    use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
 
 
     use RegistersUsers;

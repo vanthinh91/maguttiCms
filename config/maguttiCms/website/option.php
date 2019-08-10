@@ -2,7 +2,7 @@
 return [
     'app' => [
         'name'	   => 'MaguttiCms',
-		'legal'	   => 'MaguttiCms Framework',
+		'legal'		=> 'MaguttiCms Framework',
         'address'  => '5.3 maguttiCms Street',
         'locality' => 'Bergamo - Italy',
         'lat'      => '45.612310',

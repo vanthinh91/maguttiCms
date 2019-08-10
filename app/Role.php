@@ -5,7 +5,7 @@ use Zizaco\Entrust\EntrustRole;
 
 class Role extends EntrustRole
 {
-	protected $fillable = ['name', 'display_name', 'description'];
+	protected $fillable = ['name', 'display_name', 'description','level'];
 	protected $fieldspec = [];
 
 	function getFieldSpec ()
@@ -58,6 +58,13 @@ class Role extends EntrustRole
 			'cssClass'=>'',
 			'display'   =>  1,
 		];
+        $this->fieldspec['level'] = [
+            'type'     => 'integer',
+            'required' => true,
+            'label'    => trans('admin.label.level'),
+            'hidden'   => 0,
+            'display'  => 1,
+        ];
 		return $this->fieldspec;
 	}
 }

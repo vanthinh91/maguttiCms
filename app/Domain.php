@@ -1,9 +1,9 @@
 <?php
 namespace App;
 use Illuminate\Database\Eloquent\Model;
+use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
-use  \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class Domain extends Model
 {

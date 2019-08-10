@@ -52,6 +52,7 @@ return [
 		'is_active'		=> 'Stato',
 		'languages'		=> 'Lingue',
 		'last_name'		=> 'Cognome',
+		'level'		    => 'Livello',
 		'link'			=> 'Link',
 		'list'			=> 'Vedi lista',
 		'list_title'	=> 'Lista %s',

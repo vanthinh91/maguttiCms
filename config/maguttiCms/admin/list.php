@@ -480,8 +480,8 @@ return [
 				'id',
 				'name' => ['type' => 'editable', 'field' => 'name'],
 				'display_name' => ['type' => 'editable', 'field' => 'display_name'],
-				'description' => ['type' => 'text', 'field' => 'description'],
-
+				'description'  => ['type' => 'text', 'field' => 'description'],
+                'level'        => ['type' => 'editable', 'field' => 'level'],
 				'created_at' => ['type' => 'date', 'field' => 'created_at'],
 				'updated_at' => ['type' => 'date', 'field' => 'updated_at'],
 			],

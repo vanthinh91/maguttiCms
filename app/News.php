@@ -2,13 +2,14 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+
+
+use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use \App\maguttiCms\Domain\News\NewsPresenter;
+use App\maguttiCms\Builders\NewsBuilder;
+
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
-
-
-use  \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
-use  \App\maguttiCms\Domain\News\NewsPresenter;
-use App\maguttiCms\Builders\NewsBuilder;
 
 class News extends Model
 {

@@ -1,13 +1,12 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\maguttiCms\Builders\ArticleBuilder;
+use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use \App\maguttiCms\Domain\Article\ArticlePresenter;
 
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
-use App\maguttiCms\Builders\ArticleBuilder;
-use  \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
-use  \App\maguttiCms\Domain\Article\ArticlePresenter;
 
 /**
  * Class Article

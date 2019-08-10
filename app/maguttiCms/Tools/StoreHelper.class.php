@@ -136,7 +136,7 @@ class StoreHelper {
 	public static function getUserCart()
 	{
 		if ($user = Auth::user())
-			$cart = Cart::where('status', CART_NEW)->where('user_id', $user->id)->first();
+			$cart = Cart::where('status', CART_NEW)->where('user_id', $user->id)->orderBy('created_at', 'DESC')->first();
 		return ($cart)? $cart: false;
 	}
 

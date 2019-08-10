@@ -3,7 +3,6 @@
 @section('content')
 
     {{-- Header --}}
-
     <header id="carousel" class="slider owl-carousel">
     	@foreach ($hpslider->active()->get() as $index => $slider)
             <div class="item">

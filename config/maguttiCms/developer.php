@@ -1,6 +1,6 @@
 <?php
 
 return [
-	'name' => 'maguttiCms',
+	'name' => 'Lara CMS',
 	'email' => ''
 ];

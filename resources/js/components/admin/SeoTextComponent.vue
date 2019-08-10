@@ -23,6 +23,5 @@
             this.message=this.input_text;
             this.countdown();
         },
-
     }
 </script>

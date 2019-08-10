@@ -16,5 +16,7 @@ require('../plugins/gmaps.js');
 require('../plugins/jquery.maCookieEu.js');
 
 // require('../plugins/jquery.pb-filter.js');
+require('../plugins/jquery.pb-scroll-trigger.js');
 // require('../plugins/pb-suggest/jquery.pb-suggest.js');
 // require('../plugins/pb-overlay/jquery.pb-overlay.js');
+// require('../plugins/pb-repeater/jquery.pb-repeater.js');

@@ -47,31 +47,10 @@ window.App = function () {
 		});
 	}
 
-	// checkboxes and radio
-	function initCheckboxes() {
-		$(document).on('change', 'input[type="checkbox"], input[type="radio"]', function () {
-			let elem = $(this);
-			if (elem.is('input[type="radio"]')) {
-				$('input[type="radio"][name="' + elem.attr('name') + '"]').each(function () {
-					updateCheckbox($(this));
-				});
-			} else
-				updateCheckbox($(this));
-		}).each(function () {
-			updateCheckbox($(this));
-		});
-	}
-
-	function updateCheckbox(elem) {
-		let checked = elem.is(':checked');
-		if (checked)
-			elem.closest('.form-checkbox, .form-radio').addClass('checked');
-		else
-			elem.closest('.form-checkbox, .form-radio').removeClass('checked');
-	}
-
 	function handleLightBox() {
-		$(".lightbox").fancybox();
+		$().fancybox({
+			selector: '.lightbox'
+		});
 		$(".lightbox-iframe").fancybox({
 			type: 'iframe',
 			iframe: {
@@ -142,13 +121,24 @@ window.App = function () {
 	}
 
 	function handleNavbar() {
+		// deprecato
+		/*
 		let WINDOW = $(window);
 		WINDOW.on('scroll', function () {
 			checkNavbar();
 		});
 		checkNavbar();
+		*/
+		$.pbScrollTriger({
+			selector: 'nav',
+			class: 'navbar-scrolled',
+			use_element_position: false,
+			apply_class_to_body: false,
+		});
 	}
 
+	// deprecato
+	/*
 	function checkNavbar() {
 		let WINDOW = $(window);
 		let BODY = $('body').first();
@@ -161,18 +151,22 @@ window.App = function () {
 			NAV.removeClass('navbar-scrolled');
 		}
 	}
+	*/
 
 	function initOverrideInvalid() {
-		var offset = $('.navbar-fixed-top').outerHeight() + 30;
+		var offset = $('.navbar.fixed-top').outerHeight() + 30;
 
 		document.addEventListener('invalid', function (e) {
-			$(e.target).addClass('invalid');
-			$('html, body').animate({
-				scrollTop: $($(".invalid")[0]).offset().top - offset
-			}, 0);
+			let elem = $(e.target);
+			elem.addClass('override-invalid');
+			if ($('.override-invalid:visible').length) {
+				$('html, body').animate({
+					scrollTop: $('.override-invalid:visible').first().offset().top - offset
+				}, 0);
+			}
 		}, true);
 		document.addEventListener('change', function (e) {
-			$(e.target).removeClass('invalid');
+			$(e.target).removeClass('override-invalid');
 		}, true);
 	}
 
@@ -184,7 +178,6 @@ window.App = function () {
 			handleScrollTo();
 			handleGhostInputs();
 			handleNavbar();
-			initCheckboxes();
 			initOverrideInvalid();
 		},
 
@@ -235,14 +228,17 @@ function updateModalBoxMsg($htmlContent) {
 }
 
 /*********************************  localize *********************/
-function trans(keystring) {
-	var key_array = keystring.split('.');
-	var temp_localization = JS_LOCALIZATION;
-	$.each(key_array, function () {
-		temp_localization = temp_localization[this];
-	});
-	if (typeof (temp_localization) == 'string')
+window.trans = function (keystring) {
+	let key_array = keystring.split('.');
+	let temp_localization = JS_LOCALIZATION;
+	for (let key of key_array) {
+		if (key in temp_localization) {
+			temp_localization = temp_localization[key];
+		}
+	}
+	if (typeof temp_localization == 'string') {
 		return temp_localization;
-	else
+	} else {
 		return keystring;
+	}
 }

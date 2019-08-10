@@ -15,7 +15,7 @@ use App\maguttiCms\Composer\ViewShareSettingComposer;
 |--------------------------------------------------------------------------
 | here  will'be set all the common action
 */
-class MaguttiServiceProvider extends ServiceProvider
+class MaguttiCmsServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -63,7 +63,7 @@ class MaguttiServiceProvider extends ServiceProvider
 
         /*
         |--------------------------------------------------------------------------
-        |  MaguttiCms VALIDATION CUSTOM DIRECTIVE
+        |  LARACMS VALIDATION CUSTOM DIRECTIVE
         |--------------------------------------------------------------------------
         */
 

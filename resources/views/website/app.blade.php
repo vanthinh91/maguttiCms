@@ -1,10 +1,10 @@
-@inject('pages','App\Article')
+    @inject('pages','App\Article')
 <!doctype html>
 <html lang="{{ LaravelLocalization::getCurrentLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="MaguttiCms" />
+    <meta name="author" content="Magutti" />
     <meta name="google-site-verification" content="{{data_get($site_settings,'GA_SITE_VERIFICATION')}}" />
     <meta name="theme-color" content="{{data_get($site_settings,'THEME_COLOR')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -15,7 +15,7 @@
     <link href="{{ asset('website/images/icon.png') }}" type="image/PNG" rel="icon">
     <link href="{{ asset(mix('website/css/vendor.css')) }}" rel="stylesheet">
     <link href="{{ asset(mix('website/css/app.css')) }}" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Railway|Open+Sans:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway|Open+Sans:400,700" rel="stylesheet">
 
     @include('website.partials.widgets_mobile_app')
 

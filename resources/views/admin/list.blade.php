@@ -100,9 +100,9 @@
 															@else
 																<div class="bool-toggle">
 																	@if ($value == 1)
-																		<i class="text-success">{{AdminDecorator::getBooleanOn()}}</i>
+																		<i class="text-success h4">{{AdminDecorator::getBooleanOn()}}</i>
 																	@else
-																		<i class="text-danger">{{AdminDecorator::getBooleanOff()}}</i>
+																		<i class="text-danger h4">{{AdminDecorator::getBooleanOff()}}</i>
 																	@endif
 																</div>
 															@endif
@@ -113,8 +113,8 @@
 															class="form-control"
 															name="{!! $label['field'] !!}[]"
 															type="text" value="{{ $article->{$label['field']}  }}"
-															data-list-value ="{!! $pageConfig['model'].'_'.$article->id !!}"
-															data-list-name ="{!! $label['field']!!}"
+															data-list-value ="{{ $pageConfig['model'].'_'.$article->id }}"
+															data-list-name ="{{ $label['field'] }}"
 															autocomplete="off"
 														/>
 													@elseif ($label['type'] == 'relation')
@@ -146,7 +146,7 @@
 															@if (isset($label['multiple']) && isset($label['multiple'])==true)
 																{!!implode(',',$article->{$label['relation']}->pluck($label['field'])->sortBy($label['field'])->toArray()) !!}
 															@else
-																{!! $article->{$label['relation']}->{$label['field']} !!}
+																{{ $article->{$label['relation']}->{$label['field']} }}
 															@endif
 														@endif
 													@elseif ($label['type'] == 'relation_image')
@@ -160,10 +160,10 @@
 													@elseif ($label['type'] == 'locale')
 														<img class="flag" src="{{asset('website/images/flags/'.$article->{$label['field']}.'.png')}}" alt="{{ $article->{$label['field']} }} flag">
 													@else
-														{!! $article->{$label['field']} !!}
+														{{ $article->{$label['field']} }}
 													@endif
 												@else
-													{!! $article->$label !!}
+													{{ $article->$label }}
 												@endif
 											</td>
 										@endforeach

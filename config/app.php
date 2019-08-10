@@ -13,7 +13,7 @@ return [
     */
 
 
-    'name' => env('APP_NAME', 'maguttiCms'),
+    'name' => env('APP_NAME', 'MaguttiCms'),
 
     /*
     |--------------------------------------------------------------------------
@@ -184,8 +184,6 @@ return [
         |--------------------------------------------------------------------------
         */
 
-
-
         Collective\Html\HtmlServiceProvider::class,
         'Zizaco\Entrust\EntrustServiceProvider',
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
@@ -196,18 +194,18 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | maguttiCms Service Providers...
+        | MaguttiCms Service Providers...
         |--------------------------------------------------------------------------
         */
-        App\maguttiCms\Providers\MaguttiServiceProvider::class,
+        App\maguttiCms\Providers\MaguttiCmsServiceProvider::class,
         App\maguttiCms\Providers\SystemServiceProvider::class,
         'App\maguttiCms\Notifications\FlashServiceProvider',
 
-        /* maguttiCmsADMIN */
+        /* MaguttiCms ADMIN */
         App\maguttiCms\Admin\Providers\AdminFormServiceProvider::class,
         App\maguttiCms\Admin\Providers\AdminListServiceProvider::class,
 
-        /* maguttiCmsFE */
+        /* MaguttiCmsFE */
         App\maguttiCms\Website\Providers\WebsiteDbServiceProvider::class,
         App\maguttiCms\Website\Providers\HtmlSocialServiceProvider::class,
         App\maguttiCms\Website\Providers\HtmlMenuServiceProvider::class,
@@ -270,7 +268,6 @@ return [
         |--------------------------------------------------------------------------
         */
 
-        //'Browser' => hisorange\BrowserDetect\Facade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Entrust' => 'Zizaco\Entrust\EntrustFacade',
@@ -278,11 +275,9 @@ return [
         'Slugify' => 'Cocur\Slugify\Bridge\Laravel\SlugifyFacade',
         'Input' => Illuminate\Support\Facades\Input::class,
 
-
-
         /*
          |--------------------------------------------------------------------------
-         | maguttiCms Class Aliases
+         | MaguttiCms Class Aliases
          |--------------------------------------------------------------------------
         */
 

@@ -9,7 +9,7 @@ use App\maguttiCms\Website\Facades\ImgHelper;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Support\Str;
 
-trait LaraCmsSeoTrait
+trait MaguttiCmsSeoTrait
 {
     protected $title;
     protected $image;
@@ -17,7 +17,7 @@ trait LaraCmsSeoTrait
     protected $url;
     protected $query_strings = ['page'];
 
-    public static function bootLaraCmsSeoTrait()
+    public static function bootMaguttiCmsSeoTrait()
     {
         static::created(function($item){
             // Index the itemcompo

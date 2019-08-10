@@ -1,31 +1,31 @@
 /*	colors	*/
 
-$color-background:		white;
+$color-background: white;
 
-$color-text:			#333;
-$color-text-contrast:	white; // used in contrast with primary and secondary color
+$color-text: #333;
+$color-text-contrast: white; // used in contrast with primary and secondary color
 
-$color-primary:			#327D64;
-$color-secondary:		#465366;
-$color-accent:			#e8c52d;
-$color-4:				#cbcbcb;
-$color-5:				#f0f0f0;
+$color-primary: #337d64;
+$color-secondary: #465366;
+$color-accent: #e8c52d;
+$color-4: #cbcbcb;
+$color-5: #f0f0f0;
 
-$color-price-discount:	#08a643;
+$color-price-discount: #08a643;
 
 /*	font families	*/
 
-$font-family-text: 		"Open Sans", sans-serif;
-$font-family-title: 	"Railway", sans-serif;
-$font-family-subtitle: 	$font-family-text;
-$font-family-icons:		"Font Awesome 5 Free";
+$font-family-text: "Open Sans", sans-serif;
+$font-family-title: "Raleway", sans-serif;
+$font-family-subtitle: $font-family-text;
+$font-family-icons: 'Font Awesome 5 Free';
 
 /*	boders 	*/
 
-$border-width:                1px;
-$border-color:                $color-4;
+$border-width: 1px;
+$border-color: $color-4;
 
-$border-radius:               0;
+$border-radius: 0;
 
 /*	grid	*/
 

@@ -2,24 +2,21 @@
 
 namespace App\maguttiCms\Website\Controllers;
 
-
-use App\Http\Controllers\Controller;
-use Input;
-use Validator;
-
-use hisorange\BrowserDetect\Facade as Browser;
-
-use Domain;
-use App\Product;
 use App\FaqCategory;
-use  \App\maguttiCms\SeoTools\LaraCmsSeoTrait;
 use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 use App\maguttiCms\Website\Repos\News\NewsRepositoryInterface;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+use Input;
+use Validator;
+use App\Article;
+use App\News;
+use App\Product;
+use Domain;
 
 class PagesController extends Controller
 {
-
-    use LaraCmsSeoTrait;
+	use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
 	/**
 	* @var
 	*/
@@ -50,7 +47,9 @@ class PagesController extends Controller
 		$this->newsRepo    = $news;
 	}
 
-
+	/**
+	* @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	*/
 	public function home()
 	{
 		$article = $this->articleRepo->getBySlug('home');
@@ -58,6 +57,10 @@ class PagesController extends Controller
 		return view('website.home', compact('article'));
 	}
 
+	/**
+	* @param $slug
+	* @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	*/
 	public function pages($parent, $child='')
 	{
 		$article = (!$child) ? $this->articleRepo->getParentPage($parent, app()->getLocale()) : $this->articleRepo->getSubPage($parent, $child);
@@ -77,7 +80,10 @@ class PagesController extends Controller
 		}
 	}
 
-
+	/**
+	* @param int $parameter
+	* @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	*/
 	public function contacts()
 	{
 		$article = $this->articleRepo->getBySlug('contatti');
@@ -92,7 +98,10 @@ class PagesController extends Controller
 		}
 	}
 
-	
+	/**
+	* @param string $slug
+	* @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	*/
 	public function news($slug = '')
 	{
 		$article = $this->articleRepo->getBySlug('news');

@@ -18,9 +18,16 @@ trait AdminRelationsSaverTrait
 		foreach ($this->getMultipleRelation() as $key => $value) {
 			$value = collect($value);
 			$method = $this->getRelationSaveMethod($key, $value);
+
 			if (method_exists($model, $method)) {
 				if (!$value->has('roles') || auth_user('admin')->hasRole($value->get('roles'))) {
-					$model->{$method}($this->request->get($key));
+				    if($this->relationMethodAsAbility($model,$method)){
+                        $methodAbility = $this->getRelationMethodGetAbility($method);
+                        if($model->{$methodAbility}( $this->request->get($key) )){
+                            $model->{$method}($this->request->get($key));
+                        };
+                    }
+				    else $model->{$method}($this->request->get($key));
 				}
 			}
 		};
@@ -35,4 +42,16 @@ trait AdminRelationsSaverTrait
 	{
 		return collect($this->fieldSpecs)->where('type', '=', 'relation')->where('multiple', 1)->all();
 	}
+
+	public function relationMethodAsAbility($model,$method)
+    {
+        $Reflector = new \ReflectionClass($model);
+        return $Reflector->hasMethod($this->getRelationMethodGetAbility($method));
+    }
+
+    public function getRelationMethodGetAbility($method)
+    {
+        return $method."Ability";
+    }
+
 }

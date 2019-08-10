@@ -1,6 +1,9 @@
-// PB filter
-// mostra o nasconde elemnti del dom mentre digiti
-//
+/***************************************************/
+/* PB Filter                                      */
+/* Version: 1.1                                    */
+/* Author: Paolo Bonacina                          */
+/***************************************************/
+
 // UTILIZZO:
 // 1.	Associare la classe "pbf-group" al contenitore di un gruppo di input o select
 // 2.	Allo stesso elemento associare l'attributo "data-filter" contenente il selettore jquery degli elementi del dom che si desidera filtrare
@@ -22,136 +25,189 @@
 // Quando il filtro viene avviato, per la pressione del controllo dedicato o perché vengono cambiati i valori nei campi di input, il sistema nasconde tutti gli elementi e mostra solo quelli che rispondono ai valori inseriti dall'utente
 
 //	costanti di configurazione
-var GROUPS = '.pbf-group',
-	FILTERS = '.pbf-filter',
-	FILTER_TEXT = '.pbf-text',
-	FILTER_LIKE = '.pbf-like',
-	FILTER_CHECKED = '.pbf-checked',
-	FILTER_LIMIT = '.pbf-limit',
-	BUTTONS = '.pbf-button',
-	RESETS = '.pbf-reset';
-HIDE_CLASS = 'd-none';
+const DEFAULT_FILTERS = '.pbf-filter',
+	DEFAULT_FILTER_TEXT = '.pbf-text',
+	DEFAULT_FILTER_LIKE = '.pbf-like',
+	DEFAULT_FILTER_CHECKED = '.pbf-checked',
+	DEFAULT_FILTER_LIMIT = '.pbf-limit',
+	DEFAULT_BUTTONS = '.pbf-button',
+	DEFAULT_RESETS = '.pbf-reset',
+	DEFAULT_HIDE_CLASS = 'd-none',
+	DEFAULT_ON_COMPLETE = false;
 
-function init_filters() {
-	//	recupero i gruppi
-	$(GROUPS).each(function () {
-		var elem = $(this);
-		//	recupero il selettore degli elementi da filtrare
-		var target = elem.data("filter");
-		//	trovo il pulsante che attiva il filtro
-		var button = elem.find(BUTTONS);
-		//	trovo il pulsante che reimposta il filtro
-		var reset = elem.find(RESETS);
-		//	evento click
-		button.click(function (e) {
-			e.preventDefault();
+let default_config = {
+	hide_class: DEFAULT_HIDE_CLASS,
+	on_complete: DEFAULT_ON_COMPLETE
+};
 
-			var values = {};
-			var values_or = {};
+// returns a config value, or its default
+function pbfConfigDefault(var_value, default_value) {
+	return (var_value) ? var_value : default_value;
+}
 
-			//	costruisco una lista di classi da filtrare
-			elem.find(FILTERS).each(function () {
-				if ($(this).val() != "")
-					if ($(this).data('pbf-operation') == 'or')
-						values_or[$(this).attr('name')] = $(this).val();
-					else {
-						values[$(this).attr('name')] = $(this).val();
-					}
-			});
+// used to print errors in console
+function pbfError(content, check) {
+	check = check || false;
+	if (!check) {
+		console.error('PB Filter - ERROR:');
+		console.error(content);
+	}
+}
 
-			elem.find(FILTER_CHECKED).each(function () {
-				if ($(this).is(':checked')) {
-					if ($(this).data('pbf-operation') == 'or')
-						values_or[$(this).attr('name')] = $(this).val();
-					else
-						values[$(this).attr('name')] = $(this).val();
-				}
-			});
+// reads a configuration object and fires errors for required parameters
+function pbfReadConfig(config_object) {
+	let config = {};
+	config = $.extend(config, default_config, config_object);
 
-			//	nascondo tutti gli elementi e mostro le classi trovate
-			$(target).addClass(HIDE_CLASS);
-			if (Object.keys(values).length || Object.keys(values_or).length) {
-				var values_string = '';
-				$.each(values, function (k, v) {
-					values_string += '[data-' + k + '="' + v + '"]';
-				});
-				if (Object.keys(values_or).length)
-					$.each(values_or, function (k, v) {
-						$(target + values_string + '[data-' + k + '="' + v + '"]').removeClass(HIDE_CLASS);
-					});
-				else
-					$(target + values_string).removeClass(HIDE_CLASS);
-			} else {
-				$(target).removeClass(HIDE_CLASS);
-			}
+	pbfError('Filter group missing', config.group);
+	pbfError('Filter target missing', config.target);
 
-			//	filtro ulteriormente per i filtri testo
-			elem.find(FILTER_TEXT).each(function () {
-				var filter = $(this);
-				var filter_value = parseInt(filter.val(), 10);
-				$(target).each(function () {
-					var item_value = $(this).text();
-					if (item_value.indexOf(filter_value) == -1)
-						$(this).addClass(HIDE_CLASS);
-				});
-			});
+	return config;
+}
 
-			//	filtro ulteriormente per i filtri limite
-			elem.find(FILTER_LIMIT).each(function () {
-				var filter = $(this);
-				var filter_value = parseInt(filter.val(), 10);
-				var filter_name = filter.attr('name');
-				var filter_limit = filter.data('limit');
-				$(target).each(function () {
-					var item_value = parseInt($(this).data(filter_name), 10);
-					switch (filter_limit) {
-						case 'min':
-							if (item_value < filter_value)
-								$(this).addClass(HIDE_CLASS);
-							break;
-						case 'max':
-							if (item_value > filter_value)
-								$(this).addClass(HIDE_CLASS);
-							break;
-					}
-				});
-			});
+function pbfAddEvents(config, group) {
+	//	trovo il pulsante che attiva il filtro
+	var buttons = group.find(DEFAULT_BUTTONS);
+	//	trovo il pulsante che reimposta il filtro
+	var resets = group.find(DEFAULT_RESETS);
 
-			// filtro ulteriormente per i filtri like
-			elem.find(FILTER_LIKE).each(function () {
-				var filter = $(this);
-				var filter_value = filter.val().toLowerCase();
-				var filter_name = filter.attr('name');
-				if (filter_value)
-					$(target).each(function () {
-						if ($(this).data(filter_name) != null) {
-							var item_value = $(this).data(filter_name).toString().toLowerCase();
-							if (item_value.toString().indexOf(filter_value) == -1)
-								$(this).addClass(HIDE_CLASS);
-						}
-					});
-			});
-		});
+	buttons.on('click.pbf', function (e) {
+		e.preventDefault();
+		pbfFilterElements(config, group);
+	});
 
-		elem.find(FILTERS + ',' + FILTER_CHECKED + ',' + FILTER_LIMIT).change(function () {
-			elem.find(BUTTONS).click();
-		});
+	group.find(DEFAULT_FILTERS + ',' + DEFAULT_FILTER_CHECKED + ',' + DEFAULT_FILTER_LIMIT).on('change.pbf input.pbf', function () {
+		group.find(DEFAULT_BUTTONS).trigger('click.pbf');
+	});
 
-		elem.find(FILTER_LIKE).keyup(function () {
-			elem.find(BUTTONS).click();
-		});
+	group.find(DEFAULT_FILTER_LIKE).on('keyup.pbf', function () {
+		group.find(DEFAULT_BUTTONS).trigger('click.pbf');
+	});
 
-		reset.click(function (e) {
-			e.preventDefault();
-			elem.find(FILTERS).val('');
-			elem.find(FILTER_LIKE).val('');
-			elem.find(FILTER_LIMIT).val('');
-			elem.find(FILTER_CHECKED).prop('checked', false).trigger('change');
-			button.click();
-		});
+	resets.on('click.pbf', function (e) {
+		e.preventDefault();
+		group.find(DEFAULT_FILTERS).val('');
+		group.find(DEFAULT_FILTER_LIKE).val('');
+		group.find(DEFAULT_FILTER_LIMIT).val('');
+		group.find(DEFAULT_FILTER_CHECKED).prop('checked', false).trigger('change.pbf');
+		group.find(DEFAULT_BUTTONS).trigger('click.pbf');
 	});
 }
 
-$(function () {
-	init_filters();
-});
+function pbfInit(config) {
+	//	recupero i gruppi
+	let group = $(config.group);
+
+	if (!group.length) {
+		pbfError('Filter group not found');
+	}
+	pbfAddEvents(config, group);
+}
+
+function pbfFilterElements(config, group) {
+	let values = {};
+	let values_or = {};
+
+	//	costruisco una lista di classi da filtrare
+	group.find(DEFAULT_FILTERS).each(function () {
+		if ($(this).val() != '') {
+			if ($(this).data('pbf-operation') == 'or')
+				values_or[$(this).attr('name')] = $(this).val();
+			else {
+				values[$(this).attr('name')] = $(this).val();
+			}
+		}
+	});
+
+	group.find(DEFAULT_FILTER_CHECKED).each(function () {
+		if ($(this).is(':checked')) {
+			if ($(this).data('pbf-operation') == 'or')
+				values_or[$(this).attr('name')] = $(this).val();
+			else
+				values[$(this).attr('name')] = $(this).val();
+		}
+	});
+
+	//	nascondo tutti gli elementi e mostro le classi trovate
+	$(config.target).addClass(config.hide_class);
+	if (Object.keys(values).length || Object.keys(values_or).length) {
+		let values_string = '';
+		$.each(values, function (k, v) {
+			values_string += '[data-' + k + '="' + v + '"]';
+		});
+		if (Object.keys(values_or).length)
+			$.each(values_or, function (k, v) {
+				$(config.target + values_string + '[data-' + k + '="' + v + '"]').removeClass(config.hide_class);
+			});
+		else
+			$(config.target + values_string).removeClass(config.hide_class);
+	} else {
+		$(config.target).removeClass(config.hide_class);
+	}
+
+	//	filtro ulteriormente per i filtri testo
+	group.find(DEFAULT_FILTER_TEXT).each(function () {
+		let filter = $(this);
+		let filter_value = parseInt(filter.val(), 10);
+		$(config.target).each(function () {
+			let item_value = $(this).text();
+			if (item_value.indexOf(filter_value) == -1)
+				$(this).addClass(config.hide_class);
+		});
+	});
+
+	//	filtro ulteriormente per i filtri limite
+	group.find(DEFAULT_FILTER_LIMIT).each(function () {
+		let filter = $(this);
+		let filter_value = parseInt(filter.val(), 10);
+		let filter_name = filter.attr('name');
+		let filter_limit = filter.data('limit');
+		$(config.target).each(function () {
+			let item_value = parseInt($(this).data(filter_name), 10);
+			switch (filter_limit) {
+			case 'min':
+				if (item_value < filter_value)
+					$(this).addClass(config.hide_class);
+				break;
+			case 'max':
+				if (item_value > filter_value)
+					$(this).addClass(config.hide_class);
+				break;
+			}
+		});
+	});
+
+	// filtro ulteriormente per i filtri like
+	group.find(DEFAULT_FILTER_LIKE).each(function () {
+		let filter = $(this);
+		let filter_value = filter.val().toLowerCase();
+		let filter_name = filter.attr('name');
+		if (filter_value) {
+			$(config.target).each(function () {
+				if ($(this).data(filter_name) != null) {
+					let item_value = $(this).data(filter_name).toString().toLowerCase();
+					if (item_value.toString().indexOf(filter_value) == -1) {
+						$(this).addClass(config.hide_class);
+					}
+				}
+			});
+		}
+	});
+
+	if (typeof config.callback == 'function') {
+		let unfiltered = $(config.target);
+		let filtered = unfiltered.not('.' + config.hide_class);
+
+		config.callback.call(group, unfiltered, filtered);
+	}
+}
+
+// functionality initialization
+(function ($) {
+	$.pbfFilter = function (config_object) {
+		// read configuration object and fire errors
+		let config = pbfReadConfig(config_object);
+
+		pbfInit(config);
+	};
+}(jQuery));

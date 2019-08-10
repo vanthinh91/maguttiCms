@@ -49,6 +49,7 @@ return [
 		'is_active'		=> 'Status',
 		'languages'		=> 'Languages',
 		'last_name'		=> 'Surname',
+        'level'		    => 'Level',
 		'link'			=> 'Link',
 		'list'			=> 'View list',
 		'list_title'	=> '%s list',

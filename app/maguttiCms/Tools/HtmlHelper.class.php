@@ -50,6 +50,9 @@ class HtmlHelper {
 			case 'mi':
 				$output = '<i class="material-icons '.$str_classes.'">'.$arr_icons[0].'</i>';
 				break;
+			case 'mdi':
+				$output = '<i class="mdi mdi-'.$arr_icons[0].' '.$str_classes.'"></i>';
+				break;
 			default:
 				if ((count($arr_icons) == 1)) {
 					//simple icon

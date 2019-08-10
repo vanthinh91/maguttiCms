@@ -6,11 +6,8 @@
 	<div class="dropdown-menu dropdown-menu-right">
 		@foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
 			@if (LaravelLocalization::getCurrentLocale() != $localeCode)
-				@if (isset($current_page) && !$current_page->ignore_slug_translation)
-					@php
-						$article_locale = (isset($locale_article)) ? $locale_article : $current_page;
-					@endphp
-					<a class="dropdown-item" href="{{LaravelLocalization::getLocalizedURL($localeCode, $article_locale->getPermalink($localeCode))}}">
+				@if ($locale_article && !$locale_article->ignore_slug_translation)
+					<a class="dropdown-item" href="{{LaravelLocalization::getLocalizedURL($localeCode, $locale_article->getPermalink($localeCode))}}">
 						{{$properties['native']}}
 					</a>
 				@else
