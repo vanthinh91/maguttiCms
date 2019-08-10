@@ -204,14 +204,15 @@ class News extends Model
             'display'  => 1
         ];
         $this->fieldspec['seo_title'] = [
-            'type'     => 'string',
-            'required' => 'n',
+            'type'     => 'seo_string',
+            'required' => 0,
             'hidden'   => 0,
             'label'    => trans('admin.seo.title'),
             'display'  => 1,
+            'max'      => 65
         ];
         $this->fieldspec['seo_description'] = [
-            'type'     => 'text',
+            'type'     => 'seo_text',
             'size'     => 600,
             'h'        => 300,
             'hidden'   => 0,
