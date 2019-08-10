@@ -36,6 +36,7 @@ class AdminFormFieldsProcessor
     {
         $field = '';
         $this->fieldSpecs = collect($model->getFieldspec());
+        //dd($this->request->all());
         foreach ($model->getFillable() as $field) {
             if ($this->request->has($field)) {
                 $model->$field = $this->request->get($field);

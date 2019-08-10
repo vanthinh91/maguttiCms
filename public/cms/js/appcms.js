@@ -1723,6 +1723,82 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CheckGridComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CheckGridComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['data', 'field', 'value'],
+  data: function data() {
+    return {
+      items: {},
+      selectedItems: [],
+      allSelected: false
+    };
+  },
+  mounted: function mounted() {
+    this.items = this.data;
+    this.selectedItems = this.value;
+    this.setSelected();
+  },
+  methods: {
+    selectAll: function selectAll() {
+      for (var item in this.items) {
+        this.items[item].active = this.allSelected;
+      }
+    },
+    setSelected: function setSelected() {
+      for (var item in this.items) {
+        this.items[item].active = this.selectedItems.includes(this.items[item].id);
+      }
+    },
+    select: function select() {
+      this.allSelected = false;
+    },
+    actionSelect: function actionSelect(status) {
+      this.allSelected = status;
+      this.selectAll();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/ClearableInputComponent.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/ClearableInputComponent.vue?vue&type=script&lang=js& ***!
@@ -2729,6 +2805,194 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (this && this.clearImmediate);
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CheckGridComponent.vue?vue&type=template&id=afa4f24c&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CheckGridComponent.vue?vue&type=template&id=afa4f24c& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass:
+        "col-xs-12 location-set-multi-checkboxes-container bg-light p-3 border rounded"
+    },
+    [
+      _c("div", { staticClass: "btn-group mb-2" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-info", attrs: { type: "button" } },
+          [
+            _c("span", { staticClass: "city-name" }, [_vm._v("Select")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.allSelected,
+                  expression: "allSelected"
+                }
+              ],
+              staticClass: "checkbox-inline",
+              attrs: { type: "checkbox" },
+              domProps: {
+                checked: Array.isArray(_vm.allSelected)
+                  ? _vm._i(_vm.allSelected, null) > -1
+                  : _vm.allSelected
+              },
+              on: {
+                change: [
+                  function($event) {
+                    var $$a = _vm.allSelected,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 && (_vm.allSelected = $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          (_vm.allSelected = $$a
+                            .slice(0, $$i)
+                            .concat($$a.slice($$i + 1)))
+                      }
+                    } else {
+                      _vm.allSelected = $$c
+                    }
+                  },
+                  _vm.selectAll
+                ]
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "dropdown-menu dropdown-menu-right" }, [
+          _c(
+            "a",
+            {
+              staticClass: "dropdown-item",
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.actionSelect(true)
+                }
+              }
+            },
+            [_vm._v("Select All")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "dropdown-item",
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.actionSelect(false)
+                }
+              }
+            },
+            [_vm._v(" Deselect All")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row" },
+        _vm._l(_vm.items, function(item) {
+          return _c("div", { staticClass: "col-xs-12 col-sm-6 col-lg-4" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: item.active,
+                  expression: "item.active"
+                }
+              ],
+              attrs: { name: _vm.field + "[]", type: "checkbox" },
+              domProps: {
+                value: item.id,
+                checked: Array.isArray(item.active)
+                  ? _vm._i(item.active, item.id) > -1
+                  : item.active
+              },
+              on: {
+                click: _vm.select,
+                change: function($event) {
+                  var $$a = item.active,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = item.id,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && _vm.$set(item, "active", $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          item,
+                          "active",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(item, "active", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" " + _vm._s(item.title) + "\n        ")
+          ])
+        }),
+        0
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-info dropdown-toggle dropdown-toggle-split",
+        attrs: {
+          type: "button",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [_c("span", { staticClass: "sr-only" }, [_vm._v("Toggle")])]
+    )
+  }
+]
+render._withStripped = true
+
+
 
 /***/ }),
 
@@ -15497,7 +15761,8 @@ __webpack_require__.r(__webpack_exports__);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // const files = require.context('./', true, /\.vue$/i);
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+window.$eventBus = new Vue(); // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 
@@ -15509,6 +15774,7 @@ Vue.component('seo-text-component', __webpack_require__(/*! ./../components/admi
 Vue.component('clearable-input-component', __webpack_require__(/*! ./../components/admin/ClearableInputComponent */ "./resources/js/components/admin/ClearableInputComponent.vue")["default"]);
 Vue.component('generator-input-component', _components_admin_GeneratorInputComponent__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.component('list-component', _components_admin_ListComponent__WEBPACK_IMPORTED_MODULE_1__["default"]);
+Vue.component('checkbox-grid-component', __webpack_require__(/*! ./../components/admin/CheckGridComponent */ "./resources/js/components/admin/CheckGridComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -15518,6 +15784,75 @@ Vue.component('list-component', _components_admin_ListComponent__WEBPACK_IMPORTE
 var app = new Vue({
   el: '#app'
 });
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/CheckGridComponent.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/admin/CheckGridComponent.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CheckGridComponent_vue_vue_type_template_id_afa4f24c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CheckGridComponent.vue?vue&type=template&id=afa4f24c& */ "./resources/js/components/admin/CheckGridComponent.vue?vue&type=template&id=afa4f24c&");
+/* harmony import */ var _CheckGridComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckGridComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/CheckGridComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CheckGridComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CheckGridComponent_vue_vue_type_template_id_afa4f24c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CheckGridComponent_vue_vue_type_template_id_afa4f24c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/CheckGridComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/CheckGridComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/admin/CheckGridComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckGridComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckGridComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CheckGridComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckGridComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/CheckGridComponent.vue?vue&type=template&id=afa4f24c&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/admin/CheckGridComponent.vue?vue&type=template&id=afa4f24c& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckGridComponent_vue_vue_type_template_id_afa4f24c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckGridComponent.vue?vue&type=template&id=afa4f24c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CheckGridComponent.vue?vue&type=template&id=afa4f24c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckGridComponent_vue_vue_type_template_id_afa4f24c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckGridComponent_vue_vue_type_template_id_afa4f24c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

@@ -88,6 +88,8 @@ class Example extends Model
         }
     }
 
+
+
     public function media()
     {
         return $this->morphMany('App\Media', 'model');
@@ -171,12 +173,12 @@ class Example extends Model
             'display'     => 1,
         ];
         $this->fieldspec['example_articles'] = [
-            'type'          => 'relation',
+            'type'          => 'relation_checkboxes',
             'model'         => 'Article',
             'relation_name' => 'articles',
             'foreign_key'   => 'id',
             'label_key'     => 'title',
-            'label'         => 'Multiple relation',
+            'label'         => ' CheckBoxes Multiple relation',
             'required'      => 0,
             'display'       => 1,
             'hidden'        => 0,
@@ -184,6 +186,9 @@ class Example extends Model
             'relationSaveMethod' =>'saveArticles',
 			'order_raw'		=> 'FIELD(id, %s)',
         ];
+
+
+
         $this->fieldspec['title'] = [
             'type'     => 'string',
             'required' => 1,
@@ -254,6 +259,7 @@ class Example extends Model
             'cssClass' => 'wyswyg',
             'display'  => 1,
         ];
+
         $this->fieldspec['image'] = [
             'type'      => 'media',
             'required'  => 0,

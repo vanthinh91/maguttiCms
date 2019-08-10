@@ -194,6 +194,11 @@ class AdminForm {
             $objRelation = $this->getRelation( $selected );
 			$formElement = $this->getComboRelation($objRelation,$key,$value,$selected);
 		}
+        elseif ($this->property['type'] =='relation_checkboxes' && $this->property['display']) {
+            $objRelation   = $this->getRelation();
+            $selected      = $this->model->{$this->property['relation_name']}->pluck('id')->toArray();
+            $formElement   = view('admin.inputs.relation_checkboxes', ['properties' => $this->property, 'objRelation' => $objRelation , 'selected' => $selected, 'key' => $key]);
+        }
 		elseif ($this->property['type'] =='relation_set' && $this->property['display']) {
 		    $selected = ($value!='')?explode(',',$value):'';
             $objRelation = $this->getRelation( $selected );

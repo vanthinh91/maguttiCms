@@ -1,4 +1,5 @@
 
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -7,6 +8,9 @@
 
 
 window.Vue = require('vue');
+
+window.$eventBus = new Vue();
+
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 import GeneratorInputComponent from './../components/admin/GeneratorInputComponent';
@@ -22,6 +26,7 @@ Vue.component('clearable-input-component', require('./../components/admin/Cleara
 
 Vue.component('generator-input-component', GeneratorInputComponent);
 Vue.component('list-component', ListComponent);
+Vue.component('checkbox-grid-component', require('./../components/admin/CheckGridComponent').default);
 
 
 

@@ -20,6 +20,7 @@ trait AdminRelationsSaverTrait
 			$method = $this->getRelationSaveMethod($key, $value);
 
 			if (method_exists($model, $method)) {
+
 				if (!$value->has('roles') || auth_user('admin')->hasRole($value->get('roles'))) {
 				    if($this->relationMethodAsAbility($model,$method)){
                         $methodAbility = $this->getRelationMethodGetAbility($method);
@@ -40,7 +41,7 @@ trait AdminRelationsSaverTrait
 
 	public function getMultipleRelation()
 	{
-		return collect($this->fieldSpecs)->where('type', '=', 'relation')->where('multiple', 1)->all();
+		return collect($this->fieldSpecs)->whereIn('type',['relation_checkboxes','relation'])->where('multiple', 1)->all();
 	}
 
 	public function relationMethodAsAbility($model,$method)
