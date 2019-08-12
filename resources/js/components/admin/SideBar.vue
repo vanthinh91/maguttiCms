@@ -25,7 +25,6 @@
         },
 
         mounted() {
-            console.log('Side Bar  mounted.')
 
         },methods: {
             fetchData: function () {

@@ -17,7 +17,6 @@
             }
         },
         mounted() {
-            console.log('Side Bar sub menu mounted.')
 
         }, methods: {
             fetchData: function () {
@@ -40,7 +39,6 @@
                 let section = this.currentSection;
                 this.item.submenu.forEach(function (item) {
                     if(item.section===section) open=true;
-                    console.log(item.section+' '+section)
                 });
                 this.open=open
             },

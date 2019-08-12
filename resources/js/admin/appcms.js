@@ -26,7 +26,7 @@ Vue.component('clearable-input-component', require('./../components/admin/Cleara
 
 Vue.component('generator-input-component', GeneratorInputComponent);
 Vue.component('list-component', ListComponent);
-Vue.component('checkbox-grid-component', require('./../components/admin/CheckGridComponent').default);
+Vue.component('checkbox-grid-component', require('../components/admin/CheckBoxesGrid/CheckGridComponent').default);
 
 
 
