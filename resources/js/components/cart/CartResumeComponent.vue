@@ -11,6 +11,7 @@
                 <th>{{$t('store.cart.table.name')}}</th>
                 <th class="width-10">{{$t('store.cart.table.quantity')}}</th>
                 <th class="width-10">{{$t('store.cart.table.price')}}</th>
+                <th class="width-10">{{$t('store.cart.total')}}</th>
                 <th class="width-10">{{$t('store.cart.table.actions')}}</th>
             </tr>
             </thead>
