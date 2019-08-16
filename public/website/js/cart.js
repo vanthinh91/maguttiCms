@@ -1903,10 +1903,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_store__WEBPACK_IMPORTED_MODULE_0__["default"]],
-  props: ['product', 'min', 'max'],
+  props: {
+    product: Object,
+    max: {
+      type: Number,
+      "default": Infinity
+    },
+    min: {
+      type: Number,
+      "default": -Infinity
+    }
+  },
   data: function data() {
     return {
       quantity: 1
@@ -1918,6 +1940,38 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     url: function url() {
       return "".concat(this.baseUrl, "cart-item-add");
+    },
+    decrease: function decrease() {
+      var quantity = this.quantity;
+
+      if (isNaN(quantity)) {
+        quantity = this.min;
+      }
+
+      if (quantity > this.min) {
+        quantity--;
+      } else this.disabele = true;
+
+      this.quantity = quantity;
+    },
+    increase: function increase() {
+      var quantity = this.quantity;
+
+      if (isNaN(quantity)) {
+        quantity = this.min;
+      }
+
+      if (quantity == this.max) {
+        quantity--;
+      }
+
+      this.quantity++;
+    },
+    change: function change(event) {
+      this.quantity = Math.min(this.max, Math.max(this.min, event.target.value));
+    },
+    paste: function paste(event) {
+      this.quantity = Math.min(this.max, Math.max(this.min, event.target.value));
     }
   },
   mounted: function mounted() {
@@ -4277,33 +4331,54 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "form-inline" }, [
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.quantity,
-          expression: "quantity"
-        }
-      ],
-      staticClass: "form-control cart-item-quantity mr-2 my-1",
-      attrs: { type: "number", min: _vm.min, autocomplete: "off" },
-      domProps: { value: _vm.quantity },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
+  return _c("div", { staticClass: "form col-6" }, [
+    _c("div", { staticClass: "input-group" }, [
+      _c(
+        "div",
+        { staticClass: "input-group-prepend", on: { click: _vm.decrease } },
+        [_c("span", { staticClass: "input-group-text" }, [_vm._v("-")])]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.quantity,
+            expression: "quantity"
           }
-          _vm.quantity = $event.target.value
+        ],
+        staticClass: "form-control text-center",
+        attrs: {
+          type: "number",
+          min: _vm.min,
+          autocomplete: "off",
+          "aria-label": "Amount (to the nearest dollar)"
+        },
+        domProps: { value: _vm.quantity },
+        on: {
+          change: _vm.change,
+          paste: _vm.paste,
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.quantity = $event.target.value
+          }
         }
-      }
-    }),
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "input-group-append", on: { click: _vm.increase } },
+        [_c("span", { staticClass: "input-group-text" }, [_vm._v("+")])]
+      )
+    ]),
     _vm._v(" "),
     _c(
       "a",
       {
-        staticClass: "btn btn-primary my-1",
+        staticClass: "btn btn-primary my-1 btn-block",
         attrs: { href: "#" },
         on: { click: _vm.addProductToCart }
       },

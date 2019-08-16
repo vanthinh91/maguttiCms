@@ -170,12 +170,20 @@ class StoreHelper {
 		if ($cart_item)
 			return [
 				'cart'       => $cart,
-				'cart_items'  => $cart->cart_items()->with('product')->get(),
+				'cart_items' => self::getCartItems(),
 				'cart_count' => self::getCartItemCount($cart)
 			];
 		else
 			return false;
 	}
+    static function getCartItems(){
+        $cart = StoreHelper::getSessionCart();
+        return  ($cart) ? $cart->cart_items()->list()->get()->map(function ($item) {
+            $item->product->thumb_image=$item->product->getThumbImage();
+            $item->product->url=$item->product->getPermalink();
+            return $item;
+        }):$cart_items = collect([]);
+    }
 
 	// remove item from cart
 	public static function cartItemRemove($cart_item_id)
@@ -580,12 +588,5 @@ class StoreHelper {
 		}
 	}
 
-	static function getCartItems(){
-        $cart = StoreHelper::getSessionCart();
-        return  ($cart) ? $cart->cart_items()->list()->get()->map(function ($item) {
-                $item->product->thumb_image=$item->product->getThumbImage();
-                $item->product->url=$item->product->getPermalink();
-                return $item;
-            }):$cart_items = collect([]);
-    }
+
 }

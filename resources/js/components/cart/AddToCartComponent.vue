@@ -1,8 +1,20 @@
 <template>
-    <div class="form-inline">
-        <input class="form-control cart-item-quantity mr-2 my-1" type="number" v-model="quantity" :min="min"
-               autocomplete="off">
-        <a href="#" class="btn btn-primary my-1" @click="addProductToCart">
+    <div class="form col-6">
+        <div class="input-group">
+            <div class="input-group-prepend" @click="decrease">
+                <span class="input-group-text">-</span>
+            </div>
+            <input type="number"
+                   v-model="quantity" :min="min"
+                   @change="change"
+                   @paste="paste"
+                   autocomplete="off" class="form-control text-center" aria-label="Amount (to the nearest dollar)">
+            <div class="input-group-append" @click="increase">
+                <span class="input-group-text">+</span>
+            </div>
+        </div>
+
+        <a href="#" class="btn btn-primary my-1 btn-block" @click="addProductToCart">
             <slot name="label"></slot>
         </a>
     </div>
@@ -12,10 +24,20 @@
     import cartHelper  from '../../mixins/store';
     export default {
         mixins: [cartHelper],
-        props: ['product', 'min', 'max'],
+        props: {
+            product: Object,
+            max: {
+                type: Number,
+                default: Infinity,
+            },
+            min: {
+                type: Number,
+                default: -Infinity,
+            }
+        },
         data() {
             return {
-                quantity: 1
+                quantity: 1,
             }
         },
         created() {
@@ -24,6 +46,35 @@
         methods: {
             url() {
                 return `${this.baseUrl}cart-item-add`;
+            },
+            decrease() {
+                let {quantity} = this;
+                if (isNaN(quantity)) {
+                    quantity = this.min;
+                }
+                if (quantity > this.min) {
+                    quantity--;
+                }
+                else this.disabele=true
+
+                this.quantity = quantity
+            },
+            increase() {
+                let {quantity} = this;
+                if (isNaN(quantity)) {
+                    quantity = this.min;
+                }
+                if (quantity == this.max) {
+                    quantity--;
+                }
+                this.quantity++;
+            },
+            change(event) {
+                this.quantity = Math.min(this.max, Math.max(this.min, event.target.value));
+
+            },
+            paste(event) {
+                this.quantity = Math.min(this.max, Math.max(this.min, event.target.value));
             },
         },
         mounted() {
