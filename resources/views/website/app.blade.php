@@ -29,7 +29,7 @@
     {{-- @include('website.partials.iubenda_banner') --}}
 </head>
 <body>
-
+<div id="app">
     {{-- Navbar --}}
     @include('website.partials.navbar')
 
@@ -38,7 +38,7 @@
 
     {{-- Footer --}}
     @include('website.partials.footer')
-
+</div>
     {{-- default js to show in all pages --}}
     <script type="text/javascript">
         var urlAjaxHandler  = "{{ url_locale('/') }}";
@@ -71,11 +71,11 @@
 
     {{-- Store JS --}}
     @if (store_enabled())
-    <script type="text/javascript" src="{{ asset(mix('/website/js/store.js')) }}"></script>
+    <script type="text/javascript" src="{{ asset(mix('/website/js/cart.js')) }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
-            Store.init();
+            //Store.init();
         });
     </script>
     @endif

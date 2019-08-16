@@ -25,6 +25,10 @@ return [
 		'cart-item-remove' => [
 			'id' => 'required',
 		],
+        'cart-item-update' => [
+			'id' => 'required',
+            'quantity'     => 'required|numeric|min:1'
+		],
 
 		'order-submit' => [
 			'cart_id'             => 'required|numeric',

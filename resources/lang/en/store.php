@@ -28,6 +28,7 @@ return [
 
 	'items' => [
 		'add' => 'Add to cart',
+        'are_you_sure_to_remove' => 'Are you Sure to remove this item form your cart?',
 		'remove' => 'Remove from cart'
 	],
 

@@ -28,7 +28,8 @@ return [
 
 	'items' => [
 		'add' => 'Aggiungi al carrello',
-		'remove' => 'Rimuovi dal carrello'
+        'are_you_sure_to_remove' => 'Sei sicuro di voler rimuovere questo articolo dal carrello?',
+		'remove' => 'Rimuovi dal carrello',
 	],
 
 	'alerts' => [

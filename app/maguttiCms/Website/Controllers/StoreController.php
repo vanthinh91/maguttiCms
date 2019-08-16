@@ -16,11 +16,7 @@ class StoreController extends Controller
 
     public function cart() {
 		$cart = StoreHelper::getSessionCart();
-		if ($cart)
-			$cart_items = $cart->cart_items()->list()->get();
-		else
-			$cart_items = collect([]);
-
+		$cart_items = StoreHelper::getCartItems();
     	return view('website.store.cart', compact('cart', 'cart_items'));
     }
 

@@ -2,64 +2,79 @@
 
 namespace App\maguttiCms\Website\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\maguttiCms\Tools\JsonResponseTrait;
 use App\maguttiCms\Tools\StoreHelper;
 use App\maguttiCms\Website\Requests\AjaxFormRequest;
 
-class StoreAPIController extends Controller
+class StoreAPIController extends APIController
 {
 	private $response = [];
+    use JsonResponseTrait;
 
-	public function __construct() {
-		$this->response = [
-			'alerts' => []
-		];
-	}
+	public function __construct() {}
 
 	public function storeCartItemAdd(AjaxFormRequest $request)
 	{
-		$product_code = $request->product_code;
-		$quantity = max($request->quantity, 1);
-		$product_model_code = $request->product_model_code;
-
-		$result = StoreHelper::cartItemAdd($product_code, $quantity, $product_model_code);
+		$result = StoreHelper::cartItemAdd($request->only('product_code','quantity','product_model'));
 		if ($result) {
-			array_push($this->response['alerts'], [
+			$message= [
 				'text'	=> trans('store.alerts.add_success'),
 				'type'	=> 'success',
 				'time'	=> 3
-			]);
-			$this->response['cart_count'] = $result['cart_count'];
-		}
+			];
+            $this->setData($result)->responseSuccess();
+   		}
 		else {
-			array_push($this->response['alerts'], [
+            $message=  [
 				'text'	=> trans('store.alerts.add_fail'),
 				'type'	=> 'warning',
 				'time'	=> 5
-			]);
+			];
 		}
-		return response()->json($this->response);
+        return $this->setMsg($message)->apiResponse();
 	}
+
+
+    public function updateItemQuantity(AjaxFormRequest $request)
+    {
+        $result = StoreHelper::updateItemQuantity($request->only('id','quantity'));
+        if ($result) {
+            $message= [
+                'text'	=> trans('store.alerts.add_success'),
+                'type'	=> 'success',
+                'time'	=> 3
+            ];
+            $this->setData($result)->responseSuccess();
+        }
+        else {
+            $message=  [
+                'text'	=> trans('store.alerts.add_fail'),
+                'type'	=> 'warning',
+                'time'	=> 5
+            ];
+        }
+        return $this->setMsg($message)->apiResponse();
+    }
 
 	public function storeCartItemRemove(AjaxFormRequest $request)
 	{
-		$result = StoreHelper::cartItemRemove($request->id);
+	    $result = StoreHelper::cartItemRemove($request->id);
 		if ($result) {
-			array_push($this->response['alerts'], [
+			$message= [
 				'text'	=> trans('store.alerts.remove_success'),
 				'type'	=> 'success',
 				'time'	=> 3
-			]);
-			$this->response['cart_count'] = $result['cart_count'];
+			];
+            $this->setData($result)->responseSuccess();
 		}
 		else {
-			array_push($this->response['alerts'], [
+			$message=[
 				'text'	=> trans('store.alerts.remove_fail'),
 				'type'	=> 'warning',
 				'time'	=> 5
-			]);
+			];
 		}
-		return response()->json($this->response);
+        return $this->setMsg($message)->apiResponse();
 	}
 
 	public function storeOrderCalc(AjaxFormRequest $request)

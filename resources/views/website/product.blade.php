@@ -17,14 +17,9 @@
 					@if (StoreHelper::isStoreEnabled())
 						{{ trans('store.product.price') }}: {{ StoreHelper::formatProductPrice($product) }}
 						<hr>
-
-						<div class="form-inline">
-							<input class="form-control cart-item-quantity mr-2 my-1" type="number" name="quantity" value="1" min="1" autocomplete="off">
-
-							<a href="#" class="btn btn-primary cart-item-add my-1" data-product-code="{{$product->code}}" data-quantity="1">
-								{{ trans('store.items.add') }}
-							</a>
-						</div>
+						<cart-add-item :product="{{$product}}" :min="1">
+							<template #label>{{ trans('store.items.add') }}</template>
+						</cart-add-item>
 					@endif
 
 				</div>

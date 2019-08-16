@@ -156,24 +156,21 @@ class StoreHelper {
 	/////	CART ITEMS	/////
 
 	// add item from cart
-	public static function cartItemAdd($product_code, $quantity, $product_model_code = '')
+	public static function cartItemAdd($request)
 	{
-		$cart = self::getSessionCart();
-		if (!$cart)
-			$cart = self::cartCreate();
-
+		$cart = (self::getSessionCart())?:self::cartCreate();
+        $quantity = data_get($request,'quantity',1);
         $cart_item = CartItem::firstOrCreate([
             'cart_id'            => $cart->id,
-            'product_code'       => $product_code,
-            'product_model_code' => $product_model_code,
+            'product_code'       => $request['product_code'],
+            'product_model_code' => data_get($request,'product_model_code'),
 
         ]);
         $cart_item->increment('quantity',(int)$quantity);
-
 		if ($cart_item)
 			return [
 				'cart'       => $cart,
-				'cart_item'  => $cart_item,
+				'cart_items'  => $cart->cart_items()->with('product')->get(),
 				'cart_count' => self::getCartItemCount($cart)
 			];
 		else
@@ -199,6 +196,26 @@ class StoreHelper {
 		else
 			return false;
 	}
+
+    public static function updateItemQuantity($request)
+    {
+        $cart = self::getSessionCart();
+        if ($cart) {
+            $quantity = data_get($request,'quantity',1);
+            $cart_item = CartItem::find($request['id']);
+            if ($cart_item && $cart_item->cart_id == $cart->id) {
+                $cart_item->update(['quantity'=>$quantity]);
+                return [
+                    'cart'       => $cart,
+                    'cart_count' => self::getCartItemCount($cart)
+                ];
+            }
+            else
+                return false;
+        }
+        else
+            return false;
+    }
 
 	// empty the cart
 	public static function cartClear()
@@ -562,4 +579,9 @@ class StoreHelper {
 				break;
 		}
 	}
+
+	static function getCartItems(){
+        $cart = StoreHelper::getSessionCart();
+        return  ($cart) ? $cart->cart_items()->list()->get():$cart_items = collect([]);
+    }
 }

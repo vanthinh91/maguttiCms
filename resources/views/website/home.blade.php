@@ -53,6 +53,7 @@
 				<a href="#" class="btn btn-lg btn-outline-color-5">Custom button</a>
 			</div>
         </div>
+
     </section>
 
 @endsection

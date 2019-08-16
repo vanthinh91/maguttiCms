@@ -13,15 +13,15 @@ require('laravel-mix-merge-manifest');
  |
 */
 
-if (mix.config.production || mix.config.development) {
+//if (mix.config.production || mix.config.development) {
 	mix.sass('resources/sass/website/vendor.scss', 'public/website/css')
 	mix.js('resources/js/website/vendor.js', 'public/website/js')
 	mix.sass('resources/sass/admin/vendor.scss', 'public/cms/css/')
 	mix.js('resources/js/admin/cmsvendor.js', 'public/cms/js/cmsvendor.js')
 	mix.version();
-} else {
-	mix.config.processCssUrls = false;
-}
+//} else {
+	//mix.config.processCssUrls = false;
+//}
 
 /*
  |--------------------------------------------------------------------------
@@ -31,7 +31,8 @@ if (mix.config.production || mix.config.development) {
 
 mix.sass('resources/sass/website/app.scss', 'public/website/css')
 mix.js('resources/js/website/app.js', 'public/website/js')
-mix.js('resources/js/website/store.js', 'public/website/js');
+//mix.js('resources/js/website/store.js', 'public/website/js');
+mix.js('resources/js/website/cart.js', 'public/website/js');
 
 /*
 |--------------------------------------------------------------------------

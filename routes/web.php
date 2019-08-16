@@ -124,6 +124,7 @@ Route::group(['prefix' => 'api'], function () {
 	// store
 	Route::post('/store/cart-item-add',		'\App\maguttiCms\Website\Controllers\StoreAPIController@storeCartItemAdd');
 	Route::post('/store/cart-item-remove',	'\App\maguttiCms\Website\Controllers\StoreAPIController@storeCartitemRemove');
+    Route::post('/store/cart-item-update',	'\App\maguttiCms\Website\Controllers\StoreAPIController@updateItemQuantity');
 	Route::get('/store/order-calc',		'\App\maguttiCms\Website\Controllers\StoreAPIController@storeOrderCalc');
 	Route::get('/store/order-discount',	'\App\maguttiCms\Website\Controllers\StoreAPIController@storeOrderDiscount');
 });
