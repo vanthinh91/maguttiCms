@@ -4387,7 +4387,11 @@ var render = function() {
               _vm._v(" "),
               _vm._l(_vm.items, function(item, index) {
                 return _c("tr", [
-                  _c("td", [_vm._v("Image")]),
+                  _c("td", [
+                    _c("a", { attrs: { href: item.product.url } }, [
+                      _c("img", { attrs: { src: item.product.thumb_image } })
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(
@@ -4550,11 +4554,7 @@ var render = function() {
             { staticClass: "dropdown-item", attrs: { href: "#" } },
             [
               _c("div", { staticClass: "shopping-cart-item" }, [
-                _c("img", {
-                  attrs: {
-                    src: "/media/images/cache/A_png_1024_0_cover_60.jpg"
-                  }
-                }),
+                _c("img", { attrs: { src: item.product.thumb_image } }),
                 _vm._v(" "),
                 _c("div", { staticClass: "shopping-cart-item-body" }, [
                   _c("b", [

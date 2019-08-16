@@ -582,6 +582,10 @@ class StoreHelper {
 
 	static function getCartItems(){
         $cart = StoreHelper::getSessionCart();
-        return  ($cart) ? $cart->cart_items()->list()->get():$cart_items = collect([]);
+        return  ($cart) ? $cart->cart_items()->list()->get()->map(function ($item) {
+                $item->product->thumb_image=$item->product->getThumbImage();
+                $item->product->url=$item->product->getPermalink();
+                return $item;
+            }):$cart_items = collect([]);
     }
 }

@@ -8,7 +8,7 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="shoppingDropdownMenuLink">
             <div v-for="(item,index) in this.items" class="dropdown-item" href="#">
                 <div class="shopping-cart-item">
-                    <img src="/media/images/cache/A_png_1024_0_cover_60.jpg">
+                    <img :src="item.product.thumb_image">
                     <div class="shopping-cart-item-body">
                         <b>{{item.product.code}} - {{item.product.title}}</b>
                         <div>QT:{{item.quantity}}</div>

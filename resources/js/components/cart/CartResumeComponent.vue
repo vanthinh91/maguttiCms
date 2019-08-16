@@ -15,7 +15,7 @@
             </tr>
             </thead>
             <tr v-for="(item,index) in items">
-                <td>Image</td>
+                <td><a :href="item.product.url"><img :src="item.product.thumb_image"></a></td>
                 <td>
                     {{item.product.code}}
                 </td>
