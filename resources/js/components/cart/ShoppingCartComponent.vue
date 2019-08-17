@@ -1,40 +1,30 @@
 <template>
     <ul class="shopping-cart-box">
         <li class="nav-item dropdown shopping-cart">
-            <a class="nav-link dropdown-toggle" :href="this.cart_url"
-                id="shoppingDropdownMenuLink"
-                 :data-toggle="(this.isMobile)?'':'dropdown'" aria-haspopup="true" aria-expanded="false">
-                <i :class="this.icon"></i>
-                <span v-show="this.counterItems"
-                      class="shopping-cart-count badge badge-danger">{{this.counterItems}}</span>
-            </a>
+            <cart-icon :is-mobile="this.isMobile"
+                       :href="this.cart_url" :counter="this.counterItems" :icon="this.icon"></cart-icon>
             <div v-show="!this.isMobile" class="dropdown-menu dropdown-menu-right" aria-labelledby="shoppingDropdownMenuLink">
                 <div class="dropdown-item checkout-link">
                     <a v-if="this.counterItems" class="btn btn-warning btn-sm btn-block btn-checkout"
-                       :href="this.cart_url">Checkout</a>
+                       :href="this.cart_url">{{$t('store.cart.checkout')}}</a>
                     <span v-else class="btn btn-light btn-sm btn-block btn-checkout">{{$t('store.cart.empty')}}</span>
                 </div>
-                <div v-for="(item,index) in this.items" class="dropdown-item" href="#">
-                    <div class="shopping-cart-item">
-                        <img :src="item.product.thumb_image">
-                        <div class="shopping-cart-item-body">
-                            <b>{{item.product.code}} - {{item.product.title}}</b>
-                            <div>QT:{{item.quantity}}</div>
-                            <div>Price: {{item.product.price | currency}}</div>
-                            <i class="fas fa-trash shopping-cart-delete"
-                               @click.prevent.stop="deleteCartItem(index,item.id)"></i>
-                        </div>
-                    </div>
-                </div>
+                <cart-item
+                   v-for="(item,index) in this.items" :item="item" :index="index" :key="item.id"
+                   @delete-item="deleteCartItem(index,item.id)"/>
+
             </div>
         </li>
     </ul>
 </template>
 <script>
     import cartHelper from '../../mixins/store';
+    import cartItem from './partial/ShoppingCartItemsComponent';
+    import cartIcon from './partial/ShoppingCartIconComponent';
 
     export default {
         mixins: [cartHelper],
+        components: {cartItem,cartIcon},
         props: ['icon', 'cart_url', 'counter', 'cartItems','isMobile'],
         data() {
             return {

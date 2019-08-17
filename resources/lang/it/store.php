@@ -7,6 +7,7 @@ return [
 	],
 
 	'cart' => [
+	    'checkout' => 'Checkout',
 		'title' => 'Il mio carrello',
 		'total' => 'Totale',
 		'empty' => 'Il carrello è vuoto',

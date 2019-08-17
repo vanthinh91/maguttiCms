@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = {"en":{"admin":{"label":{"actions":"Actions","active":"Active","active_off":"Inactive","active_on":"Active","article":"Article","article_2":"Article 2","additional":"Additional text","amount":"Amount","attach":"Attach Documents","available_display":"Disponibile","back":"Back","banner":"Banner","btn_no":"No","btn_yes":"Yes","cancel":"Cancel","category":"Category","code":"Code","color":"Color","company":"Company","configure":"Configure","content":"Content","copy":"Copy","create_new":"Create new ","create":"Create new item","created_at":"Created at","created_by":"Created by","dashboard":"Dashboard","date":"Date","date_start":"Date start","date_end":"Date end","date_format":"Date (dd-mm-yyyy)","data_from":"from (dd-mm-yyyy)","data_to":"to (dd-mm-yyyy)","delete":"Delete","description":"Description","display_name":"Display name","doc":"Document","domain":"Domain","download":"Download","edit":"Edit","email":"Email","export":"Export","ext_url":"External url","first_name":"Name","go_to_site":"View site","icon":"Icon","id":"ID","image":"Image","insert":"Insert","is_active":"Status","languages":"Languages","last_name":"Surname","level":"Level","link":"Link","list":"View list","list_title":"%s list","locale":"Language","login":"Login","logout":"Logout","media":"Media","menu_title":"Titolo menu","message":"Message","name":"Name","paid":"Paid","parent":"Parent","payment":"Payment","payment_transaction":"Transaction","payment_date":"Payment date","permalink":"Permalink","please_select":"Please select","position":"Position","preview":"Preview","price":"Price","product":"Product","products":"Products","products_cost":"Product cost","profile":"Profile","pub":"Public","publish":"Publish","read":"Read","real_password":"Password","role":"Role","save":"Save","search":"Search","seo":"SEO","slug":"Slug","slug_ignore":"Ignore slug translation","sort":"Sort","status":"Status","subtitle":"Subtitle","surname":"Surname","template":"Template","title":"Title","tools":"Tools","top_menu":"Show on main menu","total_cost":"Total","update":"Update","updated_at":"Updated at","upload_file":"Upload file","file_count":"{count} files selected","uses":"Uses","value":"Value","video":"Video ID","view":"View","zip_code":"Zip code","zoom_in_image":"Zoom in","zoom_out_image":"Zoom out"},"message":{"add_new_customer":"Add New Customer","add_new_item":"Add new item","back_to_list":"Back to the items list","cancel_items":"Cancel the selected items","content_available":"Available Contents ","create":"Create a new item","delete_item":"Delete this item","delete_items":"Delete the selected items","edit_items":"Edit the selected item","export_to_csv":"Export in csv format","media_doc_gallery":"Docs gallery","media_doc_type":"Media Type","media_drag":"Drag your files here -> png,gif,jpg,pdf,zip only","media_image_gallery":"Images gallery","media_max_file":"Upload Image or doc - max file size 1Mb","no_item_found":"No item found","replay_message":"Replay message","save":"Save","update":"Update","view_page":"Preview Page"},"seo":{"description":"Seo description","keywords":"Seo keywords","keywords_eg_list":"(list separated by comma like google,bing,yahoo)","no-index":"Seo no-index","title":"Seo Title"},"models":{"adminusers":"Admins","articles":"Pages","categories":"Categories","cities":"Cities","contacts":"Contacts","countries":"Nations","discounts":"Discounts","domains":"Domains","events":"Events","examples":"Examples Model","hpsliders":"Slides","media":"Media","news":"News","newsletters":"Newsletter subscriptions","orders":"Orders","paymentmethods":"Payment methods","productmodels":"Product models","products":"Products","provinces":"Provinces","roles":"Roles","settings":"Settings","socials":"Socials","states":"Regions","tags":"Tags","users":"Users"},"cropper":{"zoom_in":"Zoom in","zoom_out":"Zoom out","preview":"Preview","save":"Save"}},"auth":{"login":"Login","logout":"Logout","dashboard":"Dashboard","profile":"Profile","failed":"These credentials do not match our records.","throttle":"Too many login attempts. Please try again in :seconds seconds.","unauthorized":"This account has been disabled."},"message":{"new_user":"Create a new account?","password_confirm":"Confirm Password","password_sent_reset_link":"Send Password Reset Link","password_reset":"Reset password","password_forgot_your":"Forgot Your Password?","password_forgot":"Forgot Password","register_account":"Register an account.","register":"Register","remember_me":"Remember Me","throttle":"Too much login please wait :seconds seconds"},"pagination":{"previous":"&laquo; Previous","next":"Next &raquo;"},"passwords":{"password":"Passwords must be at least six characters and match the confirmation.","reset":"Your password has been reset!","sent":"We have e-mailed your password reset link, if your e-mail address has been found in our database","token":"This password reset token is invalid.","user":"We have e-mailed your password reset link, if your e-mail address has been found in our database","invalid":"Invalid data","mail_reset_button":"Reset password","mail_reset_body":"You are receiving this email because we received a password reset request for your account.","mail_reset_footer":"If you did not request a password reset, no further action is required.","mail_reset_subject":"User Reset Password Notification"},"routes":{"category":"products/{category?}","products":"products/{category}/{product}","view":"view/{id}","contacts":"contacts"},"store":{"product":{"code":"Code","price":"Price"},"cart":{"title":"My cart","total":"Total","empty":"The cart is empty","buy":"Buy","back":"Back to the store","table":{"code":"Code","name":"Product","quantity":"Quantity","price":"Price","total":"Total","actions":"Actions"}},"shipping":{"free":"Free shipping"},"items":{"add":"Add to cart","are_you_sure_to_remove":"Are you Sure to remove this item form your cart?","remove":"Remove from cart"},"alerts":{"add_success":"Product added to your cart","add_fail":"Unable to add the product to the cart","remove_success":"Product removed from cart","remove_fail":"Unable to remove the product from the cart","cart_invalid":"Invalid cart","cart_empty":"The cart is empty","order_success":"Order submitted correctly","order_fail":"Unable to submit the order","payment_fail":"Payment failed","payment_already_paid":"The order has already been paid","payment_success":"Payment succesful"},"order":{"guard":"An account is required to continue","login":"Login","register":"Create a new account","title":"Purchase order","back":"Back to cart","resume":"Products review","addresses":"Addresses","totals":"Costs review","confirm":"Confirm purchase","payment":"Payment method","billing":"Billing address","shipping":"Shipping address","products_cost":"Products cost","shipping_cost":"Shipping cost","vat_cost":"VAT","total_cost":"Order total","discount":{"title":"Discount coupon","insert":"If you have a discount coupon code type it here.","valid":"Coupon found: sconto %s%%","invalid":"This code is invalid."}},"payment":{"title":"Payment result","pay":"Pay the order","method":"Payment Method","paid":"Paid","unpaid":"Unpaid","back":"Back to the order"},"address":{"new":"Add new address","fields":{"street":"Street","number":"Number","zip_code":"ZIP","city":"City","province":"Province/State","country":"Country","phone":"Phone","mobile":"Mobile","email":"Email","vat":"VAT number"},"save":"Save"},"dashboard":{"orders":"Orders","addresses":"Addresses","table":{"products":"Products","total":"Total","payment":"Payment","paid":"Paid","date":"Date"}},"paypal":{"items_total":"Products total"}},"validation":{"accepted":"The :attribute must be accepted.","active_url":"The :attribute is not a valid URL.","after":"The :attribute must be a date after :date.","alpha":"The :attribute may only contain letters.","alpha_dash":"The :attribute may only contain letters, numbers, and dashes.","alpha_num":"The :attribute may only contain letters and numbers.","array":"The :attribute must be an array.","before":"The :attribute must be a date before :date.","between":{"numeric":"The :attribute must be between :min and :max.","file":"The :attribute must be between :min and :max kilobytes.","string":"The :attribute must be between :min and :max characters.","array":"The :attribute must have between :min and :max items."},"boolean":"The :attribute field must be true or false.","confirmed":"The :attribute confirmation does not match.","date":"The :attribute is not a valid date.","date_format":"The :attribute does not match the format :format.","different":"The :attribute and :other must be different.","digits":"The :attribute must be :digits digits.","digits_between":"The :attribute must be between :min and :max digits.","email":"The :attribute must be a valid email address.","exists":"The selected :attribute is invalid.","filled":"The :attribute field is required.","image":"The :attribute must be an image.","in":"The selected :attribute is invalid.","integer":"The :attribute must be an integer.","ip":"The :attribute must be a valid IP address.","json":"The :attribute must be a valid JSON string.","max":{"numeric":"The :attribute may not be greater than :max.","file":"The :attribute may not be greater than :max kilobytes.","string":"The :attribute may not be greater than :max characters.","array":"The :attribute may not have more than :max items."},"mimes":"The :attribute must be a file of type: :values.","min":{"numeric":"The :attribute must be at least :min.","file":"The :attribute must be at least :min kilobytes.","string":"The :attribute must be at least :min characters.","array":"The :attribute must have at least :min items."},"not_in":"The selected :attribute is invalid.","numeric":"The :attribute must be a number.","regex":"The :attribute format is invalid.","required":"The :attribute field is required.","required_if":"The :attribute field is required when :other is :value.","required_with":"The :attribute field is required when :values is present.","required_with_all":"The :attribute field is required when :values is present.","required_without":"The :attribute field is required when :values is not present.","required_without_all":"The :attribute field is required when none of :values are present.","same":"The :attribute and :other must match.","size":{"numeric":"The :attribute must be :size.","file":"The :attribute must be :size kilobytes.","string":"The :attribute must be :size characters.","array":"The :attribute must contain :size items."},"string":"The :attribute must be a string.","timezone":"The :attribute must be a valid zone.","unique":"The :attribute has already been taken.","url":"The :attribute format is invalid.","custom":{"attribute-name":{"rule-name":"custom-message"},"password":{"regex":"The password format is invalid"},"g-recaptcha-response":{"*":"Are You a robot? Select I'm not a robot."},"*":{"is_unique":"The :attribute is already present."}},"attributes":[]},"website":{"cancel":"cancel","city":"City","cookie":"Cookie Policy","country":"Country","email":"E-mail","employer":"Company","follow_us":"Follow us on","headquarter":"Headquarter","home":"Home","info_request":"Information Request","message_email":"Message","more_info":"Continue","name":"Name","newsletters_placeholder":"Type your  email","password":"Password","phone":"Telephone","please_select":"Please select","privacy":"Privacy Policy","read_more":"Continue","send":"Send","subject":"Subject","surname":"Surname","pagination":"Page :x of :y","ghost":{"updated":"Value updated","forbidden":"Unable to update the value"},"product":{"download_pdf":"Scarica Scheda","contact_request":"Request information"},"news":{"latest":"Ultime News","share_on":"Condividi su"},"message":{"contact_feedback":"Thanks for you request.<br> Il team Gfstudio ","privacy":"I accept terms and conditions of use and read the privacy note.","required_field":"Required field (*)","product_request":"Information request for product","password":"The password must contain upper case and lower case letters, numbers and special characters","cookie":"This website or the related devices use cookies, which are necessary to the working and to the purposes showed in the cookie policy.If you'd like to know more about it or deny your approval to all or some cookies, please consult the cookie policy. If you click on Accept or go on with the surfing, you accept then the cookie use.","cookie_accept":"Accept","cookie_more_info":"More Info"},"mail_message":{"contact":"New request info from","firm":"Il team maguttiCms","greeting":"Dear User","subscribe_newsletter_subject":"Newsletter subscription","subscribe_newsletter_feedback":"Thanks for subscribe our newsletter"},"pagetitle":{"privacy":"Privacy Policy"}}},"it":{"admin":{"label":{"actions":"Azioni","active":"Attiva","active_off":"Inattivo","active_on":"Attivo","article":"Articolo","additional":"Testo aggiuntivo","amount":"Valore","attach":"Documenti Alleati","available_display":"Disponibile","back":"Indietro","banner":"Banner","btn_no":"No","btn_yes":"Si","cancel":"Annulla","category":"Categoria","code":"Codice","color":"Colore","company":"Azienda","configure":"Configura","content":"Contenuto","copy":"Copia","create_new":"Crea nuovo ","create":"Crea nuovo elemento","created_at":"Creato il","created_by":"Creato da","dashboard":"Dashboard","date":"Data","date_start":"Data iniziale","date_end":"Data finale","date_format":"Date (dd-mm-yyyy)","data_from":"Da (gg-mm-aaaa)","data_to":"A (gg-mm-aaaa)","delete":"Elimina","description":"Descrizione","display_name":"Etichetta","doc":"Documento","domain":"Dominio","download":"Download","edit":"Modifica","email":"Email","export":"Esporta","ext_url":"Url esterno","first_name":"Nome","go_to_site":"Vai al sito","icon":"Icona","id":"ID","image":"Immagine","insert":"Inserisci","is_active":"Stato","languages":"Lingue","last_name":"Cognome","level":"Livello","link":"Link","list":"Vedi lista","list_title":"Lista %s","locale":"Lingua","login":"Login","logout":"Logout","media":"Media","menu_title":"Titolo menu","message":"Messaggio","name":"Nome","paid":"Pagato","parent":"Genitore","payment":"Pagamento","payment_transaction":"Transazione","payment_date":"Data pagamento","permalink":"Permalink","please_select":"Prego selezionare","position":"Posizione","preview":"Anteprima","price":"Price","product":"Prodotto","products":"Prodotti","products_cost":"Costo prodotti","profile":"Profilo","pub":"Pubblico","publish":"Pubblica","read":"Leggi","real_password":"Password","role":"Ruolo","save":"Salva","search":"Cerca","seo":"SEO","slug":"Slug","slug_ignore":"Ignora traduzione slug","sort":"Ordinamento","status":"Stato","status_id":"Stato","subtitle":"Sottotitolo","surname":"Cognome","template":"Template","title":"Titolo","tools":"Strumenti","top_menu":"Menu","total_cost":"Totale","update":"Aggiorna","updated_at":"Aggiornato il","upload_file":"Carica File","file_count":"{count} file selezionati","uses":"Usi","value":"Valore","video":"Video ID","view":"Vedi","zip_code":"Cap"},"message":{"add_new_customer":"Aggiungi nuovo cliente","add_new_item":"Aggiungi Nuovo elemento","back_to_list":"Torna alla lista","cancel_items":"Elimina gli elementi selezionati","content_available":"Contenuto disponibile","create":"Crea un nuovo elemento","delete_item":"Elimina","delete_items":"Elimina gli elementi selezionati","edit_items":"Modifica gli elementi selezionati","export_to_csv":"Esportain formato csv","media_doc_gallery":"Galleria Documenti","media_doc_type":"Tipo Media","media_drag":"Trascina il tuo file qui -> solo png,gif,jpg,pdf,zip","media_image_gallery":"Galleria Immagini","media_max_file":"Carica immagini o documento - max dimensione 1 MB","no_item_found":"Nessun elemento trovato","replay_message":"Rispondi al messaggio","save":"Salva","update":"Aggiorna","view_page":"Anteprima Pagina"},"seo":{"description":"Descrizione Seo","keywords_eg_list":"(lista separata da virgola like google,bing,yahoo)","keywords":"Seo keywords","no-index":"Seo no-index","title":"Titolo Seo"},"models":{"adminusers":"Admin","articles":"Pagine","categories":"Categorie","cities":"Città","contacts":"Contatti","countries":"Nazioni","discounts":"Sconti","domains":"Domini","examples":"Esempi","hpsliders":"Slide","media":"Media","news":"News","newsletters":"Iscrizioni newsletter","orders":"Ordini","paymentmethods":"Metodi di pagamento","productmodels":"Modelli prodotto","products":"Prodotti","provinces":"Province","roles":"Ruoli","settings":"Impostazioni","socials":"Social","states":"Regioni","tags":"Tag","users":"Utenti"},"cropper":{"zoom_in":"Ingrandisci","zoom_out":"Riduci","preview":"Preview","save":"Salva"}},"auth":{"login":"Login","logout":"Logout","dashboard":"Dashboard","profile":"Profilo utente","failed":"Nessun Record trovato con le tue  credenziali.","throttle":"Troppi tentativi di login attendi :seconds secondi.","unauthorized":"Questo account è stato disabilitato."},"message":{"new_user":"Crea nuovo account","password":"Password","password_confirm":"Conferma Password","password_sent_reset_link":"Invia Link per reset password","password_reset":"Reset password","password_forgot_your":"Hai dimenticato la password?","password_forgot":"Password dimenticata","register_account":"Crea nuovo account","register":"Registrati","remember_me":"Ricordami","throttle":"Troppi tentativi di login attendi :seconds secondi."},"pagination":{"previous":"&laquo; Previous","next":"Next &raquo;"},"passwords":{"password":"La password deve essere di almeno sei caratteri oppure le password non coincidono.","reset":"La tua password è stata reimpostata","sent":"Se presente nel nostro database, abbiamo inviato all'indirizzo email da voi inserito un link per il reset della password!","token":"Token per il reset della password non valido","user":"Se presente nel nostro database, abbiamo inviato all'indirizzo email da voi inserito un link per il reset della password!","invalid":"Dati non validi","mail_reset_button":"Reset password","mail_reset_body":"Ti abbiamo mandato questo messaggio perchè hai richiesto il reset della password.","mail_reset_footer":"Se non hai richiesto il reset della password ignora questo messaggio.","mail_reset_subject":"Notifica richiesta reset password"},"routes":{"category":"prodotti/{category?}","products":"prodotti/{category}/{product}","view":"view/{id}","contacts":"contatti"},"store":{"product":{"code":"Codice","price":"Prezzo"},"cart":{"title":"Il mio carrello","total":"Totale","empty":"Il carrello è vuoto","buy":"Acquista","back":"Torna allo store","table":{"code":"Codice","name":"Prodotto","quantity":"Quantità","price":"Prezzo","total":"Totale","actions":"Azioni"}},"shipping":{"free":"Spedizione gratuita"},"items":{"add":"Aggiungi al carrello","are_you_sure_to_remove":"Sei sicuro di voler rimuovere questo articolo dal carrello?","remove":"Rimuovi dal carrello"},"alerts":{"add_success":"Prodotto aggiunto al carrello","add_fail":"Impossibile aggiungere il prodotto al carrello","remove_success":"Prodotto rimosso dal carrello","remove_fail":"Impossibile rimuovere il prodotto dal carrello","cart_invalid":"Carrello non valido","cart_empty":"Il carrello è vuoto","order_success":"Ordine inviato correttamente","order_fail":"Impossibile inviare l'ordine","payment_fail":"Pagamento fallito","payment_already_paid":"Ordine Già pagato","payment_success":"Pagamento avvenuto con successo"},"order":{"guard":"Per proseguire è necessario essere registrati","login":"Login","register":"Crea un nuovo account","title":"Ordine di acquisto","back":"Torna al carrello","resume":"Riepilogo prodotti","addresses":"Indirizzi","totals":"Riepilogo costi","confirm":"Conferma l'acquisto","payment":"Modalità di pagamento","billing":"Indirizzo di fatturazione","shipping":"Indirizzo di spedizione","products_cost":"Costo dei prodotti","shipping_cost":"Spese di spedizione","vat_cost":"Iva","total_cost":"Totale ordine","discount":{"title":"Coupon sconto","insert":"Hai un codice di sconto? Inseriscilo qui.","valid":"Coupon valido: sconto %s%%","invalid":"Questo codice non è valido."}},"payment":{"title":"Esito del pagamento","pay":"Paga l'ordine","method":"Metodo di pagamento","paid":"Pagato","unpaid":"Non pagato","back":"Torna all'ordine"},"address":{"new":"Aggiungi un nuovo indirizzo","fields":{"street":"Via","number":"Numero civico","zip_code":"CAP","city":"Città","province":"Provincia","country":"Nazione","phone":"Telefono","mobile":"Cellulare","email":"Email","vat":"Partita IVA"},"save":"Salva"},"dashboard":{"orders":"Ordini","addresses":"Indirizzi","table":{"products":"Prodotti","total":"Totale","payment":"Pagamento","paid":"Pagato","date":"Data"}},"paypal":{"items_total":"Totale prodotti"}},"validation":{"accepted":"The :attribute must be accepted.","active_url":"The :attribute is not a valid URL.","after":"The :attribute must be a date after :date.","alpha":"The :attribute may only contain letters.","alpha_dash":"The :attribute may only contain letters, numbers, and dashes.","alpha_num":"The :attribute may only contain letters and numbers.","array":"The :attribute must be an array.","before":"The :attribute must be a date before :date.","between":{"numeric":"The :attribute must be between :min and :max.","file":"The :attribute must be between :min and :max kilobytes.","string":"The :attribute must be between :min and :max characters.","array":"The :attribute must have between :min and :max items."},"boolean":"The :attribute field must be true or false.","confirmed":"La conferma del campo :attribute non corrisponde.","date":"The :attribute is not a valid date.","date_format":"The :attribute does not match the format :format.","different":"The :attribute and :other must be different.","digits":"The :attribute must be :digits digits.","digits_between":"The :attribute must be between :min and :max digits.","email":"Inserire un email valido","exists":"The selected :attribute is invalid.","filled":"Il campo :attribute field è obbligatorio.","image":"The :attribute must be an image.","in":"The selected :attribute is invalid.","integer":"The :attribute must be an integer.","ip":"The :attribute must be a valid IP address.","json":"The :attribute must be a valid JSON string.","max":{"numeric":"The :attribute may not be greater than :max.","file":"The :attribute may not be greater than :max kilobytes.","string":"The :attribute may not be greater than :max characters.","array":"The :attribute may not have more than :max items."},"mimes":"The :attribute must be a file of type: :values.","min":{"numeric":"The :attribute must be at least :min.","file":"The :attribute must be at least :min kilobytes.","string":"Il campo :attribute deve essere di almeno :min caratteri.","array":"The :attribute must have at least :min items."},"not_in":"The selected :attribute is invalid.","numeric":"The :attribute must be a number.","regex":"The :attribute format is invalid.","required":"Il campo :attribute  è obbligatorio.","required_if":"The :attribute field is required when :other is :value.","required_with":"The :attribute field is required when :values is present.","required_with_all":"The :attribute field is required when :values is present.","required_without":"The :attribute field is required when :values is not present.","required_without_all":"The :attribute field is required when none of :values are present.","same":"The :attribute and :other must match.","size":{"numeric":"The :attribute must be :size.","file":"The :attribute must be :size kilobytes.","string":"The :attribute must be :size characters.","array":"The :attribute must contain :size items."},"string":"The :attribute must be a string.","timezone":"The :attribute must be a valid zone.","unique":"The :attribute has already been taken.","url":"The :attribute format is invalid.","custom":{"attribute-name":{"rule-name":"custom-message"},"password":{"regex":"Il formato della password non è valido"},"g-recaptcha-response":{"*":"Sei Un robot? Selezionare non sono un robot."},"*":{"is_unique":"Valore :attribute già presente."},"email":{"unique":"L'email scelta è già presente"}},"attributes":[]},"website":{"cancel":"Annulla","city":"Città","cookie":"Cookie Policy","country":"Nazione","email":"E-mail","employer":"Azienda","follow_us":"Seguici su","headquarter":"Sede","home":"Home","info_request":"Richiesta informazioni","message_email":"Messaggio","more_info":"Continua","name":"Nome","newsletters_placeholder":"Iscriviti alla newsletter","password":"Password","phone":"Telefono","please_select":"Prego selezionare","privacy":"Privacy Policy","read_more":"Continua","send":"Invia","subject":"Oggetto","surname":"Cognome","pagination":"Pagina :x di :y","ghost":{"updated":"Valore aggiornato","forbidden":"Impossibile aggiornare il valore"},"product":{"download_pdf":"Scarica Scheda","contact_request":"Richiedi Preventivo"},"news":{"latest":"Ultime News","share_on":"Condividi su"},"message":{"contact_feedback":"Grazie per  aver inviato la tua richiesta","privacy":"Acconsento al trattamento dei dati","required_field":"I campi contrassegnati con (*) sono obbligatori","product_request":"Richiesta informazioni per il prodotto","password":"La password deve avere  almeno 10 caratteri e deve contenere lettere maiuscole e minuscole, numeri e caratteri speciali","cookie":"Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di cookie necessari al funzionamento ed utili alle finalità illustrate nella cookie policy. Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, consulta la cookie policy. Cliccando su 'Accetto' o proseguendo la navigazione acconsenti all’uso dei cookie.","cookie_accept":"Accetto","cookie_more_info":"Maggiori Informazioni"},"mail_message":{"contact":"Nuova richiesta informazioni da","firm":"Il team maguttiCms","greeting":"Gentile Utente","subscribe_newsletter_subject":"Iscrizione alla Newsletter","subscribe_newsletter_feedback":"Grazie per esserti iscritto alla nostra newsletter"},"pagetitle":{"privacy":"Privacy Policy"}}}}
+module.exports = {"en":{"admin":{"label":{"actions":"Actions","active":"Active","active_off":"Inactive","active_on":"Active","article":"Article","article_2":"Article 2","additional":"Additional text","amount":"Amount","attach":"Attach Documents","available_display":"Disponibile","back":"Back","banner":"Banner","btn_no":"No","btn_yes":"Yes","cancel":"Cancel","category":"Category","code":"Code","color":"Color","company":"Company","configure":"Configure","content":"Content","copy":"Copy","create_new":"Create new ","create":"Create new item","created_at":"Created at","created_by":"Created by","dashboard":"Dashboard","date":"Date","date_start":"Date start","date_end":"Date end","date_format":"Date (dd-mm-yyyy)","data_from":"from (dd-mm-yyyy)","data_to":"to (dd-mm-yyyy)","delete":"Delete","description":"Description","display_name":"Display name","doc":"Document","domain":"Domain","download":"Download","edit":"Edit","email":"Email","export":"Export","ext_url":"External url","first_name":"Name","go_to_site":"View site","icon":"Icon","id":"ID","image":"Image","insert":"Insert","is_active":"Status","languages":"Languages","last_name":"Surname","level":"Level","link":"Link","list":"View list","list_title":"%s list","locale":"Language","login":"Login","logout":"Logout","media":"Media","menu_title":"Titolo menu","message":"Message","name":"Name","paid":"Paid","parent":"Parent","payment":"Payment","payment_transaction":"Transaction","payment_date":"Payment date","permalink":"Permalink","please_select":"Please select","position":"Position","preview":"Preview","price":"Price","product":"Product","products":"Products","products_cost":"Product cost","profile":"Profile","pub":"Public","publish":"Publish","read":"Read","real_password":"Password","role":"Role","save":"Save","search":"Search","seo":"SEO","slug":"Slug","slug_ignore":"Ignore slug translation","sort":"Sort","status":"Status","subtitle":"Subtitle","surname":"Surname","template":"Template","title":"Title","tools":"Tools","top_menu":"Show on main menu","total_cost":"Total","update":"Update","updated_at":"Updated at","upload_file":"Upload file","file_count":"{count} files selected","uses":"Uses","value":"Value","video":"Video ID","view":"View","zip_code":"Zip code","zoom_in_image":"Zoom in","zoom_out_image":"Zoom out"},"message":{"add_new_customer":"Add New Customer","add_new_item":"Add new item","back_to_list":"Back to the items list","cancel_items":"Cancel the selected items","content_available":"Available Contents ","create":"Create a new item","delete_item":"Delete this item","delete_items":"Delete the selected items","edit_items":"Edit the selected item","export_to_csv":"Export in csv format","media_doc_gallery":"Docs gallery","media_doc_type":"Media Type","media_drag":"Drag your files here -> png,gif,jpg,pdf,zip only","media_image_gallery":"Images gallery","media_max_file":"Upload Image or doc - max file size 1Mb","no_item_found":"No item found","replay_message":"Replay message","save":"Save","update":"Update","view_page":"Preview Page"},"seo":{"description":"Seo description","keywords":"Seo keywords","keywords_eg_list":"(list separated by comma like google,bing,yahoo)","no-index":"Seo no-index","title":"Seo Title"},"models":{"adminusers":"Admins","articles":"Pages","categories":"Categories","cities":"Cities","contacts":"Contacts","countries":"Nations","discounts":"Discounts","domains":"Domains","events":"Events","examples":"Examples Model","hpsliders":"Slides","media":"Media","news":"News","newsletters":"Newsletter subscriptions","orders":"Orders","paymentmethods":"Payment methods","productmodels":"Product models","products":"Products","provinces":"Provinces","roles":"Roles","settings":"Settings","socials":"Socials","states":"Regions","tags":"Tags","users":"Users"},"cropper":{"zoom_in":"Zoom in","zoom_out":"Zoom out","preview":"Preview","save":"Save"}},"auth":{"login":"Login","logout":"Logout","dashboard":"Dashboard","profile":"Profile","failed":"These credentials do not match our records.","throttle":"Too many login attempts. Please try again in :seconds seconds.","unauthorized":"This account has been disabled."},"message":{"new_user":"Create a new account?","password_confirm":"Confirm Password","password_sent_reset_link":"Send Password Reset Link","password_reset":"Reset password","password_forgot_your":"Forgot Your Password?","password_forgot":"Forgot Password","register_account":"Register an account.","register":"Register","remember_me":"Remember Me","throttle":"Too much login please wait :seconds seconds"},"pagination":{"previous":"&laquo; Previous","next":"Next &raquo;"},"passwords":{"password":"Passwords must be at least six characters and match the confirmation.","reset":"Your password has been reset!","sent":"We have e-mailed your password reset link, if your e-mail address has been found in our database","token":"This password reset token is invalid.","user":"We have e-mailed your password reset link, if your e-mail address has been found in our database","invalid":"Invalid data","mail_reset_button":"Reset password","mail_reset_body":"You are receiving this email because we received a password reset request for your account.","mail_reset_footer":"If you did not request a password reset, no further action is required.","mail_reset_subject":"User Reset Password Notification"},"routes":{"category":"products/{category?}","products":"products/{category}/{product}","view":"view/{id}","contacts":"contacts"},"store":{"product":{"code":"Code","price":"Price"},"cart":{"checkout":"Checkout","title":"My cart","total":"Total","empty":"The cart is empty","buy":"Buy","back":"Back to the store","table":{"code":"Code","name":"Product","quantity":"Quantity","price":"Price","total":"Total","actions":"Actions"}},"shipping":{"free":"Free shipping"},"items":{"add":"Add to cart","are_you_sure_to_remove":"Are you Sure to remove this item form your cart?","remove":"Remove from cart"},"alerts":{"add_success":"Product added to your cart","add_fail":"Unable to add the product to the cart","remove_success":"Product removed from cart","remove_fail":"Unable to remove the product from the cart","cart_invalid":"Invalid cart","cart_empty":"The cart is empty","order_success":"Order submitted correctly","order_fail":"Unable to submit the order","payment_fail":"Payment failed","payment_already_paid":"The order has already been paid","payment_success":"Payment succesful"},"order":{"guard":"An account is required to continue","login":"Login","register":"Create a new account","title":"Purchase order","back":"Back to cart","resume":"Products review","addresses":"Addresses","totals":"Costs review","confirm":"Confirm purchase","payment":"Payment method","billing":"Billing address","shipping":"Shipping address","products_cost":"Products cost","shipping_cost":"Shipping cost","vat_cost":"VAT","total_cost":"Order total","discount":{"title":"Discount coupon","insert":"If you have a discount coupon code type it here.","valid":"Coupon found: sconto %s%%","invalid":"This code is invalid."}},"payment":{"title":"Payment result","pay":"Pay the order","method":"Payment Method","paid":"Paid","unpaid":"Unpaid","back":"Back to the order"},"address":{"new":"Add new address","fields":{"street":"Street","number":"Number","zip_code":"ZIP","city":"City","province":"Province/State","country":"Country","phone":"Phone","mobile":"Mobile","email":"Email","vat":"VAT number"},"save":"Save"},"dashboard":{"orders":"Orders","addresses":"Addresses","table":{"products":"Products","total":"Total","payment":"Payment","paid":"Paid","date":"Date"}},"paypal":{"items_total":"Products total"}},"validation":{"accepted":"The :attribute must be accepted.","active_url":"The :attribute is not a valid URL.","after":"The :attribute must be a date after :date.","alpha":"The :attribute may only contain letters.","alpha_dash":"The :attribute may only contain letters, numbers, and dashes.","alpha_num":"The :attribute may only contain letters and numbers.","array":"The :attribute must be an array.","before":"The :attribute must be a date before :date.","between":{"numeric":"The :attribute must be between :min and :max.","file":"The :attribute must be between :min and :max kilobytes.","string":"The :attribute must be between :min and :max characters.","array":"The :attribute must have between :min and :max items."},"boolean":"The :attribute field must be true or false.","confirmed":"The :attribute confirmation does not match.","date":"The :attribute is not a valid date.","date_format":"The :attribute does not match the format :format.","different":"The :attribute and :other must be different.","digits":"The :attribute must be :digits digits.","digits_between":"The :attribute must be between :min and :max digits.","email":"The :attribute must be a valid email address.","exists":"The selected :attribute is invalid.","filled":"The :attribute field is required.","image":"The :attribute must be an image.","in":"The selected :attribute is invalid.","integer":"The :attribute must be an integer.","ip":"The :attribute must be a valid IP address.","json":"The :attribute must be a valid JSON string.","max":{"numeric":"The :attribute may not be greater than :max.","file":"The :attribute may not be greater than :max kilobytes.","string":"The :attribute may not be greater than :max characters.","array":"The :attribute may not have more than :max items."},"mimes":"The :attribute must be a file of type: :values.","min":{"numeric":"The :attribute must be at least :min.","file":"The :attribute must be at least :min kilobytes.","string":"The :attribute must be at least :min characters.","array":"The :attribute must have at least :min items."},"not_in":"The selected :attribute is invalid.","numeric":"The :attribute must be a number.","regex":"The :attribute format is invalid.","required":"The :attribute field is required.","required_if":"The :attribute field is required when :other is :value.","required_with":"The :attribute field is required when :values is present.","required_with_all":"The :attribute field is required when :values is present.","required_without":"The :attribute field is required when :values is not present.","required_without_all":"The :attribute field is required when none of :values are present.","same":"The :attribute and :other must match.","size":{"numeric":"The :attribute must be :size.","file":"The :attribute must be :size kilobytes.","string":"The :attribute must be :size characters.","array":"The :attribute must contain :size items."},"string":"The :attribute must be a string.","timezone":"The :attribute must be a valid zone.","unique":"The :attribute has already been taken.","url":"The :attribute format is invalid.","custom":{"attribute-name":{"rule-name":"custom-message"},"password":{"regex":"The password format is invalid"},"g-recaptcha-response":{"*":"Are You a robot? Select I'm not a robot."},"*":{"is_unique":"The :attribute is already present."}},"attributes":[]},"website":{"cancel":"cancel","city":"City","cookie":"Cookie Policy","country":"Country","email":"E-mail","employer":"Company","follow_us":"Follow us on","headquarter":"Headquarter","home":"Home","info_request":"Information Request","message_email":"Message","more_info":"Continue","name":"Name","newsletters_placeholder":"Type your  email","password":"Password","phone":"Telephone","please_select":"Please select","privacy":"Privacy Policy","read_more":"Continue","send":"Send","subject":"Subject","surname":"Surname","pagination":"Page :x of :y","ghost":{"updated":"Value updated","forbidden":"Unable to update the value"},"product":{"download_pdf":"Scarica Scheda","contact_request":"Request information"},"news":{"latest":"Ultime News","share_on":"Condividi su"},"message":{"contact_feedback":"Thanks for you request.<br> Il team Gfstudio ","privacy":"I accept terms and conditions of use and read the privacy note.","required_field":"Required field (*)","product_request":"Information request for product","password":"The password must contain upper case and lower case letters, numbers and special characters","cookie":"This website or the related devices use cookies, which are necessary to the working and to the purposes showed in the cookie policy.If you'd like to know more about it or deny your approval to all or some cookies, please consult the cookie policy. If you click on Accept or go on with the surfing, you accept then the cookie use.","cookie_accept":"Accept","cookie_more_info":"More Info"},"mail_message":{"contact":"New request info from","firm":"Il team maguttiCms","greeting":"Dear User","subscribe_newsletter_subject":"Newsletter subscription","subscribe_newsletter_feedback":"Thanks for subscribe our newsletter"},"pagetitle":{"privacy":"Privacy Policy"}}},"it":{"admin":{"label":{"actions":"Azioni","active":"Attiva","active_off":"Inattivo","active_on":"Attivo","article":"Articolo","additional":"Testo aggiuntivo","amount":"Valore","attach":"Documenti Alleati","available_display":"Disponibile","back":"Indietro","banner":"Banner","btn_no":"No","btn_yes":"Si","cancel":"Annulla","category":"Categoria","code":"Codice","color":"Colore","company":"Azienda","configure":"Configura","content":"Contenuto","copy":"Copia","create_new":"Crea nuovo ","create":"Crea nuovo elemento","created_at":"Creato il","created_by":"Creato da","dashboard":"Dashboard","date":"Data","date_start":"Data iniziale","date_end":"Data finale","date_format":"Date (dd-mm-yyyy)","data_from":"Da (gg-mm-aaaa)","data_to":"A (gg-mm-aaaa)","delete":"Elimina","description":"Descrizione","display_name":"Etichetta","doc":"Documento","domain":"Dominio","download":"Download","edit":"Modifica","email":"Email","export":"Esporta","ext_url":"Url esterno","first_name":"Nome","go_to_site":"Vai al sito","icon":"Icona","id":"ID","image":"Immagine","insert":"Inserisci","is_active":"Stato","languages":"Lingue","last_name":"Cognome","level":"Livello","link":"Link","list":"Vedi lista","list_title":"Lista %s","locale":"Lingua","login":"Login","logout":"Logout","media":"Media","menu_title":"Titolo menu","message":"Messaggio","name":"Nome","paid":"Pagato","parent":"Genitore","payment":"Pagamento","payment_transaction":"Transazione","payment_date":"Data pagamento","permalink":"Permalink","please_select":"Prego selezionare","position":"Posizione","preview":"Anteprima","price":"Price","product":"Prodotto","products":"Prodotti","products_cost":"Costo prodotti","profile":"Profilo","pub":"Pubblico","publish":"Pubblica","read":"Leggi","real_password":"Password","role":"Ruolo","save":"Salva","search":"Cerca","seo":"SEO","slug":"Slug","slug_ignore":"Ignora traduzione slug","sort":"Ordinamento","status":"Stato","status_id":"Stato","subtitle":"Sottotitolo","surname":"Cognome","template":"Template","title":"Titolo","tools":"Strumenti","top_menu":"Menu","total_cost":"Totale","update":"Aggiorna","updated_at":"Aggiornato il","upload_file":"Carica File","file_count":"{count} file selezionati","uses":"Usi","value":"Valore","video":"Video ID","view":"Vedi","zip_code":"Cap"},"message":{"add_new_customer":"Aggiungi nuovo cliente","add_new_item":"Aggiungi Nuovo elemento","back_to_list":"Torna alla lista","cancel_items":"Elimina gli elementi selezionati","content_available":"Contenuto disponibile","create":"Crea un nuovo elemento","delete_item":"Elimina","delete_items":"Elimina gli elementi selezionati","edit_items":"Modifica gli elementi selezionati","export_to_csv":"Esportain formato csv","media_doc_gallery":"Galleria Documenti","media_doc_type":"Tipo Media","media_drag":"Trascina il tuo file qui -> solo png,gif,jpg,pdf,zip","media_image_gallery":"Galleria Immagini","media_max_file":"Carica immagini o documento - max dimensione 1 MB","no_item_found":"Nessun elemento trovato","replay_message":"Rispondi al messaggio","save":"Salva","update":"Aggiorna","view_page":"Anteprima Pagina"},"seo":{"description":"Descrizione Seo","keywords_eg_list":"(lista separata da virgola like google,bing,yahoo)","keywords":"Seo keywords","no-index":"Seo no-index","title":"Titolo Seo"},"models":{"adminusers":"Admin","articles":"Pagine","categories":"Categorie","cities":"Città","contacts":"Contatti","countries":"Nazioni","discounts":"Sconti","domains":"Domini","examples":"Esempi","hpsliders":"Slide","media":"Media","news":"News","newsletters":"Iscrizioni newsletter","orders":"Ordini","paymentmethods":"Metodi di pagamento","productmodels":"Modelli prodotto","products":"Prodotti","provinces":"Province","roles":"Ruoli","settings":"Impostazioni","socials":"Social","states":"Regioni","tags":"Tag","users":"Utenti"},"cropper":{"zoom_in":"Ingrandisci","zoom_out":"Riduci","preview":"Preview","save":"Salva"}},"auth":{"login":"Login","logout":"Logout","dashboard":"Dashboard","profile":"Profilo utente","failed":"Nessun Record trovato con le tue  credenziali.","throttle":"Troppi tentativi di login attendi :seconds secondi.","unauthorized":"Questo account è stato disabilitato."},"message":{"new_user":"Crea nuovo account","password":"Password","password_confirm":"Conferma Password","password_sent_reset_link":"Invia Link per reset password","password_reset":"Reset password","password_forgot_your":"Hai dimenticato la password?","password_forgot":"Password dimenticata","register_account":"Crea nuovo account","register":"Registrati","remember_me":"Ricordami","throttle":"Troppi tentativi di login attendi :seconds secondi."},"pagination":{"previous":"&laquo; Previous","next":"Next &raquo;"},"passwords":{"password":"La password deve essere di almeno sei caratteri oppure le password non coincidono.","reset":"La tua password è stata reimpostata","sent":"Se presente nel nostro database, abbiamo inviato all'indirizzo email da voi inserito un link per il reset della password!","token":"Token per il reset della password non valido","user":"Se presente nel nostro database, abbiamo inviato all'indirizzo email da voi inserito un link per il reset della password!","invalid":"Dati non validi","mail_reset_button":"Reset password","mail_reset_body":"Ti abbiamo mandato questo messaggio perchè hai richiesto il reset della password.","mail_reset_footer":"Se non hai richiesto il reset della password ignora questo messaggio.","mail_reset_subject":"Notifica richiesta reset password"},"routes":{"category":"prodotti/{category?}","products":"prodotti/{category}/{product}","view":"view/{id}","contacts":"contatti"},"store":{"product":{"code":"Codice","price":"Prezzo"},"cart":{"checkout":"Checkout","title":"Il mio carrello","total":"Totale","empty":"Il carrello è vuoto","buy":"Acquista","back":"Torna allo store","table":{"code":"Codice","name":"Prodotto","quantity":"Quantità","price":"Prezzo","total":"Totale","actions":"Azioni"}},"shipping":{"free":"Spedizione gratuita"},"items":{"add":"Aggiungi al carrello","are_you_sure_to_remove":"Sei sicuro di voler rimuovere questo articolo dal carrello?","remove":"Rimuovi dal carrello"},"alerts":{"add_success":"Prodotto aggiunto al carrello","add_fail":"Impossibile aggiungere il prodotto al carrello","remove_success":"Prodotto rimosso dal carrello","remove_fail":"Impossibile rimuovere il prodotto dal carrello","cart_invalid":"Carrello non valido","cart_empty":"Il carrello è vuoto","order_success":"Ordine inviato correttamente","order_fail":"Impossibile inviare l'ordine","payment_fail":"Pagamento fallito","payment_already_paid":"Ordine Già pagato","payment_success":"Pagamento avvenuto con successo"},"order":{"guard":"Per proseguire è necessario essere registrati","login":"Login","register":"Crea un nuovo account","title":"Ordine di acquisto","back":"Torna al carrello","resume":"Riepilogo prodotti","addresses":"Indirizzi","totals":"Riepilogo costi","confirm":"Conferma l'acquisto","payment":"Modalità di pagamento","billing":"Indirizzo di fatturazione","shipping":"Indirizzo di spedizione","products_cost":"Costo dei prodotti","shipping_cost":"Spese di spedizione","vat_cost":"Iva","total_cost":"Totale ordine","discount":{"title":"Coupon sconto","insert":"Hai un codice di sconto? Inseriscilo qui.","valid":"Coupon valido: sconto %s%%","invalid":"Questo codice non è valido."}},"payment":{"title":"Esito del pagamento","pay":"Paga l'ordine","method":"Metodo di pagamento","paid":"Pagato","unpaid":"Non pagato","back":"Torna all'ordine"},"address":{"new":"Aggiungi un nuovo indirizzo","fields":{"street":"Via","number":"Numero civico","zip_code":"CAP","city":"Città","province":"Provincia","country":"Nazione","phone":"Telefono","mobile":"Cellulare","email":"Email","vat":"Partita IVA"},"save":"Salva"},"dashboard":{"orders":"Ordini","addresses":"Indirizzi","table":{"products":"Prodotti","total":"Totale","payment":"Pagamento","paid":"Pagato","date":"Data"}},"paypal":{"items_total":"Totale prodotti"}},"validation":{"accepted":"The :attribute must be accepted.","active_url":"The :attribute is not a valid URL.","after":"The :attribute must be a date after :date.","alpha":"The :attribute may only contain letters.","alpha_dash":"The :attribute may only contain letters, numbers, and dashes.","alpha_num":"The :attribute may only contain letters and numbers.","array":"The :attribute must be an array.","before":"The :attribute must be a date before :date.","between":{"numeric":"The :attribute must be between :min and :max.","file":"The :attribute must be between :min and :max kilobytes.","string":"The :attribute must be between :min and :max characters.","array":"The :attribute must have between :min and :max items."},"boolean":"The :attribute field must be true or false.","confirmed":"La conferma del campo :attribute non corrisponde.","date":"The :attribute is not a valid date.","date_format":"The :attribute does not match the format :format.","different":"The :attribute and :other must be different.","digits":"The :attribute must be :digits digits.","digits_between":"The :attribute must be between :min and :max digits.","email":"Inserire un email valido","exists":"The selected :attribute is invalid.","filled":"Il campo :attribute field è obbligatorio.","image":"The :attribute must be an image.","in":"The selected :attribute is invalid.","integer":"The :attribute must be an integer.","ip":"The :attribute must be a valid IP address.","json":"The :attribute must be a valid JSON string.","max":{"numeric":"The :attribute may not be greater than :max.","file":"The :attribute may not be greater than :max kilobytes.","string":"The :attribute may not be greater than :max characters.","array":"The :attribute may not have more than :max items."},"mimes":"The :attribute must be a file of type: :values.","min":{"numeric":"The :attribute must be at least :min.","file":"The :attribute must be at least :min kilobytes.","string":"Il campo :attribute deve essere di almeno :min caratteri.","array":"The :attribute must have at least :min items."},"not_in":"The selected :attribute is invalid.","numeric":"The :attribute must be a number.","regex":"The :attribute format is invalid.","required":"Il campo :attribute  è obbligatorio.","required_if":"The :attribute field is required when :other is :value.","required_with":"The :attribute field is required when :values is present.","required_with_all":"The :attribute field is required when :values is present.","required_without":"The :attribute field is required when :values is not present.","required_without_all":"The :attribute field is required when none of :values are present.","same":"The :attribute and :other must match.","size":{"numeric":"The :attribute must be :size.","file":"The :attribute must be :size kilobytes.","string":"The :attribute must be :size characters.","array":"The :attribute must contain :size items."},"string":"The :attribute must be a string.","timezone":"The :attribute must be a valid zone.","unique":"The :attribute has already been taken.","url":"The :attribute format is invalid.","custom":{"attribute-name":{"rule-name":"custom-message"},"password":{"regex":"Il formato della password non è valido"},"g-recaptcha-response":{"*":"Sei Un robot? Selezionare non sono un robot."},"*":{"is_unique":"Valore :attribute già presente."},"email":{"unique":"L'email scelta è già presente"}},"attributes":[]},"website":{"cancel":"Annulla","city":"Città","cookie":"Cookie Policy","country":"Nazione","email":"E-mail","employer":"Azienda","follow_us":"Seguici su","headquarter":"Sede","home":"Home","info_request":"Richiesta informazioni","message_email":"Messaggio","more_info":"Continua","name":"Nome","newsletters_placeholder":"Iscriviti alla newsletter","password":"Password","phone":"Telefono","please_select":"Prego selezionare","privacy":"Privacy Policy","read_more":"Continua","send":"Invia","subject":"Oggetto","surname":"Cognome","pagination":"Pagina :x di :y","ghost":{"updated":"Valore aggiornato","forbidden":"Impossibile aggiornare il valore"},"product":{"download_pdf":"Scarica Scheda","contact_request":"Richiedi Preventivo"},"news":{"latest":"Ultime News","share_on":"Condividi su"},"message":{"contact_feedback":"Grazie per  aver inviato la tua richiesta","privacy":"Acconsento al trattamento dei dati","required_field":"I campi contrassegnati con (*) sono obbligatori","product_request":"Richiesta informazioni per il prodotto","password":"La password deve avere  almeno 10 caratteri e deve contenere lettere maiuscole e minuscole, numeri e caratteri speciali","cookie":"Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di cookie necessari al funzionamento ed utili alle finalità illustrate nella cookie policy. Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, consulta la cookie policy. Cliccando su 'Accetto' o proseguendo la navigazione acconsenti all’uso dei cookie.","cookie_accept":"Accetto","cookie_more_info":"Maggiori Informazioni"},"mail_message":{"contact":"Nuova richiesta informazioni da","firm":"Il team maguttiCms","greeting":"Gentile Utente","subscribe_newsletter_subject":"Iscrizione alla Newsletter","subscribe_newsletter_feedback":"Grazie per esserti iscritto alla nostra newsletter"},"pagetitle":{"privacy":"Privacy Policy"}}}}
 
 /***/ }),
 
@@ -2112,19 +2112,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/store */ "./resources/js/mixins/store.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _partial_ShoppingCartItemsComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./partial/ShoppingCartItemsComponent */ "./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue");
+/* harmony import */ var _partial_ShoppingCartIconComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./partial/ShoppingCartIconComponent */ "./resources/js/components/cart/partial/ShoppingCartIconComponent.vue");
 //
 //
 //
@@ -2145,8 +2134,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_store__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  components: {
+    cartItem: _partial_ShoppingCartItemsComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
+    cartIcon: _partial_ShoppingCartIconComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   props: ['icon', 'cart_url', 'counter', 'cartItems', 'isMobile'],
   data: function data() {
     return {
@@ -2186,6 +2181,65 @@ __webpack_require__.r(__webpack_exports__);
           cart_items = _ref2.cart_items;
       this.counterItems = cart_count;
       this.items = cart_items;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cart/partial/ShoppingCartIconComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cart/partial/ShoppingCartIconComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['icon', 'cart_url', 'counter', 'isMobile']
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['item', 'index'],
+  methods: {
+    deleteHandler: function deleteHandler() {
+      this.$emit('delete-item');
     }
   }
 });
@@ -4585,119 +4639,183 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("ul", { staticClass: "shopping-cart-box" }, [
-    _c("li", { staticClass: "nav-item dropdown shopping-cart" }, [
-      _c(
-        "a",
-        {
-          staticClass: "nav-link dropdown-toggle",
+    _c(
+      "li",
+      { staticClass: "nav-item dropdown shopping-cart" },
+      [
+        _c("cart-icon", {
           attrs: {
+            "is-mobile": this.isMobile,
             href: this.cart_url,
-            id: "shoppingDropdownMenuLink",
-            "data-toggle": this.isMobile ? "" : "dropdown",
-            "aria-haspopup": "true",
-            "aria-expanded": "false"
+            counter: this.counterItems,
+            icon: this.icon
           }
-        },
-        [
-          _c("i", { class: this.icon }),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: this.counterItems,
-                  expression: "this.counterItems"
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !this.isMobile,
+                expression: "!this.isMobile"
+              }
+            ],
+            staticClass: "dropdown-menu dropdown-menu-right",
+            attrs: { "aria-labelledby": "shoppingDropdownMenuLink" }
+          },
+          [
+            _c("div", { staticClass: "dropdown-item checkout-link" }, [
+              this.counterItems
+                ? _c(
+                    "a",
+                    {
+                      staticClass:
+                        "btn btn-warning btn-sm btn-block btn-checkout",
+                      attrs: { href: this.cart_url }
+                    },
+                    [_vm._v(_vm._s(_vm.$t("store.cart.checkout")))]
+                  )
+                : _c(
+                    "span",
+                    {
+                      staticClass: "btn btn-light btn-sm btn-block btn-checkout"
+                    },
+                    [_vm._v(_vm._s(_vm.$t("store.cart.empty")))]
+                  )
+            ]),
+            _vm._v(" "),
+            _vm._l(this.items, function(item, index) {
+              return _c("cart-item", {
+                key: item.id,
+                attrs: { item: item, index: index },
+                on: {
+                  "delete-item": function($event) {
+                    return _vm.deleteCartItem(index, item.id)
+                  }
                 }
-              ],
-              staticClass: "shopping-cart-count badge badge-danger"
-            },
-            [_vm._v(_vm._s(this.counterItems))]
-          )
-        ]
-      ),
+              })
+            })
+          ],
+          2
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cart/partial/ShoppingCartIconComponent.vue?vue&type=template&id=7a0d462c&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cart/partial/ShoppingCartIconComponent.vue?vue&type=template&id=7a0d462c& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "a",
+    {
+      staticClass: "nav-link dropdown-toggle",
+      attrs: {
+        id: "shoppingDropdownMenuLink",
+        "data-toggle": this.isMobile ? "" : "dropdown",
+        "aria-haspopup": "true",
+        "aria-expanded": "false"
+      }
+    },
+    [
+      _c("i", { class: this.icon }),
       _vm._v(" "),
       _c(
-        "div",
+        "span",
         {
           directives: [
             {
               name: "show",
               rawName: "v-show",
-              value: !this.isMobile,
-              expression: "!this.isMobile"
+              value: this.counter,
+              expression: "this.counter"
             }
           ],
-          staticClass: "dropdown-menu dropdown-menu-right",
-          attrs: { "aria-labelledby": "shoppingDropdownMenuLink" }
+          staticClass: "shopping-cart-count badge badge-danger"
         },
-        [
-          _c("div", { staticClass: "dropdown-item checkout-link" }, [
-            this.counterItems
-              ? _c(
-                  "a",
-                  {
-                    staticClass:
-                      "btn btn-warning btn-sm btn-block btn-checkout",
-                    attrs: { href: this.cart_url }
-                  },
-                  [_vm._v("Checkout")]
-                )
-              : _c(
-                  "span",
-                  {
-                    staticClass: "btn btn-light btn-sm btn-block btn-checkout"
-                  },
-                  [_vm._v(_vm._s(_vm.$t("store.cart.empty")))]
-                )
-          ]),
-          _vm._v(" "),
-          _vm._l(this.items, function(item, index) {
-            return _c(
-              "div",
-              { staticClass: "dropdown-item", attrs: { href: "#" } },
-              [
-                _c("div", { staticClass: "shopping-cart-item" }, [
-                  _c("img", { attrs: { src: item.product.thumb_image } }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "shopping-cart-item-body" }, [
-                    _c("b", [
-                      _vm._v(
-                        _vm._s(item.product.code) +
-                          " - " +
-                          _vm._s(item.product.title)
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", [_vm._v("QT:" + _vm._s(item.quantity))]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _vm._v(
-                        "Price: " +
-                          _vm._s(_vm._f("currency")(item.product.price))
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "fas fa-trash shopping-cart-delete",
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          $event.stopPropagation()
-                          return _vm.deleteCartItem(index, item.id)
-                        }
-                      }
-                    })
-                  ])
-                ])
-              ]
-            )
-          })
-        ],
-        2
+        [_vm._v(_vm._s(this.counter))]
       )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue?vue&type=template&id=72e261b2&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue?vue&type=template&id=72e261b2& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "dropdown-item" }, [
+    _c("div", { staticClass: "shopping-cart-item" }, [
+      _c("img", { attrs: { src: _vm.item.product.thumb_image } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "shopping-cart-item-body" }, [
+        _c("b", [
+          _vm._v(
+            _vm._s(_vm.item.product.code) +
+              " - " +
+              _vm._s(_vm.item.product.title)
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", [_vm._v("Qt:" + _vm._s(_vm.item.quantity))]),
+        _vm._v(" "),
+        _c("div", [
+          _vm._v(
+            _vm._s(_vm.$t("store.cart.table.price")) +
+              ": " +
+              _vm._s(_vm._f("currency")(_vm.item.product.price))
+          )
+        ]),
+        _vm._v(" "),
+        _c("i", {
+          staticClass: "fas fa-trash shopping-cart-delete",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              $event.stopPropagation()
+              return _vm.deleteHandler($event)
+            }
+          }
+        })
+      ])
     ])
   ])
 }
@@ -17082,6 +17200,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingCartComponent_vue_vue_type_template_id_16287af1___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingCartComponent_vue_vue_type_template_id_16287af1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/cart/partial/ShoppingCartIconComponent.vue":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/cart/partial/ShoppingCartIconComponent.vue ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ShoppingCartIconComponent_vue_vue_type_template_id_7a0d462c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShoppingCartIconComponent.vue?vue&type=template&id=7a0d462c& */ "./resources/js/components/cart/partial/ShoppingCartIconComponent.vue?vue&type=template&id=7a0d462c&");
+/* harmony import */ var _ShoppingCartIconComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ShoppingCartIconComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/cart/partial/ShoppingCartIconComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ShoppingCartIconComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ShoppingCartIconComponent_vue_vue_type_template_id_7a0d462c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ShoppingCartIconComponent_vue_vue_type_template_id_7a0d462c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/cart/partial/ShoppingCartIconComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/cart/partial/ShoppingCartIconComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/cart/partial/ShoppingCartIconComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingCartIconComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ShoppingCartIconComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cart/partial/ShoppingCartIconComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingCartIconComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/cart/partial/ShoppingCartIconComponent.vue?vue&type=template&id=7a0d462c&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/cart/partial/ShoppingCartIconComponent.vue?vue&type=template&id=7a0d462c& ***!
+  \***********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingCartIconComponent_vue_vue_type_template_id_7a0d462c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ShoppingCartIconComponent.vue?vue&type=template&id=7a0d462c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cart/partial/ShoppingCartIconComponent.vue?vue&type=template&id=7a0d462c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingCartIconComponent_vue_vue_type_template_id_7a0d462c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingCartIconComponent_vue_vue_type_template_id_7a0d462c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ShoppingCartItemsComponent_vue_vue_type_template_id_72e261b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShoppingCartItemsComponent.vue?vue&type=template&id=72e261b2& */ "./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue?vue&type=template&id=72e261b2&");
+/* harmony import */ var _ShoppingCartItemsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ShoppingCartItemsComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ShoppingCartItemsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ShoppingCartItemsComponent_vue_vue_type_template_id_72e261b2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ShoppingCartItemsComponent_vue_vue_type_template_id_72e261b2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/cart/partial/ShoppingCartItemsComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingCartItemsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ShoppingCartItemsComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingCartItemsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue?vue&type=template&id=72e261b2&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue?vue&type=template&id=72e261b2& ***!
+  \************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingCartItemsComponent_vue_vue_type_template_id_72e261b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ShoppingCartItemsComponent.vue?vue&type=template&id=72e261b2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cart/partial/ShoppingCartItemsComponent.vue?vue&type=template&id=72e261b2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingCartItemsComponent_vue_vue_type_template_id_72e261b2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingCartItemsComponent_vue_vue_type_template_id_72e261b2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

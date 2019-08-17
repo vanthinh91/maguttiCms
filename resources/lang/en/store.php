@@ -7,6 +7,7 @@ return [
 	],
 
 	'cart' => [
+        'checkout' => 'Checkout',
 		'title' => 'My cart',
 		'total' => 'Total',
 		'empty' => 'The cart is empty',
