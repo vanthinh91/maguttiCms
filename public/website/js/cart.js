@@ -2089,7 +2089,6 @@ __webpack_require__.r(__webpack_exports__);
     deleteCartItem: function deleteCartItem(index, id) {
       var items = this.items;
       var self = this;
-      console.log(this.$t('store.items.are_you_sure_to_remove'));
       bootbox.setLocale(window._LANG);
       bootbox.confirm("<h5>" + this.$t('store.items.are_you_sure_to_remove') + "</h5>", function (confirmed) {
         if (confirmed) {
@@ -2113,6 +2112,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/store */ "./resources/js/mixins/store.js");
+//
+//
 //
 //
 //
@@ -2172,7 +2173,7 @@ __webpack_require__.r(__webpack_exports__);
       var items = this.items;
       var self = this;
       bootbox.setLocale(window._LANG);
-      bootbox.confirm("<h4>Are you sure?</h4>", function (confirmed) {
+      bootbox.confirm("<h5>" + this.$t('store.items.are_you_sure_to_remove') + "</h5>", function (confirmed) {
         if (confirmed) {
           items.splice(index, 1);
           self.deleteItem(id);
@@ -4331,7 +4332,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "form col-6" }, [
+  return _c("div", { staticClass: "form col-12 col-md-6" }, [
     _c("div", { staticClass: "input-group" }, [
       _c(
         "div",
@@ -4349,12 +4350,7 @@ var render = function() {
           }
         ],
         staticClass: "form-control text-center",
-        attrs: {
-          type: "number",
-          min: _vm.min,
-          autocomplete: "off",
-          "aria-label": "Amount (to the nearest dollar)"
-        },
+        attrs: { type: "number", min: _vm.min, autocomplete: "off" },
         domProps: { value: _vm.quantity },
         on: {
           change: _vm.change,
@@ -4587,107 +4583,113 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "nav-item dropdown shopping-cart" }, [
-    _c(
-      "a",
-      {
-        staticClass: "nav-link dropdown-toggle",
-        attrs: {
-          href: this.cart_url,
-          id: "shoppingDropdownMenuLink",
-          "data-toggle": "dropdown",
-          "aria-haspopup": "true",
-          "aria-expanded": "false"
-        }
-      },
-      [
-        _c("i", { class: this.icon }),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: this.counterItems,
-                expression: "this.counterItems"
-              }
-            ],
-            staticClass: "cart-count badge badge-primary"
-          },
-          [_vm._v(_vm._s(this.counterItems))]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "dropdown-menu dropdown-menu-right",
-        attrs: { "aria-labelledby": "shoppingDropdownMenuLink" }
-      },
-      [
-        _vm._l(this.items, function(item, index) {
-          return _c(
-            "div",
-            { staticClass: "dropdown-item", attrs: { href: "#" } },
-            [
-              _c("div", { staticClass: "shopping-cart-item" }, [
-                _c("img", { attrs: { src: item.product.thumb_image } }),
-                _vm._v(" "),
-                _c("div", { staticClass: "shopping-cart-item-body" }, [
-                  _c("b", [
-                    _vm._v(
-                      _vm._s(item.product.code) +
-                        " - " +
-                        _vm._s(item.product.title)
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [_vm._v("QT:" + _vm._s(item.quantity))]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      "Price: " + _vm._s(_vm._f("currency")(item.product.price))
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("i", {
-                    staticClass: "fas fa-trash shopping-cart-delete",
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        $event.stopPropagation()
-                        return _vm.deleteCartItem(index, item.id)
-                      }
-                    }
-                  })
-                ])
-              ])
-            ]
-          )
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "dropdown-item checkout-link" }, [
-          this.counterItems
-            ? _c(
-                "a",
+  return _c("ul", { staticClass: "shopping-cart-box" }, [
+    _c("li", { staticClass: "nav-item dropdown shopping-cart" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link dropdown-toggle",
+          attrs: {
+            href: this.cart_url,
+            id: "shoppingDropdownMenuLink",
+            "data-toggle": "dropdown",
+            "aria-haspopup": "true",
+            "aria-expanded": "false"
+          }
+        },
+        [
+          _c("i", { class: this.icon }),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              directives: [
                 {
-                  staticClass: "btn btn-warning btn-sm btn-block btn-checkout",
-                  attrs: { href: this.cart_url }
-                },
-                [_vm._v("Checkout")]
-              )
-            : _c(
-                "span",
-                { staticClass: "btn btn-light btn-sm btn-block btn-checkout" },
-                [_vm._v("Your cart is empty")]
-              )
-        ])
-      ],
-      2
-    )
+                  name: "show",
+                  rawName: "v-show",
+                  value: this.counterItems,
+                  expression: "this.counterItems"
+                }
+              ],
+              staticClass: "shopping-cart-count badge badge-danger"
+            },
+            [_vm._v(_vm._s(this.counterItems))]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "dropdown-menu dropdown-menu-right",
+          attrs: { "aria-labelledby": "shoppingDropdownMenuLink" }
+        },
+        [
+          _c("div", { staticClass: "dropdown-item checkout-link" }, [
+            this.counterItems
+              ? _c(
+                  "a",
+                  {
+                    staticClass:
+                      "btn btn-warning btn-sm btn-block btn-checkout",
+                    attrs: { href: this.cart_url }
+                  },
+                  [_vm._v("Checkout")]
+                )
+              : _c(
+                  "span",
+                  {
+                    staticClass: "btn btn-light btn-sm btn-block btn-checkout"
+                  },
+                  [_vm._v(_vm._s(_vm.$t("store.cart.empty")))]
+                )
+          ]),
+          _vm._v(" "),
+          _vm._l(this.items, function(item, index) {
+            return _c(
+              "div",
+              { staticClass: "dropdown-item", attrs: { href: "#" } },
+              [
+                _c("div", { staticClass: "shopping-cart-item" }, [
+                  _c("img", { attrs: { src: item.product.thumb_image } }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "shopping-cart-item-body" }, [
+                    _c("b", [
+                      _vm._v(
+                        _vm._s(item.product.code) +
+                          " - " +
+                          _vm._s(item.product.title)
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("QT:" + _vm._s(item.quantity))]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _vm._v(
+                        "Price: " +
+                          _vm._s(_vm._f("currency")(item.product.price))
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("i", {
+                      staticClass: "fas fa-trash shopping-cart-delete",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          $event.stopPropagation()
+                          return _vm.deleteCartItem(index, item.id)
+                        }
+                      }
+                    })
+                  ])
+                ])
+              ]
+            )
+          })
+        ],
+        2
+      )
+    ])
   ])
 }
 var staticRenderFns = []

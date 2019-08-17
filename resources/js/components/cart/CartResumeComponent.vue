@@ -86,7 +86,6 @@
             deleteCartItem(index,id){
                 let items = this.items
                 let self = this;
-                console.log(this.$t('store.items.are_you_sure_to_remove'));
                 bootbox.setLocale(window._LANG);
                 bootbox.confirm("<h5>"+this.$t('store.items.are_you_sure_to_remove')+"</h5>", function (confirmed) {
                     if (confirmed) {

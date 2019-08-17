@@ -1,5 +1,5 @@
 <template>
-    <div class="form col-6">
+    <div class="form col-12 col-md-6">
         <div class="input-group">
             <div class="input-group-prepend" @click="decrease">
                 <span class="input-group-text">-</span>
@@ -8,7 +8,7 @@
                    v-model="quantity" :min="min"
                    @change="change"
                    @paste="paste"
-                   autocomplete="off" class="form-control text-center" aria-label="Amount (to the nearest dollar)">
+                   autocomplete="off" class="form-control text-center">
             <div class="input-group-append" @click="increase">
                 <span class="input-group-text">+</span>
             </div>
