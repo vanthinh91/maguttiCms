@@ -2143,10 +2143,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_store__WEBPACK_IMPORTED_MODULE_0__["default"]],
-  props: ['icon', 'cart_url', 'counter', 'cartItems'],
+  props: ['icon', 'cart_url', 'counter', 'cartItems', 'isMobile'],
   data: function data() {
     return {
       items: {},
@@ -4592,7 +4593,7 @@ var render = function() {
           attrs: {
             href: this.cart_url,
             id: "shoppingDropdownMenuLink",
-            "data-toggle": "dropdown",
+            "data-toggle": this.isMobile ? "" : "dropdown",
             "aria-haspopup": "true",
             "aria-expanded": "false"
           }
@@ -4621,6 +4622,14 @@ var render = function() {
       _c(
         "div",
         {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: !this.isMobile,
+              expression: "!this.isMobile"
+            }
+          ],
           staticClass: "dropdown-menu dropdown-menu-right",
           attrs: { "aria-labelledby": "shoppingDropdownMenuLink" }
         },

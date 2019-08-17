@@ -2,12 +2,13 @@
     <ul class="shopping-cart-box">
         <li class="nav-item dropdown shopping-cart">
             <a class="nav-link dropdown-toggle" :href="this.cart_url"
-               id="shoppingDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                id="shoppingDropdownMenuLink"
+                 :data-toggle="(this.isMobile)?'':'dropdown'" aria-haspopup="true" aria-expanded="false">
                 <i :class="this.icon"></i>
                 <span v-show="this.counterItems"
                       class="shopping-cart-count badge badge-danger">{{this.counterItems}}</span>
             </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="shoppingDropdownMenuLink">
+            <div v-show="!this.isMobile" class="dropdown-menu dropdown-menu-right" aria-labelledby="shoppingDropdownMenuLink">
                 <div class="dropdown-item checkout-link">
                     <a v-if="this.counterItems" class="btn btn-warning btn-sm btn-block btn-checkout"
                        :href="this.cart_url">Checkout</a>
@@ -34,7 +35,7 @@
 
     export default {
         mixins: [cartHelper],
-        props: ['icon', 'cart_url', 'counter', 'cartItems'],
+        props: ['icon', 'cart_url', 'counter', 'cartItems','isMobile'],
         data() {
             return {
                 items: {},

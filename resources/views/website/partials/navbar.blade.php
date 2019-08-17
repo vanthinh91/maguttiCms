@@ -17,6 +17,11 @@
 		<a class="navbar-call" href="tel:{{ config('maguttiCms.website.option.app.phone') }}">
 			{{ icon('phone', 'fa-rotate-90') }}
 		</a>
+		@if(!Browser::isDesktop())
+		<div id="navbar-cart-mobile">
+			{!! HtmlMenu::getStoreLinks() !!}
+		</div>
+		@endif
 
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="navbar-nav ml-auto">
@@ -29,9 +34,10 @@
 
 			</ul>
 		</div>
-        <div id="navbar-cart" class="float-right">
+		@if(Browser::isDesktop())
+        <div id="navbar-cart">
             {!! HtmlMenu::getStoreLinks() !!}
         </div>
-
+		@endif
 	</div>
 </nav>
