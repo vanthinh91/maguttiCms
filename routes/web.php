@@ -118,15 +118,15 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 // api
-Route::group(['prefix' => 'api'], function () {
+Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 	Route::post('/update-ghost',		'\App\maguttiCms\Website\Controllers\APIController@updateGhost');
 
 	// store
-	Route::post('/store/cart-item-add',		'\App\maguttiCms\Website\Controllers\StoreAPIController@storeCartItemAdd');
-	Route::post('/store/cart-item-remove',	'\App\maguttiCms\Website\Controllers\StoreAPIController@storeCartitemRemove');
-    Route::post('/store/cart-item-update',	'\App\maguttiCms\Website\Controllers\StoreAPIController@updateItemQuantity');
-	Route::get('/store/order-calc',		'\App\maguttiCms\Website\Controllers\StoreAPIController@storeOrderCalc');
-	Route::get('/store/order-discount',	'\App\maguttiCms\Website\Controllers\StoreAPIController@storeOrderDiscount');
+	Route::post('api/store/cart-item-add',		'\App\maguttiCms\Website\Controllers\StoreAPIController@storeCartItemAdd');
+	Route::post('api/store/cart-item-remove',	'\App\maguttiCms\Website\Controllers\StoreAPIController@storeCartitemRemove');
+    Route::post('api/store/cart-item-update',	'\App\maguttiCms\Website\Controllers\StoreAPIController@updateItemQuantity');
+	Route::get('api/store/order-calc',		'\App\maguttiCms\Website\Controllers\StoreAPIController@storeOrderCalc');
+	Route::get('api/store/order-discount',	'\App\maguttiCms\Website\Controllers\StoreAPIController@storeOrderDiscount');
 });
 
 /*

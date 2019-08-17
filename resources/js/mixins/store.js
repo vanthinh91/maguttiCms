@@ -5,7 +5,7 @@ export default {
     mixins: [notifier],
     data() {
         return {
-            baseUrl: "/api/store/",
+            baseUrl: window.urlAjaxHandler+"/api/store/",
             hasError: false,
         }
     },

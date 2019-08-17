@@ -17410,7 +17410,7 @@ __webpack_require__.r(__webpack_exports__);
   mixins: [_notifier__WEBPACK_IMPORTED_MODULE_1__["default"]],
   data: function data() {
     return {
-      baseUrl: "/api/store/",
+      baseUrl: window.urlAjaxHandler + "/api/store/",
       hasError: false
     };
   },
