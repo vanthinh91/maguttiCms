@@ -4434,7 +4434,13 @@ var render = function() {
       {
         staticClass: "btn btn-primary my-1 btn-block",
         attrs: { href: "#" },
-        on: { click: _vm.addProductToCart }
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            $event.stopPropagation()
+            return _vm.addProductToCart($event)
+          }
+        }
       },
       [_vm._t("label")],
       2

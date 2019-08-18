@@ -13,7 +13,7 @@
                 <span class="input-group-text">+</span>
             </div>
         </div>
-        <a href="#" class="btn btn-primary my-1 btn-block" @click="addProductToCart">
+        <a href="#" class="btn btn-primary my-1 btn-block" @click.prevent.stop="addProductToCart">
             <slot name="label"></slot>
         </a>
     </div>
