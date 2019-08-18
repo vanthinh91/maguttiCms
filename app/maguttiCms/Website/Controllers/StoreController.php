@@ -33,8 +33,7 @@ class StoreController extends Controller
 				session()->flash('error', trans('store.alerts.cart_invalid'));
 				return back();
 			}
-
-			if (!$cart->items->count()) {
+			if ($cart->isEmpty()) {
 				session()->flash('error', trans('store.alerts.cart_empty'));
 				return back();
 			}

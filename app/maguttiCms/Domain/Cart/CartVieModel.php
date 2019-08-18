@@ -14,4 +14,9 @@ class CartVieModel
       $this->cart  = StoreHelper::getSessionCart();
       $this->items = StoreHelper::getCartItems();
   }
+
+
+  function isEmpty(){
+       return $this->items->isEmpty();
+  }
 }

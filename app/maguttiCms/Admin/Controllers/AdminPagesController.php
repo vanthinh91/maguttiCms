@@ -89,13 +89,11 @@ class AdminPagesController extends Controller
         $articles = $objBuilder->paginate(config('maguttiCms.admin.list.item_per_pages'));
         $articles->appends(request()->input())->links(); // paginazione con parametri di ricerca
         $fieldspec = $models->getFieldspec();
-        $admin_can_edit = cmsUserHasRole(['su', 'admin']);
         return view('admin.list', [
             'articles' => $articles,
             'pageConfig' => collect($this->config),
             'fieldspec' => $fieldspec,
             'model' => $this->models,
-            'admin_can_edit' => $admin_can_edit
         ]);
     }
 
