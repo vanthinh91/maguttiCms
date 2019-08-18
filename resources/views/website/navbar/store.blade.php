@@ -5,6 +5,5 @@
 		icon="fas fa-{{config('maguttiCms.store.cart.icon')}}"
 		:cart-items="{{StoreHelper::getCartItems()}}"
 		is-mobile="{{!Browser::isDesktop()}}">
-
 </shopping-cart>
 

@@ -39,7 +39,10 @@ export default {
         },
         refreshCart({data}) {
             window.$cartBus.$emit('ADD_ITEM_TO_CART', data.data)
-            this.notify(data.msg)
+            this.modalOpen = true;
+        },
+        gotToCart() {
+            location.href= window.urlAjaxHandler+'/cart';
         },
         updateCartItems({data}) {
             window.$cartBus.$emit('DELETE_ITEM_FROM_CART', data.data)

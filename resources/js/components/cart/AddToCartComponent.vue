@@ -16,12 +16,21 @@
         <a href="#" class="btn btn-primary my-1 btn-block" @click.prevent.stop="addProductToCart">
             <slot name="label"></slot>
         </a>
+        <confirm-modal
+                :show="modalOpen"
+                @close="modalOpen = false"
+                @goToCart="gotToCart"
+                :product_code="this.product.code"
+        ></confirm-modal>
     </div>
+
 </template>
 
 <script>
     import cartHelper  from '../../mixins/store';
+    import confirmModal from './CartModalComponent'
     export default {
+        components: {confirmModal},
         mixins: [cartHelper],
         props: {
             product: Object,
@@ -37,6 +46,8 @@
         data() {
             return {
                 quantity: 1,
+                modalOpen: false,
+                modalContent :{}
             }
         },
         created() {

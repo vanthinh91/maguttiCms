@@ -12,7 +12,6 @@
                 <cart-item
                    v-for="(item,index) in this.items" :item="item" :index="index" :key="item.id"
                    @delete-item="deleteCartItem(index,item.id)"/>
-
             </div>
         </li>
     </ul>
