@@ -3,6 +3,7 @@
 namespace App\maguttiCms\Website\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\maguttiCms\Domain\Cart\CartVieModel;
 use App\maguttiCms\Tools\StoreHelper;
 use App\maguttiCms\Website\Requests\WebsiteFormRequest;
 use Auth;
@@ -15,9 +16,8 @@ class StoreController extends Controller
     public function __construct() {}
 
     public function cart() {
-		$cart = StoreHelper::getSessionCart();
-		$cart_items = StoreHelper::getCartItems();
-    	return view('website.store.cart', compact('cart', 'cart_items'));
+		$cart = new CartVieModel();
+      	return view('website.store.cart', compact('cart'));
     }
 
     public function orderSubmit() {
@@ -25,25 +25,21 @@ class StoreController extends Controller
 		if (!$user)
 			return Redirect::to(url_locale('/order-login'));
 		else {
-			$cart = StoreHelper::getSessionCart();
-			StoreHelper::cartItemCleanQuantities($cart);
-			if ($cart)
-				$cart_items = $cart->cart_items()->list()->get();
-			else
-				$cart_items = collect([]);
-			$addresses = $user->addresses;
+
+            $cart = new CartVieModel();
+           	$addresses = $user->addresses;
 
 			if (!$cart) {
 				session()->flash('error', trans('store.alerts.cart_invalid'));
 				return back();
 			}
 
-			if (!$cart_items->count()) {
+			if (!$cart->items->count()) {
 				session()->flash('error', trans('store.alerts.cart_empty'));
 				return back();
 			}
 
-			return view('website.store.order_submit', compact('cart', 'cart_items', 'user', 'addresses'));
+			return view('website.store.order_submit', compact('cart', 'user', 'addresses'));
 		}
 
     }

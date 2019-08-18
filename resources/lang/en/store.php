@@ -11,7 +11,7 @@ return [
 		'title' => 'My cart',
 		'total' => 'Total',
 		'empty' => 'The cart is empty',
-		'buy' => 'Buy',
+		'buy' => 'Proceed with your order',
 		'back' => 'Back to the store',
 		'table' => [
 			'code' => 'Code',

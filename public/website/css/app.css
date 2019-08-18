@@ -12231,6 +12231,27 @@ h6 mark,
   line-height: 50px;
 }
 
+#navbar {
+  order: 2;
+}
+
+@media (min-width: 992px) {
+  #navbar {
+    order: 1;
+  }
+}
+
+#navbar-cart {
+  order: 1;
+  pointer: hand;
+}
+
+@media (min-width: 992px) {
+  #navbar-cart {
+    order: 2;
+  }
+}
+
 .fancybox-is-open .fancybox-bg {
   opacity: 0.85;
 }

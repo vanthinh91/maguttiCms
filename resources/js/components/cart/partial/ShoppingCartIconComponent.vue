@@ -10,8 +10,6 @@
 </template>
 <script>
     export default {
-
         props: ['icon', 'cart_url', 'counter','isMobile'],
-
     }
 </script>

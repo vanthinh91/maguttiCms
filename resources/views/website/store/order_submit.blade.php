@@ -19,7 +19,7 @@
         			</tr>
         		</thead>
         		<tbody>
-        			@foreach ($cart_items as $_item)
+        			@foreach ($cart->items as $_item)
         				<tr data-price="{{StoreHelper::getProductPrice($_item->product)}}">
         					<td>
         						{{$_item->product->code}}
@@ -39,7 +39,7 @@
 
             <form action="" method="post">
         		{{ csrf_field() }}
-        		<input id="order-cart" type="hidden" name="cart_id" value="{{$cart->id}}">
+        		<input id="order-cart" type="hidden" name="cart_id" value="{{$cart->cart->id}}">
         		<h3>{{trans('store.order.addresses')}}</h3>
         		<div class="row">
         			<div class="col-12 col-sm-6">

@@ -141,3 +141,17 @@
 		}
 	}
 }
+#navbar {
+  order:2;
+  @include media-breakpoint-up($navbar-trigger) {
+    order:1;
+  };
+
+}
+#navbar-cart{
+	order:1;
+	pointer:hand;
+  @include media-breakpoint-up($navbar-trigger) {
+    order:2;
+  };
+}

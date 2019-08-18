@@ -11,7 +11,7 @@ return [
 		'title' => 'Il mio carrello',
 		'total' => 'Totale',
 		'empty' => 'Il carrello è vuoto',
-		'buy' => 'Acquista',
+		'buy' => 'Procedi con l\'ordine',
 		'back' => 'Torna allo store',
 		'table' => [
 			'code' => 'Codice',
