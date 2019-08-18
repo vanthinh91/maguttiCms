@@ -12048,7 +12048,7 @@ h6 mark,
 
 .navbar .navbar-toggler,
 .navbar .navbar-call {
-  font-size: 1em;
+  font-size: 1.2em;
   padding: 0;
   text-align: center;
   width: 30px;
@@ -12077,11 +12077,13 @@ h6 mark,
   padding-top: 0;
   padding-bottom: 0;
   height: 40px;
+  padding-left: 0.5rem;
 }
 
 @media (min-width: 992px) {
   .navbar-brand {
     height: 70px;
+    padding-left: 0rem;
   }
 }
 
@@ -12244,11 +12246,13 @@ h6 mark,
 #navbar-cart {
   order: 1;
   pointer: hand;
+  font-size: 1.2em;
 }
 
 @media (min-width: 992px) {
   #navbar-cart {
     order: 2;
+    font-size: 1em;
   }
 }
 

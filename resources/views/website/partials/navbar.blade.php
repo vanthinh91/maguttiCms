@@ -28,10 +28,8 @@
 				{!! HtmlMenu::getAfterNavbar() !!}
 			</ul>
 		</div>
-
         <div id="navbar-cart">
             {!! HtmlMenu::getStoreLinks() !!}
         </div>
-
 	</div>
 </nav>

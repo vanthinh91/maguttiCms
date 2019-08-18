@@ -14,7 +14,7 @@
 
 	.navbar-toggler,
 	.navbar-call {
-		font-size: 1em;
+		font-size: 1.2em;
 		padding: 0;
 		text-align: center;
 		width: $navbar-height-content-mobile;
@@ -42,8 +42,10 @@
 	padding-top: 0;
 	padding-bottom: 0;
 	height: $navbar-height-logo-mobile;
+	padding-left:0.5rem;
 	@include media-breakpoint-up($navbar-trigger) {
 		height: $navbar-height-logo;
+		padding-left:0rem;
 	}
 	img {
 		height: 100%;
@@ -151,7 +153,10 @@
 #navbar-cart{
 	order:1;
 	pointer:hand;
+	font-size: 1.2em;
+
   @include media-breakpoint-up($navbar-trigger) {
     order:2;
+	  font-size: 1em;
   };
 }
