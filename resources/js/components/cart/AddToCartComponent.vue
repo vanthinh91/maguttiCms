@@ -1,22 +1,9 @@
 <template>
     <div class="form col-12 col-md-6">
-        <div class="input-group">
-            <div class="input-group-prepend" @click="decrease">
-                <span class="input-group-text">-</span>
-            </div>
-            <input type="number"
-                   v-model.number="quantity" :min="min"
-                   @change="change"
-                   @paste="paste"
-                   autocomplete="off" class="form-control text-center">
-            <div class="input-group-append" @click="increase">
-                <span class="input-group-text">+</span>
-            </div>
-        </div>
+        <number-input :min="this.min" v-model="quantity"/>
         <a href="#" class="btn btn-primary my-1 btn-block" @click.prevent.stop="addProductToCart">
             <slot name="label"></slot>
         </a>
-
         <confirm-modal
                 :show="modalOpen"
                 @close="modalOpen = false"
@@ -46,8 +33,9 @@
 <script>
     import cartHelper  from './mixins/store';
     import confirmModal from '../BaseComponent/ModalComponent'
+    import numberInput from '../BaseComponent/InputNumberComponent'
     export default {
-        components: {confirmModal},
+        components: {confirmModal,numberInput},
         mixins: [cartHelper],
         props: {
             product: Object,
@@ -58,6 +46,10 @@
             min: {
                 type: Number,
                 default: -Infinity,
+            },
+            value: {
+                type: Number,
+                default: 1,
             }
         },
         data() {
@@ -69,40 +61,13 @@
             }
         },
         created() {
-            this.quantity = this.min;
+            this.quantity = (this.value)?this.value:this.min;
         },
         methods: {
             url() {
                 return `${this.baseUrl}cart-item-add`;
             },
-            decrease() {
-                let {quantity} = this;
-                if (isNaN(quantity)) {
-                    quantity = this.min;
-                }
-                if (quantity > this.min) {
-                    quantity--;
-                }
-                else this.disabele=true
 
-                this.quantity = quantity
-            },
-            increase() {
-                let {quantity} = this;
-                if (isNaN(quantity)) {
-                    quantity = this.min;
-                }
-                if (quantity == this.max) {
-                    quantity--;
-                }
-                this.quantity++;
-            },
-            change(event) {
-                this.quantity = Math.min(this.max, Math.max(this.min, event.target.value));
-            },
-            paste(event) {
-                this.quantity = Math.min(this.max, Math.max(this.min, event.target.value));
-            },
             updateModal(cart_items){
                 this.item =cart_items.find(obj => obj.product_code == this.product.code)
                 this.product.quantity=this.item.quantity;

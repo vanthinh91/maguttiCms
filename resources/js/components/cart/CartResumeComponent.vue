@@ -17,7 +17,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="(item,index) in items" :key="item.id">
+                <tr v-for="(item,index) in items" :key="index">
                     <td><a :href="item.product.url"><img :src="item.product.thumb_image"></a></td>
                     <td>
                         {{item.product.code}}
@@ -25,18 +25,25 @@
                     <td>
                         {{item.product.title}}
                     </td>
-                    <td>
-                        <input
+                    <td style="width:200px">
+                        <!--<input
                             type="number"
-                            class="cart-item-quantity"
-                            v-model.number="item.quantity"
+                            v-model.lazy="item.quantity"
                             autocomplete="off"
                             v-bind:min="1"
-                            @change="updateCartItem(item.quantity,item.id)"
-                        >
+                            @keyup="updateCartItem(item.quantity,item)"
+                            @change="updateCartItem(item.quantity,item)"
+                        >-->
+
+                        <number-input
+                                :qty="parseInt(item.quantity)"
+                                :min="1" v-model="item.quantity" class="input-group-sm "
+                                      @changeQuantity="updateCartItem(item.quantity,item)"
+                                      @change="updateCartItem(item.quantity,item)"
+                        />
                     </td>
                     <td>{{item.product.price | currency}}</td>
-                    <td>{{item.product.price*item.quantity | currency}}</td>
+                    <td>{{item.product.price*Math.round(item.quantity) | currency}}</td>
                     <td class="text-center"><i class="fas fa-trash" @click="deleteCartItem(index,item.id)"></i></td>
                 </tr>
                 </tbody>
@@ -46,7 +53,7 @@
                     <th>{{$t('store.cart.total')}}</th>
                     <th></th>
                     <th></th>
-                    <th>{{ total | currency }}</th>
+                    <th>{{ total | currency | number}}</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -59,11 +66,11 @@
 <script>
     import cartHelper from './mixins/store';
     import alertBox from '../BaseComponent/AlertComponent';
-
+    import numberInput from '../BaseComponent/InputNumberComponent'
     export default {
         mixins: [cartHelper],
         props: ['cartItems'],
-        components: {alertBox},
+        components: {alertBox,numberInput},
         data() {
             return {
                 name: '1',
@@ -77,16 +84,19 @@
             total: function () {
                 let total = 0;
                 total = this.items.reduce((total, p) => {
-                    return total + p.product.price * p.quantity
+                    return total + p.product.price * Math.round(p.quantity)
                 }, total)
 
-                return `€ ${total}`
-            }
+                return `${total}`
+            },
+
+
         },
         methods: {
-            updateCartItem(q, id) {
-                let cartItem = this.items.find(item => item.id = id);
-                this.updateItemQuantity(q, id)
+            updateCartItem(q=1, item) {
+                if(isNaN(q) || q<1) q=1;
+                item.quantity=q;
+                this.updateItemQuantity(q, item.id)
             },
             deleteCartItem(index, id) {
                 let items = this.items
