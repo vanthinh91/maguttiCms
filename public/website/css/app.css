@@ -12509,3 +12509,8 @@ mark {
   padding: 0.25rem;
 }
 
+.shopping-cart-image-preview {
+  width: 60px;
+  height: 60px;
+}
+

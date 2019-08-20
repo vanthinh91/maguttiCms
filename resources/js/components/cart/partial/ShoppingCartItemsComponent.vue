@@ -1,5 +1,5 @@
 <template>
-    <div class="dropdown-item">
+    <div class="dropdown-item" >
         <div class="shopping-cart-item">
             <img :src="item.product.thumb_image">
             <div class="shopping-cart-item-body">

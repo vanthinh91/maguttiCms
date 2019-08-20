@@ -17,7 +17,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="(item,index) in items">
+                <tr v-for="(item,index) in items" :key="item.id">
                     <td><a :href="item.product.url"><img :src="item.product.thumb_image"></a></td>
                     <td>
                         {{item.product.code}}
@@ -27,12 +27,12 @@
                     </td>
                     <td>
                         <input
-                                type="number"
-                                class="cart-item-quantity"
-                                v-model="item.quantity"
-                                autocomplete="off"
-                                v-bind:min="1"
-                                @change="updateCartItem(item.quantity,item.id)"
+                            type="number"
+                            class="cart-item-quantity"
+                            v-model.number="item.quantity"
+                            autocomplete="off"
+                            v-bind:min="1"
+                            @change="updateCartItem(item.quantity,item.id)"
                         >
                     </td>
                     <td>{{item.product.price | currency}}</td>
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-    import cartHelper from '../../mixins/store';
+    import cartHelper from './mixins/store';
     import alertBox from '../BaseComponent/AlertComponent';
 
     export default {

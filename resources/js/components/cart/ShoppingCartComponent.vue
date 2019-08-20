@@ -17,7 +17,7 @@
     </ul>
 </template>
 <script>
-    import cartHelper from '../../mixins/store';
+    import cartHelper from './mixins/store';
     import cartItem from './partial/ShoppingCartItemsComponent';
     import cartIcon from './partial/ShoppingCartIconComponent';
 

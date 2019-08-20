@@ -1,5 +1,5 @@
-import {HTTP} from './http-common';
-import notifier from './notifier';
+import {HTTP} from '../../../mixins/http-common';
+import notifier from '../../../mixins/notifier';
 
 export default {
     mixins: [notifier],
