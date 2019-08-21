@@ -1919,7 +1919,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     min: {
       type: Number,
-      "default": -Infinity
+      "default": 1
     },
     step: {
       type: Number,
@@ -1928,6 +1928,14 @@ __webpack_require__.r(__webpack_exports__);
     qty: {
       type: Number,
       "default": 1
+    },
+    hideDecreaseBtn: {
+      type: Boolean,
+      "default": false
+    },
+    hideIncreaseBtn: {
+      type: Boolean,
+      "default": false
     }
   },
   data: function data() {
@@ -1974,7 +1982,7 @@ __webpack_require__.r(__webpack_exports__);
       this.emitEvent();
     },
     emitEvent: function emitEvent() {
-      this.quantity = Math.round(this.quantity);
+      this.quantity = Math.ceil(Math.abs(this.quantity));
       this.$emit('input', this.quantity);
       this.$emit('changeQuantity', this.quantity);
     },
@@ -2240,6 +2248,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -2262,17 +2272,16 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     total: function total() {
       var total = 0;
-      total = this.items.reduce(function (total, p) {
-        return total + p.product.price * Math.round(p.quantity);
+      return this.items.reduce(function (total, p) {
+        return total + p.product.price * Math.abs(Math.ceil(p.quantity));
       }, total);
-      return "".concat(total);
     }
   },
   methods: {
     updateCartItem: function updateCartItem() {
       var q = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       var item = arguments.length > 1 ? arguments[1] : undefined;
-      if (isNaN(q) || q < 1) q = 1;
+      if (typeof q !== 'number' || isNaN(q) || q < 1) q = 1;
       item.quantity = q;
       this.updateItemQuantity(q, item.id);
     },
@@ -2286,6 +2295,9 @@ __webpack_require__.r(__webpack_exports__);
           self.deleteItem(id);
         }
       });
+    },
+    itemTotal: function itemTotal(item) {
+      return item.product.price * Math.abs(Math.ceil(item.quantity));
     }
   }
 });
@@ -5222,11 +5234,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "input-group" }, [
-    _c(
-      "div",
-      { staticClass: "input-group-prepend", on: { click: _vm.decrease } },
-      [_c("span", { staticClass: "input-group-text" }, [_vm._v("-")])]
-    ),
+    !_vm.hideDecreaseBtn
+      ? _c(
+          "div",
+          { staticClass: "input-group-prepend", on: { click: _vm.decrease } },
+          [_c("span", { staticClass: "input-group-text" }, [_vm._v("-")])]
+        )
+      : _vm._e(),
     _vm._v(" "),
     _c("input", {
       directives: [
@@ -5234,7 +5248,7 @@ var render = function() {
           name: "model",
           rawName: "v-model",
           value: _vm.quantity,
-          expression: "quantity"
+          expression: "quantity "
         }
       ],
       staticClass: "form-control text-center",
@@ -5257,11 +5271,13 @@ var render = function() {
       }
     }),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "input-group-append", on: { click: _vm.increase } },
-      [_c("span", { staticClass: "input-group-text" }, [_vm._v("+")])]
-    )
+    !_vm.hideIncreaseBtn
+      ? _c(
+          "div",
+          { staticClass: "input-group-append", on: { click: _vm.increase } },
+          [_c("span", { staticClass: "input-group-text" }, [_vm._v("+")])]
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -5639,7 +5655,12 @@ var render = function() {
                       [
                         _c("number-input", {
                           staticClass: "input-group-sm ",
-                          attrs: { qty: parseInt(item.quantity), min: 1 },
+                          attrs: {
+                            hideDecreaseBtn: true,
+                            hideIncreaseBtn: true,
+                            qty: parseInt(item.quantity),
+                            min: 1
+                          },
                           on: {
                             changeQuantity: function($event) {
                               return _vm.updateCartItem(item.quantity, item)
@@ -5665,13 +5686,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(
-                        _vm._s(
-                          _vm._f("currency")(
-                            item.product.price * Math.round(item.quantity)
-                          )
-                        )
-                      )
+                      _vm._v(_vm._s(_vm._f("currency")(this.itemTotal(item))))
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-center" }, [
@@ -5699,11 +5714,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("th"),
                   _vm._v(" "),
-                  _c("th", [
-                    _vm._v(
-                      _vm._s(_vm._f("number")(_vm._f("currency")(_vm.total)))
-                    )
-                  ]),
+                  _c("th", [_vm._v(_vm._s(_vm._f("currency")(_vm.total)))]),
                   _vm._v(" "),
                   _c("th"),
                   _vm._v(" "),

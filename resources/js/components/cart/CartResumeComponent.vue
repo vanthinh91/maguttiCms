@@ -36,14 +36,16 @@
                         >-->
 
                         <number-input
-                                :qty="parseInt(item.quantity)"
-                                :min="1" v-model="item.quantity" class="input-group-sm "
-                                      @changeQuantity="updateCartItem(item.quantity,item)"
-                                      @change="updateCartItem(item.quantity,item)"
+                            :hideDecreaseBtn="true"
+                            :hideIncreaseBtn="true"
+                            :qty="parseInt(item.quantity)"
+                            :min="1" v-model="item.quantity" class="input-group-sm "
+                            @changeQuantity="updateCartItem(item.quantity,item)"
+                            @change="updateCartItem(item.quantity,item)"
                         />
                     </td>
                     <td>{{item.product.price | currency}}</td>
-                    <td>{{item.product.price*Math.round(item.quantity) | currency}}</td>
+                    <td>{{this.itemTotal(item) | currency}}</td>
                     <td class="text-center"><i class="fas fa-trash" @click="deleteCartItem(index,item.id)"></i></td>
                 </tr>
                 </tbody>
@@ -53,7 +55,7 @@
                     <th>{{$t('store.cart.total')}}</th>
                     <th></th>
                     <th></th>
-                    <th>{{ total | currency | number}}</th>
+                    <th>{{ total | currency}}</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -83,18 +85,14 @@
         computed: {
             total: function () {
                 let total = 0;
-                total = this.items.reduce((total, p) => {
-                    return total + p.product.price * Math.round(p.quantity)
+                return this.items.reduce((total, p) => {
+                    return total + p.product.price * Math.abs(Math.ceil(p.quantity))
                 }, total)
-
-                return `${total}`
             },
-
-
         },
         methods: {
             updateCartItem(q=1, item) {
-                if(isNaN(q) || q<1) q=1;
+                if(typeof q !== 'number'|| isNaN(q) || q<1) q=1;
                 item.quantity=q;
                 this.updateItemQuantity(q, item.id)
             },
@@ -108,6 +106,10 @@
                         self.deleteItem(id)
                     }
                 });
+            },
+            itemTotal(item){
+
+                return item.product.price* Math.abs(Math.ceil(item.quantity));
             }
         }
     }

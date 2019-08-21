@@ -31,7 +31,7 @@ Vue.component('shopping-cart', ShoppingCart);
 
 const app = new Vue({
     el: '#app',
-    i18n:i18n
+    i18n:i18n,
 });
 
 

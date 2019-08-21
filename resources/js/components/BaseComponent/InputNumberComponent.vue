@@ -1,18 +1,18 @@
 <template>
     <div class="input-group">
-        <div class="input-group-prepend" @click="decrease">
+        <div class="input-group-prepend" @click="decrease" v-if="!hideDecreaseBtn">
             <span class="input-group-text">-</span>
         </div>
         <input type="number"
                :min="min"
-               v-model="quantity"
+               v-model="quantity "
                @change="change"
                @paste="paste"
                autocomplete="off"
                class="form-control text-center"
                v-on:input="$emit('input', $event.target.value)"
         >
-        <div class="input-group-append" @click="increase">
+        <div class="input-group-append" @click="increase" v-if="!hideIncreaseBtn">
             <span class="input-group-text">+</span>
         </div>
     </div>
@@ -27,7 +27,7 @@
             },
             min: {
                 type: Number,
-                default: -Infinity,
+                default: 1,
             },
             step: {
                 type: Number,
@@ -36,6 +36,14 @@
             qty: {
                 type: Number,
                 default: 1,
+            },
+            hideDecreaseBtn: {
+                type: Boolean,
+                default: false,
+            },
+            hideIncreaseBtn: {
+                type: Boolean,
+                default: false,
             },
 
         },
@@ -51,7 +59,6 @@
             this.quantity = this.qty;
         },
         methods: {
-
             url() {
                 return `${this.baseUrl}cart-item-add`;
             },
@@ -79,7 +86,7 @@
                 this.emitEvent();
             },
             emitEvent(){
-                this.quantity= Math.round(this.quantity);
+                this.quantity= Math.ceil(Math.abs(this.quantity));
                 this.$emit('input', this.quantity);
                 this.$emit('changeQuantity',this.quantity)
             },

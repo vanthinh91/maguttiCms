@@ -10,6 +10,7 @@ export default {
         }
     },
     methods: {
+
         addProductToCart() {
             return HTTP.post(this.url(), {
                     product_code: this.product.code,
