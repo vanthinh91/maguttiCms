@@ -45,7 +45,7 @@
                         />
                     </td>
                     <td>{{item.product.price | currency}}</td>
-                    <td>{{this.itemTotal(item) | currency}}</td>
+                    <td>{{itemTotal(item) | currency}}</td>
                     <td class="text-center"><i class="fas fa-trash" @click="deleteCartItem(index,item.id)"></i></td>
                 </tr>
                 </tbody>
