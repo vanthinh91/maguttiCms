@@ -2034,7 +2034,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["show"],
+  props: {
+    show: {
+      required: true
+    },
+    preventBackgroundScrolling: {
+      "default": true
+    }
+  },
   data: function data() {
     return {
       item: {}
@@ -2053,6 +2060,18 @@ __webpack_require__.r(__webpack_exports__);
     this.$once("hook:destroyed", function () {
       document.removeEventListener("keydown", escapeHandler);
     });
+  },
+  watch: {
+    show: {
+      immediate: true,
+      handler: function handler(show) {
+        if (show) {
+          this.preventBackgroundScrolling && document.body.style.setProperty("overflow", "hidden");
+        } else {
+          this.preventBackgroundScrolling && document.body.style.removeProperty("overflow");
+        }
+      }
+    }
   },
   methods: {
     dismiss: function dismiss() {

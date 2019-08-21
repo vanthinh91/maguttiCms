@@ -25,7 +25,10 @@
 
 <script>
     export default {
-        props: ["show"],
+        props: {
+            show: { required: true },
+                preventBackgroundScrolling: { default: true }
+        },
         data() {
             return {
                 item: {},
@@ -41,6 +44,20 @@
             this.$once("hook:destroyed", () => {
                 document.removeEventListener("keydown", escapeHandler)
             })
+        },
+        watch: {
+            show: {
+                immediate: true,
+                handler: function(show) {
+                    if (show) {
+                        this.preventBackgroundScrolling &&
+                        document.body.style.setProperty("overflow", "hidden")
+                    } else {
+                        this.preventBackgroundScrolling &&
+                        document.body.style.removeProperty("overflow")
+                    }
+                }
+            }
         },
         methods: {
             dismiss() {
