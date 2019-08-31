@@ -44,31 +44,14 @@ class MaguttiCmsServiceProvider extends ServiceProvider
          */
         view()->composer('website/*', ViewShareSettingComposer::class);
 
-        /*
-         * GF_ma for maguttiCms
-         * simple query debugger
-         * use http://framework_base.dev/admin/list/articles?sql-debug=1
-         */
-        if (env('APP_ENV') === 'local') {
-            DB::connection()->enableQueryLog();
-        }
-        if (env('APP_ENV') === 'local') {
-            Event::listen('kernel.handled', function ($request, $response) {
-                if ( $request->has('sql-debug') ) {
-                    $queries = DB::getQueryLog();
-                    dd($queries);
-                }
-            });
-        }
+       
 
         /*
         |--------------------------------------------------------------------------
         |  LARACMS VALIDATION CUSTOM DIRECTIVE
         |--------------------------------------------------------------------------
         */
-
         Validator::extend('is_unique', function($attribute, $value, $parameters, $validator) {
-
             $model  = request()->segment(3);
             $config = config('maguttiCms.admin.list.section.' .$model);
             $id     = (request()->segment(4))?:null;
