@@ -22,4 +22,11 @@ class NewsBuilder extends MaguttiCmsBuilder
     {
         return $this->where('pub', 1)->where('date', '<=', Carbon::now());
     }
+    function findPublished()
+    {
+
+        return $this->published()
+            ->latest('date');
+
+    }
 }

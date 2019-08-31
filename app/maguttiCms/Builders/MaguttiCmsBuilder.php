@@ -22,4 +22,9 @@ class MaguttiCmsBuilder extends Builder
     public function published() {
         return $this->where('pub', 1);
     }
+
+    public function findBySlug($slug,$locale=''){
+        if(isset($this->model->translatedAttributes) && $this->model->isAttributeTranslatable('slug'))  return  $this->model->getByTranslationSlug($slug,$locale);
+        return $this->model->where('slug','=',$slug)->first();
+    }
 }

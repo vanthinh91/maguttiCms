@@ -1,5 +1,7 @@
 <?php namespace App;
 
+use App\maguttiCms\Builders\MaguttiCmsBuilder;
+use App\maguttiCms\Builders\ProductBuilder;
 use Illuminate\Database\Eloquent\Model;
 use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
@@ -39,6 +41,16 @@ class Category extends Model
     public function products()
     {
         return $this->hasMany('App\Product');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Builder & Repo
+    |--------------------------------------------------------------------------
+    */
+    function newEloquentBuilder($query)
+    {
+        return new MaguttiCmsBuilder($query);
     }
 
     /*
