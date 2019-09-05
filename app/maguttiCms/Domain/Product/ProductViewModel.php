@@ -2,23 +2,18 @@
 
 namespace App\maguttiCms\Domain\Product;
 
+use App\maguttiCms\Domain\Website\WebsiteViewModel;
 use App\Product;
-use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
 
-class ProductViewModel
+
+class ProductViewModel extends WebsiteViewModel
 {
 
-    use MaguttiCmsSeoTrait;
 
-    function __construct()
+    function show($slug)
     {
-
-    }
-
-
-    function show($slug, $article)
-    {
-        $product = Product::findBySlug($slug, app()->getLocale());;
+        $product = Product::findBySlug($slug, app()->getLocale());
+        $article = $this->getCurrentPage();
         // singolo prodotto
         if ($product) {
             $category = $product->category;
@@ -32,8 +27,8 @@ class ProductViewModel
 
     
 
-    function handle($article, $slug)
+    function handle($slug)
     {
-        return ($slug == '') ? $this->index($article) : $this->show($slug, $article);;
+        return ($slug == '') ? $this->index() : $this->show($slug);
     }
 }

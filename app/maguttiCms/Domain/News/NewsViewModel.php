@@ -4,23 +4,16 @@ namespace App\maguttiCms\Domain\News;
 
 
 use App\News;
-use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
+use App\maguttiCms\Domain\Website\WebsiteViewModel;
 
-class NewsViewModel
+
+class NewsViewModel extends WebsiteViewModel
 {
 
-    use MaguttiCmsSeoTrait;
-    function __construct()
-    {
-
-    }
-
-
-
-
-    function show($slug,$article)
+    function show($slug)
     {
         $news = News::findBySlug($slug, app()->getLocale());
+        $article = $this->getCurrentPage();
         if ($news) {
             $this->setSeo($news);
             $locale_article = $news;
@@ -29,16 +22,17 @@ class NewsViewModel
         return redirect(url_locale('/'));
     }
 
-    function index($article)
+    function index()
     {
+        $article = $this->getCurrentPage();
         $news = News::findPublished()->paginate(config('maguttiCms.website.option.pagination.news_index'));
         $this->setSeo($article);
         $this->setPagination($news);
         return view('website.news.index', compact('article', 'news'));
     }
 
-    function handle($article, $slug)
+    function handle($slug)
     {
-        return ($slug == '') ? $this->index($article) : $this->show($slug,$article);;
+        return ($slug == '') ? $this->index() : $this->show($slug);;
     }
 }

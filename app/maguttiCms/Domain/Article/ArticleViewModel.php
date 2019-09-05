@@ -3,29 +3,21 @@
 namespace App\maguttiCms\Domain\Article;
 
 
-use App\Article;
-use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
 use App\Product;
+use App\maguttiCms\Domain\Website\WebsiteViewModel;
 
-class ArticleViewModel
+class ArticleViewModel extends WebsiteViewModel
 {
 
 
-    use MaguttiCmsSeoTrait;
-
-    function __construct()
-    {
-
-    }
-
     function index()
     {
-        $article =$this->getPage('home');
+        $article = $this->getPage('home');
         $this->setSeo($article);
         return view('website.home', compact('article'));
     }
 
-    function show($parent, $child='')
+    function show($parent, $child = '')
     {
         $article = (!$child) ? $this->getParentPage($parent, app()->getLocale()) : $this->getSubPage($parent, $child);
         if ($this->validatePage($article)) {
@@ -36,7 +28,6 @@ class ArticleViewModel
             return redirect(url_locale('/'));
         }
     }
-
 
 
     function contact()
@@ -51,21 +42,23 @@ class ArticleViewModel
         } else {
             return view('website.contacts', ['request_product_id' => 0, 'article' => $article]);
         }
+
     }
 
-    function getPage($slug){
-        return Article::findBySlug($slug,app()->getLocale());
-    }
 
-    function getParentPage($parent){
+    function getParentPage($parent)
+    {
+
         $page = $this->getPage($parent, app()->getLocale());
         // Return false if page has parent because this method is used only for parent page
-        return  ($page && $page->parent_id != 0) ? false: $page;
+        return ($page && $page->parent_id != 0) ? false : $page;
+
     }
+
     public function getSubPage($parent, $child)
     {
         $parent = $this->getPage($parent);
-        $child  = $this->getPage($child);
+        $child = $this->getPage($child);
 
         // If $parent or $child doesn't exists
         if (!$parent || !$child) {
@@ -81,25 +74,28 @@ class ArticleViewModel
         return $child;
     }
 
-    function handleTemplate($article){
+    function handleTemplate($article)
+    {
 
         // Get website default locale
         $fallback_locale = \Config::get('app.fallback_locale');
-        $template = ($article->template_id) ?  $article->template->value : $article->{'slug:'. $fallback_locale};
-        return (view()->exists('website.'. $template)) ? 'website.'. $template: 'website.normal';
+        $template = ($article->template_id) ? $article->template->value : $article->{'slug:' . $fallback_locale};
+        return (view()->exists('website.' . $template)) ? 'website.' . $template : 'website.normal';
 
     }
 
-    function validatePage($article){
-
-        return ($article && $article->slug != 'home' && $article->pub==1) ?true:false;
-    }
-
-    function handle($parent, $child='')
+    function validatePage($article)
     {
 
-        if($parent=='home') return $this->index();
-        if($parent=='contatti') return $this->contact();
+        return ($article && $article->slug != 'home' && $article->pub == 1) ? true : false;
+
+    }
+
+    function handle($parent, $child = '')
+    {
+
+        if ($parent == 'home') return $this->index();
+        if ($parent == 'contatti') return $this->contact();
         return $this->show($parent, $child);;
     }
 }

@@ -3,44 +3,38 @@
 namespace App\maguttiCms\Domain\Category;
 
 use App\Category;
-use App\News;
-use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
+use App\maguttiCms\Domain\Website\WebsiteViewModel;
 
-class CategoryViewModel
+class CategoryViewModel extends WebsiteViewModel
 {
 
-    use MaguttiCmsSeoTrait;
-
-    function __construct()
-    {
-
-    }
 
 
-    function show($slug, $article)
+    function show($slug)
     {
         $category = Category::findBySlug($slug, app()->getLocale());;
         if ($category) {
+            $article = $this->getCurrentPage();
             $this->setSeo($category);
             $locale_article = $category;
             $products = $category->products()->published()->orderBy('sort')->get();
             return view('website.category', compact('article', 'category', 'products', 'locale_article'));
         } else {
-            return redirect('/');
+            return $this->handleMissingPage();
         }
     }
 
-    function index($article)
+    function index()
     {
-        // lista categorie
+        $article = $this->getCurrentPage();
         $categories = Category::published()->orderBy('title')->get();
         $this->setSeo($article);
         return view('website.categories', ['article' => $article, 'categories' => $categories]);
 
     }
 
-    function handle($article, $slug)
+    function handle($slug)
     {
-        return ($slug == '') ? $this->index($article) : $this->show($slug, $article);;
+       return ($slug == '') ? $this->index() : $this->show($slug);
     }
 }

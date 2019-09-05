@@ -33,7 +33,6 @@ class PagesController extends Controller
 
     public function news($slug = '')
     {
-        $article = Article::findBySlug('news');
-        return (new NewsViewModel())->handle($article, $slug);
+         return (new NewsViewModel('news'))->handle($slug);
     }
 }

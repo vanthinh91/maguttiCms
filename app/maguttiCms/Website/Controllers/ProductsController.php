@@ -19,26 +19,16 @@ use App\maguttiCms\Domain\Product\ProductViewModel;
 class ProductsController extends Controller
 {
 
-
-    public function __construct()
-    {
-
-    }
-
-
     public function category($category_slug = '')
     {
-
-        $article = Article::findBySlug('products');
-
-        return (new CategoryViewModel())->handle($article, $category_slug);
-
+      return (new CategoryViewModel('prodotti'))->handle($category_slug);
     }
 
 
     public function products($category_slug, $product_slug)
     {
-        $article = Article::findBySlug('products');
-        return (new ProductViewModel())->handle($article, $product_slug);
+
+       return (new ProductViewModel('prodotti'))->handle($product_slug);
+
     }
 }
