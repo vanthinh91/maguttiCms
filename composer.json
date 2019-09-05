@@ -19,7 +19,7 @@
         "intervention/imagecache": "^2.3",
         "laravelcollective/html": "5.8.*",
         "maatwebsite/excel": "^3.0",
-        "magutti/magutti-builders": "dev-master",
+
         "mcamara/laravel-localization": "1.2.*",
         "predis/predis": "~1.0",
         "srmklive/paypal": "~1.0",
