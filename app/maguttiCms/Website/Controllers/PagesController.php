@@ -2,19 +2,16 @@
 
 namespace App\maguttiCms\Website\Controllers;
 
-use App\FaqCategory;
-use App\maguttiCms\Domain\Article\ArticleViewModel;
-use App\maguttiCms\Domain\News\NewsViewModel;
-use App\Http\Controllers\Controller;
-
 use Input;
 use Validator;
-use App\Article;
-use Domain;
+use App\Http\Controllers\Controller;
+
+use App\maguttiCms\Domain\Article\ArticleViewModel;
+use App\maguttiCms\Domain\News\NewsViewModel;
+
 
 class PagesController extends Controller
 {
-
 
     public function home()
     {
@@ -33,6 +30,6 @@ class PagesController extends Controller
 
     public function news($slug = '')
     {
-         return (new NewsViewModel('news'))->handle($slug);
+        return (new NewsViewModel('news'))->handle($slug);
     }
 }

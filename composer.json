@@ -25,7 +25,6 @@
         "srmklive/paypal": "~1.0",
         "tymon/jwt-auth": "^1.0",
         "vinkla/shield": "^2.3",
-        "zizaco/entrust": "5.2.x-dev",
         "astrotomic/laravel-translatable": "^11.1",
         "nesbot/carbon": "^2.21"
    },
