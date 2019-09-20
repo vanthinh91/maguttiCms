@@ -25,7 +25,7 @@ class PagesController extends Controller
 
     public function contacts()
     {
-        return (new ArticleViewModel())->handle('contatti');
+        return (new ArticleViewModel())->handle('contacts');
     }
 
     public function news($slug = '')

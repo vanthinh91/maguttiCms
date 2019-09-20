@@ -30,7 +30,7 @@ class ArticleViewModel extends WebsiteViewModel
     }
 
 
-    function contact()
+    function contacts()
     {
 
         $article = $this->getPage('contatti');
@@ -95,7 +95,7 @@ class ArticleViewModel extends WebsiteViewModel
     {
 
         if ($parent == 'home') return $this->index();
-        if ($parent == 'contatti') return $this->contact();
+        if ($parent == 'contacts') return $this->contacts();
         return $this->show($parent, $child);;
     }
 }
