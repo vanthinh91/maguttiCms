@@ -2,12 +2,12 @@
 
 
 ## About maguttiCms
-Open source multilingual Laravel 5.8 CMS with simple shopping cart.
+Open source multilingual Laravel 6 CMS with simple shopping cart.
 
 ## Version
-5.8 - Bootstrap 4
+6 - Bootstrap 4
 
-maguttiCms is released using Laravel 5.8.XX
+maguttiCms is released using Laravel 6.XX
 preset Bootstrap 4
 
 ### How to Install
