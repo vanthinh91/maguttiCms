@@ -1,6 +1,8 @@
 <?php namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
+use Exception;
 
 class SetupRedis extends Command
 {
@@ -9,14 +11,21 @@ class SetupRedis extends Command
      *
      * @var string
      */
-    protected $signature = 'laracms:setup-redis {--show : Display the key instead of modifying files}';
+    protected $signature = 'laracms:setup-redis {--show : Display the key instead of modifying the file}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generate a 10 characters unique string to be used as redis prefix.';
+    protected $description = 'Generate a unique string to be used as Redis prefix.';
+
+    /**
+     * The prefix hash length.
+     *
+     * @var int
+     */
+    protected $hashLength = 44;
 
     /**
      * Create a new command instance.
@@ -38,7 +47,9 @@ class SetupRedis extends Command
         $prefix = $this->generateRandomPrefix();
 
         if ($this->option('show')) {
-            return $this->line('<comment>' . $prefix . '</comment>');
+
+            $this->line('<comment>' . $prefix . '</comment>');
+            return;
         }
 
         $this->setPrefixInEnvironmentFile($prefix);
@@ -53,7 +64,13 @@ class SetupRedis extends Command
      */
     protected function generateRandomPrefix()
     {
-        return base64_encode(random_bytes(32));
+        $prefix = env('APP_NAME', 'laraCms');
+
+        try {
+            return $prefix . '_' . base64_encode(random_bytes($this->hashLength));
+        } catch (Exception $e) {
+            return $prefix . '_' . Str::random($this->hashLength);
+        }
     }
 
     /**
@@ -66,8 +83,8 @@ class SetupRedis extends Command
     protected function setPrefixInEnvironmentFile($prefix)
     {
         file_put_contents($this->laravel->environmentFilePath(), str_replace(
-            'CACHE_PREFIX=' . env('CACHE_PREFIX'),
-            'CACHE_PREFIX=' . $prefix,
+            'REDIS_PREFIX=' . env('REDIS_PREFIX'),
+            'REDIS_PREFIX=' . $prefix,
             file_get_contents($this->laravel->environmentFilePath())
         ));
     }

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\maguttiCms\Website\Decorator;
+namespace App\maguttiCms\Domain\Website\Decorator;
 
 use Auth;
-use StoreHelper;
 use LaravelLocalization;
 
+use StoreHelper;
+use App\maguttiCms\Website\Decorator\maguttiCmsDecorator;
 use App\Article;
 use App\Social;
 

@@ -77,7 +77,7 @@ class AjaxController extends Controller
 		$folder = (isset($fieldspec[$request->key]['folder']))? $fieldspec[$request->key]['folder']: '';
 
 		$media = 'Filedata';
-		if (Input::hasFile($media) && Input::file($media)->isValid()) {
+		if (request()->hasFile($media) && request()->file($media)->isValid()) {
 			$UM              = new UploadManager;
 			$fileData        = $UM->init($media, $request, $disk, $folder)->store()->getFileDetails();
 
@@ -114,7 +114,7 @@ class AjaxController extends Controller
 		$folder = (isset($fieldspec[$request->key]['folder']))? $fieldspec[$request->key]['folder']: '';
 
 		$media = 'Filedata';
-		if (Input::hasFile($media) && Input::file($media)->isValid()) {
+        if ($request->hasFile($media) && $request->file($media)->isValid()) {
 			// store the data
 			$upload_manager = new UploadManager;
 			$file_details = $upload_manager->init($media, $request, $disk, $folder)->store()->getFileDetails();
@@ -223,7 +223,7 @@ class AjaxController extends Controller
 	{
 		$media = 'Filedata';
 
-		if (Input::hasFile($media) && Input::file($media)->isValid()) {
+		if (request()->hasFile($media) && request()->file($media)->isValid()) {
 			$UM = new UploadManager;
 			$fileData = $UM->init($media, $request)->store()->getFileDetails();
 

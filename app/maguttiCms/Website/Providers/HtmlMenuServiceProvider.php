@@ -27,7 +27,7 @@ class HtmlMenuServiceProvider extends ServiceProvider
     {
         App::bind('HtmlMenu', function()
         {
-            return new \App\maguttiCms\Website\Decorator\HtmlMenu;
+            return new \App\maguttiCms\Domain\Website\Decorator\HtmlMenu();
         });
     }
 }

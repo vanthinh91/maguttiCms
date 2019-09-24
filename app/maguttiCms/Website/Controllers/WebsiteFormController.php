@@ -89,8 +89,8 @@ class WebsiteFormController extends Controller
         //$UM = new UploadManager;
         //$UM->init($media,$model);
 
-        if (Input::hasFile($media) && Input::file($media)->isValid()) {
-            $newMedia  = Input::file($media);
+        if (request()->hasFile($media) && request()->file($media)->isValid()) {
+            $newMedia  = request()->file($media);
             $model_name = strtolower(class_basename($model));
             $destinationPath =  config('maguttiCms.admin.path.user_upload').'/'.$model_name; // upload path
             $extension 		 = $newMedia->getClientOriginalExtension(); // getting image extension

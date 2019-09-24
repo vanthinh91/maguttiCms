@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rules;
+namespace App\maguttiCms\Rules;
 
 use App\maguttiCms\Tools\SettingHelper;
 use GuzzleHttp\Client;
@@ -22,8 +22,8 @@ class GoogleRecaptcha implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
+     * @param  string $attribute
+     * @param  mixed $value
      * @return bool
      */
     public function passes($attribute, $value)
@@ -43,7 +43,7 @@ class GoogleRecaptcha implements Rule
     }
 
 
-        /**
+    /**
      * Get the validation error message.
      *
      * @return string

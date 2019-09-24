@@ -24,32 +24,20 @@ class Handler extends ExceptionHandler
         \Illuminate\Validation\ValidationException::class,
     ];
 
+    /**
+     * A list of the inputs that are never flashed for validation exceptions.
+     *
+     * @var array
+     */
+    protected $dontFlash = [
+        'password',
+        'password_confirmation',
+    ];
+
 
     public function report(Exception $exception) {
 		if ($exception instanceof \Exception) {
-	        // emails.exception is the template of your email
-	        // it will have access to the $error that we are passing below
-			if ($exception->getMessage()) {
-				if (env('ERRORS_DB')) {
-					Error::create([
-						'message' => $exception->getMessage(),
-						'file' => $exception->getFile(),
-						'line' => $exception->getLine(),
-						'trace' => collect($exception->getTrace())->implode('file', '\n')
-					]);
-				}
-				if (env('ERRORS_MAIL') && config('maguttiCms.developer.email')) {
-					Mail::send(
-						'emails.exception',
-						['error' => $exception->getMessage(), 'file' => $exception->getFile(), 'line' => $exception->getLine(), 'trace' => $exception->getTrace()],
-						function ($message) {
-							$message->subject(trans('Laravel Error on '.config('maguttiCms.website.option.app.name')));
-							$message->from('maguttiCms@magutti.com', config('maguttiCms.website.option.app.name'));
-							$message->to(config('maguttiCms.developer.email'));
-						}
-					);
-				}
-			}
+
 	    }
         return parent::report($exception);
     }

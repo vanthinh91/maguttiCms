@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Validator;
-use Input;
+
 use Auth;
 
 
@@ -89,11 +89,13 @@ class AdminPagesController extends Controller
         $articles = $objBuilder->paginate(config('maguttiCms.admin.list.item_per_pages'));
         $articles->appends(request()->input())->links(); // paginazione con parametri di ricerca
         $fieldspec = $models->getFieldspec();
+        $admin_can_edit = cmsUserHasRole(['su', 'admin']);
         return view('admin.list', [
             'articles' => $articles,
             'pageConfig' => collect($this->config),
             'fieldspec' => $fieldspec,
             'model' => $this->models,
+            'admin_can_edit' => $admin_can_edit
         ]);
     }
 
@@ -182,31 +184,33 @@ class AdminPagesController extends Controller
      *
      * @return Response
      */
-    public function store($model, AdminFormRequest $request)
+    public function store($section, AdminFormRequest $request)
     {
-        $this->init($model);
+        $this->init($section);
         $model = new  $this->modelClass;
         $article = new $model;
         (new AdminFormFieldsProcessor($request))->requestFieldHandler($article);
         session()->flash('success', 'The item <strong>' . $article->title . '</strong> has been created!');
-        return redirect()->route('admin_edit',['model' =>$this->models, 'id' => $article->id ]);
+
+        return redirect()->route('admin_edit',['section' =>$this->models, 'id' => $article->id ]);
     }
 
     /**
      * Update resource in storage
      *
-     * @param $model
+     * @param $section
      * @param  int $id
      * @param AdminFormRequest $request
      *
      * @return Response
      */
-    public function update($model, $id, AdminFormRequest $request)
+    public function update($section, $id, AdminFormRequest $request)
     {
-        $this->init($model);
+        $this->init($section);
         $article = $this->modelClass::whereId($id)->firstOrFail();
         (new AdminFormFieldsProcessor($request))->requestFieldHandler($article);
-        return redirect()->route('admin_edit',['model' =>$this->models, 'id' => $article->id ]);
+
+        return redirect()->route('admin_edit',['section' => $this->models, 'id' => $article->id ]);
     }
 
     /**
@@ -235,11 +239,11 @@ class AdminPagesController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function duplicate($model, $id)
+    public function duplicate($section, $id)
     {
-        $this->init($model);
+        $this->init($section);
         $article = $this->duplicateModel($id);
-        return redirect(route('admin_edit',['model' =>$this->models, 'id' => $article->id ]));
+        return redirect(route('admin_edit',['section' =>$this->models, 'id' => $article->id ]));
     }
 
 

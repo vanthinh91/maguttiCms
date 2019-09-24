@@ -18,13 +18,13 @@ class SystemServiceProvider extends ServiceProvider
             // Check if we use Redis for this project
             if (!is_null(env('REDIS_HOST', null))) {
 
-                $prefix = env('CACHE_PREFIX', null);
+                $prefix = env('REDIS_PREFIX', null);
                 // Make sure that a random enough prefix has been provided.
                 if (is_null($prefix))
-                    die('CACHE_PREFIX not specified. App killed');
+                    die('REDIS_PREFIX not specified. App killed');
 
-                if (!preg_match('/^.{44}\z/', $prefix))
-                    die('CACHE_PREFIX must be a random string of at least 44 characters (php artisan laracms:setup-redis)');
+                if (strlen($prefix) < 44)
+                    die('REDIS_PREFIX must be a random string of at least 44 characters (php artisan laracms:setup-redis)');
             }
         }
 

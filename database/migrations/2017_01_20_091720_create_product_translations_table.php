@@ -33,6 +33,7 @@ class CreateProductTranslationsTable extends Migration
             $table->unsignedInteger('update_by');
             $table->timestamps();
             $table->text('abstract')->nullable();
+
             $table->unique(['product_id', 'locale'], 'products_translations_product_id_locale_unique');
             $table->index('locale', 'products_translations_locale_index');
 

@@ -185,11 +185,11 @@ return [
         */
 
         Collective\Html\HtmlServiceProvider::class,
-        'Zizaco\Entrust\EntrustServiceProvider',
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         Vinkla\Shield\ShieldServiceProvider::class,
         "Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider",
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
 
 
         /*
@@ -270,10 +270,9 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Entrust' => 'Zizaco\Entrust\EntrustFacade',
         'Carbon' => 'Carbon\Carbon',
         'Slugify' => 'Cocur\Slugify\Bridge\Laravel\SlugifyFacade',
-        'Input' => Illuminate\Support\Facades\Input::class,
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
 
         /*
          |--------------------------------------------------------------------------

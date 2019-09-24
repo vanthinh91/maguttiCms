@@ -42,8 +42,8 @@ class UploadManager
 
 	protected function prepareMediaToUpload()
 	{
-		if (Input::hasFile($this->media) && Input::file($this->media)->isValid()) {
-			$this->newMedia = Input::file($this->media);
+		if (request()->hasFile($this->media) && request()->file($this->media)->isValid()) {
+			$this->newMedia = request()->file($this->media);
 			$this->setFileFullName($this->newMedia->getClientOriginalName());
 			if ($this->destinationStorage == 'media' && !$this->destinationPath) {
 				$this->destinationPath = $this->getMediaType();

@@ -32,7 +32,6 @@ class ArticleViewModel extends WebsiteViewModel
 
     function contacts()
     {
-
         $article = $this->getPage('contatti');
         $this->setSeo($article);
         $parameter = request()->get('product_id');
@@ -42,7 +41,6 @@ class ArticleViewModel extends WebsiteViewModel
         } else {
             return view('website.contacts', ['request_product_id' => 0, 'article' => $article]);
         }
-
     }
 
 
