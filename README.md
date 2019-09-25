@@ -18,8 +18,8 @@ preset Bootstrap 4
  - run php artisan key:generate
  - create db tables importing framework_base.sql file located under the db folder
  - to login in the admin panel (http://yourpath/admin)
-   - email: cmsadmin@magutti.com
-   - password: password
+ - email: cmsadmin@magutti.com
+ - password: password
    
 ### Server Requirements
  
