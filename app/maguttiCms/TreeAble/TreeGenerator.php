@@ -1,17 +1,21 @@
 <?php
 
-namespace App\maguttiCms\Admin\Decorators;
+namespace App\maguttiCms\TreeAble;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TreeDecorator extends Model
+/**
+ * Class TreeGenerator
+ * @package App\maguttiCms\TreeAble
+ */
+class TreeGenerator extends Model
 {
     //
-    protected $tree=[];
+    protected $tree = [];
     protected $collection;
-    protected $parent_field='parent_id';
+    protected $parent_field = 'parent_id';
 
-    public  function __construct($collection)
+    public function __construct($collection)
     {
         $this->collection = $collection;
     }
@@ -25,22 +29,24 @@ class TreeDecorator extends Model
     }
 
     /**
-     * @param mixed $tree
+     * @param $item
      */
     public function addItemToTree($item): void
     {
         $this->tree[] = $item;
     }
-    function treeable($parent_id=null,$level=0){
-            if($this->collection){
-                $level++;
-                foreach($this->collection->where($this->parent_field, $parent_id) as $tree_item) {
-                    $tree_item->level = $level;
-                    $this->addItemToTree($tree_item);
-                    $this->treeable($tree_item->id,$level);
-                }
+
+    function treeable($parent_id = null, $level = 0)
+    {
+        if ($this->collection) {
+            $level++;
+            foreach ($this->collection->where($this->parent_field, $parent_id) as $tree_item) {
+                $tree_item->level = $level;
+                $this->addItemToTree($tree_item);
+                $this->treeable($tree_item->id, $level);
             }
-            return $this;
+        }
+        return $this;
     }
 
     /**
