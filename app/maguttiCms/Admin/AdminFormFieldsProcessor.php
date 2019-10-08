@@ -130,7 +130,7 @@ class AdminFormFieldsProcessor
     {
         $UM = new UploadManager;
 
-        $model->$media = ($UM->init($media, $this->request, $disk,$folder)->store()->getFileFullName()) ?: $model->$media;
+        $model->$media = ($UM->init($media, $this->request,$disk,$folder)->store()->getFileFullName()) ?: $model->$media;
     }
 
     private function mediaHandlerLocale($model, $media, $disk = '', $folder = '', $locale)

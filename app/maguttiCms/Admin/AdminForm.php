@@ -254,7 +254,14 @@ class AdminForm {
 	}
 
 	function containerMedia($formElement, $cssClass = "", $key,$value,$locale='') {
-		return view('admin.inputs.container_media', ['properties' => $this->property, 'form_element' => $formElement, 'css_class' => $cssClass, 'key' => $key, 'model' => $this->model,'value'=>$value,'locale' => $locale]);
+		return view('admin.inputs.container_media',
+            ['properties' => $this->property,
+             'form_element' => $formElement,
+             'css_class' => $cssClass,
+             'key' => $key,
+             'model' => $this->model,
+             'locale' => $locale
+        ]);
 	}
 
 	public function containerUploadifive($formElement, $cssClass = "", $key, $value) {

@@ -76,9 +76,11 @@ function ma_get_image_path_from_repository($img, $absolute = true)
  * @param bool $absolute
  * @return string
  */
-function ma_get_image_from_repository($img, $absolute = true)
+function ma_get_image_from_repository($img, $folder ='',$absolute = true)
 {
-	return ma_get_image_path_from_repository($img, $absolute);
+
+    $imgPath = ($folder)?$folder."/".$img:$img;
+	return ma_get_image_path_from_repository($imgPath, $absolute);
 }
 
 /**

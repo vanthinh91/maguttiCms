@@ -31,6 +31,7 @@ filter - Filters that will be applied to the image after resizing and before enc
 
 namespace App\maguttiCms\Tools;
 
+use Illuminate\Support\Facades\Storage;
 use Image;
 
 /**
@@ -38,218 +39,303 @@ use Image;
  */
 class ImgHelper
 {
-	protected $path_repository;
-	protected $path_save;
-	protected $cache_time;
-	protected $defaults;
+    protected $path_repository;
+    protected $path_save;
+    protected $cache_time;
+    protected $defaults;
+    protected $disk = "media";
+    protected $cache_disk = "images_cache";
+    protected $folder;
 
-	public function __construct()
-	{
-		$this->path_repository = config('maguttiCms.admin.path.img_repository');
-		$this->path_save = config('maguttiCms.admin.path.img_save');
-		$this->cache_time = config('maguttiCms.image.cache_time');
-		$this->defaults = config('maguttiCms.image.defaults');
-		$this->size_limit = config('maguttiCms.image.size_limit');
-	}
+    public function __construct()
+    {
+        $this->path_repository = config('maguttiCms.admin.path.img_repository');
+        $this->path_save = config('maguttiCms.admin.path.img_save');
+        $this->cache_time = config('maguttiCms.image.cache_time');
+        $this->defaults = config('maguttiCms.image.defaults');
+        $this->size_limit = config('maguttiCms.image.size_limit');
+    }
 
-	public static function getInstance()
-	{
-		return new self;
-	}
+    public static function getInstance()
+    {
+        return new self;
+    }
 
-	// receives filename
-	// returns absolute path to image or placeholder if missing
-	private function resolve_path($file_name, $absolute)
-	{
-		if ($absolute) {
-			if (@getimagesize($file_name)) {
-				return $file_name;
-			}
-		} else {
-			if ($file_name && file_exists($this->path_repository.$file_name)) {
-				$metadata = @getimagesize($this->path_repository.$file_name);
-				if ($metadata[0] <= $this->size_limit && $metadata[1] <= $this->size_limit) {
-					return $this->path_repository.$file_name;
-				}
-			}
-		}
-		return $this->path_repository.'placeholder.png';
-	}
 
-	// returns default value for argument if missing
-	private function arg($args, $arg_name)
-	{
-		return (array_key_exists($arg_name, $args))? $args[$arg_name]: $this->defaults[$arg_name];
-	}
+    public function getDisk()
+    {
+        return $this->disk;
+    }
 
-	private function open($file_name, $args)
-	{
-		return Image::make($this->resolve_path($file_name, $this->arg($args, 'a')));
-	}
 
-	// constructs a new filename based on args
-	private function make_new_name($src, $args)
-	{
-		$new_name = str_replace(['.', ' '], '_', basename($src));
-		$new_name .= (isset($args['w']))? '_'.$args['w']: '_0';
-		$new_name .= (isset($args['h']))? '_'.$args['h']: '_0';
-		$new_name .= '_'.$this->arg($args, 'c');
-		$new_name .= '_'.$this->arg($args, 'q');
-		$new_name .= (array_key_exists('filter', $args))? '_'.substr(md5(json_encode($this->arg($args, 'filter'))), 0, 8): '';
-		$new_name .= '.'.$this->arg($args, 'format');
-		return $new_name;
-	}
+    public function setDisk($disk)
+    {
+        $this->disk = $disk;
+        return $this;
+    }
 
-	// returns the resampled image object
-	// if one dimension is missing, the other is calculated automatically, keeping aspect ratio
-	private function resample($obj, $args)
-	{
-		$c = $this->arg($args, 'c');
-		$p = $this->arg($args, 'p');
+    public function getFolder()
+    {
+        return $this->folder;
+    }
 
-		//determine original and final width, height and ratio
-		$w_original = $obj->width();
-		$h_original = $obj->height();
-		$r_original = $w_original / $h_original;
-		$w_final = isset($args['w'])? preg_replace('/([A-Za-z])+/', '', $args['w']): null;
-		$h_final = isset($args['h'])? preg_replace('/([A-Za-z])+/', '', $args['h']): null;
 
-		if (!$w_final || !$h_final) {
-			$r_final = $r_original;
-		} else {
-			$r_final = $w_final / $h_final;
-		}
+    public function setFolder($folder)
+    {
+        $this->folder = $folder;
+        return $this;
+    }
 
-		if (!$h_final) {
-			$h_final = round($w_final / $r_final);
-		}
-		if (!$w_final) {
-			$w_final = round($h_final * $r_final);
-		}
 
-		switch ($c) {
-			case 'fill':
-				$obj->resize($w_final, $h_final);
-				break;
-			case 'best':
-				if ($r_original >= $r_final) {
-					$obj->resize($w_final, null, function ($constraint) {
-						$constraint->aspectRatio();
-					});
-				} else {
-					$obj->resize(null, $h_final, function ($constraint) {
-						$constraint->aspectRatio();
-					});
-				}
-				break;
-			case 'contain':
-				if ($r_original >= $r_final) {
-					$obj->resize($w_final, null, function ($constraint) {
-						$constraint->aspectRatio();
-					});
-				} else {
-					$obj->resize(null, $h_final, function ($constraint) {
-						$constraint->aspectRatio();
-					});
-				}
-				$obj->resizeCanvas($w_final, $h_final, $p);
-				break;
-			default:
-				$obj->fit($w_final, $h_final, function () {
-				}, $p);
-				break;
-		}
-		return $obj;
-	}
+    public function init($folder = '', $disk = '')
+    {
+        if($folder!='')$this->setFolder($folder);
+        return $this;
+    }
 
-	// changes color modes depending on format
-	private function setColors($obj, $format, $matte)
-	{
-		switch ($format) {
-			case 'png': $obj->limitColors(null, 'rgba(0,0,0,0)'); break;
-			case 'gif':	$obj->limitColors(256, 'rgba(0,0,0,0)'); break;
-			case 'bmp':	$obj->limitColors(256, $matte);	break;
-			default: $obj->limitColors(null, $matte); break;
-		}
-		return $obj;
-	}
+    function resolveCachePathSave()
+    {
 
-	// apply filters in sequential order
-	private function setFilter($obj, $filter)
-	{
-		foreach ($filter as $_filter => $_strenght) {
-			switch ($_filter) {
-				case 'blur': $obj->blur($_strenght); break;
-				case 'brightness': $obj->brightness($_strenght); break;
-				case 'colorize': $obj->colorize($_strenght[0], $_strenght[1], $_strenght[2]); break;
-				case 'contrast': $obj->contrast($_strenght); break;
-				case 'gamma': $obj->gamma($_strenght); break;
-				case 'greyscale': $obj->greyscale(); break;
-				case 'invert': $obj->invert(); break;
-				case 'opacity': $obj->opacity($_strenght); break;
-				case 'pixelate': $obj->pixelate($_strenght); break;
-				case 'sharpen': $obj->sharpen($_strenght); break;
-			}
-		}
-		return $obj;
-	}
+        if ($this->getFolder() != '') {
+            Storage::disk($this->cache_disk)->makeDirectory($this->getFolder());
+            $this->path_save .= $this->getFolder() . '/';
+        }
+        return $this;
+    }
 
-	// calculates a new image and returns the path to it
-	public function get($src, $args = array(), $disk = '', $folder = '')
-	{
-		$new_name = $this->make_new_name($src, $args);
+    function resolveRepositoryPath()
+    {
+        if ($this->getFolder() != '') {
+            return $this->path_repository . $this->getFolder() . '/';
+        }
+        return $this->path_repository;
+    }
 
-		// create image object from source
-		$obj = $this->open($src, $args);
+    // receives filename
+    // returns absolute path to image or placeholder if missing
+    private function resolve_path($file_name, $absolute)
+    {
 
-		// if we are given width or height, resample the image accordingly
-		if (isset($args['w']) || isset($args['h'])) {
-			$obj = $this->resample($obj, $args);
-		}
+        if ($absolute) {
+            if (@getimagesize($file_name)) {
+                return $file_name;
+            }
+        } else {
+            if ($file_name && file_exists($this->resolveRepositoryPath() . $file_name)) {
+                $metadata = @getimagesize($this->resolveRepositoryPath() . $file_name);
+                if ($metadata[0] <= $this->size_limit && $metadata[1] <= $this->size_limit) {
+                    return $this->resolveRepositoryPath() . $file_name;
+                }
+            }
+        }
+        return $this->path_repository . 'placeholder.png';
+    }
 
-		// fiters
-		if (isset($args['filter'])) {
-			$obj = $this->setFilter($obj, $args['filter']);
-		}
+    // returns default value for argument if missing
+    private function arg($args, $arg_name)
+    {
+        return (array_key_exists($arg_name, $args)) ? $args[$arg_name] : $this->defaults[$arg_name];
+    }
 
-		// manual color conversion
-		$obj = $this->setColors($obj, $this->arg($args, 'format'), $this->arg($args, 'matte'));
+    private function open($file_name, $args)
+    {
+        return Image::make($this->resolve_path($file_name, $this->arg($args, 'a')));
+    }
 
-		// encode by format and quality
-		$q = $this->arg($args, 'q');
-		$format = $this->arg($args, 'format');
+    // constructs a new filename based on args
+    private function make_new_name($src, $args)
+    {
+        $new_name = str_replace(['.', ' '], '_', basename($src));
+        $new_name .= (isset($args['w'])) ? '_' . $args['w'] : '_0';
+        $new_name .= (isset($args['h'])) ? '_' . $args['h'] : '_0';
+        $new_name .= '_' . $this->arg($args, 'c');
+        $new_name .= '_' . $this->arg($args, 'q');
+        $new_name .= (array_key_exists('filter', $args)) ? '_' . substr(md5(json_encode($this->arg($args, 'filter'))), 0, 8) : '';
+        $new_name .= '.' . $this->arg($args, 'format');
+        return $new_name;
+    }
 
-		$obj->encode($format, $q);
+    // returns the resampled image object
+    // if one dimension is missing, the other is calculated automatically, keeping aspect ratio
+    private function resample($obj, $args)
+    {
+        $c = $this->arg($args, 'c');
+        $p = $this->arg($args, 'p');
 
-		if ($this->arg($args, 'format') == 'data-url') {
-			return $obj;
-		} else {
-			// save the generated image;
-			$obj->save($this->path_save.$new_name, $q);
+        //determine original and final width, height and ratio
+        $w_original = $obj->width();
+        $h_original = $obj->height();
+        $r_original = $w_original / $h_original;
+        $w_final = isset($args['w']) ? preg_replace('/([A-Za-z])+/', '', $args['w']) : null;
+        $h_final = isset($args['h']) ? preg_replace('/([A-Za-z])+/', '', $args['h']) : null;
 
-			if ($this->arg($args, 'e')) {
-				echo '/'.$this->path_save.$new_name;
-			} else {
-				return '/'.$this->path_save.$new_name;
-			}
-		}
-	}
+        if (!$w_final || !$h_final) {
+            $r_final = $r_original;
+        } else {
+            $r_final = $w_final / $h_final;
+        }
 
-	// checks if image exists and returns the path to it. creates it anew if not.
-	public function get_cached($src, $args = array(), $disk = '', $folder = '')
-	{
-		$new_name = $this->make_new_name($src, $args);
+        if (!$h_final) {
+            $h_final = round($w_final / $r_final);
+        }
+        if (!$w_final) {
+            $w_final = round($h_final * $r_final);
+        }
 
-		if (file_exists($this->path_save.$new_name)) {
-			return '/'.$this->path_save.$new_name;
-		} else {
-			return $this->get($src, $args);
-		}
-	}
+        switch ($c) {
+            case 'fill':
+                $obj->resize($w_final, $h_final);
+                break;
+            case 'best':
+                if ($r_original >= $r_final) {
+                    $obj->resize($w_final, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                } else {
+                    $obj->resize(null, $h_final, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                }
+                break;
+            case 'contain':
+                if ($r_original >= $r_final) {
+                    $obj->resize($w_final, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                } else {
+                    $obj->resize(null, $h_final, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                }
+                $obj->resizeCanvas($w_final, $h_final, $p);
+                break;
+            default:
+                $obj->fit($w_final, $h_final, function () {
+                }, $p);
+                break;
+        }
+        return $obj;
+    }
 
-	// returns the url to the unaltered image
-	public function get_url($src)
-	{
-		return '/'.$this->resolve_path($src, false);
-	}
+    // changes color modes depending on format
+    private function setColors($obj, $format, $matte)
+    {
+        switch ($format) {
+            case 'png':
+                $obj->limitColors(null, 'rgba(0,0,0,0)');
+                break;
+            case 'gif':
+                $obj->limitColors(256, 'rgba(0,0,0,0)');
+                break;
+            case 'bmp':
+                $obj->limitColors(256, $matte);
+                break;
+            default:
+                $obj->limitColors(null, $matte);
+                break;
+        }
+        return $obj;
+    }
+
+    // apply filters in sequential order
+    private function setFilter($obj, $filter)
+    {
+        foreach ($filter as $_filter => $_strenght) {
+            switch ($_filter) {
+                case 'blur':
+                    $obj->blur($_strenght);
+                    break;
+                case 'brightness':
+                    $obj->brightness($_strenght);
+                    break;
+                case 'colorize':
+                    $obj->colorize($_strenght[0], $_strenght[1], $_strenght[2]);
+                    break;
+                case 'contrast':
+                    $obj->contrast($_strenght);
+                    break;
+                case 'gamma':
+                    $obj->gamma($_strenght);
+                    break;
+                case 'greyscale':
+                    $obj->greyscale();
+                    break;
+                case 'invert':
+                    $obj->invert();
+                    break;
+                case 'opacity':
+                    $obj->opacity($_strenght);
+                    break;
+                case 'pixelate':
+                    $obj->pixelate($_strenght);
+                    break;
+                case 'sharpen':
+                    $obj->sharpen($_strenght);
+                    break;
+            }
+        }
+        return $obj;
+    }
+
+    // calculates a new image and returns the path to it
+    public function get($src, $args = array())
+    {
+        $new_name = $this->make_new_name($src, $args);
+
+        // create image object from source
+        $obj = $this->open($src, $args);
+
+        // if we are given width or height, resample the image accordingly
+        if (isset($args['w']) || isset($args['h'])) {
+            $obj = $this->resample($obj, $args);
+        }
+
+        // fiters
+        if (isset($args['filter'])) {
+            $obj = $this->setFilter($obj, $args['filter']);
+        }
+
+        // manual color conversion
+        $obj = $this->setColors($obj, $this->arg($args, 'format'), $this->arg($args, 'matte'));
+
+        // encode by format and quality
+        $q = $this->arg($args, 'q');
+        $format = $this->arg($args, 'format');
+
+        $obj->encode($format, $q);
+
+        if ($this->arg($args, 'format') == 'data-url') {
+            return $obj;
+        } else {
+            // save the generated image;
+            $this->resolveCachePathSave();
+            $obj->save($this->path_save . $new_name, $q);
+
+            if ($this->arg($args, 'e')) {
+                echo '/' . $this->path_save . $new_name;
+            } else {
+                return '/' . $this->path_save . $new_name;
+            }
+        }
+    }
+
+    // checks if image exists and returns the path to it. creates it anew if not.
+    public function get_cached($src, $args = array())
+    {
+
+        $this->resolveCachePathSave();
+        $new_name = $this->make_new_name($src, $args);
+
+        if (file_exists($this->path_save . $new_name)) {
+            return '/' . $this->path_save . $new_name;
+        } else {
+            return $this->get($src, $args);
+        }
+    }
+
+    // returns the url to the unaltered image
+    public function get_url($src)
+    {
+        return '/' . $this->resolve_path($src, false);
+    }
 }

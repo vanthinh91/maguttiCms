@@ -264,8 +264,10 @@ class Example extends Model
             'type'      => 'media',
             'required'  => 0,
             'hidden'    => 0,
-            'label'     => 'File upload',
+            'label'     => 'File upload  Images',
             'mediaType' => 'Img',
+            'disk'      => 'images',
+            'folder'    => 'examples',
             'display'   => 1,
         ];
         $this->fieldspec['image_crop'] = [

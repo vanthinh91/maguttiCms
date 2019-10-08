@@ -60,6 +60,19 @@ return [
             'url'    => '/media',
 			'visibility' => 'public',
         ],
+        'images' => [
+            'driver' => 'local',
+            'root'   => public_path('media/images'),
+            'url'    => '/media/images',
+			'visibility' => 'public',
+        ],
+
+        'images_cache' => [
+            'driver' => 'local',
+            'root'   => public_path('media/images/cache'),
+            'url'    => '/media/images/cache',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',
