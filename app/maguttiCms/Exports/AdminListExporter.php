@@ -49,9 +49,9 @@ class AdminListExporter extends  ExportHelper implements FromCollection, WithHea
     public function getDataToExport()
     {
         $items = $this->getData();
-        foreach ( $items as $item) {
+        $items->each(function ($item) {
             $this->itemsArray[] = $this->mapData($item);
-        }
+        });
         return $this->itemsArray;
     }
 
@@ -101,7 +101,7 @@ class AdminListExporter extends  ExportHelper implements FromCollection, WithHea
         $this->withHelperFilter($objBuilder);
         $this->joinable($objBuilder);
         $this->withRelation($objBuilder);
-        return $objBuilder->get();
+        return $objBuilder;
     }
 
 
