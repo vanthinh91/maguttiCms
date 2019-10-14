@@ -63,7 +63,7 @@
 															$folder = isset($field['folder'])? $field['folder']: '';
 															$file = $article->{$label['field']};
 															$image = ma_get_file_from_storage($file, $disk, $folder);
-															$thumb = ImgHelper::get_cached($file, config('maguttiCms.image.admin'),$folder);
+															$thumb = ImgHelper::init($folder)->get_cached($file, config('maguttiCms.image.admin'));
 														@endphp
 														<a href="{{$image}}" class="red" target="_new">
 															<img src="{{$thumb}}"  class="img-thumb">

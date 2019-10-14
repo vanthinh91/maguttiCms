@@ -86,7 +86,6 @@ class ImgHelper
         return $this;
     }
 
-    
 
     function getCacheSavePath()
     {

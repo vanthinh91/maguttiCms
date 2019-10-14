@@ -6,7 +6,6 @@
 		<div class="media-cont">
 			<div class="media-input">
 				{!!$form_element!!}
-				{!!$value!!}
 			</div>
 			@if ($value!='')
 				<div id="box_{{$key}}_{{$model->id}}" class="media-saved">
