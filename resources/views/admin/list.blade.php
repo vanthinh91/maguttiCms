@@ -62,9 +62,8 @@
 															$disk = isset($field['disk'])? $field['disk']: '';
 															$folder = isset($field['folder'])? $field['folder']: '';
 															$file = $article->{$label['field']};
-															// $image = ma_get_file_from_storage($file, $disk, $folder);
-															$image = ma_get_image_from_repository($file, $disk, $folder);
-															$thumb = ImgHelper::get_cached($file, config('maguttiCms.image.admin'), $disk, $folder);
+															$image = ma_get_file_from_storage($file, $disk, $folder);
+															$thumb = ImgHelper::get_cached($file, config('maguttiCms.image.admin'),$folder);
 														@endphp
 														<a href="{{$image}}" class="red" target="_new">
 															<img src="{{$thumb}}"  class="img-thumb">

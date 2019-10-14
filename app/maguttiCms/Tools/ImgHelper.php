@@ -50,17 +50,17 @@ class ImgHelper
     public function __construct()
     {
         $this->path_repository = config('maguttiCms.admin.path.img_repository');
-        $this->path_save = config('maguttiCms.admin.path.img_save');
+        $this->path_cache = config('maguttiCms.admin.path.img_save');
         $this->cache_time = config('maguttiCms.image.cache_time');
         $this->defaults = config('maguttiCms.image.defaults');
         $this->size_limit = config('maguttiCms.image.size_limit');
     }
 
-    public static function getInstance()
+    public function init($folder = '', $disk = '')
     {
-        return new self;
+        if($folder!='')$this->setFolder($folder);
+        return $this;
     }
-
 
     public function getDisk()
     {
@@ -86,22 +86,17 @@ class ImgHelper
         return $this;
     }
 
+    
 
-    public function init($folder = '', $disk = '')
-    {
-        if($folder!='')$this->setFolder($folder);
-        return $this;
-    }
-
-    function resolveCachePathSave()
+    function getCacheSavePath()
     {
 
         if ($this->getFolder() != '') {
             Storage::disk($this->cache_disk)->makeDirectory($this->getFolder());
-            $this->path_save .= $this->getFolder() . '/';
+            return $this->path_cache.$this->getFolder() . '/';
         }
-        return $this;
-    }
+        else return $this->path_cache;
+     }
 
     function resolveRepositoryPath()
     {
@@ -130,6 +125,68 @@ class ImgHelper
         }
         return $this->path_repository . 'placeholder.png';
     }
+
+    // calculates a new image and returns the path to it
+    public function get($src, $args = array(),$folder='')
+    {
+        //if($folder)$this->init($folder);
+        $new_name = $this->make_new_name($src, $args);
+
+        // create image object from source
+        $obj = $this->open($src, $args);
+
+        // if we are given width or height, resample the image accordingly
+        if (isset($args['w']) || isset($args['h'])) {
+            $obj = $this->resample($obj, $args);
+        }
+
+        // fiters
+        if (isset($args['filter'])) {
+            $obj = $this->setFilter($obj, $args['filter']);
+        }
+
+        // manual color conversion
+        $obj = $this->setColors($obj, $this->arg($args, 'format'), $this->arg($args, 'matte'));
+
+        // encode by format and quality
+        $q = $this->arg($args, 'q');
+        $format = $this->arg($args, 'format');
+
+        $obj->encode($format, $q);
+
+        if ($this->arg($args, 'format') == 'data-url') {
+            return $obj;
+        } else {
+            // save the generated image;
+            
+            $obj->save($this->getCacheSavePath() . $new_name, $q);
+
+            if ($this->arg($args, 'e')) {
+                echo '/' . $this->getCacheSavePath() . $new_name;
+            } else {
+                return '/' . $this->getCacheSavePath() . $new_name;
+            }
+        }
+    }
+
+    // checks if image exists and returns the path to it. creates it anew if not.
+    public function get_cached($src, $args = array())
+    {
+    
+        $new_name = $this->make_new_name($src, $args);
+        if (file_exists($this->getCacheSavePath() . $new_name)) {
+            return '/' . $this->getCacheSavePath() . $new_name;
+        } else {
+            return $this->get($src, $args);
+        }
+    }
+
+    // returns the url to the unaltered image
+    public function get_url($src)
+    {
+        return '/' . $this->resolve_path($src, false);
+    }
+    
 
     // returns default value for argument if missing
     private function arg($args, $arg_name)
@@ -277,65 +334,5 @@ class ImgHelper
         return $obj;
     }
 
-    // calculates a new image and returns the path to it
-    public function get($src, $args = array())
-    {
-        $new_name = $this->make_new_name($src, $args);
-
-        // create image object from source
-        $obj = $this->open($src, $args);
-
-        // if we are given width or height, resample the image accordingly
-        if (isset($args['w']) || isset($args['h'])) {
-            $obj = $this->resample($obj, $args);
-        }
-
-        // fiters
-        if (isset($args['filter'])) {
-            $obj = $this->setFilter($obj, $args['filter']);
-        }
-
-        // manual color conversion
-        $obj = $this->setColors($obj, $this->arg($args, 'format'), $this->arg($args, 'matte'));
-
-        // encode by format and quality
-        $q = $this->arg($args, 'q');
-        $format = $this->arg($args, 'format');
-
-        $obj->encode($format, $q);
-
-        if ($this->arg($args, 'format') == 'data-url') {
-            return $obj;
-        } else {
-            // save the generated image;
-            $this->resolveCachePathSave();
-            $obj->save($this->path_save . $new_name, $q);
-
-            if ($this->arg($args, 'e')) {
-                echo '/' . $this->path_save . $new_name;
-            } else {
-                return '/' . $this->path_save . $new_name;
-            }
-        }
-    }
-
-    // checks if image exists and returns the path to it. creates it anew if not.
-    public function get_cached($src, $args = array())
-    {
-
-        $this->resolveCachePathSave();
-        $new_name = $this->make_new_name($src, $args);
-
-        if (file_exists($this->path_save . $new_name)) {
-            return '/' . $this->path_save . $new_name;
-        } else {
-            return $this->get($src, $args);
-        }
-    }
-
-    // returns the url to the unaltered image
-    public function get_url($src)
-    {
-        return '/' . $this->resolve_path($src, false);
-    }
+    
 }

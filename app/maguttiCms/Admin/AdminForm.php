@@ -259,8 +259,10 @@ class AdminForm {
              'form_element' => $formElement,
              'css_class' => $cssClass,
              'key' => $key,
+             'value' => $value,
              'model' => $this->model,
-             'locale' => $locale
+             'locale' => $locale,
+
         ]);
 	}
 
