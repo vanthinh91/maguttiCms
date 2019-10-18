@@ -62,6 +62,7 @@
 				</div>
 				@include('admin.common.form_submit_button')
 				{{ Form::close() }}
+				<list-component :items="{{App\Contact::all()}}" :selects="{{App\Product::all()}}"></list-component>
 			</div>
 			<div class="col-12 col-sm-4">
 				<div id="edit-sidebar" class="card">

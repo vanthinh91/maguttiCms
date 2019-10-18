@@ -17,25 +17,13 @@
                         <label for="email">Email</label>
                         <input id="email" type='text' v-model.lazy="contact.email" class="form-control mb-1 mr-sm-2">
                     </div>
-                    <div class="form-group col-md-12">
-                        <label for="message">Messaggio</label>
-                        <editor id="message" v-model="contact.message"></editor>
-                    </div>
                 </div>
                 <div class="form-row bg">
                     <div class="form-group col-md-12">
-                        <select name="" id="" v-model="contact.request_product_id" class="form-control" @change="onChange($event)">
-                            <option selected="true">Select template</option>
-                            <option v-for="product in products" :value="product.id">{{ product.title }}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row bg">
-                    <div class="form-group col-md-12">
-                        <button v-if="isEdit==false" @click.prevent="addItem" class="btn btn-success mb-2 btn-block"><i
+                        <button v-if="isEdit==false" @click.prevent="addItem" class="btn btn-primary mb-2 btn-block"><i
                                 class="fas fa-plus"></i> Add
                         </button>
-                        <button v-else="isEdit==true" @click.prevent="updateItem" class="btn btn-danger mb-2 w-100"><i
+                        <button v-else="isEdit==true" @click.prevent="updateItem" class="btn btn-primary mb-2 w-100"><i
                                 class="fas fa-edit"></i> Update
                         </button>
                     </div>
@@ -49,8 +37,6 @@
                         <td>Nome</td>
                         <td>Cognome</td>
                         <td>Email</td>
-                        <td>Template</td>
-                        <td>Note</td>
                         <td>Action</td>
                     </tr>
                     </thead>
@@ -59,24 +45,49 @@
                         <td>{{ contact.name }}</td>
                         <td>{{ contact.surname }}</td>
                         <td>{{ contact.email }}</td>
-                        <td>{{ contact.template}}</td>
-                        <td v-html="contact.message"></td>
                         <td><i @click="deleteItem(index)" class="px-1 fas fa-trash"></i>
                             <i @click="editItem(index)" class="px-1 fas fa-edit"></i>
-                        </td>
+
+                            <i @click="aggiorna(contact)" class="px-1 fas fa-save"></i></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
 
+            <ul v-for="(contact,index) in list" class="list-unstyled">
+                <li class="py-1">{{ contact.id }} {{ contact.name }} - {{ contact.surname }}- {{ contact.email }}
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="contact_name">Name</label>
+                            <input type='text' id="contact_name" v-model="contact.name"
+                                   class="form-control mb-2 mr-sm-2">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="contact_surname">Surname</label>
+                            <input id="contact_surname" type='text' v-model="contact.surname"
+                                   class="form-control mb-2 mr-sm-2">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="contact_email">Email</label>
+                            <input id="contact_email" type='text' v-model="contact.email"
+                                   class="form-control mb-2 mr-sm-2">
+                        </div>
+                    </div>
+
+
+                    <i @click="deleteItem(index)" class="px-1 fas fa-trash"></i>
+                    <i @click="editItem(index)" class="px-1 fas fa-edit"></i>
+
+                    <i @click="aggiorna(contact)" class="px-1 fas fa-save">s</i>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
 <script>
-
     import Editor from '@tinymce/tinymce-vue'
     export default {
-        props: ['items','selects'],
+        props: ['items'],
         components: {
             'editor': Editor
         },
@@ -85,22 +96,14 @@
                 contact: {},
                 errors: [],
                 selectedItem: '',
-                template: '',
                 isEdit: false,
-                list: [],
-                products:[]
+                list: []
             }
         },
         created() {
             this.list = this.items;
-            this.products = this.selects;
         },
         methods: {
-            onChange(event) {
-                console.log(event.target.value);
-                this.contact.template = this.products[event.target.selectedIndex-1].title;
-                console.log(this.contact.request_product_id);
-            },
             addItem() {
                 if (!this.checkForm(this.contact)) return;
                 this.list.push(Object.assign({}, this.contact));
@@ -112,7 +115,6 @@
             },
             updateItem() {
                 if (!this.checkForm(this.contact)) return;
-                tinymce.get('message').setContent('');
                 this.list[this.selectedItem] = Object.assign({}, this.contact);
                 this.clearForm();
             },
@@ -122,16 +124,13 @@
             editItem(index) {
                 this.selectedItem = index;
                 this.contact = Object.assign({}, this.list[this.selectedItem]);
-                tinymce.get('message').setContent(this.contact.message);
                 this.isEdit = true;
-
+                //this.setFocus();
             },
             clearForm() {
                 this.contact = {};
-                this.template="";
                 this.isEdit = false;
                 this.errors = [];
-                tinymce.get('message').setContent('');
                 console.log(this.list);
             },
             checkForm: function (item) {
