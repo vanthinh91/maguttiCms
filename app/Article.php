@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use App\maguttiCms\Domain\Block\Blockable;
 use Illuminate\Database\Eloquent\Model;
 use App\maguttiCms\Builders\ArticleBuilder;
 use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
@@ -15,6 +16,8 @@ use Astrotomic\Translatable\Translatable;
 class Article extends Model
 {
     use Translatable;
+
+    use Blockable;
 
     use ArticlePresenter;
     use  GFTranslatableHelperTrait;
@@ -65,6 +68,8 @@ class Article extends Model
     {
         return $this->hasMany('App\Article', 'parent_id', 'id');
     }
+
+
 
     /*
     |--------------------------------------------------------------------------

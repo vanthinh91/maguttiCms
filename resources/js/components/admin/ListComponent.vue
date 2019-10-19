@@ -4,32 +4,38 @@
         <div class="card  p-3 border border-dark">
             <form v-on:submit.prevent>
                 <div class="form-row bg">
-                    <div class="form-group col-md-4">
-                        <label for="name">Name</label>
-                        <input type='text' id="name" v-model.lazy="contact.name" class="form-control mb-1 mr-sm-2">
+                    <div class="form-group col-md-6">
+                        <label for="title">Titolo</label>
+                        <input type='text' id="title" v-model.lazy="contact.title" class="form-control mb-1 mr-sm-2">
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="surname">Surname</label>
-                        <input id="surname" type='text' v-model.lazy="contact.surname"
-                               class="form-control mb-1 mr-sm-2">
+
+                    <div class="form-group col-md-6">
+                        <label for="link">Link</label>
+                        <input id="link" type='text' v-model.lazy="contact.link" class="form-control mb-1 mr-sm-2">
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="email">Email</label>
-                        <input id="email" type='text' v-model.lazy="contact.email" class="form-control mb-1 mr-sm-2">
+                    <div class="form-row bg">
+                        <div class="form-group col-md-12">
+                            <select name="" id="" v-model="contact.template_id" class="form-control" @change="onChange($event)">
+                                <option selected="true">Select template</option>
+                                <option v-for="template in templates" :value="template.id">{{ template.title }}</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="message">Messaggio</label>
-                        <editor id="message" v-model="contact.message"></editor>
+                        <label for="Description">Description</label>
+                        <editor id="Description" v-model="contact.description"></editor>
+                    </div>
+
+                    <div class="form-group col-md-1">
+                        <label for="sort" >Sort</label>
+                        <input id="sort"  type='text' v-model.lazy="contact.sort" class="form-control mb-1 mr-sm-2">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label for="pub" >Status</label>
+                        <input id="pub"  type='text' v-model.lazy="contact.pub" class="form-control mb-1 mr-sm-2">
                     </div>
                 </div>
-                <div class="form-row bg">
-                    <div class="form-group col-md-12">
-                        <select name="" id="" v-model="contact.request_product_id" class="form-control" @change="onChange($event)">
-                            <option selected="true">Select template</option>
-                            <option v-for="product in products" :value="product.id">{{ product.title }}</option>
-                        </select>
-                    </div>
-                </div>
+
                 <div class="form-row bg">
                     <div class="form-group col-md-12">
                         <button v-if="isEdit==false" @click.prevent="addItem" class="btn btn-success mb-2 btn-block"><i
@@ -46,21 +52,24 @@
                 <table class="admin-table">
                     <thead>
                     <tr>
-                        <td>Nome</td>
-                        <td>Cognome</td>
-                        <td>Email</td>
+                        <td>Tile</td>
+                        <td>Link</td>
                         <td>Template</td>
                         <td>Note</td>
+                        <td>Sort</td>
+                        <td>Status</td>
                         <td>Action</td>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="(contact,index) in list">
-                        <td>{{ contact.name }}</td>
-                        <td>{{ contact.surname }}</td>
-                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.title }}</td>
+                        <td>{{ contact.link }}</td>
                         <td>{{ contact.template}}</td>
-                        <td v-html="contact.message"></td>
+                        <td v-html="contact.description"></td>
+                        <td>{{ contact.sort}}</td>
+                        <td>{{ contact.pub}}</td>
+
                         <td><i @click="deleteItem(index)" class="px-1 fas fa-trash"></i>
                             <i @click="editItem(index)" class="px-1 fas fa-edit"></i>
                         </td>
@@ -88,18 +97,18 @@
                 template: '',
                 isEdit: false,
                 list: [],
-                products:[]
+                templates:[]
             }
         },
         created() {
             this.list = this.items;
-            this.products = this.selects;
+            this.templates = this.selects;
         },
         methods: {
             onChange(event) {
                 console.log(event.target.value);
-                this.contact.template = this.products[event.target.selectedIndex-1].title;
-                console.log(this.contact.request_product_id);
+                this.contact.template = this.templates[event.target.selectedIndex-1].title;
+                console.log(this.contact.template_id);
             },
             addItem() {
                 if (!this.checkForm(this.contact)) return;
@@ -112,7 +121,7 @@
             },
             updateItem() {
                 if (!this.checkForm(this.contact)) return;
-                tinymce.get('message').setContent('');
+                tinymce.get('description').setContent('');
                 this.list[this.selectedItem] = Object.assign({}, this.contact);
                 this.clearForm();
             },
@@ -122,7 +131,7 @@
             editItem(index) {
                 this.selectedItem = index;
                 this.contact = Object.assign({}, this.list[this.selectedItem]);
-                tinymce.get('message').setContent(this.contact.message);
+                tinymce.get('description').setContent(this.contact.description);
                 this.isEdit = true;
 
             },
@@ -135,17 +144,15 @@
                 console.log(this.list);
             },
             checkForm: function (item) {
-                if (item.name && item.surname) {
-                    return true;
-                }
+
                 this.errors = [];
-                if (!this.contact.name) {
+                if (!this.contact.title) {
                     this.errors.push('Name required.');
                 }
-                if (!this.contact.surname) {
+                if (!this.contact.description) {
                     this.errors.push('Age required.');
                 }
-                alert('validate');
+                if(this.errors.length>0) alert('validate');
 
                 //e.preventDefault();
             },

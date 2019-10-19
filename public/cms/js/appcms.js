@@ -2666,6 +2666,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['items', 'selects'],
@@ -2680,18 +2689,18 @@ __webpack_require__.r(__webpack_exports__);
       template: '',
       isEdit: false,
       list: [],
-      products: []
+      templates: []
     };
   },
   created: function created() {
     this.list = this.items;
-    this.products = this.selects;
+    this.templates = this.selects;
   },
   methods: {
     onChange: function onChange(event) {
       console.log(event.target.value);
-      this.contact.template = this.products[event.target.selectedIndex - 1].title;
-      console.log(this.contact.request_product_id);
+      this.contact.template = this.templates[event.target.selectedIndex - 1].title;
+      console.log(this.contact.template_id);
     },
     addItem: function addItem() {
       if (!this.checkForm(this.contact)) return;
@@ -2704,7 +2713,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateItem: function updateItem() {
       if (!this.checkForm(this.contact)) return;
-      tinymce.get('message').setContent('');
+      tinymce.get('description').setContent('');
       this.list[this.selectedItem] = Object.assign({}, this.contact);
       this.clearForm();
     },
@@ -2714,7 +2723,7 @@ __webpack_require__.r(__webpack_exports__);
     editItem: function editItem(index) {
       this.selectedItem = index;
       this.contact = Object.assign({}, this.list[this.selectedItem]);
-      tinymce.get('message').setContent(this.contact.message);
+      tinymce.get('description').setContent(this.contact.description);
       this.isEdit = true;
     },
     clearForm: function clearForm() {
@@ -2726,21 +2735,17 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.list);
     },
     checkForm: function checkForm(item) {
-      if (item.name && item.surname) {
-        return true;
-      }
-
       this.errors = [];
 
-      if (!this.contact.name) {
+      if (!this.contact.title) {
         this.errors.push('Name required.');
       }
 
-      if (!this.contact.surname) {
+      if (!this.contact.description) {
         this.errors.push('Age required.');
       }
 
-      alert('validate'); //e.preventDefault();
+      if (this.errors.length > 0) alert('validate'); //e.preventDefault();
     },
     setFocus: function setFocus() {
       // Note, you need to add a ref="search" attribute to your input.
@@ -3986,154 +3991,180 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "form-row bg" }, [
-            _c("div", { staticClass: "form-group col-md-4" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+            _c("div", { staticClass: "form-group col-md-6" }, [
+              _c("label", { attrs: { for: "title" } }, [_vm._v("Titolo")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model.lazy",
-                    value: _vm.contact.name,
-                    expression: "contact.name",
+                    value: _vm.contact.title,
+                    expression: "contact.title",
                     modifiers: { lazy: true }
                   }
                 ],
                 staticClass: "form-control mb-1 mr-sm-2",
-                attrs: { type: "text", id: "name" },
-                domProps: { value: _vm.contact.name },
+                attrs: { type: "text", id: "title" },
+                domProps: { value: _vm.contact.title },
                 on: {
                   change: function($event) {
-                    return _vm.$set(_vm.contact, "name", $event.target.value)
+                    return _vm.$set(_vm.contact, "title", $event.target.value)
                   }
                 }
               })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group col-md-4" }, [
-              _c("label", { attrs: { for: "surname" } }, [_vm._v("Surname")]),
+            _c("div", { staticClass: "form-group col-md-6" }, [
+              _c("label", { attrs: { for: "link" } }, [_vm._v("Link")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model.lazy",
-                    value: _vm.contact.surname,
-                    expression: "contact.surname",
+                    value: _vm.contact.link,
+                    expression: "contact.link",
                     modifiers: { lazy: true }
                   }
                 ],
                 staticClass: "form-control mb-1 mr-sm-2",
-                attrs: { id: "surname", type: "text" },
-                domProps: { value: _vm.contact.surname },
+                attrs: { id: "link", type: "text" },
+                domProps: { value: _vm.contact.link },
                 on: {
                   change: function($event) {
-                    return _vm.$set(_vm.contact, "surname", $event.target.value)
+                    return _vm.$set(_vm.contact, "link", $event.target.value)
                   }
                 }
               })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group col-md-4" }, [
-              _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
+            _c("div", { staticClass: "form-row bg" }, [
+              _c("div", { staticClass: "form-group col-md-12" }, [
+                _c(
+                  "select",
                   {
-                    name: "model",
-                    rawName: "v-model.lazy",
-                    value: _vm.contact.email,
-                    expression: "contact.email",
-                    modifiers: { lazy: true }
-                  }
-                ],
-                staticClass: "form-control mb-1 mr-sm-2",
-                attrs: { id: "email", type: "text" },
-                domProps: { value: _vm.contact.email },
-                on: {
-                  change: function($event) {
-                    return _vm.$set(_vm.contact, "email", $event.target.value)
-                  }
-                }
-              })
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.contact.template_id,
+                        expression: "contact.template_id"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "", id: "" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.contact,
+                            "template_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                        function($event) {
+                          return _vm.onChange($event)
+                        }
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { selected: "true" } }, [
+                      _vm._v("Select template")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.templates, function(template) {
+                      return _c(
+                        "option",
+                        { domProps: { value: template.id } },
+                        [_vm._v(_vm._s(template.title))]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
             ]),
             _vm._v(" "),
             _c(
               "div",
               { staticClass: "form-group col-md-12" },
               [
-                _c("label", { attrs: { for: "message" } }, [
-                  _vm._v("Messaggio")
+                _c("label", { attrs: { for: "Description" } }, [
+                  _vm._v("Description")
                 ]),
                 _vm._v(" "),
                 _c("editor", {
-                  attrs: { id: "message" },
+                  attrs: { id: "Description" },
                   model: {
-                    value: _vm.contact.message,
+                    value: _vm.contact.description,
                     callback: function($$v) {
-                      _vm.$set(_vm.contact, "message", $$v)
+                      _vm.$set(_vm.contact, "description", $$v)
                     },
-                    expression: "contact.message"
+                    expression: "contact.description"
                   }
                 })
               ],
               1
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-row bg" }, [
-            _c("div", { staticClass: "form-group col-md-12" }, [
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.contact.request_product_id,
-                      expression: "contact.request_product_id"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { name: "", id: "" },
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.contact,
-                          "request_product_id",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      },
-                      function($event) {
-                        return _vm.onChange($event)
-                      }
-                    ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group col-md-1" }, [
+              _c("label", { attrs: { for: "sort" } }, [_vm._v("Sort")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model.lazy",
+                    value: _vm.contact.sort,
+                    expression: "contact.sort",
+                    modifiers: { lazy: true }
                   }
-                },
-                [
-                  _c("option", { attrs: { selected: "true" } }, [
-                    _vm._v("Select template")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.products, function(product) {
-                    return _c("option", { domProps: { value: product.id } }, [
-                      _vm._v(_vm._s(product.title))
-                    ])
-                  })
                 ],
-                2
-              )
+                staticClass: "form-control mb-1 mr-sm-2",
+                attrs: { id: "sort", type: "text" },
+                domProps: { value: _vm.contact.sort },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.contact, "sort", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group col-md-1" }, [
+              _c("label", { attrs: { for: "pub" } }, [_vm._v("Status")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model.lazy",
+                    value: _vm.contact.pub,
+                    expression: "contact.pub",
+                    modifiers: { lazy: true }
+                  }
+                ],
+                staticClass: "form-control mb-1 mr-sm-2",
+                attrs: { id: "pub", type: "text" },
+                domProps: { value: _vm.contact.pub },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.contact, "pub", $event.target.value)
+                  }
+                }
+              })
             ])
           ]),
           _vm._v(" "),
@@ -4187,15 +4218,19 @@ var render = function() {
             "tbody",
             _vm._l(_vm.list, function(contact, index) {
               return _c("tr", [
-                _c("td", [_vm._v(_vm._s(contact.name))]),
+                _c("td", [_vm._v(_vm._s(contact.title))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(contact.surname))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(contact.email))]),
+                _c("td", [_vm._v(_vm._s(contact.link))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(contact.template))]),
                 _vm._v(" "),
-                _c("td", { domProps: { innerHTML: _vm._s(contact.message) } }),
+                _c("td", {
+                  domProps: { innerHTML: _vm._s(contact.description) }
+                }),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(contact.sort))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(contact.pub))]),
                 _vm._v(" "),
                 _c("td", [
                   _c("i", {
@@ -4232,15 +4267,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("td", [_vm._v("Nome")]),
+        _c("td", [_vm._v("Tile")]),
         _vm._v(" "),
-        _c("td", [_vm._v("Cognome")]),
-        _vm._v(" "),
-        _c("td", [_vm._v("Email")]),
+        _c("td", [_vm._v("Link")]),
         _vm._v(" "),
         _c("td", [_vm._v("Template")]),
         _vm._v(" "),
         _c("td", [_vm._v("Note")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("Sort")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("Status")]),
         _vm._v(" "),
         _c("td", [_vm._v("Action")])
       ])

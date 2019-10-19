@@ -12,7 +12,9 @@ return [
         'attach'        => 'Attach Documents',
 		'available_display'		=> 'Disponibile',
 		'back'	        => 'Back',
+        'back_to'	    => 'back to',
 		'banner'		=> 'Banner',
+        'block'		    => 'Page Block',
         'btn_no'        => 'No',
         'btn_yes'       => 'Yes',
         'cancel'        => 'Cancel',
@@ -112,6 +114,7 @@ return [
     'message'   => [
         'add_new_customer'    => 'Add New Customer',
         'add_new_item'        => 'Add new item',
+        'add_block'           => 'Add new Block',
         'back_to_list'        => 'Back to the items list',
         'cancel_items'        => 'Cancel the selected items',
         'content_available'   => 'Available Contents ',
