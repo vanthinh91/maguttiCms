@@ -855,9 +855,9 @@ return [
             'showMediaDoc' => 0,
             'showSeo' => 1,
             'menu' => [
-                'home' => false,
+                'home' => true,
                 'top-bar' => [
-                    'show' => false,
+                    'show' => true,
                     'action' => ['add']
                 ],
             ],
