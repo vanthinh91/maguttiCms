@@ -71,6 +71,8 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
         Route::get('api/suggest', ['as' => 'api.suggest', 'uses' => '\App\maguttiCms\Admin\Controllers\AjaxController@suggest']);
         Route::get('dashboard','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@dashboard');
         Route::get('nav-bar','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@navbar');
+        Route::post('create/{model}','\App\maguttiCms\Api\V1\Controllers\AdminApiController@create');
+        Route::get('update/{model}/{id}','\App\maguttiCms\Api\V1\Controllers\AdminApiController@update');
 
         /*
         |--------------------------------------------------------------------------

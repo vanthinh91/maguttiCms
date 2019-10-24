@@ -3,6 +3,7 @@
         <h3>Contatti</h3>
         <div class="card  p-3 border border-dark">
             <form v-on:submit.prevent>
+                <input type='text' id="model_id" v-model.lazy="contact.model_id" class="form-control mb-1 mr-sm-2" value="2">
                 <div class="form-row bg">
                     <div class="form-group col-md-6">
                         <label for="title">Titolo</label>
@@ -13,28 +14,58 @@
                         <label for="link">Link</label>
                         <input id="link" type='text' v-model.lazy="contact.link" class="form-control mb-1 mr-sm-2">
                     </div>
-                    <div class="form-row bg">
-                        <div class="form-group col-md-12">
-                            <select name="" id="" v-model="contact.template_id" class="form-control" @change="onChange($event)">
-                                <option selected="true">Select template</option>
-                                <option v-for="template in templates" :value="template.id">{{ template.title }}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="Description">Description</label>
-                        <editor id="Description" v-model="contact.description"></editor>
+
+                    <div class="form-group col-12">
+                        <label for="template_id">Template</label>
+                        <select name="" id="" v-model="contact.template_id" class="form-control"
+                                @change="onChange($event)">
+                            <option selected="true">Select template</option>
+                            <option v-for="template in templates" :value="template.id">{{ template.title }}</option>
+                        </select>
                     </div>
 
-                    <div class="form-group col-md-1">
-                        <label for="sort" >Sort</label>
-                        <input id="sort"  type='text' v-model.lazy="contact.sort" class="form-control mb-1 mr-sm-2">
-                    </div>
-                    <div class="form-group col-md-1">
-                        <label for="pub" >Status</label>
-                        <input id="pub"  type='text' v-model.lazy="contact.pub" class="form-control mb-1 mr-sm-2">
+                    <div class="form-group col-md-12">
+                        <label for="description">Description</label>
+                        <editor id="description" v-model="contact.description"></editor>
                     </div>
                 </div>
+
+
+                <div class="row form-group">
+                    <div class="col-12">
+                        <label for="Image File Manager">Image File Manager</label>
+                        <input id="image_media_id" name="image_media_id"
+                               ref="image_media_id"
+                               type="hidden 1" value="4" class=" form-control ">
+                        <div class="media-cont">
+                            <div class="media-input">
+                                <a href="#" data-input="image_media_id" class="btn btn-default filemanager-select">
+                                    <i class="fas fa-upload "></i> Upload file
+                                </a></div>
+                            <div id="box_image_media_id_1" class="media-saved">
+                                <div><a href="http://magutticms.test/media/images/esn-website-comingsoon.jpeg"
+                                        target="_blank"><img
+                                        src="/media/images/cache/esn-website-comingsoon_jpeg_100_100_cover_50.jpg"
+                                        class="img-thumb pull-right"></a></div>
+                                <a id="delete-image_media_id-1" data-locale="" href="#" rel="tooltip"
+                                   data-original-title="Delete this item" onclick="window.Cms.deleteImages(this)"
+                                   class="btn btn-danger media-delete"><i class="fas fa-trash "></i></a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row bg">
+
+                    <div class="form-group col-md-1">
+                        <label for="sort">Sort</label>
+                        <input id="sort" type='text' v-model.lazy="contact.sort" class="form-control mb-1 mr-sm-2">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label for="pub">Status</label>
+                        <input id="pub" type='text' v-model.lazy="contact.pub" class="form-control mb-1 mr-sm-2">
+                    </div>
+                </div>
+
 
                 <div class="form-row bg">
                     <div class="form-group col-md-12">
@@ -52,7 +83,8 @@
                 <table class="admin-table">
                     <thead>
                     <tr>
-                        <td>Tile</td>
+                        <td>Id</td>
+                        <td>Title</td>
                         <td>Link</td>
                         <td>Template</td>
                         <td>Note</td>
@@ -63,6 +95,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="(contact,index) in list">
+                        <td>{{ contact.id }}</td>
                         <td>{{ contact.title }}</td>
                         <td>{{ contact.link }}</td>
                         <td>{{ contact.template}}</td>
@@ -84,8 +117,10 @@
 <script>
 
     import Editor from '@tinymce/tinymce-vue'
+    import {HTTP} from './../../mixins/http-common';
+
     export default {
-        props: ['items','selects'],
+        props: ['items', 'selects'],
         components: {
             'editor': Editor
         },
@@ -97,7 +132,7 @@
                 template: '',
                 isEdit: false,
                 list: [],
-                templates:[]
+                templates: []
             }
         },
         created() {
@@ -107,22 +142,62 @@
         methods: {
             onChange(event) {
                 console.log(event.target.value);
-                this.contact.template = this.templates[event.target.selectedIndex-1].title;
+                this.contact.template = this.templates[event.target.selectedIndex - 1].title;
                 console.log(this.contact.template_id);
             },
             addItem() {
                 if (!this.checkForm(this.contact)) return;
-                this.list.push(Object.assign({}, this.contact));
-                this.clearForm();
+                let url ="/admin/api/create/block";
+                this.contact.model_id=2;
+                this.contact.model_type="App\\Article";
+                let self = this;
+                let data = this.contact;
+                    HTTP.post(url, this.contact)
+                    .then(function (response) {
+                        self.contact.id=response.data.id;
+                        console(response.data)
+                        self.list.push(Object.assign({}, self.contact));
+                        self.clearForm();
+                    })
+                    .catch(e => {
+                        self.errors.push(e)
+                        self.showMessage(e.message, self.ERROR_CLASS);
+                    })
+
             },
             deleteItem(index) {
-                this.list.splice(index, 1);
-                this.clearForm();
+                let self = this;
+                let id = self.list[index].id
+                let url = window.urlAjaxHandlerCms + 'delete/block/' + id;
+                bootbox.setLocale(_LOCALE);
+                bootbox.confirm("<h4>Are you sure?</h4>", function (confirmed) {
+                    if (confirmed) {
+                        console.log(self.list[index].id);
+                        HTTP.get(url)
+                            .then(function (response) {
+                                // handle success
+                                console.log(response);
+                                if (response.data.status == 'ok') {
+                                    self.list.splice(index, 1);
+                                    self.clearForm();
+                                } else alert(response.data.status);
+
+                            })
+                            .catch(function (error) {
+                                // handle error
+                                console.log(error);
+                            })
+                            .finally(function () {
+                                // always executed
+                            });
+                    }
+                });
             },
             updateItem() {
                 if (!this.checkForm(this.contact)) return;
-                tinymce.get('description').setContent('');
+                this.contact.image_media_id = this.$refs.image_media_id.value;
                 this.list[this.selectedItem] = Object.assign({}, this.contact);
+
                 this.clearForm();
             },
             aggiorna(a) {
@@ -131,16 +206,17 @@
             editItem(index) {
                 this.selectedItem = index;
                 this.contact = Object.assign({}, this.list[this.selectedItem]);
-                tinymce.get('description').setContent(this.contact.description);
+                this.updateTiny(this.contact.description);
+                this.$refs.image_media_id.value = this.contact.image_media_id;
                 this.isEdit = true;
 
             },
             clearForm() {
                 this.contact = {};
-                this.template="";
+                this.template = "";
                 this.isEdit = false;
                 this.errors = [];
-                tinymce.get('message').setContent('');
+                this.updateTiny('');
                 console.log(this.list);
             },
             checkForm: function (item) {
@@ -152,13 +228,17 @@
                 if (!this.contact.description) {
                     this.errors.push('Age required.');
                 }
-                if(this.errors.length>0) alert('validate');
+                if (this.errors.length > 0) alert('validate');
+                else return true;
 
                 //e.preventDefault();
             },
             setFocus: function () {
                 // Note, you need to add a ref="search" attribute to your input.
                 this.$refs.name.focus();
+            },
+            updateTiny: function (content) {
+                tinymce.get('description').setContent(content);
             }
         },
         mounted() {

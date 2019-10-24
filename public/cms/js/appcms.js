@@ -2592,6 +2592,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tinymce_tinymce_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tinymce/tinymce-vue */ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/index.js");
+/* harmony import */ var _mixins_http_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../mixins/http-common */ "./resources/js/mixins/http-common.js");
 //
 //
 //
@@ -2675,6 +2676,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['items', 'selects'],
@@ -2704,16 +2739,48 @@ __webpack_require__.r(__webpack_exports__);
     },
     addItem: function addItem() {
       if (!this.checkForm(this.contact)) return;
-      this.list.push(Object.assign({}, this.contact));
-      this.clearForm();
+      var url = "/admin/api/create/block";
+      this.contact.model_id = 2;
+      this.contact.model_type = "App\\Article";
+      var self = this;
+      var data = this.contact;
+      _mixins_http_common__WEBPACK_IMPORTED_MODULE_1__["HTTP"].post(url, this.contact).then(function (response) {
+        self.contact.id = response.data.id;
+        console(response.data);
+        self.list.push(Object.assign({}, self.contact));
+        self.clearForm();
+      })["catch"](function (e) {
+        self.errors.push(e);
+        self.showMessage(e.message, self.ERROR_CLASS);
+      });
     },
     deleteItem: function deleteItem(index) {
-      this.list.splice(index, 1);
-      this.clearForm();
+      var self = this;
+      var id = self.list[index].id;
+      var url = window.urlAjaxHandlerCms + 'delete/block/' + id;
+      bootbox.setLocale(_LOCALE);
+      bootbox.confirm("<h4>Are you sure?</h4>", function (confirmed) {
+        if (confirmed) {
+          console.log(self.list[index].id);
+          _mixins_http_common__WEBPACK_IMPORTED_MODULE_1__["HTTP"].get(url).then(function (response) {
+            // handle success
+            console.log(response);
+
+            if (response.data.status == 'ok') {
+              self.list.splice(index, 1);
+              self.clearForm();
+            } else alert(response.data.status);
+          })["catch"](function (error) {
+            // handle error
+            console.log(error);
+          })["finally"](function () {// always executed
+          });
+        }
+      });
     },
     updateItem: function updateItem() {
       if (!this.checkForm(this.contact)) return;
-      tinymce.get('description').setContent('');
+      this.contact.image_media_id = this.$refs.image_media_id.value;
       this.list[this.selectedItem] = Object.assign({}, this.contact);
       this.clearForm();
     },
@@ -2723,7 +2790,8 @@ __webpack_require__.r(__webpack_exports__);
     editItem: function editItem(index) {
       this.selectedItem = index;
       this.contact = Object.assign({}, this.list[this.selectedItem]);
-      tinymce.get('description').setContent(this.contact.description);
+      this.updateTiny(this.contact.description);
+      this.$refs.image_media_id.value = this.contact.image_media_id;
       this.isEdit = true;
     },
     clearForm: function clearForm() {
@@ -2731,7 +2799,7 @@ __webpack_require__.r(__webpack_exports__);
       this.template = "";
       this.isEdit = false;
       this.errors = [];
-      tinymce.get('message').setContent('');
+      this.updateTiny('');
       console.log(this.list);
     },
     checkForm: function checkForm(item) {
@@ -2745,11 +2813,14 @@ __webpack_require__.r(__webpack_exports__);
         this.errors.push('Age required.');
       }
 
-      if (this.errors.length > 0) alert('validate'); //e.preventDefault();
+      if (this.errors.length > 0) alert('validate');else return true; //e.preventDefault();
     },
     setFocus: function setFocus() {
       // Note, you need to add a ref="search" attribute to your input.
       this.$refs.name.focus();
+    },
+    updateTiny: function updateTiny(content) {
+      tinymce.get('description').setContent(content);
     }
   },
   mounted: function mounted() {
@@ -3990,6 +4061,26 @@ var render = function() {
           }
         },
         [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model.lazy",
+                value: _vm.contact.model_id,
+                expression: "contact.model_id",
+                modifiers: { lazy: true }
+              }
+            ],
+            staticClass: "form-control mb-1 mr-sm-2",
+            attrs: { type: "text", id: "model_id", value: "2" },
+            domProps: { value: _vm.contact.model_id },
+            on: {
+              change: function($event) {
+                return _vm.$set(_vm.contact, "model_id", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
           _c("div", { staticClass: "form-row bg" }, [
             _c("div", { staticClass: "form-group col-md-6" }, [
               _c("label", { attrs: { for: "title" } }, [_vm._v("Titolo")]),
@@ -4039,74 +4130,74 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-row bg" }, [
-              _c("div", { staticClass: "form-group col-md-12" }, [
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.contact.template_id,
-                        expression: "contact.template_id"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { name: "", id: "" },
-                    on: {
-                      change: [
-                        function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.contact,
-                            "template_id",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        },
-                        function($event) {
-                          return _vm.onChange($event)
-                        }
-                      ]
+            _c("div", { staticClass: "form-group col-12" }, [
+              _c("label", { attrs: { for: "template_id" } }, [
+                _vm._v("Template")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.contact.template_id,
+                      expression: "contact.template_id"
                     }
-                  },
-                  [
-                    _c("option", { attrs: { selected: "true" } }, [
-                      _vm._v("Select template")
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.templates, function(template) {
-                      return _c(
-                        "option",
-                        { domProps: { value: template.id } },
-                        [_vm._v(_vm._s(template.title))]
-                      )
-                    })
                   ],
-                  2
-                )
-              ])
+                  staticClass: "form-control",
+                  attrs: { name: "", id: "" },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.contact,
+                          "template_id",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                      function($event) {
+                        return _vm.onChange($event)
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { selected: "true" } }, [
+                    _vm._v("Select template")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.templates, function(template) {
+                    return _c("option", { domProps: { value: template.id } }, [
+                      _vm._v(_vm._s(template.title))
+                    ])
+                  })
+                ],
+                2
+              )
             ]),
             _vm._v(" "),
             _c(
               "div",
               { staticClass: "form-group col-md-12" },
               [
-                _c("label", { attrs: { for: "Description" } }, [
+                _c("label", { attrs: { for: "description" } }, [
                   _vm._v("Description")
                 ]),
                 _vm._v(" "),
                 _c("editor", {
-                  attrs: { id: "Description" },
+                  attrs: { id: "description" },
                   model: {
                     value: _vm.contact.description,
                     callback: function($$v) {
@@ -4117,8 +4208,31 @@ var render = function() {
                 })
               ],
               1
-            ),
-            _vm._v(" "),
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row form-group" }, [
+            _c("div", { staticClass: "col-12" }, [
+              _c("label", { attrs: { for: "Image File Manager" } }, [
+                _vm._v("Image File Manager")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                ref: "image_media_id",
+                staticClass: " form-control ",
+                attrs: {
+                  id: "image_media_id",
+                  name: "image_media_id",
+                  type: "hidden 1",
+                  value: "4"
+                }
+              }),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-row bg" }, [
             _c("div", { staticClass: "form-group col-md-1" }, [
               _c("label", { attrs: { for: "sort" } }, [_vm._v("Sort")]),
               _vm._v(" "),
@@ -4212,12 +4326,14 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "table-responsive" }, [
         _c("table", { staticClass: "admin-table" }, [
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
           _c(
             "tbody",
             _vm._l(_vm.list, function(contact, index) {
               return _c("tr", [
+                _c("td", [_vm._v(_vm._s(contact.id))]),
+                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(contact.title))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(contact.link))]),
@@ -4265,9 +4381,75 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "media-cont" }, [
+      _c("div", { staticClass: "media-input" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-default filemanager-select",
+            attrs: { href: "#", "data-input": "image_media_id" }
+          },
+          [
+            _c("i", { staticClass: "fas fa-upload " }),
+            _vm._v(" Upload file\n                            ")
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "media-saved", attrs: { id: "box_image_media_id_1" } },
+        [
+          _c("div", [
+            _c(
+              "a",
+              {
+                attrs: {
+                  href:
+                    "http://magutticms.test/media/images/esn-website-comingsoon.jpeg",
+                  target: "_blank"
+                }
+              },
+              [
+                _c("img", {
+                  staticClass: "img-thumb pull-right",
+                  attrs: {
+                    src:
+                      "/media/images/cache/esn-website-comingsoon_jpeg_100_100_cover_50.jpg"
+                  }
+                })
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-danger media-delete",
+              attrs: {
+                id: "delete-image_media_id-1",
+                "data-locale": "",
+                href: "#",
+                rel: "tooltip",
+                "data-original-title": "Delete this item",
+                onclick: "window.Cms.deleteImages(this)"
+              }
+            },
+            [_c("i", { staticClass: "fas fa-trash " })]
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("td", [_vm._v("Tile")]),
+        _c("td", [_vm._v("Id")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("Title")]),
         _vm._v(" "),
         _c("td", [_vm._v("Link")]),
         _vm._v(" "),
