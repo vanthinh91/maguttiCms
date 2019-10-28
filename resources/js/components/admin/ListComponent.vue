@@ -3,19 +3,50 @@
         <h3>Contatti</h3>
         <div class="card  p-3 border border-dark">
             <form v-on:submit.prevent>
-                <input type='text' id="model_id" v-model.lazy="contact.model_id" class="form-control mb-1 mr-sm-2" value="2">
+
+
+
+
+
+                <div class="form-row w-100 my-3">
+                    <ul class="ist-group list-group-horizontal list-group-item ml-auto border-0 px-0">
+                        <li v-for="(value, key) in lang" :key="key" class="list-inline-item  py-1 px-2"
+                            v-bind:class="{'bg-primary text-white':(curLang===key)}"
+                            @click="changeLang(key)">{{ value }}
+                        </li>
+                    </ul>
+                </div>
                 <div class="form-row bg">
-                    <div class="form-group col-md-6">
-                        <label for="title">Titolo</label>
-                        <input type='text' id="title" v-model.lazy="contact.title" class="form-control mb-1 mr-sm-2">
+                    <input-component
+                        class="mb-1 mr-sm-2 col-1"
+                        :content.sync="contact.id"
+                        placeholder="Item Id"/>
+                    <input-component
+                        label="Title"
+                        :content.sync="contact.title"
+                        placeholder="Enter a title"
+                        v-show="this.curLang=='en'"/>
+
+                    <div v-for="(value, key) in lang" :key="key" class="form-group col-md-6 " v-if="key=='it'"
+                         v-show="curLang==key">
+                        <label for="title">Titolo {{key}}</label>
+                        <input type='text' id="title_it" v-model.lazy="contact.title_it"
+                               class="form-control mb-1 mr-sm-2">
+                    </div>
+                    <div v-for="(value, key) in lang" :key="key" class="form-group col-md-6 "
+                         v-show="curLang==key">
+                        <label for="title">Titolo {{key}}</label>
+                        <input type="text" id="key" v-model.lazy="contact.title"
+                               class="form-control mb-1 mr-sm-2">
                     </div>
 
-                    <div class="form-group col-md-6">
+
+                    <div class="form-group col-md-6 d-none">
                         <label for="link">Link</label>
                         <input id="link" type='text' v-model.lazy="contact.link" class="form-control mb-1 mr-sm-2">
                     </div>
 
-                    <div class="form-group col-12">
+                    <div class="form-group col-12 d-none">
                         <label for="template_id">Template</label>
                         <select name="" id="" v-model="contact.template_id" class="form-control"
                                 @change="onChange($event)">
@@ -24,14 +55,19 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-12" v-show="this.curLang=='en'">
                         <label for="description">Description</label>
                         <editor id="description" v-model="contact.description"></editor>
+                    </div>
+
+                    <div class="form-group col-md-12" v-show="this.curLang=='it'">
+                        <label for="description_it">Description IT</label>
+                        <editor id="description_it" v-model="contact.description_it"></editor>
                     </div>
                 </div>
 
 
-                <div class="row form-group">
+                <div class="row form-group d-none">
                     <div class="col-12">
                         <label for="Image File Manager">Image File Manager</label>
                         <input id="image_media_id" name="image_media_id"
@@ -54,7 +90,7 @@
                     </div>
                 </div>
 
-                <div class="form-row bg">
+                <div class="form-row bg d-none">
 
                     <div class="form-group col-md-1">
                         <label for="sort">Sort</label>
@@ -118,11 +154,13 @@
 
     import Editor from '@tinymce/tinymce-vue'
     import {HTTP} from './../../mixins/http-common';
+    import inputComponent from './InputComponent';
 
     export default {
-        props: ['items', 'selects'],
+        props: ['items', 'selects', 'lang'],
         components: {
-            'editor': Editor
+            'editor': Editor,
+            inputComponent
         },
         data() {
             return {
@@ -132,12 +170,14 @@
                 template: '',
                 isEdit: false,
                 list: [],
-                templates: []
+                templates: [],
+                curLang: null
             }
         },
         created() {
             this.list = this.items;
             this.templates = this.selects;
+            this.curLang = Object.keys(this.lang)[0];
         },
         methods: {
             onChange(event) {
@@ -145,23 +185,28 @@
                 this.contact.template = this.templates[event.target.selectedIndex - 1].title;
                 console.log(this.contact.template_id);
             },
+            changeLang(locale) {
+                this.curLang = locale;
+            },
             addItem() {
                 if (!this.checkForm(this.contact)) return;
-                let url ="/admin/api/create/block";
-                this.contact.model_id=2;
-                this.contact.model_type="App\\Article";
+                let url = "/admin/api/create/block";
+                this.contact.model_id = 2;
+                this.contact.model_type = "App\\Article";
                 let self = this;
                 let data = this.contact;
-                    HTTP.post(url, this.contact)
+
+                HTTP.post(url, this.contact)
                     .then(function (response) {
-                        self.contact.id=response.data.id;
-                        console(response.data)
+                        self.contact.id = response.data.id;
+
                         self.list.push(Object.assign({}, self.contact));
                         self.clearForm();
                     })
                     .catch(e => {
-                        self.errors.push(e)
-                        self.showMessage(e.message, self.ERROR_CLASS);
+                        //self.errors.push(e)
+                        alert(e.message)
+                        //self.showMessage(e.message, self.ERROR_CLASS);
                     })
 
             },
@@ -194,6 +239,8 @@
                 });
             },
             updateItem() {
+
+                alert(this.contact.title);
                 if (!this.checkForm(this.contact)) return;
                 this.contact.image_media_id = this.$refs.image_media_id.value;
                 this.list[this.selectedItem] = Object.assign({}, this.contact);

@@ -110,6 +110,7 @@ class AdminPagesController extends Controller
     {
         $this->init($model);
         $article = new $this->modelClass;
+
         return view('admin.edit', ['article' => $article, 'pageConfig' => collect($this->config)]);
     }
 
@@ -133,8 +134,9 @@ class AdminPagesController extends Controller
                 return redirect(action('\App\maguttiCms\Admin\Controllers\AdminPagesController@lista', $this->model));
             }
         }
+        $locales =collect(config('app.locales'))->toJson();
         $pageTemplate = data_get($this->config,'editTemplate','admin.edit');
-        return view($pageTemplate, ['article' => $article, 'pageConfig' => collect($this->config)]);
+        return view($pageTemplate, ['article' => $article, 'pageConfig' => collect($this->config),'locales'=>$locales]);
     }
 
     /**

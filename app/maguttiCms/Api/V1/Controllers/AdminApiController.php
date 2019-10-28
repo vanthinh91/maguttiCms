@@ -24,9 +24,7 @@ class AdminApiController
         $this->request = $request;
         $item = new Block;
         (new AdminFormFieldsProcessor($request))->requestFieldHandler($item);
-        Article::find($this->request->model_id);
         $this->setData($item)->responseSuccess();
-
         return $this->apiResponse();
     }
 
