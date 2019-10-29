@@ -18930,7 +18930,7 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/asperti/web/magutti/maguttiCms/resources/js/website/cart.js */"./resources/js/website/cart.js");
+module.exports = __webpack_require__(/*! /Users/web01/siti-laravel/maguttiCms/resources/js/website/cart.js */"./resources/js/website/cart.js");
 
 
 /***/ })

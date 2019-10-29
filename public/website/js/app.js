@@ -391,9 +391,9 @@ window.trans = function (keystring) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/asperti/web/magutti/maguttiCms/resources/js/website/app.js */"./resources/js/website/app.js");
-__webpack_require__(/*! /Users/asperti/web/magutti/maguttiCms/resources/sass/website/app.scss */"./resources/sass/website/app.scss");
-module.exports = __webpack_require__(/*! /Users/asperti/web/magutti/maguttiCms/resources/sass/admin/app.scss */"./resources/sass/admin/app.scss");
+__webpack_require__(/*! /Users/web01/siti-laravel/maguttiCms/resources/js/website/app.js */"./resources/js/website/app.js");
+__webpack_require__(/*! /Users/web01/siti-laravel/maguttiCms/resources/sass/website/app.scss */"./resources/sass/website/app.scss");
+module.exports = __webpack_require__(/*! /Users/web01/siti-laravel/maguttiCms/resources/sass/admin/app.scss */"./resources/sass/admin/app.scss");
 
 
 /***/ })

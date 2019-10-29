@@ -12,34 +12,23 @@
                     </ul>
                 </div>
                 <div class="form-row bg">
+
                     <input-component
                         class="mb-1 mr-sm-2 col-1"
                         :content.sync="contact.id"
-                        placeholder="Item Id"/>
+                        placeholder="Item Id" v-show="isEdit"/>
+
                     <input-component
                         label="Title"
-                        :content.sync="contact.title"
+                        :content.sync="contact['title']"
                         placeholder="Enter a title"
                         v-show="this.curLang=='en'"/>
-                    <div v-for="(value, key) in lang" :key="key" class="form-group col-md-6 " v-if="key=='it'"
-                         v-show="curLang==key">
-                        <label for="title">Titolo {{key}}</label>
-                        <input type='text' id="title_it" v-model.lazy="contact.title_it"
-                               class="form-control mb-1 mr-sm-2">
-                    </div>
-                    <div v-for="(value, key) in lang" :key="key" class="form-group col-md-6 "
-                         v-show="curLang==key">
-                        <label for="title">Titolo {{key}}</label>
-                        <input type="text" id="key" v-model.lazy="contact.title"
-                               class="form-control mb-1 mr-sm-2">
-                    </div>
-
-
-                    <div class="form-group col-md-6 d-none">
-                        <label for="link">Link</label>
-                        <input id="link" type='text' v-model.lazy="contact.link" class="form-control mb-1 mr-sm-2">
-                    </div>
-
+                    <input-component v-for="(value, key) in lang" :key="key"
+                            :label="'Title '+value "
+                            :content.sync="contact['title_'+key]"
+                            :placeholder="'Enter a title  for '+value"
+                            v-show="curLang==key"
+                            v-if="defaultLang!=key"/>
                     <div class="form-group col-12 d-none">
                         <label for="template_id">Template</label>
                         <select name="" id="" v-model="contact.template_id" class="form-control"
@@ -48,16 +37,19 @@
                             <option v-for="template in templates" :value="template.id">{{ template.title }}</option>
                         </select>
                     </div>
-
                     <div class="form-group col-md-12" v-show="this.curLang=='en'">
                         <label for="description">Description</label>
                         <editor id="description" v-model="contact.description"></editor>
                     </div>
-
-                    <div class="form-group col-md-12" v-show="this.curLang=='it'">
-                        <label for="description_it">Description IT</label>
-                        <editor id="description_it" v-model="contact.description_it"></editor>
+                    <div class="form-group col-md-12"
+                         v-for="(value, key) in lang" :key="key"
+                         v-show="curLang==key"
+                         v-if="defaultLang!=key"
+                    >
+                        <label :for="'description_'+key">Description {{ value }}</label>
+                        <editor :id="'description_'+key" v-model="contact['description_'+key]"></editor>
                     </div>
+                    <input-component label="Link" :content.sync="contact.link" placeholder="Enter a link"/>
                 </div>
 
 
@@ -84,16 +76,9 @@
                     </div>
                 </div>
 
-                <div class="form-row bg d-none">
-
-                    <div class="form-group col-md-1">
-                        <label for="sort">Sort</label>
-                        <input id="sort" type='text' v-model.lazy="contact.sort" class="form-control mb-1 mr-sm-2">
-                    </div>
-                    <div class="form-group col-md-1">
-                        <label for="pub">Status</label>
-                        <input id="pub" type='text' v-model.lazy="contact.pub" class="form-control mb-1 mr-sm-2">
-                    </div>
+                <div class="form-row">
+                    <input-component label="Sort" :content.sync="contact.sort"/>
+                    <input-component label="Status" :content.sync="contact.pub"/>
                 </div>
 
 
@@ -148,7 +133,7 @@
 
     import Editor from '@tinymce/tinymce-vue'
     import {HTTP} from './../../mixins/http-common';
-    import inputComponent from './InputComponent';
+    import inputComponent from './BaseInput';
 
     export default {
         props: ['items', 'selects', 'lang'],
@@ -165,19 +150,20 @@
                 isEdit: false,
                 list: [],
                 templates: [],
-                curLang: null
+                curLang: null,
+                defaultLang :null
             }
         },
         created() {
             this.list = this.items;
             this.templates = this.selects;
-            this.curLang = Object.keys(this.lang)[0];
+             this.defaultLang = Object.keys(this.lang)[0];
+            this.changeLang(this.defaultLang);
         },
         methods: {
             onChange(event) {
-                console.log(event.target.value);
                 this.contact.template = this.templates[event.target.selectedIndex - 1].title;
-                console.log(this.contact.template_id);
+
             },
             changeLang(locale) {
                 this.curLang = locale;
@@ -189,11 +175,10 @@
                 this.contact.model_type = "App\\Article";
                 let self = this;
                 let data = this.contact;
-
                 HTTP.post(url, this.contact)
-                    .then(function (response) {
-                        self.contact.id = response.data.id;
-
+                    .then(function ({data}) {
+                        console.log(data.status);
+                        self.contact.id = data.data.id;
                         self.list.push(Object.assign({}, self.contact));
                         self.clearForm();
                     })
@@ -220,7 +205,6 @@
                                     self.list.splice(index, 1);
                                     self.clearForm();
                                 } else alert(response.data.status);
-
                             })
                             .catch(function (error) {
                                 // handle error
@@ -233,18 +217,16 @@
                 });
             },
             updateItem() {
-
-                alert(this.contact.title);
                 if (!this.checkForm(this.contact)) return;
                 this.contact.image_media_id = this.$refs.image_media_id.value;
                 this.list[this.selectedItem] = Object.assign({}, this.contact);
-
                 this.clearForm();
             },
             aggiorna(a) {
                 this.checkForm(a)
             },
             editItem(index) {
+                this.resetToDefault();
                 this.selectedItem = index;
                 this.contact = Object.assign({}, this.list[this.selectedItem]);
                 this.updateTiny(this.contact.description);
@@ -257,11 +239,11 @@
                 this.template = "";
                 this.isEdit = false;
                 this.errors = [];
-                this.updateTiny('');
-                console.log(this.list);
+                this.updateTiny('','description');
+                this.resetToDefault();
+
             },
             checkForm: function (item) {
-
                 this.errors = [];
                 if (!this.contact.title) {
                     this.errors.push('Name required.');
@@ -280,6 +262,9 @@
             },
             updateTiny: function (content) {
                 tinymce.get('description').setContent(content);
+            },
+            resetToDefault: function () {
+                this.changeLang(this.defaultLang);
             }
         },
         mounted() {
