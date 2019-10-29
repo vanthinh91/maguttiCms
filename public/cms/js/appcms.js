@@ -2754,6 +2754,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -4509,23 +4514,35 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(contact.pub))]),
                 _vm._v(" "),
                 _c("td", [
-                  _c("i", {
-                    staticClass: "px-1 fas fa-trash",
-                    on: {
-                      click: function($event) {
-                        return _vm.deleteItem(index)
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-info btn-sm",
+                      attrs: { href: "" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.editItem(index)
+                        }
                       }
-                    }
-                  }),
+                    },
+                    [_c("i", { staticClass: "px-1 fas fa-edit" })]
+                  ),
                   _vm._v(" "),
-                  _c("i", {
-                    staticClass: "px-1 fas fa-edit",
-                    on: {
-                      click: function($event) {
-                        return _vm.editItem(index)
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-danger btn-sm",
+                      attrs: { href: "" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.deleteItem(index)
+                        }
                       }
-                    }
-                  })
+                    },
+                    [_c("i", { staticClass: "px-1 fas fa-trash" })]
+                  )
                 ])
               ])
             }),

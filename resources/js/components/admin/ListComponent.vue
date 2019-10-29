@@ -3,7 +3,7 @@
         <h3>Contatti</h3>
         <div class="card  p-3 border border-dark">
             <form v-on:submit.prevent>
-            <div class="form-row w-100 my-3">
+                <div class="form-row w-100 my-3">
                     <ul class="ist-group list-group-horizontal list-group-item ml-auto border-0 px-0">
                         <li v-for="(value, key) in lang" :key="key" class="list-inline-item  py-1 px-2"
                             v-bind:class="{'bg-primary text-white':(curLang===key)}"
@@ -14,21 +14,21 @@
                 <div class="form-row bg">
 
                     <input-component
-                        class="mb-1 mr-sm-2 col-1"
-                        :content.sync="contact.id"
-                        placeholder="Item Id" v-show="isEdit"/>
+                            class="mb-1 mr-sm-2 col-1"
+                            :content.sync="contact.id"
+                            placeholder="Item Id" v-show="isEdit"/>
 
                     <input-component
-                        label="Title"
-                        :content.sync="contact['title']"
-                        placeholder="Enter a title"
-                        v-show="this.curLang=='en'"/>
+                            label="Title"
+                            :content.sync="contact['title']"
+                            placeholder="Enter a title"
+                            v-show="this.curLang=='en'"/>
                     <input-component v-for="(value, key) in lang" :key="key"
-                            :label="'Title '+value "
-                            :content.sync="contact['title_'+key]"
-                            :placeholder="'Enter a title  for '+value"
-                            v-show="curLang==key"
-                            v-if="defaultLang!=key"/>
+                                     :label="'Title '+value "
+                                     :content.sync="contact['title_'+key]"
+                                     :placeholder="'Enter a title  for '+value"
+                                     v-show="curLang==key"
+                                     v-if="defaultLang!=key"/>
                     <div class="form-group col-12 d-none">
                         <label for="template_id">Template</label>
                         <select name="" id="" v-model="contact.template_id" class="form-control"
@@ -118,8 +118,13 @@
                         <td>{{ contact.sort}}</td>
                         <td>{{ contact.pub}}</td>
 
-                        <td><i @click="deleteItem(index)" class="px-1 fas fa-trash"></i>
-                            <i @click="editItem(index)" class="px-1 fas fa-edit"></i>
+                        <td>
+                            <a href="" @click.prevent="editItem(index)" class="btn btn-info btn-sm">
+                                <i class="px-1 fas fa-edit"></i>
+                            </a>
+                            <a href="" @click.prevent="deleteItem(index)" class="btn btn-danger btn-sm">
+                                <i class="px-1 fas fa-trash"></i>
+                            </a>
                         </td>
                     </tr>
                     </tbody>
@@ -151,13 +156,13 @@
                 list: [],
                 templates: [],
                 curLang: null,
-                defaultLang :null
+                defaultLang: null
             }
         },
         created() {
             this.list = this.items;
             this.templates = this.selects;
-             this.defaultLang = Object.keys(this.lang)[0];
+            this.defaultLang = Object.keys(this.lang)[0];
             this.changeLang(this.defaultLang);
         },
         methods: {
@@ -239,7 +244,7 @@
                 this.template = "";
                 this.isEdit = false;
                 this.errors = [];
-                this.updateTiny('','description');
+                this.updateTiny('', 'description');
                 this.resetToDefault();
 
             },
