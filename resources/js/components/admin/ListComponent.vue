@@ -3,12 +3,7 @@
         <h3>Contatti</h3>
         <div class="card  p-3 border border-dark">
             <form v-on:submit.prevent>
-
-
-
-
-
-                <div class="form-row w-100 my-3">
+            <div class="form-row w-100 my-3">
                     <ul class="ist-group list-group-horizontal list-group-item ml-auto border-0 px-0">
                         <li v-for="(value, key) in lang" :key="key" class="list-inline-item  py-1 px-2"
                             v-bind:class="{'bg-primary text-white':(curLang===key)}"
@@ -26,7 +21,6 @@
                         :content.sync="contact.title"
                         placeholder="Enter a title"
                         v-show="this.curLang=='en'"/>
-
                     <div v-for="(value, key) in lang" :key="key" class="form-group col-md-6 " v-if="key=='it'"
                          v-show="curLang==key">
                         <label for="title">Titolo {{key}}</label>

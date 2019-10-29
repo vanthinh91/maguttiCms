@@ -7,10 +7,7 @@
 
 		<div class="row">
 			<div class="col-12 col-sm-8">
-				<list-component :items="{{$article->blocks}}"
-
-								:lang="{{$locales}}"
-								:selects="{{App\Domain::all()}}"></list-component>
+				
 
 				{{ Form::model($article, ['files' => true, 'id'=>'edit-form', 'accept-charset' => "UTF-8"]) }}
 				<div class="card">
