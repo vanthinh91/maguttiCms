@@ -2240,7 +2240,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['label', 'placeholder', 'content'],
+  props: ['label', 'placeholder', 'content', 'cssInput'],
   data: function data() {
     return {};
   }
@@ -2623,6 +2623,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tinymce_tinymce_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tinymce/tinymce-vue */ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/index.js");
 /* harmony import */ var _mixins_http_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../mixins/http-common */ "./resources/js/mixins/http-common.js");
 /* harmony import */ var _BaseInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BaseInput */ "./resources/js/components/admin/BaseInput.vue");
+//
+//
 //
 //
 //
@@ -3625,7 +3627,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "form-group col-md-6 " }, [
+  return _c("div", { staticClass: "form-group col-12 col-sm-6  " }, [
     _c("p", [_vm._v(_vm._s(_vm.label))]),
     _vm._v(" "),
     _c("input", {
@@ -4256,7 +4258,7 @@ var render = function() {
                   : _vm._e()
               }),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group col-12 d-none" }, [
+              _c("div", { staticClass: "form-group col-12" }, [
                 _c("label", { attrs: { for: "template_id" } }, [
                   _vm._v("Template")
                 ]),
@@ -4386,6 +4388,7 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("input-component", {
+                staticClass: "col-lg-12",
                 attrs: {
                   label: "Link",
                   content: _vm.contact.link,
@@ -4427,6 +4430,7 @@ var render = function() {
             { staticClass: "form-row" },
             [
               _c("input-component", {
+                staticClass: "col-lg-1",
                 attrs: { label: "Sort", content: _vm.contact.sort },
                 on: {
                   "update:content": function($event) {
@@ -4436,6 +4440,7 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("input-component", {
+                staticClass: "col-lg-1",
                 attrs: { label: "Status", content: _vm.contact.pub },
                 on: {
                   "update:content": function($event) {

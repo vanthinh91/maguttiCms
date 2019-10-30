@@ -1,5 +1,5 @@
 <template>
-    <div class="form-group col-md-6 ">
+    <div class="form-group col-12 col-sm-6  ">
         <p>{{label}}</p>
         <input class="form-control"
                :value="content"
@@ -11,7 +11,7 @@
 </template>
 <script>
     export default {
-        props: ['label', 'placeholder','content'],
+        props: ['label', 'placeholder','content','cssInput' ],
         data() {
             return {
 

@@ -10,7 +10,7 @@
 				<list-component :items="{{$article->blocks}}"
 								:lang="{{$locales}}"
 								:selects="{{App\Domain::all()}}"
-				class="d-none">
+				class="none">
 				</list-component>
 
 				{{ Form::model($article, ['files' => true, 'id'=>'edit-form', 'accept-charset' => "UTF-8"]) }}

@@ -23,13 +23,15 @@
                             :content.sync="contact['title']"
                             placeholder="Enter a title"
                             v-show="this.curLang=='en'"/>
+
                     <input-component v-for="(value, key) in lang" :key="key"
                                      :label="'Title '+value "
                                      :content.sync="contact['title_'+key]"
                                      :placeholder="'Enter a title  for '+value"
                                      v-show="curLang==key"
                                      v-if="defaultLang!=key"/>
-                    <div class="form-group col-12 d-none">
+
+                    <div class="form-group col-12">
                         <label for="template_id">Template</label>
                         <select name="" id="" v-model="contact.template_id" class="form-control"
                                 @change="onChange($event)">
@@ -49,7 +51,7 @@
                         <label :for="'description_'+key">Description {{ value }}</label>
                         <editor :id="'description_'+key" v-model="contact['description_'+key]"></editor>
                     </div>
-                    <input-component label="Link" :content.sync="contact.link" placeholder="Enter a link"/>
+                    <input-component label="Link" :content.sync="contact.link" placeholder="Enter a link" class="col-lg-12"/>
                 </div>
 
 
@@ -77,8 +79,8 @@
                 </div>
 
                 <div class="form-row">
-                    <input-component label="Sort" :content.sync="contact.sort"/>
-                    <input-component label="Status" :content.sync="contact.pub"/>
+                    <input-component label="Sort" :content.sync="contact.sort"  class="col-lg-1"/>
+                    <input-component label="Status" :content.sync="contact.pub" class="col-lg-1"/>
                 </div>
 
 
