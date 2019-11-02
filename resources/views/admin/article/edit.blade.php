@@ -7,9 +7,10 @@
 
 		<div class="row">
 			<div class="col-12 col-sm-8">
-				<list-component :items="{{$article->blocks}}"
+				<list-component :items="{{collect(new App\maguttiCms\Domain\Block\Resources\BlockCollection($article->blocks))}}"
 								:lang="{{$locales}}"
 								:selects="{{App\Domain::all()}}"
+								:model="{{$article}}"
 				class="none">
 				</list-component>
 

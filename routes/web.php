@@ -48,8 +48,7 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
     */
     Route::group(array('prefix' => 'api'), function () {
 
-        Route::get('update/{method}/{model?}/{id?}',        '\App\maguttiCms\Admin\Controllers\AjaxController@update');
-        Route::get('delete/{model?}/{id?}',                 '\App\maguttiCms\Admin\Controllers\AjaxController@delete');
+
 
         /*
         |--------------------------------------------------------------------------
@@ -71,8 +70,8 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
         Route::get('api/suggest', ['as' => 'api.suggest', 'uses' => '\App\maguttiCms\Admin\Controllers\AjaxController@suggest']);
         Route::get('dashboard','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@dashboard');
         Route::get('nav-bar','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@navbar');
-        Route::post('create/{model}','\App\maguttiCms\Api\V1\Controllers\AdminApiController@create');
-        Route::get('update/{model}/{id}','\App\maguttiCms\Api\V1\Controllers\AdminApiController@update');
+        Route::post('create/{model}','\App\maguttiCms\Api\V1\Controllers\AdminCrudController@create');
+        Route::post('update/{model}/{id}','\App\maguttiCms\Api\V1\Controllers\AdminVrudController@update');
 
         /*
         |--------------------------------------------------------------------------
@@ -90,6 +89,20 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
         Route::get('filemanager/list/{id?}', '\App\maguttiCms\Admin\Controllers\AjaxController@getFileManagerList');
         Route::get('filemanager/edit/{id}', '\App\maguttiCms\Admin\Controllers\AjaxController@editFileManager');
         Route::post('filemanager/edit/{id}', '\App\maguttiCms\Admin\Controllers\AjaxController@updateFileManager');
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | CRUD LIBRARY
+        |--------------------------------------------------------------------------
+        */
+        Route::post('create/{model}',                '\App\maguttiCms\Api\V1\Controllers\AdminCrudController@create');
+        Route::post('update/{model}/{id}',           '\App\maguttiCms\Api\V1\Controllers\AdminCrudController@update');
+        Route::get('update/{method}/{model?}/{id?}', '\App\maguttiCms\Admin\Controllers\AjaxController@update');
+        Route::get('delete/{model?}/{id?}',          '\App\maguttiCms\Admin\Controllers\AjaxController@delete');
+
+
 
     });
 

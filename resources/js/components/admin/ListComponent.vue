@@ -5,35 +5,32 @@
             <form v-on:submit.prevent>
                 <div class="form-row w-100 my-3">
                     <ul class="ist-group list-group-horizontal list-group-item ml-auto border-0 px-0">
-                        <li v-for="(value, key) in lang" :key="key" class="list-inline-item  py-1 px-2"
+                        <li v-for="(value, key) in lang" :key="'lang_'+key" class="list-inline-item  py-1 px-2"
                             v-bind:class="{'bg-primary text-white':(curLang===key)}"
                             @click="changeLang(key)">{{ value }}
                         </li>
                     </ul>
                 </div>
                 <div class="form-row bg">
-
                     <input-component
                             class="mb-1 mr-sm-2 col-1"
-                            :content.sync="contact.id"
+                            :content.sync="item.id"
                             placeholder="Item Id" v-show="isEdit"/>
-
                     <input-component
                             label="Title"
-                            :content.sync="contact['title']"
+                            :content.sync="item['title']"
                             placeholder="Enter a title"
                             v-show="this.curLang=='en'"/>
-
-                    <input-component v-for="(value, key) in lang" :key="key"
+                    <input-component v-for="(value, key) in lang" :key="'input_'+key"
                                      :label="'Title '+value "
-                                     :content.sync="contact['title_'+key]"
+                                     :content.sync="item['title_'+key]"
                                      :placeholder="'Enter a title  for '+value"
                                      v-show="curLang==key"
                                      v-if="defaultLang!=key"/>
 
                     <div class="form-group col-12">
                         <label for="template_id">Template</label>
-                        <select name="" id="" v-model="contact.template_id" class="form-control"
+                        <select name="" id="" v-model="item.template_id" class="form-control"
                                 @change="onChange($event)">
                             <option selected="true">Select template</option>
                             <option v-for="template in templates" :value="template.id">{{ template.title }}</option>
@@ -41,26 +38,26 @@
                     </div>
                     <div class="form-group col-md-12" v-show="this.curLang=='en'">
                         <label for="description">Description</label>
-                        <editor id="description" v-model="contact.description"></editor>
+                        <editor id="description" v-model="item.description"></editor>
                     </div>
                     <div class="form-group col-md-12"
-                         v-for="(value, key) in lang" :key="key"
+                         v-for="(value, key) in lang" :key="'description_'+key"
                          v-show="curLang==key"
                          v-if="defaultLang!=key"
                     >
                         <label :for="'description_'+key">Description {{ value }}</label>
-                        <editor :id="'description_'+key" v-model="contact['description_'+key]"></editor>
+                        <editor :id="'description_'+key" v-model="item['description_'+key]"></editor>
                     </div>
-                    <input-component label="Link" :content.sync="contact.link" placeholder="Enter a link" class="col-lg-12"/>
+                    <input-component label="Link" :content.sync="item.link" placeholder="Enter a link" class="col-lg-12"/>
                 </div>
 
 
-                <div class="row form-group d-none">
+                <div class="row form-group">
                     <div class="col-12">
                         <label for="Image File Manager">Image File Manager</label>
                         <input id="image_media_id" name="image_media_id"
                                ref="image_media_id"
-                               type="hidden 1" value="4" class=" form-control ">
+                               type="hidden 1" v-model="item.image" class=" form-control ">
                         <div class="media-cont">
                             <div class="media-input">
                                 <a href="#" data-input="image_media_id" class="btn btn-default filemanager-select">
@@ -79,8 +76,8 @@
                 </div>
 
                 <div class="form-row">
-                    <input-component label="Sort" :content.sync="contact.sort"  class="col-lg-1"/>
-                    <input-component label="Status" :content.sync="contact.pub" class="col-lg-1"/>
+                    <input-component :type="'number'" label="Sort" :content.sync="item.sort"  class="col-lg-1"/>
+                    <input-boolean-component :type="'hidden'" label="Status" :content.sync="item.pub" class="col-lg-1"/>
                 </div>
 
 
@@ -111,14 +108,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="(contact,index) in list">
-                        <td>{{ contact.id }}</td>
-                        <td>{{ contact.title }}</td>
-                        <td>{{ contact.link }}</td>
-                        <td>{{ contact.template}}</td>
-                        <td v-html="contact.description"></td>
-                        <td>{{ contact.sort}}</td>
-                        <td>{{ contact.pub}}</td>
+                    <tr v-for="(item,index) in list">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.link }}</td>
+                        <td>{{ item.template}}</td>
+                        <td v-html="item.description"></td>
+                        <td>{{ item.sort}}</td>
+                        <td>{{ item.pub}}</td>
 
                         <td>
                             <a href="" @click.prevent="editItem(index)" class="btn btn-info btn-sm">
@@ -141,16 +138,20 @@
     import Editor from '@tinymce/tinymce-vue'
     import {HTTP} from './../../mixins/http-common';
     import inputComponent from './BaseInput';
+    import inputBooleanComponent from './BaseInputBoolean';
+    import selectComponent from './BaseSelect';
 
     export default {
-        props: ['items', 'selects', 'lang'],
+        props: ['items', 'selects', 'lang','model'],
         components: {
             'editor': Editor,
-            inputComponent
+            inputComponent,
+            inputBooleanComponent,
+            selectComponent,
         },
         data() {
             return {
-                contact: {},
+                item: {},
                 errors: [],
                 selectedItem: '',
                 template: '',
@@ -161,40 +162,41 @@
                 defaultLang: null
             }
         },
+
+        mounted() {
+
+        },
         created() {
-            this.list = this.items;
+            this.list = this.items.data;
             this.templates = this.selects;
             this.defaultLang = Object.keys(this.lang)[0];
             this.changeLang(this.defaultLang);
         },
         methods: {
             onChange(event) {
-                this.contact.template = this.templates[event.target.selectedIndex - 1].title;
-
+                this.item.template = this.templates[event.target.selectedIndex - 1].title;
             },
             changeLang(locale) {
                 this.curLang = locale;
             },
             addItem() {
-                if (!this.checkForm(this.contact)) return;
+                if (!this.checkForm(this.item)) return;
                 let url = "/admin/api/create/block";
-                this.contact.model_id = 2;
-                this.contact.model_type = "App\\Article";
+                this.item.model_id = this.model.id;
+                alert(this.item.image)
+                this.item.model_type = "App\\Article";
                 let self = this;
-                let data = this.contact;
-                HTTP.post(url, this.contact)
+
+                HTTP.post(url, this.item)
                     .then(function ({data}) {
                         console.log(data.status);
-                        self.contact.id = data.data.id;
-                        self.list.push(Object.assign({}, self.contact));
+                        self.item.id = data.data.id;
+                        self.list.push(Object.assign({}, self.item));
                         self.clearForm();
                     })
                     .catch(e => {
-                        //self.errors.push(e)
                         alert(e.message)
-                        //self.showMessage(e.message, self.ERROR_CLASS);
                     })
-
             },
             deleteItem(index) {
                 let self = this;
@@ -224,10 +226,23 @@
                 });
             },
             updateItem() {
-                if (!this.checkForm(this.contact)) return;
-                this.contact.image_media_id = this.$refs.image_media_id.value;
-                this.list[this.selectedItem] = Object.assign({}, this.contact);
-                this.clearForm();
+                if (!this.checkForm(this.item)) return;
+                this.item.image = this.$refs.image_media_id.value;
+
+                this.list[this.selectedItem] = Object.assign({}, this.item);
+                let url = "/admin/api/update/block/"+this.item.id;
+                let self = this;
+                HTTP.post(url, this.item)
+                    .then(function ({data}) {
+
+                        self.clearForm();
+                    })
+                    .catch(e => {
+                        //self.errors.push(e)
+                        alert(e.message)
+                        //self.showMessage(e.message, self.ERROR_CLASS);
+                    })
+
             },
             aggiorna(a) {
                 this.checkForm(a)
@@ -235,27 +250,27 @@
             editItem(index) {
                 this.resetToDefault();
                 this.selectedItem = index;
-                this.contact = Object.assign({}, this.list[this.selectedItem]);
-                this.updateTiny(this.contact.description);
-                this.$refs.image_media_id.value = this.contact.image_media_id;
+                this.item = Object.assign({}, this.list[this.selectedItem]);
+                this.updateTiny(this.item.description);
+                this.$refs.image_media_id.value = this.item.image_media_id;
                 this.isEdit = true;
 
             },
             clearForm() {
-                this.contact = {};
+                this.item = {};
                 this.template = "";
                 this.isEdit = false;
                 this.errors = [];
-                this.updateTiny('', 'description');
+                this.clearTiny('');
                 this.resetToDefault();
 
             },
             checkForm: function (item) {
                 this.errors = [];
-                if (!this.contact.title) {
+                if (!this.item.title) {
                     this.errors.push('Name required.');
                 }
-                if (!this.contact.description) {
+                if (!this.item.description) {
                     this.errors.push('Age required.');
                 }
                 if (this.errors.length > 0) alert('validate');
@@ -270,12 +285,19 @@
             updateTiny: function (content) {
                 tinymce.get('description').setContent(content);
             },
+            clearTiny: function (content) {
+                const lang = Object.keys(this.lang)
+                for (const locale of lang) {
+                    let target_element = (locale==this.defaultLang) ? `description`: `description_${locale}`;
+                    tinymce.get( target_element).setContent(content);
+                }
+            },
+            resetToDefault: function () {
+                this.changeLang(this.defaultLang);
+            },
             resetToDefault: function () {
                 this.changeLang(this.defaultLang);
             }
-        },
-        mounted() {
-            console.log('LIST')
-        },
+        }
     }
 </script>

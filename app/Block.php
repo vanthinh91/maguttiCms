@@ -12,9 +12,7 @@ use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 class Block extends Model
 {
     use Translatable;
-    use  GFTranslatableHelperTrait;
-
-    protected $with = ['translations'];
+    use GFTranslatableHelperTrait;
     protected $fillable = [
         'model_id',
         'model_type',
@@ -28,6 +26,7 @@ class Block extends Model
         'link',
         'sort',
         'pub',
+        'translatables'
     ];
     protected $fieldspec = [];
 

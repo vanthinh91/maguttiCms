@@ -1,7 +1,10 @@
 <?php namespace App\maguttiCms\Admin\Controllers;
 
+use App\Block;
 use App\Http\Controllers\Controller;
 
+use App\maguttiCms\Domain\Block\Resources\BlockCollection;
+use App\maguttiCms\Domain\Block\Resources\BlockResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Validator;

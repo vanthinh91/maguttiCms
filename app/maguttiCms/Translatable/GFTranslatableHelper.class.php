@@ -51,4 +51,15 @@ trait GFTranslatableHelperTrait
     {
         return (property_exists($this, 'translatedAttributes') && in_array($key, $this->translatedAttributes));
     }
+
+    public function getTranslatablesAttribute(){
+        $this->translatables=[];
+        foreach (config('app.locales') as $locale => $value) {
+            foreach ($this->translatedAttributes as $attribute) {
+                $attribute_key = $attribute."_".$locale;
+                $this->translatables[$attribute_key] = $this->translate($locale)->{$attribute};
+            }
+        }
+        return $this->translatables;
+    }
 }
