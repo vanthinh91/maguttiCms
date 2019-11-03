@@ -12,30 +12,31 @@
                     </ul>
                 </div>
                 <div class="form-row bg">
-                    <input-component
-                            class="mb-1 mr-sm-2 col-1"
-                            :content.sync="item.id"
-                            placeholder="Item Id" v-show="isEdit"/>
-                    <input-component
-                            label="Title"
-                            :content.sync="item['title']"
-                            placeholder="Enter a title"
-                            v-show="this.curLang=='en'"/>
-                    <input-component v-for="(value, key) in lang" :key="'input_'+key"
-                                     :label="'Title '+value "
-                                     :content.sync="item['title_'+key]"
-                                     :placeholder="'Enter a title  for '+value"
-                                     v-show="curLang==key"
-                                     v-if="defaultLang!=key"/>
+                    <select-component
+                        label="Template" :options="templates"
+                        :selected-option.sync="item.template_id">
+                    </select-component>
+                    <select-component
+                            label="products" :options="products"
+                            :selected-option.sync="item.product_id">
+                    </select-component>
 
-                    <div class="form-group col-12">
-                        <label for="template_id">Template</label>
-                        <select name="" id="" v-model="item.template_id" class="form-control"
-                                @change="onChange($event)">
-                            <option selected="true">Select template</option>
-                            <option v-for="template in templates" :value="template.id">{{ template.title }}</option>
-                        </select>
-                    </div>
+                    <input-component
+                        class="mb-1 mr-sm-2 col-1"
+                        :content.sync="item.id"
+                        placeholder="Item Id" v-show="isEdit"/>
+                    <input-component
+                        label="Title"
+                        :content.sync="item['title']"
+                        placeholder="Enter a title"
+                        v-show="this.curLang=='en'"/>
+                    <input-component v-for="(value, key) in lang" :key="'input_'+key"
+                        :label="'Title '+value"
+                        :content.sync="item['title_'+key]"
+                        :placeholder="'Enter a title  for '+value"
+                        v-show="curLang==key"
+                        v-if="defaultLang!=key"/>
+
                     <div class="form-group col-md-12" v-show="this.curLang=='en'">
                         <label for="description">Description</label>
                         <editor id="description" v-model="item.description"></editor>
@@ -48,7 +49,8 @@
                         <label :for="'description_'+key">Description {{ value }}</label>
                         <editor :id="'description_'+key" v-model="item['description_'+key]"></editor>
                     </div>
-                    <input-component label="Link" :content.sync="item.link" placeholder="Enter a link" class="col-lg-12"/>
+                    <input-component label="Link" :content.sync="item.link" placeholder="Enter a link"
+                                     class="col-lg-12"/>
                 </div>
 
 
@@ -76,7 +78,7 @@
                 </div>
 
                 <div class="form-row">
-                    <input-component :type="'number'" label="Sort" :content.sync="item.sort"  class="col-lg-1"/>
+                    <input-component :type="'number'" label="Sort" :content.sync="item.sort" class="col-lg-1"/>
                     <input-boolean-component :type="'hidden'" label="Status" :content.sync="item.pub" class="col-lg-1"/>
                 </div>
 
@@ -142,7 +144,7 @@
     import selectComponent from './BaseSelect';
 
     export default {
-        props: ['items', 'selects', 'lang','model'],
+        props: ['items', 'selects', 'lang', 'model','products'],
         components: {
             'editor': Editor,
             inputComponent,
@@ -183,7 +185,6 @@
                 if (!this.checkForm(this.item)) return;
                 let url = "/admin/api/create/block";
                 this.item.model_id = this.model.id;
-                alert(this.item.image)
                 this.item.model_type = "App\\Article";
                 let self = this;
 
@@ -230,7 +231,7 @@
                 this.item.image = this.$refs.image_media_id.value;
 
                 this.list[this.selectedItem] = Object.assign({}, this.item);
-                let url = "/admin/api/update/block/"+this.item.id;
+                let url = "/admin/api/update/block/" + this.item.id;
                 let self = this;
                 HTTP.post(url, this.item)
                     .then(function ({data}) {
@@ -288,8 +289,8 @@
             clearTiny: function (content) {
                 const lang = Object.keys(this.lang)
                 for (const locale of lang) {
-                    let target_element = (locale==this.defaultLang) ? `description`: `description_${locale}`;
-                    tinymce.get( target_element).setContent(content);
+                    let target_element = (locale == this.defaultLang) ? `description` : `description_${locale}`;
+                    tinymce.get(target_element).setContent(content);
                 }
             },
             resetToDefault: function () {

@@ -2332,14 +2332,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     label: String,
     cssInput: String,
-    options: Array
+    options: Array,
+    selectedOption: [String, Number]
   },
   data: function data() {
-    return {};
+    return {
+      selected: null
+    };
+  },
+  methods: {
+    select: function select(e) {
+      this.selected = this.options[e.target.selectedIndex - 1].id;
+      console.log(this.selected);
+      this.$emit('update:selected-option', this.selected);
+    }
   }
 });
 
@@ -2859,13 +2873,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['items', 'selects', 'lang', 'model'],
+  props: ['items', 'selects', 'lang', 'model', 'products'],
   components: {
     'editor': _tinymce_tinymce_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     inputComponent: _BaseInput__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -2903,7 +2919,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (!this.checkForm(this.item)) return;
       var url = "/admin/api/create/block";
       this.item.model_id = this.model.id;
-      alert(this.item.image);
       this.item.model_type = "App\\Article";
       var self = this;
       _mixins_http_common__WEBPACK_IMPORTED_MODULE_1__["HTTP"].post(url, this.item).then(function (_ref) {
@@ -3860,16 +3875,31 @@ var render = function() {
     _vm._v(" "),
     _c(
       "select",
-      { staticClass: "form-control" },
+      {
+        staticClass: "form-control",
+        on: {
+          change: _vm.select,
+          input: function($event) {
+            return _vm.$emit("update:selected-option", $event.target.value)
+          }
+        }
+      },
       [
         _c("option", { attrs: { selected: "true" } }, [
           _vm._v("Select template")
         ]),
         _vm._v(" "),
-        _vm._l(_vm.options, function(item) {
-          return _c("option", { domProps: { value: item.id } }, [
-            _vm._v(_vm._s(item.title))
-          ])
+        _vm._l(_vm.options, function(option) {
+          return _c(
+            "option",
+            {
+              domProps: {
+                selected: option.id === _vm.selectedOption ? "selected" : "",
+                value: option.id
+              }
+            },
+            [_vm._v(_vm._s(option.title))]
+          )
         })
       ],
       2
@@ -4427,6 +4457,38 @@ var render = function() {
             "div",
             { staticClass: "form-row bg" },
             [
+              _c("select-component", {
+                attrs: {
+                  label: "Template",
+                  options: _vm.templates,
+                  "selected-option": _vm.item.template_id
+                },
+                on: {
+                  "update:selectedOption": function($event) {
+                    return _vm.$set(_vm.item, "template_id", $event)
+                  },
+                  "update:selected-option": function($event) {
+                    return _vm.$set(_vm.item, "template_id", $event)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("select-component", {
+                attrs: {
+                  label: "products",
+                  options: _vm.products,
+                  "selected-option": _vm.item.product_id
+                },
+                on: {
+                  "update:selectedOption": function($event) {
+                    return _vm.$set(_vm.item, "product_id", $event)
+                  },
+                  "update:selected-option": function($event) {
+                    return _vm.$set(_vm.item, "product_id", $event)
+                  }
+                }
+              }),
+              _vm._v(" "),
               _c("input-component", {
                 directives: [
                   {
@@ -4491,66 +4553,6 @@ var render = function() {
                     })
                   : _vm._e()
               }),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-12" }, [
-                _c("label", { attrs: { for: "template_id" } }, [
-                  _vm._v("Template")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.item.template_id,
-                        expression: "item.template_id"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { name: "", id: "" },
-                    on: {
-                      change: [
-                        function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.item,
-                            "template_id",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        },
-                        function($event) {
-                          return _vm.onChange($event)
-                        }
-                      ]
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { selected: "true" } }, [
-                      _vm._v("Select template")
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.templates, function(template) {
-                      return _c(
-                        "option",
-                        { domProps: { value: template.id } },
-                        [_vm._v(_vm._s(template.title))]
-                      )
-                    })
-                  ],
-                  2
-                )
-              ]),
               _vm._v(" "),
               _c(
                 "div",
