@@ -12,7 +12,7 @@
 								:selects="{{App\Domain::all()}}"
 								:products="{{App\Product::all()}}"
 								:model="{{$article}}"
-				class="none">
+				class="d-none">
 				</list-component>
 
 				{{ Form::model($article, ['files' => true, 'id'=>'edit-form', 'accept-charset' => "UTF-8"]) }}
