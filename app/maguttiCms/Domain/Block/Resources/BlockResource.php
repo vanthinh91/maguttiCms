@@ -16,6 +16,7 @@ class BlockResource extends JsonResource
     public function toArray($request)
     {
         $attributes= parent::attributesToArray($request);
+        $attributes['image_url'] = optional($this->imageMedia)->getPreviewThumbAttribute();
         return array_merge($attributes,$this->translatables);
     }
 }

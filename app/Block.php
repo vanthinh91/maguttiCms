@@ -51,6 +51,10 @@ class Block extends Model
     {
         return $this->belongsTo('App\Domain', 'template_id', 'id');
     }
+    public function imageMedia()
+    {
+        return $this->belongsTo('App\Media', 'image', 'id');
+    }
 
 
     /*

@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use App\maguttiCms\Website\Facades\ImgHelper;
 use Illuminate\Database\Eloquent\Model;
 use App\maguttiCms\Tools\Stringable;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
@@ -27,10 +28,18 @@ class Media extends Model
 	}
 
 
-	public function getPreviewAttribute()
-	{
-		return ma_get_image_from_repository( $this->file_name);
-	}
+    public function getPreviewAttribute()
+    {
+        return ma_get_image_from_repository( $this->file_name);
+    }
+
+
+    public function getPreviewThumbAttribute()
+    {
+        return  ($this->file_name)? ImgHelper::get_cached($this->file_name, config('maguttiCms.image.admin')):'';
+    }
+
+
 
 	function getFieldSpec ()
 	// set the specifications for this database table

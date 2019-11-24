@@ -2925,6 +2925,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var data = _ref.data;
         console.log(data.status);
         self.item.id = data.data.id;
+        self.item.image_url = data.data.image_url;
         self.list.push(Object.assign({}, self.item));
         self.clearForm();
       })["catch"](function (e) {
@@ -4673,7 +4674,35 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _vm._m(0)
+              _c("div", { staticClass: "media-cont" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "media-saved",
+                    attrs: { id: "box_image_" + _vm.item.id }
+                  },
+                  [
+                    _c("div", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: _vm.item.image_url, target: "_blank" }
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "img-thumb pull-right re",
+                            attrs: { src: _vm.item.image_url }
+                          })
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(1)
+                  ]
+                )
+              ])
             ])
           ]),
           _vm._v(" "),
@@ -4756,7 +4785,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "table-responsive" }, [
         _c("table", { staticClass: "admin-table" }, [
-          _vm._m(1),
+          _vm._m(2),
           _vm._v(" "),
           _c(
             "tbody",
@@ -4821,65 +4850,39 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "media-cont" }, [
-      _c("div", { staticClass: "media-input" }, [
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-default filemanager-select",
-            attrs: { href: "#", "data-input": "image_media_id" }
-          },
-          [
-            _c("i", { staticClass: "fas fa-upload " }),
-            _vm._v(" Upload file\n                            ")
-          ]
-        )
-      ]),
-      _vm._v(" "),
+    return _c("div", { staticClass: "media-input" }, [
       _c(
-        "div",
-        { staticClass: "media-saved", attrs: { id: "box_image_media_id_1" } },
+        "a",
+        {
+          staticClass: "btn btn-default filemanager-select",
+          attrs: { href: "#", "data-input": "image_media_id" }
+        },
         [
-          _c("div", [
-            _c(
-              "a",
-              {
-                attrs: {
-                  href:
-                    "http://magutticms.test/media/images/esn-website-comingsoon.jpeg",
-                  target: "_blank"
-                }
-              },
-              [
-                _c("img", {
-                  staticClass: "img-thumb pull-right",
-                  attrs: {
-                    src:
-                      "/media/images/cache/esn-website-comingsoon_jpeg_100_100_cover_50.jpg"
-                  }
-                })
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-danger media-delete",
-              attrs: {
-                id: "delete-image_media_id-1",
-                "data-locale": "",
-                href: "#",
-                rel: "tooltip",
-                "data-original-title": "Delete this item",
-                onclick: "window.Cms.deleteImages(this)"
-              }
-            },
-            [_c("i", { staticClass: "fas fa-trash " })]
-          )
+          _c("i", { staticClass: "fas fa-upload " }),
+          _vm._v(" Upload file\n                            ")
         ]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-danger media-delete",
+        attrs: {
+          id: "delete-image_media_id-1",
+          "data-locale": "",
+          href: "#",
+          rel: "tooltip",
+          "data-original-title": "Delete this item",
+          onclick: "window.Cms.deleteImages(this)"
+        }
+      },
+      [_c("i", { staticClass: "fas fa-trash " })]
+    )
   },
   function() {
     var _vm = this

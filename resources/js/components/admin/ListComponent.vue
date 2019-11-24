@@ -65,11 +65,11 @@
                                 <a href="#" data-input="image_media_id" class="btn btn-default filemanager-select">
                                     <i class="fas fa-upload "></i> Upload file
                                 </a></div>
-                            <div id="box_image_media_id_1" class="media-saved">
-                                <div><a href="http://magutticms.test/media/images/esn-website-comingsoon.jpeg"
+                            <div :id="'box_image_'+item.id" class="media-saved">
+                                <div><a :href="item.image_url"
                                         target="_blank"><img
-                                        src="/media/images/cache/esn-website-comingsoon_jpeg_100_100_cover_50.jpg"
-                                        class="img-thumb pull-right"></a></div>
+                                        :src="item.image_url"
+                                        class="img-thumb pull-right re"></a></div>
                                 <a id="delete-image_media_id-1" data-locale="" href="#" rel="tooltip"
                                    data-original-title="Delete this item" onclick="window.Cms.deleteImages(this)"
                                    class="btn btn-danger media-delete"><i class="fas fa-trash "></i></a></div>
@@ -192,6 +192,7 @@
                     .then(function ({data}) {
                         console.log(data.status);
                         self.item.id = data.data.id;
+                        self.item.image_url = data.data.image_url;
                         self.list.push(Object.assign({}, self.item));
                         self.clearForm();
                     })
