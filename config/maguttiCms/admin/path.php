@@ -1,13 +1,13 @@
 <?php
 
 return [
-	'repository'     => 'media/',
-	'img_repository' => 'media/images/',
-	'img_save'       => 'media/images/cache/',
-	'doc_repository' => 'media/docs/',
+    'repository'     => env('ASSET_PUBLIC_PATH','public/').'media/',
+    'img_repository' => env('ASSET_PUBLIC_PATH','public/').'media/images/',
+    'img_save'       => env('ASSET_PUBLIC_PATH','public/').'media/images/cache/',
+    'doc_repository' => env('ASSET_PUBLIC_PATH','public/').'media/docs/',
 
-	'media_img_repository' => 'media/images/',
-	'media_doc_repository' => 'media/docs/',
+    'media_img_repository' => env('ASSET_PUBLIC_PATH','public/').'media/images/',
+    'media_doc_repository' => env('ASSET_PUBLIC_PATH','public/').'media/docs/',
 
 	'cms'            => 'cms/',
 	'cms_assets'     => 'cms/',
