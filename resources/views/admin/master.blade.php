@@ -41,7 +41,7 @@
 		@yield('content')
 	</div>
 	<!-- Latest compiled and minified JavaScript -->
-	<script type="text/javascript" src="{{ mix('/cms/js/cmsvendor.js') }}"></script>
+	<script type="text/javascript" src="{{ asset(mix('/cms/js/cmsvendor.js')) }}"></script>
     <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.1/cropper.min.js" charset="utf-8"></script>
 	<script src="{{ asset(config('maguttiCms.admin.path.plugins').'custom-scrollbar/jquery.mCustomScrollbar.concat.min.js') }}"></script>
@@ -49,8 +49,8 @@
 	<script src="{{ asset(config('maguttiCms.admin.path.plugins').'tinymce/tinymce.min.js') }}"></script>
 	<script src="{{ asset(config('maguttiCms.admin.path.plugins').'colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
 	<script src="{{ asset(config('maguttiCms.admin.path.plugins').'bootbox.js') }}"></script>
-	<script src="{{ mix('/cms/js/cms.js') }}"></script>
-	<script src="{{ mix('/cms/js/header.js') }}"></script>
+	<script src="{{ asset(mix('/cms/js/cms.js')) }}"></script>
+	<script src="{{ asset(mix('/cms/js/header.js')) }}"></script>
 	<script src="{{ asset(mix('/cms/js/appcms.js')) }}"></script>
 
 	<script>
