@@ -66,10 +66,11 @@
                                     <i class="fas fa-upload "></i> Upload file
                                 </a></div>
                             <div :id="'box_image_'+item.id" class="media-saved">
-                                <div><a :href="item.image_url"
-                                        target="_blank"><img
-                                        :src="item.image_url"
-                                        class="img-thumb pull-right re"></a></div>
+                                <div>
+                                    <a :href="item.image_url" target="_blank">
+                                    <img :src="item.image_url" class="img-thumb pull-right">
+                                </a>
+                                </div>
                                 <a id="delete-image_media_id-1" data-locale="" href="#" rel="tooltip"
                                    data-original-title="Delete this item" onclick="window.Cms.deleteImages(this)"
                                    class="btn btn-danger media-delete"><i class="fas fa-trash "></i></a></div>
@@ -100,6 +101,7 @@
                     <thead>
                     <tr>
                         <td>Id</td>
+                        <td>Image</td>
                         <td>Title</td>
                         <td>Link</td>
                         <td>Template</td>
@@ -112,6 +114,7 @@
                     <tbody>
                     <tr v-for="(item,index) in list">
                         <td>{{ item.id }}</td>
+                        <td>{{ item.image_url }}</td>
                         <td>{{ item.title }}</td>
                         <td>{{ item.link }}</td>
                         <td>{{ item.template}}</td>
