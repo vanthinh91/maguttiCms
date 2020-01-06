@@ -5,7 +5,7 @@ namespace App\maguttiCms\Domain\Category;
 use App\Category;
 use App\maguttiCms\Domain\Website\WebsiteViewModel;
 
-class CategoryViewModel extends WebsiteViewModel
+class   CategoryViewModel extends WebsiteViewModel
 {
 
 
@@ -14,6 +14,7 @@ class CategoryViewModel extends WebsiteViewModel
     {
         $category = Category::findBySlug($slug, app()->getLocale());;
         if ($category) {
+
             $article = $this->getCurrentPage();
             $this->setSeo($category);
             $locale_article = $category;

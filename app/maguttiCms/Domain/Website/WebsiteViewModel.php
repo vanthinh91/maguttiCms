@@ -18,6 +18,7 @@ abstract class WebsiteViewModel
 
     function __construct($page_slug = '')
     {
+
         if ($page_slug != '') $this->setCurrentPage($page_slug);
     }
 

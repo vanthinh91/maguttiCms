@@ -45,7 +45,7 @@
         			<div class="col-12 col-sm-6">
         				<input class="form-control form-group" type="text" name="phone" value="{{ old('phone') }}" placeholder="{{trans('store.address.fields.phone')}}">
         				<input class="form-control form-group" type="text" name="mobile" value="{{ old('mobile') }}" placeholder="{{trans('store.address.fields.mobile')}}">
-        				<input class="form-control form-group" type="email" name="email" value="{{ old('email') }}" placeholder="{{trans('store.address.fields.email')}}">
+        				<input class="form-control form-group" type="email" name="email" value="{{ (old('email'))? old('email') : auth()->guard()->user()->email}}" placeholder="{{trans('store.address.fields.email')}}">
         			</div>
         		</div>
         		<button type="submit" class="btn btn-primary">

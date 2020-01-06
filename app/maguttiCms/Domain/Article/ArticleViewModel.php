@@ -19,6 +19,8 @@ class ArticleViewModel extends WebsiteViewModel
 
     function show($parent, $child = '')
     {
+
+
         $article = (!$child) ? $this->getParentPage($parent, app()->getLocale()) : $this->getSubPage($parent, $child);
         if ($this->validatePage($article)) {
             $this->setSeo($article);

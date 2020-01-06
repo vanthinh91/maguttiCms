@@ -21,14 +21,18 @@ class ProductsController extends Controller
 
     public function category($category_slug = '')
     {
-      return (new CategoryViewModel('prodotti'))->handle($category_slug);
+      $slug= $this->resolvePageSlug();
+      return (new CategoryViewModel($slug))->handle($category_slug);
     }
 
 
     public function products($category_slug, $product_slug)
     {
-
-       return (new ProductViewModel('prodotti'))->handle($product_slug);
-
+      $slug= $this->resolvePageSlug();
+      return (new ProductViewModel($slug))->handle($product_slug);
+    }
+    function resolvePageSlug(){
+        $segments = request()->segments();;
+        return end($segments);
     }
 }
