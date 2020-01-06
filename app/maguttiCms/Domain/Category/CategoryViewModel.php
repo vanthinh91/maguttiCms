@@ -5,9 +5,8 @@ namespace App\maguttiCms\Domain\Category;
 use App\Category;
 use App\maguttiCms\Domain\Website\WebsiteViewModel;
 
-class   CategoryViewModel extends WebsiteViewModel
+class CategoryViewModel extends WebsiteViewModel
 {
-
 
 
     function show($slug)
@@ -36,6 +35,6 @@ class   CategoryViewModel extends WebsiteViewModel
 
     function handle($slug)
     {
-       return ($slug == '') ? $this->index() : $this->show($slug);
+        return ($slug == '') ? $this->index() : $this->show($slug);
     }
 }

@@ -9,7 +9,6 @@ use App\maguttiCms\Domain\Website\WebsiteViewModel;
 class ArticleViewModel extends WebsiteViewModel
 {
 
-
     function index()
     {
         $article = $this->getPage('home');
