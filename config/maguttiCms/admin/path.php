@@ -23,7 +23,7 @@ return [
 
 	'user_upload'    => 'upload/',
 
-    'expor_data'     => 'export/',
+    'export_data'     => 'export/',
     'shared'         => 'shared_data/',
 
 
