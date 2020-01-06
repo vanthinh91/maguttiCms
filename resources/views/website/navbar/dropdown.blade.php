@@ -3,7 +3,7 @@
 		{{$page->nav_title}}
 	</a>
 	<div class="dropdown-menu">
-		@foreach ($children as $index => $child) {
+		@foreach ($children as $index => $child)
 			@php
 				$active = (!empty($current_page) && $child->id == $current_page->id) ? 'active' : '';
 			@endphp
