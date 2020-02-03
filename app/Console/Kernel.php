@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Commands\SetupRedis::class
+        \App\Console\Commands\SetupRedis::class,
+        \App\Console\Commands\Support\Model\CreateModel::class,
     ];
 
     /**
