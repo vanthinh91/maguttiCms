@@ -86,10 +86,9 @@ class CodeGeneratorHelper
         }
 
         // complete the password
-        for ($i = strlen($pass); $i < $length; $i++)
+        for ($i = strlen($pass); $i < $length; $i++){
             $pass .= $dictionary[random_int(0, strlen($dictionary) - 1)];
-        return $pass;
-
+        }
         // shuffle the result
         $pass = str_shuffle($pass);
         return $pass;
