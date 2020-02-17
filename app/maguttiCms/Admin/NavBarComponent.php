@@ -22,14 +22,7 @@ class NavBarComponent  {
     
     public function init()
     {
-        $this->data->push([
-            'title' => 'Web site',
-            'url' => url()->to(''),
-            'iconClass' => 'fas fa-globe',
-            'target' => "_new",
-            'section' => '',
-            'submenu' =>[]
-        ]);
+        
     }
 
 
