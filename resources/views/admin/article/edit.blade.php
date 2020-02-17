@@ -12,7 +12,7 @@
 								:selects="{{App\Domain::all()}}"
 								:products="{{App\Product::all()}}"
 								:model="{{$article}}"
-				class="d-none">
+								class="d-none">
 				</list-component>
 
 				{{ Form::model($article, ['files' => true, 'id'=>'edit-form', 'accept-charset' => "UTF-8"]) }}
@@ -28,25 +28,25 @@
 							</a>
 						</li>
 						@if ($pageConfig->get('showBlock') == 1 && $article->id!='')
-						<li class="nav-item">
-							<a href="#block_tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="block" aria-selected="false">
-								{{icon('newspaper')}} {{trans('admin.label.block')}}
-							</a>
-						</li>
+							<li class="nav-item">
+								<a href="#block_tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="block" aria-selected="false">
+									{{icon('newspaper')}} {{trans('admin.label.block')}}
+								</a>
+							</li>
 						@endif
 						@if ($pageConfig->get('showSeo') == 1)
-						<li class="nav-item">
-							<a href="#seo_tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="seo" aria-selected="false">
-								{{icon('globe-africa')}} {{trans('admin.label.seo')}}
-							</a>
-						</li>
+							<li class="nav-item">
+								<a href="#seo_tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="seo" aria-selected="false">
+									{{icon('globe-africa')}} {{trans('admin.label.seo')}}
+								</a>
+							</li>
 						@endif
 						@if ($pageConfig->get('showMedia') == 1 && $article->id!='')
-						<li class="nav-item">
-							<a href="#media_tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="media" aria-selected="false">
-								{{icon('image')}} {{trans('admin.label.media')}}
-							</a>
-						</li>
+							<li class="nav-item">
+								<a href="#media_tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="media" aria-selected="false">
+									{{icon('image')}} {{trans('admin.label.media')}}
+								</a>
+							</li>
 						@endif
 					</ul>
 					<!-- Tab panes -->
@@ -102,35 +102,35 @@
 	<script src="{!! asset(config('maguttiCms.admin.path.plugins').'uploadifive/jquery.uploadifive.min.js')!!}" type="text/javascript"></script>
 	<script src="{!! asset(config('maguttiCms.admin.path.plugins').'timepicker/jquery-ui-timepicker-addon.js')!!}" type="text/javascript"></script>
 	<script src="{!! asset(config('maguttiCms.admin.path.plugins').'selectize/selectize.min.js')!!}" type="text/javascript"></script>
-	<script src="{{ mix(config('maguttiCms.admin.path.cms_js'). 'lara-file-manager.js') }}"></script>
+	<script src="{{ asset(config('maguttiCms.admin.path.assets').mix('cms/js/lara-file-manager.js')) }}"></script>
 	<script type="text/javascript">
-	$(function() {
-		Cms.initTinymce();
-		Cms.initColorPicker();
-		Cms.initFiles();
-		Cms.initDatePicker();
-		Cms.initDateTimePicker();
-		Cms.initUploadifiveSingle();
-		Cms.initUploadifiveMedia();
-		Cms.initSortableList("ul#simpleGallery");
-		Cms.initSortableList("ul#simpleDocGallery");
-		Cms.initImageRelationList();
-		Cms.initMediaModal();
-		$('.selectizemulti').selectize({
-			plugins: ['remove_button', 'drag_drop'],
-			delimiter: ',',
-			persist: false,
-			create: false,
-			sortField: 'text',
-			allowEmptyOption: true,
+		$(function() {
+			Cms.initTinymce();
+			Cms.initColorPicker();
+			Cms.initFiles();
+			Cms.initDatePicker();
+			Cms.initDateTimePicker();
+			Cms.initUploadifiveSingle();
+			Cms.initUploadifiveMedia();
+			Cms.initSortableList("ul#simpleGallery");
+			Cms.initSortableList("ul#simpleDocGallery");
+			Cms.initImageRelationList();
+			Cms.initMediaModal();
+			$('.selectizemulti').selectize({
+				plugins: ['remove_button', 'drag_drop'],
+				delimiter: ',',
+				persist: false,
+				create: false,
+				sortField: 'text',
+				allowEmptyOption: true,
+			});
+			$('.selectize').selectize({
+				sortField: 'text',
+				allowEmptyOption: true,
+			});
 		});
-		$('.selectize').selectize({
-			sortField: 'text',
-			allowEmptyOption: true,
-		});
-	});
-</script>
-<script>
-$('#flash-overlay-modal').modal();
-</script>
+	</script>
+	<script>
+		$('#flash-overlay-modal').modal();
+	</script>
 @endsection
