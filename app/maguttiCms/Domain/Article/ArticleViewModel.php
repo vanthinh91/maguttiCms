@@ -33,7 +33,7 @@ class ArticleViewModel extends WebsiteViewModel
 
     function contacts()
     {
-        $article = $this->getPage('contatti');
+        $article = $this->getPage(trans('routes.contacts'));
         $this->setSeo($article);
         $parameter = request()->get('product_id');
         if ($parameter && !is_array($parameter)) {

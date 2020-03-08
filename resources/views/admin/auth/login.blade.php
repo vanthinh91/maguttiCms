@@ -3,7 +3,8 @@
 	<main id="login-main">
 		<div id="login-block">
 			<div class="card">
-				<img src="{!! asset('cms/images/logo.png')!!}" alt="CMS Login">
+				<img src="{!! asset(config('maguttiCms.admin.path.assets').'cms/images/logo.png')!!}" alt="CMS Login">
+
 				<hr>
 				<form method="post">
 					<h3>Accedi</h3>

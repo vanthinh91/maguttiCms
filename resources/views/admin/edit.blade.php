@@ -81,7 +81,7 @@
 	<script src="{!! asset(config('maguttiCms.admin.path.plugins').'uploadifive/jquery.uploadifive.min.js')!!}" type="text/javascript"></script>
 	<script src="{!! asset(config('maguttiCms.admin.path.plugins').'timepicker/jquery-ui-timepicker-addon.js')!!}" type="text/javascript"></script>
 	<script src="{!! asset(config('maguttiCms.admin.path.plugins').'selectize/selectize.min.js')!!}" type="text/javascript"></script>
-	<script src="{{ mix(config('maguttiCms.admin.path.cms_js'). 'lara-file-manager.js') }}"></script>
+	<script src="{{ asset(config('maguttiCms.admin.path.assets').mix('cms/js/lara-file-manager.js')) }}"></script>
 	<script type="text/javascript">
 	$(function() {
 		Cms.initTinymce();
