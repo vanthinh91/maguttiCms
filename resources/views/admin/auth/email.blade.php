@@ -4,7 +4,7 @@
 	<main id="login-main">
 		<div id="login-block">
 			<div class="card">
-				<img src="{!! asset('cms/images/logo.png')!!}" alt="CMS Login">
+				<img src="{!! asset('/cms/images/logo.png')!!}" alt="CMS Login">
 				<hr>
 				@if (session('status'))
 					<div class="alert alert-info">
