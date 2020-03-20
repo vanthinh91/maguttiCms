@@ -2,16 +2,14 @@
 
 namespace App\Exceptions;
 
-use Mail;
-use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use App\Error;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
     /**
-     * A list of the exception types that should not be reported.
+     * A list of the exception types that are not reported.
      *
      * @var array
      */
@@ -34,32 +32,32 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-
-    public function report(Exception $exception) {
-		if ($exception instanceof \Exception) {
-
-	    }
-        return parent::report($exception);
+    /**
+     * Report or log an exception.
+     *
+     * @param  \Throwable  $exception
+     * @return void
+     *
+     * @throws \Exception
+     */
+    public function report(Throwable $exception)
+    {
+        parent::report($exception);
     }
 
     /**
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param  \Throwable  $exception
+     * @return \Symfony\Component\HttpFoundation\Response
      *
+     * @throws \Throwable
      */
-
-
-    public function render($request, Exception $e)
+    public function render($request, Throwable $exception)
     {
-        if ($e instanceof ModelNotFoundException) {
-            $e = new NotFoundHttpException($e->getMessage(), $e);
-        }
-        else if( $e instanceof  NotFoundHttpException ) return Redirect::to('/');
-
-        return parent::render($request, $e);
+        if( $exception instanceof  NotFoundHttpException ) return Redirect::to('/');
+        return parent::render($request, $exception);
     }
 
     /**

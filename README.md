@@ -2,12 +2,12 @@
 
 
 ## About maguttiCms
-Open source multilingual Laravel 6 CMS with simple shopping cart.
+Open source multilingual Laravel 7 CMS with simple shopping cart.
 
 ## Version
-6 - Bootstrap 4
+7 - Bootstrap 4
 
-maguttiCms is released using Laravel 6.X .
+maguttiCms is released using Laravel 7.X .
 
 ### How to Install
  
@@ -22,15 +22,16 @@ maguttiCms is released using Laravel 6.X .
    
 ### Server Requirements
  
-- PHP >= 7.2.0
-- BCMath PHP Extension
-- Ctype PHP Extension
-- JSON PHP Extension
-- Mbstring PHP Extension
-- OpenSSL PHP Extension
-- PDO PHP Extension
-- Tokenizer PHP Extension
-- XML PHP Extension
+ - PHP >= 7.2.5
+ - BCMath PHP Extension
+ - Ctype PHP Extension
+ - Fileinfo PHP extension
+ - JSON PHP Extension
+ - Mbstring PHP Extension
+ - OpenSSL PHP Extension
+ - PDO PHP Extension
+ - Tokenizer PHP Extension
+ - XML PHP Extension
 
 License
 =======

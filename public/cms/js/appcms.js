@@ -2875,6 +2875,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -4692,7 +4695,7 @@ var render = function() {
                         },
                         [
                           _c("img", {
-                            staticClass: "img-thumb pull-right re",
+                            staticClass: "img-thumb pull-right",
                             attrs: { src: _vm.item.image_url }
                           })
                         ]
@@ -4793,6 +4796,8 @@ var render = function() {
               return _c("tr", [
                 _c("td", [_vm._v(_vm._s(item.id))]),
                 _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.image_url))]),
+                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(item.title))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(item.link))]),
@@ -4891,6 +4896,8 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("td", [_vm._v("Id")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("Image")]),
         _vm._v(" "),
         _c("td", [_vm._v("Title")]),
         _vm._v(" "),

@@ -14,18 +14,18 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        \App\Http\Middleware\TrustProxies::class,
+        \Fruitcake\Cors\HandleCors::class,
+        \App\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \App\Http\Middleware\TrustProxies::class,
 
         /*
         |--------------------------------------------------------------------------
         | MaguttiCms Middleware
         |--------------------------------------------------------------------------
         */
-        //'Clockwork\Support\Laravel\ClockworkMiddleware',
         \App\maguttiCms\Middleware\ForceSSLMiddleware::class
     ];
 
@@ -47,7 +47,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             'throttle:60,1',
-            'bindings',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 
@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
@@ -76,7 +77,7 @@ class Kernel extends HttpKernel
         |--------------------------------------------------------------------------
         */
 
-        'shield' => \App\maguttiCms\Middleware\GFShieldMiddleware::class,
+        //'shield' => \App\maguttiCms\Middleware\GFShieldMiddleware::class,
         'adminauth' => \App\maguttiCms\Middleware\AdminAuthenticate::class,
         'storeenabled' => \App\maguttiCms\Middleware\StoreEnabled::class,
         'usercart' => \App\maguttiCms\Middleware\UserCart::class,
@@ -111,7 +112,8 @@ class Kernel extends HttpKernel
     protected $middlewarePriority = [
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        \App\Http\Middleware\Authenticate::class,
+        \Illuminate\Contracts\Auth\Middleware\AuthenticatesRequests::class,
+        \Illuminate\Routing\Middleware\ThrottleRequests::class,
         \Illuminate\Session\Middleware\AuthenticateSession::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,

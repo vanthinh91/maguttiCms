@@ -186,7 +186,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
-        Vinkla\Shield\ShieldServiceProvider::class,
+        //Vinkla\Shield\ShieldServiceProvider::class,
         "Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider",
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,

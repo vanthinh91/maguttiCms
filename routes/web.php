@@ -151,7 +151,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 */
 Route::group([
   'prefix' => LaravelLocalization::setLocale(),
-  'middleware' => ['shield', 'localizationRedirect', 'usercart']
+  'middleware' => ['localizationRedirect', 'usercart']
 ], function () {
 	// Api
 	Route::post('/api/newsletter',			'\App\maguttiCms\Website\Controllers\APIController@subscribeNewsletter');
