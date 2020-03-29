@@ -13,6 +13,14 @@ class ArticleViewModel extends WebsiteViewModel
     {
         $article = $this->getPage('home');
         $this->setSeo($article);
+        $template = $this->handleTemplate($article);
+        return view($template, compact('article'));
+    }
+
+    function intro()
+    {
+        $article = $this->getPage('home');
+        $this->setSeo($article);
         return view('website.home', compact('article'));
     }
 
@@ -92,8 +100,8 @@ class ArticleViewModel extends WebsiteViewModel
 
     function handle($parent, $child = '')
     {
-
         if ($parent == 'home') return $this->index();
+        if ($parent == 'intro') return $this->intro();
         if ($parent == 'contacts') return $this->contacts();
         return $this->show($parent, $child);;
     }
