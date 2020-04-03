@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Ott 19, 2019 alle 14:21
+-- Creato il: Apr 03, 2020 alle 22:12
 -- Versione del server: 5.7.24
 -- Versione PHP: 7.2.14
 
@@ -126,7 +126,7 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`id`, `domain`, `parent_id`, `menu_title`, `title`, `subtitle`, `intro`, `abstract`, `description`, `slug`, `doc`, `image`, `banner`, `link`, `sort`, `pub`, `ignore_slug_translation`, `top_menu`, `template_id`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, '', 0, NULL, '', NULL, NULL, NULL, '', 'home', '', '', '', '', 0, 1, 0, 0, 0, 0, '2016-07-04 06:54:35', '2018-06-11 09:57:11'),
+(1, '', NULL, NULL, '', NULL, NULL, NULL, '', 'home', NULL, '', '', NULL, 0, 1, 0, 0, NULL, 0, '2016-07-04 06:54:35', '2020-04-03 22:11:30'),
 (2, '', NULL, NULL, '', NULL, NULL, NULL, '', 'company', NULL, 'ff0000.png', '', NULL, 100, 1, 0, 1, NULL, 0, '2016-07-04 06:56:59', '2019-05-04 12:58:21'),
 (3, '', 0, NULL, '', NULL, NULL, NULL, '', 'privacy', '', '', '', '', 2000, 1, 0, 0, 0, 0, '2016-07-04 07:11:17', '2017-08-01 14:33:01'),
 (4, '', 0, NULL, '', NULL, NULL, NULL, '', 'contacts', '', '', '', '', 400, 1, 0, 1, 0, 0, '2016-07-04 07:11:39', '2017-08-01 14:32:40'),
@@ -167,8 +167,8 @@ CREATE TABLE `article_translations` (
 --
 
 INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_title`, `title`, `subtitle`, `intro`, `description`, `abstract`, `seo_title`, `seo_description`, `seo_no_index`, `created_at`, `updated_at`) VALUES
-(1, 1, 'it', 'home', 'Home', 'Home', 'MaguttiCms', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>', '', '', '', '0', '2016-07-04 07:53:04', '2017-08-01 15:12:25'),
-(2, 1, 'en', 'home', 'Home', 'Home', '', NULL, '', '', '', '', '', '2016-07-04 07:53:04', '2017-08-01 15:52:32'),
+(1, 1, 'it', 'home', 'Home', 'Home', 'MaguttiCms', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>', NULL, NULL, NULL, '0', '2016-07-04 07:53:04', '2020-04-03 22:03:35'),
+(2, 1, 'en', 'home', 'Home', 'Home', NULL, NULL, NULL, NULL, NULL, NULL, '0', '2016-07-04 07:53:04', '2020-04-03 22:03:52'),
 (3, 2, 'it', 'azienda', 'Azienda', 'Azienda', NULL, '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', NULL, NULL, NULL, '2016-07-04 07:53:13', '2019-05-04 12:58:21'),
 (4, 2, 'en', 'company', 'Company', 'Company', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a liber', NULL, NULL, NULL, NULL, NULL, '2016-07-04 07:53:13', '2019-05-04 12:58:21'),
 (5, 3, 'it', 'privacy', 'Privacy', 'Privacy', '', NULL, '', '', '', '', '', '2016-07-04 07:53:28', '2017-08-01 14:33:01'),
@@ -190,7 +190,9 @@ INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_
 (23, 11, 'it', 'register', '', 'Registrazione', '', NULL, '', '', '', '', '', '2017-08-01 16:13:57', '2017-08-01 16:13:57'),
 (24, 11, 'en', 'register', '', 'Register', '', NULL, '', '', '', '', '', '2017-08-01 16:13:57', '2017-08-01 16:13:57'),
 (25, 2, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-04 12:58:21', '2019-05-04 12:58:21'),
-(26, 2, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-04 12:58:21', '2019-05-04 12:58:21');
+(26, 2, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-04 12:58:21', '2019-05-04 12:58:21'),
+(27, 1, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-03 22:03:35', '2020-04-03 22:03:35'),
+(28, 1, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-03 22:03:35', '2020-04-03 22:03:35');
 
 -- --------------------------------------------------------
 
@@ -8693,7 +8695,8 @@ CREATE TABLE `domains` (
 INSERT INTO `domains` (`id`, `domain`, `title`, `value`, `sort`, `pub`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, 'imagetype', '', '', 10, 1, 0, '2016-06-23 07:36:42', '2016-06-28 07:58:39'),
 (2, 'imagetype', '', '', 20, 1, 0, '2016-06-23 07:38:24', '2016-06-28 07:59:19'),
-(21, 'template', '', 'template_subpage', 30, 1, 0, '2016-06-28 13:18:04', '2016-12-27 14:17:35');
+(21, 'template', '', 'template_subpage', 30, 1, 0, '2016-06-28 13:18:04', '2016-12-27 14:17:35'),
+(22, 'template', '', 'coming_soon', 40, 1, 0, '2020-04-03 22:02:39', '2020-04-03 22:03:21');
 
 -- --------------------------------------------------------
 
@@ -8721,7 +8724,11 @@ INSERT INTO `domain_translations` (`id`, `domain_id`, `locale`, `title`, `update
 (7, 2, 'it', 'Bottom Slider Image', 0, '2016-06-23 07:38:24', '2016-06-28 07:59:19'),
 (8, 2, 'en', 'page gallery', 0, '2016-06-23 07:38:24', '2016-12-27 16:38:49'),
 (121, 21, 'it', 'Template con sottopagine', 0, '2016-06-28 13:18:04', '2016-07-04 07:38:10'),
-(122, 21, 'en', 'Sub page template', 0, '2016-06-28 13:18:04', '2016-12-27 14:17:28');
+(122, 21, 'en', 'Sub page template', 0, '2016-06-28 13:18:04', '2016-12-27 14:17:28'),
+(123, 22, 'en', 'Coming soon', NULL, '2020-04-03 22:03:21', '2020-04-03 22:03:21'),
+(124, 22, 'it', NULL, NULL, '2020-04-03 22:03:21', '2020-04-03 22:03:21'),
+(125, 22, 'es', NULL, NULL, '2020-04-03 22:03:21', '2020-04-03 22:03:21'),
+(126, 22, 'fr', NULL, NULL, '2020-04-03 22:03:21', '2020-04-03 22:03:21');
 
 -- --------------------------------------------------------
 
@@ -10044,7 +10051,7 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT per la tabella `article_translations`
 --
 ALTER TABLE `article_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT per la tabella `blocks`
@@ -10110,13 +10117,13 @@ ALTER TABLE `discounts`
 -- AUTO_INCREMENT per la tabella `domains`
 --
 ALTER TABLE `domains`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT per la tabella `domain_translations`
 --
 ALTER TABLE `domain_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT per la tabella `examples`
