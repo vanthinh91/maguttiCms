@@ -64,7 +64,7 @@ return [
 		'login'			=> 'Login',
 		'logout'		=> 'Logout',
 		'media'   		=> 'Media',
-		'menu_title'	=> 'Titolo menu',
+		'menu_title'	=> 'Menu title',
 		'message'		=> 'Message',
 		'name'          => 'Name',
 		'paid'			=> 'Paid',

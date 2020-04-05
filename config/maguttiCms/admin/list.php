@@ -850,7 +850,7 @@ return [
             'showMediaDoc' => 0,
             'showSeo' => 1,
             'tabs' => ['relation' => ['title' => 'relation', 'icon' => 'a'],
-                       'text' => ['title' => 'text', 'icon' => 'a']
+                       'text'     => ['title' => 'text', 'icon' => 'a']
             ],
             'menu' => [
                 'home' => true,

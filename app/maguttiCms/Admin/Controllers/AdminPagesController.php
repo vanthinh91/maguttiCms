@@ -113,6 +113,7 @@ class AdminPagesController extends Controller
     {
         $this->init($model);
         $article = new $this->modelClass;
+        $locales =collect(config('app.locales'))->toJson();
         $pageTemplate = data_get($this->config,'editTemplate','admin.edit');
         return view($pageTemplate, ['article' => $article, 'pageConfig' => collect($this->config),'locales'=>$locales]);
     }

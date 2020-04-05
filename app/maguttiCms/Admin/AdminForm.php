@@ -65,6 +65,7 @@ class AdminForm {
 		return $this->headerLabelRow = (isset($this->property['headerLabel']))? "<h3 class=\"ml10 mb20\">".$this->property['headerLabel']."</h3>" :'';
 	}
 
+
 	protected function initForm($model)
 	{
 		$this->html = "";

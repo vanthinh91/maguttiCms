@@ -6,6 +6,10 @@ namespace App\maguttiCms\Admin\Helpers;
 
 use Illuminate\Support\Str;
 
+/**
+ * Trait AdminFormContext
+ * @package App\maguttiCms\Admin\Helpers
+ */
 trait AdminFormContext
 {
     protected $context = null;

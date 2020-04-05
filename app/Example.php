@@ -43,6 +43,7 @@ class Example extends Model
     |  Sluggable & Trnslateble
     |--------------------------------------------------------------------------
     */
+
     public $translatedAttributes = [
         'title',
         'slug',

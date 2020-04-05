@@ -165,6 +165,7 @@ return [
 		'tags' => 'Tag',
 		'users' => 'Utenti'
 	],
+
 	'cropper' => [
 		'zoom_in' => 'Ingrandisci',
         'zoom_out' => 'Riduci',
