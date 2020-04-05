@@ -17,6 +17,7 @@ use App\maguttiCms\Middleware\AdminEditRole;
 use App\maguttiCms\Middleware\AdminRole;
 use App\maguttiCms\Middleware\AdminStoreRole;
 
+
 Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['adminauth', 'setlocaleadmin']), function () {
 
     Route::get('/',                                 '\App\maguttiCms\Admin\Controllers\AdminPagesController@home')->name('admin_dashboard');
@@ -151,7 +152,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 */
 Route::group([
   'prefix' => LaravelLocalization::setLocale(),
-  'middleware' => ['localizationRedirect', 'usercart']
+  'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'usercart']
 ], function () {
 	// Api
 	Route::post('/api/newsletter',			'\App\maguttiCms\Website\Controllers\APIController@subscribeNewsletter');
