@@ -48,9 +48,6 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
     |--------------------------------------------------------------------------
     */
     Route::group(array('prefix' => 'api'), function () {
-
-
-
         /*
         |--------------------------------------------------------------------------
         | MEDIA LIBRARY

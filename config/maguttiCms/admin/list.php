@@ -265,7 +265,6 @@ return [
             ],
             'roles' => ['su', 'admin', 'user']
         ],
-
         'products' => [
             'model' => 'Product',
             'title' => 'Product',
@@ -307,7 +306,6 @@ return [
             ],
             'roles' => ['su', 'admin', 'user']
         ],
-
         'categories' => [
             'model' => 'Category',
             'title' => 'Product Categories',
@@ -345,7 +343,6 @@ return [
             ],
             'roles' => ['su', 'admin', 'user']
         ],
-
         'productmodels' => [
             'model' => 'ProductModel',
             'title' => 'Models',
@@ -378,7 +375,6 @@ return [
             ],
             'roles' => ['su', 'admin', 'user']
         ],
-
         'domains' => [
             'model' => 'Domain',
             'title' => 'Domain',
@@ -413,7 +409,6 @@ return [
             ],
             'roles' => ['su']
         ],
-
         'settings' => [
             'model' => 'Setting',
             'title' => 'Setting',
@@ -854,6 +849,9 @@ return [
             'showMediaImages' => 1,
             'showMediaDoc' => 0,
             'showSeo' => 1,
+            'tabs' => ['relation' => ['title' => 'relation', 'icon' => 'a'],
+                       'text' => ['title' => 'text', 'icon' => 'a']
+            ],
             'menu' => [
                 'home' => true,
                 'top-bar' => [

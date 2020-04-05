@@ -1,5 +1,6 @@
 <?php namespace App\maguttiCms\Admin;
 
+use App\maguttiCms\Admin\Helpers\AdminFormContext;
 use Carbon\Carbon;
 use Form;
 use Str;
@@ -23,6 +24,8 @@ class AdminForm {
 	protected $showSeo;
 	protected $headerLabelRow;
 	protected $cssRow;
+
+	use AdminFormContext;
 
 	public function get($model)
 	{
@@ -67,10 +70,8 @@ class AdminForm {
 		$this->html = "";
 		$this->model = $model;
 		foreach ($this->model->getFieldSpec() as $key => $property) {
-            if (Str::startsWith($key, 'seo') == $this->showSeo)
-				$this->formModelHandler($property, $key, $this->model->$key);
+            if($this->handleContext($key,$property))$this->formModelHandler($property, $key, $this->model->$key);
 		}
-
 		$this->initLanguages();
 	}
 

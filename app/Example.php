@@ -148,6 +148,7 @@ class Example extends Model
             'order_field' => 'title',
             'hidden'      => 0,
             'display'     => 1,
+
         ];
         $this->fieldspec['article_2_id'] = [
             'type'        => 'relation',
@@ -178,13 +179,14 @@ class Example extends Model
             'relation_name' => 'articles',
             'foreign_key'   => 'id',
             'label_key'     => 'title',
-            'label'         => ' CheckBoxes Multiple relation',
+            'label'         => 'CheckBoxes Multiple relation',
             'required'      => 0,
             'display'       => 1,
             'hidden'        => 0,
             'multiple'      => 1,
             'relationSaveMethod' =>'saveArticles',
 			'order_raw'		=> 'FIELD(id, %s)',
+            'context'     => 'check_boxes'
         ];
 
 
@@ -209,7 +211,7 @@ class Example extends Model
             'type' => 'vue_component',
             'required' => 1,
             'hidden' => 0,
-            'label' => 'Codice (Possibile utilizzare prefisso)',
+            'label' => 'Code (you can use a prefix )',
             'display' => 1,
             'component-name' => 'generator-input-component',
             'component-data' => [
@@ -343,7 +345,8 @@ class Example extends Model
             'required' => 0,
             'hidden'   => 0,
             'label'    => 'Boolean',
-            'display'  => 1
+            'display'  => 1,
+            'context'     => 'check_boxes'
         ];
         $this->fieldspec['seo_title'] = [
             'type'     => 'seo_string',

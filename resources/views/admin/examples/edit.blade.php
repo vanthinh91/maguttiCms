@@ -19,11 +19,6 @@
 								{{icon('file-alt')}} {{trans('admin.label.content')}}
 							</a>
 						</li>
-						<li class="nav-item">
-							<a href="#relation_tab" class="nav-link " data-toggle="tab" role="tab" aria-controls="relation" aria-selected="true">
-								{{icon('fas fa-check-square')}} {{trans('admin.label.check_boxes_types')}}
-							</a>
-						</li>
 						@if ($pageConfig->get('showSeo') == 1)
 						<li class="nav-item">
 							<a href="#seo_tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="seo" aria-selected="false">
@@ -43,16 +38,10 @@
 					<div class="tab-content">
 						<div class="tab-pane fade show active" id="content_tab" role="tabpanel" aria-labelledby="content_tab">
 							{{ AdminForm::get( $article ) }}
-							@if ($pageConfig->get('password') == 1)
-								@include('admin.helper.password')
-							@endif
-						</div>
-						<div class="tab-pane fade" id="relation_tab" role="tabpanel" aria-labelledby="relation_tab">
-							{{ AdminForm::context('check_boxes')->get( $article) }}
 						</div>
 						@if ($pageConfig->get('showSeo') == 1)
 							<div class="tab-pane fade" id="seo_tab" role="tabpanel" aria-labelledby="seo_tab">
-								{{ AdminForm::context(null)->getSeo( $article ) }}
+								{{ AdminForm::getSeo( $article ) }}
 							</div>
 						@endif
 						@if ($pageConfig->get('showMedia') == 1 && $article->id!='')

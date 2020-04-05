@@ -113,8 +113,8 @@ class AdminPagesController extends Controller
     {
         $this->init($model);
         $article = new $this->modelClass;
-
-        return view('admin.edit', ['article' => $article, 'pageConfig' => collect($this->config)]);
+        $pageTemplate = data_get($this->config,'editTemplate','admin.edit');
+        return view($pageTemplate, ['article' => $article, 'pageConfig' => collect($this->config),'locales'=>$locales]);
     }
 
     /**

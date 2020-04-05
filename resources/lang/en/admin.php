@@ -29,6 +29,7 @@ return [
         'create'        => 'Create new item',
         'created_at'    => 'Created at',
 		'created_by'    => 'Created by',
+        'check_boxes_types' =>'CheckBox Types',
 		'dashboard'		=> 'Dashboard',
         'date'          => 'Date',
 		'date_start'    => 'Date start',

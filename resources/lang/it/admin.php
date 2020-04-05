@@ -28,6 +28,7 @@ return [
         'create'        => 'Crea nuovo elemento',
         'created_at'    => 'Creato il',
         'created_by'    => 'Creato da',
+        'check_boxes_types' =>' Tipi CheckBox',
 		'dashboard'		=> 'Dashboard',
         'date'          => 'Data',
         'date_start'    => 'Data iniziale',
