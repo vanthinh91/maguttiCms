@@ -54,7 +54,7 @@ cache/*.*
 *.md
 readme.md
 uploads/*
-<<<<<<< HEAD
+
 
 
 # Laravel 5
@@ -76,11 +76,16 @@ clockwork
 # =========================
 /.idea
 /_ide_helper.php
->>>>>>> origin/master
 .en
 npm-shrinkwrap.json
-
 *.env
-
 /.env
+
+/public/storage
+/public/.htpasswd
+/public/sitemap.xml
+/public/.well-known
+Homestead.yaml
+Homestead.json
+clockwork
 
