@@ -2,6 +2,10 @@
 
 namespace App\maguttiCms\Website\Controllers;
 
+use DemeterChain\C;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Redirect;
 use Input;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -12,10 +16,9 @@ use App\maguttiCms\Domain\News\NewsViewModel;
 
 class PagesController extends Controller
 {
-
     public function home()
     {
-        return (new ArticleViewModel())->handle('home');
+       return (new ArticleViewModel())->handle('home');
     }
 
     function pages($parent, $child = '')
