@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -222,9 +223,9 @@ function ma_get_admin_impersonated_url($model)
 
 function ma_get_admin_preview_url($model)
 {
-	$modelName = (!is_object($model)) ? strtolower($model) : strtolower(class_basename($model));
-	$resourcePath = ($modelName != 'articles') ? Str::plural($modelName).'/'.$model->slug : $model->slug;
-	$path = LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(), URL::to($resourcePath));
+    $modelName = (!is_object($model)) ? strtolower($model) : strtolower(class_basename($model));
+	$resourcePath = ($modelName != 'article') ? Str::plural($modelName).'/'.$model->slug : $model->slug;
+	$path = LaravelLocalization::getLocalizedURL(App::getLocale(), URL::to($resourcePath));
 	return URL::to($path);
 }
 
