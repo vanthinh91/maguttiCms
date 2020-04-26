@@ -62,7 +62,6 @@
 
     <script type="text/javascript" src="{{ asset(mix('/website/js/vendor.js')) }}"></script>
     <script type="text/javascript" src="{{ asset(mix('/website/js/app.js')) }}"></script>
-
     <script type="text/javascript">
         $(document).ready(function() {
             App.init();
@@ -72,12 +71,6 @@
     {{-- Store JS --}}
     @if (store_enabled())
     <script type="text/javascript" src="{{ asset(mix('/website/js/cart.js')) }}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            //Store.init();
-        });
-    </script>
     @endif
 
     {{-- Iubenda code --}}

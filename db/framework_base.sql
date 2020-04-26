@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Apr 03, 2020 alle 22:12
+-- Creato il: Apr 26, 2020 alle 15:06
 -- Versione del server: 5.7.24
 -- Versione PHP: 7.2.14
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `magutticms`
+-- Database: `framework_base`
 --
 
 -- --------------------------------------------------------
@@ -8881,6 +8881,67 @@ INSERT INTO `hp_slider_translations` (`id`, `hp_slider_id`, `locale`, `title`, `
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `locations`
+--
+
+CREATE TABLE `locations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subtitle` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `info` text COLLATE utf8mb4_unicode_ci,
+  `full_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `street` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `number` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `zip_code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `city` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `province` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `country_code` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `mobile` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `email` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `vat` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `doc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lat` decimal(11,8) DEFAULT NULL,
+  `lng` decimal(11,8) DEFAULT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `pub` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `location_translations`
+--
+
+CREATE TABLE `location_translations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `location_id` int(10) UNSIGNED NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `locale` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subtitle` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `info` text COLLATE utf8mb4_unicode_ci,
+  `seo_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seo_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seo_keywords` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seo_no_index` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `update_by` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `media`
 --
 
@@ -8985,7 +9046,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (81, '2019_05_07_171738_create_examples_table', 2),
 (82, '2019_05_10_091157_create_hpslider_translations_table', 3),
 (83, '2019_10_19_112436_create_blocks_table', 4),
-(84, '2019_10_19_112536_create_block_translations_table', 4);
+(84, '2019_10_19_112536_create_block_translations_table', 4),
+(85, '2020_04_13_181820_create_locations_table', 5);
 
 -- --------------------------------------------------------
 
@@ -9861,6 +9923,20 @@ ALTER TABLE `hp_slider_translations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indici per le tabelle `locations`
+--
+ALTER TABLE `locations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indici per le tabelle `location_translations`
+--
+ALTER TABLE `location_translations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `location_translations_location_id_locale_unique` (`location_id`,`locale`),
+  ADD KEY `location_translations_locale_index` (`locale`);
+
+--
 -- Indici per le tabelle `media`
 --
 ALTER TABLE `media`
@@ -10150,6 +10226,18 @@ ALTER TABLE `hp_slider_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT per la tabella `locations`
+--
+ALTER TABLE `locations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `location_translations`
+--
+ALTER TABLE `location_translations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT per la tabella `media`
 --
 ALTER TABLE `media`
@@ -10165,7 +10253,7 @@ ALTER TABLE `media_translations`
 -- AUTO_INCREMENT per la tabella `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT per la tabella `orders`
@@ -10309,6 +10397,12 @@ ALTER TABLE `domain_translations`
 --
 ALTER TABLE `example_translations`
   ADD CONSTRAINT `examples_translations_example_id_foreign` FOREIGN KEY (`example_id`) REFERENCES `examples` (`id`) ON DELETE CASCADE;
+
+--
+-- Limiti per la tabella `location_translations`
+--
+ALTER TABLE `location_translations`
+  ADD CONSTRAINT `location_translations_location_id_foreign` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `media_translations`

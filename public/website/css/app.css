@@ -12389,6 +12389,15 @@ mark {
   height: 500px;
 }
 
+.mapPop {
+  padding: 0.5rem;
+  line-height: 1.1rem;
+}
+
+.mapPop h5 {
+  margin: 0 0 0.3rem 0;
+}
+
 .footer {
   border-top: 1px solid rgba(70, 83, 102, 0.1);
   padding: 2.5rem 0;

@@ -3,6 +3,8 @@
 namespace App\maguttiCms\Domain\Article;
 
 
+use App\Http\Resources\MapLocationResource;
+use App\Location;
 use App\Product;
 use App\maguttiCms\Domain\Website\WebsiteViewModel;
 
@@ -26,8 +28,6 @@ class ArticleViewModel extends WebsiteViewModel
 
     function show($parent, $child = '')
     {
-
-
         $article = (!$child) ? $this->getParentPage($parent, app()->getLocale()) : $this->getSubPage($parent, $child);
         if ($this->validatePage($article)) {
             $this->setSeo($article);
@@ -44,11 +44,13 @@ class ArticleViewModel extends WebsiteViewModel
         $article = $this->getPage(trans('routes.contacts'));
         $this->setSeo($article);
         $parameter = request()->get('product_id');
+        $locations = Location::published()->orderBy('sort')->get();
+        $locations = MapLocationResource::collection(Location::all());
         if ($parameter && !is_array($parameter)) {
             $product = Product::findOrFail($parameter);
             return view('website.contacts', ['request_product_id' => $parameter, 'product' => $product, 'article' => $article]);
         } else {
-            return view('website.contacts', ['request_product_id' => 0, 'article' => $article]);
+            return view('website.contacts', ['request_product_id' => 0, 'article' => $article,'locations'=>$locations ]);
         }
     }
 
