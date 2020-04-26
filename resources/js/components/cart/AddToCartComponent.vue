@@ -1,6 +1,6 @@
 <template>
     <div class="form col-12 col-md-6">
-        <number-input :min="this.min" v-model="quantity"/>
+            <number-input  ref="control" :min="this.min" :max="this.max" v-model.number="quantity" :qty="1" :step="this.step"/>
         <a href="#" class="btn btn-primary my-1 btn-block" @click.prevent.stop="addProductToCart">
             <slot name="label"></slot>
         </a>
@@ -45,7 +45,15 @@
             },
             min: {
                 type: Number,
-                default: -Infinity,
+                default: 0,
+            },
+            step: {
+                type: Number,
+                default: 1,
+            },
+            qty: {
+                type: Number,
+                default: 1,
             },
             value: {
                 type: Number,
@@ -54,7 +62,10 @@
         },
         data() {
             return {
-                quantity: 1,
+                quantity:  {
+                    type: Number,
+                    default: 1,
+                },
                 modalOpen: false,
                 modalContent :{},
                 item: {},
@@ -62,11 +73,25 @@
         },
         created() {
             this.quantity = (this.value)?this.value:this.min;
+
+
         },
         methods: {
             url() {
                 return `${this.baseUrl}cart-item-add`;
             },
+
+            update(q) {
+              this.quantity =this.round(q,this.step);
+              this.$refs.control.quantity = this.quantity;
+            },
+
+            round(value, step) {
+                step || (step = 1.0);
+                let inv = 1.0 / step;
+                return Math.round(value * inv) / inv;
+            },
+
 
             updateModal(cart_items){
                 this.item =cart_items.find(obj => obj.product_code == this.product.code)

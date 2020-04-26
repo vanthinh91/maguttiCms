@@ -5,7 +5,9 @@
         </div>
         <input type="number"
                :min="min"
-               v-model="quantity "
+               :max="max"
+               :step="step"
+               v-model.number="quantity "
                @change="change"
                @paste="paste"
                autocomplete="off"
@@ -49,7 +51,10 @@
         },
         data() {
             return {
-                quantity: 1,
+                quantity: {
+                    type: Number,
+                    default: 1,
+                },
                 modalOpen: false,
                 modalContent :{},
                 item: {},
@@ -57,19 +62,23 @@
         },
         created() {
             this.quantity = this.qty;
+
         },
         methods: {
             url() {
                 return `${this.baseUrl}cart-item-add`;
             },
+
             decrease() {
                 let {quantity} = this;
                 if (isNaN(quantity)) {
                     quantity = this.min;
                 }
                 if (quantity > this.min) {
-                    quantity--;
-                } else this.disabele = true
+                    quantity -= this.step;
+                }
+                if(quantity < this.min) quantity= this.min;
+                //else this.disabele = true
 
                 this.quantity = quantity
                 this.emitEvent();
@@ -79,23 +88,36 @@
                 if (isNaN(quantity)) {
                     quantity = this.min;
                 }
-                if (quantity == this.max) {
-                    quantity--;
+                quantity += 0.5;
+                if (quantity > this.max) {
+                    quantity=this.max;
                 }
-                this.quantity++;
+                this.quantity= quantity;
                 this.emitEvent();
             },
+
+            round(value, step) {
+                step || (step = 1.0);
+                let inv = 1.0 / step;
+                return Math.round(value * inv) / inv;
+            },
+
+
             emitEvent(){
-                this.quantity= Math.ceil(Math.abs(this.quantity));
+                this.quantity= this.round(this.quantity,this.step);
                 this.$emit('input', this.quantity);
                 this.$emit('changeQuantity',this.quantity)
             },
             change(event) {
+
+
                 this.quantity = Math.min(this.max, Math.max(this.min, event.target.value));
+                this.quantity=this.round(this.quantity,this.step)
                 this.emitEvent();
             },
             paste(event) {
                 this.quantity = Math.min(this.max, Math.max(this.min, event.target.value));
+                //this.quantity=this.round(this.quantity,this.step)
                 this.emitEvent();
             },
 

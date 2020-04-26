@@ -17,9 +17,17 @@
 					@if (StoreHelper::isStoreEnabled())
 						{{ trans('store.product.price') }}: {{ StoreHelper::formatProductPrice($product) }}
 						<hr>
-						<cart-add-item :product="{{$product}}" :min="1">
+
+
+
+						<cart-add-item
+								ref="v100"
+								:product="{{$product}}" :min="-20" :step="1"  :max="100" :value=1>
 							<template #label>{{ trans('store.items.add') }}</template>
 						</cart-add-item>
+
+						<button onclick="app.$refs.v100.update(3.3)" class="d-none">add</button>
+
 					@endif
 
 				</div>
