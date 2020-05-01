@@ -232,23 +232,11 @@ window.App = function () {
       use_element_position: false,
       apply_class_to_body: false
     });
-  } // deprecato
-
-  /*
-  function checkNavbar() {
-  	let WINDOW = $(window);
-  	let BODY = $('body').first();
-  	let NAV = $('nav.navbar').first();
-  	if (WINDOW.scrollTop() > 100) {
-  		BODY.addClass('navbar-scrolled');
-  		NAV.addClass('navbar-scrolled');
-  	} else {
-  		BODY.removeClass('navbar-scrolled');
-  		NAV.removeClass('navbar-scrolled');
-  	}
   }
-  */
 
+  window.myFunc = function (val) {
+    return alert(val);
+  };
 
   function initOverrideInvalid() {
     var offset = $('.navbar.fixed-top').outerHeight() + 30;
@@ -320,6 +308,10 @@ function updateModalAlertMsg($htmlContent) {
 function updateModalBoxMsg($htmlContent) {
   bootbox.confirm($htmlContent, function () {});
 }
+
+window.modalPino = function ($htmlContent) {
+  bootbox.alert($htmlContent, function () {});
+};
 /*********************************  localize *********************/
 
 

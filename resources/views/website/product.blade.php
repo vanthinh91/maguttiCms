@@ -18,11 +18,9 @@
 						{{ trans('store.product.price') }}: {{ StoreHelper::formatProductPrice($product) }}
 						<hr>
 
-
-
 						<cart-add-item
-								ref="v100"
-								:product="{{$product}}" :min="-20" :step="1"  :max="100" :value=1>
+								ref="v200"
+								:product="{{$product}}" :min=1 :step="1"  :max="100" :value=1>
 							<template #label>{{ trans('store.items.add') }}</template>
 						</cart-add-item>
 

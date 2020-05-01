@@ -1891,6 +1891,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     max: {
@@ -1926,7 +1934,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       modalOpen: false,
       modalContent: {},
-      item: {}
+      item: {},
+      timer: null
     };
   },
   created: function created() {
@@ -1943,12 +1952,8 @@ __webpack_require__.r(__webpack_exports__);
         quantity = this.min;
       }
 
-      if (quantity > this.min) {
-        quantity -= this.step;
-      }
-
-      if (quantity < this.min) quantity = this.min; //else this.disabele = true
-
+      quantity -= this.step;
+      if (quantity < this.min) quantity = this.min;
       this.quantity = quantity;
       this.emitEvent();
     },
@@ -1959,22 +1964,18 @@ __webpack_require__.r(__webpack_exports__);
         quantity = this.min;
       }
 
-      quantity += 0.5;
-
-      if (quantity > this.max) {
-        quantity = this.max;
-      }
-
+      quantity += this.step;
       this.quantity = quantity;
       this.emitEvent();
     },
     round: function round(value, step) {
       step || (step = 1.0);
       var inv = 1.0 / step;
-      return Math.round(value * inv) / inv;
+      var number = Math.round(value * inv) / inv;
+      return Math.round(value * 100) / 100;
     },
     emitEvent: function emitEvent() {
-      this.quantity = this.round(this.quantity, this.step);
+      if (this.quantity >= this.max) this.quantity = this.max;else this.quantity = this.round(this.quantity, this.step);
       this.$emit('input', this.quantity);
       this.$emit('changeQuantity', this.quantity);
     },
@@ -1987,6 +1988,24 @@ __webpack_require__.r(__webpack_exports__);
       this.quantity = Math.min(this.max, Math.max(this.min, event.target.value)); //this.quantity=this.round(this.quantity,this.step)
 
       this.emitEvent();
+    },
+    counstinuosIncrement: function counstinuosIncrement(event) {
+      var self = this;
+      this.timer = setTimeout(function () {
+        self.increase();
+        self.counstinuosIncrement();
+      }, 200);
+    },
+    counstinuosDecrement: function counstinuosDecrement(event) {
+      var self = this;
+      this.timer = setTimeout(function () {
+        self.decrease();
+        self.counstinuosDecrement();
+      }, 200);
+    },
+    timeoutClear: function timeoutClear(event) {
+      clearTimeout(this.timer);
+      console.log(event.type);
     }
   }
 });
@@ -2210,6 +2229,9 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.product.quantity = this.item.quantity;
       this.product.thumb_image = this.item.product.thumb_image;
+    },
+    pino: function pino() {
+      window.myFunc(this.quantity);
     }
   },
   mounted: function mounted() {
@@ -5315,7 +5337,14 @@ var render = function() {
     !_vm.hideDecreaseBtn
       ? _c(
           "div",
-          { staticClass: "input-group-prepend", on: { click: _vm.decrease } },
+          {
+            staticClass: "input-group-prepend",
+            on: {
+              click: _vm.decrease,
+              mousedown: _vm.counstinuosDecrement,
+              mouseup: _vm.timeoutClear
+            }
+          },
           [_c("span", { staticClass: "input-group-text" }, [_vm._v("-")])]
         )
       : _vm._e(),
@@ -5362,7 +5391,14 @@ var render = function() {
     !_vm.hideIncreaseBtn
       ? _c(
           "div",
-          { staticClass: "input-group-append", on: { click: _vm.increase } },
+          {
+            staticClass: "input-group-append",
+            on: {
+              click: _vm.increase,
+              mouseup: _vm.timeoutClear,
+              mousedown: _vm.counstinuosIncrement
+            }
+          },
           [_c("span", { staticClass: "input-group-text" }, [_vm._v("+")])]
         )
       : _vm._e()
@@ -5517,7 +5553,12 @@ var render = function() {
     [
       _c("number-input", {
         ref: "control",
-        attrs: { min: this.min, max: this.max, qty: 1, step: this.step },
+        attrs: {
+          min: this.min,
+          max: this.max,
+          qty: _vm.value,
+          step: this.step
+        },
         model: {
           value: _vm.quantity,
           callback: function($$v) {

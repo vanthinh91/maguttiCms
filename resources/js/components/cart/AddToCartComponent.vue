@@ -1,6 +1,6 @@
 <template>
     <div class="form col-12 col-md-6">
-            <number-input  ref="control" :min="this.min" :max="this.max" v-model.number="quantity" :qty="1" :step="this.step"/>
+            <number-input  ref="control" :min="this.min" :max="this.max" v-model.number="quantity" :qty="value" :step="this.step"/>
         <a href="#" class="btn btn-primary my-1 btn-block" @click.prevent.stop="addProductToCart">
             <slot name="label"></slot>
         </a>
@@ -97,6 +97,9 @@
                 this.item =cart_items.find(obj => obj.product_code == this.product.code)
                 this.product.quantity=this.item.quantity;
                 this.product.thumb_image=this.item.product.thumb_image;
+            },
+            pino(){
+                window.myFunc(this.quantity);
             }
         },
         mounted() {
