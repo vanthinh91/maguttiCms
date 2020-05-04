@@ -1,6 +1,12 @@
 <template>
     <div class="form col-12 col-md-6">
-            <number-input  ref="control" :min="this.min" :max="this.max" v-model.number="quantity" :qty="value" :step="this.step"/>
+            <number-input  ref="control"
+                           :min="this.min"
+                           :max="this.max"
+                           v-model.number="quantity"
+                           :qty="value"
+                           :step="this.step"
+            />
         <a href="#" class="btn btn-primary my-1 btn-block" @click.prevent.stop="addProductToCart">
             <slot name="label"></slot>
         </a>
@@ -73,26 +79,21 @@
         },
         created() {
             this.quantity = (this.value)?this.value:this.min;
-
-
         },
         methods: {
             url() {
                 return `${this.baseUrl}cart-item-add`;
             },
-
             update(q) {
               this.quantity =this.round(q,this.step);
               this.$refs.control.quantity = this.quantity;
+                this.$refs.control.isActive=false;
             },
-
             round(value, step) {
                 step || (step = 1.0);
                 let inv = 1.0 / step;
                 return Math.round(value * inv) / inv;
             },
-
-
             updateModal(cart_items){
                 this.item =cart_items.find(obj => obj.product_code == this.product.code)
                 this.product.quantity=this.item.quantity;

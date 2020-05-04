@@ -1,11 +1,9 @@
 <template>
-    <div class="input-group">
+    <div class="input-group" >
         <div class="input-group-prepend" @click="decrease" v-if="!hideDecreaseBtn"
              @mousedown="counstinuosDecrement"
-
              @mouseup="timeoutClear"
-
-        >
+             >
             <span class="input-group-text">-</span>
         </div>
         <input type="number"
@@ -18,6 +16,7 @@
                autocomplete="off"
                class="form-control text-center"
                v-on:input="$emit('input', $event.target.value)"
+               v-bind:class="{ 'text-danger': isActive }"
         >
         <div class="input-group-append" @click="increase"
              @mouseup="timeoutClear"
@@ -28,6 +27,7 @@
     </div>
 </template>
 <script>
+    import _ from 'lodash'
 
     export default {
         props: {
@@ -63,15 +63,14 @@
                     type: Number,
                     default: 1,
                 },
-                modalOpen: false,
-                modalContent :{},
                 item: {},
-                timer:null
+                timer:null,
+                isActive: false,
             }
         },
         created() {
             this.quantity = this.qty;
-
+            this.notifyUpdate = _.debounce(this.notifyUpdate, 500)
         },
         methods: {
             url() {
@@ -101,16 +100,15 @@
             round(value, step) {
                 step || (step = 1.0);
                 let inv = 1.0 / step;
-                let number = Math.round(value * inv) / inv;
+                //let number = Math.round(value * inv) / inv;
                 return Math.round(value * 100) / 100;
             },
 
-
-            emitEvent(){
+           emitEvent(){
                 if(this.quantity>=this.max) this.quantity =this.max;
                 else this.quantity= this.round(this.quantity,this.step);
                 this.$emit('input', this.quantity);
-                this.$emit('changeQuantity',this.quantity)
+                this.notifyUpdate(this.quantity);
             },
             change(event) {
                 this.quantity = Math.min(this.max, Math.max(this.min, event.target.value));
@@ -119,10 +117,9 @@
             },
             paste(event) {
                 this.quantity = Math.min(this.max, Math.max(this.min, event.target.value));
-                //this.quantity=this.round(this.quantity,this.step)
+                this.quantity=this.round(this.quantity,this.step)
                 this.emitEvent();
             },
-
             counstinuosIncrement(event) {
                 const self = this;
                 this.timer = setTimeout(function() {
@@ -139,10 +136,12 @@
             },
             timeoutClear(event) {
                 clearTimeout(this.timer);
-                console.log(event.type)
-              }
-
+            },
+            notifyUpdate()  {
+                let msg = `Im fired  every ${this.quantity}`
+                console.log(msg );
+                this.isActive=!this.isActive;
+            }
         }
-
     }
 </script>
