@@ -32,7 +32,7 @@ class CreateCategoryTranslationsTable extends Migration
             $table->timestamps();
             $table->unique(['category_id', 'locale'], 'categories_translations_category_id_locale_unique');
             $table->index('locale', 'categories_translations_locale_index');
-            $table->foreign('category_id', 'category_translations_category_id_foreign')->references('id')->on('categoriesFcatego')->onDelete('CASCADE
+            $table->foreign('category_id', 'category_translations_category_id_foreign')->references('id')->on('categories')->onDelete('CASCADE
 ')->onUpdate('RESTRICT');
 
         });
