@@ -1,15 +1,15 @@
 {
-    "/cms/js/appcms.js": "/cms/js/appcms.js",
-    "/cms/js/cms.js": "/cms/js/cms.js",
-    "/cms/js/cmsvendor.js": "/cms/js/cmsvendor.js?id=5bd9f43b86ec6e0ac97a",
-    "/cms/js/header.js": "/cms/js/header.js",
-    "/cms/js/lara-file-manager.js": "/cms/js/lara-file-manager.js",
-    "/website/js/app.js": "/website/js/app.js",
-    "/website/js/cart.js": "/website/js/cart.js",
-    "/website/js/vendor.js": "/website/js/vendor.js?id=06b6934dd9ca679f3afe",
-    "/website/css/vendor.css": "/website/css/vendor.css?id=7227888dc90903049bd6",
-    "/cms/css/vendor.css": "/cms/css/vendor.css?id=89be5eabfca2ee4758e2",
-    "/website/css/app.css": "/website/css/app.css",
-    "/cms/css/app.css": "/cms/css/app.css",
-    "/website/js/store.js": "/website/js/store.js?id=d84747972984ed5de080"
+    "/cms/js/appcms.js": "/cms/js/appcms.js?id=2e622ebe4339223d0eab",
+    "/cms/js/cms.js": "/cms/js/cms.js?id=f112f9ecf161deade6fa",
+    "/cms/js/cmsvendor.js": "/cms/js/cmsvendor.js?id=ac3ceba4fc2ce5a77481",
+    "/cms/js/header.js": "/cms/js/header.js?id=ac77a0693c544bc3da58",
+    "/cms/js/lara-file-manager.js": "/cms/js/lara-file-manager.js?id=334697b74ded299610f4",
+    "/website/js/app.js": "/website/js/app.js?id=637ad4439d0fe40a01fb",
+    "/website/js/cart.js": "/website/js/cart.js?id=cb4376650883ab4c2264",
+    "/website/js/vendor.js": "/website/js/vendor.js?id=1582e92a42b34f7c7e9d",
+    "/website/css/vendor.css": "/website/css/vendor.css?id=8d60bb1fac3ee99dc7ca",
+    "/cms/css/vendor.css": "/cms/css/vendor.css?id=5fcca710fa9bb323cdc1",
+    "/website/css/app.css": "/website/css/app.css?id=2f73e1776e41c084669e",
+    "/cms/css/app.css": "/cms/css/app.css?id=df4e5cb049cd0bcfd301",
+    "/website/js/store.js": "/website/js/store.js?id=384ba4c794357b63e686"
 }
