@@ -10,7 +10,7 @@
                :min="min"
                :max="max"
                :step="step"
-               v-model.number="quantity "
+               v-model.number="quantity"
                @change="change"
                @paste="paste"
                autocomplete="off"
