@@ -22,15 +22,7 @@
 							<thead>
 								<tr>
 									{{ AdminList::initList($pageConfig)->getListHeader() }}
-									@if (
-
-												data_get($pageConfig, 'edit')
-												|| data_get($pageConfig, 'copy')
-												|| data_get($pageConfig, 'view')
-												|| data_get($pageConfig, 'delete')
-												|| data_get($pageConfig, 'impersonated')
-
-										)
+									@if (AdminList::hasAction())
 										<th>{!! trans('admin.label.actions')!!}</th>
 									@endif
 								</tr>
@@ -44,127 +36,25 @@
 													<input type="checkbox" value="{!! $article->id !!}" id="list_{!! $article->id !!}" name="list[{!! $article->id !!}]" class="custom-control-input" autocomplete="off">
 													<label class="custom-control-label text-left" for="list_{!! $article->id !!}"> </label>
 												</div>
-
 											</td>
 										@endif
-										@foreach($labels=$pageConfig['field'] as $label)
-											<td class="{{isset($label['class'])? $label['class']: ''}}">
-												@if (is_array($label))
-													@if ( $label['type'] == 'date' )
-														{!! Carbon::parse($article->{$label['field']})->format('d/m/Y') !!}
-													@elseif ($label['type'] == 'upload')
-														<a href=" {!! ma_get_upload_from_repository($article->{$label['field']}) !!}" target="_new" download>
-															{!! trans('admin.label.download')!!}
-														</a>
-													@elseif ($label['type'] == 'image' && $article->{$label['field']} != '')
-														@php
-															$field = $fieldspec[$label['field']];
-															$disk = isset($field['disk'])? $field['disk']: '';
-															$folder = isset($field['folder'])? $field['folder']: '';
-															$file = $article->{$label['field']};
-															$image = ma_get_file_from_storage($file, $disk, $folder);
-															$thumb = ImgHelper::init($folder)->get_cached($file, config('maguttiCms.image.admin'));
-														@endphp
-														<a href="{{$image}}" class="red" target="_new">
-															<img src="{{$thumb}}"  class="img-thumb">
-														</a>
-													@elseif ($label['type'] == 'boolean')
-														@php
-															if (data_get($label, 'relation')) {
-																$relationObj = AdminDecorator::getBooleanRelation($article, $label);
-															} else {
-																$relationObj = null;
-															}
-															if ($relationObj) {
-																$value = $relationObj->{$label['field']};
-																$model = $label['model'];
-																$id = $relationObj->id;
-															} else {
-																$value = $article->{$label['field']};
-																$model = $pageConfig['model'];
-																$id = $article->id;
-															}
-														@endphp
-														@if (data_get($label, 'relation') && $relationObj || !data_get($label, 'relation'))
-															@if (data_get($label, 'editable'))
-																<div class="bool-toggle" data-list-boolean="{!! $model.'_'.$id !!}" data-list-name ="{!! $label['field']!!}">
-																	<span class="bool-on {{($value)? '' : 'd-none'}}">
-																		{{AdminDecorator::getBooleanOn()}}
-																	</span>
-																	<span class="bool-off {{($value)? 'd-none' : ''}}">
-																		{{AdminDecorator::getBooleanOff()}}
-																	</span>
-																</div>
+											@foreach($labels=$pageConfig['field'] as $label)
+												<td class="{{isset($label['class'])? $label['class']: ''}}">
+													@if (is_array($label))
+														@if (AdminList::hasComponent($label['type']))
+															{!! AdminList::initList($pageConfig)->makeComponent($article,$label)!!}
+														@else
+															@if (data_get($label, 'locale'))
+																{{ $article->translate($label['locale'])->{$label['field']} }}
 															@else
-																<div class="bool-toggle">
-																	@if ($value == 1)
-																		<i class="text-success h4">{{AdminDecorator::getBooleanOn()}}</i>
-																	@else
-																		<i class="text-danger h4">{{AdminDecorator::getBooleanOff()}}</i>
-																	@endif
-																</div>
+																{{ $article->{$label['field']} }}
 															@endif
 														@endif
-													@elseif ($label['type'] == 'editable')
-														<input
-															id="{!! $pageConfig['model'].'_'.$label['field'].'_'.$article->id !!}"
-															class="form-control"
-															name="{!! $label['field'] !!}[]"
-															type="text" value="{{ $article->{$label['field']}  }}"
-															data-list-value ="{{ $pageConfig['model'].'_'.$article->id }}"
-															data-list-name ="{{ $label['field'] }}"
-															autocomplete="off"
-														/>
-													@elseif ($label['type'] == 'relation')
-														@if(isset($label['editable']) && $label['editable'] )
-															@php
-																$relationObj     = AdminDecorator::getRelation($label);
-																$selectObjValue  = AdminDecorator::getSelectRelationItemValue($label,$article->{$label['field']});
-																$emptyLabel		 = (isset($label['label_empty']) && $label['label_empty'])? $label['label_empty']: '';
-															@endphp
-															<select id="{!! $pageConfig['model'].'_'.$label['field'].'_'.$article->id !!}"
-																name="{!! $label['field'] !!}"
-																data-list-value ="{!! $pageConfig['model'].'_'.$article->id !!}"
-																data-list-name ="{!! $label['field']!!}"
-																class="btn-select form-control"
-																>
-																@if ($emptyLabel)
-																	<option value="">{{ $emptyLabel }}</option>
-																@endif
-																@foreach($relationObj as $item)
-																	<option
-																	<?php echo AdminDecorator::selectedHandler($item->{$label['foreign_key']}, $article->{$label['field']}); ?>
-																	value="{{ $item->{$label['foreign_key']} }}"
-																	>
-																		{{ $item->{$label['label_key']} }}
-																	</option>
-																@endforeach
-															</select>
-														@elseif ($article->{$label['relation']})
-															@if (isset($label['multiple']) && isset($label['multiple'])==true)
-																{!!implode(',',$article->{$label['relation']}->pluck($label['field'])->sortBy($label['field'])->toArray()) !!}
-															@else
-																{{ $article->{$label['relation']}->{$label['field']} }}
-															@endif
-														@endif
-													@elseif ($label['type'] == 'relation_image')
-														@if($article->{$label['relation']} != null)
-															<a href="{!! ma_get_image_from_repository($article->{$label['relation']}->{$label['field']}) !!}" class="red" target="_new">
-																<img src="{!! ImgHelper::get_cached($article->{$label['relation']}->{$label['field']}, config('maguttiCms.image.admin')) !!}" class="img-thumb">
-															</a>
-														@endif
-													@elseif ($label['type'] == 'color')
-														<div class="color" style="background-color: {{ $article->{$label['field']} }}"></div>
-													@elseif ($label['type'] == 'locale')
-														<img class="flag" src="{{asset('website/images/flags/'.$article->{$label['field']}.'.png')}}" alt="{{ $article->{$label['field']} }} flag">
 													@else
-														{{ $article->{$label['field']} }}
+														{{ $article->$label }}
 													@endif
-												@else
-													{{ $article->$label }}
-												@endif
-											</td>
-										@endforeach
+												</td>
+											@endforeach
 										@if (
 
 													data_get($pageConfig, 'edit')
