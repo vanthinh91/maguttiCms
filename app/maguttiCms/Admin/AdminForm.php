@@ -178,6 +178,9 @@ class AdminForm {
 			$field_properties['style'] = 'height:'.$h.'px';
 			$formElement = Form::textarea($key, $value.'' , $field_properties);
 		}
+        else if($this->property['type'] =='component'  && $this->property['display']== 1) {
+            $formElement  = view('admin.inputs.'.$key, ['properties' => $this->property, 'model' => $this->model]);;
+        }
 		elseif ($this->property['type'] == 'boolean' && $this->property['display']== 1) {
             $formElement = (new AdminCheckBox($this))->getCheckBox($value,$key);
 		}

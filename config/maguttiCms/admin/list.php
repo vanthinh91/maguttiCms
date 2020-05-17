@@ -904,7 +904,6 @@ return [
             'showMediaDoc' => 0,
             'showSeo' => 1,
             'tabs' => ['check_boxes' => ['title' => 'check_boxes_types', 'icon' => 'fa-check-square','context'=>'check_boxes'],
-                       'text'        => ['title' => 'text', 'icon' => 'a','context'=>'text']
             ],
             'menu' => [
                 'home' => true,
