@@ -106,6 +106,7 @@ class AdminForm {
 		$intMax			 = data_get($this->property,'max','');
 		$intStep		 = data_get($this->property,'step','');
 		$formElement     = '';
+        $field_properties= ['class' => ' form-control '.$this->cssClass];
 
 		/**
 		* populate field default value
@@ -116,13 +117,18 @@ class AdminForm {
 			$value = $this->property['default_value'];
 		}
 
-		$field_properties = ['class' => ' form-control '.$this->cssClass];
-		if ($isLangField || $this->property['display'] != 1) {
+        /**
+         * return id display property
+         * is false
+         */
+		if ($isLangField || $this->property['display'] != 1) return;
 
-		}
-		elseif (isset($this->property['hidden']) && $this->property['hidden'] && $this->property['type'] != 'relation') {
+		if (data_get($this->property,'hidden') && $this->property['type'] != 'relation') {
 			$formElement = Form::hidden($key, $value, $field_properties);
 		}
+        else if($this->property['type'] =='component' ) {
+            $formElement = view('admin.inputs.'.$key, ['properties' => $this->property,'model' => $this->model,'key' => $key, 'value' => $value]);
+        }
 		elseif ($this->property['type'] == 'string') {
 			$formElement = Form::text($key, $value, $field_properties);
 		}
@@ -160,7 +166,7 @@ class AdminForm {
 			}
 			$cssClassElement = (isset($this->property['cssClassElement']))? $this->property['cssClassElement']: 'col-md-2';
 		}
-		elseif ($this->property['type'] == 'integer' && $this->property['display'] == 1) {
+		elseif ($this->property['type'] == 'integer') {
 			$cssClassElement = (isset($this->property['cssClassElement']))?$this->property['cssClassElement']:'col-md-2';
 			$field_properties['min'] = $intMin;
 			$field_properties['max'] = $intMax;
@@ -173,59 +179,53 @@ class AdminForm {
 			$formElement .= '<span class="input-group-text input-group-addon"><i></i></span>';
 			$formElement .= '</div>';
 		}
-		elseif ($this->property['type'] == 'text' && $this->property['display']== 1) {
+		elseif ($this->property['type'] == 'text') {
 			$h = (isset($this->property['h']))? $this->property['h']: 300;
 			$field_properties['style'] = 'height:'.$h.'px';
 			$formElement = Form::textarea($key, $value.'' , $field_properties);
 		}
-        else if($this->property['type'] =='component'  && $this->property['display']== 1) {
-            $formElement  = view('admin.inputs.'.$key, ['properties' => $this->property, 'model' => $this->model]);;
-        }
-		elseif ($this->property['type'] == 'boolean' && $this->property['display']== 1) {
+
+		elseif ($this->property['type'] == 'boolean') {
             $formElement = (new AdminCheckBox($this))->getCheckBox($value,$key);
 		}
-		elseif ($this->property['type'] == 'locale' && $this->property['display']) {
-			$formElement = view('admin.inputs.locale', ['properties' => $this->property, 'key' => $key, 'value' => $value]);
-		}
-		elseif ($this->property['type'] =='media' && $this->property['display']) {
+
+		elseif ($this->property['type'] =='media') {
 			if (isset($this->property['cropper'])) {
 				$formElement = view('admin.inputs.cropper', ['properties' => $this->property, 'key' => $key, 'cropperConfig' => collect($this->property['cropper'])]);
 			} else {
 				$formElement = view('admin.inputs.file', ['properties' => $this->property, 'key' => $key]);
 			}
 		}
-		elseif ($this->property['type'] =='relation' && $this->property['display']) {
+		elseif ($this->property['type'] =='relation') {
 		    $selected = (isset($this->property['relation_name']) && $this->property['relation_name']!='') ? $this->model->{$this->property['relation_name']}->pluck('id')->toArray():'';
             $objRelation = $this->getRelation( $selected );
 			$formElement = $this->getComboRelation($objRelation,$key,$value,$selected);
 		}
-        elseif ($this->property['type'] =='relation_checkboxes' && $this->property['display']) {
+        elseif ($this->property['type'] =='relation_checkboxes') {
             $objRelation   = $this->getRelation();
             $selected      = $this->model->{$this->property['relation_name']}->pluck('id')->toArray();
             $formElement   = view('admin.inputs.relation_checkboxes', ['properties' => $this->property, 'objRelation' => $objRelation , 'selected' => $selected, 'key' => $key]);
         }
-		elseif ($this->property['type'] =='relation_set' && $this->property['display']) {
+		elseif ($this->property['type'] =='relation_set') {
 		    $selected = ($value!='')?explode(',',$value):'';
             $objRelation = $this->getRelation( $selected );
             $formElement   = $this->getComboRelation( $objRelation,$key,$value,$selected);
         }
-		elseif ($this->property['type'] =='relation_tree' && $this->property['display']) {
+		elseif ($this->property['type'] =='relation_tree') {
 		    $selected = (isset($this->property['relation_name']) && $this->property['relation_name']!='') ? $this->model->{$this->property['relation_name']}->pluck('id')->toArray():'';
             $objRelation = $this->getRelation();
 			$objRelation = (new AdminTree($this))->getTreeRelation($objRelation,0);
 			$formElement = $this->getComboRelation($objRelation, $key, $value, $selected);
 		}
-		elseif ($this->property['type'] =='relationimage' && $this->property['display']) {
+		elseif ($this->property['type'] =='relationimage') {
 		    $selected = (isset($this->property['relation_name']) && $this->property['relation_name']!='') ? $this->model->{$this->property['relation_name']}->pluck('id')->toArray():'';
             $objRelation = $this->getRelation();
 			$formElement .= AdminFormImageRelation::setProperty($this->property)->getThumbRelation($objRelation, $key, $value, $selected);
 		}
-		elseif ($this->property['type'] == 'select' && $this->property['display'] && is_array($this->property['select_data'])) {
+		elseif ($this->property['type'] == 'select' && is_array($this->property['select_data'])) {
 			$formElement = AdminFormSelect::withOptions($this->property['select_data'])->withName($key)->withSelected($value ?: '')->render();
 		}
-		else if($this->property['type'] =='map'  && $this->property['display']== 1) {
-			$formElement  .= view('admin.inputs.map', ['properties' => $this->property, 'key' => $key, 'model' => $this->model]);;
-		}
+
 
 		if ($formElement && $this->property['type'] =='media'){
 			if (isset($this->property['uploadifive']) && $this->property['uploadifive']) {
