@@ -226,7 +226,6 @@ class AdminForm {
 			$formElement = AdminFormSelect::withOptions($this->property['select_data'])->withName($key)->withSelected($value ?: '')->render();
 		}
 
-
 		if ($formElement && $this->property['type'] =='media'){
 			if (isset($this->property['uploadifive']) && $this->property['uploadifive']) {
 				$this->html .= $this->containerUploadifive($formElement, $cssClassElement, $key, $value);

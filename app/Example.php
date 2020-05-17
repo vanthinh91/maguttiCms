@@ -196,6 +196,22 @@ class Example extends Model
             'label'    => 'Text',
             'display'  => 1,
         ];
+        $this->fieldspec['date_range'] = [
+            'type' => 'component',
+            'required' => 1,
+            'hidden' => 0,
+            'label' => trans('admin.label.date_start'),
+            'extramsg' => '',
+            'display' => 1,
+            'cssclass' => 'datetimepicker',
+            //'cssclass'  => 'datepicker',
+            'cssclasselement' => 'col-lg-9',
+            'validation' => [
+                'date' => ['required', 'date'],
+                'date_end' => ['required', 'date', 'after:date_start']
+            ],
+            'default_value' => carbon::tomorrow()->format('d-m-y h:s')
+        ];
         $this->fieldspec['slug'] = [
             'type' => 'vue_component',
             'component-name'=> 'clearable-input-component',
