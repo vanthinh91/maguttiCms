@@ -189,9 +189,6 @@ class Example extends Model
 			'order_raw'		=> 'FIELD(id, %s)',
             'context'     => 'check_boxes'
         ];
-
-
-
         $this->fieldspec['title'] = [
             'type'     => 'string',
             'required' => 1,
@@ -207,7 +204,6 @@ class Example extends Model
             'label'    => 'Sluggable',
             'display'  => 1,
         ];
-
         $this->fieldspec['code'] = [
             'type' => 'vue_component',
             'required' => 1,
@@ -262,7 +258,6 @@ class Example extends Model
             'cssClass' => 'wyswyg',
             'display'  => 1,
         ];
-
         $this->fieldspec['image'] = [
             'type'      => 'media',
             'required'  => 0,
@@ -326,7 +321,7 @@ class Example extends Model
             'cssClassElement' => 'col-sm-3',
         ];
 		$this->fieldspec['map'] = [
-            'type'      => 'map',
+            'type'      => 'component',
             'required'  => false,
             'hidden'    => 0,
             'label'     => 'Posizione',
