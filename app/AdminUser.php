@@ -134,7 +134,7 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
 			'validation' => 'nullable|min:10|confirmed|regex:'.config('maguttiCms.security.password_regex'),
 		];
 		$this->fieldspec['locale'] = [
-			'type'        => 'locale',
+			'type'        => 'component',
 			'required'    => 1,
 			'label'       => trans('admin.label.locale'),
 			'hidden'      => 0,
