@@ -9,6 +9,7 @@ return [
         'article_2'     => 'Article 2',
 		'additional'	=> 'Additional text',
         'address'       => 'Address',
+        'address_full'  => 'Address',
 		'amount'		=> 'Amount',
         'attach'        => 'Attach Documents',
 		'available_display'		=> 'Disponibile',

@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Translatable;
 
@@ -202,50 +203,25 @@ class Location extends Model
             'type' => 'string',
             'required' => 1,
             'hidden' => 0,
+            'label' => trans('admin.label.address_full'),
+            'display' => 1,
+        ];
+
+
+        $this->fieldspec['address'] = [
+            'type' => 'component',
+            'required' => 1,
+            'hidden' => 0,
             'label' => trans('admin.label.address'),
+            'extramsg' => '',
             'display' => 1,
+            'validation' => [
+                'street' => ['required'],
+                'number' => ['required'],
+                'zip_code' => ['required'],
+            ],
         ];
 
-
-        $this->fieldspec['street'] = [
-            'type' => 'string',
-            'required' => 0,
-            'hidden' => 0,
-            'label' => trans('admin.label.street'),
-            'display' => 1,
-        ];
-
-        $this->fieldspec['number'] = [
-            'type' => 'string',
-            'required' => 0,
-            'hidden' => 0,
-            'label' => trans('admin.label.number'),
-            'display' => 1,
-        ];
-
-        $this->fieldspec['zip_code'] = [
-            'type' => 'string',
-            'required' => 0,
-            'hidden' => 0,
-            'label' => trans('admin.label.zip_code'),
-            'display' => 1,
-        ];
-
-        $this->fieldspec['city'] = [
-            'type' => 'string',
-            'required' => 0,
-            'hidden' => 0,
-            'label' => trans('admin.label.city'),
-            'display' => 1,
-        ];
-
-        $this->fieldspec['province'] = [
-            'type' => 'string',
-            'required' => 0,
-            'hidden' => 0,
-            'label' => trans('admin.label.province'),
-            'display' => 1,
-        ];
 
         $this->fieldspec['country_code'] = [
             'type' => 'relation',
@@ -299,20 +275,17 @@ class Location extends Model
             'display' => 1,
         ];
 
-        $this->fieldspec['lat'] = [
-            'type' => 'string',
-            'required' => 1,
-            'hidden' => 0,
-            'label' => trans('admin.label.lat'),
-            'display' => 1,
-        ];
-
-        $this->fieldspec['lng'] = [
-            'type' => 'string',
+        $this->fieldspec['geo_location'] = [
+            'type' => 'component',
             'required' => 1,
             'hidden' => 0,
             'label' => trans('admin.label.lng'),
+            'extramsg' => '',
             'display' => 1,
+            'validation' => [
+                'lng' => ['required'],
+                'lat' => ['required'],
+            ],
         ];
 
         $this->fieldspec['sort'] = [
