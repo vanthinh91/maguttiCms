@@ -34,8 +34,8 @@
     <div class="row text-center">
         <div class="col-xs-12">
             <img class="center-block"
-                 src="{!! asset(config('laraCms.admin.path.assets').'website/images/logo.png') !!}"
-                 alt="{{ config('laraCms.website.option.app.name') }}">
+                 src="{!! asset(config('maguttiCms.admin.path.assets').'website/images/logo.png') !!}"
+                 alt="{{ config('maguttiCms.website.option.app.name') }}">
         </div>
     </div>
 </div>

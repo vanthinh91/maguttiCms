@@ -64,7 +64,7 @@ class SetupRedis extends Command
      */
     protected function generateRandomPrefix()
     {
-        $prefix = env('APP_NAME', 'laraCms');
+        $prefix = env('APP_NAME', 'maguttiCms');
 
         try {
             return $prefix . '_' . base64_encode(random_bytes($this->hashLength));

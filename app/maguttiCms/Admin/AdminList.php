@@ -2,17 +2,26 @@
 
 namespace App\maguttiCms\Admin;
 
+
 use Carbon\Carbon;
 Use Form;
 Use App;
 use Illuminate\Support\Str;
 
+
+use App\maguttiCms\Admin\Decorators\AdminListSeparator;
+use App\maguttiCms\Admin\Decorators\AdminListSortableHeader;
+
 /**
- * Class AdminForm
- * @package App\LaraCms\Admin
+ * Class AdminList
+ * @package App\maguttiCms\Admin
  */
 class AdminList
 {
+
+
+    use AdminListSeparator,AdminListSortableHeader;
+
 
     /**
      * @var
@@ -33,6 +42,8 @@ class AdminList
     {
         $this->html = "";
         $this->property = $property;
+        $this->groupBySeparator();
+        $this->counterSpan();
         return $this;
     }
 
@@ -75,32 +86,7 @@ class AdminList
         return ($this->property['selectable']) ? "<th class=\"selectable-column\"></th>\n" : '';
     }
 
-    /**
-     * @param $i
-     * @return string
-     */
-    protected function getOrderableField($i)
-    {
-        $html = '';
-        if (array_key_exists($i, $this->property['field'])) {
-            $item = $this->property['field'][$i];
-            if ($this->fieldIsOrderable($item)) {
-                $curField = (is_array($item)) ? data_get($item, 'order_field', $item['field']) : $item;
-                $html .= " <a href=\"?orderBy=$curField&orderType=desc\"><i class=\"fa fa-arrow-down\" aria-hidden=\"true\"></i></a>\n";
-                $html .= " <a href=\"?orderBy=$curField&orderType=asc\"><i class=\"fa fa-arrow-up\" aria-hidden=\"true\"></i></a>\n";
-            }
-        }
-        return $html;
-    }
 
-    /**
-     * @param $item
-     * @return bool
-     */
-    protected function fieldIsOrderable($item)
-    {
-        return $item['orderable'] ?? false;
-    }
 
     function hasComponent($type)
     {
@@ -145,7 +131,7 @@ class AdminList
 
     function resolveComponentClassNamespace($type)
     {
-        return "App\LaraCms\Admin\Decorators\AdminList" . ucfirst(Str::camel($type)) . "Component";
+        return "App\maguttiCms\Admin\Decorators\AdminList" . ucfirst(Str::camel($type)) . "Component";
     }
 
     function componentClassExist($type)

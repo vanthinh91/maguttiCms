@@ -141,8 +141,6 @@ abstract class AdminListComponent
                 //$viewData[$name] = $this->$name();
             }
         }
-
-        //$obj = new App\LaraCms\Admin\Decorators\AdminListBooleanComponent;
         return $viewData;
     }
 }

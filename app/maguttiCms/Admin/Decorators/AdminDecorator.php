@@ -75,10 +75,10 @@ class AdminDecorator
 	public function getBooleanOn()
 	{
 		$string = '';
-		if (config('laraCms.admin.option.list.show-bool-icons')) {
+		if (config('maguttiCms.admin.option.list.show-bool-icons')) {
 			$string .= icon('check');
 		}
-		if (config('laraCms.admin.option.list.show-bool-labels')) {
+		if (config('maguttiCms.admin.option.list.show-bool-labels')) {
 			$string .= trans('admin.label.active_on');
 		}
 		return $string;
@@ -87,10 +87,10 @@ class AdminDecorator
 	public function getBooleanOff()
 	{
 		$string = '';
-		if (config('laraCms.admin.option.list.show-bool-icons')) {
+		if (config('maguttiCms.admin.option.list.show-bool-icons')) {
 			$string .= icon('times');
 		}
-		if (config('laraCms.admin.option.list.show-bool-labels')) {
+		if (config('maguttiCms.admin.option.list.show-bool-labels')) {
 			$string .= trans('admin.label.active_off');
 		}
 		return $string;

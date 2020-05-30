@@ -29,7 +29,15 @@
                             </thead>
                             <tbody>
                             @foreach($articles as $article)
-                                <tr id="row_{!! $article->id !!}">
+                                @if(AdminList::showGroupBySeparator($article))
+                                    <tr>
+                                        <td colspan="{{AdminList::separatorColSpan()}}" class="text-left  py-2  h4 "
+                                            style="background-color: #c1c1c1">
+                                            {{AdminList::getGroupBySeparatorValue($article)}}
+                                        </td>
+                                    </tr>
+                                @endif
+                                <tr id="row_{!! $article->id !!}" {{AdminList::getGroupBySeparatorAttribute($article)}}>
                                     @if ($pageConfig['selectable'])
                                         <td class="selectable-column">
                                             <div class="custom-control custom-checkbox">
