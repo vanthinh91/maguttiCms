@@ -3,6 +3,7 @@
 namespace App\maguttiCms\Admin;
 
 
+use App\maguttiCms\Admin\Decorators\AdminListComponentableTrait;
 use Carbon\Carbon;
 Use Form;
 Use App;
@@ -20,7 +21,7 @@ class AdminList
 {
 
 
-    use AdminListSeparator,AdminListSortableHeader;
+    use AdminListSeparator,AdminListSortableHeader,AdminListComponentableTrait;
 
 
     /**
@@ -88,56 +89,6 @@ class AdminList
 
 
 
-    function hasComponent($type)
-    {
-        $sample = new \ReflectionClass($this);
-        if ($sample->hasMethod($this->resolveMethodName($type))) return true;
-        if ($this->componentClassExist($type)) return true;
-        return false;
-    }
-
-    function makeComponent($article, $itemProperty)
-    {
-
-        if ($this->componentClassExist($itemProperty['type'])) {
-            $componentClassName = $this->resolveComponentClassNamespace($itemProperty['type']);
-            return (new $componentClassName($article, $itemProperty))->setPageConfig($this->property)->render();
-        }
-        return $this->{$this->resolveMethodName($itemProperty['type'])}($article, $itemProperty);
-    }
-
-    function makeDate($article, $itemProperty)
-    {
-        return Carbon::parse($article->{$itemProperty['field']})->format('d/m/Y');
-    }
-
-    function makeColor($article, $itemProperty)
-    {
-        return "<div class=\"color\" style=\"background-color:" . $article->{$itemProperty['field']} . "\"></div>";
-    }
-
-    function makeLocale($article, $itemProperty)
-    {
-        $value = $article->{$itemProperty['field']};
-        return "<img class=\"flag\" 
-                     src=\"" . asset("website/images/flags/" . $value . ".png") . "\" 
-                     alt=\"" . $value . " flag\">";
-    }
-
-    function resolveMethodName($type)
-    {
-        return 'make' . ucfirst(Str::camel($type));
-    }
-
-    function resolveComponentClassNamespace($type)
-    {
-        return "App\maguttiCms\Admin\Decorators\AdminList" . ucfirst(Str::camel($type)) . "Component";
-    }
-
-    function componentClassExist($type)
-    {
-        return class_exists($this->resolveComponentClassNamespace($type));
-    }
 
     /**
      * check if the model list
