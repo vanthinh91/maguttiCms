@@ -58,7 +58,7 @@ class ImgHelper
 
     public function init($folder = '', $disk = '')
     {
-        if($folder!='')$this->setFolder($folder);
+        $this->setFolder($folder);
         return $this;
     }
 

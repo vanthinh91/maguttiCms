@@ -47,9 +47,7 @@
 							@endif
 						</div>
 						@if ($pageConfig->get('tabs'))
-							@foreach ($pageConfig->get('tabs') as $tab)
-								@include('admin.helper.edit_form_tab_content', ['tab' => $tab])
-							@endforeach
+
 						@endif
 						@if ($pageConfig->get('showSeo') == 1)
 							<div class="tab-pane fade" id="seo_tab" role="tabpanel" aria-labelledby="seo_tab">
