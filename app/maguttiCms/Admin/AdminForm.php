@@ -73,7 +73,9 @@ class AdminForm {
 		foreach ($this->model->getFieldSpec() as $key => $property) {
             if($this->handleContext($key,$property))$this->formModelHandler($property, $key, $this->model->$key);
 		}
-		$this->initLanguages();
+		// init lang only if  context it's empty
+		if($this->context!='')var_dump($this->context);
+		else $this->initLanguages();
 	}
 
 	public function initLanguages()

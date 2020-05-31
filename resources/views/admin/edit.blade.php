@@ -47,6 +47,9 @@
 							@endif
 						</div>
 						@if ($pageConfig->get('tabs'))
+							@foreach ($pageConfig->get('tabs') as $tab)
+								@include('admin.helper.edit_form_tab_content', ['tab' => $tab])
+							@endforeach
 
 						@endif
 						@if ($pageConfig->get('showSeo') == 1)
