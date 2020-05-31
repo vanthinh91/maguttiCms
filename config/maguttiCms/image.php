@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'size_limit' => 2048,
+	'size_limit' => 3000,
 	'defaults' => [
 		'w' => 640,
 		'h' => 480,

@@ -208,7 +208,7 @@ class Example extends Model
             'cssclasselement' => 'col-lg-9',
             'validation' => [
                 'date' => ['required', 'date'],
-                'date_end' => ['required', 'date', 'after:date_start']
+                'date_end' => ['required', 'date']
             ],
             'default_value' => carbon::tomorrow()->format('d-m-y h:s')
         ];
