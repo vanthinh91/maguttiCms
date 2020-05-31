@@ -105,32 +105,36 @@ class AjaxController extends Controller
 	|
 	|
 	*/
-	public function uploadifiveMedia(Request $request)
-	{
-		$modelClass = 'App\\' . $request->model;
-		$object = new $modelClass;
-		$fieldspec = $object->getFieldSpec();
-		$disk = (isset($fieldspec[$request->key]['disk']))? $fieldspec[$request->key]['disk']: '';
-		$folder = (isset($fieldspec[$request->key]['folder']))? $fieldspec[$request->key]['folder']: '';
+    public function uploadifiveMedia(Request $request)
+    {
+        $modelClass = 'App\\'.$request->model;
+        $object = new $modelClass;
+        $fieldspec = $object->getFieldSpec();
+        $disk = (isset($fieldspec[$request->key]['disk']))? $fieldspec[$request->key]['disk']: '';
+        $folder = (isset($fieldspec[$request->key]['folder']))? $fieldspec[$request->key]['folder']: '';
 
-		$media = 'Filedata';
+        $media = 'Filedata';
+
         if ($request->hasFile($media) && $request->file($media)->isValid()) {
-			// store the data
-			$upload_manager = new UploadManager;
-			$file_details = $upload_manager->init($media, $request, $disk, $folder)->store()->getFileDetails();
+            // store the data
+            $upload_manager = new UploadManager;
+            $file_details = $upload_manager->init($media, $request, $disk, $folder)->store()->getFileDetails();
 
-			// create the media and link it to the model
-			$list = $modelClass::find($request->Id);
-			$media_category_id = $request->get('myImgType')?: 0;
-			$media = $this->createMedia($file_details, $media_category_id);
-			$list->media()->save($media);
+            // create the media and link it to the model
+            $list = $modelClass::find($request->Id);
+            $media_category_id = $request->get('myImgType')?: 0;
+            $media = $this->createMedia($file_details, $media_category_id);
+            $list->media()->save($media);
 
-			// response
-			$this->responseContainer['status'] = 'ok';
-			$this->responseContainer['data'] = $file_details['mediaType'];
-			return $this->responseHandler();
-		}
-	}
+            // response
+            $this->responseContainer['status'] = 'ok';
+            $this->responseContainer['data'] = $file_details['mediaType'];
+            return $this->responseHandler();
+        } else {
+            $this->responseContainer['error'] = 'Unable to upload the file or file not valid.';
+        }
+        return $this->responseHandler();
+    }
 
 	public function cropperMedia(Request $request)
 	{

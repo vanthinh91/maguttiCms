@@ -172,7 +172,7 @@ class UploadManager
 			'fullPath' => $this->getDestinationPath(),
 			'mimeType' => $this->newMedia->getMimeType(),
 			'mediaType' => $this->getMediaType(),
-			'size' => $this->newMedia->getClientSize(),
+			'size' => $this->newMedia->getSize(),
 			'disk' => $this->destinationStorage
 		];
 	}
