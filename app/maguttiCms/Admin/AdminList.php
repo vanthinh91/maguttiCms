@@ -4,6 +4,7 @@ namespace App\maguttiCms\Admin;
 
 
 use App\maguttiCms\Admin\Decorators\AdminListComponentableTrait;
+use App\maguttiCms\Admin\Helpers\AdminListAction;
 use Carbon\Carbon;
 Use Form;
 Use App;
@@ -17,13 +18,16 @@ use App\maguttiCms\Admin\Decorators\AdminListSortableHeader;
  * Class AdminList
  * @package App\maguttiCms\Admin
  */
-class AdminList
+class AdminList implements AdminListInterface
 {
 
 
-    use AdminListSeparator,AdminListSortableHeader,AdminListComponentableTrait;
+    use AdminListAction,
+        AdminListSeparator,
+        AdminListSortableHeader,
+        AdminListComponentableTrait;
 
-
+    private $authorized_fields;
     /**
      * @var
      */
@@ -32,7 +36,7 @@ class AdminList
      * @var
      */
     protected $property;
-    protected $action_list = ['edit', 'delete', 'view', 'copy', 'impersonate'];
+
 
 
     /**
@@ -44,22 +48,25 @@ class AdminList
         $this->html = "";
         $this->property = $property;
         $this->groupBySeparator();
+        $this->authorizedFields();
         $this->counterSpan();
         return $this;
     }
 
     public function getListHeader()
     {
-
         $html = '';
         $html .= $this->getSelectAbleHeader();
         $nF = 0; //  field number
-        foreach ($this->property['field'] as $_code => $_item) {
-            $html .= "<th class=\"middle-vertical-align\">\n";
-            $html .= $this->getHeaderItemLabel($_item, $_code);
-            $html .= $this->getOrderableField($_code);
-            $html .= "</th>\n";
-            $nF++;
+
+        foreach ($this->authorized_fields as $_code => $_item) {
+            if(!$this->isGroupBySeparator($_item)){
+                $html .= "<th class=\"middle-vertical-align ".data_get($_item,'class','')."\">\n";
+                $html .= $this->getHeaderItemLabel($_item, $_code);
+                $html .= $this->getOrderableField($_code);
+                $html .= "</th>\n";
+                $nF++;
+            }
         }
         echo $html;
     }
@@ -84,22 +91,12 @@ class AdminList
      */
     protected function getSelectAbleHeader()
     {
-        return ($this->property['selectable']) ? "<th class=\"selectable-column\"></th>\n" : '';
+        return (auth_user('admin')->action('selectable',$this->property)) ?
+            "<th class=\"selectable-column\"></th>\n" : '';
+    }
+    function authorizedFields(){
+        return $this->authorized_fields= cmsUserValidateActionRoles($this->property['field']);
     }
 
-
-
-
-    /**
-     * check if the model list
-     * has an action
-     * @return bool
-     */
-    function hasAction()
-    {
-        return collect($this->action_list)->some(function ($value, $key) {
-           return data_get($this->property, $value,'');
-
-        });
-    }
 }
+

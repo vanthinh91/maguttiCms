@@ -1,7 +1,7 @@
 @if(isset($pageConfig['field_searchable']))
 	{!! Form::open(['id' => 'search_form', 'name'=>'search_form', 'method' => 'GET']) !!}
 		<div id="search-bar" class="card">
-			@foreach ($pageConfig['field_searchable'] as $key => $search_item )
+			@foreach ( cmsUserValidateActionRoles($pageConfig['field_searchable']) as $key => $search_item )
 				<div class="{{array_key_exists('class', $search_item)}}">
 					@if ($search_item['type'] == 'relation')
 						{!! AdminForm::buildSearchableField($key, $search_item, trans('admin.label.'.$search_item['label'])) !!}

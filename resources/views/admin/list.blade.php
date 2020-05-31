@@ -38,7 +38,7 @@
                                     </tr>
                                 @endif
                                 <tr id="row_{!! $article->id !!}" {{AdminList::getGroupBySeparatorAttribute($article)}}>
-                                    @if ($pageConfig['selectable'])
+                                    @if (auth_user('admin')->action('selectable',$pageConfig))
                                         <td class="selectable-column">
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" value="{!! $article->id !!}"
@@ -49,7 +49,7 @@
                                             </div>
                                         </td>
                                     @endif
-                                    @foreach($labels=$pageConfig['field'] as $label)
+                                    @foreach($labels=AdminList::authorizedFields() as $label)
                                         <td class="{{isset($label['class'])? $label['class']: ''}}">
                                             @if (is_array($label))
                                                 @if (AdminList::hasComponent($label['type']))
@@ -68,7 +68,7 @@
                                     @endforeach
                                     @if (AdminList::hasAction())
                                         <td class="list-actions">
-                                            @if ($pageConfig['edit'])
+                                            @if (auth_user('admin')->action('edit',$pageConfig))
                                                 <a href="{{  ma_get_admin_edit_url($article) }}" class="btn btn-info"
                                                    data-role="edit-item">
                                                     {{icon('edit')}}
@@ -77,7 +77,7 @@
                                                     @endif
                                                 </a>
                                             @endif
-                                            @if ($pageConfig['copy'])
+                                            @if (auth_user('admin')->action('copy',$pageConfig))
                                                 <a href="{{  ma_get_admin_copy_url($article) }}" class="btn btn-warning"
                                                    data-role="edit-item">
                                                     {{icon('copy')}}
@@ -86,7 +86,7 @@
                                                     @endif
                                                 </a>
                                             @endif
-                                            @if ($pageConfig['view'])
+                                            @if (auth_user('admin')->action('view',$pageConfig))
                                                 <a href="{{  ma_get_admin_view_url($article) }}" class="btn btn-primary"
                                                    data-role="edit-item">
                                                     {{icon('eye')}}
@@ -95,7 +95,7 @@
                                                     @endif
                                                 </a>
                                             @endif
-                                            @if ($pageConfig['delete'])
+                                            @if (auth_user('admin')->action('delete',$pageConfig))
                                                 <a href="{{  ma_get_admin_delete_url($article) }}"
                                                    class="btn btn-danger" data-role="delete-item">
                                                     {{icon('trash')}}
