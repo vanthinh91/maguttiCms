@@ -185,7 +185,7 @@ class Article extends Model
             'mediaType' => 'Img',
             'display'   => 1,
 			'disk'      => 'media',
-			'accept'	=> '.jpg'
+
         ];
         $this->fieldspec['doc'] = [
             'type'        => 'media',
