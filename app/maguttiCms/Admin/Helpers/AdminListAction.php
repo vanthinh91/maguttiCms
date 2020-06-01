@@ -3,7 +3,10 @@
 
 namespace App\maguttiCms\Admin\Helpers;
 
-
+/**
+ * Trait AdminListAction
+ * @package App\maguttiCms\Admin\Helpers
+ */
 trait AdminListAction
 {
 
@@ -21,5 +24,4 @@ trait AdminListAction
 
         });
     }
-
 }

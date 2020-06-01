@@ -6,24 +6,26 @@ use App\Role;
 use Illuminate\Support\Facades\Auth;
 use App\AdminUser;
 
+
+/*
+|--------------------------------------------------------------------------
+| SIMPLE ACL ROLE
+|--------------------------------------------------------------------------
+|
+*/
 /**
+ *
  * Trait AdminAcl
  * @package App\maguttiCms\Domain\Admin
  */
 trait AdminAcl
 {
-    /*
-    |--------------------------------------------------------------------------
-    | SIMPLE ACL ROLE
-    |--------------------------------------------------------------------------
-    |
 
-      /**
-       * GF_ma gestione semplice delle sezioni
-       * in base hai ruoli
-       * @param $section
-       * @return bool
-       */
+
+    /**
+     * @param $section
+     * @return bool
+     */
     public function canViewSection($section)
     {
         if (!isset($section['roles'])) {
@@ -55,11 +57,6 @@ trait AdminAcl
         return Auth::guard('admin')->user()->hasRole(['su', 'admin']);
     }
 
-    public function isAreaManager()
-    {
-        if ($this->isAdmin()) return true;
-        return Auth::guard('admin')->user()->hasRole(['areamanager']);
-    }
 
     /**
      *

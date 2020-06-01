@@ -780,14 +780,14 @@ return [
             'orderBy' => 'first_name',
             'orderType' => 'ASC',
             'edit' => 1,
-            'delete' => 1,
-            'create' => 1,
+            'delete' => ['roles' => ['su', 'admin']],
+            'create' => ['roles' => ['su', 'admin']],
             'copy' => 0,
             'preview' => 0,
             'view' => 0,
-            'selectable' => 1,
+            'selectable' => ['roles' => ['su', 'admin']],
             'password' => 1,
-            'impersonated' => 1,
+            'impersonated' => ['roles' => ['su', 'admin']],
             'menu' => [
                 'tool' => [
                     'show' => true,

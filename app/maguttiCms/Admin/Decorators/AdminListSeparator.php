@@ -3,6 +3,10 @@
 
 namespace App\maguttiCms\Admin\Decorators;
 
+/**
+ * Trait AdminListSeparator
+ * @package App\maguttiCms\Admin\Decorators
+ */
 trait AdminListSeparator
 {
     protected $separator_attribute = null;

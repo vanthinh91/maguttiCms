@@ -12,7 +12,7 @@ use App\maguttiCms\Tools\StoreHelper;
 
 /*
 |--------------------------------------------------------------------------
-|  Localization  and Permalink
+|  LOCALIZATION  AND PERMALINK
 |--------------------------------------------------------------------------
 */
 
@@ -169,7 +169,7 @@ function ma_get_upload_from_repository($doc)
 
 /*
 |--------------------------------------------------------------------------
-|    PATH HELPERS / SHORTCUTS   FOR ADMIN
+|    PATH HELPERS/SHORTCUTS FOR ADMIN SECTION
 |--------------------------------------------------------------------------
 */
 function ma_get_admin_list_url($model)

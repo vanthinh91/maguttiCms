@@ -61,10 +61,10 @@
       "app/maguttiCms/Sluggable"
     ],
     "files": [
+      "app/maguttiCms/Tools/Enums.php",
       "app/maguttiCms/Tools/ma_helper.php",
       "app/maguttiCms/Tools/ma_auth_helper.php",
-      "app/maguttiCms/Tools/Stringable.class.php",
-      "app/maguttiCms/Tools/Enums.php"
+      "app/maguttiCms/Tools/Stringable.class.php"
     ]
   },
   "autoload-dev": {

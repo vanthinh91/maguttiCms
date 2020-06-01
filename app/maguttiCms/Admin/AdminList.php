@@ -18,9 +18,9 @@ use App\maguttiCms\Admin\Decorators\AdminListSortableHeader;
  * Class AdminList
  * @package App\maguttiCms\Admin
  */
+
 class AdminList implements AdminListInterface
 {
-
 
     use AdminListAction,
         AdminListSeparator,
@@ -36,8 +36,6 @@ class AdminList implements AdminListInterface
      * @var
      */
     protected $property;
-
-
 
     /**
      * @param $property

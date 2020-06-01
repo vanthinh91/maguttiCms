@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\maguttiCms\Admin\Decorators;
 
 /**
