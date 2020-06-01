@@ -134,7 +134,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 	Route::post('api/update-ghost',		'\App\maguttiCms\Website\Controllers\APIController@updateGhost');
 
-	// store
+	// store section
 	Route::post('api/store/cart-item-add',		'\App\maguttiCms\Website\Controllers\StoreAPIController@storeCartItemAdd');
 	Route::post('api/store/cart-item-remove',	'\App\maguttiCms\Website\Controllers\StoreAPIController@storeCartitemRemove');
     Route::post('api/store/cart-item-update',	'\App\maguttiCms\Website\Controllers\StoreAPIController@updateItemQuantity');
