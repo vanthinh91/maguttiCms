@@ -35,7 +35,7 @@
 				@endif
 				{{icon('reply')}}
 			</a>
-			@if ($pageConfig['preview'] && $article->id)
+			@if (auth_user('admin')->action('preview',$pageConfig) && $article->id)
 				<a class="btn btn-default btn-lg "
 					href="{{ma_get_admin_preview_url($article)}}"
 					title=" {!! trans('admin.message.view_page')!!}"
@@ -60,7 +60,8 @@
 				@endif
 				{{icon('save')}}
 			</a>
-			@if ($pageConfig['copy'] && $article->id)
+			@if (auth_user('admin')->action('copy',$pageConfig) && $article->id)
+
 				<a class="btn btn-default btn-lg "
 					href="{{ ma_get_admin_copy_url($article) }}"
 					title="{!! trans('admin.label.copy')!!}"
@@ -74,7 +75,7 @@
 			@endif
 
 		@endif
-		@if ($view_name == 'admin-list' && isset($pageConfig['export_csv']) && $pageConfig['export_csv'])
+		@if ($view_name == 'admin-list' && auth_user('admin')->action('export_to_csv',$pageConfig))
 			<a class="btn btn-default btn-lg"
 				href="{{ ma_get_admin_export_url($pageConfig['model']) }}"
 				title="{!! trans('admin.message.export_to_csv')!!}"
@@ -87,7 +88,7 @@
 				{{icon('file-excel')}}
 			</a>
 		@endif
-		@if ($pageConfig['create'])
+		@if (auth_user('admin')->action('create',$pageConfig))
 			<a class="btn btn-default btn-lg"
 				href="{{ ma_get_admin_create_url($pageConfig['model']) }}"
 				title="{!! trans('admin.message.create')!!}"
