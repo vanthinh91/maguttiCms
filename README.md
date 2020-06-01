@@ -7,7 +7,7 @@ Open source multilingual Laravel 7 CMS with simple shopping cart.
 ## Version
 Laravel 7 - Bootstrap 4.5
 
-maguttiCms is released using Laravel 7.X .
+maguttiCms is released using Laravel 7x.
 
 ### How to Install
  
