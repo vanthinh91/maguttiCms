@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Apr 26, 2020 alle 15:06
+-- Creato il: Giu 02, 2020 alle 11:28
 -- Versione del server: 5.7.24
 -- Versione PHP: 7.2.14
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `framework_base`
+-- Database: `magutticms`
 --
 
 -- --------------------------------------------------------
@@ -8741,6 +8741,8 @@ CREATE TABLE `examples` (
   `article_id` int(11) DEFAULT NULL,
   `color` varchar(7) COLLATE utf8_unicode_ci DEFAULT NULL,
   `date` date DEFAULT NULL,
+  `date_start` date DEFAULT NULL,
+  `date_end` date DEFAULT NULL,
   `article_2_id` int(11) DEFAULT NULL,
   `article_3_id` int(11) DEFAULT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -8762,8 +8764,8 @@ CREATE TABLE `examples` (
 -- Dump dei dati per la tabella `examples`
 --
 
-INSERT INTO `examples` (`id`, `article_id`, `color`, `date`, `article_2_id`, `article_3_id`, `title`, `description`, `description_2`, `slug`, `doc`, `image`, `image_crop`, `image_media_id`, `status_id`, `sort`, `pub`, `created_at`, `updated_at`) VALUES
-(1, 5, '#3b486c', '2019-05-07', 10, 7, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 2, 10, 1, '2019-05-07 15:34:44', '2019-05-07 15:41:41');
+INSERT INTO `examples` (`id`, `article_id`, `color`, `date`, `date_start`, `date_end`, `article_2_id`, `article_3_id`, `title`, `description`, `description_2`, `slug`, `doc`, `image`, `image_crop`, `image_media_id`, `status_id`, `sort`, `pub`, `created_at`, `updated_at`) VALUES
+(1, 5, '#3b486c', '2020-06-03', '2020-06-02', '2020-06-02', 10, 7, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 2, 10, 1, '2019-05-07 15:34:44', '2020-06-02 11:28:18');
 
 -- --------------------------------------------------------
 
@@ -8817,7 +8819,7 @@ CREATE TABLE `example_translations` (
 
 INSERT INTO `example_translations` (`id`, `example_id`, `slug`, `locale`, `title`, `description`, `description_2`, `image`, `image_media_id`, `seo_title`, `seo_description`, `seo_keywords`, `seo_no_index`, `created_at`, `updated_at`) VALUES
 (9, 1, 'titolo', 'it', 'Titolo', NULL, NULL, '95748-card-3.jpg', NULL, NULL, NULL, NULL, 0, '2019-05-07 15:41:06', '2019-05-07 15:41:41'),
-(10, 1, '', 'en', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 15:41:06', '2019-05-07 15:41:06'),
+(10, 1, 'examples-title', 'en', 'Examples Title', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2019-05-07 15:41:06', '2020-06-02 11:25:21'),
 (11, 1, '', 'es', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 15:41:06', '2019-05-07 15:41:06'),
 (12, 1, '', 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-07 15:41:06', '2019-05-07 15:41:06');
 

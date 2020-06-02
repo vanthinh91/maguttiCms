@@ -26,6 +26,8 @@ class Example extends Model
         'doc',
         'color',
         'date',
+        'date_start',
+        'date_end',
         'sort',
         'pub',
         'article_id',
@@ -106,6 +108,7 @@ class Example extends Model
     |  DATE ATTRIBUTE
     |--------------------------------------------------------------------------
     */
+
     public function setDateAttribute($value)
     {
         $this->attributes['date'] = Carbon::parse($value);
@@ -113,14 +116,32 @@ class Example extends Model
 
     public function getDateAttribute($value)
     {
-        //return Carbon::parse($value)->format('d-m-Y');
+        return Carbon::parse($value)->format('d-m-Y');
+    }
+    public function setDateStartAttribute($value)
+    {
+        $this->attributes['date_start'] = Carbon::parse($value);
+    }
+
+    public function getDateStartAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y');
+    }
+
+    public function setDateEndAttribute($value)
+    {
+        $this->attributes['date_end'] = Carbon::parse($value);
+    }
+
+    public function getDateEndAttribute($value)
+    {
         return Carbon::parse($value)->format('d-m-Y');
     }
 
     public function getFormattedDate()
     {
         //return Carbon::parse($this->attributes['date'])->formatLocalized('%d %B %Y');
-        return Carbon::parse($this->attributes['date'])->format('d-m-Y');
+        return Carbon::parse($this->attributes['date_start'])->format('d-m-Y');
     }
 
     /*
@@ -196,6 +217,16 @@ class Example extends Model
             'label'    => 'Text',
             'display'  => 1,
         ];
+
+        $this->fieldspec['date'] = [
+            'type'            => 'string',
+            'required'        => 0,
+            'hidden'          => 0,
+            'label'           => 'Date picker',
+            'display'         => 1,
+            'cssClass'        => 'datepicker',
+            'cssClassElement' => 'col-sm-3',
+        ];
         $this->fieldspec['date_range'] = [
             'type' => 'component',
             'required' => 1,
@@ -207,8 +238,8 @@ class Example extends Model
             //'cssclass'  => 'datepicker',
             'cssclasselement' => 'col-lg-9',
             'validation' => [
-                'date' => ['required', 'date'],
-                'date_end' => ['required', 'date']
+                'date_start' => ['required', 'date'],
+                'date_end' => ['required', 'date','after_or_equal:date_start']
             ],
             'default_value' => carbon::tomorrow()->format('d-m-y h:s')
         ];
@@ -326,16 +357,7 @@ class Example extends Model
             'mediaType'   => 'Img',
             'display'     => 1,
         ];
-        $this->fieldspec['date'] = [
-            'type'            => 'string',
-            'required'        => 0,
-            'hidden'          => 0,
-            'label'           => 'Date picker',
-            'display'         => 1,
-            'cssClass'        => 'datepicker',
-            //'cssClass'      => 'datepicker',
-            'cssClassElement' => 'col-sm-3',
-        ];
+
 		$this->fieldspec['map'] = [
             'type'      => 'component',
             'required'  => false,
