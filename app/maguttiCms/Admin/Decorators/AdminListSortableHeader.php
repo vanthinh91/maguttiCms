@@ -19,10 +19,10 @@ trait AdminListSortableHeader
             $item = $this->property['field'][$i];
             if ($this->fieldIsOrderable($item)) {
                 $curField = (is_array($item)) ? data_get($item, 'order_field', $item['field']) : $item;
-                $html .= "<a href=\"".request()->fullUrlWithQuery($this->queryString($curField,'desc'))."\">
+                $html .= "<a href=\"".$this->queryString($curField,'desc')."\">
                             <i class=\"fa fa-arrow-down\" aria-hidden=\"true\"></i>
                           </a>\n";
-                $html .= "<a href=\"".request()->fullUrlWithQuery($this->queryString($curField,'desc'))."\">
+                $html .= "<a href=\"".$this->queryString($curField,'asc')."\">
                             <i class=\"fa fa-arrow-up\" aria-hidden=\"true\"></i>
                           </a>\n";
             }
@@ -41,6 +41,6 @@ trait AdminListSortableHeader
 
     protected function queryString($curField,$orderType)
     {
-        return ['orderBy'=>$curField,'orderType'=>$orderType];
+        return request()->fullUrlWithQuery(['orderBy'=>$curField,'orderType'=>$orderType]);
     }
 }
