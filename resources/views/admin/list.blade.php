@@ -42,20 +42,8 @@
                                         </td>
                                     @endif
                                     @foreach($labels=AdminList::authorizedFields() as $label)
-                                        <td class="{{isset($label['class'])? $label['class']: ''}}">
-                                            @if (is_array($label))
-                                                @if (AdminList::hasComponent($label['type']))
-                                                    {!! AdminList::initList($pageConfig)->makeComponent($article,$label)!!}
-                                                @else
-                                                    @if (data_get($label, 'locale'))
-                                                        {{ $article->translate($label['locale'])->{$label['field']} }}
-                                                    @else
-                                                        {{ $article->{$label['field']} }}
-                                                    @endif
-                                                @endif
-                                            @else
-                                                {{ $article->$label }}
-                                            @endif
+                                        <td class="{{data_get($label,'class')}}">
+                                            {!! AdminList::renderComponent($article,$label)!!}
                                         </td>
                                     @endforeach
                                     @if (AdminList::hasAction())

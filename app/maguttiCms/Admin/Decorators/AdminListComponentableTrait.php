@@ -10,6 +10,19 @@ use Illuminate\Support\Str;
 trait AdminListComponentableTrait
 {
 
+
+    function renderComponent($article, $label)
+    {
+        if (!is_array($label)) return $article->$label;
+
+        if ($this->hasComponent($label['type'])) {
+            return $this->initList($this->property)->makeComponent($article, $label);
+        }
+        return (data_get($label, 'locale')) ? $article->translate($label['locale'])->{$label['field']} : $article->{$label['field']};
+
+    }
+
+
     function hasComponent($type)
     {
         $sample = new \ReflectionClass($this);
