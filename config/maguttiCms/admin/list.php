@@ -816,6 +816,7 @@ return [
                 'image' => ['type' => 'image', 'field' => 'image'],
                 'image_media_id' => ['type' => 'relation_image', 'relation' => 'imageMedia', 'field' => 'file_name'],
                 'title' => ['type' => 'text', 'field' => 'title', 'orderable' => true],
+                'readonly' => ['type' => 'readonly', 'field' => 'title','orderable'=>true],
                 'slug' => ['type' => 'text', 'field' => 'slug', 'orderable' => true, 'order_field' => 'article_translations.title'],
                 'pub' => ['type' => 'boolean', 'field' => 'pub', 'orderable' => true, 'editable' => false],
                 'sort' => ['type' => 'editable', 'field' => 'sort', 'orderable' => true],
@@ -931,6 +932,7 @@ return [
             'field' => [
                 'id',
                 'name' => ['type' => 'editable', 'field' => 'name','orderable'=>true],
+
                 'iso_code' => ['type' => 'editable', 'field' => 'iso_code','orderable'=>true],
                 'vat' => ['type' => 'editable', 'field' => 'vat'],
                 'eu' => ['type' => 'boolean', 'field' => 'eu'],

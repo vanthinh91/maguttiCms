@@ -53,6 +53,7 @@ trait AdminListComponentTrait
         return 'make' . ucfirst(Str::camel($type));
     }
 
+
     function resolveComponentClassNamespace($type)
     {
         return "App\maguttiCms\Admin\Decorators\AdminList" . ucfirst(Str::camel($type)) . "Component";
@@ -62,4 +63,14 @@ trait AdminListComponentTrait
     {
         return class_exists($this->resolveComponentClassNamespace($type));
     }
+
+
+    /**
+     *  SIMPLE COMPONENT
+     */
+
+    public function makeReadonly($article,$itemProperty){
+        return "<input readonly class=\"form-control\" value='".$article->{$itemProperty['field']}."'>";
+    }
+
 }
