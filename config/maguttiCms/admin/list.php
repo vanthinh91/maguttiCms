@@ -930,12 +930,16 @@ return [
             'icon' => 'folder',
             'field' => [
                 'id',
-                'name' => ['type' => 'editable', 'field' => 'name'],
-                'iso_code' => ['type' => 'editable', 'field' => 'iso_code'],
+                'name' => ['type' => 'editable', 'field' => 'name','orderable'=>true],
+                'iso_code' => ['type' => 'editable', 'field' => 'iso_code','orderable'=>true],
                 'vat' => ['type' => 'editable', 'field' => 'vat'],
                 'eu' => ['type' => 'boolean', 'field' => 'eu'],
                 'is_active' => ['type' => 'boolean', 'field' => 'is_active', 'editable' => true],
                 'updated_at' => ['type' => 'date', 'field' => 'updated_at'],
+            ],
+            'field_searchable' => [
+                'name' => ['type' => 'text', 'label' => 'name', 'field' => 'name'],
+                'iso_code' => ['type' => 'text', 'label' => 'code', 'field' => 'iso_code'],
             ],
             'orderBy' => 'name',
             'orderType' => 'ASC',
@@ -974,6 +978,9 @@ return [
                 'pub' => ['type' => 'boolean', 'field' => 'pub', 'editable' => true],
                 'created_at' => ['type' => 'date', 'field' => 'created_at'],
                 'updated_at' => ['type' => 'date', 'field' => 'updated_at'],
+            ],
+            'field_searchable' => [
+                'title' => ['type' => 'text', 'label' => 'title', 'field' => 'title'],
             ],
             'orderBy' => 'title',
             'orderType' => 'ASC',
