@@ -71,7 +71,7 @@
                 </form>
             </div>
         @endif
-        <x-admin.list.pagination :$article="$articles"/>
+        <x-admin.list.pagination :articles="$articles"/>
     </main>
 @endsection
 
