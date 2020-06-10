@@ -1,18 +1,19 @@
 <div id="action-bar">
     <x-admin.page-title :article="$article??''" :model="$model??''"></x-admin.page-title>
     <div class="actions">
-        <button id="toolbar_deleteButtonHandler" class="btn btn-danger btn-lg" data-role="deleteAll"
+        <x-admin.buttons.button
+                id="toolbar_deleteButtonHandler"
+                class="text-white btn-danger btn-lg"
+                data-role="deleteAll"
                 rel="tooltip"
                 data-placement="bottom"
                 data-toggle="tooltip"
                 title="{!! trans('admin.message.delete_items')!!}"
                 data-original-title="{!! trans('admin.message.delete_items')!!}"
-                style="display: none;">
-            @if (config('maguttiCms.admin.option.action-bar.show-labels'))
-                {{trans('admin.label.delete')}}
-            @endif
-            {{icon('trash')}}
-        </button>
+                style="display: none;"
+                type="delete"
+                icon="trash">
+        </x-admin.buttons.button>
         @if (Str::contains($view_name, '-edit'))
             <x-admin.buttons.back_to_list class="btn-default btn-lg"  :article="$article"/>
             @if (auth_user('admin')->action('preview',$pageConfig) && $article->id)
