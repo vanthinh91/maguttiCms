@@ -1,9 +1,7 @@
 @extends('admin.master')
 @section('title', 'Admin Control Panel'.$pageConfig['title'])
 @section('content')
-
     @include('admin.common.action-bar')
-
     <main id="main-list" class="container-fluid">
         @include('admin.common.search_bar')
         <h2>
@@ -20,18 +18,18 @@
                     <div class="table-responsive">
                         <table class="admin-table">
                             <thead>
-                            <tr>
-                                {{ AdminList::initList($pageConfig)->getListHeader() }}
-                                @if (AdminList::hasAction())
-                                    <th>{!! trans('admin.label.actions')!!}</th>
-                                @endif
-                            </tr>
+                                <tr>
+                                    {{ AdminList::initList($pageConfig)->getListHeader() }}
+                                    @if (AdminList::hasAction())
+                                        <th>{!! trans('admin.label.actions')!!}</th>
+                                    @endif
+                                </tr>
                             </thead>
                             <tbody>
                             @foreach($articles as $article)
                                 @if(AdminList::showGroupBySeparator($article))
                                     <tr>
-                                        <td colspan="{{AdminList::separatorColSpan()}}" class="text-left  py-2  h4 "
+                                        <td colspan="{{AdminList::separatorColSpan()}}" class="text-left py-2 h4 "
                                             style="background-color: #c1c1c1">
                                             {{AdminList::getGroupBySeparatorValue($article)}}
                                         </td>
@@ -40,13 +38,7 @@
                                 <tr id="row_{!! $article->id !!}" {{AdminList::getGroupBySeparatorAttribute($article)}}>
                                     @if (auth_user('admin')->action('selectable',$pageConfig))
                                         <td class="selectable-column">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" value="{!! $article->id !!}"
-                                                       id="list_{!! $article->id !!}" name="list[{!! $article->id !!}]"
-                                                       class="custom-control-input" autocomplete="off">
-                                                <label class="custom-control-label text-left"
-                                                       for="list_{!! $article->id !!}"> </label>
-                                            </div>
+                                            <x-admin.list.check-box-selectable :article="$article"/>
                                         </td>
                                     @endif
                                     @foreach($labels=AdminList::authorizedFields() as $label)
@@ -68,48 +60,7 @@
                                     @endforeach
                                     @if (AdminList::hasAction())
                                         <td class="list-actions">
-                                            @if (auth_user('admin')->action('edit',$pageConfig))
-                                                <a href="{{  ma_get_admin_edit_url($article) }}" class="btn btn-info"
-                                                   data-role="edit-item">
-                                                    {{icon('edit')}}
-                                                    @if (config('maguttiCms.admin.option.list.show-labels'))
-                                                        {!! trans('admin.label.edit')!!}
-                                                    @endif
-                                                </a>
-                                            @endif
-                                            @if (auth_user('admin')->action('copy',$pageConfig))
-                                                <a href="{{  ma_get_admin_copy_url($article) }}" class="btn btn-warning"
-                                                   data-role="edit-item">
-                                                    {{icon('copy')}}
-                                                    @if (config('maguttiCms.admin.option.list.show-labels'))
-                                                        {!! trans('admin.label.copy')!!}
-                                                    @endif
-                                                </a>
-                                            @endif
-                                            @if (auth_user('admin')->action('view',$pageConfig))
-                                                <a href="{{  ma_get_admin_view_url($article) }}" class="btn btn-primary"
-                                                   data-role="edit-item">
-                                                    {{icon('eye')}}
-                                                    @if (config('maguttiCms.admin.option.list.show-labels'))
-                                                        {!! trans('admin.label.view')!!}
-                                                    @endif
-                                                </a>
-                                            @endif
-                                            @if (auth_user('admin')->action('delete',$pageConfig))
-                                                <a href="{{  ma_get_admin_delete_url($article) }}"
-                                                   class="btn btn-danger" data-role="delete-item">
-                                                    {{icon('trash')}}
-                                                    @if (config('maguttiCms.admin.option.list.show-labels'))
-                                                        {!! trans('admin.label.delete')!!}
-                                                    @endif
-                                                </a>
-                                            @endif
-                                            @if (data_get($pageConfig,'impersonated') && cmsUserHasRole('su'))
-                                                <a href="{{  ma_get_admin_impersonated_url($article) }}" target="new"
-                                                   class="btn btn-warning">
-                                                    {{icon('users')}}
-                                                </a>
-                                            @endif
+                                           <x-admin.list.action :pageConfig="$pageConfig" :article="$article"></x-admin.list.action>
                                         </td>
                                     @endif
                                 </tr>
@@ -120,9 +71,7 @@
                 </form>
             </div>
         @endif
-        @if ($articles->render())
-            <div class="pagination mt-4">{!! $articles->render() !!}</div>
-        @endif
+        <x-admin.list.pagination :$article="$articles"/>
     </main>
 @endsection
 

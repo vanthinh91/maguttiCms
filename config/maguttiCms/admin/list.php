@@ -75,7 +75,7 @@ return [
             'create' => 1,
             'copy' => 1,
             'preview' => 1,
-            'view' => 0,
+            'view' => 1,
             'selectable' => 1,
             'showMedia' => 1,
             'showBlock' => 1,
