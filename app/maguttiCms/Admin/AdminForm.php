@@ -138,7 +138,7 @@ class AdminForm {
             $formElement = (new AdminVueComponent($this))->getComponent($value,$key);
         }
         elseif ($this->property['type'] == 'string_clearable'){
-            $formElement = '<clearable-input-component name="'.$key.'" input_text="'.$value.'"></seo-text-component>';
+            $formElement = '<clearable-input-component name="'.$key.'" input_text="'.$value.'"></clearable-input-component>';
         }
         elseif ($this->property['type'] == 'seo_string'){
             $formElement = '<seo-input-component 
