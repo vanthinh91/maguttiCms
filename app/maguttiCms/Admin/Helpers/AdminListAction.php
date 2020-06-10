@@ -24,4 +24,9 @@ trait AdminListAction
 
         });
     }
+
+    function Actions()
+    {
+        return collect($this->action_list);
+    }
 }
