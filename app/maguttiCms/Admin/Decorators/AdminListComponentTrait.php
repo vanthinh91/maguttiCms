@@ -7,7 +7,11 @@ namespace App\maguttiCms\Admin\Decorators;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
-trait AdminListComponentableTrait
+/**
+ * Trait AdminListComponentTrait
+ * @package App\maguttiCms\Admin\Decorators
+ */
+trait AdminListComponentTrait
 {
 
 
@@ -26,7 +30,9 @@ trait AdminListComponentableTrait
     function hasComponent($type)
     {
         $sample = new \ReflectionClass($this);
-        if ($sample->hasMethod($this->resolveMethodName($type))) return true;
+        if ($sample->hasMethod($this->resolveMethodName($type))){
+            return true;
+        }
         if ($this->componentClassExist($type)) return true;
         return false;
     }

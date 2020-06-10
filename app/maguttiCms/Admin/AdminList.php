@@ -3,7 +3,7 @@
 namespace App\maguttiCms\Admin;
 
 
-use App\maguttiCms\Admin\Decorators\AdminListComponentableTrait;
+use App\maguttiCms\Admin\Decorators\AdminListComponentTrait;
 use App\maguttiCms\Admin\Helpers\AdminListAction;
 use Carbon\Carbon;
 Use Form;
@@ -25,7 +25,7 @@ class AdminList implements AdminListInterface
     use AdminListAction,
         AdminListSeparator,
         AdminListSortableHeader,
-        AdminListComponentableTrait;
+        AdminListComponentTrait;
 
     private $authorized_fields;
     /**
