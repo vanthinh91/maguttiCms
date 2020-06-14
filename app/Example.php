@@ -211,11 +211,22 @@ class Example extends Model
             'context'     => 'check_boxes'
         ];
         $this->fieldspec['title'] = [
-            'type'     => 'string',
+            'type' => 'vue_component',
             'required' => 1,
-            'hidden'   => 0,
-            'label'    => 'Text',
-            'display'  => 1,
+            'hidden' => 0,
+            'label' => 'Text',
+            'display' => 1,
+            'component-name' => 'copyable-input-component',
+            'component-data' => [
+                'length' => '10',
+                'unique' => true,
+                'model' =>'Example',
+                'label' =>'Genera Codice',
+                'field' =>'title',
+                //'generator'=>'generatePin',
+                'usePrefix'=>true,
+                'type'  =>'string'
+            ]
         ];
 
         $this->fieldspec['date'] = [
@@ -269,6 +280,9 @@ class Example extends Model
                 'type'  =>'string'
             ]
         ];
+
+
+
         $this->fieldspec['password'] = [
             'type' => 'vue_component',
             'required' => 1,
