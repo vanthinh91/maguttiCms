@@ -23,6 +23,7 @@ Vue.component('side-bar-component', require('./../components/admin/SideBar').def
 Vue.component('seo-input-component', require('./../components/admin/SeoInputComponent').default);
 Vue.component('seo-text-component', require('./../components/admin/SeoTextComponent').default);
 Vue.component('clearable-input-component', require('./../components/admin/ClearableInputComponent').default);
+Vue.component('copyable-input-component', require('./../components/admin/CopyableInputComponent').default);
 
 Vue.component('generator-input-component', GeneratorInputComponent);
 Vue.component('list-component', ListComponent);
