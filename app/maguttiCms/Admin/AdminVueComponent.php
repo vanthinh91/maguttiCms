@@ -39,15 +39,6 @@ class AdminVueComponent extends AdminFormComponent
                 </" . $this->getComponentName() . ">";
     }
 
-    function composeComponentq($value, $key)
-    {
-        return '<' . $this->getComponentName() . ' 
-                  name="' . $key . '" 
-                  input_text="' . $value . '"
-                  '.$this->getComponentProperties().'
-                  :data=' . json_encode($this->getProperty()->get('component-data')) . '>
-                </' . $this->getComponentName() . '>';
-    }
 
     /**
      * @return string
