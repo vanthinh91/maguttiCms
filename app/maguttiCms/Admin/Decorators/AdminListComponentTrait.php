@@ -18,12 +18,10 @@ trait AdminListComponentTrait
     function renderComponent($article, $label)
     {
         if (!is_array($label)) return $article->$label;
-
         if ($this->hasComponent($label['type'])) {
             return $this->initList($this->property)->makeComponent($article, $label);
         }
         return (data_get($label, 'locale')) ? $article->translate($label['locale'])->{$label['field']} : $article->{$label['field']};
-
     }
 
 
@@ -33,16 +31,22 @@ trait AdminListComponentTrait
         if ($sample->hasMethod($this->resolveMethodName($type))){
             return true;
         }
+        if ($this->componentViewExist($type)){
+            return true;
+        }
         if ($this->componentClassExist($type)) return true;
+
         return false;
     }
 
     function makeComponent($article, $itemProperty)
     {
-
         if ($this->componentClassExist($itemProperty['type'])) {
             $componentClassName = $this->resolveComponentClassNamespace($itemProperty['type']);
             return (new $componentClassName($article, $itemProperty))->setPageConfig($this->property)->render();
+        }
+        if($this->componentViewExist($itemProperty['type'])){
+            return (new AdminListViewComponent($article, $itemProperty))->setPageConfig($this->property)->render();
         }
         return $this->{$this->resolveMethodName($itemProperty['type'])}($article, $itemProperty);
     }
@@ -64,13 +68,9 @@ trait AdminListComponentTrait
         return class_exists($this->resolveComponentClassNamespace($type));
     }
 
-
-    /**
-     *  SIMPLE COMPONENT
-     */
-
-    public function makeReadonly1($article,$itemProperty){
-        return "<input readonly class=\"form-control\" value='".$article->{$itemProperty['field']}."'>";
+    function componentViewExist($type)
+    {
+        return view()->exists('admin.list.'.$type);
     }
 
 }

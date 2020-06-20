@@ -14,26 +14,28 @@ use ReflectionProperty;
 
 abstract class AdminListComponent
 {
-    public $model;      //oggetto corrente
-    public $item;       //properieta dell 'elemento corrente dal config della lista
-    public $pageConfig;  //proprietà del model corrente  preso dal config della lista
+    public $model;      // current model
+    public $item;       // current item properties form list config
+    public $pageConfig; // current model properties form list config
     public $fieldspec;
 
     public $id;
     public $field;
     public $value;
     public $html;
-    public $isEditable;
 
 
-    abstract function render();
 
     public function __construct($model,$item)
     {
         $this->item = $item;
-
         $this->setModel($model)->setField($this->item['field']);
         $this->setFieldspec();
+    }
+    abstract function render();
+    protected function component(){
+        $item = $this;
+        return view('admin.list.'.$this->item['type'], compact('item'));
     }
 
     public function setFieldspec()
@@ -124,28 +126,5 @@ abstract class AdminListComponent
     public function getId()
     {
         return $this->model->id;
-    }
-
-    protected function buildViewData()
-    {
-        $viewData = [];
-
-        foreach ((new ReflectionClass($this))->getProperties(ReflectionProperty::IS_PUBLIC) as $property) {
-            $viewData[$property->getName()] = $property->getValue($this);
-        }
-        foreach ((new ReflectionClass($this))->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
-            if (Str::startsWith($method->getName(), '__')) {
-                //return true;
-            }
-            elseif (! in_array($name = $method->getName(), ['loadView', 'view','setPageConfig'])) {
-                //$viewData[$name] = $this->$name();
-            }
-        }
-        return $viewData;
-    }
-
-    protected function component(){
-        $item = $this;
-        return view('admin.list.'.$this->item['type'], compact('item'));
     }
 }

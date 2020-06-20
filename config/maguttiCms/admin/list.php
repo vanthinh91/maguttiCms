@@ -820,6 +820,7 @@ return [
                 'pub' => ['type' => 'boolean', 'field' => 'pub', 'orderable' => true, 'editable' => false],
                 'sort' => ['type' => 'editable', 'field' => 'sort', 'orderable' => true],
                 'readonly' => ['type' => 'readonly', 'field' => 'title', 'orderable' => true],
+                'custom' => ['type' => 'custom', 'field' => 'title', 'orderable' => true,'class'=>'col-3'],
                 'color' => ['type' => 'color', 'field' => 'color'],
 
                 'status_id' => [
