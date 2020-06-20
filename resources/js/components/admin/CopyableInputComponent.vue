@@ -5,7 +5,9 @@
                    type="text"
                    onkeyup=""
                    :readonly=isReadonly
-
+                   :id="id"
+                   :data-list-value="data_list_value"
+                   :data-list-name="data_list_name"
                    class="form-control"
                    v-model.trim="message" v-bind:name="name">
             <div class="input-group-append">
@@ -35,7 +37,20 @@
                 btn_class:{
                     type:String,
                     default:'input-group-text',
-                }
+                },
+                id:{
+                    type:String,
+                    default:null
+                },
+                data_list_value:{
+                    type:String,
+                    default:null
+                },
+                data_list_name:{
+                    type:String,
+                    default:null
+                },
+
         },
         methods: {
             copyInput: function () {

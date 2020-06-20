@@ -2682,6 +2682,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2703,6 +2705,18 @@ __webpack_require__.r(__webpack_exports__);
     btn_class: {
       type: String,
       "default": 'input-group-text'
+    },
+    id: {
+      type: String,
+      "default": null
+    },
+    data_list_value: {
+      type: String,
+      "default": null
+    },
+    data_list_name: {
+      type: String,
+      "default": null
     }
   },
   methods: {
@@ -4469,6 +4483,9 @@ var render = function() {
           type: "text",
           onkeyup: "",
           readonly: _vm.isReadonly,
+          id: _vm.id,
+          "data-list-value": _vm.data_list_value,
+          "data-list-name": _vm.data_list_name,
           name: _vm.name
         },
         domProps: { value: _vm.message },
