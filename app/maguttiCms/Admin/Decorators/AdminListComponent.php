@@ -143,4 +143,9 @@ abstract class AdminListComponent
         }
         return $viewData;
     }
+
+    protected function component(){
+        $item = $this;
+        return view('admin.list.'.$this->item['type'], compact('item'));
+    }
 }

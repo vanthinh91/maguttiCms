@@ -819,6 +819,7 @@ return [
                 'slug' => ['type' => 'text', 'field' => 'slug', 'orderable' => true, 'order_field' => 'article_translations.title'],
                 'pub' => ['type' => 'boolean', 'field' => 'pub', 'orderable' => true, 'editable' => false],
                 'sort' => ['type' => 'editable', 'field' => 'sort', 'orderable' => true],
+                'readonly' => ['type' => 'readonly', 'field' => 'title', 'orderable' => true],
                 'color' => ['type' => 'color', 'field' => 'color'],
 
                 'status_id' => [

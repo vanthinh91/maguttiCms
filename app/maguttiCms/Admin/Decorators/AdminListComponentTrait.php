@@ -69,7 +69,7 @@ trait AdminListComponentTrait
      *  SIMPLE COMPONENT
      */
 
-    public function makeReadonly($article,$itemProperty){
+    public function makeReadonly1($article,$itemProperty){
         return "<input readonly class=\"form-control\" value='".$article->{$itemProperty['field']}."'>";
     }
 

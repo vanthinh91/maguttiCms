@@ -1,23 +1,42 @@
 <template>
     <div>
         <div class="input-group">
-            <input ref="input" type="text" onkeyup="" class="form-control" v-model="message" v-bind:name="name">
+            <input ref="input"
+                   type="text"
+                   onkeyup=""
+                   :readonly=isReadonly
+
+                   class="form-control"
+                   v-model.trim="message" v-bind:name="name">
             <div class="input-group-append">
-                <copy-btn @copy="copyInput" class="btn-info input-group-text"></copy-btn>
+                <copy-btn @copy="copyInput" :class="btn_class" class="btn-info " ></copy-btn>
             </div>
         </div>
     </div>
 </template>
 <script>
     import copyBtn from './partial/CopyInputBtnComponent';
+
     export default {
         components: {copyBtn},
         data() {
             return {
-                message:'',
+                message: '',
+                isReadonly: false
             }
         },
-        props: ['name','input_text'],
+        props:{
+                name:String,
+                input_text:String,
+                readonly:{
+                    type:Boolean,
+                    default:false
+                },
+                btn_class:{
+                    type:String,
+                    default:'input-group-text',
+                }
+        },
         methods: {
             copyInput: function () {
                 let testingCodeToCopy = this.$refs.input
@@ -27,9 +46,9 @@
                 try {
                     let successful = document.execCommand('copy');
                     let msg = successful ? 'successful' : 'unsuccessful';
-                    let alertMsg =`Text ${textCopied}  was copied  ${msg} `
+                    let alertMsg = `Text ${textCopied}  was copied  ${msg} `
 
-                    $.notify(alertMsg,'success');
+                    $.notify(alertMsg, 'success');
                 } catch (err) {
                     $.notify('Oops, unable to copy');
                 }
@@ -39,7 +58,12 @@
             }
         },
         mounted() {
-            this.message=this.input_text;
+            this.$nextTick(function () {
+                if (this.readonly != '') {
+                    this.isReadonly = this.readonly
+                }
+                this.message = this.input_text;
+            });
         },
 
     }

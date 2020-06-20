@@ -2676,6 +2676,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2683,10 +2689,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      message: ''
+      message: '',
+      isReadonly: false
     };
   },
-  props: ['name', 'input_text'],
+  props: {
+    name: String,
+    input_text: String,
+    readonly: {
+      type: Boolean,
+      "default": false
+    },
+    btn_class: {
+      type: String,
+      "default": 'input-group-text'
+    }
+  },
   methods: {
     copyInput: function copyInput() {
       var testingCodeToCopy = this.$refs.input;
@@ -2710,7 +2728,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.message = this.input_text;
+    this.$nextTick(function () {
+      if (this.readonly != '') {
+        this.isReadonly = this.readonly;
+      }
+
+      this.message = this.input_text;
+    });
   }
 });
 
@@ -4433,21 +4457,30 @@ var render = function() {
         directives: [
           {
             name: "model",
-            rawName: "v-model",
+            rawName: "v-model.trim",
             value: _vm.message,
-            expression: "message"
+            expression: "message",
+            modifiers: { trim: true }
           }
         ],
         ref: "input",
         staticClass: "form-control",
-        attrs: { type: "text", onkeyup: "", name: _vm.name },
+        attrs: {
+          type: "text",
+          onkeyup: "",
+          readonly: _vm.isReadonly,
+          name: _vm.name
+        },
         domProps: { value: _vm.message },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.message = $event.target.value
+            _vm.message = $event.target.value.trim()
+          },
+          blur: function($event) {
+            return _vm.$forceUpdate()
           }
         }
       }),
@@ -4457,7 +4490,8 @@ var render = function() {
         { staticClass: "input-group-append" },
         [
           _c("copy-btn", {
-            staticClass: "btn-info input-group-text",
+            staticClass: "btn-info ",
+            class: _vm.btn_class,
             on: { copy: _vm.copyInput }
           })
         ],

@@ -31,6 +31,7 @@ class AdminVueComponent extends AdminFormComponent
     function composeComponent($value, $key)
     {
         $data = $this->getProperty()->get('component-data');
+
         return "<" . $this->getComponentName() . "
                   name=\"" . $key . "\" 
                   input_text=\"" . $value . "\"
