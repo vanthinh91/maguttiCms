@@ -13,7 +13,7 @@ class OrderItem extends Model
 		'price'
     ];
     protected $fieldspec = [];
-    public $ajaxAccessibilityRoles = ['su'];
+
     public $sluggable = [];
 
 	public function product()

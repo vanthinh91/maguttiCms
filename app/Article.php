@@ -30,7 +30,6 @@ class Article extends Model
                            'doc'];
     protected $fieldspec = [];
 
-    public $ajaxAccessibilityRoles = ['su'];
 
     /*
     |--------------------------------------------------------------------------

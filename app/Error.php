@@ -11,7 +11,7 @@ class Error extends Model
     protected $fillable = ['message', 'file', 'line', 'trace'];
     protected $fieldspec = [];
 
-    public $ajaxAccessibilityRoles = ['su'];
+
 
     public $sluggable            =  [];
 

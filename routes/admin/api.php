@@ -1,4 +1,8 @@
 <?php
+
+use App\maguttiCms\Middleware\AdminRole;
+use App\maguttiCms\Middleware\AdminSuggestRole;
+
 Route::group([], function () {
     /*
     |--------------------------------------------------------------------------
@@ -17,7 +21,7 @@ Route::group([], function () {
     | API LIBRARY
     |--------------------------------------------------------------------------
     */
-    Route::get('api/suggest', ['as' => 'api.suggest', 'uses' => '\App\maguttiCms\Admin\Controllers\AjaxController@suggest']);
+    Route::get('api/suggest', ['as' => 'api.suggest', 'uses' => '\App\maguttiCms\Admin\Controllers\SuggestAjaxController@suggest'])->middleware(AdminSuggestRole::class);
     Route::get('dashboard','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@dashboard');
     Route::get('nav-bar','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@navbar');
     Route::post('create/{model}','\App\maguttiCms\Api\V1\Controllers\AdminCrudController@create');

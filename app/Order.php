@@ -19,7 +19,7 @@ class Order extends Model
 		'token',
     ];
     protected $fieldspec = [];
-    public $ajaxAccessibilityRoles = ['su'];
+
     public $sluggable = [];
 
 	public function cart()

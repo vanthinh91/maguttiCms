@@ -32,13 +32,12 @@ class AdminRole
 		$this->model_id = $this->request ->route('id');
 		$this->routeName = $this->request ->path();
 		$this->config = config('maguttiCms.admin.list.section.'.$this->model);
-
 		$this->modelClass = 'App\\'.$this->config['model'];
 
 		if ($this->getCurrentAction() == 'delete' && $this->canDelete()) {
 			return $next($this->request);
 		} elseif ($this->canAccess()) {
-			return $next($this->request);
+		    return $next($this->request);
 		} else {
 			return redirect('/admin');
 		}

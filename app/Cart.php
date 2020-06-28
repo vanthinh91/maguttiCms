@@ -8,7 +8,7 @@ class Cart extends Model
 {
     protected $fillable = ['user_id', 'status'];
     protected $fieldspec = [];
-    public $ajaxAccessibilityRoles = ['su'];
+
     public $sluggable = [];
 
 	public function user()

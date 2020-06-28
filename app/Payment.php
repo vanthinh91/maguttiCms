@@ -16,7 +16,7 @@ class Payment extends Model
     ];
 	protected $dates = ['deleted_at'];
     protected $fieldspec = [];
-    public $ajaxAccessibilityRoles = ['su'];
+
     public $sluggable = [];
 
 	public function order()

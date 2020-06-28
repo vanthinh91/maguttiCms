@@ -10,7 +10,7 @@ class PaymentMethod extends Model
 		'is_active'
     ];
     protected $fieldspec = [];
-    public $ajaxAccessibilityRoles = ['su'];
+
     public $sluggable = [];
 
     function getFieldSpec()

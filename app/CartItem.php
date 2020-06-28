@@ -11,7 +11,7 @@ class CartItem extends Model
 		'quantity'
     ];
     protected $fieldspec = [];
-    public $ajaxAccessibilityRoles = ['su'];
+
     public $sluggable = [];
 
 	public function product()

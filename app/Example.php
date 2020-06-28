@@ -38,7 +38,7 @@ class Example extends Model
     ];
     protected $fieldspec = [];
 
-    public $ajaxAccessibilityRoles = ['su'];
+
 
     /*
     |--------------------------------------------------------------------------

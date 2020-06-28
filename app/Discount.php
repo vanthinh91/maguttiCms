@@ -18,7 +18,7 @@ class Discount extends Model
 	];
 	protected $fieldspec = [];
 
-	public $ajaxAccessibilityRoles = ['su'];
+
 
 	public $sluggable = [];
 

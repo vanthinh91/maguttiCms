@@ -20,7 +20,7 @@ class Address extends Model
 		'vat'
     ];
     protected $fieldspec = [];
-    public $ajaxAccessibilityRoles = ['su'];
+
     public $sluggable = [];
 
 	public function user()
