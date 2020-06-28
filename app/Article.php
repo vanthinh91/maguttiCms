@@ -24,10 +24,10 @@ class Article extends Model
 
     protected $with = ['translations'];
 
-    protected $fillable = ['title', 'subtitle',  'abstract', 'description',
-                           'slug', 'sort', 'pub','top_menu', 'parent_id',
-                           'link', 'template_id','ignore_slug_translation',
-                           'doc'];
+    protected $fillable = ['title', 'subtitle', 'abstract', 'description',
+        'slug', 'sort', 'pub', 'top_menu', 'parent_id',
+        'link', 'template_id', 'ignore_slug_translation',
+        'doc'];
     protected $fieldspec = [];
 
 
@@ -36,11 +36,11 @@ class Article extends Model
     |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = ['menu_title', 'title','slug',
-                                    'subtitle', 'abstract', 'description',
-                                    'seo_title', 'seo_description', 'seo_no_index'];
+    public $translatedAttributes = ['menu_title', 'title', 'slug',
+        'subtitle', 'abstract', 'description',
+        'seo_title', 'seo_description', 'seo_no_index'];
 
-    public $sluggable            =  ['slug'=>['field'=>'title','updatable'=>false,'translatable'=>true]];
+    public $sluggable = ['slug' => ['field' => 'title', 'updatable' => false, 'translatable' => true]];
 
 
     /*
@@ -69,7 +69,6 @@ class Article extends Model
     }
 
 
-
     /*
     |--------------------------------------------------------------------------
     |  Builder & Repo
@@ -88,166 +87,166 @@ class Article extends Model
     function getFieldSpec()
     {
         $this->fieldspec['id'] = [
-            'type'      => 'integer',
-            'minvalue'  => 0,
-            'pkey'      => 1,
-            'required'  => 1,
-            'label'     => trans('admin.label.id'),
-            'hidden'    => 1,
-            'display'   => 0,
+            'type' => 'integer',
+            'minvalue' => 0,
+            'pkey' => 1,
+            'required' => 1,
+            'label' => trans('admin.label.id'),
+            'hidden' => 1,
+            'display' => 0,
         ];
         $this->fieldspec['parent_id'] = [
-            'type'        => 'relation_tree',
-            'tree_field'  => 'parent_id',
+            'type' => 'relation_tree',
+            'tree_field' => 'parent_id',
             'order_field' => 'sort',
-            'model'       => 'article',
+            'model' => 'article',
             'foreign_key' => 'id',
-            'label_key'   => 'title',
-            'required'    => 0,
-            'label'       => trans('admin.label.parent'),
-            'hidden'      => 0,
-            'display'     => 1,
+            'label_key' => 'title',
+            'required' => 0,
+            'label' => trans('admin.label.parent'),
+            'hidden' => 0,
+            'display' => 1,
         ];
         $this->fieldspec['template_id'] = [
-            'type'        => 'relation',
-            'model'       => 'Domain',
-            'filter'      => ['domain' => 'template'],
+            'type' => 'relation',
+            'model' => 'Domain',
+            'filter' => ['domain' => 'template'],
             'foreign_key' => 'id',
-            'label_key'   => 'title',
-            'required'    => 0,
-            'label'       => trans('admin.label.template'),
-            'hidden'      => 0,
-            'display'     => 1,
+            'label_key' => 'title',
+            'required' => 0,
+            'label' => trans('admin.label.template'),
+            'hidden' => 0,
+            'display' => 1,
         ];
         $this->fieldspec['menu_title'] = [
-            'type'     => 'string',
+            'type' => 'string',
             'required' => 0,
-            'hidden'   => 0,
-            'label'    => trans('admin.label.menu_title'),
-            'display'  => 1,
+            'hidden' => 0,
+            'label' => trans('admin.label.menu_title'),
+            'display' => 1,
         ];
         $this->fieldspec['title'] = [
-            'type'     => 'string',
+            'type' => 'string',
             'required' => 1,
-            'hidden'   => 0,
-            'label'    => trans('admin.label.title'),
-            'display'  => 1,
+            'hidden' => 0,
+            'label' => trans('admin.label.title'),
+            'display' => 1,
         ];
         $this->fieldspec['subtitle'] = [
-            'type'     => 'string',
+            'type' => 'string',
             'required' => 0,
-            'hidden'   => 0,
-            'label'    => trans('admin.label.subtitle'),
-            'display'  => 1,
+            'hidden' => 0,
+            'label' => trans('admin.label.subtitle'),
+            'display' => 1,
         ];
 
         $this->fieldspec['slug'] = [
-            'type'     => 'vue_component',
-            'component-name'=> 'clearable-input-component',
+            'type' => 'vue_component',
+            'component-name' => 'clearable-input-component',
             'required' => 0,
-            'hidden'   => 0,
-            'label'    => trans('admin.label.slug'),
-            'display'  => 1,
+            'hidden' => 0,
+            'label' => trans('admin.label.slug'),
+            'display' => 1,
         ];
         $this->fieldspec['description'] = [
-            'type'     => 'text',
-            'size'     => 600,
-            'h'        => 300,
+            'type' => 'text',
+            'size' => 600,
+            'h' => 300,
             'required' => 0,
-            'hidden'   => 0,
-            'label'    => trans('admin.label.description'),
+            'hidden' => 0,
+            'label' => trans('admin.label.description'),
             'cssClass' => 'wyswyg',
-            'display'  => 1,
+            'display' => 1,
         ];
         $this->fieldspec['abstract'] = [
-            'type'     => 'text',
-            'size'     => 600,
-            'h'        => 100,
+            'type' => 'text',
+            'size' => 600,
+            'h' => 100,
             'required' => 0,
-            'hidden'   => 0,
-            'label'    => trans('admin.label.additional'),
+            'hidden' => 0,
+            'label' => trans('admin.label.additional'),
             'cssClass' => 'wyswyg',
-            'display'  => 1,
+            'display' => 1,
         ];
         $this->fieldspec['link'] = [
-            'type'     => 'string',
+            'type' => 'string',
             'required' => 0,
-            'hidden'   => 0,
-            'label'    => trans('admin.label.ext_url'),
-            'display'  => 1,
+            'hidden' => 0,
+            'label' => trans('admin.label.ext_url'),
+            'display' => 1,
         ];
         $this->fieldspec['image'] = [
-            'type'      => 'media',
-            'required'  => 0,
-            'hidden'    => 0,
-            'label'     => trans('admin.label.image'),
+            'type' => 'media',
+            'required' => 0,
+            'hidden' => 0,
+            'label' => trans('admin.label.image'),
             'mediaType' => 'Img',
-            'display'   => 1,
-			'disk'      => 'media',
+            'display' => 1,
+            'disk' => 'media',
 
         ];
         $this->fieldspec['doc'] = [
-            'type'        => 'media',
-            'required'    => 0,
-            'hidden'      => 0,
-            'label'       => trans('admin.label.doc'),
-            'lang'        => 0,
-            'mediaType'   => 'Doc',
-            'display'     => 1,
-			'uploadifive' => 1,
-			'accept'	=> '.pdf'
+            'type' => 'media',
+            'required' => 0,
+            'hidden' => 0,
+            'label' => trans('admin.label.doc'),
+            'lang' => 0,
+            'mediaType' => 'Doc',
+            'display' => 1,
+            'uploadifive' => 1,
+            'accept' => '.pdf'
         ];
         $this->fieldspec['sort'] = [
-            'type'     => 'integer',
+            'type' => 'integer',
             'required' => 0,
-            'label'    => trans('admin.label.position'),
-            'hidden'   => 0,
-            'display'  => 1,
+            'label' => trans('admin.label.position'),
+            'hidden' => 0,
+            'display' => 1,
         ];
         $this->fieldspec['pub'] = [
-            'type'     => 'boolean',
+            'type' => 'boolean',
             'required' => 0,
-            'hidden'   => 0,
-            'label'    => trans('admin.label.publish'),
-            'display'  => 1
+            'hidden' => 0,
+            'label' => trans('admin.label.publish'),
+            'display' => 1
         ];
         $this->fieldspec['top_menu'] = [
-            'type'     => 'boolean',
+            'type' => 'boolean',
             'required' => 0,
-            'hidden'   => 0,
-            'label'    => trans('admin.label.top_menu'),
-            'display'  => 1
+            'hidden' => 0,
+            'label' => trans('admin.label.top_menu'),
+            'display' => 1
         ];
         $this->fieldspec['ignore_slug_translation'] = [
-            'type'     => 'boolean',
+            'type' => 'boolean',
             'required' => 0,
-            'hidden'   => 0,
-            'label'    => trans('admin.label.slug_ignore'),
-            'display'  => 1
+            'hidden' => 0,
+            'label' => trans('admin.label.slug_ignore'),
+            'display' => 1
         ];
         $this->fieldspec['seo_title'] = [
-            'type'     => 'seo_string',
+            'type' => 'seo_string',
             'required' => 0,
-            'hidden'   => 0,
-            'label'    => trans('admin.seo.title'),
-            'display'  => 1,
-            'max'      => 65
+            'hidden' => 0,
+            'label' => trans('admin.seo.title'),
+            'display' => 1,
+            'max' => 65
         ];
         $this->fieldspec['seo_description'] = [
-            'type'     => 'seo_text',
-            'size'     => 600,
-            'h'        => 300,
-            'hidden'   => 0,
-            'label'    => trans('admin.seo.description'),
+            'type' => 'seo_text',
+            'size' => 600,
+            'h' => 300,
+            'hidden' => 0,
+            'label' => trans('admin.seo.description'),
             'cssClass' => 'no',
-            'display'  => 1,
+            'display' => 1,
         ];
         $this->fieldspec['seo_no_index'] = [
-            'type'     => 'boolean',
+            'type' => 'boolean',
             'required' => 0,
-            'hidden'   => 0,
-            'label'    => trans('admin.seo.no-index'),
-            'display'  => 1
+            'hidden' => 0,
+            'label' => trans('admin.seo.no-index'),
+            'display' => 1
         ];
 
         return $this->fieldspec;
