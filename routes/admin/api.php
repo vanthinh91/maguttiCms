@@ -21,6 +21,7 @@ Route::group([], function () {
     | API LIBRARY
     |--------------------------------------------------------------------------
     */
+    
     Route::get('api/suggest', ['as' => 'api.suggest', 'uses' => '\App\maguttiCms\Admin\Controllers\SuggestAjaxController@suggest'])->middleware(AdminSuggestRole::class);
     Route::get('dashboard','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@dashboard');
     Route::get('nav-bar','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@navbar');
