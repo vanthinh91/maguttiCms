@@ -36,8 +36,9 @@ class Article extends Model
     |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = ['menu_title', 'title', 'slug',
-        'subtitle', 'abstract', 'description',
+    public $translatedAttributes = [
+        'menu_title', 'title', 'subtitle', 'slug',
+        'abstract', 'description',
         'seo_title', 'seo_description', 'seo_no_index'];
 
     public $sluggable = ['slug' => ['field' => 'title', 'updatable' => false, 'translatable' => true]];
@@ -138,6 +139,8 @@ class Article extends Model
             'hidden' => 0,
             'label' => trans('admin.label.subtitle'),
             'display' => 1,
+            'cssClassElement' => 'col-md-4 col-lg-4',
+            'multi-item' => 'start'
         ];
 
         $this->fieldspec['slug'] = [
@@ -147,6 +150,8 @@ class Article extends Model
             'hidden' => 0,
             'label' => trans('admin.label.slug'),
             'display' => 1,
+            'cssClassElement' => 'col-md-4 col-lg-4',
+            'multi-item' => 'stop'
         ];
         $this->fieldspec['description'] = [
             'type' => 'text',
@@ -202,27 +207,34 @@ class Article extends Model
             'label' => trans('admin.label.position'),
             'hidden' => 0,
             'display' => 1,
+
         ];
         $this->fieldspec['pub'] = [
             'type' => 'boolean',
             'required' => 0,
             'hidden' => 0,
             'label' => trans('admin.label.publish'),
-            'display' => 1
+            'display' => 1,
+            'cssClassElement' => 'col-md-2 col-lg-2',
+            'multi-item' => 'start'
         ];
         $this->fieldspec['top_menu'] = [
             'type' => 'boolean',
             'required' => 0,
             'hidden' => 0,
             'label' => trans('admin.label.top_menu'),
-            'display' => 1
+            'display' => 1,
+            'cssClassElement' => 'col-md-2 col-lg-2',
+            'multi-item' => 'column'
         ];
         $this->fieldspec['ignore_slug_translation'] = [
             'type' => 'boolean',
             'required' => 0,
             'hidden' => 0,
             'label' => trans('admin.label.slug_ignore'),
-            'display' => 1
+            'display' => 1,
+            'cssClassElement' => 'col-md-2 col-lg-2',
+            'multi-item' => 'stop'
         ];
         $this->fieldspec['seo_title'] = [
             'type' => 'seo_string',
