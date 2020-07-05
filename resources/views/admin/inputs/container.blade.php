@@ -1,4 +1,4 @@
-@if(!isset($properties['multi-item']) || data_get($properties,'multi-item','')=='start')
+@if(data_get($properties,'row-item','start')=='start')
 	<div class="row cssRow  form-group {{(isset($properties['cssRow']))? $properties['cssRow']: ''}}">
 @endif
 	@if (isset($properties['headerLabel']))
@@ -12,7 +12,7 @@
 	<div class="col-12  {{ ($css_class!='')? $css_class: 'col-sm-9 col-lg-10' }}">
 		{!!$form_element!!}
 	</div>
-@if(!isset($properties['multi-item']) || data_get($properties,'multi-item','')=='stop')
+@if(data_get($properties,'row-item','stop')=='stop')
 	</div>
 @endif
 

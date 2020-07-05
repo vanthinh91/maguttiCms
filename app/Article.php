@@ -140,7 +140,7 @@ class Article extends Model
             'label' => trans('admin.label.subtitle'),
             'display' => 1,
             'cssClassElement' => 'col-md-4 col-lg-4',
-            'multi-item' => 'start'
+            'row-item' => 'start'
         ];
 
         $this->fieldspec['slug'] = [
@@ -151,7 +151,7 @@ class Article extends Model
             'label' => trans('admin.label.slug'),
             'display' => 1,
             'cssClassElement' => 'col-md-4 col-lg-4',
-            'multi-item' => 'stop'
+            'row-item' => 'stop'
         ];
         $this->fieldspec['description'] = [
             'type' => 'text',
@@ -216,7 +216,7 @@ class Article extends Model
             'label' => trans('admin.label.publish'),
             'display' => 1,
             'cssClassElement' => 'col-md-2 col-lg-2',
-            'multi-item' => 'start'
+            'row-item' => 'start'
         ];
         $this->fieldspec['top_menu'] = [
             'type' => 'boolean',
@@ -225,7 +225,7 @@ class Article extends Model
             'label' => trans('admin.label.top_menu'),
             'display' => 1,
             'cssClassElement' => 'col-md-2 col-lg-2',
-            'multi-item' => 'column'
+            'row-item' => 'column'
         ];
         $this->fieldspec['ignore_slug_translation'] = [
             'type' => 'boolean',
@@ -234,7 +234,7 @@ class Article extends Model
             'label' => trans('admin.label.slug_ignore'),
             'display' => 1,
             'cssClassElement' => 'col-md-2 col-lg-2',
-            'multi-item' => 'stop'
+            'row-item' => 'stop'
         ];
         $this->fieldspec['seo_title'] = [
             'type' => 'seo_string',
