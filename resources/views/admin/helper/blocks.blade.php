@@ -31,7 +31,7 @@
                         <input
                                 id="{!! class_basename($block).'_sort_'.$block->id !!}"
                                 class="form-control form-control-sm"
-                                name="sort"
+                                name="{!! class_basename($block).'_sort_'.$block->id !!}"
                                 type="text" value="{{ $block->sort  }}"
                                 data-list-value ="{!! class_basename($block).'_'.$block->id !!}"
                                 data-list-name ="sort"
