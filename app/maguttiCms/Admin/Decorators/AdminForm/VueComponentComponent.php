@@ -1,4 +1,5 @@
-<?php namespace App\maguttiCms\Admin;
+<?php
+namespace App\maguttiCms\Admin\Decorators\AdminForm;
 
 use Form;
 use App;
@@ -7,7 +8,7 @@ use App;
  * Class AdminTree
  * @package App\maguttiCms\Admin
  */
-class AdminVueComponent extends AdminFormComponent
+class VueComponentComponent extends AdminFormBaseComponent
 {
 
     protected $active = "active";
@@ -18,7 +19,7 @@ class AdminVueComponent extends AdminFormComponent
      * @param $key
      * @return string
      */
-    function getComponent($value, $key)
+    function render( $key,$value)
     {
         return $this->composeComponent($value, $key);
     }

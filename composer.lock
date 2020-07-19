@@ -2190,12 +2190,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/marcoax/MaguttiBuilders.git",
-                "reference": "377ee8d9bf46bf16bbdcafec0e0f4a1eccb33b56"
+                "reference": "632f1efeaea1352ba263c15dbcf7cbe365fe86b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/marcoax/MaguttiBuilders/zipball/377ee8d9bf46bf16bbdcafec0e0f4a1eccb33b56",
-                "reference": "377ee8d9bf46bf16bbdcafec0e0f4a1eccb33b56",
+                "url": "https://api.github.com/repos/marcoax/MaguttiBuilders/zipball/632f1efeaea1352ba263c15dbcf7cbe365fe86b7",
+                "reference": "632f1efeaea1352ba263c15dbcf7cbe365fe86b7",
                 "shasum": ""
             },
             "require": {
@@ -2227,7 +2227,7 @@
             ],
             "description": "Query Builder Helpers",
             "homepage": "https://github.com/marcoax/MaguttiBuilders",
-            "time": "2020-03-19T19:21:58+00:00"
+            "time": "2020-07-13T18:40:01+00:00"
         },
         {
             "name": "markbaker/complex",

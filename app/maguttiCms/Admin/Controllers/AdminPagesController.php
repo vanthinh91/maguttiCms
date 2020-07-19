@@ -196,6 +196,7 @@ class AdminPagesController extends Controller
         $this->init($section);
         $model = new  $this->modelClass;
         $article = new $model;
+
         (new AdminFormFieldsProcessor($request))->requestFieldHandler($article);
         session()->flash('success', 'The item <strong>' . $article->title . '</strong> has been created!');
 
@@ -216,7 +217,6 @@ class AdminPagesController extends Controller
         $this->init($section);
         $article = $this->modelClass::whereId($id)->firstOrFail();
         (new AdminFormFieldsProcessor($request))->requestFieldHandler($article);
-
         return redirect()->route('admin_edit',['section' => $this->models, 'id' => $article->id ]);
     }
 

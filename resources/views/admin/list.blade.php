@@ -41,7 +41,7 @@
                                             <x-admin.list.check-box-selectable :article="$article"/>
                                         </td>
                                     @endif
-                                    @foreach($labels=AdminList::authorizedFields() as $label)
+                                    @foreach(AdminList::authorizedFields() as $label)
                                         <td class="{{data_get($label,'class')}}">
                                             {!! AdminList::renderComponent($article,$label)!!}
                                         </td>

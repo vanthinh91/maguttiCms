@@ -35,7 +35,6 @@ trait AdminListComponentTrait
             return true;
         }
         if ($this->componentClassExist($type)) return true;
-
         return false;
     }
 

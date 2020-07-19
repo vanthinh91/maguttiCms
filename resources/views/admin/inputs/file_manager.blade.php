@@ -1,6 +1,6 @@
 
 	{{Form::hidden($key, $value , array('class' => ' form-control '.$css_class))}}
-
+	<div class="col-12 col-sm-9 col-md-10">
 		<div class="media-cont">
 			<div class="media-input">
 				<a href="#" class="btn btn-default filemanager-select" data-input="{{$key}}">
@@ -26,4 +26,5 @@
 			@endif
 
 		</div>
+	</div>
 

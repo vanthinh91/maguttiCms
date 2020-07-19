@@ -116,7 +116,7 @@ class News extends Model
 			'display'         => 1,
 			'cssClass'        => 'datetimepicker',
             //'cssClass'      => 'datepicker',
-			'cssClassElement' => 'col-sm-3',
+			'cssClassElement' => 'col-sm-4',
 		];
         $this->fieldspec['start_date'] = [
             'type'            => 'date',
@@ -124,8 +124,9 @@ class News extends Model
             'hidden'          => 0,
             'label'           => 'Data Ora evento',
             'display'         => 1,
-            'cssClass'        => 'datetimepicker',
+            'cssClass'        => 'datepicker',
             'cssClassElement' => 'col-sm-2',
+
         ];
 		$this->fieldspec['title'] = [
 			'type'      =>'string',

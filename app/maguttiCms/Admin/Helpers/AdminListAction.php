@@ -21,7 +21,6 @@ trait AdminListAction
     {
         return collect($this->action_list)->some(function ($value, $key) {
             return data_get($this->property, $value,'');
-
         });
     }
 
