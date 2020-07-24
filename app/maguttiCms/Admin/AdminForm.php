@@ -3,18 +3,17 @@
 use Form;
 use Str;
 use App;
-use App\Media;
+
 
 use App\maguttiCms\Admin\Helpers\AdminFormContext;
 use App\maguttiCms\Admin\Helpers\AdminFormRelation;
-use App\maguttiCms\Admin\Facades\AdminFormImageRelation;
 use App\maguttiCms\Admin\Helpers\AdminFormResolverComponentTrait;
-use App\maguttiCms\Admin\Decorators\AdminForm\RelationTreeComponent;
-use App\maguttiCms\Admin\Decorators\AdminForm\RelationSelectComponent;
-use App\maguttiCms\Admin\Decorators\AdminForm\RelationSetSelectComponent;
 
 
 /**
+ * Generete the admin form for a given
+ * Model
+ *
  * Class AdminForm
  *
  * @package App\maguttiCms\Admin
@@ -129,7 +128,7 @@ class AdminForm
     /*
     |--------------------------------------------------------------------------
     | CONTAINER SECTION
-    | WRAP THE  COMPONENT INTO CONTAINER
+    | WRAP THE COMPONENT INTO CONTAINER
     |--------------------------------------------------------------------------
     */
 

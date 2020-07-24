@@ -5,7 +5,7 @@ namespace App\maguttiCms\Admin\Helpers;
 use App\maguttiCms\Admin\AdminFormSelect;
 use App\maguttiCms\Admin\Decorators\AdminForm\ViewComponent;
 use App\maguttiCms\Admin\Facades\AdminFormImageRelation;
-use Carbon\Carbon;
+
 use Illuminate\Support\Str;
 
 /**
@@ -15,10 +15,14 @@ use Illuminate\Support\Str;
 trait AdminFormResolverComponentTrait
 {
 
-
-
-
-
+    /**
+     *
+     * @param $value
+     * @param $key
+     * @param $field_properties
+     * @param $locale
+     * @return bool|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
+     */
     function renderComponent($value, $key,$field_properties,$locale){
 
         if (data_get($this->property, 'hidden') && $this->property['type'] != 'relation') {
@@ -35,9 +39,6 @@ trait AdminFormResolverComponentTrait
             return AdminFormSelect::withOptions($this->property['select_data'])->withName($key)->withSelected($value ?: '')->render();
         }
     }
-
-
-
 
 
     /**
@@ -76,27 +77,47 @@ trait AdminFormResolverComponentTrait
         return false;
     }
 
-
+    /**
+     * @param $type
+     * @return string
+     */
     function resolveComponentClassNamespace($type)
     {
         return "App\maguttiCms\Admin\Decorators\AdminForm\\" . ucfirst(Str::camel($type)) . "Component";
     }
 
+    /**
+     * @param $type
+     * @return string
+     */
     function resolveRelationComponentClassNamespace($type)
     {
         return "App\maguttiCms\Admin\Decorators\AdminForm\\" . ucfirst(Str::camel($type)) . "SelectComponent";
     }
 
+    /**
+     * @param $type
+     * @return bool
+     */
     function componentClassExist($type)
     {
         return class_exists($this->resolveComponentClassNamespace($type));
     }
 
+    /**
+     * @param $type
+     * @return bool
+     */
     function relationComponentClassExist($type)
     {
         return class_exists($this->resolveRelationComponentClassNamespace($type));
     }
 
+    /**
+     * @param $type
+     * @param $key
+     * @return bool
+     */
     function componentHasView($type, $key)
     {
         if (view()->exists('admin.inputs.' . $type)) return true;
