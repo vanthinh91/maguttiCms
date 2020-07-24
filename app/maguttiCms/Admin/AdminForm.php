@@ -166,10 +166,6 @@ class AdminForm
     {
         return data_get($this->property,'extraMsg');
     }
-
-
-
-
     /*
     |--------------------------------------------------------------------------
     | LANGUAGE SECTION HELPER
@@ -180,70 +176,6 @@ class AdminForm
     {
         return view('admin.inputs.language_header', ['locale' => $locale, 'label' => $label, 'target' => $target]);
     }
-
-    /**
-     * This method is used to build a dropdown input for the search section of 'model list'.
-     *
-     * @param $key : The name of the input field.
-     * @param $field : The array of specifications (from config/maguttiCms/admin/list.php)
-     *
-     * @return string: The generated html string.
-     */
-    public function buildSearchableField($key, $field, $placeholder = '')
-    {
-
-        // Pull the model instance out of the ioc container.
-        $model = getModelFromString($field['model']);
-
-        // $value is the 'value' of <option>.
-        $value = isset($field['value']) ? $field['value'] : 'id';
-        $caption = $field['field'];
-        $orderField = (isset($field['order_field'])) ? $field['order_field'] : $caption;
-        $order = (isset($field['order'])) ? $field['order'] : 'ASC';
-        $cssClass = (isset($field['cssClass'])) ? $field['cssClass'] : ' ';
-
-        // Fetch all model records.
-        $obj = (new $model)->newQuery();
-        $obj->orderby($orderField, $order);
-        if (isset($field['where']))
-            $records = $obj->whereRaw($field['where'])->get();
-        else
-            $records = $obj->get();
-
-        $html = "<select class='form-control " . $cssClass . " ' id='{$key}' name='{$key}'>";
-        $html .= "<option value=\"\">" . $placeholder . "</option>\n";
-        foreach ($records as $record) {
-            $html .= "<option value='{$record->$value}'>{$record->$caption}</option>\n";
-        }
-        $html .= "</select>";
-
-        return $html;
-    }
-
-    /**
-     * This method is used to build a suggestable field (it uses select 2).
-     *
-     * @param $key : The name of the input field.
-     * @param $field : The array of specifications (from config/maguttiCms/admin/list.php)
-     *
-     * @return string: The generated html string.
-     */
-    public function buildSuggestableField($key, $field, $placeholder)
-    {
-        // Set convenience variables.
-        $value = isset($field['value']) ? $field['value'] : 'id';
-        $caption = $field['caption'];
-        $additionalWhereClause = isset($field['where']) ? $field['where'] : '';
-        $searchFields = isset($field['searchFields']) ? $field['searchFields'] : '';
-        return "<select class='form-control suggest-remote' id='{$key}' name='{$key}'
-		data-model='{$field['model']}'
-		data-value='$value'
-		data-caption='$caption'
-		data-fields='$searchFields'
-		data-placeholder='$placeholder'
-		data-where='{$additionalWhereClause}'></select>";
-    }
-
     /**
      * @return mixed
      */

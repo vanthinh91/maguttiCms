@@ -873,7 +873,7 @@ return [
                 'to_date' => ['type' => 'date_range', 'label' => 'data_to', 'field' => 'date', 'class' => 'col-6 col-sm-1'],
                 'title' => ['type' => 'text', 'label' => 'title', 'field' => 'title'],
                 'slug' => ['type' => 'text', 'label' => 'slug', 'field' => 'slug'],
-                'sort' => ['type' => 'text', 'label' => 'sort', 'field' => 'sort', 'mode' => 'strict'],
+                'sort' => ['type' => 'number', 'label' => 'sort', 'field' => 'sort', 'mode' => 'strict'],
             ],
             'field_exportable' => [
                 'id' => ['type' => 'integer', 'field' => 'id', 'label' => 'id'],

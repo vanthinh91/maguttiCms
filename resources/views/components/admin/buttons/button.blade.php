@@ -1,4 +1,4 @@
-@props(['icon','type','title'=>''])
+@props(['icon','type','title'=>'','label'])
 <a {{ $attributes->merge(['class' => 'btn']) }}
    @if($title)
       title="{{trans($title) }}"
@@ -10,4 +10,5 @@
    @if (config('maguttiCms.admin.option.list.show-labels'))
       {!! trans('admin.label.'.$type)!!}
    @endif
+   {{ $label ?? '' }}
 </a>

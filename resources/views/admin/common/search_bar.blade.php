@@ -4,15 +4,11 @@
         @foreach ( cmsUserValidateActionRoles($pageConfig['field_searchable']) as $key => $search_item )
             <div class="{{array_key_exists('class', $search_item)}}">
                 @if ($search_item['type'] == 'relation')
-                    {!! AdminForm::buildSearchableField($key, $search_item, trans('admin.label.'.$search_item['label'])) !!}
+                    <x-ui.selectable :name="$key" :config="collect($search_item)"></x-ui.selectable>
                 @elseif ($search_item['type'] == 'suggest')
-                    {!! AdminForm::buildSuggestableField($key, $search_item, trans('admin.label.'.$search_item['label'])) !!}
-                @elseif ($search_item['type'] == 'integer')
-                    {!! Form::number($search_item['field'],'', ['class' => 'form-control', 'placeholder' => trans('admin.label.'.$search_item['label'])]) !!}
-                @elseif ($search_item['type'] == 'date_range')
-                    {!! Form::text($key,'', ['class' => 'form-control', 'placeholder' => trans('admin.label.'.strtolower($search_item['label']))]) !!}
+                    <x-ui.suggestable :name="$key" :config="collect($search_item)" class="form-control"></x-ui.suggestable>
                 @else
-                    {!! Form::text($search_item['field'],'', ['class' => 'form-control', 'placeholder' => trans('admin.label.'.$search_item['label'])]) !!}
+                    <x-ui.input :name="$key" :config="collect($search_item)" class="form-control"></x-ui.input>
                 @endif
             </div>
         @endforeach
