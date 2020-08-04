@@ -20,4 +20,12 @@ trait CategoryPresenter
         $url =  $this->getFullSlug($locale);
         return url_locale($url);
     }
+    function getNavTitleAttribute()
+    {
+        return ($this->menu_title) ? $this->menu_title : $this->title;
+    }
+    function getNavLinkAttribute()
+    {
+        return $page_link = ($this->link)? $this->link : $this->getPermalink();
+    }
 }

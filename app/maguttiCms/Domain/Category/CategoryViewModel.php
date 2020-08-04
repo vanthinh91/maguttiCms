@@ -8,17 +8,16 @@ use App\maguttiCms\Domain\Website\WebsiteViewModel;
 class CategoryViewModel extends WebsiteViewModel
 {
 
-
     function show($slug)
     {
-        $category = Category::findBySlug($slug, app()->getLocale());;
+        $category = Category::findBySlug($slug, app()->getLocale());
         if ($category) {
-
-            $article = $this->getCurrentPage();
+            $article = $this->getPage('progetti');
             $this->setSeo($category);
             $locale_article = $category;
             $products = $category->products()->published()->orderBy('sort')->get();
-            return view('website.category', compact('article', 'category', 'products', 'locale_article'));
+            $template = 'category';
+            return view('website.'.$template, compact('article', 'category', 'products', 'locale_article'));
         } else {
             return $this->handleMissingPage();
         }
@@ -29,7 +28,8 @@ class CategoryViewModel extends WebsiteViewModel
         $article = $this->getCurrentPage();
         $categories = Category::published()->orderBy('title')->get();
         $this->setSeo($article);
-        return view('website.categories', ['article' => $article, 'categories' => $categories]);
+        $template = ($article->template_id) ? $article->template->value : 'categories';
+        return view('website.'.$template, ['article' => $article, 'categories' => $categories]);
 
     }
 
