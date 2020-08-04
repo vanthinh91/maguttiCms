@@ -23,11 +23,6 @@
 								:product="{{$product}}" :min=1 :step="1"  :max="100" :value=1>
 							<template #label>{{ trans('store.items.add') }}</template>
 						</cart-add-item>
-
-
-						<button onclick="app.$refs['v100'].update(3.3)" class="-none">add</button>
-
-
 					@endif
 
 				</div>
