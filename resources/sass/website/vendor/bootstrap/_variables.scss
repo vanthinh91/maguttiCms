@@ -52,7 +52,38 @@ $theme-colors: (
 	'color-5': $color-5,
 );
 
+// spacer
 $spacer: 2rem !default;
+$spacers: (
+	    6: ($spacer * 3.5),
+		7: ($spacer * 4),
+		8: ($spacer * 4.5),
+		10: ($spacer * 5),
+
+);
+
+// GRID
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1400px
+);
+
+
+
+$container-max-widths: (
+	sm: 540px,
+	md: 720px,
+	lg: 960px,
+	xl: 1140px,
+	xxl: 1360px
+);
+
+
+
 
 // Buttons + Forms
 

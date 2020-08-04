@@ -1,6 +1,6 @@
 <li class="nav-item dropdown">
 	<a class="nav-link {{$active}} dropdown-toggle" href="#" data-toggle="dropdown" title="{{$page->alt_seo_title}}">
-		{{$page->nav_title}}
+		{{$page->nav_title}} {{icon('chevron-down ml-1')}}
 	</a>
 	<div class="dropdown-menu">
 		@foreach ($children as $index => $child)
