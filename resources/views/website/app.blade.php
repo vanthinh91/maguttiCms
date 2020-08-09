@@ -1,4 +1,4 @@
-    @inject('pages','App\Article')
+@inject('pages','App\Article')
 <!doctype html>
 <html lang="{{ LaravelLocalization::getCurrentLocale() }}">
 <head>

@@ -1,9 +1,10 @@
 <?php namespace App;
 
 use App\maguttiCms\Domain\Block\Blockable;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 use Illuminate\Database\Eloquent\Model;
 use App\maguttiCms\Builders\ArticleBuilder;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+
 use \App\maguttiCms\Domain\Article\ArticlePresenter;
 
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
