@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Giu 02, 2020 alle 11:28
--- Versione del server: 5.7.24
--- Versione PHP: 7.2.14
+-- Creato il: Ago 09, 2020 alle 16:29
+-- Versione del server: 5.7.29
+-- Versione PHP: 7.3.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -8849,8 +8849,8 @@ CREATE TABLE `hpsliders` (
 --
 
 INSERT INTO `hpsliders` (`id`, `title`, `description`, `icon`, `image`, `link`, `slug`, `sort`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'maguttiCms 5.8 slider', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', NULL, 'magutticms-58-slider', 200, 1, 0, '2016-12-27 17:34:38', '2019-05-10 23:16:41'),
-(2, 'maguttiCms 5.8', 'A modular multilingual CMS built with Laravel 5.8', NULL, 'header1.jpg', NULL, '8', 100, 1, 0, '2016-12-27 18:18:09', '2019-05-10 23:16:15');
+(1, 'maguttiCms 7 slider', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', NULL, 'magutticms-7-slider', 200, 1, 0, '2016-12-27 17:34:38', '2020-08-09 16:29:35'),
+(2, 'maguttiCms 7', 'A modular multilingual CMS built with Laravel 7', NULL, 'header1.jpg', NULL, '8', 100, 1, 0, '2016-12-27 18:18:09', '2020-08-09 16:29:24');
 
 -- --------------------------------------------------------
 
