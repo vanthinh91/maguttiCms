@@ -2,6 +2,7 @@
 
 namespace App\maguttiCms\Admin\Helpers;
 
+use Form;
 use App\maguttiCms\Admin\AdminFormSelect;
 use App\maguttiCms\Admin\Decorators\AdminForm\ViewComponent;
 use App\maguttiCms\Admin\Facades\AdminFormImageRelation;
