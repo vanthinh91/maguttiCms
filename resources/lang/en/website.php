@@ -21,7 +21,7 @@ return [
     'message_email' => 'Message',
     'more_info'     => 'Continue',
     'name'          => 'Name',
-    'newsletters_placeholder' => 'Type your  email',
+    'newsletters_placeholder' => 'Subscribe our newsletter type your email',
     'password'		=> 'Password',
     'phone'         => 'Telephone',
     'please_select' => 'Please select',
