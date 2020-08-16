@@ -1,33 +1,30 @@
-{{-- seo_links --}}
- @include('website.partials.seo_links')
-
 <footer class="footer">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-12 col-sm-6">
-                @include('website.partials.widgets_newsletter')
-            </div>
-            <div class="col-12 col-sm-6">
-                <ul class="footer-social">
-                	{!! HtmlSocial::get()->render() !!}
-                </ul>
+    <section class="footer-widgets bg-color-4 py-3">
+        <div class="container ">
+            <div class="row align-items-center ">
+                <div class="col-12 col-md-6 footer-newsletter">
+                    @include('website.partials.widgets_newsletter')
+                </div>
+                <div class="col-12 col-md-6">
+                    <x-website.widgets.social></x-website.widgets.social>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="container mt-4">
+    </section>
+    <section class="footer-info bg-primary py-2">
+    <div class="container ">
         <div class="row align-items-end">
-            <div class="col-12 col-md-8">
-                <h5 class="text-primary">{{ config('maguttiCms.website.option.app.name') }}</h5>
+            <div class="col-12 col-md-8 col footer-address">
+                <h4 class="text-white">{{ config('maguttiCms.website.option.app.name') }}</h4>
 
-                <div>
+                <div class="">
                     &copy; <?php echo date('Y'); ?> {{ config('maguttiCms.website.option.app.legal') }}<br>
                     {{ config('maguttiCms.website.option.app.address') }} - {{ config('maguttiCms.website.option.app.locality') }} - P.IVA {{ config('maguttiCms.website.option.app.vat') }}<br>
                     Tel: {{ config('maguttiCms.website.option.app.phone') }} - Fax: {{ config('maguttiCms.website.option.app.fax') }} - <a href="mailto:{{ config('maguttiCms.website.option.app.email') }}">{{ config('maguttiCms.website.option.app.email') }}</a>
                 </div>
             </div>
 
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4 legal">
                 <div class="text-md-right">
                     <a href="https://www.iubenda.com/privacy-policy/{{ data_get($site_settings,'iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}" class="lightbox-iframe" title="{{ trans('website.privacy')}}">
                         {{ trans('website.privacy')}}
@@ -40,4 +37,5 @@
             </div>
         </div>
     </div>
+    </section>
 </footer>

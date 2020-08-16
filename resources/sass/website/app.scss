@@ -23,7 +23,7 @@
 @import "vendor/bootstrap/reboot";
 @import "vendor/bootstrap/buttons";
 @import "vendor/bootstrap/dropdown";
-@import "vendor/bootstrap/type";
+@import "vendor/bootstrap/typography";
 @import "vendor/bootstrap/navbar";
 @import "vendor/fancybox/fancybox";
 @import "vendor/owl-carousel/owl-carousel";
@@ -31,6 +31,7 @@
 
 // Components
 @import "components/common";
+@import "components/breadcrumbs";
 @import "components/slider";
 @import "components/cookie-notice";
 @import "components/map";

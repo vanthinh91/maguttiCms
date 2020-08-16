@@ -2,31 +2,31 @@
 
 $color-background: white;
 
-$color-text: #333;
+$color-text: #000;
 $color-text-contrast: white; // used in contrast with primary and secondary color
 
-$color-primary: #337d64;
-$color-secondary: #465366;
-$color-accent: #e8c52d;
-$color-4: #cbcbcb;
-$color-5: #f0f0f0;
-$color-6: #08a643;
+$color-primary: $color-text;
+$color-secondary: #337d64;
+$color-accent: #EC6A5A;
+$color-4: #BFB1AC;
+$color-5: #EBE6E5;
+$color-6: #5A524E;
 
 $color-price-discount: #08a643;
 
 /*	font families	*/
 
-$font-family-text: "Open Sans", sans-serif;
-$font-family-title: "Raleway", sans-serif;
-$font-family-subtitle: $font-family-text;
+$font-family-text: "Quicksand", sans-serif;
+$font-family-title: "Quicksand", sans-serif;
+$font-family-subtitle: 'Playfair Display', serif;
 $font-family-icons: 'Font Awesome 5 Free';
 
 /*	boders 	*/
 
-$border-width: 1px;
+$border-width: 3px;
 $border-color: $color-4;
 
-$border-radius: 0;
+$border-radius: 3px;
 
 /*	grid	*/
 
@@ -57,15 +57,15 @@ $navbar-background: $color-background;
 
 /*	navbar items	*/
 
-$navbar-item-padding: 10px;
-$navbar-item-margin: 5px;
+$navbar-item-padding: 0px;
+$navbar-item-margin: 1.2rem;
 
 $navbar-item-color: $color-text;
 $navbar-item-background: transparent;
-$navbar-item-color-hover: $color-text-contrast;
-$navbar-item-background-hover: $color-primary;
-$navbar-item-color-active: $color-text-contrast;
-$navbar-item-background-active: $color-secondary;
+$navbar-item-color-hover: $color-accent;
+$navbar-item-background-hover: transparent;
+$navbar-item-color-active: $color-accent;
+$navbar-item-background-active: transparent;;
 
 /*	forms	*/
 $form-control-background: $color-background;

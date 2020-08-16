@@ -6,6 +6,12 @@
 .btn {
 	@include animate();
 	@include button-variant($color-text, $color-text, $color-text-contrast);
+	border-radius:$btn-border-radius;
+	border: 3px solid transparent;
+	padding:0.5rem 2rem;
+	font-weight:bold ;
+	text-transform: uppercase;
+
 }
 
 .btn-outline {
@@ -29,8 +35,15 @@
 }
 
 .btn-color-5 {
+	 @include button-variant($color-5, $color-5, $color-text);
+ }
+
+.btn-color-6 {
 	@include button-variant($color-5, $color-5, $color-text);
 }
+
+
+
 
 @each $color in ('info', 'success', 'warning', 'danger') {
 	.btn-#{$color} {
@@ -51,12 +64,27 @@
 }
 
 .btn-outline-color-4 {
-	@include button-outline-variant($color-4, $color-text);
+	@include button-outline-variant($color-4, $color-accent,'transparent');
 }
 
 .btn-outline-color-5 {
 	@include button-outline-variant($color-5, $color-text);
 }
+
+.btn-outline-color-5 {
+	@include button-outline-variant($color-5, $color-text);
+}
+
+.btn-outline-color-6 {
+	@include button-outline-variant($color-6, $color-text);
+}
+
+
+.btn-outline-gallery {
+	@include button-outline-variant($color-secondary, $color-text-contrast);
+}
+
+
 
 @each $color in ('info', 'success', 'warning', 'danger') {
 	.btn-outline-#{$color} {

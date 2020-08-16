@@ -13,6 +13,12 @@ body {
 	@include media-breakpoint-up($navbar-trigger) {
 		margin-top: $navbar-height;
 	}
+	&.home{
+		@include media-breakpoint-up($navbar-trigger) {
+			margin-top: 0px;
+		}
+	}
+
 }
 
 a {
@@ -20,3 +26,5 @@ a {
 		outline: 0;
 	}
 }
+
+

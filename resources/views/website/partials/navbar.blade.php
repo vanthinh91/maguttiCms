@@ -20,7 +20,7 @@
 				{!! HtmlMenu::getArticlesLinks($article) !!}
 				{!! HtmlMenu::getAuthLinks() !!}
 				{!! HtmlMenu::getLanguageSelector($locale_article) !!}
-				{!! HtmlMenu::getSocial() !!}
+				{{-- HtmlMenu::getSocial()  --}}
 				{!! HtmlMenu::getAfterNavbar() !!}
 			</ul>
 		</div>

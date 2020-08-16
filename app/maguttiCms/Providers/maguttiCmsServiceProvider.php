@@ -42,7 +42,7 @@ class MaguttiCmsServiceProvider extends ServiceProvider
         /*
          * share site_setting to fe views
          */
-        view()->composer('website/*', ViewShareSettingComposer::class);
+        view()->composer(['website/*','components/*'], ViewShareSettingComposer::class);
 
        
 

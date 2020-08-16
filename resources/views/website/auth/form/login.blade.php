@@ -31,7 +31,7 @@
 		</div>
 	@endif
 	<div class="form-group">
-		<a class="btn btn-secondary btn-block" href="{{ url_locale('/password/reset') }}">
+		<a class="btn btn-accent btn-block" href="{{ url_locale('/password/reset') }}">
 			{{ trans('message.password_forgot_your') }}
 		</a>
 	</div>

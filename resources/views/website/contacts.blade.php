@@ -3,7 +3,7 @@
 
     <div id="map"></div>
 
-    <section class="my-5">
+    <section class="my-2">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4">
