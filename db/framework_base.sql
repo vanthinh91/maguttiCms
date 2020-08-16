@@ -1,11 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Creato il: Ago 09, 2020 alle 16:29
--- Versione del server: 5.7.29
--- Versione PHP: 7.3.19
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -127,16 +120,17 @@ CREATE TABLE `articles` (
 
 INSERT INTO `articles` (`id`, `domain`, `parent_id`, `menu_title`, `title`, `subtitle`, `intro`, `abstract`, `description`, `slug`, `doc`, `image`, `banner`, `link`, `sort`, `pub`, `ignore_slug_translation`, `top_menu`, `template_id`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, '', NULL, NULL, '', NULL, NULL, NULL, '', 'home', NULL, '', '', NULL, 0, 1, 0, 0, NULL, 0, '2016-07-04 06:54:35', '2020-04-03 22:11:30'),
-(2, '', NULL, NULL, '', NULL, NULL, NULL, '', 'company', NULL, 'ff0000.png', '', NULL, 100, 1, 0, 1, NULL, 0, '2016-07-04 06:56:59', '2019-05-04 12:58:21'),
+(2, '', NULL, NULL, '', NULL, NULL, NULL, '', 'company', NULL, 'ff0000.png', '', NULL, 100, 1, 0, 1, NULL, 0, '2016-07-04 06:56:59', '2020-08-11 10:47:21'),
 (3, '', 0, NULL, '', NULL, NULL, NULL, '', 'privacy', '', '', '', '', 2000, 1, 0, 0, 0, 0, '2016-07-04 07:11:17', '2017-08-01 14:33:01'),
 (4, '', 0, NULL, '', NULL, NULL, NULL, '', 'contacts', '', '', '', '', 400, 1, 0, 1, 0, 0, '2016-07-04 07:11:39', '2017-08-01 14:32:40'),
-(5, '', 0, NULL, '', NULL, NULL, NULL, '', 'products', '', '', '', '', 200, 1, 0, 1, 0, 0, '2016-07-04 07:20:37', '2018-01-25 11:03:49'),
+(5, '', NULL, NULL, '', NULL, NULL, NULL, '', 'products', NULL, '', '', NULL, 200, 1, 0, 1, NULL, 0, '2016-07-04 07:20:37', '2020-08-11 10:47:34'),
 (6, '', 0, NULL, '', NULL, NULL, NULL, '', 'news', '', '', '', '', 300, 1, 0, 1, 0, 0, '2016-07-04 07:59:05', '2017-08-01 14:33:11'),
 (7, '', 9, NULL, '', NULL, NULL, NULL, '', 'login', '', '', '', '', 1000, 1, 0, 0, 0, 0, '2016-08-09 13:12:14', '2017-08-01 15:57:18'),
 (8, '', 9, NULL, '', NULL, NULL, NULL, '', 'user-dashboard', '', '', '', '', 1200, 1, 0, 0, 0, 0, '2016-08-09 13:24:04', '2017-08-01 14:33:30'),
 (9, '', 0, NULL, '', NULL, NULL, NULL, '', 'reserved-area', '', '', '', '', 1100, 0, 0, 0, 0, 0, '2016-08-10 07:16:26', '2017-08-01 15:57:05'),
 (10, '', 9, NULL, '', NULL, NULL, NULL, '', 'user-profile', '', '', '', '', 1300, 1, 0, 0, 0, 0, '2016-08-10 07:17:38', '2017-08-01 14:33:37'),
-(11, '', 0, NULL, '', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, '', 2000, 1, 0, 0, 0, 0, '2017-08-01 16:13:57', '2017-08-01 16:16:28');
+(11, '', 0, NULL, '', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, '', 2000, 1, 0, 0, 0, 0, '2017-08-01 16:13:57', '2017-08-01 16:16:28'),
+(12, '', 2, NULL, '', NULL, NULL, NULL, '', 'company', NULL, 'ff0000.png', '', NULL, 110, 1, 0, 1, 21, 0, '2020-08-16 12:33:31', '2020-08-16 12:34:07');
 
 -- --------------------------------------------------------
 
@@ -168,13 +162,13 @@ CREATE TABLE `article_translations` (
 
 INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_title`, `title`, `subtitle`, `intro`, `description`, `abstract`, `seo_title`, `seo_description`, `seo_no_index`, `created_at`, `updated_at`) VALUES
 (1, 1, 'it', 'home', 'Home', 'Home', 'MaguttiCms', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>', NULL, NULL, NULL, '0', '2016-07-04 07:53:04', '2020-04-03 22:03:35'),
-(2, 1, 'en', 'home', 'Home', 'Home', NULL, NULL, NULL, NULL, NULL, NULL, '0', '2016-07-04 07:53:04', '2020-04-03 22:03:52'),
+(2, 1, 'en', 'home', 'Home', 'Home Page Title', 'A laravel 7 CMS', NULL, '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.&nbsp;</p>', NULL, NULL, NULL, '0', '2016-07-04 07:53:04', '2020-08-11 09:55:07'),
 (3, 2, 'it', 'azienda', 'Azienda', 'Azienda', NULL, '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', NULL, NULL, NULL, '2016-07-04 07:53:13', '2019-05-04 12:58:21'),
-(4, 2, 'en', 'company', 'Company', 'Company', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a liber', NULL, NULL, NULL, NULL, NULL, '2016-07-04 07:53:13', '2019-05-04 12:58:21'),
+(4, 2, 'en', 'company', NULL, 'Company', 'Company Subtitle', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a liber', '<p>Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit. Cras eu arcu quis sem faucibus volutpat. Praesent facilisis mauris nec magna vulputate blandit. Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit. Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit. Cras eu arcu quis sem faucibus volutpat. Praesent facilisis mauris nec magna vulputate blandit. Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit. Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit.</p>', NULL, NULL, NULL, '0', '2016-07-04 07:53:13', '2020-08-11 10:45:47'),
 (5, 3, 'it', 'privacy', 'Privacy', 'Privacy', '', NULL, '', '', '', '', '', '2016-07-04 07:53:28', '2017-08-01 14:33:01'),
 (6, 3, 'en', 'privacy', 'Privacy', 'Privacy', '', NULL, '', '', '', '', '', '2016-07-04 07:53:28', '2017-08-01 14:33:01'),
-(7, 5, 'it', 'prodotti', '', 'Categorie', '', NULL, '', '', '', '', '', '2016-07-04 07:53:38', '2018-01-25 11:03:49'),
-(8, 5, 'en', 'products', '', 'Categories', '', NULL, '', '', '', '', '', '2016-07-04 07:53:38', '2018-01-25 11:03:49'),
+(7, 5, 'it', 'prodotti', NULL, 'Categorie', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2016-07-04 07:53:38', '2020-08-11 10:32:09'),
+(8, 5, 'en', 'products', 'Categories', 'Categories', 'See all products', NULL, '<p>LAUNCH NEW BUSINESSES / IMPROVE CX AT SCALE / MAKE BOLDER CHOICES / <br />DELIVER BETTER PRODUCTS / FORM STRONGER TEAMS / LAUNCH NEW <br />BUSINESSES / IMPROVE CX AT SCALE / MAKE BOLDER CHOICES / <br />DELIVER BETTER PRODUCTS / FORM STRONGER TEAMS</p>', NULL, NULL, NULL, '0', '2016-07-04 07:53:38', '2020-08-11 10:37:47'),
 (9, 4, 'it', 'contatti', 'Contatti', 'Contatti', '', NULL, '', '', '', '', '', '2016-07-04 07:54:32', '2017-08-01 14:32:40'),
 (10, 4, 'en', 'contacts', 'Contacts', 'Contacts', '', NULL, '', '', '', '', '', '2016-07-04 07:54:32', '2017-08-01 14:32:40'),
 (13, 6, 'it', 'news', 'News', 'News', '', NULL, '', '', '', '', '', '2016-08-04 11:24:58', '2017-08-01 14:33:11'),
@@ -192,7 +186,13 @@ INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_
 (25, 2, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-04 12:58:21', '2019-05-04 12:58:21'),
 (26, 2, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-05-04 12:58:21', '2019-05-04 12:58:21'),
 (27, 1, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-03 22:03:35', '2020-04-03 22:03:35'),
-(28, 1, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-03 22:03:35', '2020-04-03 22:03:35');
+(28, 1, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-03 22:03:35', '2020-04-03 22:03:35'),
+(29, 5, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-11 10:32:09', '2020-08-11 10:32:09'),
+(30, 5, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-11 10:32:09', '2020-08-11 10:32:09'),
+(31, 12, 'en', 'company-1', 'Company History', 'History', 'History Subtitle', NULL, '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', NULL, NULL, NULL, '0', '2020-08-16 12:34:07', '2020-08-16 13:55:23'),
+(32, 12, 'it', 'storia', 'La storia', 'Storia', 'La nostra storia', NULL, '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', NULL, NULL, NULL, NULL, '2020-08-16 12:34:07', '2020-08-16 13:30:04'),
+(33, 12, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-16 12:34:07', '2020-08-16 12:34:07'),
+(34, 12, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-16 12:34:07', '2020-08-16 12:34:07');
 
 -- --------------------------------------------------------
 
@@ -225,7 +225,8 @@ CREATE TABLE `blocks` (
 --
 
 INSERT INTO `blocks` (`id`, `model_type`, `model_id`, `template_id`, `title`, `subtitle`, `description`, `doc`, `image`, `video`, `link`, `pub`, `sort`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'App\\Article', 2, 21, '', '', NULL, NULL, NULL, NULL, NULL, 1, 10, NULL, NULL, '2019-10-19 14:20:13', '2019-10-19 14:20:13');
+(1, 'App\\Article', 2, 21, '', '', NULL, NULL, NULL, NULL, NULL, 1, 10, NULL, NULL, '2019-10-19 14:20:13', '2019-10-19 14:20:13'),
+(2, 'App\\Article', 1, NULL, '', '', NULL, NULL, NULL, NULL, '5', 1, 10, NULL, NULL, '2020-08-11 12:00:24', '2020-08-16 11:52:45');
 
 -- --------------------------------------------------------
 
@@ -252,7 +253,11 @@ INSERT INTO `block_translations` (`id`, `block_id`, `locale`, `title`, `subtitle
 (1, 1, 'en', 'Company Block Content', NULL, '<p>lore impusm</p>', '2019-10-19 14:20:13', '2019-10-19 14:20:13'),
 (2, 1, 'it', NULL, NULL, NULL, '2019-10-19 14:20:13', '2019-10-19 14:20:13'),
 (3, 1, 'es', NULL, NULL, NULL, '2019-10-19 14:20:13', '2019-10-19 14:20:13'),
-(4, 1, 'fr', NULL, NULL, NULL, '2019-10-19 14:20:13', '2019-10-19 14:20:13');
+(4, 1, 'fr', NULL, NULL, NULL, '2019-10-19 14:20:13', '2019-10-19 14:20:13'),
+(5, 2, 'en', 'Home Page Block', 'See all products', '<p>LAUNCH NEW BUSINESSES / IMPROVE CX AT SCALE / MAKE BOLDER CHOICES / <br />DELIVER BETTER PRODUCTS / FORM STRONGER TEAMS / LAUNCH NEW <br />BUSINESSES / IMPROVE CX AT SCALE / MAKE BOLDER CHOICES / <br />DELIVER BETTER PRODUCTS / FORM STRONGER TEAMS</p>', '2020-08-11 12:00:24', '2020-08-11 12:00:24'),
+(6, 2, 'it', 'Home Page Block', 'See all products', '<p>LAUNCH NEW BUSINESSES / IMPROVE CX AT SCALE / MAKE BOLDER CHOICES / <br />DELIVER BETTER PRODUCTS / FORM STRONGER TEAMS / LAUNCH NEW <br />BUSINESSES / IMPROVE CX AT SCALE / MAKE BOLDER CHOICES / <br />DELIVER BETTER PRODUCTS / FORM STRONGER TEAMS</p>', '2020-08-11 12:00:24', '2020-08-11 12:00:24'),
+(7, 2, 'es', NULL, NULL, NULL, '2020-08-11 12:00:24', '2020-08-11 12:00:24'),
+(8, 2, 'fr', NULL, NULL, NULL, '2020-08-11 12:00:24', '2020-08-11 12:00:24');
 
 -- --------------------------------------------------------
 
@@ -267,6 +272,13 @@ CREATE TABLE `carts` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `carts`
+--
+
+INSERT INTO `carts` (`id`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 0, 1, '2020-08-16 13:57:15', '2020-08-16 14:01:49');
 
 -- --------------------------------------------------------
 
@@ -9098,6 +9110,13 @@ CREATE TABLE `newsletters` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dump dei dati per la tabella `newsletters`
+--
+
+INSERT INTO `newsletters` (`id`, `locale`, `email`, `created_at`, `updated_at`) VALUES
+(0, 'en', 'edoardo@whomade.it', '2020-08-11 10:52:51', '2020-08-11 10:52:51');
+
 -- --------------------------------------------------------
 
 --
@@ -9770,7 +9789,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `gender`, `password`, `remember_token`, `list_code`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Magutti User', 'user@magutti.com', 'M', '$2y$10$lHD.KhLYqqtHRQuXH6PKXODXFlgcQ8UZ6l7.3vaaeLSP1qgxSUszu', 'XuvhEKuwvGBWY9o9Fogsjvr2WR8HrUhidF7X7NupnhglXVBFr1NnmmELygdQ', '', 1, '2017-07-07 13:37:30', '2019-05-11 10:53:21');
+(1, 'Magutti User', 'user@magutti.com', 'M', '$2y$10$lHD.KhLYqqtHRQuXH6PKXODXFlgcQ8UZ6l7.3vaaeLSP1qgxSUszu', 'rXJqDVcvweoMzGNriffqgbh5qqus658OlhLZUdXfjemtLynraZ0sPsudJMPB', '', 1, '2017-07-07 13:37:30', '2019-05-11 10:53:21');
 
 --
 -- Indici per le tabelle scaricate
@@ -10123,37 +10142,37 @@ ALTER TABLE `adminusers`
 -- AUTO_INCREMENT per la tabella `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `article_translations`
 --
 ALTER TABLE `article_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT per la tabella `blocks`
 --
 ALTER TABLE `blocks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `block_translations`
 --
 ALTER TABLE `block_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `categories`
