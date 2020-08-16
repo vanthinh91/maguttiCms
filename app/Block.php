@@ -4,15 +4,23 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
-use Astrotomic\Translatable\Translatable;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 
+use Astrotomic\Translatable\Translatable;
 use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
+use App\maguttiCms\Domain\Block\BlockPresenter;
+
+
+/**
+ * Class Block
+ * @package App
+ */
 class Block extends Model
 {
     use Translatable;
     use GFTranslatableHelperTrait;
+    use BlockPresenter;
+
     protected $fillable = [
         'model_id',
         'model_type',

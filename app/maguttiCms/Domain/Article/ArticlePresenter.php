@@ -57,6 +57,12 @@ trait ArticlePresenter
     }
 
 
+    function getBtnTitleAttribute()
+    {
+        return ($this->menu_title) ? $this->menu_title : $this->sub_title;
+    }
+
+
     /**
      * This method is used to get menu item link.
      *
@@ -74,6 +80,10 @@ trait ArticlePresenter
             return $page_link = $this->getPermalink();
         }
     }
+
+
+
+
     function getNavCssClassAttribute()
     {
       return "nav-item-".$this->{'slug:'. config('app.locale')};
