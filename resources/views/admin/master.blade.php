@@ -8,7 +8,7 @@
 
 	<title>{{ config('maguttiCms.admin.option.title') }}</title>
 
-	<link rel="icon" href="{{ asset('/favicon.jpg') }}" type="any" sizes="20x20">
+	<link rel="icon" href="{{ asset('/favicon.ico') }}" type="any" sizes="20x20">
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400"/>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.1/cropper.min.css">
@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="{{ asset(config('maguttiCms.admin.path.plugins').'custom-scrollbar/jquery.mCustomScrollbar.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset(config('maguttiCms.admin.path.plugins').'colorpicker/css/bootstrap-colorpicker.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset(config('maguttiCms.admin.path.common_css').'ma_helper.css') }}">
-	<link rel="stylesheet" href="{{ asset(config('maguttiCms.admin.path.cms_css').'bootstrap-theme.css') }}">
+	<link rel="stylesheet" href="{{ asset(config('maguttiCms.admin.path.assets').'cms/css/bootstrap-theme.css') }}">
 
 	<link rel="stylesheet" href="{{ asset(config('maguttiCms.admin.path.assets').mix('cms/css/vendor.css')) }}">
 	<link rel="stylesheet" href="{{ asset(config('maguttiCms.admin.path.assets').mix('cms/css/app.css')) }}">

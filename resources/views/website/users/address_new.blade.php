@@ -10,7 +10,6 @@
             <h1 class="text-primary">{{ trans('store.address.new') }}</h1>
 
             @include('flash::notification')
-
             <form class="" action="" method="post">
         		{{ csrf_field() }}
         		<input type="hidden" name="previous" value="{{$previous}}">

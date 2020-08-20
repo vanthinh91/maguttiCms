@@ -14,12 +14,12 @@ return [
 	'cms_js'         => 'cms/js/',
 	'cms_css'        => 'cms/css/',
 
-	'assets'     	 => '',
-	'common_js'      => 'js/',
-	'js_vendor'      => 'js/vendor/',
-	'plugins'        => 'plugins/',
-	'common_css'     => 'css/',
-	'css_vendor'     => 'css/vendor/',
+    'assets'     	 => env('ASSET_PUBLIC_PATH',''),
+    'common_js'      => env('ASSET_PUBLIC_PATH','').'js/',
+    'js_vendor'      => env('ASSET_PUBLIC_PATH','').'js/vendor/',
+    'plugins'        => env('ASSET_PUBLIC_PATH','').'plugins/',
+	'common_css'     => env('ASSET_PUBLIC_PATH','').'css/',
+	'css_vendor'     => env('ASSET_PUBLIC_PATH','').'css/vendor/',
 
 	'user_upload'    => 'upload/',
 

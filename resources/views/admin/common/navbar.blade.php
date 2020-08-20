@@ -11,7 +11,7 @@
 			{{icon('angle-right', 'fa-2x')}}
 		</a>
 		<a class="logo" href="/admin">
-			<img src="{!! asset('cms/images/logo-white.png')!!}" alt="CMS Login" class="img-fluid">
+			<img src="{!! asset(config('maguttiCms.admin.path.assets').'cms/images/logo-white.png')!!}" alt="CMS Login" class="img-fluid">
 		</a>
 		<a id="navbar-toggle" href="#navbar" class="nav-toggle">
 			{{icon('bars', 'fa-2x')}}

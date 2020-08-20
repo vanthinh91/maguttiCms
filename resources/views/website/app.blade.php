@@ -12,9 +12,9 @@
     {{-- Meta SEO --}}
     {!! SEO::generate() !!}
 
-    <link href="{{ asset('website/images/icon.png') }}" type="image/PNG" rel="icon">
-    <link href="{{ asset(mix('website/css/vendor.css')) }}" rel="stylesheet">
-    <link href="{{ asset(mix('website/css/app.css')) }}" rel="stylesheet">
+    <link href="{{ asset(config('maguttiCms.admin.path.assets').'website/images/icon.png') }}" type="image/PNG" rel="icon">
+    <link href="{{ asset(config('maguttiCms.admin.path.assets').mix('website/css/vendor.css')) }}" rel="stylesheet">
+    <link href="{{ asset(config('maguttiCms.admin.path.assets').mix('website/css/app.css')) }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -58,11 +58,10 @@
         };
         @endif
     </script>
-
     @include('website.partials.js_localization')
 
-    <script type="text/javascript" src="{{ asset(mix('/website/js/vendor.js')) }}"></script>
-    <script type="text/javascript" src="{{ asset(mix('/website/js/app.js')) }}"></script>
+    <script type="text/javascript" src="{{ asset(config('maguttiCms.admin.path.assets').mix('/website/js/vendor.js')) }}"></script>
+    <script type="text/javascript" src="{{ asset(config('maguttiCms.admin.path.assets').mix('/website/js/app.js')) }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             App.init();
@@ -71,7 +70,7 @@
 
     {{-- Store JS --}}
     @if (store_enabled())
-    <script type="text/javascript" src="{{ asset(mix('/website/js/cart.js')) }}"></script>
+    <script type="text/javascript" src="{{ asset(config('maguttiCms.admin.path.assets').mix('/website/js/cart.js')) }}"></script>
     @endif
 
     {{-- Iubenda code --}}
