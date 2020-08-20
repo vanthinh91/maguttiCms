@@ -19,7 +19,7 @@ maguttiCms is released using Laravel 7x.
  - to login in the admin panel (http://yourpath/admin)
  - email: cmsadmin@magutti.com
  - password: password
- - for shared hosting you can set ASSET_PUBLIC_PATH (eg ASSET_PUBLIC_PATH='public/')
+ - for shared hosting you can set ASSET_PUBLIC_PATH in .env  file (eg ASSET_PUBLIC_PATH='public/')
    
 ### Server Requirements
  
