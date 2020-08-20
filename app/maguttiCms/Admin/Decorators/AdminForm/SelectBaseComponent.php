@@ -22,7 +22,7 @@ class SelectBaseComponent extends AdminFormBaseComponent
         $b = data_get($this->property, 'label_key', 'name');
         $isRequired = data_get($this->property, 'required', false);
         $nullLabel = data_get($this->property, 'nullLabel', 'Select ' . $this->property['label']);
-        $multiple = data_get($this->property, 'multiple', '');
+        $multiple = (data_get($this->property, 'multiple', ''))?'multiple':'';
         $cssClass = data_get($this->property, 'cssClass', '');
 
         // GF_ma gestione campo hidden
