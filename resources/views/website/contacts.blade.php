@@ -49,7 +49,7 @@
 				'{!! config('maguttiCms.website.option.app.name')!!}',	//title
 				{{data_get($site_settings,'LAT')}},	// lat
 				{{data_get($site_settings,'LNG')}},	// lng
-				'{{asset('website/images/map_marker.png')}}',	// icon image
+				'{{asset(config('maguttiCms.admin.path.assets').'website/images/map_marker.png')}}',	// icon image
 				"<div class='mapPop'><b>{!! config('maguttiCms.website.option.app.name')!!}</b><br>{!! config('maguttiCms.website.option.app.address')!!}<br>{!! config('maguttiCms.website.option.app.locality')!!}<br></div>", //popup window content
 			]
 		];
