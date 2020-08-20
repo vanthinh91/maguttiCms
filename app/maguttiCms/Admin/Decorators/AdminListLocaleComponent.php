@@ -18,7 +18,7 @@ class  AdminListLocaleComponent extends AdminListComponent
     {
         $value = $this->getValue();
         return "<img class=\"flag\" 
-                     src=\"" . asset("website/images/flags/" . $value . ".png") . "\" 
+                     src=\"" . asset(config('maguttiCms.admin.path.assets')."website/images/flags/" . $value . ".png") . "\" 
                      alt=\"" . $value . " flag\">";
     }
 }
