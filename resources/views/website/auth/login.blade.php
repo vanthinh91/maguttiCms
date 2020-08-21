@@ -3,9 +3,9 @@
 	<x-website.ui.breadcrumbs class="bg-accent">
 		<div class="text-white page-breadcrumb d-flex align-items-end">
 			@if($article->parent)
-				<div class="page-breadcrumb-item">{{$article->parent->title}}</div>
+				<div class="page-breadcrumb__item">{{$article->parent->title}}</div>
 			@endif
-			<div class="page-breadcrumb-item">{{$article->menu_title}}</div>
+			<div class="page-breadcrumb__item">{{$article->menu_title}}</div>
 		</div>
 	</x-website.ui.breadcrumbs>
 	<main class="my-2">

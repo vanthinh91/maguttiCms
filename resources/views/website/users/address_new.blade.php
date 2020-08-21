@@ -2,7 +2,7 @@
 @section('content')
 	<x-website.ui.breadcrumbs class="bg-accent">
 		<div class="text-white page-breadcrumb d-flex align-items-end">
-			<div class="page-breadcrumb-item">{{ trans('store.address.new') }}</div>
+			<div class="page-breadcrumb-__item">{{ trans('store.address.new') }}</div>
 		</div>
 	</x-website.ui.breadcrumbs>
     <main class="my-2">
