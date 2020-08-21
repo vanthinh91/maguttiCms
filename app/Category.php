@@ -104,10 +104,10 @@ class Category extends Model
             'size' => 600,
             'h' => 300,
             'required' => 0,
-            'hidden' => 1,
+            'hidden' => 0,
             'label' => trans('admin.label.description'),
             'cssClass' => 'wyswyg',
-            'display' => 0,
+            'display' => 1,
         ];
 
         $this->fieldspec['image'] = [

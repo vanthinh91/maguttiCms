@@ -2,18 +2,18 @@
 @section('content')
 	<x-website.ui.breadcrumbs class="bg-accent">
 		<div class="text-white page-breadcrumb d-flex align-items-end">
-			<div class="page-breadcrumb-item">{{$category->title}}</div>
+			<h1 class="page-breadcrumb__item">{{$category->title}}</h1>
 		</div>
 	</x-website.ui.breadcrumbs>
-	<main class="my-2">
+	<section class="py-2 py-md-4">
 		<div class="container">
-			<h1 class="text-primary">{{ $category->title }}</h1>
-			<ul>
+			<div class="row">
 				@foreach ($products as $product)
-					<li><a href="{{ $product->getPermalink() }}">{{ $product->title }}</a></li>
+					<div class="col-12 col-sm-6 col-lg-3">
+						<x-website.products.item :product="$product"></x-website.products.item>
+					</div>
 				@endforeach
-			</ul>
+			</div>
 		</div>
-	</main>
-
+	</section>
 @endsection

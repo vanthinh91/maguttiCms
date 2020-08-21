@@ -1,0 +1,38 @@
+.products{
+  &__card{
+    border: 0px solid rgba(0,0,0,0.25);
+    margin-bottom:0.5rem;
+    &:hover{
+      img{
+        opacity: 0.8;
+      }
+      border: 0px solid $primary;
+    }
+    .btn {
+       padding:0.2rem 1rem;
+       font-size:0.9rem;
+     }
+    .card-title{
+      font-weight: 500;
+      font-size:1rem;
+      margin:0.4rem 0px;
+      color: $color-6;
+    }
+    .card-code{
+      font-size: 0.8rem;
+       margin-bottom: 1rem;
+    }
+
+    .card-price{
+      font-weight: bold;
+      font-size:1.25rem;
+      color:$primary;
+      margin:0px;
+    }
+
+  }
+}
+
+
+
+

@@ -23,12 +23,12 @@
   }
 
   &__card{
-
+    border: 0px solid rgba(0,0,0,0.25);
     &:hover{
       img{
         opacity: 0.8;
       }
-      border: 3px solid $color-4;
+      border: 0px solid rgba(0,0,0,0.25);
     }
     .btn {
        padding:0.2rem 1rem;

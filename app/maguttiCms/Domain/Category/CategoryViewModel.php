@@ -26,10 +26,10 @@ class CategoryViewModel extends WebsiteViewModel
     function index()
     {
         $article = $this->getCurrentPage();
-        $categories = Category::published()->orderBy('title')->get();
+
         $this->setSeo($article);
         $template = ($article->template_id) ? $article->template->value : 'categories';
-        return view('website.'.$template, ['article' => $article, 'categories' => $categories]);
+        return view('website.'.$template, ['article' => $article]);
 
     }
 

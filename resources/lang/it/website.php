@@ -27,6 +27,7 @@ return [
 	'please_select'           => 'Prego selezionare',
 	'privacy'		          => 'Privacy Policy',
 	'read_more'               => 'Continua',
+	'see'                     => 'Vedi',
 	'send'                    => 'Invia',
 	'subject'                 => 'Oggetto',
 	'surname'                 => 'Cognome',
@@ -40,6 +41,7 @@ return [
 	'product' => [
 		'download_pdf'      => 'Scarica Scheda',
 		'contact_request'   => 'Richiedi Preventivo',
+        'see_all'           => 'Vedi prodotti',
 	],
 	'news' => [
 		'latest'            => 'Ultime News',

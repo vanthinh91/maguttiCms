@@ -27,6 +27,7 @@ return [
     'please_select' => 'Please select',
     'privacy'		=> 'Privacy Policy',
     'read_more'     => 'Continue',
+    'see'           => 'See',
     'send'          => 'Send',
     'subject'       => 'Subject',
     'surname'       => 'Surname',
@@ -40,6 +41,7 @@ return [
     'product' => [
         'download_pdf'      => 'Scarica Scheda',
         'contact_request'   => 'Request information',
+        'see_all'           => 'All products',
     ],
     'news' => [
         'latest'    => 'Ultime News',
