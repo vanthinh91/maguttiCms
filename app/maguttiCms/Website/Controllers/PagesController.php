@@ -35,4 +35,11 @@ class PagesController extends Controller
     {
         return (new NewsViewModel('news'))->handle($slug);
     }
+
+    public function newsByTags($tag)
+    {
+        return (new NewsViewModel('news'))->index($tag);
+    }
+
+
 }

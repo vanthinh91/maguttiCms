@@ -54,6 +54,7 @@ Route::group([
     // Pages routes...
     Route::get('/',                     '\App\maguttiCms\Website\Controllers\PagesController@home');
     Route::get('/news/',                '\App\maguttiCms\Website\Controllers\PagesController@news');
+    Route::get('/news/tags/{tags}',     '\App\maguttiCms\Website\Controllers\PagesController@newsByTags');
     Route::get('/news/{slug}',          '\App\maguttiCms\Website\Controllers\PagesController@news');
     Route::get(LaravelLocalization::transRoute("routes.category"),	'\App\maguttiCms\Website\Controllers\ProductsController@category');
     Route::get(LaravelLocalization::transRoute("routes.products"),	'\App\maguttiCms\Website\Controllers\ProductsController@products');

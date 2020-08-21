@@ -1,5 +1,5 @@
 @props([
-'class'
+    'class'
 ])
 <x-website.partial.section class="{{$class}}" classCaption="text-accent">
     <x-slot name="caption">{{$item->subtitle}}</x-slot>

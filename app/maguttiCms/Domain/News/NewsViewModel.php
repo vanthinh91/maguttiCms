@@ -12,6 +12,7 @@ class NewsViewModel extends WebsiteViewModel
 
     function show($slug)
     {
+
         $news = News::findBySlug($slug, app()->getLocale());
         $article = $this->getCurrentPage();
         if ($news) {
@@ -22,13 +23,14 @@ class NewsViewModel extends WebsiteViewModel
         return redirect(url_locale('/'));
     }
 
-    function index()
+    function index($tag='')
     {
         $article = $this->getCurrentPage();
-        $news = News::findPublished()->paginate(config('maguttiCms.website.option.pagination.news_index'));
+        $news = News::itemList($tag);
         $this->setSeo($article);
+        if($tag)\SEO::setTitle( $this->title.' - '.$tag );
         $this->setPagination($news);
-        return view('website.news.index', compact('article'));
+        return view('website.news.index', compact('article','tag'));
     }
 
     function handle($slug)

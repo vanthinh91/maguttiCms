@@ -13,15 +13,7 @@ class Index extends Component
      */
     public $news;
 
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
 
-    }
 
     /**
      * Get the view / contents that represent the component.
@@ -33,15 +25,14 @@ class Index extends Component
         return view('components.website.news.index');
     }
 
-    function posts(){
+    function posts($tag = '')
+    {
+        $this->news = News::itemList($tag);
+        return $this->news;
+    }
 
-        $this->news = News::findPublished()->paginate(config('maguttiCms.website.option.pagination.news_index'));
-
-        return  $this->news;
-     }
-
-    function paginate(){
-
+    function paginate()
+    {
         return $this->news->links();
     }
 }

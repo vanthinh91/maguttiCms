@@ -3,10 +3,10 @@
         <div class="container ">
             <div class="row align-items-center ">
                 <div class="col-12 col-md-6 footer-newsletter">
-                    @include('website.partials.widgets_newsletter')
+                    <x-website.widgets.newsletter/>
                 </div>
                 <div class="col-12 col-md-6">
-                    <x-website.widgets.social></x-website.widgets.social>
+                    <x-website.widgets.social/>
                 </div>
             </div>
         </div>

@@ -8,4 +8,5 @@
     @endif
     {!! $news->description !!}
 </article>
+<x-website.widgets.page_tags :news="$news"/>
 <x-website.widgets.page_sharer :item="$news"/>

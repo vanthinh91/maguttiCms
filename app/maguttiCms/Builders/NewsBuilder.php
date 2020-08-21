@@ -2,6 +2,7 @@
 
 namespace App\maguttiCms\Builders;
 
+use App\News;
 use Carbon\Carbon;
 
 class NewsBuilder extends MaguttiCmsBuilder
@@ -22,11 +23,33 @@ class NewsBuilder extends MaguttiCmsBuilder
     {
         return $this->where('pub', 1)->where('date', '<=', Carbon::now());
     }
+    /*
+     *
+     */
     function findPublished()
     {
-
-        return $this->published()
-            ->latest('date');
-
+        return $this->published()->latest('date');
     }
+
+    /**
+     * @param $tag
+     * @return NewsBuilder|\Illuminate\Database\Eloquent\Builder
+     */
+    function findByTag($tag)
+    {
+        return $this->whereHas('tags', function ($query) use ($tag) {
+                    $query->where('slug', 'like', '%' . $tag . '%');
+        });
+    }
+
+
+    function itemList($tag,$limit=''){
+        $limit ?? config('maguttiCms.website.option.pagination.news_index');
+        return $this->findPublished()
+            ->when($tag, function ($query, $tag) {
+                return $query->findByTag($tag);
+            })->paginate($limit);
+    }
+
+
 }

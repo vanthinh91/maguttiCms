@@ -53,7 +53,7 @@ trait MaguttiCmsSeoTrait
         }
     }
 
-    public function setTitle()
+    public function setTitle(   )
     {
         $this->title = $this->tagHandler('title');
         if($this->title=='') $this->title  = $this->tagHandler('name');
