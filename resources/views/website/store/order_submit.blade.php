@@ -1,12 +1,9 @@
 @extends('website.app')
 @section('content')
-
     <main class="my-5">
         <div class="container">
             <h1 class="text-primary">{{trans('store.order.title')}}</h1>
-
             @include('flash::notification')
-
             <h3>{{trans('store.order.resume')}}</h3>
         	<table class="table">
         		<thead>
@@ -34,9 +31,7 @@
         			@endforeach
         		</tbody>
         	</table>
-
             <hr />
-
             <form action="" method="post">
         		{{ csrf_field() }}
         		<input id="order-cart" type="hidden" name="cart_id" value="{{$cart->cart->id}}">
