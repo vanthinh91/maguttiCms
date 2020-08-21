@@ -64,7 +64,7 @@
 }
 
 .btn-outline-color-4 {
-	@include button-outline-variant($color-4, $color-accent,'transparent');
+	@include button-outline-variant($color-4, $color-text-contrast,$color-4);
 }
 
 .btn-outline-color-5 {

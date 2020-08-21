@@ -28,7 +28,7 @@ class NewsViewModel extends WebsiteViewModel
         $news = News::findPublished()->paginate(config('maguttiCms.website.option.pagination.news_index'));
         $this->setSeo($article);
         $this->setPagination($news);
-        return view('website.news.index', compact('article', 'news'));
+        return view('website.news.index', compact('article'));
     }
 
     function handle($slug)
