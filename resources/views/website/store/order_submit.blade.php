@@ -1,8 +1,8 @@
 @extends('website.app')
 @section('content')
-    <main class="my-5">
+	<x-website.partial.page-header  :title="trans('store.order.title')" :class="'bg-accent'"/>
+    <section>
         <div class="container">
-            <h1 class="text-primary">{{trans('store.order.title')}}</h1>
             @include('flash::notification')
             <h3>{{trans('store.order.resume')}}</h3>
         	<table class="table">
@@ -110,6 +110,6 @@
         		</div>
             </form>
         </div>
-    </main>
+    </section>
 
 @endsection

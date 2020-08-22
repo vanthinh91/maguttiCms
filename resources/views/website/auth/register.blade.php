@@ -1,10 +1,6 @@
 @extends('website.app')
 @section('content')
-	<x-website.ui.breadcrumbs class="bg-accent">
-		<div class="text-white page-breadcrumb d-flex align-items-end">
-			<div class="page-breadcrumb__item">{{ trans('message.register') }}</div>
-		</div>
-	</x-website.ui.breadcrumbs>
+	<x-website.partial.page-header  :title="trans('message.register')"/>
 	<section>
         <div class="container">
 			<div class="row">

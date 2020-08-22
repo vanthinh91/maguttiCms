@@ -1,5 +1,5 @@
 @if ($errors->any())
-	<div class='text-center alert alert-info'>
+	<div class='text-center alert alert-color-4'>
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">{{icon('times')}}</button>
 		{{icon('exclamation-circle', 'fa-3x')}}
 		@foreach ( $errors->all() as $error)

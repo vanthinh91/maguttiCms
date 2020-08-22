@@ -1,11 +1,9 @@
 @extends('website.app')
 @section('content')
-
+	<x-website.partial.page-header  :title="$article->title"/>
 	<main class="my-5">
         <div class="container">
-            <h1 class="text-primary">{{ $article->title }}</h1>
-
-			{!! $article->description !!}
+ 		{!! $article->description !!}
 		</div>
 	</main>
 	

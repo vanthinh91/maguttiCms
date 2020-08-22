@@ -30,11 +30,12 @@
 			{{ trans('message.sign_in') }}
 		</button>
 	</div>
-	<div class="login-form-not-registered d-flex justify-content-center">
+
 	@if (!isset($with_register))
+		<div class="login-form-not-registered d-flex justify-content-center">
 			{{ trans('message.not_registered') }}
-			<a class="ml-1 text-accent" href="{{ url_locale('/register') }}">
-				  {{ trans('message.new_user') }}
+			<a class="ml-1 text-accent" href="{{ url_locale('/register') }}">{{ trans('message.new_user') }}
 			</a>
+		</div>
 	@endif
 </form>

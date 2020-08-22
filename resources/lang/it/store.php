@@ -12,7 +12,7 @@ return [
 		'title' => 'Il mio carrello',
 		'total' => 'Totale',
 		'empty' => 'Il carrello è vuoto',
-		'buy' => 'Procedi con l\'ordine',
+        'buy' => 'Checkout',
 		'back' => 'Torna allo store',
 		'table' => [
 			'code' => 'Codice',
@@ -63,6 +63,12 @@ return [
 		'shipping' => 'Indirizzo di spedizione',
 		'products_cost' => 'Costo dei prodotti',
 		'shipping_cost' => 'Spese di spedizione',
+
+        'registered_user' => 'Utente Registrato',
+        'registered_user_login_message'  => 'Effettua il login per richiamare i tuoi dati e completare più velocemente l\'acquisto.',
+        'guest_checkout'  => 'Checkout come ospite',
+        'guest_checkout_countinue'  => 'Continua come Ospite',
+        'guest_checkout_message'  => 'Non hai un account? Puoi passare al pagamento senza esserti registrato. Se vuoi, puoi registrarti dopo aver completato l\'ordine, così potrai usufruire delle procedure di pagamento più rapide e controllare tutti i dettagli del tuo acquisto..',
 		'vat_cost' => 'Iva',
 		'total_cost' => 'Totale ordine',
 		'discount' => [

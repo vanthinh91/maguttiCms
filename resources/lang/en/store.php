@@ -9,10 +9,10 @@ return [
 	'cart' => [
         'checkout' => 'Checkout',
         'continue' => 'Continue',
-		'title' => 'My cart',
+		'title' => 'Shopping Bag',
 		'total' => 'Total',
-		'empty' => 'The cart is empty',
-		'buy' => 'Proceed with your order',
+		'empty' => 'Your Shopping bag is empty',
+		'buy' => 'Checkout',
 		'back' => 'Back to the store',
 		'table' => [
 			'code' => 'Code',
@@ -43,6 +43,7 @@ return [
 		'cart_empty' => 'The cart is empty',
 		'order_success' => 'Order submitted correctly',
 		'order_fail' => 'Unable to submit the order',
+
 		'payment_fail' => 'Payment failed',
 		'payment_already_paid' => 'The order has already been paid',
 		'payment_success' => 'Payment succesful',
@@ -52,7 +53,7 @@ return [
 		'guard' => 'An account is required to continue',
 		'login' => 'Login',
 		'register' => 'Create a new account',
-		'title' => 'Purchase order',
+		'title' => 'Order Summary',
 		'back' => 'Back to cart',
 		'resume' => 'Products review',
 		'addresses' => 'Addresses',
@@ -63,7 +64,14 @@ return [
 		'shipping' => 'Shipping address',
 		'products_cost' => 'Products cost',
 		'shipping_cost' => 'Shipping cost',
-		'vat_cost' => 'VAT',
+        'registered_user' => 'Registered user',
+        'registered_user_login_message'  => 'Log in to recall your saved details and speed up your purchase.',
+        'guest_checkout'  => 'Guest Checkout',
+        'guest_checkout_countinue'  => 'Continue as Guest',
+        'guest_checkout_message'  => 'Don\'t have any account? You can check out without logging in. 
+        You will be able to register after completing your order for faster checkout and access to order history. ',
+
+        'vat_cost' => 'VAT',
 		'total_cost' => 'Order total',
 		'discount' => [
 			'title' => 'Discount coupon',
