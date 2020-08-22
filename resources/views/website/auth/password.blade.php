@@ -5,12 +5,14 @@
 			<div class="page-breadcrumb__item">{{ trans('message.password_forgot') }}</div>
 		</div>
 	</x-website.ui.breadcrumbs>
-	<section class="my-2">
+	<section>
         <div class="container">
 			<div class="row">
-				<div class="col-12 col-lg-5 mx-auto">
-					<h2 class="text-primary text-center">{{ trans('message.password_forgot') }}</h2>
-					@include('website.auth.form.password')
+				<div class="col-12 col-lg-5 mx-auto auth-box">
+					<div class="auth-box-content">
+						<h2 class="text-primary text-center mb-3">{{ trans('message.password_forgot') }}</h2>
+						@include('website.auth.form.password')
+					</div>
 				</div>
 			</div>
 		</div>

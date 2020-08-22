@@ -17151,8 +17151,8 @@ section {
 @media (min-width: 768px) {
   main,
   section {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 }
 
@@ -17532,6 +17532,38 @@ mark {
 .category__card .card-title {
   font-weight: bold;
   font-size: 1.25rem;
+}
+
+.login-box-title {
+  margin-bottom: 1.5rem;
+}
+
+.login-box-content {
+  border-radius: 0.75rem !important;
+  box-shadow: 3px 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid #e9ecef;
+  padding: 2rem;
+}
+
+.login-form-not-registered {
+  border-top: 1px solid #e9ecef;
+  padding-top: 1.5rem;
+  text-align: center;
+}
+
+.login-form-support {
+  padding-bottom: 1.5rem;
+}
+
+.auth-box-title {
+  margin-bottom: 1.5rem;
+}
+
+.auth-box-content {
+  border-radius: 0.75rem !important;
+  box-shadow: 3px 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid #e9ecef;
+  padding: 2.5rem;
 }
 
 .news__sidebar {

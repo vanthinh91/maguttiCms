@@ -20,8 +20,14 @@
 	</div>
 	<div class="form-group">
 		<input type="password" class="form-control" name="password_confirmation" placeholder="{{ trans('message.password_confirm') }}">
+
+		<div class="mt-2 alert alert-color-4">
+			{{trans('website.message.password')}}
+		</div>
 	</div>
-	<div class="form-group">
+
+
+	<div>
 		<button type="submit" class="btn btn-primary btn-block">{{ trans('message.password_reset') }}</button>
 	</div>
 </form>

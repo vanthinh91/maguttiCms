@@ -8,16 +8,17 @@
 			<div class="page-breadcrumb__item">{{$article->menu_title}}</div>
 		</div>
 	</x-website.ui.breadcrumbs>
-	<main class="my-2">
+	<section>
         <div class="container">
 			<div class="row">
-				<div class="col-12 col-lg-5 mx-auto">
-					<h1 class="text-primary text-center">{{ $article->title }}</h1>
-
-					@include('website.auth.form.login')
+				<div class="col-12 col-lg-5 mx-auto login-box">
+					<h2 class="login-box-title text-primary text-center">{{ $article->title }}</h2>
+					<div class="login-box-content">
+						@include('website.auth.form.login')
+					</div>
 				</div>
 			</div>
 		</div>
-	</main>
+	</section>
 
 @endsection

@@ -9,7 +9,7 @@ return [
 	|
 	*/
 
-	'new_user' => 'Create a new account?',
+	'new_user' => 'Create a new account',
 	'password_confirm' => 'Confirm Password',
 	'password_sent_reset_link' => 'Send Password Reset Link',
 	'password_reset' => 'Reset password',
@@ -17,6 +17,7 @@ return [
 	'password_forgot' => 'Forgot Password',
 	'register_account' => 'Register an account.',
 	'register' => 'Register',
+    'sign_in' => 'Sign In',
 	'remember_me' => 'Remember Me',
 	'throttle' => 'Too much login please wait :seconds seconds',
 ];
