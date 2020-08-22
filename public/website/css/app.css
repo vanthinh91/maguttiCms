@@ -17651,3 +17651,64 @@ mark {
   margin: 0.4rem 0;
 }
 
+.product-page {
+  padding: 0rem 0rem 1rem;
+}
+
+@media (min-width: 576px) {
+  .product-page {
+    padding: 0rem;
+    background: linear-gradient(90deg, transparent 50%, #EBE6E5 50%);
+  }
+}
+
+.product-page-card {
+  padding: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .product-page-card {
+    padding: 2.5rem;
+  }
+}
+
+.product-page-title {
+  margin: 0;
+}
+
+.product-page-code {
+  margin: 0;
+}
+
+.product-page-description {
+  margin: 1rem 0 0;
+}
+
+.product-page-price {
+  color: white;
+  background: #5A524E;
+  padding: 0.5rem 1rem;
+  border-radius: 5rem;
+  display: inline-flex;
+  margin: 1.5rem 0rem;
+  transition: all 0.2s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-page-price {
+    transition: none;
+  }
+}
+
+.product-page-price:hover {
+  background: #ec6a5a;
+}
+
+.product-page p {
+  margin: 0px;
+}
+
+.product-page .form {
+  padding: 0px;
+}
+

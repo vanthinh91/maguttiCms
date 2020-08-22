@@ -2,28 +2,31 @@
 @section('content')
 	<x-website.ui.breadcrumbs class="bg-accent">
 		<div class="text-white page-breadcrumb d-flex align-items-end">
-			<div class="page-breadcrumb-__item">{{$product->title}}</div>
+			<div class="page-breadcrumb__item"><a href="{{$product->category->getPermalink()}}">{{$product->category->title}}</a></div>
+			<div class="page-breadcrumb__item">{{$product->title}}</div>
 		</div>
 	</x-website.ui.breadcrumbs>
-	<section class="my-2">
+	<section class="product-page">
 		<div class="container">
-			<div class="row">
-				<div class="col-12 col-sm-4 order-md-2 mb-3 mb-md-0">
-					<img class="img-fluid" src="{{ ImgHelper::get_cached($product->image, config('maguttiCms.image.medium')) }}" alt="{{ $product->title }}">
+			<div class="row no-gutters">
+				<div class="col-12 col-sm-6 order-md-1 my-2 my-md-0 product-page-image">
+					<img class="img-fluid" src="{{ ImgHelper::get_cached($product->image, config('maguttiCms.image.large')) }}" alt="{{ $product->title }}">
 				</div>
-				<div class="col-12 col-sm-8 order-md-1">
-					<h1 class="text-primary">{{ $product->title }}</h1>
-					<h5 class="text-muted">{{ trans('store.product.code') }}: {{ $product->code }}</h5>
-					{!! $product->description !!}
-					@if (StoreHelper::isStoreEnabled())
-						{{ trans('store.product.price') }}: {{ StoreHelper::formatProductPrice($product) }}
-						<hr>
-						<cart-add-item
-								ref="v100"
-								:product="{{$product}}" :min=1 :step="1"  :max="100" :value=1>
-							<template #label>{{ trans('store.items.add') }}</template>
-						</cart-add-item>
-					@endif
+				<div class="col-12 col-sm-6 order-md-2">
+					<div class="product-page-card">
+						<h1 class="text-primary product-page-title">{{ $product->title }}</h1>
+						<h5 class="text-color-4 product-page-code">{{ trans('store.product.code') }}: {{ $product->code }}</h5>
+						<div class="product-page-description">{!! $product->description !!}</div>
+						@if (StoreHelper::isStoreEnabled())
+							<h4 class="product-page-price">{{ StoreHelper::formatProductPrice($product) }}</h4>
+							<cart-add-item
+									ref="v100"
+									:product="{{$product}}" :min=1 :step="1"  :max="100" :value=1>
+								<template #label>{{ trans('store.items.add') }}</template>
+							</cart-add-item>
+						@endif
+					</div>
+
 				</div>
 			</div>
 		</div>
