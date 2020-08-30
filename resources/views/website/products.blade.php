@@ -1,9 +1,18 @@
 @extends('website.app')
 @section('content')
-	<main class="my-5">
-        <div class="container">
-            <h1 class="text-primary">{{ $article->title }}</h1>
-			@include('website.product.product_list')
-		</div>
-	</main>
+    <x-website.ui.breadcrumbs class="bg-accent">
+        <div class="text-white page-breadcrumb d-flex align-items-end">
+            @if($article->parent)
+                <div class="page-breadcrumb__item">{{$article->parent->title}}</div>
+            @endif
+            <div class="page-breadcrumb__item">{{$article->menu_title}}</div>
+        </div>
+    </x-website.ui.breadcrumbs>
+    <section class="py-3">
+      <div class="container">
+            <div class="row">
+		        <x-website.products.latest></x-website.products.latest>
+         	</div>
+      </div>
+    </section>
 @endsection

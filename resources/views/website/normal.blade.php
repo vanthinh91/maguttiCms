@@ -8,9 +8,8 @@
             <div class="page-breadcrumb__item">{{$article->menu_title}}</div>
         </div>
     </x-website.ui.breadcrumbs>
-    <main class="my-2">
+    <section class="py-3">
         <div class="container">
-
             <div class="row">
                 @if($article->image)
                     <div class="col-12 col-md-6 order-md-2 mb-3 mb-md-0">
@@ -18,7 +17,6 @@
                              alt="{{ $article->title }}" class="img-fluid">
                     </div>
                 @endif
-
                 <div class="col-12 col-md-6 order-md-1">
                     @if($article->subtitle)
                         <h2 class="text-accent">{{ $article->subtitle }}</h2>
@@ -32,6 +30,5 @@
                 </div>
             </div>
         </div>
-    </main>
-
+    </section>
 @endsection

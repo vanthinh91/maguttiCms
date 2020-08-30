@@ -23,7 +23,6 @@
         nav: true,
         navText: ['<i class="fa fa-arrow-left"></i>', '<i class="fa fa-arrow-right"></i>'],
     });
-
 </script>
 @endpush
 
