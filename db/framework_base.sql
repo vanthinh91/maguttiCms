@@ -1,4 +1,11 @@
-
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Creato il: Ago 30, 2020 alle 13:18
+-- Versione del server: 5.7.29
+-- Versione PHP: 7.3.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -125,12 +132,13 @@ INSERT INTO `articles` (`id`, `domain`, `parent_id`, `menu_title`, `title`, `sub
 (4, '', 0, NULL, '', NULL, NULL, NULL, '', 'contacts', '', '', '', '', 400, 1, 0, 1, 0, 0, '2016-07-04 07:11:39', '2017-08-01 14:32:40'),
 (5, '', NULL, NULL, '', NULL, NULL, NULL, '', 'products', NULL, '', '', NULL, 200, 1, 0, 1, NULL, 0, '2016-07-04 07:20:37', '2020-08-11 10:47:34'),
 (6, '', 0, NULL, '', NULL, NULL, NULL, '', 'news', '', '', '', '', 300, 1, 0, 1, 0, 0, '2016-07-04 07:59:05', '2017-08-01 14:33:11'),
-(7, '', 9, NULL, '', NULL, NULL, NULL, '', 'login', '', '', '', '', 1000, 1, 0, 0, 0, 0, '2016-08-09 13:12:14', '2017-08-01 15:57:18'),
+(7, '', 9, NULL, '', NULL, NULL, NULL, '', 'login', NULL, '', '', NULL, 1000, 1, 0, 0, NULL, 0, '2016-08-09 13:12:14', '2020-08-22 10:48:15'),
 (8, '', 9, NULL, '', NULL, NULL, NULL, '', 'user-dashboard', '', '', '', '', 1200, 1, 0, 0, 0, 0, '2016-08-09 13:24:04', '2017-08-01 14:33:30'),
 (9, '', 0, NULL, '', NULL, NULL, NULL, '', 'reserved-area', '', '', '', '', 1100, 0, 0, 0, 0, 0, '2016-08-10 07:16:26', '2017-08-01 15:57:05'),
 (10, '', 9, NULL, '', NULL, NULL, NULL, '', 'user-profile', '', '', '', '', 1300, 1, 0, 0, 0, 0, '2016-08-10 07:17:38', '2017-08-01 14:33:37'),
 (11, '', 0, NULL, '', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, '', 2000, 1, 0, 0, 0, 0, '2017-08-01 16:13:57', '2017-08-01 16:16:28'),
-(12, '', 2, NULL, '', NULL, NULL, NULL, '', 'company', NULL, 'ff0000.png', '', NULL, 110, 1, 0, 1, 21, 0, '2020-08-16 12:33:31', '2020-08-16 12:34:07');
+(12, '', 2, NULL, '', NULL, NULL, NULL, '', 'company', NULL, 'ff0000.png', '', NULL, 110, 1, 0, 1, 21, 0, '2020-08-16 12:33:31', '2020-08-16 12:34:07'),
+(13, '', NULL, NULL, '', NULL, NULL, NULL, '', 'home', NULL, '', '', '13', 0, 1, 0, 0, 23, 0, '2020-08-23 12:15:17', '2020-08-23 13:35:07');
 
 -- --------------------------------------------------------
 
@@ -167,14 +175,14 @@ INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_
 (4, 2, 'en', 'company', NULL, 'Company', 'Company Subtitle', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a liber', '<p>Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit. Cras eu arcu quis sem faucibus volutpat. Praesent facilisis mauris nec magna vulputate blandit. Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit. Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit. Cras eu arcu quis sem faucibus volutpat. Praesent facilisis mauris nec magna vulputate blandit. Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit. Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit.</p>', NULL, NULL, NULL, '0', '2016-07-04 07:53:13', '2020-08-11 10:45:47'),
 (5, 3, 'it', 'privacy', 'Privacy', 'Privacy', '', NULL, '', '', '', '', '', '2016-07-04 07:53:28', '2017-08-01 14:33:01'),
 (6, 3, 'en', 'privacy', 'Privacy', 'Privacy', '', NULL, '', '', '', '', '', '2016-07-04 07:53:28', '2017-08-01 14:33:01'),
-(7, 5, 'it', 'prodotti', NULL, 'Categorie', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2016-07-04 07:53:38', '2020-08-11 10:32:09'),
+(7, 5, 'it', 'prodotti', NULL, 'Categorie', 'I nostri prodotti', NULL, NULL, NULL, NULL, NULL, NULL, '2016-07-04 07:53:38', '2020-08-23 12:10:44'),
 (8, 5, 'en', 'products', 'Categories', 'Categories', 'See all products', NULL, '<p>LAUNCH NEW BUSINESSES / IMPROVE CX AT SCALE / MAKE BOLDER CHOICES / <br />DELIVER BETTER PRODUCTS / FORM STRONGER TEAMS / LAUNCH NEW <br />BUSINESSES / IMPROVE CX AT SCALE / MAKE BOLDER CHOICES / <br />DELIVER BETTER PRODUCTS / FORM STRONGER TEAMS</p>', NULL, NULL, NULL, '0', '2016-07-04 07:53:38', '2020-08-11 10:37:47'),
 (9, 4, 'it', 'contatti', 'Contatti', 'Contatti', '', NULL, '', '', '', '', '', '2016-07-04 07:54:32', '2017-08-01 14:32:40'),
 (10, 4, 'en', 'contacts', 'Contacts', 'Contacts', '', NULL, '', '', '', '', '', '2016-07-04 07:54:32', '2017-08-01 14:32:40'),
 (13, 6, 'it', 'news', 'News', 'News', '', NULL, '', '', '', '', '', '2016-08-04 11:24:58', '2017-08-01 14:33:11'),
 (14, 6, 'en', 'news', 'News', 'News', '', NULL, '', '', '', '', '', '2016-08-04 11:24:58', '2017-08-01 14:33:11'),
-(15, 7, 'it', 'login', 'Login', 'Login', 'login', NULL, '', '', 'Login', '', '', '2016-08-09 13:12:14', '2017-08-01 14:33:20'),
-(16, 7, 'en', 'login', 'Login', 'Login', 'Login', NULL, '', '', 'Login', '', '', '2016-08-09 13:12:14', '2017-08-01 14:33:20'),
+(15, 7, 'it', 'login', 'Login', 'Accedi con il tuo account', 'login', NULL, NULL, NULL, 'Login', NULL, NULL, '2016-08-09 13:12:14', '2020-08-22 10:48:15'),
+(16, 7, 'en', 'login', 'Login', 'Sign in with your account', 'Login', NULL, NULL, NULL, 'Login', NULL, NULL, '2016-08-09 13:12:14', '2020-08-22 10:48:15'),
 (17, 8, 'it', 'dashboard', 'Dashboard', 'Dashboard', 'Dashboard', NULL, '', '', '', '', '', '2016-08-09 13:24:04', '2017-08-01 14:33:30'),
 (18, 8, 'en', 'dashboard', 'Dashboard', 'Dashboard', '', NULL, '', '', '', '', '', '2016-08-09 13:24:04', '2017-08-01 14:33:30'),
 (19, 9, 'it', 'users', '', 'Users', 'Users', NULL, '', '', '', '', '', '2016-08-10 07:16:26', '2017-08-01 15:56:45'),
@@ -192,7 +200,13 @@ INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_
 (31, 12, 'en', 'company-1', 'Company History', 'History', 'History Subtitle', NULL, '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', NULL, NULL, NULL, '0', '2020-08-16 12:34:07', '2020-08-16 13:55:23'),
 (32, 12, 'it', 'storia', 'La storia', 'Storia', 'La nostra storia', NULL, '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', NULL, NULL, NULL, NULL, '2020-08-16 12:34:07', '2020-08-16 13:30:04'),
 (33, 12, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-16 12:34:07', '2020-08-16 12:34:07'),
-(34, 12, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-16 12:34:07', '2020-08-16 12:34:07');
+(34, 12, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-16 12:34:07', '2020-08-16 12:34:07'),
+(35, 7, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-22 10:48:15', '2020-08-22 10:48:15'),
+(36, 7, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-22 10:48:15', '2020-08-22 10:48:15'),
+(37, 13, 'en', 'latest-products', 'Latest Products', 'Home Page  Latest Products', 'New Arrivals', NULL, NULL, NULL, NULL, NULL, '0', '2020-08-23 12:16:15', '2020-08-23 12:34:31'),
+(38, 13, 'it', 'ultimi-arrivi', 'Ultimi arrivi', 'Novità', 'I Nostri nuovi arrivi', NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-23 12:16:15', '2020-08-23 13:33:54'),
+(39, 13, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-23 12:16:15', '2020-08-23 12:16:15'),
+(40, 13, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-23 12:16:15', '2020-08-23 12:16:15');
 
 -- --------------------------------------------------------
 
@@ -262,27 +276,6 @@ INSERT INTO `block_translations` (`id`, `block_id`, `locale`, `title`, `subtitle
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `carts`
---
-
-CREATE TABLE `carts` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `status` tinyint(4) DEFAULT '0',
-  `user_id` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dump dei dati per la tabella `carts`
---
-
-INSERT INTO `carts` (`id`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 0, 1, '2020-08-16 13:57:15', '2020-08-16 14:01:49');
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `cart_items`
 --
 
@@ -326,9 +319,9 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `parent_id`, `title`, `abstract`, `description`, `slug`, `image`, `banner`, `doc`, `sort`, `pub`, `seo_title`, `seo_description`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 0, '', NULL, NULL, 'identity', '', '', '', 0, 1, NULL, NULL, 0, '2016-07-04 06:29:04', '2018-06-13 14:43:39'),
-(2, 0, '', NULL, NULL, 'research', '', '', '', 10, 1, NULL, NULL, 0, '2016-12-26 12:16:23', '2018-06-13 14:44:31'),
-(3, 0, '', NULL, NULL, 'start-up', '', '', '', 20, 1, NULL, NULL, 0, '2016-12-27 18:33:25', '2018-06-13 14:45:00');
+(1, 0, '', NULL, NULL, 'identity', '', '', '', 0, 1, NULL, NULL, 0, '2016-07-04 04:29:04', '2018-06-13 12:43:39'),
+(2, 0, '', NULL, NULL, 'research', '', '', '', 10, 1, NULL, NULL, 0, '2016-12-26 11:16:23', '2018-06-13 12:44:31'),
+(3, 0, '', NULL, NULL, 'start-up', '', '', '', 20, 1, NULL, NULL, 0, '2016-12-27 17:33:25', '2018-06-13 12:45:00');
 
 -- --------------------------------------------------------
 
@@ -356,14 +349,14 @@ CREATE TABLE `category_translations` (
 --
 
 INSERT INTO `category_translations` (`id`, `slug`, `category_id`, `locale`, `title`, `description`, `seo_title`, `seo_description`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 'prima-categoria', 1, 'it', 'Prima Categoria', NULL, '', '', 0, 0, '2016-07-04 06:29:04', '2018-06-13 14:43:39'),
-(2, 'first-category', 1, 'en', 'First Category', NULL, '', '', 0, 0, '2016-07-04 06:29:04', '2018-06-13 14:43:39'),
-(3, 'second-category', 2, 'en', 'Second Category', NULL, '', '', 0, 0, '2016-12-26 12:16:23', '2018-06-13 14:44:31'),
-(4, 'seconda-categoria', 2, 'it', 'Seconda Categoria', NULL, '', '', 0, 0, '2016-12-26 12:16:23', '2018-06-13 14:44:31'),
-(5, 'thid-category', 3, 'en', 'Third Category', NULL, '', '', 0, 0, '2016-12-27 18:33:25', '2018-06-13 14:45:00'),
-(6, 'terza-category', 3, 'it', 'Terza Categoria', NULL, '', '', 0, 0, '2016-12-27 18:33:25', '2018-06-13 14:45:00'),
-(7, 'nuova-categoria', 4, 'it', 'Nuova categoria', NULL, '', '', 0, 0, '2017-08-02 13:16:28', '2017-08-02 13:16:28'),
-(8, 'new-category', 4, 'en', 'New category', NULL, '', '', 0, 0, '2017-08-02 13:16:28', '2017-08-02 13:16:28');
+(1, 'prima-categoria', 1, 'it', 'Prima Categoria', NULL, '', '', 0, 0, '2016-07-04 04:29:04', '2018-06-13 12:43:39'),
+(2, 'first-category', 1, 'en', 'First Category', NULL, '', '', 0, 0, '2016-07-04 04:29:04', '2018-06-13 12:43:39'),
+(3, 'second-category', 2, 'en', 'Second Category', NULL, '', '', 0, 0, '2016-12-26 11:16:23', '2018-06-13 12:44:31'),
+(4, 'seconda-categoria', 2, 'it', 'Seconda Categoria', NULL, '', '', 0, 0, '2016-12-26 11:16:23', '2018-06-13 12:44:31'),
+(5, 'thid-category', 3, 'en', 'Third Category', NULL, '', '', 0, 0, '2016-12-27 17:33:25', '2018-06-13 12:45:00'),
+(6, 'terza-category', 3, 'it', 'Terza Categoria', NULL, '', '', 0, 0, '2016-12-27 17:33:25', '2018-06-13 12:45:00'),
+(7, 'nuova-categoria', 4, 'it', 'Nuova categoria', NULL, '', '', 0, 0, '2017-08-02 11:16:28', '2017-08-02 11:16:28'),
+(8, 'new-category', 4, 'en', 'New category', NULL, '', '', 0, 0, '2017-08-02 11:16:28', '2017-08-02 11:16:28');
 
 -- --------------------------------------------------------
 
@@ -8708,7 +8701,8 @@ INSERT INTO `domains` (`id`, `domain`, `title`, `value`, `sort`, `pub`, `created
 (1, 'imagetype', '', '', 10, 1, 0, '2016-06-23 07:36:42', '2016-06-28 07:58:39'),
 (2, 'imagetype', '', '', 20, 1, 0, '2016-06-23 07:38:24', '2016-06-28 07:59:19'),
 (21, 'template', '', 'template_subpage', 30, 1, 0, '2016-06-28 13:18:04', '2016-12-27 14:17:35'),
-(22, 'template', '', 'coming_soon', 40, 1, 0, '2020-04-03 22:02:39', '2020-04-03 22:03:21');
+(22, 'template', '', 'coming_soon', 40, 1, 0, '2020-04-03 22:02:39', '2020-04-03 22:03:21'),
+(23, 'template', '', 'products', 30, 1, 0, '2020-08-23 13:34:25', '2020-08-23 13:34:50');
 
 -- --------------------------------------------------------
 
@@ -8740,7 +8734,11 @@ INSERT INTO `domain_translations` (`id`, `domain_id`, `locale`, `title`, `update
 (123, 22, 'en', 'Coming soon', NULL, '2020-04-03 22:03:21', '2020-04-03 22:03:21'),
 (124, 22, 'it', NULL, NULL, '2020-04-03 22:03:21', '2020-04-03 22:03:21'),
 (125, 22, 'es', NULL, NULL, '2020-04-03 22:03:21', '2020-04-03 22:03:21'),
-(126, 22, 'fr', NULL, NULL, '2020-04-03 22:03:21', '2020-04-03 22:03:21');
+(126, 22, 'fr', NULL, NULL, '2020-04-03 22:03:21', '2020-04-03 22:03:21'),
+(127, 23, 'en', 'New products', NULL, '2020-08-23 13:34:50', '2020-08-23 13:35:21'),
+(128, 23, 'it', NULL, NULL, '2020-08-23 13:34:50', '2020-08-23 13:34:50'),
+(129, 23, 'es', NULL, NULL, '2020-08-23 13:34:50', '2020-08-23 13:34:50'),
+(130, 23, 'fr', NULL, NULL, '2020-08-23 13:34:50', '2020-08-23 13:34:50');
 
 -- --------------------------------------------------------
 
@@ -9092,9 +9090,9 @@ CREATE TABLE `news` (
 
 INSERT INTO `news` (`id`, `domain`, `date`, `title`, `description`, `slug`, `doc`, `image`, `link`, `sort`, `pub`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, '', '2017-07-11', '', '', 'pinoscotto11', '96281-dedprifxoaaxql6.jpg', 'DEDpRifXoAAXql6.jpg', NULL, 0, 1, 0, '2017-07-11 05:18:08', '2019-05-10 23:14:39'),
-(2, '', '2019-05-07', '', '', NULL, NULL, 'home-icone-news.png', NULL, NULL, 1, NULL, '2019-05-07 05:16:44', '2019-05-07 05:18:22'),
-(3, '', '2019-04-17', '', '', NULL, NULL, 'slide-2.jpg', NULL, NULL, 1, NULL, '2019-05-07 05:17:21', '2019-05-10 23:14:48'),
-(4, '', '2019-03-07', '', '', NULL, NULL, 'slide-6.jpg', NULL, NULL, 1, NULL, '2019-05-07 05:18:08', '2019-05-07 05:20:18');
+(2, '', '2019-05-07', '', '', NULL, NULL, 'img6-01.png', NULL, NULL, 1, NULL, '2019-05-07 05:16:44', '2020-08-22 15:21:56'),
+(3, '', '2019-04-17', '', '', NULL, NULL, 'slide-2.jpg', NULL, NULL, 1, NULL, '2019-05-07 05:17:21', '2020-08-20 15:15:00'),
+(4, '', '2019-03-07', '', '', NULL, NULL, 'slide-6.jpg', NULL, NULL, 1, NULL, '2019-05-07 05:18:08', '2020-08-21 20:38:20');
 
 -- --------------------------------------------------------
 
@@ -9129,6 +9127,19 @@ CREATE TABLE `news_tag` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `news_tag`
+--
+
+INSERT INTO `news_tag` (`news_id`, `tag_id`, `created_at`, `updated_at`) VALUES
+(3, 2, NULL, NULL),
+(3, 1, NULL, NULL),
+(2, 4, NULL, NULL),
+(2, 2, NULL, NULL),
+(4, 1, NULL, NULL),
+(4, 2, NULL, NULL),
+(4, 4, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -9216,26 +9227,6 @@ CREATE TABLE `order_items` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `password_resets`
---
-
-CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dump dei dati per la tabella `password_resets`
---
-
-INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
-('user@magutti.com', '$2y$10$nJXdKBQUeiyZ1sNwrWxlAeMPUqCMN4C0sZjBJ2LOxwXv7wrgoriGy', '2019-06-22 12:57:39'),
-('cmsadmin@magutti.com', '$2y$10$KgF9dxkzTiXJ7NNvnyGoheRhAc8XQymclR2c0TW63zBeUIkhELlpy', '2019-06-22 12:57:50');
 
 -- --------------------------------------------------------
 
@@ -9337,9 +9328,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `code`, `category_id`, `title`, `subtitle`, `description`, `slug`, `price`, `image`, `doc`, `video`, `sort`, `pub`, `seo_title`, `seo_description`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'PRDA', 1, '', '', '', NULL, 10, 'A.png', NULL, '', 0, 1, NULL, NULL, 0, '2017-08-02 10:09:39', '2018-06-13 14:48:28'),
+(1, 'PRDA', 1, '', '', '', NULL, 10, 'prodotto1.jpeg', NULL, NULL, 0, 1, NULL, NULL, 0, '2017-08-02 10:09:39', '2020-08-22 14:14:52'),
 (2, 'PRDB', 2, '', '', '', NULL, 20, 'B.png', NULL, '', 10, 1, NULL, NULL, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
-(3, 'PRDC', 3, '', '', '', NULL, 30, 'Cpng.png', NULL, NULL, 0, 1, NULL, NULL, 0, '2018-06-13 14:50:05', '2019-08-16 07:52:00');
+(3, 'PRDC', 3, '', '', '', NULL, 30, 'spazzola.jpeg', NULL, NULL, 0, 1, NULL, NULL, 0, '2018-06-13 14:50:05', '2020-08-22 15:15:14'),
+(4, '226987', 1, '', '', NULL, NULL, 12.25, NULL, NULL, NULL, 20, 1, NULL, NULL, NULL, '2020-08-21 10:34:48', '2020-08-22 15:02:25');
 
 -- --------------------------------------------------------
 
@@ -9407,14 +9399,20 @@ CREATE TABLE `product_translations` (
 --
 
 INSERT INTO `product_translations` (`id`, `product_id`, `locale`, `slug`, `title`, `subtitle`, `description`, `doc`, `permalink`, `seo_title`, `seo_description`, `seo_no_index`, `created_by`, `update_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'it', 'prodotto-a', 'Prodotto A', '', '', NULL, 'prodotti/prima-categoria/prodotto-a', '', '', NULL, 0, 0, '2017-08-02 10:09:39', '2019-06-22 13:03:19'),
-(2, 1, 'en', 'product-number-1', 'Product number 1', '', '', NULL, 'products/first-category/product-number-1', '', '', NULL, 0, 0, '2017-08-02 10:09:39', '2019-06-22 13:03:43'),
+(1, 1, 'it', 'prodotto-a', 'Prodotto A', NULL, NULL, NULL, 'prodotti/prima-categoria/prodotto-a', NULL, NULL, NULL, 0, 0, '2017-08-02 10:09:39', '2020-08-22 14:14:52'),
+(2, 1, 'en', 'product-number-1', 'Product number 1', NULL, '<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis etSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et</p>', NULL, 'products/first-category/product-number-1', NULL, NULL, 0, 0, 0, '2017-08-02 10:09:39', '2020-08-22 14:14:52'),
 (3, 2, 'it', 'prodotto-b', 'Prodotto B', '', '', NULL, 'prodotti/seconda-categoria/prodotto-b', '', '', NULL, 0, 0, '2018-06-13 14:49:32', '2019-08-16 07:53:07'),
-(4, 2, 'en', 'product-b', 'Product B', '', '', NULL, NULL, '', '', NULL, 0, 0, '2018-06-13 14:49:32', '2018-06-13 14:49:32'),
+(4, 2, 'en', 'product-b', 'Product B', '', '', NULL, 'products/second-category/product-b', '', '', NULL, 0, 0, '2018-06-13 14:49:32', '2020-08-21 11:24:27'),
 (5, 3, 'it', 'prodotto-c', 'Prodotto C', NULL, NULL, NULL, 'prodotti/terza-category/prodotto-c', NULL, NULL, NULL, 0, 0, '2018-06-13 14:50:05', '2019-08-16 07:52:01'),
-(6, 3, 'en', 'product-c', 'Product C', NULL, NULL, NULL, 'products/thid-category/product-c', NULL, NULL, 0, 0, 0, '2018-06-13 14:50:05', '2019-08-16 07:52:01'),
+(6, 3, 'en', 'product-c', 'Product Category table', NULL, '<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et&nbsp;<strong>Sed ut perspiciatis</strong> unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et</p>', NULL, 'products/thid-category/product-c', NULL, NULL, 0, 0, 0, '2018-06-13 14:50:05', '2020-08-22 15:13:14'),
 (7, 3, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-16 07:52:01', '2019-08-16 07:52:01'),
-(8, 3, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-16 07:52:01', '2019-08-16 07:52:01');
+(8, 3, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-16 07:52:01', '2019-08-16 07:52:01'),
+(9, 4, 'en', 'product-xxx', 'Product XXX', NULL, '<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et<strong>Sed ut perspiciatis</strong> unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et</p>', NULL, 'products/first-category/product-xxx', NULL, NULL, 0, NULL, NULL, '2020-08-21 10:34:48', '2020-08-22 15:02:25'),
+(10, 4, 'it', '', NULL, NULL, NULL, NULL, 'prodotti/prima-categoria/', NULL, NULL, NULL, NULL, NULL, '2020-08-21 10:34:48', '2020-08-21 11:14:24'),
+(11, 4, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-21 10:34:48', '2020-08-21 10:34:48'),
+(12, 4, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-21 10:34:48', '2020-08-21 10:34:48'),
+(13, 1, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-22 14:14:52', '2020-08-22 14:14:52'),
+(14, 1, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-22 14:14:52', '2020-08-22 14:14:52');
 
 -- --------------------------------------------------------
 
@@ -9789,7 +9787,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `gender`, `password`, `remember_token`, `list_code`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Magutti User', 'user@magutti.com', 'M', '$2y$10$lHD.KhLYqqtHRQuXH6PKXODXFlgcQ8UZ6l7.3vaaeLSP1qgxSUszu', 'rXJqDVcvweoMzGNriffqgbh5qqus658OlhLZUdXfjemtLynraZ0sPsudJMPB', '', 1, '2017-07-07 13:37:30', '2019-05-11 10:53:21');
+(1, 'Magutti User', 'user@magutti.com', 'M', '$2y$10$lHD.KhLYqqtHRQuXH6PKXODXFlgcQ8UZ6l7.3vaaeLSP1qgxSUszu', 'RHpD3grZI54ztkvhwlWqDVVsXZsfsc4nyJgRDcrVhuMOvLqhnHpkrgBHIB6T', '', 1, '2017-07-07 13:37:30', '2019-05-11 10:53:21');
 
 --
 -- Indici per le tabelle scaricate
@@ -9844,31 +9842,10 @@ ALTER TABLE `block_translations`
   ADD KEY `block_translations_locale_index` (`locale`);
 
 --
--- Indici per le tabelle `carts`
---
-ALTER TABLE `carts`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indici per le tabelle `cart_items`
 --
 ALTER TABLE `cart_items`
   ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `categories_slug_unique` (`slug`);
-
---
--- Indici per le tabelle `category_translations`
---
-ALTER TABLE `category_translations`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `categories_translations_category_id_locale_unique` (`category_id`,`locale`),
-  ADD KEY `categories_translations_locale_index` (`locale`);
 
 --
 -- Indici per le tabelle `cities`
@@ -9979,6 +9956,24 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indici per le tabelle `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indici per le tabelle `newsletters`
+--
+ALTER TABLE `newsletters`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indici per le tabelle `news_translations`
+--
+ALTER TABLE `news_translations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indici per le tabelle `orders`
 --
 ALTER TABLE `orders`
@@ -9990,13 +9985,6 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`),
-  ADD KEY `password_resets_token_index` (`token`);
 
 --
 -- Indici per le tabelle `payments`
@@ -10142,13 +10130,13 @@ ALTER TABLE `adminusers`
 -- AUTO_INCREMENT per la tabella `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT per la tabella `article_translations`
 --
 ALTER TABLE `article_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT per la tabella `blocks`
@@ -10163,28 +10151,10 @@ ALTER TABLE `block_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT per la tabella `carts`
---
-ALTER TABLE `carts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT per la tabella `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT per la tabella `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT per la tabella `category_translations`
---
-ALTER TABLE `category_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `cities`
@@ -10214,13 +10184,13 @@ ALTER TABLE `discounts`
 -- AUTO_INCREMENT per la tabella `domains`
 --
 ALTER TABLE `domains`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT per la tabella `domain_translations`
 --
 ALTER TABLE `domain_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT per la tabella `examples`
@@ -10310,7 +10280,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT per la tabella `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `product_models`
@@ -10328,7 +10298,7 @@ ALTER TABLE `product_model_translations`
 -- AUTO_INCREMENT per la tabella `product_translations`
 --
 ALTER TABLE `product_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT per la tabella `provinces`
