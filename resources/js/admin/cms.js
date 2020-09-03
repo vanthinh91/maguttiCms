@@ -281,6 +281,8 @@ window.Cms = function () {
 
 		initTinymce: function () {
 
+
+
 			tinymce.init({
 				selector: "textarea.wyswyg",
 				plugins: [
@@ -291,10 +293,46 @@ window.Cms = function () {
 				pagebreak_split_block: true,
 				branding: false,
 				statusbar: false,
+				file_picker_types: 'image',
+				images_upload_url: '/admin/api/upload-media-tinymce',
+				images_upload_base_path: '/media/images/tinymce',
+				convert_urls: false,
 				height: 200,
 				toolbar: "insertfile undo redo | styleselect | bold italic | bullist numlist outdent indent | link | code",
 				convert_urls: false,
-				allow_unsafe_link_target: true
+				allow_unsafe_link_target: true,
+				images_upload_handler: function(blobInfo, success, failure) {
+					var xhr, formData;
+
+					xhr = new XMLHttpRequest();
+					xhr.withCredentials = false;
+					xhr.open('POST', '/admin/api/upload-media-tinymce');
+
+					xhr.onload = function() {
+						var json;
+
+						if (xhr.status != 200) {
+							failure('HTTP Error: ' + xhr.status);
+							return;
+						}
+
+						json = JSON.parse(xhr.responseText);
+
+						if (!json || typeof json.location != 'string') {
+							failure('Invalid JSON: ' + xhr.responseText);
+							return;
+						}
+
+						success(json.location);
+					};
+
+					formData = new FormData();
+					formData.append('file', blobInfo.blob(), blobInfo.filename());
+					// append CSRF token in the form data
+					formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+
+					xhr.send(formData);
+				}
 			});
 		},
 

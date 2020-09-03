@@ -15,6 +15,7 @@ Route::group([], function () {
     Route::get('updateHtml/media/{model?}','\App\maguttiCms\Admin\Controllers\AjaxController@updateModelMediaList');
     Route::get('updateHtml/{mediaType?}/{model?}/{id?}','\App\maguttiCms\Admin\Controllers\AjaxController@updateMediaList');
     Route::get('updateMediaSortList/',                  '\App\maguttiCms\Admin\Controllers\AjaxController@updateMediaSortList');
+    Route::post('upload-media-tinymce/', '\App\maguttiCms\Admin\Controllers\AjaxController@uploadMediaTinyMCE');
 
     /*
     |--------------------------------------------------------------------------
