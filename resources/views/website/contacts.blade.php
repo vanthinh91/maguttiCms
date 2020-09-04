@@ -42,8 +42,8 @@
             src="https://maps.googleapis.com/maps/api/js?key={{data_get($site_settings,'GMAPS_KEY')}}"></script>
     <script type="text/javascript">
         var marker_config =
-		@isset($locations)  @json($locations)  @endisset
-		@empty($locations)
+		@if(count($locations))  @json($locations)
+		@else($locations)
 		[
 			[
 				'{!! config('maguttiCms.website.option.app.name')!!}',	//title
@@ -53,7 +53,7 @@
 				"<div class='mapPop'><b>{!! config('maguttiCms.website.option.app.name')!!}</b><br>{!! config('maguttiCms.website.option.app.address')!!}<br>{!! config('maguttiCms.website.option.app.locality')!!}<br></div>", //popup window content
 			]
 		];
-		@endempty
+		@endif
 
         var gmap_config = {
                 mapElement: 'map',

@@ -44,8 +44,9 @@ class ArticleViewModel extends WebsiteViewModel
         $article = $this->getPage(trans('routes.contacts'));
         $this->setSeo($article);
         $parameter = request()->get('product_id');
-        $locations = Location::published()->orderBy('sort')->get();
-        $locations = MapLocationResource::collection(Location::all());
+
+        $locations = MapLocationResource::collection(Location::published()->get());
+
         if ($parameter && !is_array($parameter)) {
             $product = Product::findOrFail($parameter);
             return view('website.contacts', ['request_product_id' => $parameter, 'product' => $product, 'article' => $article]);
