@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Ago 30, 2020 alle 13:18
+-- Creato il: Set 12, 2020 alle 15:28
 -- Versione del server: 5.7.29
 -- Versione PHP: 7.3.19
 
@@ -272,6 +272,20 @@ INSERT INTO `block_translations` (`id`, `block_id`, `locale`, `title`, `subtitle
 (6, 2, 'it', 'Home Page Block', 'See all products', '<p>LAUNCH NEW BUSINESSES / IMPROVE CX AT SCALE / MAKE BOLDER CHOICES / <br />DELIVER BETTER PRODUCTS / FORM STRONGER TEAMS / LAUNCH NEW <br />BUSINESSES / IMPROVE CX AT SCALE / MAKE BOLDER CHOICES / <br />DELIVER BETTER PRODUCTS / FORM STRONGER TEAMS</p>', '2020-08-11 12:00:24', '2020-08-11 12:00:24'),
 (7, 2, 'es', NULL, NULL, NULL, '2020-08-11 12:00:24', '2020-08-11 12:00:24'),
 (8, 2, 'fr', NULL, NULL, NULL, '2020-08-11 12:00:24', '2020-08-11 12:00:24');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `carts`
+--
+
+CREATE TABLE `carts` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `status` tinyint(4) DEFAULT '0',
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -8836,6 +8850,22 @@ INSERT INTO `example_translations` (`id`, `example_id`, `slug`, `locale`, `title
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `hpsliders`
 --
 
@@ -9059,7 +9089,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (82, '2019_05_10_091157_create_hpslider_translations_table', 3),
 (83, '2019_10_19_112436_create_blocks_table', 4),
 (84, '2019_10_19_112536_create_block_translations_table', 4),
-(85, '2020_04_13_181820_create_locations_table', 5);
+(85, '2020_04_13_181820_create_locations_table', 5),
+(86, '2019_08_19_000000_create_failed_jobs_table', 6);
 
 -- --------------------------------------------------------
 
@@ -9908,6 +9939,13 @@ ALTER TABLE `example_translations`
   ADD KEY `examples_translations_locale_index` (`locale`);
 
 --
+-- Indici per le tabelle `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
 -- Indici per le tabelle `hpsliders`
 --
 ALTER TABLE `hpsliders`
@@ -10205,6 +10243,12 @@ ALTER TABLE `example_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT per la tabella `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT per la tabella `hpsliders`
 --
 ALTER TABLE `hpsliders`
@@ -10244,7 +10288,7 @@ ALTER TABLE `media_translations`
 -- AUTO_INCREMENT per la tabella `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT per la tabella `orders`
