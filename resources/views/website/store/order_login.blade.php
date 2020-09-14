@@ -1,6 +1,6 @@
 @extends('website.app')
 @section('content')
-	<x-website.partial.page-header  :title="trans('store.cart.buy')"/>
+	<x-website.partials.page-header  :title="trans('store.cart.buy')"/>
     <section>
         <div class="container">
         	<div class="row d-flex">

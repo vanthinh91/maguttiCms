@@ -1,24 +1,19 @@
 <?php
 
-namespace App\View\Components\Website\Ui;
+namespace App\View\Components\Partial;
 
 use Illuminate\View\Component;
 
-class Carousel extends Component
+class PageBlock extends Component
 {
-    public $item;
-    public $carousel_items;
-    public $limit;
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($item)
+    public function __construct()
     {
         //
-        $this->item = $item;
     }
 
     /**
@@ -28,8 +23,6 @@ class Carousel extends Component
      */
     public function render()
     {
-        return view('components.website.ui.carousel');
+        return view('components.partial.page-block');
     }
-
-
 }

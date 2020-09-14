@@ -33,6 +33,7 @@
 <div id="app">
     {{-- Navbar --}}
     @include('website.partials.navbar')
+
     {{-- Page content --}}
     @yield('content')
     {{-- Footer --}}

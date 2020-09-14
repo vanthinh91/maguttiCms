@@ -1,6 +1,6 @@
 @extends('website.app')
 @section('content')
-    <x-website.partial.page-header :title="trans('store.address.new')"/>
+    <x-website.partials.page-header :title="trans('store.address.new')"/>
     <section>
         <div class="container">
             @include('flash::notification')

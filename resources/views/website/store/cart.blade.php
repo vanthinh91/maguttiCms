@@ -1,6 +1,6 @@
 @extends('website.app')
 @section('content')
-    <x-website.partial.page-header  :title="trans('store.cart.title')"/>
+    <x-website.partials.page-header  :title="trans('store.cart.title')"/>
     <section class="cart-list pb-0">
         <cart-resume :cart-items="{{$cart->items}}"></cart-resume>
     </section>

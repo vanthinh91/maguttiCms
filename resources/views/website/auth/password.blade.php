@@ -1,6 +1,6 @@
 @extends('website.app')
 @section('content')
-	<x-website.partial.page-header  :title="trans('message.password_forgot')"/>
+	<x-website.partials.page-header  :title="trans('message.password_forgot')"/>
 	<section>
         <div class="container">
 			<div class="row">

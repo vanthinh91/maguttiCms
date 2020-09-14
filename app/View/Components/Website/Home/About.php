@@ -1,8 +1,10 @@
 <?php
 
-namespace App\View\Components\Website\Widgets;
+namespace App\View\Components\Website\Home;
 
-class HomeAbout extends BaseWidget
+use App\View\Components\Website\Widgets\BaseWidget;
+
+class About extends BaseWidget
 {
 
     /**
@@ -12,6 +14,6 @@ class HomeAbout extends BaseWidget
      */
     public function render()
     {
-        return view('components.website.widgets.home_about');
+        return view('components.website.home.about');
     }
 }

@@ -1,6 +1,6 @@
 @extends('website.app')
 @section('content')
-	<x-website.partial.page-header  :title="trans('store.order.title')" :class="'bg-accent'"/>
+	<x-website.partials.page-header  :title="trans('store.order.title')" :class="'bg-accent'"/>
     <section>
         <div class="container">
             @include('flash::notification')

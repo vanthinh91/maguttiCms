@@ -1,6 +1,6 @@
 @extends('website.app')
 @section('content')
-	<x-website.partial.page-header  :title="$article->menu_title"/>
+	<x-website.partials.page-header  :title="$article->menu_title"/>
 	<section>
         <div class="container">
 			<div class="row">

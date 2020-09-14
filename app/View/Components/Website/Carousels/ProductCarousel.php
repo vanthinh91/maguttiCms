@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Website\Ui;
+namespace App\View\Components\Website\Carousels;
 
 use App\Product;
 
@@ -26,7 +26,7 @@ class ProductCarousel extends Carousel
      */
     public function render()
     {
-        return view('components.website.ui.product-carousel');
+        return view('components.website.carousels.product-carousel');
     }
 
     function  carousel_items($limit=4){

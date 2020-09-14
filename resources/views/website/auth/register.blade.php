@@ -1,6 +1,6 @@
 @extends('website.app')
 @section('content')
-	<x-website.partial.page-header  :title="trans('message.register')"/>
+	<x-website.partials.page-header  :title="trans('message.register')"/>
 	<section>
         <div class="container">
 			<div class="row">

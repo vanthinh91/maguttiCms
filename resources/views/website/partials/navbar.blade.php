@@ -1,6 +1,7 @@
 @php
 	$article = isset($article) ? $article : null;
 	$locale_article = isset($locale_article) ? $locale_article : $article;
+
 @endphp
 <nav class="navbar navbar-expand-lg fixed-top">
 	<div class="container d-flex flex-row">

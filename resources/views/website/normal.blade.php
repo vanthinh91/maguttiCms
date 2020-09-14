@@ -29,6 +29,8 @@
                     @endforeach
                 </div>
             </div>
+            <x-website.widgets.sharer :item="$article"/>
         </div>
+
     </section>
 @endsection

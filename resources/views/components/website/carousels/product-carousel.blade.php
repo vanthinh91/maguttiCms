@@ -9,7 +9,7 @@
       <div class="row py-2">
          <div class="product-carousel owl-carousel owl-theme">
             @foreach (  $carousel_items()  as  $index => $carousel_item )
-               <x-website.ui.product-carousel-item :item="$carousel_item" class="item"></x-website.ui.product-carousel-item>
+               <x-website.carousels.product-carousel-item :item="$carousel_item" class="item"></x-website.carousels.product-carousel-item>
             @endforeach
          </div>
          <!--Grid column-->

@@ -4,7 +4,7 @@ namespace App\View\Components\Website\Widgets;
 
 use Illuminate\View\Component;
 
-class PageSharer extends Component
+class Sharer extends Component
 {
    public $item;
 
@@ -15,7 +15,7 @@ class PageSharer extends Component
      */
     public function __construct($item)
     {
-        //
+
         $this->item = $item;
     }
 
@@ -26,6 +26,6 @@ class PageSharer extends Component
      */
     public function render()
     {
-        return view('components.website.widgets.page_sharer');
+        return view('components.website.widgets.sharer');
     }
 }

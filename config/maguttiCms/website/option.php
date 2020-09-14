@@ -2,8 +2,8 @@
 return [
     'app' => [
         'name'	   => 'MaguttiCms',
-		'legal'		=> 'MaguttiCms Framework',
-        'address'  => '5.3 maguttiCms Street',
+		'legal'	   => 'MaguttiCms Framework',
+        'address'  => '8 maguttiCms Street',
         'locality' => 'Bergamo - Italy',
         'lat'      => '45.612310',
         'lng'      => '9.694187',
