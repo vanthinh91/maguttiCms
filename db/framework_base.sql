@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Set 12, 2020 alle 15:28
+-- Creato il: Set 14, 2020 alle 21:20
 -- Versione del server: 5.7.29
--- Versione PHP: 7.3.19
+-- Versione PHP: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -44,6 +44,13 @@ CREATE TABLE `addresses` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `addresses`
+--
+
+INSERT INTO `addresses` (`id`, `user_id`, `street`, `number`, `zip_code`, `city`, `province`, `country_id`, `phone`, `mobile`, `email`, `vat`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Vicolo S. Urbano 4', '4', '24057', 'Martinengo', 'BG', 109, '3385766907', NULL, 'marcoasperti@gmail.com', NULL, '2020-09-12 15:29:37', '2020-09-12 15:29:37');
 
 -- --------------------------------------------------------
 
@@ -169,8 +176,8 @@ CREATE TABLE `article_translations` (
 --
 
 INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_title`, `title`, `subtitle`, `intro`, `description`, `abstract`, `seo_title`, `seo_description`, `seo_no_index`, `created_at`, `updated_at`) VALUES
-(1, 1, 'it', 'home', 'Home', 'Home', 'MaguttiCms', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>', NULL, NULL, NULL, '0', '2016-07-04 07:53:04', '2020-04-03 22:03:35'),
-(2, 1, 'en', 'home', 'Home', 'Home Page Title', 'A laravel 7 CMS', NULL, '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.&nbsp;</p>', NULL, NULL, NULL, '0', '2016-07-04 07:53:04', '2020-08-11 09:55:07'),
+(1, 1, 'it', 'home', 'Home', 'Home', 'A Laravel 8 CMS', NULL, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat maximus purus, sit amet congue nulla maximus quis. Nam sit amet massa sed ante rhoncus vehicula. Nam nec metus eu lorem porttitor suscipit. In at mi sit amet felis tincidunt lobortis ac quis nulla. Morbi condimentum eros vel felis iaculis facilisis. Nam at elit a odio elementum fringilla a vel magna. Vestibulum varius bibendum lectus, sed cursus leo consectetur a. Duis venenatis hendrerit enim, vitae tincidunt quam. Phasellus sollicitudin lobortis turpis, quis mollis purus porttitor sit amet.</p>', NULL, NULL, NULL, '0', '2016-07-04 07:53:04', '2020-09-14 21:00:08'),
+(2, 1, 'en', 'home', 'Home', 'Home Page Title', 'A Laravel 8 CMS', NULL, '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.&nbsp;</p>', NULL, 'A Laravel 8 CMS', NULL, '0', '2016-07-04 07:53:04', '2020-09-14 21:00:08'),
 (3, 2, 'it', 'azienda', 'Azienda', 'Azienda', NULL, '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a libero vitae elit pretium cursus. Ut maximus felis pretium augue ullamcorper venenatis. Aenean mattis hendrerit dui id aliquet. Nunc rhoncus ipsum ut orci posuere semper vel quis diam. Duis pulvinar molestie nisi, sed sollicitudin metus fermentum sit amet. Phasellus semper, nibh sed laoreet blandit, ligula neque egestas tortor, ac porttitor massa justo ut diam.</p>\r\n<p>Donec id sem sem. Pellentesque augue quam, euismod nec neque non, sollicitudin tincidunt purus. Sed viverra libero eget ante sollicitudin iaculis. Donec erat tellus, aliquet aliquam nisi vel, faucibus interdum est. In aliquet pharetra eros vel lacinia. Nam sit amet ex tristique, pretium quam quis, ullamcorper dolor. Vestibulum gravida eros accumsan gravida iaculis. Suspendisse eu elit metus. Pellentesque iaculis rutrum augue quis blandit. Fusce at lacus vestibulum, placerat justo vitae, lacinia nisl. Phasellus accumsan enim vitae ex condimentum rhoncus.</p>\r\n<p>Duis feugiat semper eros, vitae consectetur mauris volutpat viverra. Aenean at augue dui. Sed varius tincidunt hendrerit. Cras sed condimentum nunc. Vestibulum consequat eget ipsum a ultrices. Proin auctor commodo facilisis. Praesent quis neque tellus. Fusce venenatis, odio nec facilisis molestie, orci lacus lobortis orci, nec commodo tortor tortor et eros. Sed lacinia nisi et eleifend pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sodales diam quis diam volutpat, et egestas purus scelerisque. Phasellus bibendum diam venenatis tortor pretium iaculis. Aliquam a faucibus mauris. Aenean sed urna velit. Nam malesuada dui eget scelerisque fermentum.</p>', NULL, NULL, NULL, '2016-07-04 07:53:13', '2019-05-04 12:58:21'),
 (4, 2, 'en', 'company', NULL, 'Company', 'Company Subtitle', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas aliquam mollis. Donec luctus luctus dui, vitae dapibus ipsum fermentum a. Quisque fermentum sodales iaculis. Nunc blandit ante luctus urna laoreet sollicitudin. Praesent a liber', '<p>Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit. Cras eu arcu quis sem faucibus volutpat. Praesent facilisis mauris nec magna vulputate blandit. Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit. Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit. Cras eu arcu quis sem faucibus volutpat. Praesent facilisis mauris nec magna vulputate blandit. Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit. Vestibulum quis leo risus. Mauris hendrerit risus a laoreet blandit.</p>', NULL, NULL, NULL, '0', '2016-07-04 07:53:13', '2020-08-11 10:45:47'),
 (5, 3, 'it', 'privacy', 'Privacy', 'Privacy', '', NULL, '', '', '', '', '', '2016-07-04 07:53:28', '2017-08-01 14:33:01'),
@@ -287,6 +294,13 @@ CREATE TABLE `carts` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dump dei dati per la tabella `carts`
+--
+
+INSERT INTO `carts` (`id`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
+(0, 1, 1, '2020-09-12 15:29:20', '2020-09-12 15:29:41');
+
 -- --------------------------------------------------------
 
 --
@@ -302,6 +316,13 @@ CREATE TABLE `cart_items` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `cart_items`
+--
+
+INSERT INTO `cart_items` (`id`, `cart_id`, `product_code`, `product_model_code`, `quantity`, `created_at`, `updated_at`) VALUES
+(1, 0, 'PRDB', NULL, 1, '2020-09-12 15:29:20', '2020-09-12 15:29:20');
 
 -- --------------------------------------------------------
 
@@ -8889,8 +8910,8 @@ CREATE TABLE `hpsliders` (
 --
 
 INSERT INTO `hpsliders` (`id`, `title`, `description`, `icon`, `image`, `link`, `slug`, `sort`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'maguttiCms 7 slider', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', NULL, 'magutticms-7-slider', 200, 1, 0, '2016-12-27 17:34:38', '2020-08-09 16:29:35'),
-(2, 'maguttiCms 7', 'A modular multilingual CMS built with Laravel 7', NULL, 'header1.jpg', NULL, '8', 100, 1, 0, '2016-12-27 18:18:09', '2020-08-09 16:29:24');
+(1, 'maguttiCms 8 slider', 'free open source CMS based on the Laravel PHP Framework', NULL, 'header2.jpg', NULL, 'magutticms-8-slider', 200, 1, 0, '2016-12-27 17:34:38', '2020-09-14 21:00:45'),
+(2, 'maguttiCms 8', 'A modular multilingual CMS built with Laravel 8', NULL, 'header1.jpg', NULL, 'magutticms-8', 100, 1, 0, '2016-12-27 18:18:09', '2020-09-14 21:00:30');
 
 -- --------------------------------------------------------
 
@@ -9241,6 +9262,13 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dump dei dati per la tabella `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `cart_id`, `products_cost`, `shipping_cost`, `discount_amount`, `vat_cost`, `total_cost`, `billing_address_id`, `shipping_address_id`, `discount_code`, `token`, `created_at`, `updated_at`) VALUES
+(1, 1, 0, '20', '12', '0.0000', '7.04', '39.04', 1, 1, '', '3yelOb4z7xcNv3AcCdF9BnfJTkZoyppr', '2020-09-12 15:29:41', '2020-09-12 15:29:41');
+
 -- --------------------------------------------------------
 
 --
@@ -9258,6 +9286,13 @@ CREATE TABLE `order_items` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `cartitem_id`, `product_code`, `product_model_code`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'PRDB', NULL, 1, 20, '2020-09-12 15:29:41', '2020-09-12 15:29:41');
 
 -- --------------------------------------------------------
 
@@ -9277,6 +9312,13 @@ CREATE TABLE `payments` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `payments`
+--
+
+INSERT INTO `payments` (`id`, `order_id`, `payment_method_id`, `is_paid`, `code`, `transaction`, `notes`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 2, NULL, '', '', NULL, '2020-09-12 15:29:46', '2020-09-12 15:29:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -10156,7 +10198,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT per la tabella `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `adminusers`
@@ -10192,7 +10234,7 @@ ALTER TABLE `block_translations`
 -- AUTO_INCREMENT per la tabella `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `cities`
@@ -10294,19 +10336,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT per la tabella `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `payment_methods`
