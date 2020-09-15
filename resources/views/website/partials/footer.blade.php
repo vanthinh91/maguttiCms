@@ -15,10 +15,10 @@
     <div class="container ">
         <div class="row align-items-end">
             <div class="col-12 col-md-8 col footer-address">
-                <h4 class="text-white">{{ config('maguttiCms.website.option.app.name') }}</h4>
+                <h4 class="text-white">{{ config('maguttiCms.website.option.app.name') }} </h4>
 
                 <div class="">
-                    &copy; <?php echo date('Y'); ?> {{ config('maguttiCms.website.option.app.legal') }}<br>
+                    &copy; <?php echo date('Y'); ?> {{ config('maguttiCms.website.option.app.legal') }} - Ver. {{ App::VERSION() }} <br>
                     {{ config('maguttiCms.website.option.app.address') }} - {{ config('maguttiCms.website.option.app.locality') }} - P.IVA {{ config('maguttiCms.website.option.app.vat') }}<br>
                     Tel: {{ config('maguttiCms.website.option.app.phone') }} - Fax: {{ config('maguttiCms.website.option.app.fax') }} - <a href="mailto:{{ config('maguttiCms.website.option.app.email') }}">{{ config('maguttiCms.website.option.app.email') }}</a>
                 </div>
