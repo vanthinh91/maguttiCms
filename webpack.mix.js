@@ -1,6 +1,5 @@
 const mix = require('laravel-mix');
 require('laravel-mix-merge-manifest');
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Fo development Management
@@ -11,7 +10,6 @@ require('laravel-mix-merge-manifest');
  | file for the application as well as bundling up all the JS files.
  |
 */
-
 if (mix.config.production || mix.config.development) {
 	mix.sass('resources/sass/website/vendor.scss', 'public/website/css')
 	mix.js('resources/js/website/vendor.js', 'public/website/js')
