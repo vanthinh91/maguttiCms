@@ -33,12 +33,10 @@
 <div id="app">
     {{-- Navbar --}}
     @include('website.partials.navbar')
-
     {{-- Page content --}}
     {{$slot}}
-
     {{-- Footer --}}
-    @include('website.partials.footer')
+    <x-website.partials.footer/>
 </div>
 {{-- default js to show in all pages --}}
 <script type="text/javascript">

@@ -5,7 +5,6 @@
     'buttonClass',
     'item',
 ])
-
 <x-website.partials.section  class="{{$class ?? '' }}" classCaption="{{$classCaption ?? 'text-color-4'}}">
     <x-slot name="caption">{!! $item->subtitle!!}</x-slot>
     <div class=" h1 {!! $color ?? 'text-white' !!}  text-center">{!! $item->title !!}</div>

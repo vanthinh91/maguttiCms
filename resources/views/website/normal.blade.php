@@ -1,5 +1,4 @@
-@extends('website.app')
-@section('content')
+<x-website.layout>
     <x-website.ui.breadcrumbs class="bg-accent">
         <div class="text-white page-breadcrumb d-flex align-items-end">
             @if($article->parent)
@@ -8,29 +7,9 @@
             <div class="page-breadcrumb__item">{{$article->menu_title}}</div>
         </div>
     </x-website.ui.breadcrumbs>
-    <section class="py-3">
-        <div class="container">
-            <div class="row">
-                @if($article->image)
-                    <div class="col-12 col-md-6 order-md-2 mb-3 mb-md-0">
-                        <img src="{{ ImgHelper::get_cached($article->image, config('maguttiCms.image.medium')) }}"
-                             alt="{{ $article->title }}" class="img-fluid">
-                    </div>
-                @endif
-                <div class="col-12 col-md-6 order-md-1">
-                    @if($article->subtitle)
-                        <h2 class="text-accent">{{ $article->subtitle }}</h2>
-                    @endif
-                    <h1 class="text-primary">{{ $article->title }}</h1>
-
-                    {!! HtmlHelper::content_part($article->description,1) !!}
-                    @foreach(HtmlHelper::content_part_looper($article->description) as $part)
-                        {!! $part !!}
-                    @endforeach
-                </div>
-            </div>
-            <x-website.widgets.sharer :item="$article"/>
-        </div>
-
-    </section>
-@endsection
+    <x-website.partials.page-content :article="$article" class="bg-color-2"></x-website.partials.page-content>
+    <x-website.page-blocks.lists :item="$article"/>
+    <x-website.partials.section  class="pt-0 pb-2">
+        <x-website.widgets.sharer :item="$article" class="text-left"/>
+    </x-website.partials.section>
+</x-website.layout>
