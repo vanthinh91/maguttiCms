@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Set 14, 2020 alle 21:20
+-- Creato il: Set 19, 2020 alle 13:09
 -- Versione del server: 5.7.29
--- Versione PHP: 7.4.7
+-- Versione PHP: 7.3.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -145,7 +145,8 @@ INSERT INTO `articles` (`id`, `domain`, `parent_id`, `menu_title`, `title`, `sub
 (10, '', 9, NULL, '', NULL, NULL, NULL, '', 'user-profile', '', '', '', '', 1300, 1, 0, 0, 0, 0, '2016-08-10 07:17:38', '2017-08-01 14:33:37'),
 (11, '', 0, NULL, '', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, '', 2000, 1, 0, 0, 0, 0, '2017-08-01 16:13:57', '2017-08-01 16:16:28'),
 (12, '', 2, NULL, '', NULL, NULL, NULL, '', 'company', NULL, 'ff0000.png', '', NULL, 110, 1, 0, 1, 21, 0, '2020-08-16 12:33:31', '2020-08-16 12:34:07'),
-(13, '', NULL, NULL, '', NULL, NULL, NULL, '', 'home', NULL, '', '', '13', 0, 1, 0, 0, 23, 0, '2020-08-23 12:15:17', '2020-08-23 13:35:07');
+(13, '', NULL, NULL, '', NULL, NULL, NULL, '', 'home', NULL, '', '', '13', 0, 1, 0, 0, 23, 0, '2020-08-23 12:15:17', '2020-08-23 13:35:07'),
+(14, '', 2, NULL, '', NULL, NULL, NULL, '', 'company', NULL, 'ff0000.png', '', NULL, 120, 1, 0, 1, 21, 0, '2020-09-19 11:03:05', '2020-09-19 13:06:29');
 
 -- --------------------------------------------------------
 
@@ -213,7 +214,11 @@ INSERT INTO `article_translations` (`id`, `article_id`, `locale`, `slug`, `menu_
 (37, 13, 'en', 'latest-products', 'Latest Products', 'Home Page  Latest Products', 'New Arrivals', NULL, NULL, NULL, NULL, NULL, '0', '2020-08-23 12:16:15', '2020-08-23 12:34:31'),
 (38, 13, 'it', 'ultimi-arrivi', 'Ultimi arrivi', 'Novità', 'I Nostri nuovi arrivi', NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-23 12:16:15', '2020-08-23 13:33:54'),
 (39, 13, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-23 12:16:15', '2020-08-23 12:16:15'),
-(40, 13, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-23 12:16:15', '2020-08-23 12:16:15');
+(40, 13, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-23 12:16:15', '2020-08-23 12:16:15'),
+(41, 14, 'en', 'sub-blocks', 'Page with sub-bocks', 'Sub blocks', 'subtitle', NULL, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n<div>\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n</div>', NULL, NULL, NULL, '0', '2020-09-19 11:03:39', '2020-09-19 13:06:55'),
+(42, 14, 'it', 'pagina-con-sotto-blocchi', 'Pagina con sotto blocchi', 'Pagina  con sotto blocchi', NULL, NULL, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n<div>\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n</div>', NULL, NULL, NULL, NULL, '2020-09-19 11:03:39', '2020-09-19 13:08:41'),
+(43, 14, 'es', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-09-19 11:03:39', '2020-09-19 11:03:39'),
+(44, 14, 'fr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-09-19 11:03:39', '2020-09-19 11:03:39');
 
 -- --------------------------------------------------------
 
@@ -247,7 +252,10 @@ CREATE TABLE `blocks` (
 
 INSERT INTO `blocks` (`id`, `model_type`, `model_id`, `template_id`, `title`, `subtitle`, `description`, `doc`, `image`, `video`, `link`, `pub`, `sort`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'App\\Article', 2, 21, '', '', NULL, NULL, NULL, NULL, NULL, 1, 10, NULL, NULL, '2019-10-19 14:20:13', '2019-10-19 14:20:13'),
-(2, 'App\\Article', 1, NULL, '', '', NULL, NULL, NULL, NULL, '5', 1, 10, NULL, NULL, '2020-08-11 12:00:24', '2020-08-16 11:52:45');
+(2, 'App\\Article', 1, NULL, '', '', NULL, NULL, NULL, NULL, '5', 1, 10, NULL, NULL, '2020-08-11 12:00:24', '2020-08-16 11:52:45'),
+(3, 'App\\Article', 14, 25, '', '', NULL, NULL, 'laravel-upgrading-to-8.jpg', NULL, NULL, 1, 10, NULL, NULL, '2020-09-19 11:09:32', '2020-09-19 11:13:30'),
+(4, 'App\\Article', 14, 24, '', '', NULL, NULL, 'laravel-upgrading-to-8.jpg', NULL, NULL, 1, 10, NULL, NULL, '2020-09-19 11:14:31', '2020-09-19 11:15:18'),
+(5, 'App\\Article', 14, 26, '', '', NULL, NULL, 'laravel-upgrading-to-8.jpg', NULL, NULL, 1, 30, NULL, NULL, '2020-09-19 11:46:15', '2020-09-19 11:46:40');
 
 -- --------------------------------------------------------
 
@@ -278,7 +286,19 @@ INSERT INTO `block_translations` (`id`, `block_id`, `locale`, `title`, `subtitle
 (5, 2, 'en', 'Home Page Block', 'See all products', '<p>LAUNCH NEW BUSINESSES / IMPROVE CX AT SCALE / MAKE BOLDER CHOICES / <br />DELIVER BETTER PRODUCTS / FORM STRONGER TEAMS / LAUNCH NEW <br />BUSINESSES / IMPROVE CX AT SCALE / MAKE BOLDER CHOICES / <br />DELIVER BETTER PRODUCTS / FORM STRONGER TEAMS</p>', '2020-08-11 12:00:24', '2020-08-11 12:00:24'),
 (6, 2, 'it', 'Home Page Block', 'See all products', '<p>LAUNCH NEW BUSINESSES / IMPROVE CX AT SCALE / MAKE BOLDER CHOICES / <br />DELIVER BETTER PRODUCTS / FORM STRONGER TEAMS / LAUNCH NEW <br />BUSINESSES / IMPROVE CX AT SCALE / MAKE BOLDER CHOICES / <br />DELIVER BETTER PRODUCTS / FORM STRONGER TEAMS</p>', '2020-08-11 12:00:24', '2020-08-11 12:00:24'),
 (7, 2, 'es', NULL, NULL, NULL, '2020-08-11 12:00:24', '2020-08-11 12:00:24'),
-(8, 2, 'fr', NULL, NULL, NULL, '2020-08-11 12:00:24', '2020-08-11 12:00:24');
+(8, 2, 'fr', NULL, NULL, NULL, '2020-08-11 12:00:24', '2020-08-11 12:00:24'),
+(9, 3, 'en', 'Page block 1', NULL, '<div>\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n</div>', '2020-09-19 11:09:32', '2020-09-19 11:42:51'),
+(10, 3, 'it', NULL, NULL, NULL, '2020-09-19 11:09:32', '2020-09-19 11:09:32'),
+(11, 3, 'es', NULL, NULL, NULL, '2020-09-19 11:09:32', '2020-09-19 11:09:32'),
+(12, 3, 'fr', NULL, NULL, NULL, '2020-09-19 11:09:32', '2020-09-19 11:09:32'),
+(13, 4, 'en', 'Page block 2', NULL, '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', '2020-09-19 11:15:18', '2020-09-19 11:15:18'),
+(14, 4, 'it', NULL, NULL, NULL, '2020-09-19 11:15:18', '2020-09-19 11:15:18'),
+(15, 4, 'es', NULL, NULL, NULL, '2020-09-19 11:15:18', '2020-09-19 11:15:18'),
+(16, 4, 'fr', NULL, NULL, NULL, '2020-09-19 11:15:18', '2020-09-19 11:15:18'),
+(17, 5, 'en', 'Page Block 3', 'Full Image', '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', '2020-09-19 11:46:40', '2020-09-19 11:47:22'),
+(18, 5, 'it', NULL, NULL, NULL, '2020-09-19 11:46:40', '2020-09-19 11:46:40'),
+(19, 5, 'es', NULL, NULL, NULL, '2020-09-19 11:46:40', '2020-09-19 11:46:40'),
+(20, 5, 'fr', NULL, NULL, NULL, '2020-09-19 11:46:40', '2020-09-19 11:46:40');
 
 -- --------------------------------------------------------
 
@@ -293,13 +313,6 @@ CREATE TABLE `carts` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dump dei dati per la tabella `carts`
---
-
-INSERT INTO `carts` (`id`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
-(0, 1, 1, '2020-09-12 15:29:20', '2020-09-12 15:29:41');
 
 -- --------------------------------------------------------
 
@@ -316,13 +329,6 @@ CREATE TABLE `cart_items` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dump dei dati per la tabella `cart_items`
---
-
-INSERT INTO `cart_items` (`id`, `cart_id`, `product_code`, `product_model_code`, `quantity`, `created_at`, `updated_at`) VALUES
-(1, 0, 'PRDB', NULL, 1, '2020-09-12 15:29:20', '2020-09-12 15:29:20');
 
 -- --------------------------------------------------------
 
@@ -8737,7 +8743,10 @@ INSERT INTO `domains` (`id`, `domain`, `title`, `value`, `sort`, `pub`, `created
 (2, 'imagetype', '', '', 20, 1, 0, '2016-06-23 07:38:24', '2016-06-28 07:59:19'),
 (21, 'template', '', 'template_subpage', 30, 1, 0, '2016-06-28 13:18:04', '2016-12-27 14:17:35'),
 (22, 'template', '', 'coming_soon', 40, 1, 0, '2020-04-03 22:02:39', '2020-04-03 22:03:21'),
-(23, 'template', '', 'products', 30, 1, 0, '2020-08-23 13:34:25', '2020-08-23 13:34:50');
+(23, 'template', '', 'products', 30, 1, 0, '2020-08-23 13:34:25', '2020-08-23 13:34:50'),
+(24, 'template', '', 'image_dx', 30, 1, 0, '2020-09-19 11:06:16', '2020-09-19 11:06:57'),
+(25, 'template', '', 'image_sx', 40, 1, 0, '2020-09-19 11:07:00', '2020-09-19 11:07:20'),
+(26, 'template', '', 'image_full', 40, 1, 0, '2020-09-19 11:07:36', '2020-09-19 11:07:52');
 
 -- --------------------------------------------------------
 
@@ -8773,7 +8782,19 @@ INSERT INTO `domain_translations` (`id`, `domain_id`, `locale`, `title`, `update
 (127, 23, 'en', 'New products', NULL, '2020-08-23 13:34:50', '2020-08-23 13:35:21'),
 (128, 23, 'it', NULL, NULL, '2020-08-23 13:34:50', '2020-08-23 13:34:50'),
 (129, 23, 'es', NULL, NULL, '2020-08-23 13:34:50', '2020-08-23 13:34:50'),
-(130, 23, 'fr', NULL, NULL, '2020-08-23 13:34:50', '2020-08-23 13:34:50');
+(130, 23, 'fr', NULL, NULL, '2020-08-23 13:34:50', '2020-08-23 13:34:50'),
+(131, 24, 'en', 'Block with image on the right', NULL, '2020-09-19 11:06:57', '2020-09-19 11:07:30'),
+(132, 24, 'it', NULL, NULL, '2020-09-19 11:06:57', '2020-09-19 11:06:57'),
+(133, 24, 'es', NULL, NULL, '2020-09-19 11:06:57', '2020-09-19 11:06:57'),
+(134, 24, 'fr', NULL, NULL, '2020-09-19 11:06:57', '2020-09-19 11:06:57'),
+(135, 25, 'en', 'Block with image on the left', NULL, '2020-09-19 11:07:20', '2020-09-19 11:07:20'),
+(136, 25, 'it', NULL, NULL, '2020-09-19 11:07:20', '2020-09-19 11:07:20'),
+(137, 25, 'es', NULL, NULL, '2020-09-19 11:07:20', '2020-09-19 11:07:20'),
+(138, 25, 'fr', NULL, NULL, '2020-09-19 11:07:20', '2020-09-19 11:07:20'),
+(139, 26, 'en', 'Block with full page image', NULL, '2020-09-19 11:07:52', '2020-09-19 11:07:52'),
+(140, 26, 'it', NULL, NULL, '2020-09-19 11:07:52', '2020-09-19 11:07:52'),
+(141, 26, 'es', NULL, NULL, '2020-09-19 11:07:52', '2020-09-19 11:07:52'),
+(142, 26, 'fr', NULL, NULL, '2020-09-19 11:07:52', '2020-09-19 11:07:52');
 
 -- --------------------------------------------------------
 
@@ -9262,13 +9283,6 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dump dei dati per la tabella `orders`
---
-
-INSERT INTO `orders` (`id`, `user_id`, `cart_id`, `products_cost`, `shipping_cost`, `discount_amount`, `vat_cost`, `total_cost`, `billing_address_id`, `shipping_address_id`, `discount_code`, `token`, `created_at`, `updated_at`) VALUES
-(1, 1, 0, '20', '12', '0.0000', '7.04', '39.04', 1, 1, '', '3yelOb4z7xcNv3AcCdF9BnfJTkZoyppr', '2020-09-12 15:29:41', '2020-09-12 15:29:41');
-
 -- --------------------------------------------------------
 
 --
@@ -9286,13 +9300,6 @@ CREATE TABLE `order_items` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dump dei dati per la tabella `order_items`
---
-
-INSERT INTO `order_items` (`id`, `order_id`, `cartitem_id`, `product_code`, `product_model_code`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'PRDB', NULL, 1, 20, '2020-09-12 15:29:41', '2020-09-12 15:29:41');
 
 -- --------------------------------------------------------
 
@@ -10210,31 +10217,31 @@ ALTER TABLE `adminusers`
 -- AUTO_INCREMENT per la tabella `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT per la tabella `article_translations`
 --
 ALTER TABLE `article_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT per la tabella `blocks`
 --
 ALTER TABLE `blocks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `block_translations`
 --
 ALTER TABLE `block_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT per la tabella `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `cities`
@@ -10264,13 +10271,13 @@ ALTER TABLE `discounts`
 -- AUTO_INCREMENT per la tabella `domains`
 --
 ALTER TABLE `domains`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT per la tabella `domain_translations`
 --
 ALTER TABLE `domain_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT per la tabella `examples`
@@ -10336,13 +10343,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT per la tabella `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `payments`
