@@ -6,6 +6,9 @@
 | FRONT END API
 |--------------------------------------------------------------------------
 */
+
+use App\maguttiCms\Website\Controllers\PagesController;
+
 Route::group([],function () {
 	Route::post('api/update-ghost',		'\App\maguttiCms\Website\Controllers\APIController@updateGhost');
 
@@ -56,6 +59,12 @@ Route::group([
     Route::get('/news/',                '\App\maguttiCms\Website\Controllers\PagesController@news');
     Route::get('/news/tags/{tags}',     '\App\maguttiCms\Website\Controllers\PagesController@newsByTags');
     Route::get('/news/{slug}',          '\App\maguttiCms\Website\Controllers\PagesController@news');
+
+    Route::get('/faq/',                [PagesController::class,'faq']);
+    Route::get('/faq/{slug}',          '\App\maguttiCms\Website\Controllers\PagesController@news');
+
+
+
     Route::get(LaravelLocalization::transRoute("routes.category"),	'\App\maguttiCms\Website\Controllers\ProductsController@category');
     Route::get(LaravelLocalization::transRoute("routes.products"),	'\App\maguttiCms\Website\Controllers\ProductsController@products');
 	Route::get(LaravelLocalization::transRoute("routes.contacts"),	'\App\maguttiCms\Website\Controllers\PagesController@contacts');

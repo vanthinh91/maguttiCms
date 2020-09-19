@@ -6,7 +6,7 @@ namespace App\maguttiCms\Tools;
 
 /**
  * Class ErrorCodes
- * @package App\laraCms\Tools
+ * @package App\maguttiCms\Tools
  */
 abstract class ErrorCodes
 {

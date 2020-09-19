@@ -2,6 +2,7 @@
 
 namespace App\maguttiCms\Website\Controllers;
 
+use App\maguttiCms\Domain\Faq\FaqViewModel;
 use DemeterChain\C;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
@@ -34,6 +35,10 @@ class PagesController extends Controller
     public function news($slug = '')
     {
         return (new NewsViewModel('news'))->handle($slug);
+    }
+    public function faq($slug = '')
+    {
+        return (new FaqViewModel('faq'))->handle($slug);
     }
 
     public function newsByTags($tag)

@@ -15,11 +15,11 @@ class CreateModel extends Command
      * @var string
      */
     protected $signature = '
-                            laracms:create-model
-                            {table : Il nome della tabella da leggere.}
-                            {model? : Il nome del Model da creare.}
-                            {--translatable=true : Flag che indica se il Model deve essere translatable.}
-                            {--sluggable=false : Flag che indica se il Model deve essere sluggable.}
+                            magutticms:create-model
+                            {table : table name.}
+                            {model? : model name.}
+                            {--translatable=true : true if Model is translatable.}
+                            {--sluggable=false : true if Model is sluggable.}
                             ';
 
     /**
@@ -27,7 +27,7 @@ class CreateModel extends Command
      *
      * @var string
      */
-    protected $description = 'Command utilizzato per la creazione di un Model a partire dalla tabella già presente nel DB.';
+    protected $description = 'This  command create a model and the admin form related configuration field   from   given db tabòe .';
 
     /**
      * I fields.
@@ -75,7 +75,7 @@ class CreateModel extends Command
      *
      * @var array
      */
-    protected $ignoreFillable = ['id', 'created_at', 'updated_at'];
+    protected $ignoreFillable = ['id', 'created_at', 'updated_at','created_by','updated_by'];
 
     /**
      * I campi da considerare translatable di default.
@@ -103,7 +103,7 @@ class CreateModel extends Command
      *
      * @var array
      */
-    protected $ignoreFieldSpec = ['created_at', 'updated_at'];
+    protected $ignoreFieldSpec = ['created_at', 'updated_at','created_by','updated_by'];
 
     /**
      * Crea una nuova istanza di command.
@@ -136,14 +136,14 @@ class CreateModel extends Command
         // Istanzia Doctrine SchemaBuilder.
         $schemaBuilder = DB::getSchemaBuilder();
 
-        echo "Lettura della tabella [$table]" . PHP_EOL;
+        echo "Reading [$table] table" . PHP_EOL;
 
         // Loop di tutte le colonne per ottenere il type e calcolare i possibili translatable.
         $translatableFields = [];
         foreach ($schemaBuilder->getColumnListing($table) as $column) {
 
             $type = $schemaBuilder->getColumnType($table, $column);
-            echo "Trovata colonna: [$column] => [$type]" . PHP_EOL;
+            echo "Column name: [$column] => [$type]" . PHP_EOL;
 
             $this->fields[$column] = [
                 'type'         => $type,
@@ -362,7 +362,7 @@ class CreateModel extends Command
         $this->modelStub = str_replace('##model##', $this->model, $this->modelStub);
         $fileName = app_path("{$this->model}.php");
 
-        echo "Creazione del Model [{$this->model}]" . PHP_EOL;
+        echo "Create Model [{$this->model}]" . PHP_EOL;
 
         $this->writeFile($fileName, $this->modelStub);
     }
@@ -372,7 +372,7 @@ class CreateModel extends Command
      */
     private function writeTranslationModel(): void
     {
-        echo "Creazione del Model translatable [{$this->model}Translation]" . PHP_EOL;
+        echo "Crea translatable Model [{$this->model}Translation]" . PHP_EOL;
         $translationModel = str_replace('##model##', $this->model, file_get_contents(__DIR__ . '/stubs/translation_model.stub'));
 
         // Richiedi conferma e crea Model.
@@ -389,8 +389,8 @@ class CreateModel extends Command
         // Controlla se il file esiste già e, nel caso, chiedere se proseguire con la sovrascrittura.
         if (file_exists($file)) {
 
-            if (!$this->confirm('Il Model esiste già, sovrascrivo?')) {
-                echo "Model non creato." . PHP_EOL;
+            if (!$this->confirm('Model exists, overwritten?')) {
+                echo "Model not created." . PHP_EOL;
                 return;
             }
         }
@@ -428,7 +428,7 @@ class CreateModel extends Command
     private function isGuessedModelCorrect($table): bool
     {
         $this->model = $this->guessModelForTable($table);
-        return $this->confirm("Il Model sembrerebbe essere '{$this->model}', procedere?");
+        return $this->confirm("Model '{$this->model}' seems to be already present, continue?");
     }
 
     /**
