@@ -20,6 +20,7 @@ maguttiCms is released using Laravel 8x.
  - email: cmsadmin@magutti.com
  - password: password
  - for shared hosting you can set ASSET_PUBLIC_PATH in .env  file (eg ASSET_PUBLIC_PATH='public/')
+ -  For REDIS  add CACHE_PREFIX in your  .env file 
    
 ### Server Requirements
  
