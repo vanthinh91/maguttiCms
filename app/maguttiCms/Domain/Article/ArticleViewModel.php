@@ -33,9 +33,8 @@ class ArticleViewModel extends WebsiteViewModel
             $this->setSeo($article);
             $template = $this->handleTemplate($article);
             return view($template, compact('article'));
-        } else {
-            return redirect(url_locale('/'));
         }
+        return $this->handleMissingPage();
     }
 
 
@@ -50,9 +49,9 @@ class ArticleViewModel extends WebsiteViewModel
         if ($parameter && !is_array($parameter)) {
             $product = Product::findOrFail($parameter);
             return view('website.contacts', ['request_product_id' => $parameter, 'product' => $product, 'article' => $article]);
-        } else {
-            return view('website.contacts', ['request_product_id' => 0, 'article' => $article,'locations'=>$locations ]);
         }
+
+        return view('website.contacts', ['request_product_id' => 0, 'article' => $article, 'locations' => $locations]);
     }
 
 

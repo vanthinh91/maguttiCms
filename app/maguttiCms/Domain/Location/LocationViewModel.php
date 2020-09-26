@@ -21,10 +21,10 @@ class LocationViewModel extends WebsiteViewModel
         $next   = Location::find($nextId);
         $prev   = Location::find($prevId);
 
-
         $article = $this->getCurrentPage();
         $this->setSeo($location);
         $locale_article = $location;
+
         return view('website.location.single', compact('article', 'location', 'locale_article','next','prev'));
 
     }

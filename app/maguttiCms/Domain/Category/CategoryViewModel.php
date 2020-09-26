@@ -18,9 +18,9 @@ class CategoryViewModel extends WebsiteViewModel
             $products = $category->products()->published()->orderBy('sort')->get();
             $template = 'category';
             return view('website.'.$template, compact('article', 'category', 'products', 'locale_article'));
-        } else {
-            return $this->handleMissingPage();
         }
+        return $this->handleMissingPage();
+
     }
 
     function index()

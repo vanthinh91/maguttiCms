@@ -15,3 +15,14 @@ Route::prefix('admin')->group(base_path('routes/admin/index.php'));
 */
 Route::prefix(LaravelLocalization::setLocale())->group(base_path('routes/frontend/index.php'));
 
+
+/*
+|--------------------------------------------------------------------------
+| FALLBACK ROUTES
+|--------------------------------------------------------------------------
+*/
+
+Route::fallback(function () {
+    return redirect(url_locale('/'));
+});
+

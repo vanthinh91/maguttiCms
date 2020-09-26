@@ -20,9 +20,8 @@ class ProductViewModel extends WebsiteViewModel
             $locale_article = $product;
             $this->setSeo($product);
             return view('website.product', compact('article', 'product', 'category', 'locale_article'));
-        } else {
-            return redirect('/');
         }
+        return $this->handleMissingPage();
     }
 
     

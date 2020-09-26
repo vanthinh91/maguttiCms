@@ -63,22 +63,14 @@ Route::group([
     Route::get('/faq/',                [PagesController::class,'faq']);
     Route::get('/faq/{slug}',          '\App\maguttiCms\Website\Controllers\PagesController@news');
 
-
-
     Route::get(LaravelLocalization::transRoute("routes.category"),	'\App\maguttiCms\Website\Controllers\ProductsController@category');
     Route::get(LaravelLocalization::transRoute("routes.products"),	'\App\maguttiCms\Website\Controllers\ProductsController@products');
 	Route::get(LaravelLocalization::transRoute("routes.contacts"),	'\App\maguttiCms\Website\Controllers\PagesController@contacts');
+
     Route::post('/contacts/',		    '\App\maguttiCms\Website\Controllers\WebsiteFormController@getContactUsForm');
 
-	Route::get('/cart/',				'\App\maguttiCms\Website\Controllers\StoreController@cart')->middleware('storeenabled');
-	Route::get('/order-login/',		    '\App\maguttiCms\Website\Controllers\StoreController@orderLogin')->middleware(['storeenabled']);
-	Route::get('/order-submit/',		'\App\maguttiCms\Website\Controllers\StoreController@orderSubmit')->middleware(['storeenabled']);
-	Route::post('/order-submit/',		'\App\maguttiCms\Website\Controllers\StoreController@orderCreate')->middleware(['storeenabled', 'auth']);
-	Route::get('/order-review/{token}',	'\App\maguttiCms\Website\Controllers\StoreController@orderReview')->middleware(['storeenabled', 'auth']);
-	Route::post('/order-payment/',		'\App\maguttiCms\Website\Controllers\StoreController@orderPayment')->middleware(['storeenabled', 'auth']);
-	Route::get('/order-payment-cancel/{token}',	'\App\maguttiCms\Website\Controllers\StoreController@orderCancel')->middleware(['storeenabled', 'auth']);
-	Route::get('/order-payment-confirm/{token}','\App\maguttiCms\Website\Controllers\StoreController@orderConfirm')->middleware(['storeenabled', 'auth']);
-	Route::get('/order-payment-result/{token}',	'\App\maguttiCms\Website\Controllers\StoreController@orderResult')->middleware(['storeenabled', 'auth']);
+    // store page
+    Route::name('store')->group(base_path('routes/frontend/store.php'));
 
     Route::name('seolanding')->group(base_path('routes/frontend/seolanding.php'));
 
