@@ -21,6 +21,7 @@ maguttiCms is released using Laravel 8x.
  - password: password
  - for shared hosting you can set ASSET_PUBLIC_PATH in .env  file (eg ASSET_PUBLIC_PATH='public/')
    
+   
 ### Server Requirements
  
  - PHP >= 7.3
