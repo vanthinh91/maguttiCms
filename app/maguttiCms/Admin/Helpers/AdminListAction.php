@@ -19,7 +19,7 @@ trait AdminListAction
      */
     function hasActions()
     {
-        return collect($this->action_list)->some(function ($value, $key) {
+        return collect($this->action_list)->some(function ($value) {
             return data_get($this->property['actions'], $value,'');
         });
     }
