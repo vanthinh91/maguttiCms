@@ -35,6 +35,11 @@ maguttiCms is released using Laravel 8x.
  - Tokenizer PHP Extension
  - XML PHP Extension
 
+
+#Commands
+###magutticms:create-model
+helper to create a model and the related admin form configuration field from given db table 
+
 License
 =======
 Code released under the MIT license

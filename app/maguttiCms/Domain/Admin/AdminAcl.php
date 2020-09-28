@@ -117,7 +117,7 @@ trait AdminAcl
     function actionValue($action_property, $action)
     {
 
-        return data_get($action_property, $action);
+        return data_get($action_property['actions'], $action);
     }
 
 

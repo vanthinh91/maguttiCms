@@ -16,6 +16,7 @@
         </x-admin.buttons.button>
         @if (Str::contains($view_name, '-edit'))
             <x-admin.buttons.back_to_list class="btn-default btn-lg"  :article="$article"/>
+
             @if (auth_user('admin')->action('preview',$pageConfig) && $article->id)
                 <x-admin.buttons.preview class="btn-default btn-lg"  :article="$article"/>
             @endif

@@ -20,7 +20,7 @@
                             <thead>
                                 <tr>
                                     {{ AdminList::initList($pageConfig)->getListHeader() }}
-                                    @if (AdminList::hasAction())
+                                    @if (AdminList::hasActions())
                                         <th>{!! trans('admin.label.actions')!!}</th>
                                     @endif
                                 </tr>
@@ -46,7 +46,7 @@
                                             {!! AdminList::renderComponent($article,$label)!!}
                                         </td>
                                     @endforeach
-                                    @if (AdminList::hasAction())
+                                    @if (AdminList::hasActions())
                                         <td class="list-actions">
                                            <x-admin.list.action :pageConfig="$pageConfig" :article="$article"></x-admin.list.action>
                                         </td>

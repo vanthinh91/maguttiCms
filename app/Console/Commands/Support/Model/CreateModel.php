@@ -7,8 +7,12 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
+use App\Console\Commands\Support\Model\support\StubTypeResolver;
+
 class CreateModel extends Command
 {
+
+    use StubTypeResolver;
     /**
      * Il nome e la signature del command.
      *
@@ -27,7 +31,7 @@ class CreateModel extends Command
      *
      * @var string
      */
-    protected $description = 'This  command create a model and the admin form related configuration field   from   given db tabòe .';
+    protected $description = 'This  command create a model and the related admin form configuration field from given db table .';
 
     /**
      * I fields.
@@ -105,6 +109,8 @@ class CreateModel extends Command
      */
     protected $ignoreFieldSpec = ['created_at', 'updated_at','created_by','updated_by'];
 
+    protected $defaultMediaField = ['image', 'doc'];
+
     /**
      * Crea una nuova istanza di command.
      *
@@ -152,7 +158,7 @@ class CreateModel extends Command
             ];
         }
 
-        // Compila lo stub del Model.
+        // Compile the nodel staub.
         $this->setTranslatable();
         $this->setSluggable();
         $this->setFillable();
@@ -274,7 +280,7 @@ class CreateModel extends Command
     }
 
     /**
-     * Questo metodo serve ad inserire i FieldSpec nello stub.
+     * This  method generate the FieldSpec nello stub.
      */
     private function setFieldSpec(): void
     {
@@ -292,10 +298,10 @@ class CreateModel extends Command
             // Se il type è integer ed il field si chiama 'id', usa il type 'primary_key'.
             $type = ($type === 'integer' && $field === 'id') ? 'primary_key' : $type;
 
-            // Leggi lo stub relativo al tipo corretto.
-            $stub = file_get_contents(__DIR__ . "/stubs/fieldspecs/{$type}.stub");
+            // get stub  file content.
+            $stub = $this->resolveStub($field,$type);
 
-            // Imposta i campi per una possibile relation.
+            //  try to guess f relation ??? .
             if ($type === 'relation') {
 
                 // Rimuovi il prefisso/suffisso 'id' e ipotizza un nome per il Model della relation.

@@ -17,15 +17,20 @@ trait AdminListAction
      * has an action
      * @return bool
      */
-    function hasAction()
+    function hasActions()
     {
         return collect($this->action_list)->some(function ($value, $key) {
-            return data_get($this->property, $value,'');
+            return data_get($this->property['actions'], $value,'');
         });
     }
 
     function Actions()
     {
         return collect($this->action_list);
+    }
+
+    function isAction($action)
+    {
+        return collect($this->action_list)->contains($action);
     }
 }
