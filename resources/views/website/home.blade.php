@@ -18,4 +18,10 @@
     >
     </x-website.partials.page-block>
     <x-website.home.about :item="$items->find(2)" class="bg-white home_about"/>
+    <div class="container">
+        @endpush
+    </div>
+
+
+
 </x-website.layout>
