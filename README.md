@@ -38,7 +38,7 @@ maguttiCms is released using Laravel 8x.
 
 # Commands
 ## magutticms:create-model
-helper to create a model and the related admin form configuration fields from given db table 
+helper to create a model and the related admin form configuration fields from a db table 
 
 License
 =======
