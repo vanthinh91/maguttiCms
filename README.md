@@ -36,8 +36,8 @@ maguttiCms is released using Laravel 8x.
  - XML PHP Extension
 
 
-#Commands
-##magutticms:create-model
+# Commands
+## magutticms:create-model
 helper to create a model and the related admin form configuration fields from given db table 
 
 License
