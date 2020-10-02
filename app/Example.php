@@ -162,7 +162,7 @@ class Example extends Model
         ];
         $this->fieldspec['article_id'] = [
             'type'        => 'relation',
-            'model'       => 'article',
+            'model'       => 'Article',
             'foreign_key' => 'id',
             'label_key'   => 'title',
             'required'    => 0,
@@ -174,7 +174,7 @@ class Example extends Model
         ];
         $this->fieldspec['article_2_id'] = [
             'type'        => 'relation',
-            'model'       => 'article',
+            'model'       => 'Article',
             'foreign_key' => 'id',
             'label_key'   => 'title',
             'required'    => 0,
@@ -187,7 +187,7 @@ class Example extends Model
             'type'        => 'relation_tree',
             'tree_field'  => 'parent_id',
             'order_field' => 'sort',
-            'model'       => 'article',
+            'model'       => 'Article',
             'foreign_key' => 'id',
             'label_key'   => 'title',
             'required'    => false,
