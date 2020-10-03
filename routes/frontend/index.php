@@ -7,17 +7,26 @@
 |--------------------------------------------------------------------------
 */
 
+use App\maguttiCms\Website\Controllers\APIController;
+use App\maguttiCms\Website\Controllers\Auth\ForgotPasswordController;
+use App\maguttiCms\Website\Controllers\Auth\LoginController;
+use App\maguttiCms\Website\Controllers\Auth\RegisterController;
+use App\maguttiCms\Website\Controllers\Auth\ResetPasswordController;
 use App\maguttiCms\Website\Controllers\PagesController;
+use App\maguttiCms\Website\Controllers\ProductsController;
+use App\maguttiCms\Website\Controllers\ReservedAreaController;
+use App\maguttiCms\Website\Controllers\StoreAPIController;
+use App\maguttiCms\Website\Controllers\WebsiteFormController;
 
-Route::group([],function () {
-	Route::post('api/update-ghost',		'\App\maguttiCms\Website\Controllers\APIController@updateGhost');
+Route::group([], function () {
+    Route::post('api/update-ghost', [APIController::class, 'updateGhost']);
 
-	// store section
-	Route::post('api/store/cart-item-add',		'\App\maguttiCms\Website\Controllers\StoreAPIController@storeCartItemAdd');
-	Route::post('api/store/cart-item-remove',	'\App\maguttiCms\Website\Controllers\StoreAPIController@storeCartitemRemove');
-    Route::post('api/store/cart-item-update',	'\App\maguttiCms\Website\Controllers\StoreAPIController@updateItemQuantity');
-	Route::get('api/store/order-calc',		'\App\maguttiCms\Website\Controllers\StoreAPIController@storeOrderCalc');
-	Route::get('api/store/order-discount',	'\App\maguttiCms\Website\Controllers\StoreAPIController@storeOrderDiscount');
+    // store section
+    Route::post('api/store/cart-item-add', [StoreAPIController::class, 'storeCartItemAdd']);
+    Route::post('api/store/cart-item-remove', [StoreAPIController::class, 'storeCartitemRemove']);
+    Route::post('api/store/cart-item-update', [StoreAPIController::class, 'updateItemQuantity']);
+    Route::get('api/store/order-calc', [StoreAPIController::class, 'storeOrderCalc']);
+    Route::get('api/store/order-discount', [StoreAPIController::class, 'storeOrderDiscount']);
 });
 
 /*
@@ -25,55 +34,52 @@ Route::group([],function () {
 | FRONT END
 |--------------------------------------------------------------------------
 */
-Route::group([
-   'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'usercart']
-], function () {
-	// Api
-	Route::post('/api/newsletter',	'\App\maguttiCms\Website\Controllers\APIController@subscribeNewsletter');
+Route::group(['middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'usercart']], function () {
+    // Api
+    Route::post('/api/newsletter', [APIController::class, 'subscribeNewsletter']);
 
     // Authentication routes...
-    Route::get('users/login', '\App\maguttiCms\Website\Controllers\Auth\LoginController@showLoginForm')->name('users/login');
-    Route::post('users/login','\App\maguttiCms\Website\Controllers\Auth\LoginController@login');
-    Route::get('users/logout','\App\maguttiCms\Website\Controllers\Auth\LoginController@logout');
+    Route::get('users/login', [LoginController::class, 'showLoginForm'])->name('users/login');
+    Route::post('users/login', [LoginController::class, 'login']);
+    Route::get('users/logout', [LoginController::class, 'logout']);
 
-	// Reserved area user routes
-	Route::group(['middleware' => ['auth']], function () {
-	    Route::get('users/dashboard',    '\App\maguttiCms\Website\Controllers\ReservedAreaController@dashboard');
-		Route::get('users/address-new',    '\App\maguttiCms\Website\Controllers\ReservedAreaController@addressNew');
-		Route::post('users/address-new',    '\App\maguttiCms\Website\Controllers\ReservedAreaController@addressCreate');
-	    Route::get('users/profile','\App\maguttiCms\Website\Controllers\ReservedAreaController@profile');
-	});
+    // Reserved area user routes
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('users/dashboard', [ReservedAreaController::class, 'dashboard']);
+        Route::get('users/address-new', [ReservedAreaController::class, 'addressNew']);
+        Route::post('users/address-new', [ReservedAreaController::class, 'addressCreate']);
+        Route::get('users/profile', [ReservedAreaController::class, 'profile']);
+    });
 
     // Registration routes...
-    Route::get('/register', '\App\maguttiCms\Website\Controllers\Auth\RegisterController@showRegistrationForm');
-    Route::post('/register','\App\maguttiCms\Website\Controllers\Auth\RegisterController@register');
+    Route::get('/register', [RegisterController::class, 'showRegistrationForm']);
+    Route::post('/register', [RegisterController::class, 'register']);
 
     // Password Reset Routes...
-    Route::get('password/reset',        '\App\maguttiCms\Website\Controllers\Auth\ForgotPasswordController@showLinkRequestForm');
-    Route::post('password/email',       '\App\maguttiCms\Website\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail');
-    Route::get('password/reset/{token}','\App\maguttiCms\Website\Controllers\Auth\ResetPasswordController@showResetForm');
-    Route::post('password/reset',       '\App\maguttiCms\Website\Controllers\Auth\ResetPasswordController@reset');
+    Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm']);
+    Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
+    Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm']);
+    Route::post('password/reset', [ResetPasswordController::class, 'reset']);
 
     // Pages routes...
-    Route::get('/',                     '\App\maguttiCms\Website\Controllers\PagesController@home');
-    Route::get('/news/',                '\App\maguttiCms\Website\Controllers\PagesController@news');
-    Route::get('/news/tags/{tags}',     '\App\maguttiCms\Website\Controllers\PagesController@newsByTags');
-    Route::get('/news/{slug}',          '\App\maguttiCms\Website\Controllers\PagesController@news');
+    Route::get('/', [PagesController::class, 'home']);
+    Route::get('/news/', [PagesController::class, 'news']);
+    Route::get('/news/tags/{tags}', [PagesController::class, 'newsByTags']);
+    Route::get('/news/{slug}', [PagesController::class, 'news']);
+    Route::get('/faq/', [PagesController::class, 'faq']);
+    Route::get('/faq/{slug}', [PagesController::class, 'faq']);
 
-    Route::get('/faq/',                [PagesController::class,'faq']);
-    Route::get('/faq/{slug}',          '\App\maguttiCms\Website\Controllers\PagesController@news');
+    Route::get(LaravelLocalization::transRoute("routes.category"), [ProductsController::class, 'category']);
+    Route::get(LaravelLocalization::transRoute("routes.products"), [ProductsController::class, 'products']);
+    Route::get(LaravelLocalization::transRoute("routes.contacts"), [PagesController::class, 'contacts']);
 
-    Route::get(LaravelLocalization::transRoute("routes.category"),	'\App\maguttiCms\Website\Controllers\ProductsController@category');
-    Route::get(LaravelLocalization::transRoute("routes.products"),	'\App\maguttiCms\Website\Controllers\ProductsController@products');
-	Route::get(LaravelLocalization::transRoute("routes.contacts"),	'\App\maguttiCms\Website\Controllers\PagesController@contacts');
-
-    Route::post('/contacts/',		    '\App\maguttiCms\Website\Controllers\WebsiteFormController@getContactUsForm');
+    Route::post('/contacts/', [WebsiteFormController::class, 'getContactUsForm']);
 
     // store page
     Route::name('store')->group(base_path('routes/frontend/store.php'));
 
-    Route::name('seolanding')->group(base_path('routes/frontend/seolanding.php'));
+    //Route::name('seolanding')->group(base_path('routes/frontend/seolanding.php'));
 
-    Route::get('/{parent}/{child}', '\App\maguttiCms\Website\Controllers\PagesController@pages');
-    Route::get('/{parent?}/', '\App\maguttiCms\Website\Controllers\PagesController@pages');
+    Route::get('/{parent}/{child}', [PagesController::class, 'pages']);
+    Route::get('/{parent?}/', [PagesController::class, 'pages']);
 });

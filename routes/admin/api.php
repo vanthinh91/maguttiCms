@@ -1,7 +1,11 @@
 <?php
 
-use App\maguttiCms\Middleware\AdminRole;
+
 use App\maguttiCms\Middleware\AdminSuggestRole;
+use App\maguttiCms\Admin\Controllers\AjaxController;
+use App\maguttiCms\Api\V1\Controllers\AdminCrudController;
+use App\maguttiCms\Api\V1\Controllers\AdminServicesController;
+use App\maguttiCms\Admin\Controllers\SuggestAjaxController;
 
 Route::group([], function () {
     /*
@@ -9,13 +13,13 @@ Route::group([], function () {
     | MEDIA LIBRARY
     |--------------------------------------------------------------------------
     */
-    Route::post('uploadifiveSingle/',                    '\App\maguttiCms\Admin\Controllers\AjaxController@uploadifiveSingle');
-    Route::post('uploadifiveMedia/',                    '\App\maguttiCms\Admin\Controllers\AjaxController@uploadifiveMedia');
-    Route::post('cropperMedia/',                    '\App\maguttiCms\Admin\Controllers\AjaxController@cropperMedia');
-    Route::get('updateHtml/media/{model?}','\App\maguttiCms\Admin\Controllers\AjaxController@updateModelMediaList');
-    Route::get('updateHtml/{mediaType?}/{model?}/{id?}','\App\maguttiCms\Admin\Controllers\AjaxController@updateMediaList');
-    Route::get('updateMediaSortList/',                  '\App\maguttiCms\Admin\Controllers\AjaxController@updateMediaSortList');
-    Route::post('upload-media-tinymce/', '\App\maguttiCms\Admin\Controllers\AjaxController@uploadMediaTinyMCE');
+    Route::post('uploadifiveSingle/', [AjaxController::class, 'uploadifiveSingle']);
+    Route::post('uploadifiveMedia/', [AjaxController::class, 'uploadifiveMedia']);
+    Route::post('cropperMedia/', [AjaxController::class, 'cropperMedia']);
+    Route::get('updateHtml/media/{model?}', [AjaxController::class, 'updateModelMediaList']);
+    Route::get('updateHtml/{mediaType?}/{model?}/{id?}', [AjaxController::class, 'updateMediaList']);
+    Route::get('updateMediaSortList/', [AjaxController::class, 'updateMediaSortList']);
+    Route::post('upload-media-tinymce/', [AjaxController::class, 'uploadMediaTinyMCE']);
 
     /*
     |--------------------------------------------------------------------------
@@ -23,11 +27,9 @@ Route::group([], function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::get('api/suggest', ['as' => 'api.suggest', 'uses' => '\App\maguttiCms\Admin\Controllers\SuggestAjaxController@suggest'])->middleware(AdminSuggestRole::class);
-    Route::get('dashboard','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@dashboard');
-    Route::get('nav-bar','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@navbar');
-    Route::post('create/{model}','\App\maguttiCms\Api\V1\Controllers\AdminCrudController@create');
-    Route::post('update/{model}/{id}','\App\maguttiCms\Api\V1\Controllers\AdminVrudController@update');
+    Route::get('api/suggest', ['as' => 'api.suggest', 'uses' => [SuggestAjaxController::class,'suggest']])->middleware(AdminSuggestRole::class);
+    Route::get('dashboard', [AdminServicesController::class,'dashboard']);
+    Route::get('nav-bar', [AdminServicesController::class,'navbar']);
 
     /*
     |--------------------------------------------------------------------------
@@ -35,25 +37,25 @@ Route::group([], function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::post('services/generator','\App\maguttiCms\Api\V1\Controllers\AdminServicesController@generator');
+    Route::post('services/generator', [AdminServicesController::class,'generator']);
     /*
     |--------------------------------------------------------------------------
     | FILE MANANGER
     |--------------------------------------------------------------------------
     */
-    Route::post('filemanager/upload', '\App\maguttiCms\Admin\Controllers\AjaxController@uploadFileManager');
-    Route::get('filemanager/list/{id?}', '\App\maguttiCms\Admin\Controllers\AjaxController@getFileManagerList');
-    Route::get('filemanager/edit/{id}', '\App\maguttiCms\Admin\Controllers\AjaxController@editFileManager');
-    Route::post('filemanager/edit/{id}', '\App\maguttiCms\Admin\Controllers\AjaxController@updateFileManager');
+    Route::post('filemanager/upload', [AjaxController::class, 'uploadFileManager']);
+    Route::get('filemanager/list/{id?}', [AjaxController::class, 'getFileManagerList']);
+    Route::get('filemanager/edit/{id}', [AjaxController::class, 'editFileManager']);
+    Route::post('filemanager/edit/{id}', [AjaxController::class, 'updateFileManager']);
 
     /*
     |--------------------------------------------------------------------------
     | CRUD LIBRARY
     |--------------------------------------------------------------------------
     */
-    Route::post('create/{model}',                '\App\maguttiCms\Api\V1\Controllers\AdminCrudController@create');
-    Route::post('update/{model}/{id}',           '\App\maguttiCms\Api\V1\Controllers\AdminCrudController@update');
-    Route::get('update/{method}/{model?}/{id?}', '\App\maguttiCms\Admin\Controllers\AjaxController@update');
-    Route::get('delete/{model?}/{id?}',          '\App\maguttiCms\Admin\Controllers\AjaxController@delete');
+    Route::post('create/{model}', [AdminCrudController::class,'create']);
+    Route::post('update/{model}/{id}', [AdminCrudController::class,'update']);
+    Route::get('update/{method}/{model?}/{id?}', [AjaxController::class, 'update']);
+    Route::get('delete/{model?}/{id?}', [AjaxController::class, 'delete']);
 
 });

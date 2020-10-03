@@ -88,7 +88,7 @@ window.App = function () {
 
 				$.ajax({
 					type: 'POST',
-					url: '/api/update-ghost',
+					url: '/api/	update-ghost',
 					data: {
 						id: id,
 						model: model,
