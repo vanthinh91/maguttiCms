@@ -58,9 +58,9 @@ class User extends Authenticatable
     {
         if (!empty($roles)) {
             $this->roles()->sync($roles);
-        } else {
-            $this->roles()->detach();
         }
+         $this->roles()->detach();
+
     }
 
     /**
@@ -174,7 +174,7 @@ class User extends Authenticatable
 
     /*
     |--------------------------------------------------------------------------
-    | NOTIFIABLE OVERRIDE THE SENDPASSWORDRESETNOTIFICATION
+    | NOTIFIABLE OVERRIDE THE SEND PASSWORD RESET NOTIFICATION
     |--------------------------------------------------------------------------
     |
     */

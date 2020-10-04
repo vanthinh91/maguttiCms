@@ -12,7 +12,7 @@
                 </div>
                 <div class="text-right vue-modal-footer">
                     <slot name="modal-footer" :closeModal="dismiss">
-                        <button @click="dismiss" type="button" class="btn btn-warning btn-block">
+                        <button @click="dismiss" type="button" class="btn btn-primary btn-block">
                             Close
                         </button>
                     </slot>

@@ -26,11 +26,11 @@
                 </div>
             </template>
             <template #modal-footer="{closeModal}">
-                <button @click.prevent="gotToCart" type="button" class="btn btn-success btn-block">
+              <button @click="closeModal" type="button" class="btn btn-primary btn-block">
+                {{$t('store.cart.continue')}}
+              </button>
+              <button @click.prevent="gotToCart" type="button" class="btn btn-accent btn-block">
                     {{$t('store.cart.checkout')}}
-                </button>
-                <button @click="closeModal" type="button" class="btn btn-warning btn-block">
-                    {{$t('store.cart.continue')}}
                 </button>
             </template>
         </confirm-modal>

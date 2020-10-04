@@ -4,7 +4,7 @@
                 <template #content><h5>{{$t('store.cart.empty')}}</h5></template>
             </alert-box>
             <div v-else class="table-responsive">
-                <table  class="table table-hover table-striped">
+                <table  class="table table-hover table-striped cart-resume">
                 <thead>
                 <tr>
                     <th class="width-10"></th>
@@ -13,7 +13,7 @@
                     <th class="width-10">{{$t('store.cart.table.quantity')}}</th>
                     <th class="width-10">{{$t('store.cart.table.price')}}</th>
                     <th class="width-10">{{$t('store.cart.total')}}</th>
-                    <th class="width-10">{{$t('store.cart.table.actions')}}</th>
+                    <th class="width-10 text-center">{{$t('store.cart.table.actions')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -108,7 +108,6 @@
                 });
             },
             itemTotal(item){
-
                 return item.product.price* Math.abs(Math.ceil(item.quantity));
             }
         }
