@@ -12,7 +12,7 @@ use App\Console\Commands\Support\Model\support\StubTypeResolver;
 class CreateModel extends Command
 {
 
-    use StubTypeResolver;
+
     /**
      * Il nome e la signature del command.
      *
@@ -299,7 +299,7 @@ class CreateModel extends Command
             $type = ($type === 'integer' && $field === 'id') ? 'primary_key' : $type;
 
             // get stub  file content.
-            $stub = $this->resolveStub($field,$type);
+            $stub = (new StubResolver())->getContent($type,$field);
 
             //  try to guess f relation ??? .
             if ($type === 'relation') {
