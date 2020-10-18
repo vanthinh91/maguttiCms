@@ -4,11 +4,11 @@
 namespace App\maguttiCms\Api\V1\Controllers;
 
 
-use App\Article;
-use App\Http\Resources\ArticleResource;
+use App\News;
+use App\Http\Resources\NewsResource;
 use App\maguttiCms\Tools\JsonApiResponseTrait;
 
-class ArticlesController extends BaseApiController
+class NewsController extends BaseApiController
 {
     use JsonApiResponseTrait;
 
@@ -19,12 +19,12 @@ class ArticlesController extends BaseApiController
      */
     function index()
     {
-        return ArticleResource::collection(Article::paginate(10));
+        return News::paginate(10);
+        return NewsResource::collection(News::paginate(10));
     }
 
     function show($id)
     {
-        $item = Article::find($id);
-        return new ArticleResource($item);
+        return new NewsResource(News::find($id));
     }
 }

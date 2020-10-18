@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\maguttiCms\Api\V1\Controllers\NewsController;
+use App\maguttiCms\Api\V1\Controllers\ArticlesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,8 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['prefix' => 'v1'], function () {
-    Route::get('article', '\App\maguttiCms\Api\V1\Controllers\ArticlesController@index');
+    Route::get('article',[ArticlesController::class,'index']);
+    Route::get('article/{id}', [ArticlesController::class,'show']);
+    Route::get('news',[NewsController::class,'index']);
+    Route::get('news/{slug}', [NewsController::class,'show']);
 });
