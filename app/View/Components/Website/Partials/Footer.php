@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Website\partials;
+namespace App\View\Components\Website\Partials;
 
 use Illuminate\View\Component;
 
-class page-content extends Component
+class Footer extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class page-content extends Component
      */
     public function render()
     {
-        return view('components.website.partials.page-content');
+        return view('components.website.partials.footer');
     }
 }

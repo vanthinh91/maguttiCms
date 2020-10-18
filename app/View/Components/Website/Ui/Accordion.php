@@ -1,11 +1,11 @@
 <?php
 
-namespace App\View\Components\Website\ui;
+namespace App\View\Components\Website\Ui;
 
 
 use App\View\Components\Website\Widgets\BaseWidget;
 
-class accordion extends BaseWidget
+class Accordion extends BaseWidget
 {
     public $items;
 
