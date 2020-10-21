@@ -1,6 +1,3 @@
-@props([
-'article',
-])
 <section {{ $attributes->merge(['class' => 'py-3']) }}>
     <div class="container">
         <div class="row">

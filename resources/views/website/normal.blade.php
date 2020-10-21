@@ -4,6 +4,7 @@
             @if($article->parent)
                 <div class="page-breadcrumb__item">{{$article->parent->title}}</div>
             @endif
+
             <div class="page-breadcrumb__item">{{$article->menu_title}}</div>
         </div>
     </x-website.ui.breadcrumbs>
