@@ -149,7 +149,6 @@ class UserController extends BaseApiController
 
     function encodeData($user)
     {
-
         $encoder = Encoder::instance([
             User::class => \App\JsonApi\Users\Schema::class,
         ]);
@@ -158,7 +157,6 @@ class UserController extends BaseApiController
 
     function encodeError($failedRules)
     {
-
         if (data_get($failedRules, 'email')) {
             if (data_get($failedRules['email'], 'Unique')) return $errorCode = ['code' => ErrorCodes::EmailAlreadyUsed, 'description' => 'email_already_used'];
             if (isset($failedRules['email']['Email'])) return $errorCode = ['code' => ErrorCodes::EmailInvalidFormat, 'description' => 'email_invalid_format'];
