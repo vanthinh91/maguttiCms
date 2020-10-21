@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\maguttiCms\Api\V1\Controllers\NewsController;
+use App\maguttiCms\Api\V1\Controllers\UserController;
 use App\maguttiCms\Api\V1\Controllers\ArticlesController;
 
 /*
@@ -20,4 +21,5 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('article/{id}', [ArticlesController::class,'show']);
     Route::get('news',[NewsController::class,'index']);
     Route::get('news/{slug}', [NewsController::class,'show']);
+    Route::post('user',[UserController::class,'create']);
 });

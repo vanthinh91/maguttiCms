@@ -7,7 +7,9 @@ namespace App\maguttiCms\Api\V1\Controllers;
 use App\maguttiCms\Tools\ErrorCodes;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use App\maguttiCms\Tools\JsonApiResponseTrait;
 
@@ -29,19 +31,33 @@ class UserController extends BaseApiController
     public function create(Request $request)
     {
 
-        $user = User::where('email', $request->email)->first();
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        $input = $request->only('name','email','password');
+
+        $validator = Validator::make($input, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string'],
+        ]);
+
+        if ($validator->fails()) {
+            $errorCode = $this->encodeError($validator->failed());
             return $this->addValidationError(
-                ErrorCodes::InvalidParameters,
-                'The provided credentials are incorrect.',
-                '')
+                $errorCode['code'],
+                $errorCode['description'],
+                '',
+                $validator->getMessageBag())
                 ->responseWithValidationError();
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
+
         }
+        return $data =  DB::transaction(function () use ($input) {
+            return tap(User::create([
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'password' => Hash::make($input['password']),
+            ]), function (User $user) {
 
-
+            });
+        });
     }
 
     public function user(Request $request)
@@ -58,33 +74,29 @@ class UserController extends BaseApiController
         return $this->responseSuccess()->apiResponse();
     }
 
-    // aggiornamento dati user
+    // Update user date
     public function update(Request $request)
     {
         $user = Auth::guard('api')->user();
         $data = $this->parserApiDataAsArray($request);
-
         $validator = Validator::make($data['attributes'], $this->validationRules($user->id));
 
-        if ($validator->passes()) {
-            $user = (new UpdateUserFromApiAction())->handle($user, $data['attributes']);
-            if (is_object($user)) {
-                return new UserResource($user);
-            } else {
-                return $this->responseWithInvalidData();
-            }
-        } else {
+        if ($validator->failed()) {
             $failedRules = $validator->failed();
             $errorCode = $this->encodeError($failedRules);
-
             return $this->addValidationError(
                 $errorCode['code'],
                 $errorCode['description'],
                 '',
                 $failedRules)
                 ->responseWithValidationError();
+
         }
-        return $this->apiResponse();
+        $user = (new UpdateUserFromApiAction())->handle($user, $data['attributes']);
+        if (is_object($user)) {
+            return new UserResource($user);
+        }
+        return $this->responseWithInvalidData();
     }
 
     public function update_password(Request $request)
