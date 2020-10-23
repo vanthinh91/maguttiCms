@@ -39,6 +39,7 @@ return [
         'date'          => 'Date',
 		'date_start'    => 'Date start',
         'date_end'      => 'Date end',
+        'date_publish'  => 'Publish date',
         'date_format'   => 'Date (dd-mm-yyyy)',
         'data_from'     => 'from (dd-mm-yyyy)',
         'data_to'       => 'to (dd-mm-yyyy)',

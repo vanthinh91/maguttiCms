@@ -20,7 +20,7 @@ class News extends Model
 
 	protected $with = ['translations'];
 
-	protected  $fillable        = ['title','description','date','sort','pub'];
+	protected  $fillable        = ['title','description','date','date_start','sort','pub'];
 	protected  $fieldspec       = [];
 
 	/*
@@ -79,8 +79,18 @@ class News extends Model
 
     public function getDateAttribute($value)
     {
-        //return Carbon::parse($value)->format('d-m-Y');
-        return Carbon::parse($value)->format('d-m-Y H:i:s');
+        return Carbon::parse($value)->format('d-m-Y');
+        //return Carbon::parse($value)->format('d-m-Y H:i:s');
+    }
+
+    public function setDateStartAttribute($value)
+    {
+        $this->attributes['date_start'] = Carbon::parse($value);
+    }
+
+    public function getDateStartAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y');
     }
 
     public function getFormattedDate()
@@ -112,21 +122,23 @@ class News extends Model
 			'type'            => 'string',
 			'required'        => 1,
 			'hidden'          => 0,
-			'label'           => 'Publish date',
+			'label'           => __('admin.label.date_publish'),
 			'display'         => 1,
-			'cssClass'        => 'datetimepicker',
-            //'cssClass'      => 'datepicker',
-			'cssClassElement' => 'col-sm-4',
+			//'cssClass'      => 'datetimepicker',
+            'cssClass'        => 'datepicker',
+			'cssClassElement' => 'col-sm-2',
+            'row-item'        => 'start'
 		];
-        $this->fieldspec['start_date'] = [
+        $this->fieldspec['date_start'] = [
             'type'            => 'date',
             'required'        => 1,
             'hidden'          => 0,
-            'label'           => 'Data Ora evento',
+            'label'           => __('admin.label.date_start'),
             'display'         => 1,
             'cssClass'        => 'datepicker',
             'cssClassElement' => 'col-sm-2',
-
+            'row-item'        => 'stop',
+            'validation'      => 'required|date_format:d-m-Y',
         ];
 		$this->fieldspec['title'] = [
 			'type'      =>'string',
