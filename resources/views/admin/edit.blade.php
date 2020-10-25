@@ -74,10 +74,8 @@
 				{{ Form::close() }}
 
 			</div>
-			<div class="col-12 col-sm-4">
-				<div id="edit-sidebar" class="card">
-					@includeFirst(['admin.'.strtolower($pageConfig->get('model')).'.side_bar_action', 'admin.common.side_bar_action'])
-				</div>
+			<div id="right-sidebar" class="col-12 col-sm-4">
+				@includeFirst(['admin.'.strtolower($pageConfig->get('model')).'.side_bar_action', 'admin.common.side_bar_action'])
 			</div>
 		</div>
 	</main>

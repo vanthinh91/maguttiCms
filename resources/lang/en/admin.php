@@ -79,6 +79,7 @@ return [
 		'name'          => 'Name',
         'number'        => 'Number',
 		'paid'			=> 'Paid',
+		'page-blocks'   => 'Page Block',
 		'parent'		=> 'Parent',
 		'payment'		=> 'Payment',
 		'payment_transaction'		=> 'Transaction',

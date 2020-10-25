@@ -7,9 +7,6 @@
 
 		<div class="row">
 			<div class="col-12 col-sm-8">
-
-
-
 				{{ Form::model($article, ['files' => true, 'id'=>'edit-form', 'accept-charset' => "UTF-8"]) }}
 				<div class="card">
 					@if ($pageConfig->get('help'))
@@ -52,7 +49,6 @@
 								@include('admin.helper.password')
 							@endif
 						</div>
-
 						@if ($pageConfig->get('showBlock') == 1)
 							<div class="tab-pane fade" id="block_tab" role="tabpanel" aria-labelledby="block_tab">
 								@include('admin.helper.blocks')
@@ -88,16 +84,14 @@
 				{{ Form::close() }}
 
 			</div>
-			<div class="col-12 col-sm-4">
-				<div id="edit-sidebar" class="card">
-					@includeFirst(['admin.'.strtolower($pageConfig->get('model')).'.side_bar_action', 'admin.common.side_bar_action'])
-				</div>
+			<div id="right-sidebar" class="col-12 col-sm-4">
+				@includeFirst(['admin.'.strtolower($pageConfig->get('model')).'.side_bar_action', 'admin.common.side_bar_action'])
+				<x-admin.partial.page-block-list :item="$article"></x-admin.partial.page-block-list>
 			</div>
 		</div>
 	</main>
 	<div id="info" class="hidden"></div>
 	@include('admin.helper.modal_media')
-
 	@include('admin.helper.filemanager')
 
 @endsection
