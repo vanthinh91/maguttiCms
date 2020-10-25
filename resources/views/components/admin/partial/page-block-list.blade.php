@@ -4,7 +4,7 @@
         <ul>
             @foreach($item->blocks as $block)
                 <li>
-                    - <a href="{{ma_get_admin_edit_url($block)}}"> {!! $block->title !!}</a>
+                    <a href="{{ma_get_admin_edit_url($block)}}">- {!! $block->title !!}</a>
                 </li>
             @endforeach
         </ul>
