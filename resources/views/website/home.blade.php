@@ -1,7 +1,8 @@
 @inject('pages','App\Article')
 <?php $items = $pages::published()->get();?>
-<x-website.layout>
-    {{-- Header --}}
+@extends('website.app')
+@section('content')
+   {{-- Header --}}
     <x-website.home.slider class="owl-theme"/>
     <x-website.partials.section :class="'bg-accent py-5'" classCaption="text-primary">
         <x-slot name="caption">{{$article->subtitle}}</x-slot>
@@ -18,4 +19,4 @@
     >
     </x-website.partials.page-block>
     <x-website.home.about :item="$items->find(2)" class="bg-white home_about"/>
-</x-website.layout>
+@endsection
