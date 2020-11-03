@@ -1,5 +1,5 @@
 <div class="form-file">
-	<input id="cropper-upload-{{$key}}" type="file" data-selected-caption="{{trans('admin.label.file_count')}}" {!!(array_key_exists('accept', $properties))? 'accept="' .$properties['accept'].'"': '' !!}>
+	<input id="cropper-upload-{{$key}}" type="file" data-selected-caption="{{trans('admin.label.file_count')}}" {!!(isset($properties['accept']))? 'accept="' .$properties['accept'].'"': '' !!}>
 	<label for="cropper-upload-{{$key}}">{{trans('admin.label.upload_file')}}</label>
 </div>
 <div id="cropper-toolbar-{{$key}}" class="cropper-toolbar">

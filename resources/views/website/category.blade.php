@@ -1,4 +1,5 @@
-<x-website.layout>
+@extends('website.app')
+@section('content')
 	<x-website.ui.breadcrumbs class="bg-accent">
 		<div class="text-white page-breadcrumb d-flex align-items-end">
 			<h1 class="page-breadcrumb__item">{{$category->title}}</h1>
@@ -15,4 +16,4 @@
 			</div>
 		</div>
 	</section>
-</x-website.layout>
+@endsection

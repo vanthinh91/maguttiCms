@@ -1,5 +1,5 @@
 <div id="action-bar">
-    <x-admin.page-title :article="$article??''" :model="$model??''"></x-admin.page-title>
+    <x-admin.ui.page-title :article="$article??''" :model="$model??''"></x-admin.ui.page-title>
     <div class="actions">
         <x-admin.buttons.button
                 id="toolbar_deleteButtonHandler"

@@ -178,7 +178,7 @@ class Block extends Model
             'type'     => 'string',
             'required' => 0,
             'hidden'   => 0,
-            'label'    => "You Tube video code",
+            'label'    => "YouTube video code",
             'display'  => 1,
         ];
         $this->fieldspec['sort'] = [

@@ -202,6 +202,13 @@ class Article extends Model
             'uploadifive' => 1,
             'accept' => '.pdf'
         ];
+        $this->fieldspec['video'] = [
+            'type'     => 'string',
+            'required' => 0,
+            'hidden'   => 0,
+            'label'    => "YouTube video code",
+            'display'  => 1,
+        ];
         $this->fieldspec['sort'] = [
             'type' => 'integer',
             'required' => 0,

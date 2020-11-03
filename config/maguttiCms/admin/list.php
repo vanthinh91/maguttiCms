@@ -273,6 +273,15 @@ return [
             'showMediaImages' => 0,
             'showMediaDoc' => 0,
             'showSeo' => 0,
+            'actions' => [
+                'edit' => 1,
+                'delete' => 1,
+                'create' => 1,
+                'copy' => 0,
+                'preview' => 0,
+                'view' => 0,
+                'selectable' => 1
+            ],
             'menu' => [
                 'home' => true,
                 'top-bar' => [

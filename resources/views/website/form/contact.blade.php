@@ -14,38 +14,38 @@
 		@endif
 		<div class="col-12 col-sm-6">
 		    <div class="form-group">
-		        {{ Form::text('name', null,  ['class' => 'form-control', 'required', 'placeholder' => trans('website.name')]) }}
-		        {{ $errors->first('name') }}
+		        {{ Form::text('name', null,  ['class' => 'form-control', 'required' , 'placeholder' => trans('website.name')]) }}
+				<x-website.ui.form-error-label class="pt-1" field="name"></x-website.ui.form-error-label>
 		    </div>
 	    </div>
 		<div class="col-12 col-sm-6">
 		    <div class="form-group">
 		        {{ Form::text('surname', null,  ['class' => 'form-control', 'required', 'placeholder' => trans('website.surname')]) }}
-		        {{ $errors->first('surname') }}
+				<x-website.ui.form-error-label class="pt-1" field="surname"></x-website.ui.form-error-label>
 		    </div>
 	    </div>
 		<div class="col-12 col-sm-6">
 			<div class="form-group">
 				{{ Form::email('email', null,  ['class' => 'form-control', 'required', 'placeholder' => trans('website.email')]) }}
-				{{ $errors->first('email') }}
+				<x-website.ui.form-error-label class="pt-1" field="email"></x-website.ui.form-error-label>
 			</div>
 		</div>
 		<div class="col-12 col-sm-6">
 		    <div class="form-group">
 		        {{ Form::text('company', null,  ['class' => 'form-control', 'placeholder' => trans('website.employer')]) }}
-		        {{ $errors->first('company') }}
+				<x-website.ui.form-error-label class="pt-1" field="company"></x-website.ui.form-error-label>
 		    </div>
 	    </div>
 		<div class="col-12">
 		    <div class="form-group">
 		        {{ Form::text('subject', null,  ['class' => 'form-control', 'required', 'placeholder' => trans('website.subject')]) }}
-		        {{ $errors->first('subject') }}
+		      	<x-website.ui.form-error-label class="pt-1" field="subject"></x-website.ui.form-error-label>
 		    </div>
 	    </div>
 		<div class="col-12">
 		    <div class="form-group">
 		        {{ Form::textarea('message', null,  ['class' => 'form-control', 'rows' => 5, 'required', 'placeholder' => trans('website.message_email')]) }}
-		        {{ $errors->first('message') }}
+		      	<x-website.ui.form-error-label class="pt-1" field="message"></x-website.ui.form-error-label>
 		    </div>
 	    </div>
 		<div class="col-12 col-sm-6">
@@ -58,7 +58,8 @@
 							{{trans('website.message.privacy')}}
 						</a>
 					</label>
-					{{ $errors->first('privacy') }}
+					<x-website.ui.form-error-label class="pt-1" field="privacy"></x-website.ui.form-error-label>
+
 				</div>
 		    </div>
 	    </div>

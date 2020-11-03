@@ -1,4 +1,4 @@
-<h2>Page Block</h2>
+<h2>{!! trans('admin.label.page-blocks')!!}</h2>
 <div class="form-group">
     <a href="{{ma_get_admin_create_url('block')}}?model={{$pageConfig->get('model')}}&model_id={{$article->id}}" class="btn btn-accent btn-lg btn-block">{{icon('plus')}} {{trans('admin.message.add_block')}}</a>
 </div>

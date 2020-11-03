@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Partial;
+namespace App\View\Components\Admin\Ui;
 
 use Illuminate\View\Component;
 
-class PageBlock extends Component
+class Error extends Component
 {
     /**
      * Create a new component instance.
@@ -19,10 +19,10 @@ class PageBlock extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\View\View|string
+     * @return \Illuminate\Contracts\View\View|string
      */
     public function render()
     {
-        return view('components.partial.page-block');
+        return view('components.admin.ui.error');
     }
 }

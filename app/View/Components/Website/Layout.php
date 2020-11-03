@@ -6,14 +6,17 @@ use Illuminate\View\Component;
 
 class Layout extends Component
 {
+    public $article;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($article)
     {
         //
+        $this->article =$article;
     }
 
     /**
