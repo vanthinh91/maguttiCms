@@ -53,7 +53,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['adminauth', 'setlocalead
     */
     Route::prefix('api')->group(base_path('routes/admin/api.php'));
 
-    Route::get('/exportlist/{section?}/{sub?}', [AdminExportController::class,'lista']);
+    Route::get('/exportlist/{section?}/{sub?}', [AdminExportController::class,'list']);
 });
 /*
 |--------------------------------------------------------------------------
