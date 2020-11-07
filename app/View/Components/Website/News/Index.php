@@ -27,7 +27,7 @@ class Index extends Component
 
     function posts($tag = '')
     {
-        $this->news = News::itemList($tag);
+        $this->news = News::itemList($tag,3);
         return $this->news;
     }
 

@@ -43,7 +43,7 @@ class NewsBuilder extends MaguttiCmsBuilder
     }
 
 
-    function itemList($tag,$limit=''){
+    function itemList($tag,$limit=null){
         $limit ?? config('maguttiCms.website.option.pagination.news_index');
         return $this->findPublished()
             ->when($tag, function ($query, $tag) {
