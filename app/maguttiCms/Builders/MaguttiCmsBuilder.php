@@ -27,4 +27,8 @@ class MaguttiCmsBuilder extends Builder
         if(isset($this->model->translatedAttributes) && $this->model->isAttributeTranslatable('slug'))  return  $this->model->getByTranslationSlug($slug,$locale);
         return $this->model->where('slug','=',$slug)->first();
     }
+
+    public function sorted($order="ASC",$field="sort"){
+        return $this->published()->orderBy($field,$order);
+    }
 }
