@@ -76,7 +76,7 @@
 
     {{-- Cookie widget --}}
     @include('website.partials.widgets_cookie')
-
+    @stack('scripts')
     @yield('footerjs')
 </body>
 </html>

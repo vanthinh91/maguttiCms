@@ -14,7 +14,6 @@
 </header>
 
 @push('scripts')
-
 <script type="text/javascript">
     $('#carousel').owlCarousel({
         items: 1,
