@@ -19,4 +19,8 @@
     >
     </x-website.partials.page-block>
     <x-website.home.about :item="$items->find(2)" class="bg-white home_about"/>
+    <x-website.partials.section :class="'bg-color-5 py-5'" classCaption="text-primary">
+        <x-website.widgets.metrics />
+    </x-website.partials.section>
+
 @endsection

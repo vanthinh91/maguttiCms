@@ -163,6 +163,7 @@ return [
 		'hpsliders' => 'Slide',
 		'locations' => 'Location',
 		'media' => 'Media',
+        'metrics' => 'Contatori',
 		'news' => 'News',
 		'newsletters' => 'Iscrizioni newsletter',
 		'orders' => 'Ordini',

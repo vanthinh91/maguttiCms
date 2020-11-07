@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.29, for osx10.14 (x86_64)
 --
--- Host: localhost    Database: maguttiCms
+-- Host: localhost    Database: magutticms
 -- ------------------------------------------------------
 -- Server version	5.7.29
 
@@ -108,7 +108,7 @@ CREATE TABLE `adminusers` (
 
 LOCK TABLES `adminusers` WRITE;
 /*!40000 ALTER TABLE `adminusers` DISABLE KEYS */;
-INSERT INTO `adminusers` VALUES (3,'magutti','Admin','cmsadmin@magutti.com','$2y$10$fhRhYYRj2tgq1/jmaUkgH.y7AW2lcDrdEIsn5GP35aLVsEQWWCBh6','password','A86YDNrXLhNgomNa77UWyzBMOcrbkhtcbEXTg0VWSjL84U9l4D2C3HaL4Z6U',1,'en','0000-00-00 00:00:00','2019-04-10 20:00:46');
+INSERT INTO `adminusers` VALUES (3,'magutti','Admin','cmsadmin@magutti.com','$2y$10$fhRhYYRj2tgq1/jmaUkgH.y7AW2lcDrdEIsn5GP35aLVsEQWWCBh6','password','A86YDNrXLhNgomNa77UWyzBMOcrbkhtcbEXTg0VWSjL84U9l4D2C3HaL4Z6U',1,'en','0000-00-00 00:00:00','2020-11-07 14:32:12');
 /*!40000 ALTER TABLE `adminusers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1013,6 +1013,66 @@ INSERT INTO `media_translations` VALUES (2,2,'it','ff0000.png',NULL,'','2018-05-
 UNLOCK TABLES;
 
 --
+-- Table structure for table `metric_translations`
+--
+
+DROP TABLE IF EXISTS `metric_translations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `metric_translations` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `metric_id` bigint(20) unsigned NOT NULL,
+  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `metric_translations_metric_id_locale_unique` (`metric_id`,`locale`),
+  KEY `metric_translations_locale_index` (`locale`),
+  CONSTRAINT `metric_translations_metric_id_foreign` FOREIGN KEY (`metric_id`) REFERENCES `metrics` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `metric_translations`
+--
+
+LOCK TABLES `metric_translations` WRITE;
+/*!40000 ALTER TABLE `metric_translations` DISABLE KEYS */;
+INSERT INTO `metric_translations` VALUES (1,1,'en','Projects','2020-11-07 14:24:19','2020-11-07 14:27:20'),(2,2,'en','Customers','2020-11-07 14:24:19','2020-11-07 14:27:43'),(3,3,'en','Users','2020-11-07 14:24:19','2020-11-07 14:29:26'),(4,4,'en','Stars','2020-11-07 14:24:19','2020-11-07 14:31:16'),(6,1,'it','Download','2020-11-07 14:27:20','2020-11-07 14:31:36'),(7,1,'es',NULL,'2020-11-07 14:27:20','2020-11-07 14:27:20'),(8,1,'fr',NULL,'2020-11-07 14:27:20','2020-11-07 14:27:20'),(9,2,'it','Clienti','2020-11-07 14:30:06','2020-11-07 14:30:06'),(10,2,'es',NULL,'2020-11-07 14:30:06','2020-11-07 14:30:06'),(11,2,'fr',NULL,'2020-11-07 14:30:06','2020-11-07 14:30:06'),(12,3,'it','Utenti','2020-11-07 14:30:16','2020-11-07 14:30:16'),(13,3,'es',NULL,'2020-11-07 14:30:16','2020-11-07 14:30:16'),(14,3,'fr',NULL,'2020-11-07 14:30:16','2020-11-07 14:30:16'),(15,4,'it','Stars','2020-11-07 14:31:04','2020-11-07 14:31:04'),(16,4,'es',NULL,'2020-11-07 14:31:16','2020-11-07 14:31:16'),(17,4,'fr',NULL,'2020-11-07 14:31:16','2020-11-07 14:31:16');
+/*!40000 ALTER TABLE `metric_translations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `metrics`
+--
+
+DROP TABLE IF EXISTS `metrics`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `metrics` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` int(11) NOT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `pub` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `metrics`
+--
+
+LOCK TABLES `metrics` WRITE;
+/*!40000 ALTER TABLE `metrics` DISABLE KEYS */;
+INSERT INTO `metrics` VALUES (1,'',1000,10,1,'2020-11-07 14:24:19','2020-11-07 14:31:51'),(2,'',25,20,1,'2020-11-07 14:24:19','2020-11-07 14:32:00'),(3,'',200,30,1,'2020-11-07 14:24:19','2020-11-07 14:31:57'),(4,'',128,40,1,'2020-11-07 14:24:19','2020-11-07 14:31:54');
+/*!40000 ALTER TABLE `metrics` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -1024,7 +1084,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1033,7 +1093,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(61,'2017_01_20_091712_create_hpsliders_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7);
+INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(61,'2017_01_20_091712_create_hpsliders_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1798,4 +1858,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-25 19:46:38
+-- Dump completed on 2020-11-07 15:32:34
