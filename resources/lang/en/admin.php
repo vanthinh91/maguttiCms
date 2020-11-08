@@ -81,6 +81,7 @@ return [
 		'paid'			=> 'Paid',
 		'page-blocks'   => 'Page Block',
 		'parent'		=> 'Parent',
+        'password'      => 'Password',
 		'payment'		=> 'Payment',
 		'payment_transaction'		=> 'Transaction',
 		'payment_date'		=> 'Payment date',

@@ -124,15 +124,7 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
             'roles'         => ['su','admin']
 
 		];
-		$this->fieldspec['password']    = [
-			'type'       => 'password',
-			'required'   => 0,
-			'hidden'     => 0,
-			'label'      => trans('admin.label.password'),
-			'display'    => 1,
-			'template'   => 'password',
-			'validation' => 'nullable|min:10|confirmed|regex:'.config('maguttiCms.security.password_regex'),
-		];
+
 		$this->fieldspec['locale'] = [
 			'type'        => 'component',
 			'required'    => 1,
@@ -140,6 +132,16 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
 			'hidden'      => 0,
 			'display'     => 1,
 		];
+        $this->fieldspec['password']    = [
+            'type'       => 'password',
+            'is_full_component'=> 1,
+            'required'   => 0,
+            'hidden'     => 0,
+            'label'      => trans('admin.label.password'),
+            'display'    => 1,
+            'template'   => 'password',
+            'validation' => 'nullable|min:10|confirmed|regex:'.config('maguttiCms.security.password_regex'),
+        ];
 		$this->fieldspec['is_active'] = [
 			'type'     => 'boolean',
 			'required' => 0,

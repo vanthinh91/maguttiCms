@@ -904,6 +904,7 @@ return [
                 'created_at' => ['type' => 'date', 'field' => 'created_at'],
                 'updated_at' => ['type' => 'date', 'field' => 'updated_at'],
             ],
+            'password' => 1,
             'orderBy' => 'first_name',
             'orderType' => 'ASC',
             'actions' => ['edit' => 1,
@@ -913,7 +914,7 @@ return [
                 'preview' => 0,
                 'view' => 0,
                 'selectable' => ['roles' => ['su', 'admin']],
-                'password' => 1,
+
                 'impersonated' => ['roles' => ['su', 'admin']]
             ],
             'menu' => [

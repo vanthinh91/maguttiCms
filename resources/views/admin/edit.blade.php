@@ -42,9 +42,7 @@
 					<div class="tab-content">
 						<div class="tab-pane fade show active" id="content_tab" role="tabpanel" aria-labelledby="content_tab">
 							{{ AdminForm::get( $article ) }}
-							@if ($pageConfig->get('password') == 1)
-								@include('admin.helper.password')
-							@endif
+
 						</div>
 						@if ($pageConfig->get('tabs'))
 							@foreach ($pageConfig->get('tabs') as $tab)

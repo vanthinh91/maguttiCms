@@ -79,6 +79,7 @@ return [
 		'payment'		=> 'Pagamento',
 		'payment_transaction'		=> 'Transazione',
 		'payment_date'		=> 'Data pagamento',
+        'password' => 'Password',
 		'permalink'		=> 'Permalink',
 		'phone'		    => 'Telefono',
         'please_select' => 'Prego selezionare',

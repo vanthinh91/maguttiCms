@@ -135,6 +135,7 @@ class User extends Authenticatable
         ];
         $this->fieldspec['password'] = [
             'type'     => 'password',
+            'is_full_component'=> 1,
             'required' => 1,
             'hidden'   => 0,
             'label'    => 'Password',
