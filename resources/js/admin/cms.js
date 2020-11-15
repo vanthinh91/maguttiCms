@@ -298,7 +298,7 @@ window.Cms = function () {
 				images_upload_base_path: '/media/images/tinymce',
 				convert_urls: false,
 				height: 200,
-				toolbar: "insertfile undo redo | styleselect | bold italic | bullist numlist outdent indent | link | code",
+				toolbar: "insertfile undo redo | styleselect | bold italic | bullist numlist outdent indent | link | code | pagebreak",
 				convert_urls: false,
 				allow_unsafe_link_target: true,
 				images_upload_handler: function(blobInfo, success, failure) {
