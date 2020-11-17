@@ -26,7 +26,7 @@ class Kernel extends HttpKernel
         | LaraCms Middleware
         |--------------------------------------------------------------------------
         */
-        \App\maguttiCms\Middleware\ForceSSLMiddleware::class
+        // \App\maguttiCms\Middleware\ForceSSLMiddleware::class enable if you want to force to https
     ];
 
     /**
