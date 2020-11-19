@@ -147,7 +147,9 @@ class Product extends Model
             'hidden'    => 0,
             'label'     => trans('admin.label.image'),
             'mediaType' => 'Img',
-            'display'   => 1
+            'display'   => 1,
+            'disk' => 'images',
+            'folder' => 'products',
         ];
 		$this->fieldspec['doc'] = [
 			'type'      => 'media',

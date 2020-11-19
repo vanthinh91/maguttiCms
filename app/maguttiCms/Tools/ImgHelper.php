@@ -128,7 +128,9 @@ class ImgHelper
     // calculates a new image and returns the path to it
     public function get($src, $args = array(),$folder='')
     {
-        //if($folder)$this->init($folder);
+        if ($folder) {
+            $this->setFolder($folder);
+        }
         $new_name = $this->make_new_name($src, $args);
 
         // create image object from source
@@ -157,7 +159,7 @@ class ImgHelper
             return $obj;
         } else {
             // save the generated image;
-            
+
             $obj->save($this->getCacheSavePath() . $new_name, $q);
 
             if ($this->arg($args, 'e')) {
@@ -169,9 +171,13 @@ class ImgHelper
     }
 
     // checks if image exists and returns the path to it. creates it anew if not.
-    public function get_cached($src, $args = array())
-    {
-    
+    public function get_cached($src, $args = array(),$folder = '')
+	{
+		if ($folder) {
+			$this->setFolder($folder);
+		}
+
+
         $new_name = $this->make_new_name($src, $args);
         if (file_exists($this->getCacheSavePath() . $new_name)) {
             return '/' . $this->getCacheSavePath() . $new_name;
@@ -185,7 +191,7 @@ class ImgHelper
     {
         return '/' . $this->resolve_path($src, false);
     }
-    
+
 
     // returns default value for argument if missing
     private function arg($args, $arg_name)
@@ -333,5 +339,5 @@ class ImgHelper
         return $obj;
     }
 
-    
+
 }

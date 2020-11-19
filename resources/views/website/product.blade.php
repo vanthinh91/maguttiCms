@@ -10,7 +10,7 @@
 		<div class="container">
 			<div class="row no-gutters">
 				<div class="col-12 col-sm-6 order-md-1 my-2 my-md-0 product-page-image">
-					<img class="img-fluid" src="{{ ImgHelper::get_cached($product->image, config('maguttiCms.image.large')) }}" alt="{{ $product->title }}">
+					<img class="img-fluid" src="{{ ImgHelper::init('products')->get_cached($product->image, config('maguttiCms.image.large')) }}" alt="{{ $product->title }}">
 				</div>
 				<div class="col-12 col-sm-6 order-md-2">
 					<div class="product-page-card">
