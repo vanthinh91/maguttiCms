@@ -35,7 +35,7 @@
                     })
             },
             url() {
-                return `/admin/api/dashboard`;
+              return window._SERVER_PATH+`/admin/api/dashboard`;
             },
             refresh({data}) {
                 this.items = data.data

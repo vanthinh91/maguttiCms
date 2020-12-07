@@ -37,7 +37,7 @@
                     })
             },
             url() {
-                return '/admin/api/nav-bar';
+               return window._SERVER_PATH+'/admin/api/nav-bar';
             },
             refresh({data}) {
                 this.items = data.data
