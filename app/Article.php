@@ -60,6 +60,10 @@ class Article extends Model
         return $this->morphMany('App\Media', 'model');
     }
 
+    public function gallery()
+    {
+        return $this->media()->where('collection_name', 'images');
+    }
     public function parent()
     {
         return $this->belongsTo('App\Article', 'parent_id', 'id');
@@ -243,7 +247,6 @@ class Article extends Model
             'display' => 1,
             'cssClassElement' => 'col-md-2 col-lg-2',
             'row-item' => 'stop',
-
         ];
 
         $this->fieldspec['ignore_slug_translation'] = [
