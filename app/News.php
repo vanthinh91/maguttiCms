@@ -20,7 +20,7 @@ class News extends Model
 
 	protected $with = ['translations'];
 
-	protected  $fillable        = ['title','description','date','date_start','sort','pub'];
+	protected  $fillable        = ['title','subtitle','description','date','date_start','sort','pub'];
 	protected  $fieldspec       = [];
 
 	/*
@@ -28,7 +28,7 @@ class News extends Model
     |  Sluggable & Translateble
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes    = ['title','slug','description','seo_title','seo_description'];
+    public $translatedAttributes    = ['title','subtitle','slug','description','seo_title','seo_description'];
     public $sluggable               = ['slug'=>['field'=>'title','updatable'=>false]];
 
     /*
@@ -147,6 +147,16 @@ class News extends Model
 			'label'     => 'Title',
 			'display'   => 1,
 		];
+
+
+        $this->fieldspec['subtitle'] = [
+            'type' => 'string',
+            'required' => 0,
+            'hidden' => 0,
+            'label' => trans('admin.label.subtitle'),
+            'display' => 1,
+
+        ];
 		$this->fieldspec['slug'] = [
 			'type'      => 'string',
 			'required'  => 1,
