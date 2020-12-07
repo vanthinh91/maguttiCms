@@ -19,7 +19,7 @@ trait MaguttiCmsSeoTrait
 
     public static function bootMaguttiCmsSeoTrait()
     {
-        static::created(function($item){
+        static::created(function ($item) {
             // Index the itemcompo
         });
     }
@@ -27,6 +27,7 @@ trait MaguttiCmsSeoTrait
     public function setSeo($model)
     {
         $this->model = $model;
+        $this->image = asset('website/images/logo-share.jpg');
         $this->setTitle();
         $this->setDescription();
         $this->setOpenGraphImages();
@@ -46,28 +47,31 @@ trait MaguttiCmsSeoTrait
         SEOMeta::setNext($next_url);
 
         // If not first page, add page reference in title.
-        if($model->currentPage() > 1) {
+        if ($model->currentPage() > 1) {
             $separator = config('seotools')['meta']['defaults']['separator'];
 
-            SEOMeta::setTitle($this->title . $separator . trans('website.pagination', ['x' => $model->currentPage(), 'y' => $model->lastPage()]));
+            SEOMeta::setTitle($this->title . $separator . trans('website.pagination',
+                    ['x' => $model->currentPage(), 'y' => $model->lastPage()]));
         }
     }
 
-    public function setTitle(   )
+    public function setTitle()
     {
         $this->title = $this->tagHandler('title');
-        if($this->title=='') $this->title  = $this->tagHandler('name');
+        if ($this->title == '') {
+            $this->title = $this->tagHandler('name');
+        }
         SEO::setTitle($this->title);
     }
 
     public function setDescription()
     {
-        SEO::setDescription( Str::limit( $this->tagHandler('description'), config('seotools.lara_setting.description') ) );
+        SEO::setDescription(Str::limit($this->tagHandler('description'), config('seotools.lara_setting.description')));
     }
 
     public function setNoIndex()
     {
-        if(data_get($this->model, 'seo_no_index')) {
+        if (data_get($this->model, 'seo_no_index')) {
             SEO::metatags()->addMeta('robots', 'noindex');
         }
     }
@@ -82,34 +86,38 @@ trait MaguttiCmsSeoTrait
 
     public function setOpenGraphImages()
     {
+        $image_conf = config('maguttiCms.image.social');
+        $fieldspec = $this->model->getFieldspec();
 
-        $image_conf  = config('maguttiCms.image.social');
-        $this->image = ($this->model->image != '') ? url(ImgHelper::get_cached($this->model->image, $image_conf)) : asset('website/images/logo-share.jpg');
-        $attributes  = ['width'=>$image_conf['w'],'height'=>$image_conf['h']];
+        if (data_get($fieldspec, 'image') && optional($this->model)->image)
+        {
+            $folder = data_get($fieldspec, 'image.folder', null);
+            $this->image = url(ImgHelper::get_cached($this->model->image, $image_conf, $folder));
+        }
 
-        SEO::opengraph()->addImage($this->image,$attributes);
-        SEO::twitter()->addValue('image',$this->image);
+        $attributes = ['width' => $image_conf['w'], 'height' => $image_conf['h']];
+        SEO::opengraph()->addImage($this->image, $attributes);
+        SEO::twitter()->addValue('image', $this->image);
     }
 
-    public function addOpenGraphProperty($property,$value)
+    public function addOpenGraphProperty($property, $value)
     {
-        SEO::opengraph()->addProperty($property,$value);
+        SEO::opengraph()->addProperty($property, $value);
     }
 
-    public function addAlternate(){
-
+    public function addAlternate()
+    {
         // Add alternate url only when the website has more than one language
-        if(count(LaravelLocalization::getSupportedLocales()) > 1) {
+        if (count(LaravelLocalization::getSupportedLocales()) > 1) {
 
             // Is page slug translation is not ignored
-            if(!$this->model->ignore_slug_translation) {
-                foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
+            if (!$this->model->ignore_slug_translation) {
+                foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
                     $url = LaravelLocalization::getLocalizedURL($localeCode, $this->model->getPermalink($localeCode));
                     SEOMeta::addAlternateLanguage($localeCode, $url);
                 }
-            }
-            else {
-                foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
+            } else {
+                foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
                     $url = LaravelLocalization::getLocalizedURL($localeCode);
                     SEOMeta::addAlternateLanguage($localeCode, $url);
                 }
@@ -122,7 +130,7 @@ trait MaguttiCmsSeoTrait
 
     protected function tagHandler($tag)
     {
-        return ($this->model->{'seo_'.$tag}!='')?$this->model->{'seo_'.$tag}:$this->model->{$tag};
+        return ($this->model->{'seo_' . $tag} != '') ? $this->model->{'seo_' . $tag} : $this->model->{$tag};
     }
 
     protected function allowedQueryStrings()
