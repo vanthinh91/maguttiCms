@@ -50,6 +50,7 @@ return [
 		'export'        => 'Esporta',
 		'ext_url'		=> 'Url esterno',
 		'first_name'	=> 'Nome',
+        'footer_menu'	=> 'Mostra nel menu del footer',
 		'go_to_site'	=> 'Vai al sito',
 		'icon'			=> 'Icona',
 		'id'			=> 'ID',

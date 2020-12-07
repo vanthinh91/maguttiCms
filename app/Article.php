@@ -26,7 +26,7 @@ class Article extends Model
     protected $with = ['translations'];
 
     protected $fillable = ['title', 'subtitle', 'abstract', 'description',
-        'slug', 'sort', 'pub', 'top_menu', 'parent_id',
+        'slug', 'sort', 'pub', 'top_menu', 'footer_menu', 'parent_id',
         'link', 'template_id', 'ignore_slug_translation',
         'doc'];
     protected $fieldspec = [];
@@ -235,6 +235,17 @@ class Article extends Model
             'cssClassElement' => 'col-md-2 col-lg-2',
             'row-item' => 'column'
         ];
+        $this->fieldspec['footer_menu'] = [
+            'type' => 'boolean',
+            'required' => 0,
+            'hidden' => 0,
+            'label' => trans('admin.label.footer_menu'),
+            'display' => 1,
+            'cssClassElement' => 'col-md-2 col-lg-2',
+            'row-item' => 'stop',
+
+        ];
+
         $this->fieldspec['ignore_slug_translation'] = [
             'type' => 'boolean',
             'required' => 0,
@@ -242,7 +253,7 @@ class Article extends Model
             'label' => trans('admin.label.slug_ignore'),
             'display' => 1,
             'cssClassElement' => 'col-md-2 col-lg-2',
-            'row-item' => 'stop'
+
         ];
         $this->fieldspec['seo_title'] = [
             'type' => 'seo_string',

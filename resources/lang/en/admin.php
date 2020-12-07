@@ -54,6 +54,7 @@ return [
 		'export'        => 'Export',
 		'ext_url'		=> 'External url',
 		'first_name'	=> 'Name',
+		'footer_menu'	=> 'Show on footer menu',
 		'go_to_site'	=> 'View site',
 		'icon'			=> 'Icon',
 		'id'			=> 'ID',

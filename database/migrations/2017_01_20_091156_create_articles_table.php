@@ -36,6 +36,7 @@ class CreateArticlesTable extends Migration
             $table->integer('sort')->nullable();
             $table->boolean('pub')->nullable()->default(1);
             $table->boolean('top_menu')->nullable()->default(1);
+            $table->boolean('footer_menu')->nullable()->default(0);
 
             $table->timestamps();
         });
