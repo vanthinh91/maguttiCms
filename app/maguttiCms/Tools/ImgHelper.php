@@ -173,10 +173,11 @@ class ImgHelper
     {
     
         $new_name = $this->make_new_name($src, $args);
+
         if (file_exists($this->getCacheSavePath() . $new_name)) {
-            return '/' . $this->getCacheSavePath() . $new_name;
+            return asset('/' . $this->getCacheSavePath() . $new_name);
         } else {
-            return $this->get($src, $args);
+            return asset($this->get($src, $args));
         }
     }
 
