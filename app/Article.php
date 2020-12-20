@@ -1,14 +1,16 @@
 <?php namespace App;
 
-use App\maguttiCms\Domain\Block\Blockable;
-use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 use Illuminate\Database\Eloquent\Model;
-use App\maguttiCms\Builders\ArticleBuilder;
 
+use Astrotomic\Translatable\Translatable;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+
+use App\maguttiCms\Domain\Media\Mediable;
+use App\maguttiCms\Domain\Block\Blockable;
+use App\maguttiCms\Builders\ArticleBuilder;
 use \App\maguttiCms\Domain\Article\ArticlePresenter;
 
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
-use Astrotomic\Translatable\Translatable;
 
 /**
  * Class Article
@@ -19,6 +21,7 @@ class Article extends Model
     use Translatable;
 
     use Blockable;
+    use Mediable;
 
     use ArticlePresenter;
     use  GFTranslatableHelperTrait;
@@ -55,15 +58,9 @@ class Article extends Model
         return $this->belongsTo('App\Domain', 'template_id', 'id');
     }
 
-    public function media()
-    {
-        return $this->morphMany('App\Media', 'model');
-    }
 
-    public function gallery()
-    {
-        return $this->media()->where('collection_name', 'images');
-    }
+
+
     public function parent()
     {
         return $this->belongsTo('App\Article', 'parent_id', 'id');

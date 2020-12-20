@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Translatable;
 use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
+use App\maguttiCms\Domain\Media\Mediable;
 use App\maguttiCms\Domain\Block\BlockPresenter;
 
 
@@ -20,6 +21,7 @@ class Block extends Model
     use Translatable;
     use GFTranslatableHelperTrait;
     use BlockPresenter;
+    use Mediable;
 
     protected $fillable = [
         'model_id',
@@ -59,10 +61,7 @@ class Block extends Model
     {
         return $this->belongsTo('App\Domain', 'template_id', 'id');
     }
-    public function imageMedia()
-    {
-        return $this->belongsTo('App\Media', 'image', 'id');
-    }
+
 
 
     /*
