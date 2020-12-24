@@ -26,7 +26,7 @@ class CreateNewsTable extends Migration
             $table->text('description')->nullable();;
             $table->string('abstract', 255)->nullable();
             $table->string('image', 255)->nullable();;
-            $table->text('video')->comment('elenco di video separata da;');
+            $table->text('video')->comment('Video list separated by ;');
             $table->string('link', 255)->nullable();
             $table->integer('sort')->nullable();;
             $table->boolean('pub')->nullable()->default(1);
