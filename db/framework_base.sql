@@ -284,7 +284,7 @@ CREATE TABLE `cart_items` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,6 +293,7 @@ CREATE TABLE `cart_items` (
 
 LOCK TABLES `cart_items` WRITE;
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
+INSERT INTO `cart_items` VALUES (1,1,'PRDC',NULL,1,'2020-12-24 16:55:01','2020-12-24 16:55:01'),(3,1,'PRDA',NULL,6,'2020-12-24 16:57:46','2020-12-24 16:57:51');
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,7 +311,7 @@ CREATE TABLE `carts` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -319,6 +320,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
+INSERT INTO `carts` VALUES (1,0,NULL,'2020-12-24 16:55:01','2020-12-24 16:55:01');
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -356,7 +358,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,0,'',NULL,NULL,'identity','','','',0,1,NULL,NULL,0,'2016-07-04 04:29:04','2018-06-13 12:43:39'),(2,0,'',NULL,NULL,'research','','','',10,1,NULL,NULL,0,'2016-12-26 11:16:23','2018-06-13 12:44:31'),(3,0,'',NULL,NULL,'start-up','','','',20,1,NULL,NULL,0,'2016-12-27 17:33:25','2018-06-13 12:45:00');
+INSERT INTO `categories` VALUES (1,NULL,'',NULL,NULL,'identity','','','',0,1,NULL,NULL,0,'2016-07-04 04:29:04','2020-12-24 16:56:51'),(2,0,'',NULL,NULL,'research','','','',10,1,NULL,NULL,0,'2016-12-26 11:16:23','2018-06-13 12:44:31'),(3,0,'',NULL,NULL,'start-up','','','',20,1,NULL,NULL,0,'2016-12-27 17:33:25','2018-06-13 12:45:00');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -381,7 +383,7 @@ CREATE TABLE `category_translations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -390,7 +392,7 @@ CREATE TABLE `category_translations` (
 
 LOCK TABLES `category_translations` WRITE;
 /*!40000 ALTER TABLE `category_translations` DISABLE KEYS */;
-INSERT INTO `category_translations` VALUES (1,'prima-categoria',1,'it','Prima Categoria',NULL,'','',0,0,'2016-07-04 04:29:04','2018-06-13 12:43:39'),(2,'first-category',1,'en','First Category',NULL,'','',0,0,'2016-07-04 04:29:04','2018-06-13 12:43:39'),(3,'second-category',2,'en','Second Category',NULL,'','',0,0,'2016-12-26 11:16:23','2018-06-13 12:44:31'),(4,'seconda-categoria',2,'it','Seconda Categoria',NULL,'','',0,0,'2016-12-26 11:16:23','2018-06-13 12:44:31'),(5,'thid-category',3,'en','Third Category',NULL,'','',0,0,'2016-12-27 17:33:25','2018-06-13 12:45:00'),(6,'terza-category',3,'it','Terza Categoria',NULL,'','',0,0,'2016-12-27 17:33:25','2018-06-13 12:45:00'),(7,'nuova-categoria',4,'it','Nuova categoria',NULL,'','',0,0,'2017-08-02 11:16:28','2017-08-02 11:16:28'),(8,'new-category',4,'en','New category',NULL,'','',0,0,'2017-08-02 11:16:28','2017-08-02 11:16:28');
+INSERT INTO `category_translations` VALUES (1,'prima-categoria',1,'it','Prima Categoria',NULL,NULL,NULL,0,0,'2016-07-04 04:29:04','2020-12-24 16:56:51'),(2,'first-category',1,'en','First Category',NULL,NULL,NULL,0,0,'2016-07-04 04:29:04','2020-12-24 16:56:51'),(3,'second-category',2,'en','Second Category',NULL,'','',0,0,'2016-12-26 11:16:23','2018-06-13 12:44:31'),(4,'seconda-categoria',2,'it','Seconda Categoria',NULL,'','',0,0,'2016-12-26 11:16:23','2018-06-13 12:44:31'),(5,'thid-category',3,'en','Third Category',NULL,'','',0,0,'2016-12-27 17:33:25','2018-06-13 12:45:00'),(6,'terza-category',3,'it','Terza Categoria',NULL,'','',0,0,'2016-12-27 17:33:25','2018-06-13 12:45:00'),(7,'nuova-categoria',4,'it','Nuova categoria',NULL,'','',0,0,'2017-08-02 11:16:28','2017-08-02 11:16:28'),(8,'new-category',4,'en','New category',NULL,'','',0,0,'2017-08-02 11:16:28','2017-08-02 11:16:28'),(9,'',1,'es',NULL,NULL,NULL,NULL,NULL,NULL,'2020-12-24 16:56:51','2020-12-24 16:56:51'),(10,'',1,'fr',NULL,NULL,NULL,NULL,NULL,NULL,'2020-12-24 16:56:51','2020-12-24 16:56:51');
 /*!40000 ALTER TABLE `category_translations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1503,7 +1505,7 @@ CREATE TABLE `product_translations` (
 
 LOCK TABLES `product_translations` WRITE;
 /*!40000 ALTER TABLE `product_translations` DISABLE KEYS */;
-INSERT INTO `product_translations` VALUES (1,1,'it','prodotto-a','Prodotto A',NULL,NULL,NULL,'prodotti/prima-categoria/prodotto-a',NULL,NULL,NULL,0,0,'2017-08-02 10:09:39','2020-08-22 14:14:52'),(2,1,'en','product-number-1','Product number 1',NULL,'<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis etSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et</p>',NULL,'products/first-category/product-number-1',NULL,NULL,0,0,0,'2017-08-02 10:09:39','2020-08-22 14:14:52'),(3,2,'it','prodotto-b','Prodotto B','','',NULL,'prodotti/seconda-categoria/prodotto-b','','',NULL,0,0,'2018-06-13 14:49:32','2019-08-16 07:53:07'),(4,2,'en','product-b','Product B','','',NULL,'products/second-category/product-b','','',NULL,0,0,'2018-06-13 14:49:32','2020-08-21 11:24:27'),(5,3,'it','prodotto-c','Prodotto C',NULL,NULL,NULL,'prodotti/terza-category/prodotto-c',NULL,NULL,NULL,0,0,'2018-06-13 14:50:05','2019-08-16 07:52:01'),(6,3,'en','product-c','Product Category table',NULL,'<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et&nbsp;<strong>Sed ut perspiciatis</strong> unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et</p>',NULL,'products/thid-category/product-c',NULL,NULL,0,0,0,'2018-06-13 14:50:05','2020-08-22 15:13:14'),(7,3,'es','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-16 07:52:01','2019-08-16 07:52:01'),(8,3,'fr','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-16 07:52:01','2019-08-16 07:52:01'),(9,4,'en','product-xxx','Product XXX',NULL,'<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et<strong>Sed ut perspiciatis</strong> unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et</p>',NULL,'products/first-category/product-xxx',NULL,NULL,0,NULL,NULL,'2020-08-21 10:34:48','2020-08-22 15:02:25'),(10,4,'it','',NULL,NULL,NULL,NULL,'prodotti/prima-categoria/',NULL,NULL,NULL,NULL,NULL,'2020-08-21 10:34:48','2020-08-21 11:14:24'),(11,4,'es','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-08-21 10:34:48','2020-08-21 10:34:48'),(12,4,'fr','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-08-21 10:34:48','2020-08-21 10:34:48'),(13,1,'es','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-08-22 14:14:52','2020-08-22 14:14:52'),(14,1,'fr','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-08-22 14:14:52','2020-08-22 14:14:52');
+INSERT INTO `product_translations` VALUES (1,1,'it','prodotto-a','Prodotto A',NULL,NULL,NULL,'prodotti/prima-categoria/prodotto-a',NULL,NULL,NULL,0,0,'2017-08-02 10:09:39','2020-08-22 14:14:52'),(2,1,'en','product-number-1','Product number 1',NULL,'<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis etSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et</p>',NULL,'products/first-category/product-number-1',NULL,NULL,0,0,0,'2017-08-02 10:09:39','2020-08-22 14:14:52'),(3,2,'it','prodotto-b','Prodotto B','','',NULL,'prodotti/seconda-categoria/prodotto-b','','',NULL,0,0,'2018-06-13 14:49:32','2019-08-16 07:53:07'),(4,2,'en','product-b','Product B','','',NULL,'products/second-category/product-b','','',NULL,0,0,'2018-06-13 14:49:32','2020-08-21 11:24:27'),(5,3,'it','prodotto-c','Prodotto C',NULL,NULL,NULL,'prodotti/terza-category/prodotto-c',NULL,NULL,NULL,0,0,'2018-06-13 14:50:05','2019-08-16 07:52:01'),(6,3,'en','product-c','Product Category table',NULL,'<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et&nbsp;<strong>Sed ut perspiciatis</strong> unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et</p>',NULL,'products/thid-category/product-c',NULL,NULL,0,0,0,'2018-06-13 14:50:05','2020-08-22 15:13:14'),(7,3,'es','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-16 07:52:01','2019-08-16 07:52:01'),(8,3,'fr','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-16 07:52:01','2019-08-16 07:52:01'),(9,4,'en','product-xxx','Product XXX',NULL,'<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et<strong>Sed ut perspiciatis</strong> unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et</p>',NULL,'products/first-category/product-xxx',NULL,NULL,0,NULL,NULL,'2020-08-21 10:34:48','2020-08-22 15:02:25'),(10,4,'it','prodotto-xxx','Prodotto XXX',NULL,NULL,NULL,'prodotti/prima-categoria/prodotto-xxx',NULL,NULL,NULL,NULL,NULL,'2020-08-21 10:34:48','2020-12-24 17:02:58'),(11,4,'es','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-08-21 10:34:48','2020-08-21 10:34:48'),(12,4,'fr','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-08-21 10:34:48','2020-08-21 10:34:48'),(13,1,'es','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-08-22 14:14:52','2020-08-22 14:14:52'),(14,1,'fr','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-08-22 14:14:52','2020-08-22 14:14:52');
 /*!40000 ALTER TABLE `product_translations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1862,4 +1864,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-24 13:10:23
+-- Dump completed on 2020-12-24 18:03:50

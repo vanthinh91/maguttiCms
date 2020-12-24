@@ -94,6 +94,8 @@ class Product extends Model
             'hidden'   => 0,
             'label'    => trans('admin.label.code'),
             'display'  => 1,
+            'cssClassElement' => 'col-md-4 col-lg-4',
+            'row-item' => 'start'
         ];
 		$this->fieldspec['price'] = [
             'type'     => 'integer',
@@ -101,7 +103,9 @@ class Product extends Model
             'hidden'   => 0,
             'label'    => trans('admin.label.price'),
             'display'  => 1,
-			'step'     => 0.01
+        	'step'     => 0.01,
+            'cssClassElement' => 'col-md-4 col-lg-4',
+            'row-item' => 'stop'
         ];
         $this->fieldspec['title'] = [
             'type'     => 'string',

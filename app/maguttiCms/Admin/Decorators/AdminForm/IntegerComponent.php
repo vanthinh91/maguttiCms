@@ -12,6 +12,11 @@ class IntegerComponent extends InputComponentAdminForm
 {
     function render($key, $value, $locale = '')
     {
+        $this->property['extra_field_properties'] = [
+            'min' => data_get($this->property,'min'),
+            'max' => data_get($this->property,'min'),
+            'step' => data_get($this->property,'step'),
+        ];
         $this->setDefault();
         return Form::number($key, $value, $this->field_properties());
     }
@@ -26,7 +31,7 @@ class IntegerComponent extends InputComponentAdminForm
             $this->property['extra_field_properties'] = [
                 'min' => '',
                 'max' => '',
-                'step' => ''
+                'step' => "2"
             ];
         }
     }
