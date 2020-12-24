@@ -31,7 +31,7 @@ window.App = function () {
 				dataType: 'json',
 				success: function (response) {
 					var msgHtml = '';
-					if (response.status == 'ok') {
+					if (response.status == 'OK') {
 						msgHtml += '<h4>' + response.msg + '</h4>';
 					} else {
 						$.each(response.errors, function (_key, value) {
@@ -40,8 +40,12 @@ window.App = function () {
 					}
 					updateModalAlertMsg(msgHtml);
 				},
-				error: function () {
-					updateModalAlertMsg('Error');
+				error: function ({responseJSON}) {
+					let msgHtml = '';
+					$.each(responseJSON.errors, function (_key, value) {
+						msgHtml += '<h4>' + value[0] + '</h4>'; //showing only the first error.
+					});
+					updateModalAlertMsg( msgHtml);
 				}
 			});
 		});
