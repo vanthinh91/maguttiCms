@@ -28,7 +28,6 @@ if (mix.config.production || mix.config.development) {
 
 mix.sass('resources/sass/website/app.scss', 'public/website/css')
 mix.js('resources/js/website/app.js', 'public/website/js')
-//mix.js('resources/js/website/store.js', 'public/website/js');
 mix.js('resources/js/website/cart.js', 'public/website/js');
 
 /*
