@@ -10,8 +10,9 @@ return [
 
     'cancel'        => 'cancel',
     'city'          => 'City',
-    'cookie'          => 'Cookie Policy',
+    'cookie'        => 'Cookie Policy',
     'country'       => 'Country',
+    'download'      => 'Download document',
     'email'         => 'E-mail',
     'employer'       => 'Company',
     'follow_us'     => 'Follow us on',

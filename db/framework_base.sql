@@ -173,6 +173,7 @@ CREATE TABLE `articles` (
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `banner` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `video` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sort` int(11) DEFAULT NULL,
   `pub` tinyint(4) DEFAULT '1',
   `ignore_slug_translation` int(1) DEFAULT '0',
@@ -192,7 +193,7 @@ CREATE TABLE `articles` (
 
 LOCK TABLES `articles` WRITE;
 /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
-INSERT INTO `articles` VALUES (1,'',NULL,NULL,'',NULL,NULL,NULL,'','home',NULL,'','',NULL,0,1,0,0,0,NULL,0,'2016-07-04 06:54:35','2020-12-24 11:36:23'),(2,'',NULL,NULL,'',NULL,NULL,NULL,'','company',NULL,'ff0000.png','',NULL,100,1,0,1,NULL,NULL,0,'2016-07-04 06:56:59','2020-08-11 10:47:21'),(3,'',0,NULL,'',NULL,NULL,NULL,'','privacy','','','','',2000,1,0,0,NULL,0,0,'2016-07-04 07:11:17','2017-08-01 14:33:01'),(4,'',0,NULL,'',NULL,NULL,NULL,'','contacts','','','','',600,1,0,1,NULL,0,0,'2016-07-04 07:11:39','2020-09-19 13:21:36'),(5,'',NULL,NULL,'',NULL,NULL,NULL,'','products',NULL,'','',NULL,200,1,0,1,NULL,NULL,0,'2016-07-04 07:20:37','2020-08-11 10:47:34'),(6,'',0,NULL,'',NULL,NULL,NULL,'','news','','','','',300,1,0,1,NULL,0,0,'2016-07-04 07:59:05','2017-08-01 14:33:11'),(7,'',9,NULL,'',NULL,NULL,NULL,'','login',NULL,'','',NULL,1000,1,0,0,NULL,NULL,0,'2016-08-09 13:12:14','2020-08-22 10:48:15'),(8,'',9,NULL,'',NULL,NULL,NULL,'','user-dashboard','','','','',1200,1,0,0,NULL,0,0,'2016-08-09 13:24:04','2017-08-01 14:33:30'),(9,'',0,NULL,'',NULL,NULL,NULL,'','reserved-area','','','','',1100,0,0,0,NULL,0,0,'2016-08-10 07:16:26','2017-08-01 15:57:05'),(10,'',9,NULL,'',NULL,NULL,NULL,'','user-profile','','','','',1300,1,0,0,NULL,0,0,'2016-08-10 07:17:38','2017-08-01 14:33:37'),(11,'',0,NULL,'',NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,'',2000,1,0,0,NULL,0,0,'2017-08-01 16:13:57','2017-08-01 16:16:28'),(12,'',2,NULL,'',NULL,NULL,NULL,'','company',NULL,'ff0000.png','',NULL,110,1,0,1,NULL,21,0,'2020-08-16 12:33:31','2020-08-16 12:34:07'),(13,'',NULL,NULL,'',NULL,NULL,NULL,'','home',NULL,'','','13',0,1,0,0,NULL,23,0,'2020-08-23 12:15:17','2020-08-23 13:35:07'),(14,'',2,NULL,'',NULL,NULL,NULL,'','company',NULL,'ff0000.png','',NULL,120,1,0,1,NULL,21,0,'2020-09-19 11:03:05','2020-09-19 13:06:29'),(15,'',NULL,NULL,'',NULL,NULL,NULL,'','news',NULL,'','',NULL,400,1,0,1,NULL,NULL,0,'2020-09-19 13:21:38','2020-09-19 13:22:31');
+INSERT INTO `articles` VALUES (1,'',NULL,NULL,'',NULL,NULL,NULL,'','home',NULL,'','',NULL,NULL,0,1,0,0,0,NULL,0,'2016-07-04 06:54:35','2020-12-24 11:36:23'),(2,'',NULL,NULL,'',NULL,NULL,NULL,'','company',NULL,'ff0000.png','',NULL,NULL,100,1,0,1,NULL,NULL,0,'2016-07-04 06:56:59','2020-08-11 10:47:21'),(3,'',0,NULL,'',NULL,NULL,NULL,'','privacy','','','','',NULL,2000,1,0,0,NULL,0,0,'2016-07-04 07:11:17','2017-08-01 14:33:01'),(4,'',0,NULL,'',NULL,NULL,NULL,'','contacts','','','','',NULL,600,1,0,1,NULL,0,0,'2016-07-04 07:11:39','2020-09-19 13:21:36'),(5,'',NULL,NULL,'',NULL,NULL,NULL,'','products',NULL,'','',NULL,NULL,200,1,0,1,NULL,NULL,0,'2016-07-04 07:20:37','2020-08-11 10:47:34'),(6,'',0,NULL,'',NULL,NULL,NULL,'','news','','','','',NULL,300,1,0,1,NULL,0,0,'2016-07-04 07:59:05','2017-08-01 14:33:11'),(7,'',9,NULL,'',NULL,NULL,NULL,'','login',NULL,'','',NULL,NULL,1000,1,0,0,NULL,NULL,0,'2016-08-09 13:12:14','2020-08-22 10:48:15'),(8,'',9,NULL,'',NULL,NULL,NULL,'','user-dashboard','','','','',NULL,1200,1,0,0,NULL,0,0,'2016-08-09 13:24:04','2017-08-01 14:33:30'),(9,'',0,NULL,'',NULL,NULL,NULL,'','reserved-area','','','','',NULL,1100,0,0,0,NULL,0,0,'2016-08-10 07:16:26','2017-08-01 15:57:05'),(10,'',9,NULL,'',NULL,NULL,NULL,'','user-profile','','','','',NULL,1300,1,0,0,NULL,0,0,'2016-08-10 07:17:38','2017-08-01 14:33:37'),(11,'',0,NULL,'',NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,'',NULL,2000,1,0,0,NULL,0,0,'2017-08-01 16:13:57','2017-08-01 16:16:28'),(12,'',2,NULL,'',NULL,NULL,NULL,'','company',NULL,'ff0000.png','',NULL,'3LXr89pMU2Q',110,1,0,1,0,21,0,'2020-08-16 12:33:31','2020-12-25 12:41:28'),(13,'',NULL,NULL,'',NULL,NULL,NULL,'','home',NULL,'','','13',NULL,0,1,0,0,NULL,23,0,'2020-08-23 12:15:17','2020-08-23 13:35:07'),(14,'',2,NULL,'',NULL,NULL,NULL,'','company',NULL,'ff0000.png','',NULL,NULL,120,1,0,1,NULL,21,0,'2020-09-19 11:03:05','2020-09-19 13:06:29'),(15,'',NULL,NULL,'',NULL,NULL,NULL,'','news',NULL,'','',NULL,NULL,400,1,0,1,NULL,NULL,0,'2020-09-19 13:21:38','2020-09-19 13:22:31');
 /*!40000 ALTER TABLE `articles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1136,7 +1137,7 @@ CREATE TABLE `news` (
 
 LOCK TABLES `news` WRITE;
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
-INSERT INTO `news` VALUES (1,'','2017-07-11',NULL,'','','pinoscotto11','96281-dedprifxoaaxql6.jpg',NULL,'DEDpRifXoAAXql6.jpg',NULL,0,1,0,'2017-07-11 05:18:08','2019-05-10 23:14:39'),(2,'','2019-05-07','2020-12-08','','',NULL,NULL,NULL,'img6-01.png',NULL,NULL,1,NULL,'2019-05-07 05:16:44','2020-10-23 11:31:21'),(3,'','2019-04-17',NULL,'','',NULL,NULL,NULL,'slide-2.jpg',NULL,NULL,1,NULL,'2019-05-07 05:17:21','2020-08-20 15:15:00'),(4,'','2019-03-07',NULL,'','',NULL,NULL,NULL,'slide-6.jpg',NULL,NULL,1,NULL,'2019-05-07 05:18:08','2020-08-21 20:38:20');
+INSERT INTO `news` VALUES (1,'','2017-07-11',NULL,'','','pinoscotto11','96281-dedprifxoaaxql6.jpg',NULL,'DEDpRifXoAAXql6.jpg',NULL,0,1,0,'2017-07-11 05:18:08','2019-05-10 23:14:39'),(2,'','2019-05-07','2020-12-08','','',NULL,NULL,'3LXr89pMU2Q','img6-01.png',NULL,NULL,1,NULL,'2019-05-07 05:16:44','2020-12-25 13:40:45'),(3,'','2019-04-17',NULL,'','',NULL,NULL,NULL,'slide-2.jpg',NULL,NULL,1,NULL,'2019-05-07 05:17:21','2020-08-20 15:15:00'),(4,'','2019-03-07',NULL,'','',NULL,NULL,NULL,'slide-6.jpg',NULL,NULL,1,NULL,'2019-05-07 05:18:08','2020-08-21 20:38:20');
 /*!40000 ALTER TABLE `news` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1702,7 +1703,7 @@ CREATE TABLE `socials` (
 
 LOCK TABLES `socials` WRITE;
 /*!40000 ALTER TABLE `socials` DISABLE KEYS */;
-INSERT INTO `socials` VALUES (1,'facebook',NULL,'facebook','','http://www.facebook.com',10,1,0,'2016-08-09 12:50:01','2016-08-09 10:50:01'),(2,'Twitter','','twitter','','http://www.twitter.com',20,1,0,'2016-06-28 12:58:53','2016-06-28 10:58:53'),(3,'Linkedin','','linkedin','','http://www.linkedin.com',30,1,0,'2016-06-28 12:58:59','2016-06-28 10:58:59');
+INSERT INTO `socials` VALUES (1,'facebook',NULL,'facebook','','http://www.facebook.com',10,1,0,'2016-08-09 12:50:01','2016-08-09 10:50:01'),(2,'Twitter','','twitter','','http://www.twitter.com',20,1,0,'2016-06-28 12:58:53','2016-06-28 10:58:53'),(3,'Github','','github','','https://github.com/marcoax/maguttiCms',30,1,0,'2016-06-28 12:58:59','2020-12-25 13:44:26');
 /*!40000 ALTER TABLE `socials` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1864,4 +1865,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-24 18:03:50
+-- Dump completed on 2020-12-25 14:44:54

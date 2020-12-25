@@ -31,7 +31,7 @@ class Article extends Model
     protected $fillable = ['title', 'subtitle', 'abstract', 'description',
         'slug', 'sort', 'pub', 'top_menu', 'footer_menu', 'parent_id',
         'link', 'template_id', 'ignore_slug_translation',
-        'doc'];
+        'video','doc'];
     protected $fieldspec = [];
 
 

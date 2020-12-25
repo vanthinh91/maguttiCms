@@ -12,6 +12,7 @@ return [
 	'city'                    => 'Città',
 	'cookie'		          => 'Cookie Policy',
 	'country'                 => 'Nazione',
+    'download'                => 'SCARICA IL DOCUMENTO',
 	'email'                   => 'E-mail',
 	'employer'                => 'Azienda',
 	'follow_us'               => 'Seguici su',

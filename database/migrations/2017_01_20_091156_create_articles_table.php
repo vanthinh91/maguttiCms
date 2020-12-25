@@ -33,6 +33,7 @@ class CreateArticlesTable extends Migration
             $table->string('image', 255)->nullable();
             $table->string('banner', 255)->nullable();
             $table->string('link', 255)->nullable();
+            $table->string('video', 255)->nullable();
             $table->integer('sort')->nullable();
             $table->boolean('pub')->nullable()->default(1);
             $table->boolean('top_menu')->nullable()->default(1);
