@@ -8,3 +8,4 @@
    href="{{$block->nav_link}}">{{trans('website.see_all')}}
 </a>
 @endif
+<x-website.partials.page-doc :doc="$block->doc" class="mt-2"/>
