@@ -105,7 +105,7 @@
         },
         mounted() {
             window.$cartBus.$on('ADD_ITEM_TO_CART', ({cart_count,cart_items}) => {
-                this.counterItems = cart_count;
+                this.counterItems = (_.isUndefined(cart_count))?1:cart_count;
                 this.updateModal(cart_items)
             })
         }

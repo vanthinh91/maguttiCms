@@ -92,8 +92,7 @@ class StoreHelper {
 			}
 			return round($total, 2);
 		}
-		else
-			return 0;
+		return 0;
 	}
 	public static function formatCartTotal()
 	{
@@ -102,12 +101,12 @@ class StoreHelper {
 	}
 	public static function getCartItemCount($cart = false)
 	{
-		if (!$cart)
-			$cart = self::getSessionCart();
-		if ($cart)
-			return $cart->cart_items()->count();
-		else
-			return 0;
+		if (!$cart) $cart = self::getSessionCart();
+
+		if ($cart){
+            return $cart->cart_items()->count();
+        }
+		return 0;
 	}
 
 	// cart retrieving
@@ -118,8 +117,7 @@ class StoreHelper {
 			$cart = Cart::where('status', CART_NEW)->where('id', $id)->first();
 			return ($cart)? $cart: false;
 		}
-		else
-			return false;
+		return false;
 	}
 	// cart storing
 	public static function setSessionCart($cart)
@@ -160,22 +158,26 @@ class StoreHelper {
 	{
 		$cart = (self::getSessionCart())?:self::cartCreate();
         $quantity = data_get($request,'quantity',1);
+
         $cart_item = CartItem::firstOrCreate([
             'cart_id'            => $cart->id,
             'product_code'       => $request['product_code'],
             'product_model_code' => data_get($request,'product_model_code'),
 
         ]);
-        $cart_item->increment('quantity',(int)$quantity);
-		if ($cart_item)
-			return [
-				'cart'       => $cart,
-				'cart_items' => self::getCartItems(),
-				'cart_count' => self::getCartItemCount($cart)
-			];
-		else
-			return false;
+
+        if ($cart_item){
+            $cart_item->increment('quantity',(int)$quantity);
+            return [
+                'cart'       => $cart,
+                'cart_items' => self::getCartItems(),
+                'cart_count' => self::getCartItemCount($cart)
+            ];
+        }
+
+		return false;
 	}
+
     static function getCartItems(){
         $cart = StoreHelper::getSessionCart();
         return  ($cart) ? $cart->cart_items()->list()->get()->map(function ($item) {
@@ -198,11 +200,8 @@ class StoreHelper {
 					'cart_count' => self::getCartItemCount($cart)
 				];
 			}
-			else
-				return false;
 		}
-		else
-			return false;
+		return false;
 	}
 
     public static function updateItemQuantity($request)
@@ -218,11 +217,8 @@ class StoreHelper {
                     'cart_count' => self::getCartItemCount($cart)
                 ];
             }
-            else
-                return false;
         }
-        else
-            return false;
+        return false;
     }
 
 	// empty the cart
@@ -233,7 +229,6 @@ class StoreHelper {
 			$cart->cart_items()->delete();
 			return true;
 		}
-		else
 		return false;
 	}
 
@@ -265,8 +260,7 @@ class StoreHelper {
 			}
 			return round($cost, 2);
 		}
-		else
-			return 0;
+		return 0;
 	}
 
 	// custom shipping calculation
