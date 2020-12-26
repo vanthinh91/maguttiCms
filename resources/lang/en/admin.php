@@ -182,6 +182,7 @@ return [
 		'paymentmethods' => 'Payment methods',
 		'productmodels' => 'Product models',
 		'products' => 'Products',
+		'projects' => 'Projects/Portfolio',
 		'provinces' => 'Provinces',
 		'roles' => 'Roles',
 		'settings' => 'Settings',
