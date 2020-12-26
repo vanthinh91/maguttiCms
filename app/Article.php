@@ -19,12 +19,12 @@ use \App\maguttiCms\Domain\Article\ArticlePresenter;
 class Article extends Model
 {
     use Translatable;
+    use  GFTranslatableHelperTrait;
 
     use Blockable;
-    use Mediable;
 
+    use Mediable;
     use ArticlePresenter;
-    use  GFTranslatableHelperTrait;
 
     protected $with = ['translations'];
 

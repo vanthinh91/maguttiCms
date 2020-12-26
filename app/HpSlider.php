@@ -2,16 +2,29 @@
 
 namespace App;
 
-use App\maguttiCms\Builders\MaguttiCmsBuilder;
 use Illuminate\Database\Eloquent\Model;
-use Str;
+use App\maguttiCms\Builders\MaguttiCmsBuilder;
+
+use Astrotomic\Translatable\Translatable;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class HpSlider extends Model
 {
+
+    use Translatable;
+    use  GFTranslatableHelperTrait;
+
     protected $table = 'hpsliders';
-    protected $fillable = ['title', 'description', 'slug', 'link', 'sort', 'is_active'];
-    public $sluggable = ['slug' => ['field' => 'title', 'updatable' => false, 'translatable' => false]];
+    protected $fillable = ['title', 'description',  'link', 'sort', 'is_active'];
     protected $fieldspec = [];
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Sluggable & Translatable
+    |--------------------------------------------------------------------------
+    */
+    public $translatedAttributes = [
+        'title', 'description'];
 
     /*
     |--------------------------------------------------------------------------
@@ -55,13 +68,7 @@ class HpSlider extends Model
             'cssClass' => 'wyswyg',
             'display' => 1,
         ];
-        $this->fieldspec['slug'] = [
-            'type' => 'string',
-            'required' => 0,
-            'hidden' => 0,
-            'label' => trans('admin.label.slug'),
-            'display' => 1,
-        ];
+
         $this->fieldspec['link'] = [
             'type' => 'string',
             'required' => 0,

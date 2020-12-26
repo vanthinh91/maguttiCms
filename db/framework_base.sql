@@ -285,7 +285,7 @@ CREATE TABLE `cart_items` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -294,7 +294,7 @@ CREATE TABLE `cart_items` (
 
 LOCK TABLES `cart_items` WRITE;
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
-INSERT INTO `cart_items` VALUES (1,1,'PRDC',NULL,1,'2020-12-24 16:55:01','2020-12-24 16:55:01'),(3,1,'PRDA',NULL,6,'2020-12-24 16:57:46','2020-12-24 16:57:51');
+INSERT INTO `cart_items` VALUES (1,1,'PRDC',NULL,1,'2020-12-24 16:55:01','2020-12-24 16:55:01'),(3,1,'PRDA',NULL,6,'2020-12-24 16:57:46','2020-12-24 16:57:51'),(4,2,'PRDC',NULL,1,'2020-12-26 10:48:15','2020-12-26 10:48:15');
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -312,7 +312,7 @@ CREATE TABLE `carts` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -321,7 +321,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
-INSERT INTO `carts` VALUES (1,0,NULL,'2020-12-24 16:55:01','2020-12-24 16:55:01');
+INSERT INTO `carts` VALUES (1,0,NULL,'2020-12-24 16:55:01','2020-12-24 16:55:01'),(2,0,NULL,'2020-12-26 10:48:15','2020-12-26 10:48:15'),(3,0,1,'2020-12-26 14:05:28','2020-12-26 14:15:09');
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -799,17 +799,18 @@ DROP TABLE IF EXISTS `hp_slider_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `hp_slider_translations` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `hp_slider_id` int(10) unsigned NOT NULL,
-  `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_by` int(11) NOT NULL,
-  `update_by` int(11) NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `hp_slider_id` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `hp_sliders_translations_hp_slider_id_locale_unique` (`hp_slider_id`,`locale`),
+  KEY `hp_sliders_translations_locale_index` (`locale`),
+  CONSTRAINT `hp_slider_translations_hp_slider_id_foreign` FOREIGN KEY (`hp_slider_id`) REFERENCES `hpsliders` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -818,7 +819,7 @@ CREATE TABLE `hp_slider_translations` (
 
 LOCK TABLES `hp_slider_translations` WRITE;
 /*!40000 ALTER TABLE `hp_slider_translations` DISABLE KEYS */;
-INSERT INTO `hp_slider_translations` VALUES (1,1,'en','maguttiCms 5.8 V2','free open source CMS based on the Laravel PHP Framework',0,0,'2019-05-12 16:05:28','2019-05-12 16:06:10'),(2,1,'it',NULL,NULL,0,0,'2019-05-12 16:05:28','2019-05-12 16:05:28'),(3,1,'es',NULL,NULL,0,0,'2019-05-12 16:05:28','2019-05-12 16:05:28'),(4,1,'fr',NULL,NULL,0,0,'2019-05-12 16:05:28','2019-05-12 16:05:28');
+INSERT INTO `hp_slider_translations` VALUES (1,'en','maguttiCms 8','Multi-auth and multilinguage CMS platform with Laravel framework','2020-12-26 14:53:46','2020-12-26 14:54:20',1),(2,'it','maguttiCms 8','Multi-auth and multilinguage CMS platform with Laravel framework','2020-12-26 14:53:46','2020-12-26 14:54:20',1),(3,'es',NULL,NULL,'2020-12-26 14:53:46','2020-12-26 14:53:46',1),(4,'fr',NULL,NULL,'2020-12-26 14:53:46','2020-12-26 14:53:46',1),(5,'en','MaguttiCms','free open source CMS based on the Laravel 8 PHP Framework','2020-12-26 14:55:38','2020-12-26 14:55:38',2),(6,'it','MaguttiCms','free open source CMS based on the Laravel 8 PHP Framework','2020-12-26 14:55:38','2020-12-26 14:55:38',2),(7,'es',NULL,NULL,'2020-12-26 14:55:38','2020-12-26 14:55:38',2),(8,'fr',NULL,NULL,'2020-12-26 14:55:38','2020-12-26 14:55:38',2);
 /*!40000 ALTER TABLE `hp_slider_translations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -830,21 +831,20 @@ DROP TABLE IF EXISTS `hpsliders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `hpsliders` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci,
-  `icon` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sort` int(11) DEFAULT NULL,
-  `is_active` tinyint(4) DEFAULT '1',
-  `created_by` int(11) NOT NULL,
+  `is_active` tinyint(1) DEFAULT '1',
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `hpsliders_slug_unique` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -853,7 +853,7 @@ CREATE TABLE `hpsliders` (
 
 LOCK TABLES `hpsliders` WRITE;
 /*!40000 ALTER TABLE `hpsliders` DISABLE KEYS */;
-INSERT INTO `hpsliders` VALUES (1,'maguttiCms 8 slider','free open source CMS based on the Laravel PHP Framework',NULL,'header2.jpg',NULL,'magutticms-8-slider',200,1,0,'2016-12-27 17:34:38','2020-09-14 21:00:45'),(2,'maguttiCms 8','A modular multilingual CMS built with Laravel 8',NULL,'header1.jpg',NULL,'magutticms-8',100,1,0,'2016-12-27 18:18:09','2020-09-14 21:00:30');
+INSERT INTO `hpsliders` VALUES (1,'','',NULL,NULL,NULL,10,1,NULL,NULL,'2020-12-26 14:53:46','2020-12-26 14:54:43'),(2,'','',NULL,NULL,NULL,30,1,NULL,NULL,'2020-12-26 14:54:56','2020-12-26 14:55:38');
 /*!40000 ALTER TABLE `hpsliders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1090,7 +1090,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1099,7 +1099,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(61,'2017_01_20_091712_create_hpsliders_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8);
+INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1865,4 +1865,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-25 15:06:02
+-- Dump completed on 2020-12-26 17:23:42
