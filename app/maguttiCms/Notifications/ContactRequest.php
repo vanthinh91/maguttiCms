@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use phpDocumentor\Reflection\Types\Array_;
 
 class ContactRequest extends Notification implements ShouldQueue
 {
@@ -16,9 +17,9 @@ class ContactRequest extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param $data
      */
-    public function __construct($data)
+    public function __construct( Array $data)
     {
         //
         $this->data = $data;
@@ -30,7 +31,7 @@ class ContactRequest extends Notification implements ShouldQueue
      * @param mixed $notifiable
      * @return array
      */
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['mail'];
     }
@@ -41,7 +42,7 @@ class ContactRequest extends Notification implements ShouldQueue
      * @param mixed $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
 
         return (new MailMessage)
@@ -56,7 +57,7 @@ class ContactRequest extends Notification implements ShouldQueue
      * @param mixed $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             //

@@ -37,8 +37,8 @@ class AdminResetPasswordNotification extends Notification
 	 * @param  mixed  $notifiable
 	 * @return \Illuminate\Notifications\Messages\MailMessage
 	 */
-	public function toMail($notifiable)
-	{
+	public function toMail($notifiable): MailMessage
+    {
 		return (new MailMessage)
 			->subject(trans('passwords.mail_reset_subject').' - '.config('maguttiCms.website.option.app.name'))
 			->greeting(trans('website.mail_message.greeting'))

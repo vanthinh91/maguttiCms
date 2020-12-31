@@ -2,17 +2,21 @@
 
 namespace App\maguttiCms\Notifications;
 
-use App\Newsletter;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Newsletter;
 
+/**
+ * Class NewsletterSubscriberAdminNotification
+ * @package App\maguttiCms\Notifications
+ */
 class NewsletterSubscriberAdminNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $data;
+    public Newsletter $data ;
 
     /**
      * Create a new notification instance.
@@ -31,7 +35,7 @@ class NewsletterSubscriberAdminNotification extends Notification implements Shou
      * @param  mixed  $notifiable
      * @return array
      */
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['mail'];
     }
@@ -42,7 +46,7 @@ class NewsletterSubscriberAdminNotification extends Notification implements Shou
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
 
         return (new MailMessage)

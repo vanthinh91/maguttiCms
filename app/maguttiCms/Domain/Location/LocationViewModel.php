@@ -5,6 +5,7 @@ namespace App\maguttiCms\Domain\Location;
 use App\Location;
 use App\maguttiCms\Domain\Website\WebsiteViewModel;
 use App\Tag;
+use Illuminate\View\View;
 use phpDocumentor\Reflection\Types\Collection;
 
 class LocationViewModel extends WebsiteViewModel

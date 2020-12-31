@@ -7,6 +7,7 @@ use App\Http\Resources\MapLocationResource;
 use App\Location;
 use App\Product;
 use App\maguttiCms\Domain\Website\WebsiteViewModel;
+use Illuminate\View\View;
 
 class ArticleViewModel extends WebsiteViewModel
 {
@@ -19,7 +20,7 @@ class ArticleViewModel extends WebsiteViewModel
         return view($template, compact('article'));
     }
 
-    function intro()
+    function intro() :View
     {
         $article = $this->getPage('home');
         $this->setSeo($article);
