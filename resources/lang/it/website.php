@@ -28,6 +28,7 @@ return [
 	'please_select'           => 'Prego selezionare',
 	'privacy'		          => 'Privacy Policy',
 	'read_more'               => 'Continua',
+    'regards'                 => 'Cordiali saluti',
 	'see'                     => 'Vedi',
 	'send'                    => 'Invia',
 	'subject'                 => 'Oggetto',
@@ -65,8 +66,10 @@ return [
     'mail_message' => [
         'contact'			=> 'Nuova richiesta informazioni da',
         'firm'              => 'Il team maguttiCms',
-        'greeting'			=> 'Gentile Utente',
+        'greeting'			=> 'Gentile Utente,',
+        'greeting_admin'	=> 'Gentile Amministratore,',
         'subscribe_newsletter_subject'  => 'Iscrizione alla Newsletter',
+        'subscribe_newsletter_text' => 'Nuova Iscrizione alla newsletter da:',
         'subscribe_newsletter_feedback' => 'Grazie per esserti iscritto alla nostra newsletter',
     ],
     'pagetitle' => [

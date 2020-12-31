@@ -66,8 +66,10 @@ return [
     'mail_message' => [
         'contact'           => 'New request info from',
         'firm'              => 'Il team maguttiCms',
-        'greeting'	        => 'Dear User',
+        'greeting'	        => 'Dear User,',
+        'greeting_admin'	=> 'Dear Admin,',
         'subscribe_newsletter_subject' => 'Newsletter subscription',
+        'subscribe_newsletter_text' => 'New newsletter subscription  from:',
         'subscribe_newsletter_feedback' => 'Thanks for subscribe our newsletter',
     ],
     'pagetitle' => [

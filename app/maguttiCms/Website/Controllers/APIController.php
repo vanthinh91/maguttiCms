@@ -3,8 +3,12 @@
 namespace App\maguttiCms\Website\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\maguttiCms\Notifications\ContactRequest;
+use App\maguttiCms\Notifications\NewsletterSubscriberAdminNotification;
+use App\maguttiCms\Notifications\NewsletterSubscriberUserNotification;
 use App\maguttiCms\Tools\JsonResponseTrait;
 use App\maguttiCms\Website\Requests\AjaxFormRequest;
+use Illuminate\Support\Facades\Notification;
 use Input;
 use Validator;
 use App\Newsletter;
@@ -25,7 +29,14 @@ class APIController extends Controller
         $newsletter = new Newsletter;
         $newsletter->locale = get_locale();
         $newsletter->email = sanitizeParameter($request->email);
-        $saved = $newsletter->save();
+        $newsletter->save();
+
+        Notification::route('mail', config('maguttiCms.website.option.app.email'))
+                      ->notify(new NewsletterSubscriberAdminNotification($newsletter));
+        $delay = now()->addMinutes(2);
+        Notification::route('mail', $newsletter->email)
+                     ->notify(new NewsletterSubscriberUserNotification($newsletter));
+
         return $this->responseSuccess(trans('website.mail_message.subscribe_newsletter_feedback'))->apiResponse();
 
     }

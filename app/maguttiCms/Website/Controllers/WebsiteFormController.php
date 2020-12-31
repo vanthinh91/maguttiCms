@@ -1,32 +1,27 @@
 <?php namespace App\maguttiCms\Website\Controllers;
 
-use App\maguttiCms\Website\Requests\WebsiteFormRequest;
-use App\maguttiCms\Mailers\SystemMailer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+
+use App\maguttiCms\Website\Requests\WebsiteFormRequest;
+use App\maguttiCms\Notifications\ContactRequest;
 use App\FaqCategory;
 use App\Article;
 use App\Contact;
 use App\Product;
-use App\maguttiCms\Tools\SettingHelper as Setting;
+
+use Illuminate\Support\Facades\Notification;
 use Validator;
 use Input;
 
 class WebsiteFormController extends Controller
 {
-    /**
-     * @var SystemMailer
-     */
-    protected $mailer;
 
-    /**
-     * WebsiteFormController constructor.
-     *
-     * @param SystemMailer $mailer
-     */
-    public function __construct(SystemMailer $mailer)
+
+
+    public function __construct()
     {
-        $this->mailer = $mailer;
+
     }
 
     /**
@@ -63,11 +58,11 @@ class WebsiteFormController extends Controller
 
         $data['product'] = $product_name;
 
-        $this->mailer
-            ->to(config('maguttiCms.website.option.app.email'))
-            ->replyTo($data['email'])
-            ->notifyContactFormSubmission($data['mailSubject'], $data)
-            ->send();
+
+        Notification::route('mail', config('maguttiCms.website.option.app.email'))
+                      ->notify(new ContactRequest($data));
+
+
 
         /******************** end email ***********************/
 
