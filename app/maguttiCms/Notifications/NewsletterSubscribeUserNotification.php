@@ -13,7 +13,7 @@ use App\Newsletter;
  * Class NewsletterSubscriberUserNotification
  * @package App\maguttiCms\Notifications
  */
-class NewsletterSubscriberUserNotification extends Notification implements ShouldQueue
+class NewsletterSubscribeUserNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -26,7 +26,9 @@ class NewsletterSubscriberUserNotification extends Notification implements Shoul
      */
     public function __construct(Newsletter $data)
     {
+        //
         $this->data = $data;
+        $this->delay(now()->addMinute(1));
     }
 
     /**

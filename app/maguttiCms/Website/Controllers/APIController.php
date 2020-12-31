@@ -5,7 +5,7 @@ namespace App\maguttiCms\Website\Controllers;
 use App\Http\Controllers\Controller;
 use App\maguttiCms\Notifications\ContactRequest;
 use App\maguttiCms\Notifications\NewsletterSubscriberAdminNotification;
-use App\maguttiCms\Notifications\NewsletterSubscriberUserNotification;
+use App\maguttiCms\Notifications\NewsletterSubscribeUserNotification;
 use App\maguttiCms\Tools\JsonResponseTrait;
 use App\maguttiCms\Website\Requests\AjaxFormRequest;
 use Illuminate\Support\Facades\Notification;
@@ -33,9 +33,9 @@ class APIController extends Controller
 
         Notification::route('mail', config('maguttiCms.website.option.app.email'))
                       ->notify(new NewsletterSubscriberAdminNotification($newsletter));
-        $delay = now()->addMinutes(2);
+
         Notification::route('mail', $newsletter->email)
-                     ->notify(new NewsletterSubscriberUserNotification($newsletter));
+                     ->notify(new NewsletterSubscribeUserNotification($newsletter));
 
         return $this->responseSuccess(trans('website.mail_message.subscribe_newsletter_feedback'))->apiResponse();
 

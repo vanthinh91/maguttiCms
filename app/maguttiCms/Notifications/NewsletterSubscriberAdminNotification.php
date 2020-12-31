@@ -16,7 +16,7 @@ class NewsletterSubscriberAdminNotification extends Notification implements Shou
 {
     use Queueable;
 
-    public Newsletter $data ;
+    public $data ;
 
     /**
      * Create a new notification instance.
@@ -27,6 +27,7 @@ class NewsletterSubscriberAdminNotification extends Notification implements Shou
     {
         //
         $this->data = $data;
+
     }
 
     /**
