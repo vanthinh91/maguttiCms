@@ -4,7 +4,7 @@
             <div id="{{$child->slug}}" class="row  {{ ($loop->last) ?'':' pb-2 mb-2' }}">
                 <a name="#{{$child->slug}}"></a>
                 <div class=" col-12 col-lg-7 mb-2 mb-lg-0  {{$loop->even ? '' :'order-lg-12' }}">
-                    @include('website.partials.widgets_gallery_slider')
+                    <x-website.partials.page-media-block :item="$child" class="{{ $buttonClass ?? 'btn-outline-color-4' }}"/>
                 </div>
                 <div class=" col-12 col-lg-5  {{$loop->even ? '' :'order-lg-1' }}text-primary">
                     @if($child->subtitle!='')
