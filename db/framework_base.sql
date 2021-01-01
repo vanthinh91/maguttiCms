@@ -285,7 +285,7 @@ CREATE TABLE `cart_items` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -376,6 +376,7 @@ CREATE TABLE `category_translations` (
   `category_id` int(10) unsigned NOT NULL,
   `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
+  `abstract` text COLLATE utf8_unicode_ci,
   `description` text COLLATE utf8_unicode_ci,
   `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -393,7 +394,7 @@ CREATE TABLE `category_translations` (
 
 LOCK TABLES `category_translations` WRITE;
 /*!40000 ALTER TABLE `category_translations` DISABLE KEYS */;
-INSERT INTO `category_translations` VALUES (1,'prima-categoria',1,'it','Prima Categoria',NULL,NULL,NULL,0,0,'2016-07-04 04:29:04','2020-12-24 16:56:51'),(2,'first-category',1,'en','First Category',NULL,NULL,NULL,0,0,'2016-07-04 04:29:04','2020-12-24 16:56:51'),(3,'second-category',2,'en','Second Category',NULL,'','',0,0,'2016-12-26 11:16:23','2018-06-13 12:44:31'),(4,'seconda-categoria',2,'it','Seconda Categoria',NULL,'','',0,0,'2016-12-26 11:16:23','2018-06-13 12:44:31'),(5,'thid-category',3,'en','Third Category',NULL,'','',0,0,'2016-12-27 17:33:25','2018-06-13 12:45:00'),(6,'terza-category',3,'it','Terza Categoria',NULL,'','',0,0,'2016-12-27 17:33:25','2018-06-13 12:45:00'),(7,'nuova-categoria',4,'it','Nuova categoria',NULL,'','',0,0,'2017-08-02 11:16:28','2017-08-02 11:16:28'),(8,'new-category',4,'en','New category',NULL,'','',0,0,'2017-08-02 11:16:28','2017-08-02 11:16:28'),(9,'',1,'es',NULL,NULL,NULL,NULL,NULL,NULL,'2020-12-24 16:56:51','2020-12-24 16:56:51'),(10,'',1,'fr',NULL,NULL,NULL,NULL,NULL,NULL,'2020-12-24 16:56:51','2020-12-24 16:56:51');
+INSERT INTO `category_translations` VALUES (1,'prima-categoria',1,'it','Prima Categoria',NULL,NULL,NULL,NULL,0,0,'2016-07-04 04:29:04','2020-12-24 16:56:51'),(2,'first-category',1,'en','First Category',NULL,NULL,NULL,NULL,0,0,'2016-07-04 04:29:04','2020-12-24 16:56:51'),(3,'second-category',2,'en','Second Category',NULL,NULL,'','',0,0,'2016-12-26 11:16:23','2018-06-13 12:44:31'),(4,'seconda-categoria',2,'it','Seconda Categoria',NULL,NULL,'','',0,0,'2016-12-26 11:16:23','2018-06-13 12:44:31'),(5,'thid-category',3,'en','Third Category',NULL,NULL,'','',0,0,'2016-12-27 17:33:25','2018-06-13 12:45:00'),(6,'terza-category',3,'it','Terza Categoria',NULL,NULL,'','',0,0,'2016-12-27 17:33:25','2018-06-13 12:45:00'),(7,'nuova-categoria',4,'it','Nuova categoria',NULL,NULL,'','',0,0,'2017-08-02 11:16:28','2017-08-02 11:16:28'),(8,'new-category',4,'en','New category',NULL,NULL,'','',0,0,'2017-08-02 11:16:28','2017-08-02 11:16:28'),(9,'',1,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-12-24 16:56:51','2020-12-24 16:56:51'),(10,'',1,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-12-24 16:56:51','2020-12-24 16:56:51');
 /*!40000 ALTER TABLE `category_translations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1094,7 +1095,7 @@ CREATE TABLE `metrics` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1999,4 +2000,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-31 17:48:19
+-- Dump completed on 2021-01-01 11:51:07

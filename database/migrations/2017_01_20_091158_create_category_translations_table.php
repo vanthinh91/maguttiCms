@@ -22,6 +22,7 @@ class CreateCategoryTranslationsTable extends Migration
             $table->unsignedInteger('category_id');
             $table->string('locale', 255);
             $table->string('title', 255)->nullable();
+            $table->text('abstract')->nullable();
             $table->string('slug', 255)->nullable();
             $table->text('description')->nullable();
             $table->string('seo_title', 255)->nullable();
