@@ -288,11 +288,11 @@ window.Cms = function () {
 				plugins: [
 					"advlist autolink lists link image charmap print preview anchor textcolor colorpicker",
 					"searchreplace visualblocks code fullscreen",
-					"insertdatetime media table contextmenu paste hr pagebreak"
+					"insertdatetime media table contextmenu paste hr pagebreak help wordcount"
 				],
 				pagebreak_split_block: true,
 				branding: false,
-				statusbar: false,
+
 				file_picker_types: 'image',
 				images_upload_url: '/admin/api/upload-media-tinymce',
 				images_upload_base_path: '/media/images/tinymce',
