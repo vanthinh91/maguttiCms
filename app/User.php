@@ -2,19 +2,25 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\maguttiCms\Notifications\UserResetPasswordNotification as UserResetPasswordNotification;
+
 use App\maguttiCms\Permission\GFEntrustUserTrait;
+use App\maguttiCms\Domain\User\UserPresenter;
 
 class User extends Authenticatable
 {
     use Notifiable;
-    use GFEntrustUserTrait; // add this trait to your user model
 
+    use UserPresenter;
+
+    // user role trait
+    use GFEntrustUserTrait;
     protected $role_user_table = "role_user";
     protected $user_foreign_key = "user_id";
+
 
     /**
      * The attributes that are mass assignable.
@@ -22,11 +28,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
+        'company',
         'email',
         'password',
         'gender',
-		'list_code'
+		'list_code',
+        'is_active',
+        'is_guest',
+        'dob'
     ];
 
     /**
@@ -88,11 +99,26 @@ class User extends Authenticatable
             'hidden'   => 1,
             'display'  => 0,
         ];
-        $this->fieldspec['name'] = [
+        $this->fieldspec['firstname'] = [
             'type'     => 'string',
             'required' => 1,
             'hidden'   => 0,
-            'label'    => 'Name',
+            'label'    => __('website.name'),
+            'display'  => 1,
+        ];
+
+        $this->fieldspec['lastname'] = [
+            'type'     => 'string',
+            'required' => 1,
+            'hidden'   => 0,
+            'label'    => __('website.lastname'),
+            'display'  => 1,
+        ];
+        $this->fieldspec['company'] = [
+            'type'     => 'string',
+            'required' => 0,
+            'hidden'   => 0,
+            'label'    => __('website.company'),
             'display'  => 1,
         ];
         $this->fieldspec['email'] = [

@@ -10,6 +10,7 @@ return [
 
 	'cancel'                  => 'Annulla',
 	'city'                    => 'Città',
+    'company'		          => 'Azienda',
 	'cookie'		          => 'Cookie Policy',
 	'country'                 => 'Nazione',
     'download'                => 'SCARICA IL DOCUMENTO',
@@ -22,6 +23,8 @@ return [
 	'message_email'           => 'Messaggio',
 	'more_info'               => 'Continua',
 	'name'                    => 'Nome',
+	'firstname'               => 'Nome',
+	'lastname'                => 'Cognome',
 	'newsletters_placeholder' => 'Iscriviti alla newsletter',
 	'password'		          => 'Password',
 	'phone'                   => 'Telefono',

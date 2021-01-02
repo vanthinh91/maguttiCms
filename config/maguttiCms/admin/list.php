@@ -776,17 +776,18 @@ return [
             'field' => [
                 'id',
                 'email' => ['type' => 'editable', 'field' => 'email'],
-                'name' => ['type' => 'editable', 'field' => 'name'],
-
+                'firstname' => ['type' => 'editable', 'field' => 'firstname'],
+                'lastname' => ['type' => 'editable', 'field' => 'lastname'],
                 'is_active' => ['type' => 'boolean', 'field' => 'is_active', 'editable' => true],
                 'created_at' => ['type' => 'date', 'field' => 'created_at'],
                 'updated_at' => ['type' => 'date', 'field' => 'updated_at'],
             ],
             'field_searchable' => [
                 'email' => ['type' => 'text', 'label' => 'email', 'field' => 'email'],
-                'name' => ['type' => 'text', 'label' => 'name', 'field' => 'name'],
+                'firstname' => ['type' => 'text', 'label' => 'firstname', 'field' => 'firstname'],
+                'lastname' => ['type' => 'text', 'label' => 'lastname', 'field' => 'lastname'],
             ],
-            'orderBy' => 'name',
+            'orderBy' => 'firstname',
             'orderType' => 'ASC',
             'actions' => [
                 'edit' => 1,

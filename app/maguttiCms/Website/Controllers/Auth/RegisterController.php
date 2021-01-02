@@ -69,7 +69,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:10|confirmed|regex:'.config('maguttiCms.security.password_regex'),
         ]);
@@ -84,7 +85,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
+            'is_active' => 1,
             'email' => $data['email'],
             'password' => $data['password'],
         ]);

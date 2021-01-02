@@ -10,6 +10,7 @@ return [
 
     'cancel'        => 'cancel',
     'city'          => 'City',
+    'company'		=> 'Company',
     'cookie'        => 'Cookie Policy',
     'country'       => 'Country',
     'download'      => 'Download document',
@@ -22,6 +23,8 @@ return [
     'message_email' => 'Message',
     'more_info'     => 'Continue',
     'name'          => 'Name',
+    'firstname'     => 'Name',
+    'lastname'      => 'Surname',
     'newsletters_placeholder' => 'Subscribe our newsletter type your email',
     'password'		=> 'Password',
     'phone'         => 'Telephone',

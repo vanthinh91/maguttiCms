@@ -1745,7 +1745,6 @@ CREATE TABLE `role_user` (
 
 LOCK TABLES `role_user` WRITE;
 /*!40000 ALTER TABLE `role_user` DISABLE KEYS */;
-INSERT INTO `role_user` VALUES (1,1),(1,3);
 /*!40000 ALTER TABLE `role_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1967,13 +1966,18 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `firstname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `lastname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `company` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dob` date DEFAULT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `gender` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `list_code` varchar(10) COLLATE utf8_unicode_ci DEFAULT '',
   `is_active` tinyint(4) NOT NULL DEFAULT '1',
+  `is_guest` tinyint(1) DEFAULT '0',
+  `email_verified_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -1987,7 +1991,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Magutti User','user@magutti.com','M','$2y$10$lHD.KhLYqqtHRQuXH6PKXODXFlgcQ8UZ6l7.3vaaeLSP1qgxSUszu','RHpD3grZI54ztkvhwlWqDVVsXZsfsc4nyJgRDcrVhuMOvLqhnHpkrgBHIB6T','',1,'2017-07-07 13:37:30','2019-05-11 10:53:21');
+INSERT INTO `users` VALUES (1,'Magutti','User',NULL,NULL,'user@magutti.com','M','$2y$10$lHD.KhLYqqtHRQuXH6PKXODXFlgcQ8UZ6l7.3vaaeLSP1qgxSUszu','RHpD3grZI54ztkvhwlWqDVVsXZsfsc4nyJgRDcrVhuMOvLqhnHpkrgBHIB6T',NULL,1,0,NULL,'2017-07-07 13:37:30','2021-01-02 13:55:48');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -2000,4 +2004,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-01 16:06:59
+-- Dump completed on 2021-01-02 14:56:03
