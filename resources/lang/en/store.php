@@ -14,6 +14,8 @@ return [
 		'empty' => 'Your Shopping bag is empty',
 		'buy' => 'Checkout',
 		'back' => 'Back to the store',
+        'number_of_items' => 'Items',
+        'with_tax'=>'with Tax',
 		'table' => [
 			'code' => 'Code',
 			'name' => 'Product',

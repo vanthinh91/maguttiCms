@@ -13,6 +13,8 @@ return [
 		'total' => 'Totale',
 		'empty' => 'Il carrello è vuoto',
         'buy' => 'Checkout',
+        'number_of_items' => 'Articoli',
+        'with_tax'=>'Tasse incl.',
 		'back' => 'Torna allo store',
 		'table' => [
 			'code' => 'Codice',
