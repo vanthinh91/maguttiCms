@@ -16,8 +16,9 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-9">
-          <div class="card card__cart pb-3">
-            <table class="table table-hover table-striped cart-resume box-shadow">
+          <div class="card card__cart box-shadow">
+            <div class="table-responsive">
+            <table class="table table-hover table-striped cart-resume ">
               <thead>
               <tr>
                 <th colspan="2">{{ $t('store.cart.table.name') }}</th>
@@ -61,6 +62,7 @@
               </tr>
               </tbody>
             </table>
+            </div>
           </div>
         </div>
 

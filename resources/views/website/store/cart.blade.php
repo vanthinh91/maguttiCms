@@ -5,7 +5,7 @@
        <cart-resume :cart-items="{{$cart->items}}" cart_url="{{ url_locale('order-submit')}} }}"></cart-resume>
     </section>
     @if (!$cart->isEmpty())
-    <section class="cart-action py-4">
+    <section class="cart-action py-1">
         <div class="container">
             <div id="cart-buttons"  class="d-flex justify-content-between">
                 <a class="btn btn-primary" href="{{url_locale('store')}}">
