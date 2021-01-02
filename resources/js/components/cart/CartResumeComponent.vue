@@ -16,8 +16,8 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-9">
-          <div class="card card__cart box-shadow p-2">
-            <table class="table table-hover table-striped cart-resume">
+          <div class="card card__cart pb-3">
+            <table class="table table-hover table-striped cart-resume box-shadow">
               <thead>
               <tr>
                 <th colspan="2">{{ $t('store.cart.table.name') }}</th>
@@ -82,7 +82,7 @@
                 <span class="value">{{ total | currency }}</span>
               </div>
             </div>
-            <a class="btn btn-accent mt-2" :href="this.cart_url">{{ $t('store.cart.checkout') }}</a>
+            <a class="btn btn-accent mt-2" :href="this.cart_url">{{ $t('store.cart.buy') }}</a>
           </div>
         </div>
       </div>
