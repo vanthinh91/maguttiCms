@@ -3,12 +3,7 @@
         <div class="row">
             @if($contentHasMedia())
                 <div class="col-12 mb-2">
-                    @if($article->video)
-                        <x-media.video :video="$article->video" :classExtra="'mb-0'"></x-media.video>
-                    @else
-                        <img src="{{ ImgHelper::get_cached($article->image, config('maguttiCms.image.medium')) }}"
-                             alt="{{ $article->title }}" class="img-fluid w-100">
-                    @endif
+                    <x-website.partials.page-media-block :item="$article"/>
                 </div>
             @endif
             <div class="col-12">
