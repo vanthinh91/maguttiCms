@@ -33,7 +33,7 @@ class AdminListBooleanComponent extends AdminListComponent
      */
     protected function setRelationObj()
     {
-        $this->relationObj = ($this->getItemProperty('relation')) ? AdminDecorator::getBooleanRelation($this->model,$this->item) : null;
+        $this->relationObj = ($this->getItemProperty('relation')) ? (new AdminDecorator)->getBooleanRelation($this->model,$this->item) : null;
         return $this;
     }
 
