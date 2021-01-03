@@ -9,12 +9,14 @@ return [
 	'cart' => [
 	    'checkout' => 'Visualizza Carrello',
         'continue' => 'Continua',
+
 		'title' => 'Il mio carrello',
 		'total' => 'Totale',
 		'empty' => 'Il carrello è vuoto',
         'buy' => 'Checkout',
+        'show_detail'=>'mostra dettagli',
         'number_of_items' => 'Articoli',
-        'with_tax'=>'Tasse incl.',
+        'with_tax'=>'Iva Incl.',
 		'back' => 'Torna allo store',
 		'table' => [
 			'code' => 'Codice',
@@ -77,7 +79,10 @@ return [
 			'title' => 'Coupon sconto',
 			'insert' => 'Hai un codice di sconto? Inseriscilo qui.',
 			'valid' => 'Coupon valido: sconto %s%%',
-			'invalid' => 'Questo codice non è valido.'
+			'invalid' => 'Questo codice non è valido.',
+            'add' =>'Hai un codice di sconto?',
+            'enter'=>'Inserisci codice di sconto',
+            'apply'=>'Applica codice di sconto',
 		]
 	],
 

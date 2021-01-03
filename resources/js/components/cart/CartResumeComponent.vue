@@ -35,7 +35,7 @@
                   {{ item.product.title }}<br>
                   <span class="product-price">{{ item.product.price | currency }}</span>
                 </td>
-                <td style="width:100px">
+                <td style="width:150px">
                   <!--<input
                       type="number"
                       v-model.lazy="item.quantity"
@@ -46,12 +46,12 @@
                   >-->
 
                   <number-input
-                      :hideDecreaseBtn="true"
-                      :hideIncreaseBtn="true"
+                      :hideDecreaseBtn="false"
+                      :hideIncreaseBtn="false"
                       :qty="parseInt(item.quantity)"
                       :min="1" v-model="item.quantity" class="input-group-sm "
                       @changeQuantity="updateCartItem(item.quantity,item)"
-                      @change="updateCartItem(item.quantity,item)"
+                      @keyup="updateCartItem(item.quantity,item)"
                   />
                 </td>
 
@@ -127,6 +127,7 @@ export default {
     number_of_items: function () {
       let n_items = 0;
       return this.items.reduce((n_items, p) => {
+        this.updateItemQuantity(p.quantity,p.id);
         return n_items += Math.ceil(p.quantity);
       }, n_items)
     },

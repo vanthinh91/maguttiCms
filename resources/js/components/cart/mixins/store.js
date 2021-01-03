@@ -23,6 +23,7 @@ export default {
                 })
         },
         updateItemQuantity(q, id) {
+
             return HTTP.post(this.update_url(), {
                     id: id,
                     quantity: q

@@ -114,7 +114,8 @@ class StoreHelper {
 	{
 		if (session()->has('cart')) {
 			$id = session('cart');
-			$cart = Cart::where('status', CART_NEW)->where('id', $id)->first();
+
+			$cart = Cart::where('status', CART_NEW)->where('id', $id)->withCount('cart_items')->first();
 			return ($cart)? $cart: false;
 		}
 		return false;
@@ -243,7 +244,7 @@ class StoreHelper {
 	/////	COSTS	/////
 
 	// standard shipping calculation
-	public static function calcShipping($cart, $products_cost, $address)
+	public static function calcShipping($cart, $products_cost, $address='')
 	{
 		if (self::isShippingEnabled()) {
 			$threshold = config('maguttiCms.store.shipping.free_threshold');

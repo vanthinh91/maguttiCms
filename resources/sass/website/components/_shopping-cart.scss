@@ -75,12 +75,16 @@
 }
 
 .card {
+  border: 1px solid rgba(239, 239, 239, 0.55);
   &.cart-summary{
-    border: 1px solid rgba(239, 239, 239, 0.55);
+    margin-bottom:1rem;
   }
   &__cart{
-    border: 1px solid rgba(239, 239, 239, 0.55);
     margin-bottom:1rem;
+  }
+
+  &.cart__discount{
+    margin-top:1rem;
   }
 
   .cart-summary {
@@ -110,6 +114,23 @@
       }
     }
   }
+}
+
+#cartSummaryDetail{
+
+  .media-list{
+    padding-left:0px;
+  }
+  .media-left{
+    padding:0.75rem;
+    img{
+      width:75px;
+    }
+  }
+  .media-body{
+    line-height: 1.5rem;
+  }
+
 }
 
 .cart-resume {

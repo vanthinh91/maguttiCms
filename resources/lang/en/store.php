@@ -15,7 +15,9 @@ return [
 		'buy' => 'Checkout',
 		'back' => 'Back to the store',
         'number_of_items' => 'Items',
-        'with_tax'=>'with Tax',
+        'show_detail'=>'show details',
+        'optional' => 'optional',
+        'with_tax'=>'VAT Incl.',
 		'table' => [
 			'code' => 'Code',
 			'name' => 'Product',
@@ -79,7 +81,10 @@ return [
 			'title' => 'Discount coupon',
 			'insert' => 'If you have a discount coupon code type it here.',
 			'valid' => 'Coupon found: sconto %s%%',
-			'invalid' => 'This code is invalid.'
+			'invalid' => 'This code is invalid.',
+            'add' =>' Add a discount code',
+            'enter'=>'Enter discount code',
+            'apply'=>'Apply discount code',
 		]
 	],
 

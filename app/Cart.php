@@ -1,11 +1,14 @@
 <?php namespace App;
 
+use App\maguttiCms\Domain\Store\CartPresenter;
 use Illuminate\Database\Eloquent\Model;
 
 use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class Cart extends Model
 {
+
+    use CartPresenter;
     protected $fillable = ['user_id', 'status'];
     protected $fieldspec = [];
 
