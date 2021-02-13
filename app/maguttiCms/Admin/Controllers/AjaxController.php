@@ -224,7 +224,7 @@ class AjaxController extends Controller
 	{
 		$i = 1;
 
-		$input = Input::all();
+        $input = $request->all();
 		foreach ($input as $key => $items) {
 			$dataObject = explode('_', $key);
 			foreach ($items as $id) {
