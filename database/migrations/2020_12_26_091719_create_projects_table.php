@@ -29,7 +29,7 @@ class CreateProjectsTable extends Migration
             $table->string('doc', 255)->nullable();
             $table->string('video', 255)->nullable();
             $table->integer('sort')->nullable();
-            $table->boolean('pub')->nullable()->default(1);
+
             $table->string('seo_title', 255)->nullable();
             $table->string('seo_description', 255)->nullable();
             $table->string('seo_keywords', 255)->nullable();
