@@ -78,6 +78,7 @@ return [
 		'message'		=> 'Message',
         'mobile'		=> 'Mobile',
 		'name'          => 'Name',
+		'note'          => 'Notes',
         'number'        => 'Number',
 		'paid'			=> 'Paid',
 		'page-blocks'   => 'Page Block',

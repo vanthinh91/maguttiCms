@@ -74,6 +74,7 @@ return [
 		'message'		=> 'Messaggio',
 		'mobile'		=> 'Cellulare',
         'name'          => 'Nome',
+        'note'          => 'Note',
         'number'        => 'Numero',
 		'paid'			=> 'Pagato',
 		'parent'		=> 'Genitore',

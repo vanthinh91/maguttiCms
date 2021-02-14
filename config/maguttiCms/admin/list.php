@@ -862,7 +862,7 @@ return [
                 'id',
                 'title' => ['type' => 'text', 'field' => 'title'],
                 'code' => ['type' => 'text', 'field' => 'code'],
-                'is_active' => ['type' => 'boolean', 'field' => 'is_active'],
+                'is_active' => ['type' => 'boolean', 'field' => 'is_active','editable'=>true],
             ],
             'orderBy' => 'id',
             'orderType' => 'ASC',

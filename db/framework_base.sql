@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.29, for osx10.14 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.32, for osx10.16 (x86_64)
 --
 -- Host: localhost    Database: magutticms
 -- ------------------------------------------------------
--- Server version	5.7.29
+-- Server version	5.7.32
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1120,7 +1120,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1129,7 +1129,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9),(91,'2020_12_26_091719_create_projects_table',10),(92,'2020_12_31_173718_create_jobs_table',11);
+INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9),(91,'2020_12_26_091719_create_projects_table',10),(92,'2020_12_31_173718_create_jobs_table',11),(93,'2021_02_14_193356_create_payment_methods_table',12);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1351,6 +1351,39 @@ LOCK TABLES `password_resets` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `payment_method_translations`
+--
+
+DROP TABLE IF EXISTS `payment_method_translations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `payment_method_translations` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `note` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `payment_method_id` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `payment_method_translations_payment_method_id_locale_unique` (`payment_method_id`,`locale`),
+  KEY `payment_methods_translations_locale_index` (`locale`),
+  CONSTRAINT `payment_method_translations_payment_method_id_foreign` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `payment_method_translations`
+--
+
+LOCK TABLES `payment_method_translations` WRITE;
+/*!40000 ALTER TABLE `payment_method_translations` DISABLE KEYS */;
+INSERT INTO `payment_method_translations` VALUES (1,'en','Paypal',NULL,NULL,'2021-02-14 18:45:03','2021-02-14 18:45:03',1),(2,'it','Paypal',NULL,NULL,'2021-02-14 18:45:03','2021-02-14 18:45:03',1),(3,'es',NULL,NULL,NULL,'2021-02-14 18:45:03','2021-02-14 18:45:03',1),(4,'fr',NULL,NULL,NULL,'2021-02-14 18:45:03','2021-02-14 18:45:03',1),(5,'en','Bank Transfer',NULL,NULL,'2021-02-14 18:45:43','2021-02-14 18:45:43',2),(6,'it','Bonifico',NULL,NULL,'2021-02-14 18:45:43','2021-02-14 18:45:43',2),(7,'es',NULL,NULL,NULL,'2021-02-14 18:45:43','2021-02-14 18:45:43',2),(8,'fr',NULL,NULL,NULL,'2021-02-14 18:45:43','2021-02-14 18:45:43',2),(9,'en','Cash on delivery',NULL,NULL,'2021-02-14 18:46:36','2021-02-14 18:46:36',3),(10,'it','Contrassegno',NULL,NULL,'2021-02-14 18:46:36','2021-02-14 18:46:36',3),(11,'es',NULL,NULL,NULL,'2021-02-14 18:46:36','2021-02-14 18:46:36',3),(12,'fr',NULL,NULL,NULL,'2021-02-14 18:46:36','2021-02-14 18:46:36',3);
+/*!40000 ALTER TABLE `payment_method_translations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `payment_methods`
 --
 
@@ -1358,14 +1391,18 @@ DROP TABLE IF EXISTS `payment_methods`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `payment_methods` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `code` varchar(10) NOT NULL,
-  `is_active` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `note` text COLLATE utf8mb4_unicode_ci,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_active` tinyint(1) DEFAULT '1',
+  `sort` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `payment_methods_code_unique` (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1374,7 +1411,7 @@ CREATE TABLE `payment_methods` (
 
 LOCK TABLES `payment_methods` WRITE;
 /*!40000 ALTER TABLE `payment_methods` DISABLE KEYS */;
-INSERT INTO `payment_methods` VALUES (1,'Paypal','paypal',1,'2018-06-15 08:26:08','2018-06-15 08:26:08'),(2,'Bonifico','bank',1,'2018-06-15 08:26:26','2018-06-15 08:26:26');
+INSERT INTO `payment_methods` VALUES (1,'',NULL,NULL,'paypal',1,NULL,'2021-02-14 18:45:03','2021-02-14 18:48:55'),(2,'',NULL,NULL,'bank_transfer',1,NULL,'2021-02-14 18:45:43','2021-02-14 18:48:56'),(3,'',NULL,NULL,'cash_on_delivery',1,NULL,'2021-02-14 18:46:36','2021-02-14 18:48:56');
 /*!40000 ALTER TABLE `payment_methods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2004,4 +2041,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-02 14:56:03
+-- Dump completed on 2021-02-14 19:49:37
