@@ -285,7 +285,7 @@ CREATE TABLE `cart_items` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -294,7 +294,6 @@ CREATE TABLE `cart_items` (
 
 LOCK TABLES `cart_items` WRITE;
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
-INSERT INTO `cart_items` VALUES (1,1,'PRDC',NULL,1,'2020-12-24 16:55:01','2020-12-24 16:55:01'),(3,1,'PRDA',NULL,6,'2020-12-24 16:57:46','2020-12-24 16:57:51'),(4,2,'PRDC',NULL,1,'2020-12-26 10:48:15','2020-12-26 10:48:15');
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,12 +306,15 @@ DROP TABLE IF EXISTS `carts`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `carts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `billing_address_id` int(11) DEFAULT NULL,
+  `shipping_address_id` int(11) DEFAULT NULL,
+  `discount_code` varchar(20) DEFAULT NULL,
   `status` tinyint(4) DEFAULT '0',
   `user_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -321,7 +323,6 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
-INSERT INTO `carts` VALUES (1,0,NULL,'2020-12-24 16:55:01','2020-12-24 16:55:01'),(2,0,NULL,'2020-12-26 10:48:15','2020-12-26 10:48:15'),(3,0,1,'2020-12-26 14:05:28','2020-12-26 14:15:09');
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1300,14 +1301,14 @@ CREATE TABLE `orders` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `cart_id` int(11) NOT NULL,
-  `products_cost` varchar(255) NOT NULL DEFAULT '',
-  `shipping_cost` varchar(255) NOT NULL DEFAULT '',
+  `products_cost` decimal(12,4) NOT NULL DEFAULT '0.0000',
+  `shipping_cost` decimal(12,4) DEFAULT '0.0000',
   `discount_amount` decimal(12,4) DEFAULT NULL,
-  `vat_cost` varchar(255) NOT NULL,
-  `total_cost` varchar(255) NOT NULL DEFAULT '',
+  `vat_cost` decimal(10,4) DEFAULT '0.0000',
+  `total_cost` decimal(10,4) DEFAULT '0.0000',
   `billing_address_id` int(11) NOT NULL,
   `shipping_address_id` int(11) NOT NULL,
-  `discount_code` varchar(20) NOT NULL,
+  `discount_code` decimal(10,4) DEFAULT '0.0000',
   `token` varchar(32) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -2041,4 +2042,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-14 19:49:37
+-- Dump completed on 2021-02-14 19:57:24
