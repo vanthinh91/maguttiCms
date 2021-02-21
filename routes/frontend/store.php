@@ -1,5 +1,6 @@
 <?php
 Route::get('/cart/', '\App\maguttiCms\Website\Controllers\StoreController@cart')->middleware('storeenabled');
+Route::get('/order/', '\App\maguttiCms\Website\Controllers\StoreController@order')->middleware('storeenabled');
 Route::get('/order-login/', '\App\maguttiCms\Website\Controllers\StoreController@orderLogin')->middleware(['storeenabled']);
 Route::get('/order-submit/', '\App\maguttiCms\Website\Controllers\StoreController@orderSubmit')->middleware(['storeenabled']);
 Route::post('/order-submit/', '\App\maguttiCms\Website\Controllers\StoreController@orderCreate')->middleware(['storeenabled', 'auth']);

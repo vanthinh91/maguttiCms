@@ -46,6 +46,7 @@ return [
 		'delete'        => 'Delete',
 		'description'   => 'Description',
         'display_name'  => 'Display name',
+        'discount_type' => 'Discount type',
         'doc'           => 'Document',
 		'domain'		=> 'Domain',
         'download'      => 'Download',

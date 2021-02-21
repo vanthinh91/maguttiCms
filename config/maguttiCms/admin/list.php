@@ -900,7 +900,7 @@ return [
                 'id',
                 'id',
                 'code' => ['type' => 'text', 'field' => 'code', 'orderable' => true],
-                'amount' => ['type' => 'text', 'field' => 'amount', 'orderable' => true],
+                'amount' => ['type' => 'text', 'field' => 'label'],
                 'date_start' => ['type' => 'text', 'field' => 'date_start', 'orderable' => true],
                 'date_end' => ['type' => 'text', 'field' => 'date_end', 'orderable' => true],
                 'uses' => ['type' => 'text', 'field' => 'uses', 'orderable' => true],

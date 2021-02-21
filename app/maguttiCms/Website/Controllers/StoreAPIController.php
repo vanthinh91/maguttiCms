@@ -2,9 +2,10 @@
 
 namespace App\maguttiCms\Website\Controllers;
 
-use App\maguttiCms\Tools\JsonResponseTrait;
+
 use App\maguttiCms\Tools\StoreHelper;
 use App\maguttiCms\Website\Requests\AjaxFormRequest;
+use App\maguttiCms\Tools\JsonResponseTrait;
 
 class StoreAPIController extends APIController
 {
@@ -98,11 +99,12 @@ class StoreAPIController extends APIController
 				'valid' => true,
 				'message' => sprintf(trans('store.order.discount.valid'), $discount->amount)
 			]);
-		} else {
-			return response()->json([
-				'valid' => false,
-				'message' => trans('store.order.discount.invalid')
-			]);
 		}
+
+			/*return response()->json([
+				'valid' => false,
+				'message' => trans('store.order.discount.invalid');*/
+
+
 	}
 }

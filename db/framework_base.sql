@@ -512,8 +512,9 @@ CREATE TABLE `discounts` (
   `pub` tinyint(4) NOT NULL DEFAULT '1',
   `created_at` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -522,7 +523,7 @@ CREATE TABLE `discounts` (
 
 LOCK TABLES `discounts` WRITE;
 /*!40000 ALTER TABLE `discounts` DISABLE KEYS */;
-INSERT INTO `discounts` VALUES (1,'TESTSCONTO','10','Test sconto 10%',NULL,NULL,10,1,2018,'2019-03-15 09:29:44');
+INSERT INTO `discounts` VALUES (1,'TESTPERCENT','10','Test sconto 10%',NULL,NULL,10,1,2018,'2021-02-21 08:29:01','percent'),(2,'TESTAMOUNT','10','Discount 1 euro',NULL,NULL,100000,1,2021,'2021-02-21 08:29:47','amount');
 /*!40000 ALTER TABLE `discounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -545,7 +546,7 @@ CREATE TABLE `domain_translations` (
   UNIQUE KEY `domains_translations_domain_id_locale_unique` (`domain_id`,`locale`),
   KEY `domains_translations_locale_index` (`locale`),
   CONSTRAINT `domains_translations_domain_id_foreign` FOREIGN KEY (`domain_id`) REFERENCES `domains` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -554,7 +555,7 @@ CREATE TABLE `domain_translations` (
 
 LOCK TABLES `domain_translations` WRITE;
 /*!40000 ALTER TABLE `domain_translations` DISABLE KEYS */;
-INSERT INTO `domain_translations` VALUES (1,1,'it','Top Header Slider',0,'2016-06-23 07:36:42','2016-06-28 07:58:39'),(2,1,'en','Top Header Slider',0,'2016-06-23 07:36:42','2016-06-28 07:58:39'),(7,2,'it','Bottom Slider Image',0,'2016-06-23 07:38:24','2016-06-28 07:59:19'),(8,2,'en','page gallery',0,'2016-06-23 07:38:24','2016-12-27 16:38:49'),(121,21,'it','Template con sottopagine',0,'2016-06-28 13:18:04','2016-07-04 07:38:10'),(122,21,'en','Sub page template',0,'2016-06-28 13:18:04','2016-12-27 14:17:28'),(123,22,'en','Coming soon',NULL,'2020-04-03 22:03:21','2020-04-03 22:03:21'),(124,22,'it',NULL,NULL,'2020-04-03 22:03:21','2020-04-03 22:03:21'),(125,22,'es',NULL,NULL,'2020-04-03 22:03:21','2020-04-03 22:03:21'),(126,22,'fr',NULL,NULL,'2020-04-03 22:03:21','2020-04-03 22:03:21'),(127,23,'en','New products',NULL,'2020-08-23 13:34:50','2020-08-23 13:35:21'),(128,23,'it',NULL,NULL,'2020-08-23 13:34:50','2020-08-23 13:34:50'),(129,23,'es',NULL,NULL,'2020-08-23 13:34:50','2020-08-23 13:34:50'),(130,23,'fr',NULL,NULL,'2020-08-23 13:34:50','2020-08-23 13:34:50'),(131,24,'en','Block with media on the right',NULL,'2020-09-19 11:06:57','2020-12-25 13:54:27'),(132,24,'it','Block with media on the right',NULL,'2020-09-19 11:06:57','2020-12-25 13:54:35'),(133,24,'es',NULL,NULL,'2020-09-19 11:06:57','2020-09-19 11:06:57'),(134,24,'fr',NULL,NULL,'2020-09-19 11:06:57','2020-09-19 11:06:57'),(135,25,'en','Block with media on the left',NULL,'2020-09-19 11:07:20','2020-12-25 13:55:10'),(136,25,'it','Block with media on the left',NULL,'2020-09-19 11:07:20','2020-12-25 13:55:10'),(137,25,'es',NULL,NULL,'2020-09-19 11:07:20','2020-09-19 11:07:20'),(138,25,'fr',NULL,NULL,'2020-09-19 11:07:20','2020-09-19 11:07:20'),(139,26,'en','Block with full page media',NULL,'2020-09-19 11:07:52','2020-12-25 13:55:28'),(140,26,'it','Block with full page media',NULL,'2020-09-19 11:07:52','2020-12-25 13:55:28'),(141,26,'es',NULL,NULL,'2020-09-19 11:07:52','2020-09-19 11:07:52'),(142,26,'fr',NULL,NULL,'2020-09-19 11:07:52','2020-09-19 11:07:52');
+INSERT INTO `domain_translations` VALUES (1,1,'it','Top Header Slider',0,'2016-06-23 07:36:42','2016-06-28 07:58:39'),(2,1,'en','Top Header Slider',0,'2016-06-23 07:36:42','2016-06-28 07:58:39'),(7,2,'it','Bottom Slider Image',0,'2016-06-23 07:38:24','2016-06-28 07:59:19'),(8,2,'en','page gallery',0,'2016-06-23 07:38:24','2016-12-27 16:38:49'),(121,21,'it','Template con sottopagine',0,'2016-06-28 13:18:04','2016-07-04 07:38:10'),(122,21,'en','Sub page template',0,'2016-06-28 13:18:04','2016-12-27 14:17:28'),(123,22,'en','Coming soon',NULL,'2020-04-03 22:03:21','2020-04-03 22:03:21'),(124,22,'it',NULL,NULL,'2020-04-03 22:03:21','2020-04-03 22:03:21'),(125,22,'es',NULL,NULL,'2020-04-03 22:03:21','2020-04-03 22:03:21'),(126,22,'fr',NULL,NULL,'2020-04-03 22:03:21','2020-04-03 22:03:21'),(127,23,'en','New products',NULL,'2020-08-23 13:34:50','2020-08-23 13:35:21'),(128,23,'it',NULL,NULL,'2020-08-23 13:34:50','2020-08-23 13:34:50'),(129,23,'es',NULL,NULL,'2020-08-23 13:34:50','2020-08-23 13:34:50'),(130,23,'fr',NULL,NULL,'2020-08-23 13:34:50','2020-08-23 13:34:50'),(131,24,'en','Block with media on the right',NULL,'2020-09-19 11:06:57','2020-12-25 13:54:27'),(132,24,'it','Block with media on the right',NULL,'2020-09-19 11:06:57','2020-12-25 13:54:35'),(133,24,'es',NULL,NULL,'2020-09-19 11:06:57','2020-09-19 11:06:57'),(134,24,'fr',NULL,NULL,'2020-09-19 11:06:57','2020-09-19 11:06:57'),(135,25,'en','Block with media on the left',NULL,'2020-09-19 11:07:20','2020-12-25 13:55:10'),(136,25,'it','Block with media on the left',NULL,'2020-09-19 11:07:20','2020-12-25 13:55:10'),(137,25,'es',NULL,NULL,'2020-09-19 11:07:20','2020-09-19 11:07:20'),(138,25,'fr',NULL,NULL,'2020-09-19 11:07:20','2020-09-19 11:07:20'),(139,26,'en','Block with full page media',NULL,'2020-09-19 11:07:52','2020-12-25 13:55:28'),(140,26,'it','Block with full page media',NULL,'2020-09-19 11:07:52','2020-12-25 13:55:28'),(141,26,'es',NULL,NULL,'2020-09-19 11:07:52','2020-09-19 11:07:52'),(142,26,'fr',NULL,NULL,'2020-09-19 11:07:52','2020-09-19 11:07:52'),(143,27,'en','Amount Euro',NULL,'2021-02-21 08:11:22','2021-02-21 08:11:22'),(144,27,'it','Importo Euro',NULL,'2021-02-21 08:11:22','2021-02-21 08:11:22'),(145,27,'es',NULL,NULL,'2021-02-21 08:11:22','2021-02-21 08:11:22'),(146,27,'fr',NULL,NULL,'2021-02-21 08:11:22','2021-02-21 08:11:22'),(147,28,'en','Percent %',NULL,'2021-02-21 08:11:46','2021-02-21 08:11:46'),(148,28,'it','Percentuale',NULL,'2021-02-21 08:11:46','2021-02-21 08:11:46'),(149,28,'es',NULL,NULL,'2021-02-21 08:11:46','2021-02-21 08:11:46'),(150,28,'fr',NULL,NULL,'2021-02-21 08:11:46','2021-02-21 08:11:46');
 /*!40000 ALTER TABLE `domain_translations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -576,7 +577,7 @@ CREATE TABLE `domains` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -585,7 +586,7 @@ CREATE TABLE `domains` (
 
 LOCK TABLES `domains` WRITE;
 /*!40000 ALTER TABLE `domains` DISABLE KEYS */;
-INSERT INTO `domains` VALUES (1,'imagetype','','',10,1,0,'2016-06-23 07:36:42','2016-06-28 07:58:39'),(2,'imagetype','','',20,1,0,'2016-06-23 07:38:24','2016-06-28 07:59:19'),(21,'template','','template_subpage',30,1,0,'2016-06-28 13:18:04','2016-12-27 14:17:35'),(22,'template','','coming_soon',40,1,0,'2020-04-03 22:02:39','2020-04-03 22:03:21'),(23,'template','','products',30,1,0,'2020-08-23 13:34:25','2020-08-23 13:34:50'),(24,'template','','image_dx',30,1,0,'2020-09-19 11:06:16','2020-09-19 11:06:57'),(25,'template','','image_sx',40,1,0,'2020-09-19 11:07:00','2020-09-19 11:07:20'),(26,'template','','image_full',40,1,0,'2020-09-19 11:07:36','2020-09-19 11:07:52');
+INSERT INTO `domains` VALUES (1,'imagetype','','',10,1,0,'2016-06-23 07:36:42','2016-06-28 07:58:39'),(2,'imagetype','','',20,1,0,'2016-06-23 07:38:24','2016-06-28 07:59:19'),(21,'template','','template_subpage',30,1,0,'2016-06-28 13:18:04','2016-12-27 14:17:35'),(22,'template','','coming_soon',40,1,0,'2020-04-03 22:02:39','2020-04-03 22:03:21'),(23,'template','','products',30,1,0,'2020-08-23 13:34:25','2020-08-23 13:34:50'),(24,'template','','image_dx',30,1,0,'2020-09-19 11:06:16','2020-09-19 11:06:57'),(25,'template','','image_sx',40,1,0,'2020-09-19 11:07:00','2020-09-19 11:07:20'),(26,'template','','image_full',40,1,0,'2020-09-19 11:07:36','2020-09-19 11:07:52'),(27,'discount','','amount',NULL,1,NULL,'2021-02-21 08:11:22','2021-02-21 08:11:22'),(28,'discount','','percent',NULL,1,NULL,'2021-02-21 08:11:25','2021-02-21 08:11:46');
 /*!40000 ALTER TABLE `domains` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1121,7 +1122,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1130,7 +1131,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9),(91,'2020_12_26_091719_create_projects_table',10),(92,'2020_12_31_173718_create_jobs_table',11),(93,'2021_02_14_193356_create_payment_methods_table',12);
+INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9),(91,'2020_12_26_091719_create_projects_table',10),(92,'2020_12_31_173718_create_jobs_table',11),(93,'2021_02_14_193356_create_payment_methods_table',12),(94,'2021_02_21_091926_add_discount_type_to_discounts_table',13);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1435,7 +1436,7 @@ CREATE TABLE `payments` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1444,7 +1445,6 @@ CREATE TABLE `payments` (
 
 LOCK TABLES `payments` WRITE;
 /*!40000 ALTER TABLE `payments` DISABLE KEYS */;
-INSERT INTO `payments` VALUES (1,1,2,NULL,'','',NULL,'2020-09-12 15:29:46','2020-09-12 15:29:46',NULL);
 /*!40000 ALTER TABLE `payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2042,4 +2042,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-14 19:57:24
+-- Dump completed on 2021-02-21  9:39:18

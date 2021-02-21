@@ -41,6 +41,7 @@ return [
         'data_to'       => 'A (gg-mm-aaaa)',
         'delete'        => 'Elimina',
         'description'   => 'Descrizione',
+        'discount_type' => 'Tipo Sconto',
 		'display_name'  => 'Etichetta',
         'doc'           => 'Documento',
 		'domain'		=> 'Dominio',

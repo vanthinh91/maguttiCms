@@ -80,11 +80,13 @@ return [
 		'discount' => [
 			'title' => 'Discount coupon',
 			'insert' => 'If you have a discount coupon code type it here.',
-			'valid' => 'Coupon found: sconto %s%%',
+			'valid' => 'Coupon found: sconto %s',
 			'invalid' => 'This code is invalid.',
             'add' =>' Add a discount code',
             'enter'=>'Enter discount code',
             'apply'=>'Apply discount code',
+            'delete'=>'Delete',
+            'are_you_sure_to_remove' => 'Are you Sure to remove your coupon from your cart?',
 		]
 	],
 

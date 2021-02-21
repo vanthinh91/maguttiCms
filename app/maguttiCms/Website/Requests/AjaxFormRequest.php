@@ -29,7 +29,6 @@ class AjaxFormRequest extends FormRequest
     {
         $segments = $this::segments();
         $this->model= end( $segments  ) ;
-        $rules =  config('maguttiCms.website.form_validation.'.$this->model);
-        return $rules;
+        return  config('maguttiCms.website.form_validation.'.$this->model);
     }
 }

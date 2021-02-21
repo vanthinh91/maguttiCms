@@ -9,7 +9,7 @@ return [
 	'cart' => [
 	    'checkout' => 'Visualizza Carrello',
         'continue' => 'Continua',
-
+        'optional' => 'optional',
 		'title' => 'Il mio carrello',
 		'total' => 'Totale',
 		'empty' => 'Il carrello è vuoto',
@@ -83,6 +83,8 @@ return [
             'add' =>'Hai un codice di sconto?',
             'enter'=>'Inserisci codice di sconto',
             'apply'=>'Applica codice di sconto',
+            'delete'=>'Elimina',
+            'are_you_sure_to_remove' => 'Sei sicuro di voler annullare il tuo codice di sconto?'
 		]
 	],
 

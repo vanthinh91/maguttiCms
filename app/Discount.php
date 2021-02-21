@@ -3,8 +3,15 @@
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
+use App\maguttiCms\Domain\Store\DiscountPresenter;
+/**
+ * Class Discount
+ * @package App
+ */
 class Discount extends Model
 {
+
+    use DiscountPresenter;
 	protected $with = [];
 
 	protected $fillable = [
@@ -14,6 +21,7 @@ class Discount extends Model
 		'date_start',
 		'date_end',
 		'uses',
+        'type',
 		'pub',
 	];
 	protected $fieldspec = [];
@@ -33,48 +41,11 @@ class Discount extends Model
 		return $this->hasMany('App\Order', 'discount_code', 'code');
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	|  DATE ATTRIBUTE
-	|--------------------------------------------------------------------------
-	*/
-	public function setDateStartAttribute($value)
-	{
-		if ($value) {
-			$this->attributes['date_start'] = Carbon::parse($value);
-		}
-	}
+    public function discount_type()
+    {
+        return $this->belongsTo('App\Domain', 'type', 'value');
+    }
 
-	public function getDateStartAttribute($value)
-	{
-		if ($value) {
-			return Carbon::parse($value)->format('d-m-Y');
-		}
-	}
-
-	public function getFormattedDateStart()
-	{
-		return Carbon::parse($this->attributes['date_start'])->format('d-m-Y');
-	}
-
-	public function setDateEndAttribute($value)
-	{
-		if ($value) {
-			$this->attributes['date_end'] = Carbon::parse($value);
-		}
-	}
-
-	public function getDateEndAttribute($value)
-	{
-		if ($value) {
-			return Carbon::parse($value)->format('d-m-Y');
-		}
-	}
-
-	public function getFormattedDateEnd()
-	{
-		return Carbon::parse($this->attributes['date_end'])->format('d-m-Y');
-	}
 
 	/*
 	|--------------------------------------------------------------------------
@@ -99,6 +70,18 @@ class Discount extends Model
 			'label'    => trans('admin.label.code'),
 			'display'  => 1,
 		];
+        $this->fieldspec['type'] = [
+            'type'        => 'relation',
+            'model'       => 'Domain',
+            'filter'      => ['domain' => 'template'],
+            'foreign_key' => 'value',
+            'label_key'   => 'title',
+            'filter'      =>  ['domain' => 'discount'],
+            'required'    => 0,
+            'label'       => trans('admin.label.discount_type'),
+            'hidden'      => 0,
+            'display'     => 1,
+        ];
 		$this->fieldspec['amount'] = [
             'type'     => 'integer',
             'required' => 1,

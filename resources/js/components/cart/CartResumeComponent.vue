@@ -67,14 +67,18 @@
         </div>
 
         <div class="col-12 col-md-3">
-
           <div class="card cart-summary box-shadow p-2">
 
             <div class="cart-summary-line cart-item">
               <span class="label">{{ number_of_items }} {{ $t('store.cart.number_of_items') }} </span>
               <span class="value">{{ product_total | currency }}</span>
             </div>
-            <div class="cart-summary-line cart-ship">
+            <div class="cart-summary-line cart-discount" v-if="discount_amount">
+              <span class="label">{{ $t('store.order.discount.title') }}<br><strong>{{ cart.discount_code }}</strong></span>
+              <span class="value">{{ discount_amount | currency }}<br><a href="" @click.prevent="deleteCartCoupon" class="text-danger">{{ $t('store.order.discount.delete') }}</a></span>
+            </div>
+
+            <div class="cart-summary-line cart-ship" v-if="shipping_cost">
               <span class="label">{{ $t('store.order.shipping_cost') }}</span>
               <span class="value">{{ shipping_cost | currency }}</span>
             </div>
@@ -86,6 +90,7 @@
             </div>
             <a class="btn btn-accent mt-2" :href="this.cart_url">{{ $t('store.cart.buy') }}</a>
           </div>
+          <coupon-component></coupon-component>
         </div>
       </div>
     </div>
@@ -96,20 +101,26 @@
 <script>
 import cartHelper from './mixins/store';
 import alertBox from '../BaseComponent/AlertComponent';
+import CouponBox from './CouponComponent';
 import numberInput from '../BaseComponent/InputNumberComponent'
+import CouponComponent from "./CouponComponent";
 
 export default {
   mixins: [cartHelper],
-  props: ['cartItems', 'cart_url'],
-  components: {alertBox, numberInput},
+  props: ['cartItems','cartData','cart_url'],
+  components: {CouponComponent, alertBox, numberInput,CouponBox},
   data() {
     return {
       name: '1',
       items: {},
+      cart: {},
     }
   },
   created() {
     this.items = this.cartItems;
+    this.cart = this.cartData;
+
+
   },
   computed: {
     product_total: function () {
@@ -119,10 +130,13 @@ export default {
       }, total)
     },
     total: function () {
-      return this.shipping_cost + this.product_total;
+      return this.shipping_cost + this.product_total-this.discount_amount;
     },
     shipping_cost: function () {
-      return (this.product_total < 100) ? 10 : 0;
+      return (this.product_total < 100) ? 0 : 0;
+    },
+    discount_amount: function () {
+      return (this.cart.discount_amount)?this.calculateDiscount():0;
     },
     number_of_items: function () {
       let n_items = 0;
@@ -148,6 +162,19 @@ export default {
           self.deleteItem(id)
         }
       });
+    },
+    deleteCartCoupon() {
+      let self = this;
+      bootbox.setLocale(window._LANG);
+      bootbox.confirm("<h5>" + this.$t('store.order.discount.are_you_sure_to_remove') + "</h5>", function (confirmed) {
+        if (confirmed) {
+          self.removeDiscount();
+        }
+      });
+    },
+    updateCoupon(){
+      this.cart.discount_amount=0;
+      this.cart.discount_code="";
     },
     itemTotal(item) {
       return item.product.price * Math.abs(Math.ceil(item.quantity));

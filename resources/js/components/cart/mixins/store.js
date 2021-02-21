@@ -39,6 +39,14 @@ export default {
                       this.notifyError(e)
                 })
         },
+        removeDiscount(){
+
+            return HTTP.delete(this.delete_coupon_url())
+                .then(this.updateCoupon)
+                .catch(e => {
+                    this.notifyError(e)
+                })
+        },
         refreshCart({data}) {
             window.$cartBus.$emit('ADD_ITEM_TO_CART', data.data)
             this.modalOpen = true;
@@ -56,5 +64,14 @@ export default {
         update_url() {
             return `${this.baseUrl}cart-item-update`;
         },
+        delete_coupon_url() {
+            return `${this.baseUrl}coupon-remove`;
+        },
+        calculateDiscount(product_total=0){
+
+            if(this.cart.discount_amount=='amount') return this.cart.discount_amount;
+            return this.cart.discount_amount;
+        }
+
     },
 }

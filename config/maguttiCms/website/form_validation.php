@@ -46,8 +46,8 @@ return [
 			'address' => 'required'
 		],
 
-		'order-discount' => [
-			'code' => 'required|alpha_num'
+		'validate-coupon' => [
+			'code' => 'required|exists:discounts,code'
 		],
 
 		'update-ghost' => [
