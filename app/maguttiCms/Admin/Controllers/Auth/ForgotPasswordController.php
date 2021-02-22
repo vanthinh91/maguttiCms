@@ -24,15 +24,7 @@ class ForgotPasswordController extends Controller
     protected $broker     = 'admin';
     use SendsPasswordResetEmails;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+
 
     public function showLinkRequestForm()
     {
