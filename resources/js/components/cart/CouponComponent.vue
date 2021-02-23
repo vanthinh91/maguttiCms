@@ -59,6 +59,7 @@ export default {
         this.error=false;
         if(_.isEmpty(this.coupon)){
           this.error=true;
+          return;
         }
 
         this.validateCoupon()

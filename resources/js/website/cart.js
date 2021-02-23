@@ -24,12 +24,13 @@ Vue.use(VueCurrencyFilter,{
 import CartResume  from './../components/cart/CartResumeComponent';
 import CartAddItem  from './../components/cart/AddToCartComponent'
 import ShoppingCart  from './../components/cart/ShoppingCartComponent'
-import Example from './../components/ExampleComponent'
+import CouponComponent from './../components/cart/CouponComponent'
 
 Vue.component('cart-resume', CartResume);
 Vue.component('cart-add-item', CartAddItem);
 Vue.component('shopping-cart', ShoppingCart);
-Vue.component('example', Example);
+Vue.component('coupon-component', CouponComponent);
+
 
 let app = new Vue({
     el: '#app',

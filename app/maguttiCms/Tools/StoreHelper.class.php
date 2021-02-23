@@ -313,6 +313,18 @@ class StoreHelper {
 		return false;
 	}
 
+
+    public static function getDiscountAmount($cart)
+    {
+        $discount = Discount::where('code', strtoupper($cart->discount_code))->first();
+        if ($discount && self::checkDiscount($discount) ) {
+
+                return $discount->amount;
+
+        }
+        return false;
+    }
+
 	public static function getDiscountPercentage($code)
 	{
 		$discount = self::getDiscount($code);

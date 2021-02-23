@@ -99,8 +99,9 @@
     }
 
     &-line {
-      clear: both;
-      margin-bottom: .315rem;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: .75rem;
 
       .label {
         padding-left: 0;
@@ -110,7 +111,7 @@
 
       .value {
         color: $color-text;
-        float: right;
+        text-align: right;
       }
     }
   }
