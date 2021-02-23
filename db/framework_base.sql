@@ -311,6 +311,8 @@ CREATE TABLE `carts` (
   `discount_code` varchar(20) DEFAULT NULL,
   `status` tinyint(4) DEFAULT '0',
   `user_id` int(11) DEFAULT NULL,
+  `payment_id` int(5) DEFAULT NULL,
+  `shipping_cost` decimal(12,4) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -1302,6 +1304,7 @@ CREATE TABLE `orders` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `cart_id` int(11) NOT NULL,
+  `payment_id` int(5) DEFAULT NULL,
   `products_cost` decimal(12,4) NOT NULL DEFAULT '0.0000',
   `shipping_cost` decimal(12,4) DEFAULT '0.0000',
   `discount_amount` decimal(12,4) DEFAULT NULL,
@@ -1309,7 +1312,7 @@ CREATE TABLE `orders` (
   `total_cost` decimal(10,4) DEFAULT '0.0000',
   `billing_address_id` int(11) NOT NULL,
   `shipping_address_id` int(11) NOT NULL,
-  `discount_code` decimal(10,4) DEFAULT '0.0000',
+  `discount_code` varchar(255) DEFAULT '0.0000',
   `token` varchar(32) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -2042,4 +2045,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-21  9:39:18
+-- Dump completed on 2021-02-23 20:03:07

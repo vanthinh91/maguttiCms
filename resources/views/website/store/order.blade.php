@@ -5,7 +5,11 @@
         <div class="container ">
             <div class="row">
                 <div class="col-12 col-md-8">
-                    <div class="card order-info box-shadow p-2"></div>
+                    <div class="card order-info box-shadow p-2">
+                        @include('website.store.cart_address')
+                        @include('website.store.cart_payment_method')
+                    </div>
+
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="card cart-summary box-shadow p-2">

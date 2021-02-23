@@ -10,7 +10,9 @@ class Cart extends Model
 
     use CartPresenter;
 
-    protected $fillable = ['user_id', 'status', 'billing_address_id', 'shipping_address_id','discount_code'];
+    protected $fillable = ['user_id', 'status','payment_id','shipping_cost',
+        'billing_address_id', 'shipping_address_id','discount_code'
+    ];
     protected $fieldspec = [];
 
     protected $appends = ['discount_amount','discount_type'];

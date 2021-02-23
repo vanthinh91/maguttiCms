@@ -2,6 +2,7 @@
 
 namespace App\maguttiCms\Website\Controllers;
 
+use App\Country;
 use App\Http\Controllers\Controller;
 use App\maguttiCms\Domain\Cart\CartVieModel;
 use App\maguttiCms\Tools\StoreHelper;
@@ -22,7 +23,9 @@ class StoreController extends Controller
 
     public function order() {
         $cart = StoreHelper::getSessionCart();
-        return view('website.store.order', compact('cart'));
+        $countries = Country::list()->get();
+        $payment_methods = StoreHelper::getPaymentMethods();
+        return view('website.store.order', compact('cart','countries','payment_methods'));
     }
 
     public function orderSubmit() {

@@ -7,6 +7,8 @@ class Address extends Model
 	protected $with = ['country'];
 
     protected $fillable = [
+        'firstname',
+        'lastname',
 		'user_id',
 		'street',
 		'number',

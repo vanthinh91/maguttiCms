@@ -1,5 +1,7 @@
 <?php namespace App;
 
+use App\maguttiCms\Builders\ArticleBuilder;
+use App\maguttiCms\Builders\MaguttiCmsBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Astrotomic\Translatable\Translatable;
@@ -40,6 +42,16 @@ class PaymentMethod extends Model
     public $sluggable = [
 
     ];
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Builder & Repo
+    |--------------------------------------------------------------------------
+    */
+    function newEloquentBuilder($query)
+    {
+        return new MaguttiCmsBuilder($query);
+    }
 
     /*
     |--------------------------------------------------------------------------
