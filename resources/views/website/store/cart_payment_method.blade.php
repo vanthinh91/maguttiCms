@@ -1,22 +1,21 @@
-<h2 class="login-box-title text-primary mt-5">{{ trans('store.payment.method') }}</h2>
-<form action="{{url_locale('/order-payment/')}}" method="post">
+<h2 class="order-step-title">2. {{ trans('store.payment.method') }}</h2>
+<form class="mb-4" action="{{url_locale('/cart/payment')}}" method="post">
     {{ csrf_field() }}
-
     <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12">
             @foreach ($payment_methods as $_method)
                 <div class="form-radio">
-                    <input type="radio" name="payment_method_id" value="{{$_method->id}}">
+                    <input type="radio" name="payment_method_id" value="{{$_method->id}}" {{($cart->payment_method_id==$_method->id)?'checked':''}}>
                     <label>{{$_method->title}}</label>
-                    {{ $errors->first('privacy') }}
                 </div>
             @endforeach
+            <x-website.ui.form-error-label class="pt-1" field="payment_method_id" srequired/>
         </div>
-        <div class="col-12 col-sm-6">
-            <button type="submit" class="btn btn-primary pull-right">
-                {{trans('store.payment.pay')}}
-            </button>
-        </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-accent ">
+            {{trans('store.cart.step.next_confirm')}}
+        </button>
     </div>
 </form>
 

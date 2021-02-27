@@ -25,7 +25,13 @@ return [
 			'price' => 'Price',
 			'total' => 'Total',
 			'actions' => 'Actions'
-		]
+		],
+        'step'=>[
+            'next_payment' =>'Next: Payment Method',
+            'next_send' =>'Next: Send Order ',
+            'next_confirm' =>'Next: Confirm Order ',
+
+        ]
 	],
 
 	'shipping' => [
@@ -65,6 +71,7 @@ return [
 		'confirm' => 'Confirm purchase',
 		'payment' => 'Payment method',
 		'billing' => 'Billing address',
+		'billing_different_address' => 'The billing address is the same as the shipping address',
 		'shipping' => 'Shipping address',
 		'products_cost' => 'Products cost',
 		'shipping_cost' => 'Shipping cost',

@@ -141,15 +141,29 @@ return [
 		'g-recaptcha-response' => [
 			'*'  => 'Sei Un robot? Selezionare non sono un robot.',
 		],
-		'*' => [
-			'is_unique' => 'Valore :attribute già presente.',
-		],
+
+        '*' => [
+            'is_unique' => 'Valore :attribute già presente.',
+        ],
 		'email' => [
 			'unique' => 'L\'email scelta è già presente',
 		],
 		'password' => [
 			'regex' => 'Il formato della password non è valido'
-		]
+		],
+        'payment_method_id' => [
+            'required' => 'Selezionare un metodo di pagamento'
+        ],
+         'billing_firstname.required_if'  => 'Il campo nomw è obbligatorio',
+            'billing_lastname.required_if'   => 'Il campo cognome è obbligatorio',
+            'billing_street.required_if'     => 'Il campo via è obbligatorio',
+            'billing_number.required_if'     => 'Il campo numero è obbligatorio',
+            'billing_zip_code.required_if'   => 'Il campo cap è obbligatorio',
+            'billing_city.required_if'       => 'Il campo citta è obbligatorio',
+            'billing_province.required_if'   => 'Il campo provincia è obbligatorio',
+            'billing_country_id.required_if' => 'Il campo naxione è obbligatorio',
+            'billing_email.required_if'      => 'Il campo email è obbligatorio',
+            'billing_phone.required_if'      => 'Il campo telefono è obbligatorio',
 	],
 
     /*
@@ -174,6 +188,8 @@ return [
         'address'               => 'indirizzo',
         'phone'                 => 'telefono',
         'mobile'                => 'cellulare',
+        'number'                => 'numero',
+        'zip_code'              => 'cap',
         'age'                   => 'età',
         'sex'                   => 'sesso',
         'gender'                => 'genere',

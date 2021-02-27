@@ -21,12 +21,7 @@ class StoreController extends Controller
 	   	return view('website.store.cart', compact('cart',));
     }
 
-    public function order() {
-        $cart = StoreHelper::getSessionCart();
-        $countries = Country::list()->get();
-        $payment_methods = StoreHelper::getPaymentMethods();
-        return view('website.store.order', compact('cart','countries','payment_methods'));
-    }
+
 
     public function orderSubmit() {
 		$user = Auth::user();

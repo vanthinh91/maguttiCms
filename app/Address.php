@@ -42,7 +42,8 @@ class Address extends Model
 
 	public function display($separator)
 	{
-		$display = '';
+		$display = $this->firstname.' '.$this->lastname;
+        $display .= $separator;
 		$display .= $this->street;
 		if ($this->number)
 			$display .= ', '.$this->number;

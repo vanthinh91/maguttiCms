@@ -164,6 +164,34 @@
   }
 }
 
+.order-step{
+  color: $color-text;
+  padding:1rem 0rem 1rem;
+   &-title{
+     margin:0rem;
+     color: $color-text;
+     border-top:3px solid $color-4;
+     padding:1.5rem 0rem 1.5rem;
+
+   }
+  &-resume-title{
+    margin:0rem;
+    color: $color-text;
+    padding:0rem 0rem 0.5rem;
+  }
+
+}
+.cart-resume{
+
+  margin:0rem;
+  color: $color-text;
+  border-top:3px solid $color-4;
+  padding:1.5rem 0rem 0.5rem;
+  &.no-border{
+    border-top:0px solid $color-4;
+  }
+}
+
 
 
 

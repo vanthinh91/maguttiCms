@@ -5,9 +5,9 @@
         <div class="container ">
             <div class="row">
                 <div class="col-12 col-md-8">
-                    <div class="card order-step box-shadow p-2">
-                        @include('website.store.cart_address')
-                        <h2 class="order-step-title">2. {{ trans('store.payment.method') }}</h2>
+                    <div class="card order-info box-shadow p-2">
+                        @include('website.store.cart_step')
+                        @include('website.store.cart_payment_method')
                         <h2 class="order-step-title">3. {{ trans('store.cart.confirm') }}</h2>
                     </div>
 
@@ -16,6 +16,7 @@
                     @include('website.store.cart_products_widget')
                 </div>
             </div>
+
         </div>
     </section>
 @endsection

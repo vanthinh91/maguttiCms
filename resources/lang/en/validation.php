@@ -141,7 +141,20 @@ return [
         ],
         '*' => [
             'is_unique' => 'The :attribute is already present.',
-        ]
+        ],
+        'payment_method_id' => [
+            'required' => 'Please select a payment method'
+        ],
+        'billing_firstname.required_if'  => 'The Name field is required',
+        'billing_lastname.required_if'   => 'The Surname field is required',
+        'billing_street.required_if'     => 'The Street field is required',
+        'billing_number.required_if'     => 'The Number field is required',
+        'billing_zip_code.required_if'   => 'The Zip Code field is required',
+        'billing_city.required_if'       => 'The City field is required',
+        'billing_province.required_if'   => 'The Province field is required',
+        'billing_country_id.required_if' => 'The Country field is required',
+        'billing_email.required_if'      => 'The Email fieldis required',
+        'billing_phone.required_if'      => 'The Phone field is required',
     ],
 
     /*
