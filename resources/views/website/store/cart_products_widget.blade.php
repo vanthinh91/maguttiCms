@@ -61,9 +61,8 @@
             <span class="value">{{ StoreHelper::formatPrice($cart->cartGrandTotal()) }}</span>
         </div>
     </div>
-
-
 </div>
+
 <!-- Card Discount -->
 <coupon-component></coupon-component>
 

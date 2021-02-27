@@ -4,7 +4,7 @@
   <div class="card cart__discount box-shadow p-2">
     <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample1"
        aria-expanded="false" aria-controls="collapseExample1">
-      {{ $t('store.order.discount.add') }}  ({{ $t('store.cart.optional') }})
+      {{ $t('store.order.discount.add') }} ({{ $t('store.cart.optional') }})
 
       <span><i class="fas fa-chevron-down pt-1"></i></span>
     </a>
@@ -42,33 +42,30 @@ export default {
   data() {
     return {
       coupon: null,
-      error:null,
-      message:null,
-      url:"api/store/validate-coupon"
+      error: null,
+      message: null,
+      url: "/api/store/validate-coupon"
 
     }
   },
   created() {
-
   },
-  computed: {
-
-  },
+  computed: {},
   methods: {
     addCoupon() {
-        this.error=false;
-        if(_.isEmpty(this.coupon)){
-          this.error=true;
-          return;
-        }
+      this.error = false;
+      if (_.isEmpty(this.coupon)) {
+        this.error = true;
+        return;
+      }
 
-        this.validateCoupon()
+      this.validateCoupon()
     },
     deleteCoupon(index, id) {
 
     },
-    compose_url(){
-      return this.url+"?code="+this.coupon
+    compose_url() {
+      return this.url + "?code=" + this.coupon
     },
     validateCoupon() {
 
@@ -76,12 +73,11 @@ export default {
       return HTTP.get(this.compose_url())
           .then(
               response => {
-                if(response.data.status="OK")location.reload();
+                if (response.data.status = "OK") location.reload();
               }
-
           )
           .catch(e => {
-            this.error=true;
+            this.error = true;
           })
     },
 
