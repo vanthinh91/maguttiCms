@@ -68,7 +68,7 @@ return [
 		'resume' => 'Products review',
 		'addresses' => 'Addresses',
 		'totals' => 'Costs review',
-		'confirm' => 'Confirm purchase',
+		'confirm' => 'Send Your Order',
 		'payment' => 'Payment method',
 		'billing' => 'Billing address',
 		'billing_different_address' => 'The billing address is the same as the shipping address',

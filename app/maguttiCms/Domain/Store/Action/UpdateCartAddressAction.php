@@ -9,12 +9,9 @@ class UpdateCartAddressAction
 
 
     private $cart;
-
-
     public function __construct($cart)
     {
         $this->cart = $cart;
-
     }
 
     function execute($request)

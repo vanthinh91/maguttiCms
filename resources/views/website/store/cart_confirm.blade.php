@@ -13,9 +13,11 @@
 
 <div class="row">
     <div class="col-12 mt-3">
-        <h5 class="order-step-resume-title"><b>{{ trans('store.payment.method') }}:</b> {{$cart->payment_method->title}}</h5>
+        <h5 class="order-step-resume-title"><b>{{ trans('store.payment.method') }}:</b> {{$cart->payment_method->title}}
+        </h5>
 
     </div>
 </div>
+
 
 

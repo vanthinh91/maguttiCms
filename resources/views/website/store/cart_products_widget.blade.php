@@ -65,5 +65,9 @@
 
 <!-- Card Discount -->
 <coupon-component></coupon-component>
-
+<div class="d-flex justify-content-end mt-3">
+    <a href="{{url_locale('order-send')}}" type="submit" class="btn btn-success  btn-block">
+        {{trans('store.order.confirm')}}
+    </a>
+</div>
 

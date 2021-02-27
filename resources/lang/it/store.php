@@ -70,7 +70,7 @@ return [
     'resume' => 'Riepilogo prodotti',
     'addresses' => 'Indirizzi',
     'totals' => 'Riepilogo costi',
-    'confirm' => 'Conferma l\'acquisto',
+    'confirm' => 'Invia Ordine',
 
     'payment' => 'Modalità di pagamento',
     'billing' => 'Indirizzo di fatturazione',

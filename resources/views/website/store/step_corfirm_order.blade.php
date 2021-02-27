@@ -8,7 +8,15 @@
                     <div class="card order-step box-shadow p-2">
                         @include('website.store.cart_step')
                         @include('website.store.cart_confirm')
+                        <div class="d-flex justify-content-end mt-3">
+                            <a href="{{url_locale('order-send')}}" type="submit" class="btn btn-success">
+                                {{trans('store.order.confirm')}}
+                            </a>
+                        </div>
                     </div>
+
+
+
                 </div>
                 <div class="col-12 col-md-4">
                     @include('website.store.cart_products_widget')
