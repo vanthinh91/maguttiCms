@@ -3,7 +3,8 @@
     <div class="col-12">
         <div class="form-group">
             <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" name="shippingAsBilling" value="1" id="shippingAsBilling" checked="true">
+                <input type="checkbox" class="custom-control-input" name="shippingAsBilling" value="1" id="shippingAsBilling"
+                       {{ ($cart->billing_address_id)?"checked":false }} onclick="($(this).prop('checked'))?$('#billing_address_box').show():$('#billing_address_box').hide();">
                 <label class="custom-control-label" for="shippingAsBilling">
                     {{trans('store.order.billing_different_address')}}
                 </label>
@@ -12,7 +13,7 @@
         </div>
     </div>
 </div>
-<div class="row " id="billing_address_box">
+<div class="row" id="billing_address_box"  {{ ($cart->billing_address_id)?'style="display:none"':false }} >
     <div class="col-12 form-group">
         <h3>{{trans('store.order.billing')}}</h3>
     </div>

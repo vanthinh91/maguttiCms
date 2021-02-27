@@ -523,7 +523,8 @@ class StoreHelper {
 	public static function processPayment($payment)
 	{
 		switch ($payment->payment_method->code) {
-			case 'bank': return false; break;
+			case 'bank_transfer': return false; break;
+			case 'cash_on_delivery': return false; break;
 			case 'paypal':
 				$provider = new GFExpressCheckout;
 				$provider->setCurrency(config('maguttiCms.store.currency'));
