@@ -24,6 +24,8 @@ DROP TABLE IF EXISTS `addresses`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `addresses` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `street` varchar(100) NOT NULL DEFAULT '',
   `number` varchar(5) DEFAULT '',
@@ -311,7 +313,7 @@ CREATE TABLE `carts` (
   `discount_code` varchar(20) DEFAULT NULL,
   `status` tinyint(4) DEFAULT '0',
   `user_id` int(11) DEFAULT NULL,
-  `payment_id` int(5) DEFAULT NULL,
+  `payment_method_id` int(5) DEFAULT NULL,
   `shipping_cost` decimal(12,4) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -2045,4 +2047,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-23 20:03:07
+-- Dump completed on 2021-02-27 19:23:51

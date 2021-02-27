@@ -16,12 +16,11 @@
                 @foreach($cart->cart_items()->get() as $item)
                     <li class="media">
                         <div class="media-left">
-                            <a href="http://prestashop.test/index.php?id_product=2&amp;id_product_attribute=9&amp;rewrite=brown-bear-printed-sweater&amp;controller=product#/1-dimensione-s"
-                               title="{{$item->product->title}}">
+
                                 <img class="media-object"
-                                     src="https://magutticms.test/media/images/cache/spazzola_jpeg_64_48_cover_60.jpg"
+                                     src="{{ ImgHelper::get($item->image, config('maguttiCms.image.defaults'),'products') }}"
                                      alt="{{$item->product->title}}">
-                            </a>
+
                         </div>
                         <div class="media-body">
                             <span class="product-name d-flex ">{{$item->product->title}}</span>
