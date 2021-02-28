@@ -9,9 +9,12 @@ return [
 	'cart' => [
         'checkout' => 'Checkout',
         'continue' => 'Continue',
+        'confirm' => 'Confirm your data',
 		'title' => 'Shopping Bag',
 		'total' => 'Total',
 		'empty' => 'Your Shopping bag is empty',
+        'edit_address'=>'Edit Address',
+        'edit_payment_method' => 'Edit Payment Method',
 		'buy' => 'Checkout',
 		'back' => 'Back to the store',
         'number_of_items' => 'Items',

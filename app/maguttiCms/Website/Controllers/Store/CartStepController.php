@@ -18,4 +18,10 @@ class CartStepController extends Controller
         return  StoreHelper::getSessionCart();
 
     }
+
+
+    function handleMissingStep()
+    {
+        return redirect(url_locale('/cart'));
+    }
 }

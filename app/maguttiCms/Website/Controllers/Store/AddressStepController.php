@@ -16,9 +16,13 @@ class AddressStepController extends  CartStepController
 
     public function view() {
         $cart = $this->getCart();
-        $countries = Country::list()->get();
-        $payment_methods = StoreHelper::getPaymentMethods();
-        return view('website.store.order', compact('cart','countries','payment_methods'));
+
+        if($cart) {
+            $countries = Country::list()->get();
+            $payment_methods = StoreHelper::getPaymentMethods();
+            return view('website.store.order', compact('cart', 'countries', 'payment_methods'));
+        }
+        return $this->handleMissingStep();
     }
 
     function store(AddressFormRequest $request){

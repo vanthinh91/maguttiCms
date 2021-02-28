@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use App\maguttiCms\Domain\Store\CartPresenter;
+use App\maguttiCms\Domain\Store\CartStepTrait;
 use Illuminate\Database\Eloquent\Model;
 
 use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
@@ -9,6 +10,7 @@ class Cart extends Model
 {
 
     use CartPresenter;
+    use CartStepTrait;
 
     protected $fillable = ['user_id', 'status', 'payment_method_id', 'shipping_cost',
         'billing_address_id', 'shipping_address_id', 'discount_code'

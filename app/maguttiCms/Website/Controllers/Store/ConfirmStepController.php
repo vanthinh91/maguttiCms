@@ -21,8 +21,12 @@ class ConfirmStepController extends  CartStepController
     public function view()
     {
         $cart = $this->getCart();
-        $countries = Country::list()->get();
-        $payment_methods = StoreHelper::getPaymentMethods();
-        return view('website.store.step_corfirm_order', compact('cart', 'countries', 'payment_methods'));
+        if($cart->hasStep()) {
+            $countries = Country::list()->get();
+            $payment_methods = StoreHelper::getPaymentMethods();
+            return view('website.store.step_corfirm_order', compact('cart', 'countries', 'payment_methods'));
+        }
+        return $this->handleMissingStep();
+
     }
 }

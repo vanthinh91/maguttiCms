@@ -11,6 +11,7 @@ class PaymentMethodFormRequest extends FormRequest
 
     public function authorize()
     {
+
         return true;
     }
 

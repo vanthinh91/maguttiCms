@@ -18,6 +18,7 @@ class StoreController extends Controller
 
     public function cart() {
 		$cart = new CartVieModel();
+
 	   	return view('website.store.cart', compact('cart',));
     }
 

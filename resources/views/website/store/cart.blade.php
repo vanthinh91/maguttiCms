@@ -1,14 +1,30 @@
 @extends('website.app')
 @section('content')
     <x-website.partials.page-header  :title="trans('store.cart.title')"/>
-    <section class="cart-list pb-0">
 
+    <section class="cart-list pb-0">
+        @if (!$cart->isEmpty())
        <cart-resume
                :cart-data="{{$cart->cart}}"
                :cart-items="{{$cart->items}}"
                cart_url="{{ url_locale('order-submit')}}"></cart-resume>
+        @else
+            <div class="container">
+                <div class="row my-5">
+                    <div class="col-12">
+                        <div class="alert alert-danger">{{__('store.cart.empty')}}</div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        @endif
     </section>
-    @if (!$cart->isEmpty())
+
+
+
+
     <section class="cart-action pt-1 pb-4">
         <div class="container">
             <div id="cart-buttons"  class="d-flex justify-content-between">
@@ -19,6 +35,4 @@
             </div>
         </div>
     </section>
-    @endif
-
 @endsection

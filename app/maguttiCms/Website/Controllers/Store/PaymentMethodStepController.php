@@ -10,15 +10,26 @@ use App\maguttiCms\Domain\Store\Action\UpdateCartAddressAction;
 use App\maguttiCms\Tools\StoreHelper;
 
 
+
 class PaymentMethodStepController extends  CartStepController
 {
 
+     function autorize($ability, $arguments = [])
+     {
+         return false;
+     }
 
     public function view() {
+
         $cart = $this->getCart();
-        $countries = Country::list()->get();
-        $payment_methods = StoreHelper::getPaymentMethods();
-        return view('website.store.step_payment_method', compact('cart','countries','payment_methods'));
+        if($cart->hasStep()){
+            $countries = Country::list()->get();
+            $payment_methods = StoreHelper::getPaymentMethods();
+            return view('website.store.step_payment_method', compact('cart','countries','payment_methods'));
+        }
+
+        return $this->handleMissingStep();
+
     }
 
     function store(PaymentMethodFormRequest $request){
