@@ -14,6 +14,7 @@ trait CartStepTrait
 
     function hasStep()
     {
+        if($this->isEmpty()) return false;
         $step = $this->getLastSegment();
         if ($step === Definition::CART_STEP_PAYMENT) {
             if (!$this->shipping_address_id) return false;
