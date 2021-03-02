@@ -10,9 +10,9 @@
                cart_url="{{ url_locale('order-submit')}}"></cart-resume>
         @else
             <div class="container">
-                <div class="row my-5">
+                <div class="row my-3">
                     <div class="col-12">
-                        <div class="alert alert-danger">{{__('store.cart.empty')}}</div>
+                        <div class="alert alert-danger p-2">{{__('store.cart.empty')}}</div>
                     </div>
 
                 </div>

@@ -10,6 +10,7 @@ return [
 	 */
 	'redirectTo' => [
 		'cart',
-		'order-submit'
+		'order-submit',
+        'cart/address'
 	]
 ];

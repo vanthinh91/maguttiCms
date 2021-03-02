@@ -144,9 +144,12 @@ class StoreHelper {
 	{
 		if ($user = Auth::user())
 			$cart = Cart::create(['user_id' => $user->id]);
+
 		else
 			$cart = Cart::create([]);
 
+		$token = Str::random(56).'$'.$cart->id;
+        $cart->forceFill(['token' => $token]);
 		self::setSessionCart($cart);
 
 		return $cart;

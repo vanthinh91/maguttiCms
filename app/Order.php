@@ -1,14 +1,17 @@
 <?php namespace App;
 
+use App\maguttiCms\Domain\Store\OrderPresenter;
 use Illuminate\Database\Eloquent\Model;
 use	App\maguttiCms\Tools\StoreHelper;
 
 class Order extends Model
 {
+    use OrderPresenter;
     protected $fillable = [
 		'user_id',
 		'cart_id',
 		'payment_id',
+        'reference',
 		'products_cost',
 		'shipping_cost',
 		'discount_amount',
@@ -89,9 +92,6 @@ class Order extends Model
 		else
 			return '';
 	}
-	public function getProductsCostDisplayAttribute() {return StoreHelper::formatPrice($this->products_cost);}
-	public function getShippingCostDisplayAttribute() {return StoreHelper::formatPrice($this->shipping_cost);}
-	public function getVatCostDisplayAttribute() {return StoreHelper::formatPrice($this->vat_cost);}
-	public function getTotalCostDisplayAttribute() {return StoreHelper::formatPrice($this->total_cost);}
+
 
 }

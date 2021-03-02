@@ -5,6 +5,7 @@ namespace App\maguttiCms\Website\Controllers\Store;
 
 use App\Http\Controllers\Controller;
 use App\maguttiCms\Tools\StoreHelper;
+use Illuminate\Support\Facades\Redirect;
 
 
 class CartStepController extends Controller
@@ -22,6 +23,10 @@ class CartStepController extends Controller
 
     function handleMissingStep()
     {
-        return redirect(url_locale('/cart'));
+        if(auth_user()){
+            return redirect(url_locale('/cart'));
+        }
+        return Redirect::to(url_locale('/order-login'));
+
     }
 }

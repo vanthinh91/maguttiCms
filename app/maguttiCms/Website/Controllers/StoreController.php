@@ -4,6 +4,7 @@ namespace App\maguttiCms\Website\Controllers;
 
 use App\Country;
 use App\Http\Controllers\Controller;
+use App\maguttiCms\Definition\Definition;
 use App\maguttiCms\Domain\Cart\CartVieModel;
 use App\maguttiCms\Tools\StoreHelper;
 use App\maguttiCms\Website\Requests\WebsiteFormRequest;
@@ -16,40 +17,29 @@ class StoreController extends Controller
 {
     public function __construct() {}
 
-    public function cart() {
-		$cart = new CartVieModel();
-
-	   	return view('website.store.cart', compact('cart',));
-    }
-
 
 
     public function orderSubmit() {
-		$user = Auth::user();
-		if (!$user)
-			return Redirect::to(url_locale('/order-login'));
-		else {
+	    if (!auth_user()){
+            return Redirect::to(url_locale('/order-login'));
+        }
 
-            $cart = new CartVieModel();
-           	$addresses = $user->addresses;
-
-			if (!$cart) {
-				session()->flash('error', trans('store.alerts.cart_invalid'));
-				return back();
-			}
-			if ($cart->isEmpty()) {
-				session()->flash('error', trans('store.alerts.cart_empty'));
-				return back();
-			}
-
-			return view('website.store.order_submit', compact('cart', 'user', 'addresses'));
-		}
+        $cart = new CartVieModel();
+        if (!$cart) {
+            session()->flash('error', trans('store.alerts.cart_invalid'));
+            return back();
+        }
+        if ($cart->isEmpty()) {
+            session()->flash('error', trans('store.alerts.cart_empty'));
+            return back();
+        }
+        return redirect(url_locale('cart/'.Definition::CART_STEP_ADDRESS));;
 
     }
 
 	public function orderLogin()
 	{
-		$redirectTo = 'order-submit';
+		$redirectTo = 'cart/'.Definition::CART_STEP_ADDRESS;
 		$with_register = true;
 		return view('website.store.order_login', compact('redirectTo', 'with_register'));
 	}
@@ -59,6 +49,7 @@ class StoreController extends Controller
 		$user = Auth::user();
 
 		$cart = StoreHelper::getSessionCart();
+
 		StoreHelper::cartItemCleanQuantities($cart);
 
 		if (!$cart || $request->cart_id != $cart->id) {

@@ -119,11 +119,13 @@ class LoginController extends Controller
 
          $this->validateLogin($request);
 
+
          if ($request->redirectTo) {
               // If the redirect to path is in white list.
               if(in_array($request->redirectTo, config('maguttiCms.security.redirectTo')) == true) {
                  $this->redirectTo = $request->redirectTo;
               }
+
           }
 
          // If the class is using the ThrottlesLogins trait, we can automatically throttle

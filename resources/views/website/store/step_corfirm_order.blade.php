@@ -20,6 +20,11 @@
                 </div>
                 <div class="col-12 col-md-4">
                     @include('website.store.cart_products_widget')
+                    <div class="d-flex justify-content-end mt-3">
+                        <a href="{{url_locale('order-send')}}" type="submit" class="btn btn-success  btn-block">
+                            {{trans('store.order.confirm')}}
+                        </a>
+                    </div>
                 </div>
             </div>
 

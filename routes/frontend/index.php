@@ -42,9 +42,9 @@ Route::group(['middleware' => ['localeSessionRedirect', 'localizationRedirect', 
     Route::post('/api/newsletter', [APIController::class, 'subscribeNewsletter']);
 
     // Authentication routes...
-    Route::get('users/login', [LoginController::class, 'showLoginForm'])->name('users/login');
+    Route::get('users/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('users/login', [LoginController::class, 'login']);
-    Route::get('users/logout', [LoginController::class, 'logout']);
+    Route::get('users/logout', [LoginController::class, 'logout'])->name('logut');;
 
     // Reserved area user routes
     Route::group(['middleware' => ['auth']], function () {

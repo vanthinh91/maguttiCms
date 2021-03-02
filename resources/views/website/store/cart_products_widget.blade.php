@@ -16,7 +16,6 @@
                 @foreach($cart->cart_items()->get() as $item)
                     <li class="media">
                         <div class="media-left">
-
                                 <img class="media-object"
                                      src="{{ ImgHelper::get($item->image, config('maguttiCms.image.defaults'),'products') }}"
                                      alt="{{$item->product->title}}">
@@ -64,9 +63,5 @@
 
 <!-- Card Discount -->
 <coupon-component></coupon-component>
-<div class="d-flex justify-content-end mt-3">
-    <a href="{{url_locale('order-send')}}" type="submit" class="btn btn-success  btn-block">
-        {{trans('store.order.confirm')}}
-    </a>
-</div>
+
 
