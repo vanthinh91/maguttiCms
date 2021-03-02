@@ -16,7 +16,7 @@
 				{{icon('user')}} {{trans('auth.profile')}}
 			</a>
 
-			<a class="dropdown-item" href="{{url_locale('users/logout')}}">
+			<a class="dropdown-item" href="{{url_locale('logout')}}">
 				{{icon('sign-out')}} {{trans('auth.logout')}}
 			</a>
 		</div>

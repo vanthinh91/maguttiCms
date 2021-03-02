@@ -44,7 +44,7 @@ Route::group(['middleware' => ['localeSessionRedirect', 'localizationRedirect', 
     // Authentication routes...
     Route::get('users/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('users/login', [LoginController::class, 'login']);
-    Route::get('users/logout', [LoginController::class, 'logout'])->name('logut');;
+    Route::get('logout', [LoginController::class, 'logout'])->name('logut');;
 
     // Reserved area user routes
     Route::group(['middleware' => ['auth']], function () {
