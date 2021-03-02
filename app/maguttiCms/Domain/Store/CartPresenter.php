@@ -9,6 +9,13 @@ use Illuminate\Session\Store;
 
 trait CartPresenter
 {
+
+
+    function isEmpty(){
+
+        return $this->countItems<1;
+    }
+
     function getCountItemsAttribute()
     {
 

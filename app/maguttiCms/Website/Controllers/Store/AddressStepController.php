@@ -17,7 +17,7 @@ class AddressStepController extends  CartStepController
     public function view() {
         $cart = $this->getCart();
 
-        if($cart) {
+        if(optional($cart)->hasStep()) {
             $countries = Country::list()->get();
             $payment_methods = StoreHelper::getPaymentMethods();
             return view('website.store.order', compact('cart', 'countries', 'payment_methods'));
