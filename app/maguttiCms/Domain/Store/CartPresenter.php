@@ -16,6 +16,12 @@ trait CartPresenter
         return $this->countItems<1;
     }
 
+
+    function hasBillingAddress(){
+
+        return $this->billing_address_id>0;
+    }
+
     function getCountItemsAttribute()
     {
 

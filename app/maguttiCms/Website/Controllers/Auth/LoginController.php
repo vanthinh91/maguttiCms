@@ -53,15 +53,12 @@ class LoginController extends Controller
      */
     public function __construct( ArticleRepositoryInterface $article)
     {
-        $this->middleware('guest', ['except' => 'logout']);
-
         $this->articleRepo          = $article;
         $this->localePrefix         = get_locale();
         $this->redirectTo           = $this->localePrefix.'/users/dashboard';
         $this->redirectPath         = $this->localePrefix.'/users/dashboard';
         $this->loginPath            = $this->localePrefix.'/users/login';
         $this->redirectAfterLogout  = $this->localePrefix.'/users/login';
-
     }
 
     /**

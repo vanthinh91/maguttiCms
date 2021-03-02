@@ -13,8 +13,9 @@
         </div>
     </div>
 </div>
-<div class="row" id="billing_address_box"  {{ ($cart->billing_address_id)?'style="display:none"':false }} >
+<div  class="row" id="billing_address_box" {!! ($cart->hasBillingAddress())? ' ' : ' style="display:none"' !!}   >
     <div class="col-12 form-group">
+
         <h3>{{trans('store.order.billing')}}</h3>
     </div>
     <div class="col-12 col-md-6">
