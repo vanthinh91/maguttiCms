@@ -11,6 +11,7 @@ return [
         'fax'	   => '+39 035.123456',
         'vat'	   => 'XXXXXXXXX',
         'email'	   => 'hello@magutti.com',
+        'email_order'	   => 'order@magutti.com',
     ],
     'email' => [
         'footer'     => 'Questo messaggio è stato inviato da un indirizzo email utilizzato solo per le notifiche e non abilitato alla ricezione. Si prega di non rispondere a questo messaggio.'

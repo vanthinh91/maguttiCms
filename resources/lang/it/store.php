@@ -29,40 +29,42 @@ return [
             'total' => 'Totale',
             'actions' => 'Azioni'
         ],
-        'step'=>[
-            'next_payment' =>'Prossimo Step: Metodo di Pagamento',
-            'next_send' =>'Prossimo Step: Acquista ',
-            'next_confirm' =>'Prossimo Step: Conferma Dati ',
+        'step' => [
+            'next_payment' => 'Prossimo Step: Metodo di Pagamento',
+            'next_send' => 'Prossimo Step: Acquista ',
+            'next_confirm' => 'Prossimo Step: Conferma Dati ',
 
         ]
-	],
+    ],
 
-	'shipping' => [
-    'free' => 'Spedizione gratuita'
-],
+    'shipping' => [
+        'free' => 'Spedizione gratuita'
+    ],
 
-	'items' => [
-    'add' => 'Aggiungi al carrello',
-    'are_you_sure_to_remove' => 'Sei sicuro di voler rimuovere questo articolo dal carrello?',
-    'remove' => 'Rimuovi dal carrello',
-],
+    'items' => [
+        'add' => 'Aggiungi al carrello',
+        'are_you_sure_to_remove' => 'Sei sicuro di voler rimuovere questo articolo dal carrello?',
+        'remove' => 'Rimuovi dal carrello',
+    ],
 
-	'alerts' => [
-    'add_success' => 'Prodotto aggiunto al carrello',
-    'add_fail' => 'Impossibile aggiungere il prodotto al carrello',
-    'remove_success' => 'Prodotto rimosso dal carrello',
-    'remove_fail' => 'Impossibile rimuovere il prodotto dal carrello',
-    'cart_invalid' => 'Carrello non valido',
-    'cart_empty' => 'Il carrello è vuoto',
-    'order_success' => 'Ordine inviato correttamente',
-    'order_fail' => 'Impossibile inviare l\'ordine',
-    'payment_fail' => 'Pagamento fallito',
-    'payment_already_paid' => 'Ordine Già pagato',
-    'payment_success' => 'Pagamento avvenuto con successo',
-],
+    'alerts' => [
+        'add_success' => 'Prodotto aggiunto al carrello',
+        'add_fail' => 'Impossibile aggiungere il prodotto al carrello',
+        'remove_success' => 'Prodotto rimosso dal carrello',
+        'remove_fail' => 'Impossibile rimuovere il prodotto dal carrello',
+        'cart_invalid' => 'Carrello non valido',
+        'cart_empty' => 'Il carrello è vuoto',
+        'order_success' => 'Ordine inviato correttamente',
+        'order_fail' => 'Impossibile inviare l\'ordine',
+        'payment_fail' => 'Pagamento fallito',
+        'payment_already_paid' => 'Ordine Già pagato',
+        'payment_success' => 'Pagamento avvenuto con successo',
+    ],
 
-	'order' => [
-    'guard' => 'Per proseguire è necessario essere registrati',
+    'order' => [
+        'guard' => 'Per proseguire è necessario essere registrati',
+        'success' => 'Ordine concluso con successo. <br>Riferimento ordine #',
+        'info'=>'Per qualsiasi informazione ci contatti inserendo nella richiesta il seguente numero ordine:',
     'login' => 'Login',
     'register' => 'Crea un nuovo account',
     'title' => 'Ordine di acquisto',
@@ -87,16 +89,16 @@ return [
     'vat_cost' => 'Iva',
     'total_cost' => 'Totale ordine',
     'discount' => [
-        'title' => 'Coupon sconto',
-        'insert' => 'Hai un codice di sconto? Inseriscilo qui.',
-        'valid' => 'Coupon valido: sconto %s%%',
-        'invalid' => 'Questo codice non è valido.',
-        'add' => 'Hai un codice di sconto?',
-        'enter' => 'Inserisci codice di sconto',
-        'apply' => 'Applica codice di sconto',
-        'delete' => 'Elimina',
-        'are_you_sure_to_remove' => 'Sei sicuro di voler annullare il tuo codice di sconto?'
-    ]
+    'title' => 'Coupon sconto',
+    'insert' => 'Hai un codice di sconto? Inseriscilo qui.',
+    'valid' => 'Coupon valido: sconto %s%%',
+    'invalid' => 'Questo codice non è valido.',
+    'add' => 'Hai un codice di sconto?',
+    'enter' => 'Inserisci codice di sconto',
+    'apply' => 'Applica codice di sconto',
+    'delete' => 'Elimina',
+    'are_you_sure_to_remove' => 'Sei sicuro di voler annullare il tuo codice di sconto?'
+]
 ],
 
 	'payment' => [

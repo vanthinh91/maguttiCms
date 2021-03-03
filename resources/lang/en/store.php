@@ -65,6 +65,8 @@ return [
 	'order' => [
 		'guard' => 'An account is required to continue',
 		'login' => 'Login',
+        'success' => 'Order completed successfully.<br> Order reference #',
+        'info'=>'For any information please contact us by entering the following order number in the request:',
 		'register' => 'Create a new account',
 		'title' => 'Order Summary',
 		'back' => 'Back to cart',

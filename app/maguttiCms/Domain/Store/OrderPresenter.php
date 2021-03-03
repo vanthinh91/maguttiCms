@@ -50,5 +50,11 @@ trait OrderPresenter
         return $reference ;
     }
 
+    function orderFeedback($description){
+        $description=str_replace('[reference]',$this->order_reference,$description);
+        $description=str_replace('[order_email]',config('maguttiCms.website.option.app.email_order'),$description);
+        return $description;
+    }
+
 
 }
