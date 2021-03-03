@@ -8,12 +8,11 @@
             <div class="border p-4">
 
 
-                <div class="h3 text-primary">Ordine concluso con successo #<span class="text-primary">ORDER-{{$order->id}}</div>
+                <div class="h3 text-primary">Ordine concluso con successo #<span class="text-accent">{{$order->order_reference}}</span></div>
                 @if ( $payment->payment_method_id == 1)
                     <p>
                         Grazie per aver ordinato, all'interno del profilo utente sarà possibile visionare lo stato dell'ordine.
-                        //Per qualsiasi informazione ci contatti inserendo nella richiesta il seguente codice ordine: <span class="text-primary">ORDER-{{$order->id}}</span>
-                    </p>
+                       </p>
                 @endif
                 @if ( $payment->payment_method_id == 2)
                     <p>
@@ -21,7 +20,7 @@
                         Per velocizzare i tempi di consegna una volta effettuato il bonifico chiediamo gentilmente di:
                     <ul class="mt-2">
                         <li>inviare copia della ricevuta via mail all'indirizzo <a class="text-primary" href="mailto:info@magutti.com">info@magutti.com</a></li>
-                        <li>Indicare nella causale il seguente codice ordine <span class="text-primary">MUR-{{$order->id}}</span></li>
+                        <li>Indicare nella causale il seguente codice ordine <span class="text-accent">{{$order->order_reference}}</span></li>
                     </ul>
                     </p>
                     <hr>
@@ -40,7 +39,7 @@
                 @endif
 
                 <p>
-                       Per qualsiasi informazione ci contatti inserendo nella richiesta il seguente codice ordine: <span class="text-primary">ORDER-{{$order->id}}</span>
+                       Per qualsiasi informazione ci contatti inserendo nella richiesta il seguente numero ordine: <span class="text-accent">{{$order->order_reference}}</span>
                 </p>
 
 

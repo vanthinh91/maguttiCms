@@ -22,7 +22,7 @@ class Order extends Model
         'billing_formatted_address',
         'shipping_formatted_address',
 		'discount_code',
-        'rife',
+        'reference',
 		'token',
     ];
     protected $fieldspec = [];

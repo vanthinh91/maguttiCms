@@ -394,6 +394,8 @@ class StoreHelper {
 			$user_id = $user->id;
 		}
 
+		dd(Order::generateReference());
+
 		// order creation
 		$order = Order::create([
 			'user_id'             => $user_id,
@@ -406,7 +408,8 @@ class StoreHelper {
 			'discount_code'		  => $discount_code,
 			'billing_address_id'  => $billing_address_id,
 			'shipping_address_id' => $shipping_address_id,
-			'token'               => Str::random(32)
+			'token'               => Str::random(32),
+            'reference'           => Order::generateReference()
 		]);
 
 		$cart->status = CART_SENT;
@@ -447,7 +450,8 @@ class StoreHelper {
             'shipping_formatted_address' => $cart->shipping_address->display('<br>'),
             'discount_amount'	  => $cart->getDiscountTotalAmount(),
             'discount_code'		  => $cart->discount_code,
-            'token'               => Str::random(32)
+            'token'               => Str::random(32),
+            'reference'           => Order::generateReference()
         ]);
 
 

@@ -31,15 +31,20 @@ trait OrderPresenter
         return StoreHelper::formatPrice($this->total_cost);
     }
 
+    public function getOrderReferenceAttribute()
+    {
+        return $this->reference;
+    }
 
-    public function randomReference(){
+
+    static public function generateReference(){
 
         $reference = strtoupper(Str::random(8));
 
-        $validator = \Validator::make(['reference'=>$reference ],['id'=>'unique:order,reference']);
+        $validator = \Validator::make(['reference'=>$reference ],['id'=>'unique:orders,reference']);
 
         if($validator->fails()){
-            return $this->randomId();
+            return self::generateReference();
         }
 
         return $reference ;
