@@ -13,7 +13,7 @@ class Cart extends Model
     use CartStepTrait;
 
     protected $fillable = ['user_id', 'status', 'payment_method_id', 'shipping_cost',
-        'billing_address_id', 'shipping_address_id', 'discount_code'
+        'billing_address_id', 'shipping_address_id', 'discount_code','token'
     ];
     protected $fieldspec = [];
 

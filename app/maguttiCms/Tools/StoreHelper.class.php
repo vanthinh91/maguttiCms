@@ -150,7 +150,7 @@ class StoreHelper {
 			$cart = Cart::create([]);
 
 		$token = Str::random(56).'$'.$cart->id;
-        $cart->forceFill(['token' => $token]);
+        $cart->update(['token' => $token]);
 		self::setSessionCart($cart);
 
 		return $cart;
