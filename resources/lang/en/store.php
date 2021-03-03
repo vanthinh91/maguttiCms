@@ -67,6 +67,7 @@ return [
 		'login' => 'Login',
         'success' => 'Order completed successfully.<br> Order reference #',
         'info'=>'For any information please contact us by entering the following order number in the request:',
+        'number'=>'Order number',
 		'register' => 'Create a new account',
 		'title' => 'Order Summary',
 		'back' => 'Back to cart',

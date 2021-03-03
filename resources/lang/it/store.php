@@ -65,6 +65,7 @@ return [
         'guard' => 'Per proseguire è necessario essere registrati',
         'success' => 'Ordine concluso con successo. <br>Riferimento ordine #',
         'info'=>'Per qualsiasi informazione ci contatti inserendo nella richiesta il seguente numero ordine:',
+        'number'=>'Numero d\'ordine',
     'login' => 'Login',
     'register' => 'Crea un nuovo account',
     'title' => 'Ordine di acquisto',

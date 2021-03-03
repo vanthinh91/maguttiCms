@@ -16,8 +16,11 @@
 					<table class="table">
 						<thead>
 							<tr>
+
 								<th>{{trans('store.dashboard.table.date')}}</th>
+								<th>{{trans('store.order.number')}}</th>
 								<th>{{trans('store.dashboard.table.products')}}</th>
+
 								<th>{{trans('store.dashboard.table.total')}}</th>
 								<th>{{trans('store.dashboard.table.payment')}}</th>
 							</tr>
@@ -25,14 +28,19 @@
 						<tbody>
 							@foreach ($orders as $_order)
 								<tr>
+
 									<td>
 										{{Carbon::parse($_order->created_at)->format('d/m/Y')}}<br>
 										{{Carbon::parse($_order->created_at)->format('H:i:s')}}
 									</td>
 									<td>
-										<ul>
+										{{$_order->order_reference}}<br>
+
+									</td>
+									<td>
+										<ul class="list-unstyled">
 											@foreach ($_order->order_items as $_item)
-												<li>{{$_item->quantity}}x {{$_item->product->title}}</li>
+												<li>{{$_item->quantity}} x {{$_item->product_description}} ({{StoreHelper::formatPrice($_item->total_price)}})</li>
 											@endforeach
 										</ul>
 									</td>
@@ -59,7 +67,7 @@
 					</table>
 				</div>
 
-				<div class="my-4">
+				<div class="my-4 d-none">
 					<h3 class="text-muted">{{ trans('store.dashboard.addresses') }}</h3>
 					<ul>
 						@foreach ($addresses as $_address)
