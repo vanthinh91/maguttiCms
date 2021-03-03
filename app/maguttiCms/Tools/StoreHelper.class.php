@@ -456,9 +456,9 @@ class StoreHelper {
 
 
 
-        //$cart->status = CART_SENT;
-        //$cart->save();
-        //StoreHelper::forgetSessionCart();
+        $cart->status = CART_SENT;
+        $cart->save();
+        StoreHelper::forgetSessionCart();
 
         $cart_items = $cart->cart_items()->with('product')->get();
 

@@ -83,8 +83,8 @@ class Order extends Model
 	public function getProductsDisplayAttribute()
 	{
 		$products = [];
-		foreach ($this->order_items()->with('product')->get() as $_item) {
-			$products[] = $_item->quantity.'x '.$_item->product->title;
+		foreach ($this->order_items()->get() as $_item) {
+			$products[] = $_item->quantity.'x '.$_item->product_description;
 		}
 		return implode ('<br>', $products);
 	}

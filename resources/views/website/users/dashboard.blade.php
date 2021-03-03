@@ -19,6 +19,7 @@
 
 								<th>{{trans('store.dashboard.table.date')}}</th>
 								<th>{{trans('store.order.number')}}</th>
+								<th>{{trans('store.order.discount.title')}}</th>
 								<th>{{trans('store.dashboard.table.products')}}</th>
 
 								<th>{{trans('store.dashboard.table.total')}}</th>
@@ -35,7 +36,9 @@
 									</td>
 									<td>
 										{{$_order->order_reference}}<br>
-
+									</td>
+									<td>
+										{!!  $_order->coupon_display !!}<br>
 									</td>
 									<td>
 										<ul class="list-unstyled">

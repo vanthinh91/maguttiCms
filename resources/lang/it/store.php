@@ -64,83 +64,83 @@ return [
     'order' => [
         'guard' => 'Per proseguire è necessario essere registrati',
         'success' => 'Ordine concluso con successo. <br>Riferimento ordine #',
-        'info'=>'Per qualsiasi informazione ci contatti inserendo nella richiesta il seguente numero ordine:',
-        'number'=>'Numero d\'ordine',
-    'login' => 'Login',
-    'register' => 'Crea un nuovo account',
-    'title' => 'Ordine di acquisto',
-    'back' => 'Torna al carrello',
-    'resume' => 'Riepilogo prodotti',
-    'addresses' => 'Indirizzi',
-    'totals' => 'Riepilogo costi',
-    'confirm' => 'Invia Ordine',
+        'info' => 'Per qualsiasi informazione ci contatti inserendo nella richiesta il seguente numero ordine:',
+        'number' => 'Numero d\'ordine',
+        'login' => 'Login',
+        'register' => 'Crea un nuovo account',
+        'title' => 'Ordine di acquisto',
+        'back' => 'Torna al carrello',
+        'resume' => 'Riepilogo prodotti',
+        'addresses' => 'Indirizzi',
+        'totals' => 'Riepilogo costi',
+        'confirm' => 'Invia Ordine',
 
-    'payment' => 'Modalità di pagamento',
-    'billing' => 'Indirizzo di fatturazione',
-    'billing_different_address' => 'L\'indirizzo di fatturazione è uguale all\'indirizzo di spedizione',
-    'shipping' => 'Indirizzo di spedizione',
-    'products_cost' => 'Costo dei prodotti',
-    'shipping_cost' => 'Spese di spedizione',
+        'payment' => 'Modalità di pagamento',
+        'billing' => 'Indirizzo di fatturazione',
+        'billing_different_address' => 'L\'indirizzo di fatturazione è uguale all\'indirizzo di spedizione',
+        'shipping' => 'Indirizzo di spedizione',
+        'products_cost' => 'Costo dei prodotti',
+        'shipping_cost' => 'Spese di spedizione',
 
-    'registered_user' => 'Utente Registrato',
-    'registered_user_login_message' => 'Effettua il login per richiamare i tuoi dati e completare più velocemente l\'acquisto.',
-    'guest_checkout' => 'Checkout come ospite',
-    'guest_checkout_countinue' => 'Continua come Ospite',
-    'guest_checkout_message' => 'Non hai un account? Puoi passare al pagamento senza esserti registrato. Se vuoi, puoi registrarti dopo aver completato l\'ordine, così potrai usufruire delle procedure di pagamento più rapide e controllare tutti i dettagli del tuo acquisto..',
-    'vat_cost' => 'Iva',
-    'total_cost' => 'Totale ordine',
-    'discount' => [
-    'title' => 'Coupon sconto',
-    'insert' => 'Hai un codice di sconto? Inseriscilo qui.',
-    'valid' => 'Coupon valido: sconto %s%%',
-    'invalid' => 'Questo codice non è valido.',
-    'add' => 'Hai un codice di sconto?',
-    'enter' => 'Inserisci codice di sconto',
-    'apply' => 'Applica codice di sconto',
-    'delete' => 'Elimina',
-    'are_you_sure_to_remove' => 'Sei sicuro di voler annullare il tuo codice di sconto?'
-]
-],
-
-	'payment' => [
-    'title' => 'Esito del pagamento',
-    'pay' => 'Paga l\'ordine',
-    'method' => 'Metodo di pagamento',
-    'paid' => 'Pagato',
-    'unpaid' => 'Non pagato',
-    'back' => 'Torna all\'ordine',
-],
-
-	'address' => [
-    'new' => 'Aggiungi un nuovo indirizzo',
-    'fields' => [
-        'street' => 'Via',
-        'number' => 'Numero civico',
-        'zip_code' => 'CAP',
-        'city' => 'Città',
-        'province' => 'Provincia',
-        'country' => 'Nazione',
-        'phone' => 'Telefono',
-        'mobile' => 'Cellulare',
-        'email' => 'Email',
-        'vat' => 'Partita IVA'
+        'registered_user' => 'Utente Registrato',
+        'registered_user_login_message' => 'Effettua il login per richiamare i tuoi dati e completare più velocemente l\'acquisto.',
+        'guest_checkout' => 'Checkout come ospite',
+        'guest_checkout_countinue' => 'Continua come Ospite',
+        'guest_checkout_message' => 'Non hai un account? Puoi passare al pagamento senza esserti registrato. Se vuoi, puoi registrarti dopo aver completato l\'ordine, così potrai usufruire delle procedure di pagamento più rapide e controllare tutti i dettagli del tuo acquisto..',
+        'vat_cost' => 'Iva',
+        'total_cost' => 'Totale ordine',
+        'discount' => [
+            'title' => 'Coupon sconto',
+            'insert' => 'Hai un codice di sconto? Inseriscilo qui.',
+            'valid' => 'Coupon valido: sconto %s%%',
+            'invalid' => 'Questo codice non è valido.',
+            'add' => 'Hai un codice di sconto?',
+            'enter' => 'Inserisci codice di sconto',
+            'apply' => 'Applica codice di sconto',
+            'delete' => 'Elimina',
+            'are_you_sure_to_remove' => 'Sei sicuro di voler annullare il tuo codice di sconto?'
+        ]
     ],
-    'save' => 'Salva'
-],
 
-	'dashboard' => [
-    'orders' => 'Ordini',
-    'addresses' => 'Indirizzi',
-    'table' => [
-        'products' => 'Prodotti',
-        'total' => 'Totale',
-        'payment' => 'Pagamento',
+    'payment' => [
+        'title' => 'Esito del pagamento',
+        'pay' => 'Paga l\'ordine',
+        'method' => 'Metodo di pagamento',
         'paid' => 'Pagato',
-        'date' => 'Data'
-    ]
-],
+        'unpaid' => 'Non pagato',
+        'back' => 'Torna all\'ordine',
+    ],
 
-	'paypal' => [
-    'items_total' => 'Totale prodotti'
-]
+    'address' => [
+        'new' => 'Aggiungi un nuovo indirizzo',
+        'fields' => [
+            'street' => 'Via',
+            'number' => 'Numero civico',
+            'zip_code' => 'CAP',
+            'city' => 'Città',
+            'province' => 'Provincia',
+            'country' => 'Nazione',
+            'phone' => 'Telefono',
+            'mobile' => 'Cellulare',
+            'email' => 'Email',
+            'vat' => 'Partita IVA'
+        ],
+        'save' => 'Salva'
+    ],
+
+    'dashboard' => [
+        'orders' => 'Ordini',
+        'addresses' => 'Indirizzi',
+        'table' => [
+            'products' => 'Prodotti',
+            'total' => 'Totale',
+            'payment' => 'Pagamento',
+            'paid' => 'Pagato',
+            'date' => 'Data'
+        ]
+    ],
+
+    'paypal' => [
+        'items_total' => 'Totale prodotti'
+    ]
 ];

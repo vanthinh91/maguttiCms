@@ -35,6 +35,10 @@ trait OrderPresenter
     {
         return $this->reference;
     }
+    public function getCouponDisplayAttribute()
+    {
+        return ( $this->discount_code)?$this->discount_code.'<br>'.StoreHelper::formatPrice($this->discount_amount):'';
+    }
 
 
     static public function generateReference(){
