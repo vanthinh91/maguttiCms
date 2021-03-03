@@ -14,6 +14,7 @@ class AddProductDescriptionToOrderItems extends Migration
     public function up()
     {
         Schema::table('order_items', function (Blueprint $table) {
+            $table->string('rife', 20)->nullable();
             $table->after('product_model_code', function ($table) {
                 $table->string('product_title', 512)->nullable();
                 $table->string('product_description', 512)->nullable();
