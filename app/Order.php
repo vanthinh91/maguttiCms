@@ -19,6 +19,8 @@ class Order extends Model
 		'total_cost',
 		'billing_address_id',
 		'shipping_address_id',
+        'billing_formatted_address',
+        'shipping_formatted_address',
 		'discount_code',
 		'token',
     ];

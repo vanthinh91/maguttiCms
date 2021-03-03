@@ -161,16 +161,34 @@ class StoreController extends Controller
 		}
 	}
 
+
+
+
+
+
+
 	public function orderResult($token)
 	{
-		// session()->reflash();
-		$order = StoreHelper::getOrderByToken($token);
-		if ($order) {
-			$payment = $order->payment;
-			return view('website.store.order_result', compact('order', 'payment'));
-		}
-		else {
-			return Redirect::to('/');
-		}
+        $user = Auth::user();
+
+        $order = StoreHelper::getOrderByToken($token);
+
+        if ($order) {
+            $payment = $order->payment;
+
+            /*
+            $this->mailer
+                ->to($user->email)
+
+                ->replyTo('noreply@vvv')
+                ->notifyOrderSubmission('Nuovo ordine ', $order )
+                ->send();
+            */
+
+            return view('website.store.order_confirm', compact('order', 'payment'));
+        }
+        else {
+            return Redirect::to('/');
+        }
 	}
 }

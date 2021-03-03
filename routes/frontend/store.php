@@ -3,8 +3,11 @@
 use App\maguttiCms\Website\Controllers\Store\AddressStepController;
 use App\maguttiCms\Website\Controllers\Store\CartController;
 use App\maguttiCms\Website\Controllers\Store\ConfirmStepController;
+use App\maguttiCms\Website\Controllers\Store\OrderManageController;
 use App\maguttiCms\Website\Controllers\Store\OrderSendController;
 use App\maguttiCms\Website\Controllers\Store\PaymentMethodStepController;
+use App\maguttiCms\Website\Controllers\Store\StoreManagePaymentController;
+use App\maguttiCms\Website\Controllers\StoreController;
 
 Route::get('/cart/',        CartController::class)->middleware('storeenabled')->name('cart');
 Route::get('/cart/address', [AddressStepController::class,'view'])->middleware('storeenabled','auth')->name('cart.address');
@@ -20,15 +23,8 @@ Route::get('/order-login/', '\App\maguttiCms\Website\Controllers\StoreController
 Route::get('/order-submit/', '\App\maguttiCms\Website\Controllers\StoreController@orderSubmit')->middleware(['storeenabled']);
 
 
-Route::get('/order-send/', [OrderSendController::class,'handle'])->middleware(['storeenabled', 'auth']);
-
-
-
-
-Route::post('/order-submit/', '\App\maguttiCms\Website\Controllers\StoreController@orderCreate')->middleware(['storeenabled', 'auth']);
-
-
-
+Route::get('/order-send/', [OrderManageController::class,'handle'])->middleware(['storeenabled', 'auth'])->name('order.send');
+Route::get('/order-confirm/{token}', [StoreController::class,'orderResult'])->middleware(['storeenabled', 'auth']);
 
 
 

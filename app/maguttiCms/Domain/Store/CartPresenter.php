@@ -60,12 +60,33 @@ trait CartPresenter
 
     }
 
+    function getDiscountTotalAmount(){
+
+       return  (Storehelper::getDiscountAmount($this)) ?: 0;
+    }
+
     function cartGrandTotal()
     {
-        $product_total = StoreHelper::getCartTotal($this);
-        $discount_amount = (Storehelper::getDiscountAmount($this)) ?: 0;
+        $product_total = $this->getTotalProducts();
+        $discount_amount = $this->getDiscountTotalAmount();
         //dd(StoreHelper::calcShipping($this,20));
         return ($product_total - $discount_amount > 0) ? $product_total - $discount_amount : 0;
+    }
+    function getTotalProducts()
+    {
+        return  StoreHelper::getCartTotal($this);
+    }
+
+    function getShipping()
+    {
+
+        return null;
+    }
+
+    function getVat()
+    {
+
+        return null;
     }
 
     function getShipmentLastnameAttribute()

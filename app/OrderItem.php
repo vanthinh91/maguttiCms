@@ -8,9 +8,14 @@ class OrderItem extends Model
 		'order_id',
 		'cartitem_id',
 		'product_code',
+        'product_title',
+        'product_description',
 		'product_model_code',
 		'quantity',
-		'price'
+        'price',
+        'reduction_amount'.
+        'final_price',
+		'total_price',
     ];
     protected $fieldspec = [];
 
