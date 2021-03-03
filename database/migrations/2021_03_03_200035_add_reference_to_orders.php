@@ -15,7 +15,7 @@ class AddRifeToOrders extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             //
-            $table->string('rife',20)->unique();
+            $table->string('reference',20)->unique();
         });
     }
 

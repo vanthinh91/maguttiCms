@@ -1312,7 +1312,7 @@ DROP TABLE IF EXISTS `orders`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `orders` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `rife` varchar(20) DEFAULT NULL,
+  `reference` varchar(20) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `cart_id` int(11) NOT NULL,
   `payment_id` int(5) DEFAULT NULL,
@@ -1331,7 +1331,7 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_token_unique` (`token`),
-  UNIQUE KEY `orders_rife_unique` (`rife`)
+  UNIQUE KEY `orders_rife_unique` (`reference`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2059,4 +2059,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-03 20:11:52
+-- Dump completed on 2021-03-03 20:17:35
