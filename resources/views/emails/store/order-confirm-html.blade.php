@@ -1,32 +1,39 @@
 @extends('emails.master.html')
 @section('content')
-    Ciao Angelo Marco Asperti,
-    <h5>Riepilogo ordine #1234546789</h5>
-    Data ordine: 31/12/2020
+
+    <h2 class="order-step-title">3. {{ trans('store.cart.confirm') }}</h2>
+    <div class="row">
+        <div class="col-6">
+            <h5 class="order-step-resume-title"><b>{{ trans('store.order.shipping') }}</b></h5>
+            {!!  $cart->shipping_address->display('<br>')!!}
+        </div>
+        <div class="col-6">
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-12 mt-3">
+            <h5 class="order-step-resume-title"><b>{{ trans('store.payment.method') }}:</b> {{$cart->payment_method->title}}
+            </h5>
+
+        </div>
+    </div>
+
+    <h5>{{__('store.order.number')}} #1234546789</h5>
+    {{ trans('store.order.data') }}: 31/12/2020
     <table  class="" border="0" cellpadding="2" cellspacing="0" width="570px">
         <tbody>
         <tr>
             <td width="45%">
-                da:Simon Hass
-                Baristoteles<br>
-                Codice Cliente: 00006547<br>
-                Huelsbergstraße, 63d<br>
-                44797, Bochum<br>
-                Germany<br>
-                simon@baristoteles.de<br>
-                Tel.: 01753262221<br>
-                P. IVA: DE2895006784<br>
+                <h5 class="order-step-resume-title"><b>{{ trans('store.order.shipping') }}</b></h5>
+                {!!  $order->shipping_address->display('<br>')!!}
             </td>
             <td width="10%"></td>
             <td width="45%">
-                Indirizzo di consegna:
-                Codice:06547
-                BARISTOTELES
-                HUELSBERGSTRASSE 63D,
-                44797, BOCHUM
-                Germany
-                Riferimento Ordine:
-                Note:
+                <h5 class="order-step-resume-title"><b>{{ trans('store.order.billing') }}</b></h5>
+                {!! optional($order->display_billing_address)->display('<br>')!!}
             </td>
         </tr>
         </tbody>
