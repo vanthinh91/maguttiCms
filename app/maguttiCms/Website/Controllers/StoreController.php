@@ -124,19 +124,7 @@ class StoreController extends Controller
 		}
 	}
 
-	public function orderCancel($token)
-	{
-		// session()->reflash();
-		$order = StoreHelper::getOrderByToken($token);
-		if ($order) {
-			$payment = $order->payment;
-			StoreHelper::getCancelPayment($payment);
-			return Redirect::to($order->getPermalink());
-		}
-		else {
-			return Redirect::to('/');
-		}
-	}
+
 
 	public function orderConfirm(Request $request, $token)
 	{
@@ -151,6 +139,7 @@ class StoreController extends Controller
 			return Redirect::to(url_locale('/order-payment-result/'.$order->token));
 		}
 		$response = StoreHelper::confirmPayment($payment, $request);
+		dd($response);
 		if ($response) {
 			session()->flash('error', $response);
 			return Redirect::to(url_locale('/order-payment-result/'.$order->token));
@@ -160,6 +149,11 @@ class StoreController extends Controller
 			return Redirect::to(url_locale('/order-payment-result/'.$order->token));
 		}
 	}
+
+
+
+
+
 
 
 

@@ -6,6 +6,7 @@
             <div class="row">
                 <div class="col-12 col-md-8">
                     <div class="card order-step box-shadow p-2">
+
                         @include('website.store.cart_step')
                         @include('website.store.cart_confirm')
                         <div class="d-flex justify-content-end mt-3">

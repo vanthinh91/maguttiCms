@@ -7,10 +7,12 @@ use	App\maguttiCms\Tools\StoreHelper;
 class Order extends Model
 {
     use OrderPresenter;
+    const ORDER_STATUS_SENT =1;
     protected $fillable = [
 		'user_id',
 		'cart_id',
 		'payment_id',
+		'status_id',
         'reference',
 		'products_cost',
 		'shipping_cost',
@@ -95,6 +97,5 @@ class Order extends Model
 		else
 			return '';
 	}
-
 
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddReferenceToOrders extends Migration
+class AddStatusIdToOrders extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,10 @@ class AddReferenceToOrders extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             //
-            $table->string('reference',20)->unique();
+
+            $table->after('id', function ($table) {
+                $table->bigInteger('status_id')->nullable();
+            });
         });
     }
 

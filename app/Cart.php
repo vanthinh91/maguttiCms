@@ -21,6 +21,13 @@ class Cart extends Model
 
     public $sluggable = [];
 
+
+    public function getRouteKeyName()
+    {
+        return 'token';
+    }
+
+
     public function user()
     {
         return $this->belongsTo('App\User');

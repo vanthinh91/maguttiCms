@@ -9,10 +9,11 @@ use App\Country;
 
 use App\maguttiCms\Domain\Store\Action\UpdateCartAddressAction;
 use App\maguttiCms\Tools\StoreHelper;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 
-class ConfirmStepController extends  CartStepController
+class OrderPaymentController extends  CartStepController
 {
 
     public function __construct()
@@ -20,15 +21,22 @@ class ConfirmStepController extends  CartStepController
 
     }
 
-    public function view()
+    public function orderPaymentConfirm(Request $request)
     {
-        $cart = $this->getCart();
-        if(optional($cart)->hasStep()) {
-            $countries = Country::list()->get();
-            $payment_methods = StoreHelper::getPaymentMethods();
-            return view('website.store.step_corfirm_order', compact('cart', 'countries', 'payment_methods'));
+
+        $response = StoreHelper::confirmPayment('paypal', $request);
+
+        if (!is_object($response)) {
+            session()->flash('error', $response);
+
+            $cart = StoreHelper::getSessionCart();
+            return Redirect::to(url_locale('/order-payment-cancel/'.$cart->token));
         }
-        return $this->handleMissingStep();
+        else {
+
+            session()->flash('success', trans('store.alerts.payment_success'));
+            return Redirect::to(url_locale('/order-confirm/'.$response->token));
+        }
 
     }
 

@@ -59,6 +59,7 @@ return [
         'payment_fail' => 'Pagamento fallito',
         'payment_already_paid' => 'Ordine Già pagato',
         'payment_success' => 'Pagamento avvenuto con successo',
+        'payment_cancel' => 'La tua richiesta di pagamento è stato annullata',
     ],
 
     'order' => [

@@ -451,7 +451,8 @@ class StoreHelper {
             'discount_amount'	  => $cart->getDiscountTotalAmount(),
             'discount_code'		  => $cart->discount_code,
             'token'               => Str::random(32),
-            'reference'           => Order::generateReference()
+            'reference'           => Order::generateReference(),
+            'status_id'           => Order::ORDER_STATUS_SENT
         ]);
 
 
@@ -521,17 +522,7 @@ class StoreHelper {
 		return ($payment)? $payment: false;
 	}
 
-	public static function getPaypalPaymentOptions()
-	{
-		$options = [
-		    'BRANDNAME' => config('maguttiCms.website.options.app.name'),
-		    'LOGOIMG' => asset('/website/images/logo.png'),
-		    'CHANNELTYPE' => 'Merchant',
-			'SOLUTIONTYPE' => 'Sole'
-		];
 
-		return $options;
-	}
 
 	public static function getPaypalPaymentData($order, $id)
 	{
@@ -589,59 +580,51 @@ class StoreHelper {
 		return $data;
 	}
 
-	public static function processPayment($payment)
-	{
-		switch ($payment->payment_method->code) {
-            case 'bank':
-                return [
-                    'status' => 'ok',
-                    'text' => trans('store.payment.waiting')
-                ];
+    public static function processPayment($payment)
+    {
+        switch ($payment) {
+            case 'paypal':
+                $provider = new GFExpressCheckout;
+
+                $provider->setCurrency(config('maguttiCms.store.currency'));
+                $options = PayPalHelper::getPaypalPaymentOptions();
+
+
+                $cart = StoreHelper::getSessionCart();
+
+                $data = PayPalHelper::getPaypalPaymentData($cart);
+
+                $data['items'] = [];
+
+
+                $response = $provider->addOptions($options)->setSimpleExpressCheckout($data,'false');
+
+                if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
+                    return [
+                        'status' => 'ok',
+                        'text' => $response['paypal_link']
+                    ];
+                } else {
+
+                    $payment->notes = $response['L_LONGMESSAGE0'];
+                    $payment->save();
+                    $payment->delete();
+
+                    return [
+                        'status' => 'fail',
+                        'text' => $response['L_LONGMESSAGE0']
+                    ];
+                }
                 break;
-			case 'cash_on_delivery':
-            case 'bank':
-                return [
-                    'status' => 'ok',
-                    'text' => trans('store.payment.waiting')
-                ];
-                break;
-
-
-			case 'paypal':
-				$provider = new GFExpressCheckout;
-				$provider->setCurrency(config('maguttiCms.store.currency'));
-				$options = self::getPaypalPaymentOptions();
-				$order = $payment->order;
-				$payment->code = $order->id.'-'.Str::random(10);
-				$payment->save();
-				$data = self::getPaypalPaymentData($order, $payment->code);
-				$response = $provider->addOptions($options)->setExpressCheckout($data);
-				if (in_array(strtoupper($response['ACK']), ['SUCCESS','SUCCESSWITHWARNING'])) {
-					return [
-						'status' => 'ok',
-						'text' => $response['paypal_link']
-					];
-	            }
-	            else {
-	                $payment->notes = $response['L_LONGMESSAGE0'];
-	                $payment->save();
-					$payment->delete();
-
-	                return [
-						'status' => 'fail',
-						'text' => $response['L_LONGMESSAGE0']
-					];
-		        }
-				break;
-		}
-	}
+        }
+    }
 
 	public static function getCancelPayment($payment)
 	{
 		$payment->delete();
 	}
 
-	public static function confirmPayment($payment, $request)
+	public static function confirmPaymentFull($payment, $request)
 	{
 		switch ($payment->payment_method->code) {
 			case 'bank':
@@ -677,6 +660,36 @@ class StoreHelper {
 				break;
 		}
 	}
+
+
+    public static function confirmPayment($payment, $request)
+    {
+        switch ($payment) {
+            case 'bank':
+                break;
+            case 'paypal':
+                $token = $request->get('token');
+                $PayerID = $request->get('PayerID');
+
+                $cart = StoreHelper::getSessionCart();
+
+                $data = PayPalHelper::getPaypalPaymentData($cart);
+                $provider = new GFExpressCheckout;
+                $provider->setCurrency(config('maguttiCms.store.currency'));
+
+                $response = $provider->getExpressCheckoutDetails($token);
+
+                $result = PayPalHelper::makePaypalPayment($cart,$response,$token,$PayerID);
+
+                return $result;
+
+
+
+                break;
+        }
+    }
+
+
 
 
 }

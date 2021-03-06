@@ -40,7 +40,7 @@ CREATE TABLE `addresses` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +49,7 @@ CREATE TABLE `addresses` (
 
 LOCK TABLES `addresses` WRITE;
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
-INSERT INTO `addresses` VALUES (1,'Angelo','Asperti',1,'Vicolo S urbano 4','4','24057','Martinengo','BG',109,'3385766907','','marcoasperti@gmail.com',NULL,'2021-03-06 09:56:21','2021-03-06 09:56:21');
+INSERT INTO `addresses` VALUES (1,'Angelo','Asperti',1,'Vicolo S urbano 4','4','24057','Martinengo','BG',3,'3385766907','','marcoasperti@gmail.com',NULL,'2021-03-03 20:16:46','2021-03-03 20:57:21'),(2,'Angelo','Asperti',1,'Vicolo S urbano 4','4','24057','Martinengo','BG',109,'3385766907','','marcoasperti@gmail.com',NULL,'2021-03-06 07:14:01','2021-03-06 07:14:01'),(3,'Angelo','Asperti',1,'Vicolo S urbano 4','4','24057','Martinengo','BG',3,'3385766907','','marcoasperti@gmail.com',NULL,'2021-03-06 07:15:40','2021-03-06 07:39:04'),(4,'Angelo','Asperti',1,'Vicolo S urbano 4','4','24057','Martinengo','BG',3,'3385766907','','marcoasperti@gmail.com',NULL,'2021-03-06 08:38:51','2021-03-06 08:38:51'),(5,'Angelo','Asperti',1,'Vicolo S urbano 4','4','24057','Martinengo','BG',109,'3385766907','','marcoasperti@gmail.com',NULL,'2021-03-06 08:42:19','2021-03-06 08:42:19'),(6,'Angelo','Asperti',1,'Vicolo S urbano 4','4','24057','Martinengo','BG',109,'3385766907','','marcoasperti@gmail.com',NULL,'2021-03-06 08:45:38','2021-03-06 08:45:38'),(7,'Angelo','Asperti',1,'Vicolo S urbano 4','4','24057','Martinengo','BG',3,'3385766907','','marcoasperti@gmail.com',NULL,'2021-03-06 08:52:05','2021-03-06 08:52:05'),(8,'Angelo','Marco',1,'Vicolo S urbano 4','4','24057','Martinengo','Bergamo',109,'3385766907','','fatturazione@magutti.com',NULL,'2021-03-06 08:52:32','2021-03-06 08:52:32'),(9,'Angelo','Asperti',1,'Vicolo S urbano 4','4','24057','Martinengo','BG',109,'3385766907','','marcoasperti@gmail.com',NULL,'2021-03-06 08:54:08','2021-03-06 08:54:08'),(10,'Angelo','Asperti',1,'Vicolo S urbano 4','4','24057','Martinengo','BG',109,'3385766907','','marcoasperti@gmail.com',NULL,'2021-03-06 08:56:00','2021-03-06 08:56:00'),(11,'Angelo','Asperti',1,'Vicolo S urbano 4','4','24057','Martinengo','BG',109,'3385766907','','marcoasperti@gmail.com',NULL,'2021-03-06 08:57:53','2021-03-06 08:57:53'),(12,'Angelo','Asperti',1,'Vicolo S urbano 4','4','24057','Martinengo','BG',109,'3385766907','','marcoasperti@gmail.com',NULL,'2021-03-06 08:59:59','2021-03-06 08:59:59');
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,7 +288,7 @@ CREATE TABLE `cart_items` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -297,7 +297,7 @@ CREATE TABLE `cart_items` (
 
 LOCK TABLES `cart_items` WRITE;
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
-INSERT INTO `cart_items` VALUES (1,1,'PRDB',NULL,2,'2021-03-06 09:54:36','2021-03-06 09:55:45'),(2,1,'226987',NULL,3,'2021-03-06 09:55:54','2021-03-06 09:55:54');
+INSERT INTO `cart_items` VALUES (1,1,'PRDB',NULL,5,'2021-03-03 20:16:14','2021-03-03 20:57:17'),(2,1,'PRDC',NULL,2,'2021-03-03 20:16:25','2021-03-03 20:16:25'),(3,2,'PRDB',NULL,3,'2021-03-06 07:13:06','2021-03-06 07:13:20'),(4,2,'PRDC',NULL,1,'2021-03-06 07:13:32','2021-03-06 07:13:32'),(5,3,'PRDB',NULL,1,'2021-03-06 07:15:12','2021-03-06 07:15:12'),(6,3,'PRDC',NULL,2,'2021-03-06 07:15:22','2021-03-06 07:15:22'),(7,4,'PRDB',NULL,1,'2021-03-06 08:38:36','2021-03-06 08:38:36'),(8,5,'PRDB',NULL,2,'2021-03-06 08:42:02','2021-03-06 08:42:05'),(9,6,'PRDB',NULL,1,'2021-03-06 08:45:23','2021-03-06 08:45:23'),(10,7,'PRDB',NULL,1,'2021-03-06 08:51:43','2021-03-06 08:51:43'),(11,8,'PRDB',NULL,1,'2021-03-06 08:52:20','2021-03-06 08:52:20'),(12,9,'PRDB',NULL,1,'2021-03-06 08:53:56','2021-03-06 08:53:56'),(13,10,'226987',NULL,6,'2021-03-06 08:55:34','2021-03-06 08:55:38'),(14,10,'PRDB',NULL,2,'2021-03-06 08:55:46','2021-03-06 08:55:46'),(15,11,'PRDB',NULL,1,'2021-03-06 08:57:38','2021-03-06 08:57:38'),(16,12,'PRDB',NULL,1,'2021-03-06 08:59:29','2021-03-06 08:59:29'),(17,12,'226987',NULL,3,'2021-03-06 08:59:38','2021-03-06 08:59:38');
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,7 +322,7 @@ CREATE TABLE `carts` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `token` (`token`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -331,7 +331,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
-INSERT INTO `carts` VALUES (1,'8uKARJ7fcaDwE1JR7dOHr8IOgGSlgwm6CUy8pprZEsgOhmQcAdUkBeyq$1',NULL,1,'TESTAMOUNT',1,1,1,NULL,'2021-03-06 09:54:36','2021-03-06 09:57:12');
+INSERT INTO `carts` VALUES (1,'TItJHMpgkhnrqGtUvaumbbqaPIYCTsNNdicQGSXgshfbHC0ldEr27kD5$1',NULL,1,'TESTAMOUNT',1,1,3,NULL,'2021-03-03 20:16:14','2021-03-03 20:57:25'),(2,'VcHAbRi1nssObplK95XEgAcTGYIgdQoOZl0OFG2L26larNzg0jvhpXjd$2',NULL,2,'TESTAMOUNT',1,1,2,NULL,'2021-03-06 07:13:06','2021-03-06 07:15:03'),(3,'X0CGoEeKhdbe95JcIsycKNuCOmg6hTNLReu5ohc79mcEWCfMmnTCZwsC$3',NULL,3,'TESTAMOUNT',1,1,1,NULL,'2021-03-06 07:15:12','2021-03-06 08:33:40'),(4,'JLZyEQ6lgCHtnRs8nVyGCGKcYUKscmq5JtC4PmsSNlBKLsgipR4rNIV3$4',NULL,4,NULL,1,1,1,NULL,'2021-03-06 08:38:36','2021-03-06 08:39:29'),(5,'CXGAct6FuTwxnfcGkMChOUbDt9jzp2DZHKn6i8neGrAY68TA6JiD3jju$5',NULL,5,NULL,1,1,2,NULL,'2021-03-06 08:42:02','2021-03-06 08:42:41'),(6,'uWME0fbDuNB4gTmQmhTT6pyxLPnWisYo5C6gadCmSDZTUI2YTHyry53y$6',NULL,6,NULL,1,1,1,NULL,'2021-03-06 08:45:23','2021-03-06 08:46:04'),(7,'nQy1uDV2HWRzZHUbvIlPXg0n87N7BPxM02wwJWi5o0WQlmHerNtQQtYR$7',NULL,7,NULL,1,1,2,NULL,'2021-03-06 08:51:43','2021-03-06 08:52:13'),(8,'5eMV53eVqGq7GwQHw9JezUkUekVdMEHadN2tgmHJK6xcnIZAzH04k13V$8',NULL,8,NULL,1,1,1,NULL,'2021-03-06 08:52:20','2021-03-06 08:52:54'),(9,'B0EpwsUKadZM78ccW1l4uvbGjueStDa9lskAKWZTIdRu6V3LbOGViqVo$9',NULL,9,NULL,1,1,1,NULL,'2021-03-06 08:53:56','2021-03-06 08:54:30'),(10,'fjo2iGdrNRz4JNRpLRZzUQOxrkKCaQP2oy4sWhL2qqPO6OJf1oCXdnUY$10',NULL,10,'TESTAMOUNT',1,1,1,NULL,'2021-03-06 08:55:34','2021-03-06 08:56:31'),(11,'n4an7sxNZndYrrXDFPnryyxuvK4kqwcBmeTamuO7J9OGT8JXREpl8Czr$11',NULL,11,NULL,1,1,1,NULL,'2021-03-06 08:57:38','2021-03-06 08:58:50'),(12,'G2qbEJaoF3UXw14mpG7oCO5rfvtZslPOpcTlFMAuHEeqr02PHYsrjbGP$12',NULL,12,'TESTAMOUNT',1,1,1,NULL,'2021-03-06 08:59:29','2021-03-06 09:00:25');
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1131,7 +1131,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1140,7 +1140,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9),(91,'2020_12_26_091719_create_projects_table',10),(92,'2020_12_31_173718_create_jobs_table',11),(93,'2021_02_14_193356_create_payment_methods_table',12),(94,'2021_02_21_091926_add_discount_type_to_discounts_table',13),(95,'2021_03_03_151238_add_formatted_address_to_orders',14),(96,'2021_03_03_151905_add_product_description_to_order_items',14),(97,'2021_03_03_200035_add_reference_to_orders',15),(98,'2021_03_03_200109_add_token_to_carts',15),(99,'2021_03_06_103703_add_status_id_to_orders',16),(100,'2021_03_06_103958_create_order_status_table',17);
+INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9),(91,'2020_12_26_091719_create_projects_table',10),(92,'2020_12_31_173718_create_jobs_table',11),(93,'2021_02_14_193356_create_payment_methods_table',12),(94,'2021_02_21_091926_add_discount_type_to_discounts_table',13),(95,'2021_03_03_151238_add_formatted_address_to_orders',14),(96,'2021_03_03_151905_add_product_description_to_order_items',14),(97,'2021_03_03_200035_add_rife_to_orders',15),(98,'2021_03_03_200109_add_token_to_carts',15);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1294,7 +1294,7 @@ CREATE TABLE `order_items` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `rife` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1303,68 +1303,8 @@ CREATE TABLE `order_items` (
 
 LOCK TABLES `order_items` WRITE;
 /*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
-INSERT INTO `order_items` VALUES (1,1,1,'PRDB','','Prodotto B','PRDB Prodotto B',2,20,NULL,NULL,40.000,'2021-03-06 09:57:12','2021-03-06 09:57:12',NULL),(2,1,2,'226987','','Prodotto XXX','226987 Prodotto XXX',3,12.25,NULL,NULL,36.750,'2021-03-06 09:57:12','2021-03-06 09:57:12',NULL);
+INSERT INTO `order_items` VALUES (1,1,1,'PRDB','','Prodotto B','PRDB Prodotto B',1,20,NULL,NULL,20.000,'2021-03-03 20:16:52','2021-03-03 20:16:52',NULL),(2,1,2,'PRDC','','Prodotto C','PRDC Prodotto C',2,30,NULL,NULL,60.000,'2021-03-03 20:16:52','2021-03-03 20:16:52',NULL),(3,2,1,'PRDB','','Product B','PRDB Product B',2,20,NULL,NULL,40.000,'2021-03-03 20:21:22','2021-03-03 20:21:22',NULL),(4,2,2,'PRDC','','Product Category table','PRDC Product Category table',2,30,NULL,NULL,60.000,'2021-03-03 20:21:22','2021-03-03 20:21:22',NULL),(5,3,1,'PRDB','','Product B','PRDB Product B',2,20,NULL,NULL,40.000,'2021-03-03 20:22:16','2021-03-03 20:22:16',NULL),(6,3,2,'PRDC','','Product Category table','PRDC Product Category table',2,30,NULL,NULL,60.000,'2021-03-03 20:22:16','2021-03-03 20:22:16',NULL),(7,4,1,'PRDB','','Prodotto B','PRDB Prodotto B',5,20,NULL,NULL,100.000,'2021-03-03 20:57:25','2021-03-03 20:57:25',NULL),(8,4,2,'PRDC','','Prodotto C','PRDC Prodotto C',2,30,NULL,NULL,60.000,'2021-03-03 20:57:25','2021-03-03 20:57:25',NULL),(9,5,3,'PRDB','','Prodotto B','PRDB Prodotto B',3,20,NULL,NULL,60.000,'2021-03-06 07:15:03','2021-03-06 07:15:03',NULL),(10,5,4,'PRDC','','Prodotto C','PRDC Prodotto C',1,30,NULL,NULL,30.000,'2021-03-06 07:15:03','2021-03-06 07:15:03',NULL),(11,6,5,'PRDB','','Prodotto B','PRDB Prodotto B',1,20,NULL,NULL,20.000,'2021-03-06 08:33:40','2021-03-06 08:33:40',NULL),(12,6,6,'PRDC','','Prodotto C','PRDC Prodotto C',2,15.25,NULL,NULL,30.500,'2021-03-06 08:33:40','2021-03-06 08:33:40',NULL),(13,7,7,'PRDB','','Prodotto B','PRDB Prodotto B',1,20,NULL,NULL,20.000,'2021-03-06 08:39:29','2021-03-06 08:39:29',NULL),(14,8,8,'PRDB','','Prodotto B','PRDB Prodotto B',2,20,NULL,NULL,40.000,'2021-03-06 08:42:41','2021-03-06 08:42:41',NULL),(15,9,9,'PRDB','','Prodotto B','PRDB Prodotto B',1,20,NULL,NULL,20.000,'2021-03-06 08:46:04','2021-03-06 08:46:04',NULL),(16,10,10,'PRDB','','Prodotto B','PRDB Prodotto B',1,20,NULL,NULL,20.000,'2021-03-06 08:52:13','2021-03-06 08:52:13',NULL),(17,11,11,'PRDB','','Prodotto B','PRDB Prodotto B',1,20,NULL,NULL,20.000,'2021-03-06 08:52:54','2021-03-06 08:52:54',NULL),(18,12,12,'PRDB','','Prodotto B','PRDB Prodotto B',1,20,NULL,NULL,20.000,'2021-03-06 08:54:30','2021-03-06 08:54:30',NULL),(19,13,13,'226987','','Prodotto XXX','226987 Prodotto XXX',6,12.25,NULL,NULL,73.500,'2021-03-06 08:56:31','2021-03-06 08:56:31',NULL),(20,13,14,'PRDB','','Prodotto B','PRDB Prodotto B',2,20,NULL,NULL,40.000,'2021-03-06 08:56:31','2021-03-06 08:56:31',NULL),(21,14,15,'PRDB','','Prodotto B','PRDB Prodotto B',1,20,NULL,NULL,20.000,'2021-03-06 08:58:50','2021-03-06 08:58:50',NULL),(22,15,16,'PRDB','','Prodotto B','PRDB Prodotto B',1,20,NULL,NULL,20.000,'2021-03-06 09:00:25','2021-03-06 09:00:25',NULL),(23,15,17,'226987','','Prodotto XXX','226987 Prodotto XXX',3,12.25,NULL,NULL,36.750,'2021-03-06 09:00:25','2021-03-06 09:00:25',NULL);
 /*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `order_status`
---
-
-DROP TABLE IF EXISTS `order_status`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `order_status` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `sort` int(11) DEFAULT NULL,
-  `pub` tinyint(4) DEFAULT '1',
-  `created_by` int(11) NOT NULL,
-  `updated_by` int(10) unsigned NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `order_status`
---
-
-LOCK TABLES `order_status` WRITE;
-/*!40000 ALTER TABLE `order_status` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order_status` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `order_status_translations`
---
-
-DROP TABLE IF EXISTS `order_status_translations`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `order_status_translations` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `order_status_id` int(10) unsigned NOT NULL,
-  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `order_status_translations_order_status_id_locale_unique` (`order_status_id`,`locale`),
-  CONSTRAINT `order_status_translations_order_status_id_foreign` FOREIGN KEY (`order_status_id`) REFERENCES `order_status` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `order_status_translations`
---
-
-LOCK TABLES `order_status_translations` WRITE;
-/*!40000 ALTER TABLE `order_status_translations` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order_status_translations` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1376,7 +1316,6 @@ DROP TABLE IF EXISTS `orders`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `orders` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `status_id` bigint(20) DEFAULT NULL,
   `reference` varchar(20) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `cart_id` int(11) NOT NULL,
@@ -1397,7 +1336,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_token_unique` (`token`),
   UNIQUE KEY `orders_rife_unique` (`reference`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1406,7 +1345,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,'3MHRKPKA',1,1,NULL,76.7500,NULL,10.0000,NULL,66.7500,1,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',1,'TESTAMOUNT','FThIc8AG07mZezTqaw4sFAFpbOgyKvmV','2021-03-06 09:57:12','2021-03-06 09:57:12');
+INSERT INTO `orders` VALUES (1,'NFTKSIIN',1,1,NULL,80.0000,NULL,10.0000,NULL,70.0000,1,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',1,'TESTAMOUNT','FkpOUV3yR1bAi9fxv36vCahboXaLTKeM','2021-03-03 20:16:52','2021-03-03 20:16:52'),(2,'F2FE1P6K',1,1,NULL,100.0000,NULL,10.0000,NULL,90.0000,1,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',1,'TESTAMOUNT','s9lEzPzWVyTXxApwdbgCvZc9MFrlGdvF','2021-03-03 20:21:22','2021-03-03 20:21:22'),(3,'KB8FN2J9',1,1,NULL,100.0000,NULL,10.0000,NULL,90.0000,1,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',1,NULL,'utpcFkiS2aR7MvJQVnm6rnTCsreCf27F','2021-03-03 20:22:16','2021-03-03 20:44:06'),(4,'E207TVUN',1,1,NULL,160.0000,NULL,10.0000,NULL,150.0000,1,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Afghanistan<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Afghanistan<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',1,'TESTAMOUNT','E5czY6IEFcXtZyORFk72ktrdbjKVBWTE','2021-03-03 20:57:25','2021-03-03 20:57:25'),(5,'KGYHUZHU',1,2,NULL,90.0000,NULL,10.0000,NULL,80.0000,2,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',2,'TESTAMOUNT','JlFRggEqSrV0Lm79Af2kSSxbdy10CHIs','2021-03-06 07:15:03','2021-03-06 07:15:03'),(6,'I3DQMKHJ',1,3,NULL,50.5000,NULL,10.0000,NULL,40.5000,3,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Afghanistan<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Afghanistan<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',3,'TESTAMOUNT','1mFIANVMy23yMHUOSNQcY9QkrizFXYGu','2021-03-06 08:33:40','2021-03-06 08:33:40'),(7,'FMCOD7SI',1,4,NULL,20.0000,NULL,0.0000,NULL,20.0000,4,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Afghanistan<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Afghanistan<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',4,NULL,'JWNSUuxU86QnoGP5URiEECx0imSYqTQv','2021-03-06 08:39:29','2021-03-06 08:39:29'),(8,'O5K9XVQC',1,5,NULL,40.0000,NULL,0.0000,NULL,40.0000,5,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',5,NULL,'1IraqZ4Z1VRnALqSEWhs1MYJPg7pJBD2','2021-03-06 08:42:41','2021-03-06 08:42:41'),(9,'ER6EPV3Z',1,6,NULL,20.0000,NULL,0.0000,NULL,20.0000,6,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',6,NULL,'gfwl9VWO677X9gnGBYl3vEQ7nEsqjS5j','2021-03-06 08:46:04','2021-03-06 08:46:04'),(10,'QXUKBCMY',1,7,NULL,20.0000,NULL,0.0000,NULL,20.0000,7,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Afghanistan<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Afghanistan<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',7,NULL,'JVw7kHr6ht6jEMiGbUuy2o9rs8LHgjTZ','2021-03-06 08:52:13','2021-03-06 08:52:13'),(11,'SMG3T659',1,8,NULL,20.0000,NULL,0.0000,NULL,20.0000,8,'Angelo Marco<br>Vicolo S urbano 4, 4<br>24057 Martinengo (Bergamo)<br>Italy<br>Tel: 3385766907<br>Email: fatturazione@magutti.com','Angelo Marco<br>Vicolo S urbano 4, 4<br>24057 Martinengo (Bergamo)<br>Italy<br>Tel: 3385766907<br>Email: fatturazione@magutti.com',8,NULL,'UhTicVSMN4yAgPapnGjbgiuSTDVx6Ukv','2021-03-06 08:52:54','2021-03-06 08:52:54'),(12,'GU01AY1K',1,9,NULL,20.0000,NULL,0.0000,NULL,20.0000,9,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',9,NULL,'gZi4QMdE5NpSEEILfZprnBa17DtKSHLU','2021-03-06 08:54:30','2021-03-06 08:54:30'),(13,'Y00OUL68',1,10,NULL,113.5000,NULL,10.0000,NULL,103.5000,10,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',10,'TESTAMOUNT','QRHCPTRXIq8dUt5pnlnq4lXEGQZrRycv','2021-03-06 08:56:31','2021-03-06 08:56:31'),(14,'EFVBUVXY',1,11,NULL,20.0000,NULL,0.0000,NULL,20.0000,11,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',11,NULL,'AYtvWkbEGpF4Fl7pN8eNYrD9RmEs7UHA','2021-03-06 08:58:50','2021-03-06 08:58:50'),(15,'AJARLW0O',1,12,NULL,56.7500,NULL,10.0000,NULL,46.7500,12,'Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com','Angelo Asperti<br>Vicolo S urbano 4, 4<br>24057 Martinengo (BG)<br>Italy<br>Tel: 3385766907<br>Email: marcoasperti@gmail.com',12,'TESTAMOUNT','3NQGi3QHVjJIXGtmnRsTtg8hmhUCySjx','2021-03-06 09:00:25','2021-03-06 09:00:25');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1464,7 +1403,7 @@ CREATE TABLE `payment_method_translations` (
 
 LOCK TABLES `payment_method_translations` WRITE;
 /*!40000 ALTER TABLE `payment_method_translations` DISABLE KEYS */;
-INSERT INTO `payment_method_translations` VALUES (1,'en','Paypal','<p>Thank you for ordering.</p>',NULL,'2021-02-14 18:45:03','2021-03-06 09:58:25',1),(2,'it','Paypal','<p>Grazie per aver ordinato.</p>',NULL,'2021-02-14 18:45:03','2021-03-06 09:58:25',1),(3,'es',NULL,NULL,NULL,'2021-02-14 18:45:03','2021-02-14 18:45:03',1),(4,'fr',NULL,NULL,NULL,'2021-02-14 18:45:03','2021-02-14 18:45:03',1),(5,'en','Bank Transfer','<p>Grazie per aver ordinato, di seguito sono indicate le coordinate bancarie necessario per effettuare il bonifico bancario.<br />Per velocizzare i tempi di consegna una volta effettuato il bonifico chiediamo gentilmente di:</p>\r\n<ul class=\"mt-2\">\r\n<li>inviare copia della ricevuta via mail all\'indirizzo <a class=\"text-primary\" href=\"mailto:[order_email]\">[order_email]</a></li>\r\n<li>Indicare nella causale il seguente codice ordine <span class=\"text-accent\">[reference]</span></li>\r\n</ul>\r\n<hr />\r\n<div class=\"my-2\"><span class=\"font-weight-bold\">Intestatario:</span> xxxxxxxxx<br /><span class=\"font-weight-bold\">IBAN:</span> xxxxxx<br /><span class=\"font-weight-bold\">BIC/SWIFT:</span> xxxxxxx<br /><span class=\"font-weight-bold\">Istituto Bancario:</span> xxxxx</div>',NULL,'2021-02-14 18:45:43','2021-03-03 20:01:58',2),(6,'it','Bonifico','<p>Grazie per aver ordinato, di seguito sono indicate le coordinate bancarie necessario per effettuare il bonifico bancario.<br />Per velocizzare i tempi di consegna una volta effettuato il bonifico chiediamo gentilmente di:</p>\r\n<ul class=\"mt-2\">\r\n<li>inviare copia della ricevuta via mail all\'indirizzo <a class=\"text-primary\" href=\"mailto:[order_email]\">[order_email]</a></li>\r\n<li>Indicare nella causale il seguente codice ordine <span class=\"text-accent\">[reference]</span></li>\r\n</ul>\r\n<hr />\r\n<div class=\"my-2\"><span class=\"font-weight-bold\">Intestatario:</span> xxxxxxxxx<br /><span class=\"font-weight-bold\">IBAN:</span> xxxxxx<br /><span class=\"font-weight-bold\">BIC/SWIFT:</span> xxxxxxx<br /><span class=\"font-weight-bold\">Istituto Bancario:</span> xxxxx</div>',NULL,'2021-02-14 18:45:43','2021-03-03 20:01:58',2),(7,'es',NULL,NULL,NULL,'2021-02-14 18:45:43','2021-02-14 18:45:43',2),(8,'fr',NULL,NULL,NULL,'2021-02-14 18:45:43','2021-02-14 18:45:43',2),(9,'en','Cash on delivery','<p>Grazie per aver ordinato, <br />Pagerai In contrassegno al ricevimento della merce.</p>',NULL,'2021-02-14 18:46:36','2021-03-03 20:02:49',3),(10,'it','Contrassegno','<p>Grazie per aver ordinato, <br />Pagerai In contrassegno al ricevimento della merce.</p>',NULL,'2021-02-14 18:46:36','2021-03-03 20:02:49',3),(11,'es',NULL,NULL,NULL,'2021-02-14 18:46:36','2021-02-14 18:46:36',3),(12,'fr',NULL,NULL,NULL,'2021-02-14 18:46:36','2021-02-14 18:46:36',3);
+INSERT INTO `payment_method_translations` VALUES (1,'en','Paypal','<p>Thank you for ordering, within the user profile it will be possible to view the status of the order.</p>',NULL,'2021-02-14 18:45:03','2021-03-03 19:58:26',1),(2,'it','Paypal','<p>Grazie per aver ordinato, all\'interno del profilo utente sar&agrave; possibile visionare lo stato dell\'ordine.</p>',NULL,'2021-02-14 18:45:03','2021-03-03 19:58:26',1),(3,'es',NULL,NULL,NULL,'2021-02-14 18:45:03','2021-02-14 18:45:03',1),(4,'fr',NULL,NULL,NULL,'2021-02-14 18:45:03','2021-02-14 18:45:03',1),(5,'en','Bank Transfer','<p>Grazie per aver ordinato, di seguito sono indicate le coordinate bancarie necessario per effettuare il bonifico bancario.<br />Per velocizzare i tempi di consegna una volta effettuato il bonifico chiediamo gentilmente di:</p>\r\n<ul class=\"mt-2\">\r\n<li>inviare copia della ricevuta via mail all\'indirizzo <a class=\"text-primary\" href=\"mailto:[order_email]\">[order_email]</a></li>\r\n<li>Indicare nella causale il seguente codice ordine <span class=\"text-accent\">[reference]</span></li>\r\n</ul>\r\n<hr />\r\n<div class=\"my-2\"><span class=\"font-weight-bold\">Intestatario:</span> xxxxxxxxx<br /><span class=\"font-weight-bold\">IBAN:</span> xxxxxx<br /><span class=\"font-weight-bold\">BIC/SWIFT:</span> xxxxxxx<br /><span class=\"font-weight-bold\">Istituto Bancario:</span> xxxxx</div>',NULL,'2021-02-14 18:45:43','2021-03-03 20:01:58',2),(6,'it','Bonifico','<p>Grazie per aver ordinato, di seguito sono indicate le coordinate bancarie necessario per effettuare il bonifico bancario.<br />Per velocizzare i tempi di consegna una volta effettuato il bonifico chiediamo gentilmente di:</p>\r\n<ul class=\"mt-2\">\r\n<li>inviare copia della ricevuta via mail all\'indirizzo <a class=\"text-primary\" href=\"mailto:[order_email]\">[order_email]</a></li>\r\n<li>Indicare nella causale il seguente codice ordine <span class=\"text-accent\">[reference]</span></li>\r\n</ul>\r\n<hr />\r\n<div class=\"my-2\"><span class=\"font-weight-bold\">Intestatario:</span> xxxxxxxxx<br /><span class=\"font-weight-bold\">IBAN:</span> xxxxxx<br /><span class=\"font-weight-bold\">BIC/SWIFT:</span> xxxxxxx<br /><span class=\"font-weight-bold\">Istituto Bancario:</span> xxxxx</div>',NULL,'2021-02-14 18:45:43','2021-03-03 20:01:58',2),(7,'es',NULL,NULL,NULL,'2021-02-14 18:45:43','2021-02-14 18:45:43',2),(8,'fr',NULL,NULL,NULL,'2021-02-14 18:45:43','2021-02-14 18:45:43',2),(9,'en','Cash on delivery','<p>Grazie per aver ordinato, <br />Pagerai In contrassegno al ricevimento della merce.</p>',NULL,'2021-02-14 18:46:36','2021-03-03 20:02:49',3),(10,'it','Contrassegno','<p>Grazie per aver ordinato, <br />Pagerai In contrassegno al ricevimento della merce.</p>',NULL,'2021-02-14 18:46:36','2021-03-03 20:02:49',3),(11,'es',NULL,NULL,NULL,'2021-02-14 18:46:36','2021-02-14 18:46:36',3),(12,'fr',NULL,NULL,NULL,'2021-02-14 18:46:36','2021-02-14 18:46:36',3);
 /*!40000 ALTER TABLE `payment_method_translations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1519,7 +1458,7 @@ CREATE TABLE `payments` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1528,7 +1467,7 @@ CREATE TABLE `payments` (
 
 LOCK TABLES `payments` WRITE;
 /*!40000 ALTER TABLE `payments` DISABLE KEYS */;
-INSERT INTO `payments` VALUES (1,1,1,1,'','4N46586853311934X','Completed','2021-03-06 09:57:12','2021-03-06 09:57:12',NULL);
+INSERT INTO `payments` VALUES (1,1,2,NULL,'','',NULL,'2021-03-03 20:16:52','2021-03-03 20:16:52',NULL),(2,2,3,1,'','',NULL,'2021-03-03 20:21:22','2021-03-03 20:34:21',NULL),(3,3,3,1,'','',NULL,'2021-03-03 20:22:16','2021-03-03 20:34:23',NULL),(4,4,3,NULL,'','',NULL,'2021-03-03 20:57:25','2021-03-03 20:57:25',NULL),(5,5,2,NULL,'','',NULL,'2021-03-06 07:15:03','2021-03-06 07:15:03',NULL),(6,7,1,1,'','1V4558274F805291M','Completed','2021-03-06 08:39:29','2021-03-06 08:39:29',NULL),(7,8,2,NULL,'','',NULL,'2021-03-06 08:42:41','2021-03-06 08:42:41',NULL),(8,9,1,1,'','2K607294UA276220U','Completed','2021-03-06 08:46:04','2021-03-06 08:46:04',NULL),(9,10,2,NULL,'','',NULL,'2021-03-06 08:52:13','2021-03-06 08:52:13',NULL),(10,11,1,1,'','975308369J7461526','Completed','2021-03-06 08:52:54','2021-03-06 08:52:54',NULL),(11,12,1,1,'','8X867552E0555103W','Completed','2021-03-06 08:54:30','2021-03-06 08:54:30',NULL),(12,13,1,1,'','6N00877837676670M','Completed','2021-03-06 08:56:31','2021-03-06 08:56:31',NULL),(13,14,1,1,'','7TA50867T79663147','Completed','2021-03-06 08:58:50','2021-03-06 08:58:50',NULL),(14,15,1,1,'','5Y016749BE8362506','Completed','2021-03-06 09:00:25','2021-03-06 09:00:25',NULL);
 /*!40000 ALTER TABLE `payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1725,7 +1664,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'PRDA',1,'','','',NULL,10,'prodotto1.jpeg',NULL,NULL,0,1,NULL,NULL,0,'2017-08-02 10:09:39','2020-08-22 14:14:52'),(2,'PRDB',2,'','','',NULL,20,'B.png',NULL,'',10,1,NULL,NULL,0,'2018-06-13 14:49:32','2018-06-13 14:49:32'),(3,'PRDC',3,'','','',NULL,30,'spazzola.jpeg',NULL,NULL,0,1,NULL,NULL,0,'2018-06-13 14:50:05','2020-08-22 15:15:14'),(4,'226987',1,'','',NULL,NULL,12.25,NULL,NULL,NULL,20,1,NULL,NULL,NULL,'2020-08-21 10:34:48','2020-08-22 15:02:25');
+INSERT INTO `products` VALUES (1,'PRDA',1,'','','',NULL,10,'prodotto1.jpeg',NULL,NULL,0,1,NULL,NULL,0,'2017-08-02 10:09:39','2020-08-22 14:14:52'),(2,'PRDB',2,'','','',NULL,20,'B.png',NULL,'',10,1,NULL,NULL,0,'2018-06-13 14:49:32','2018-06-13 14:49:32'),(3,'PRDC',3,'','','',NULL,15.25,'spazzola.jpeg',NULL,NULL,0,1,NULL,NULL,0,'2018-06-13 14:50:05','2021-03-06 07:26:41'),(4,'226987',1,'','',NULL,NULL,12.25,NULL,NULL,NULL,20,1,NULL,NULL,NULL,'2020-08-21 10:34:48','2020-08-22 15:02:25');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1917,7 +1856,7 @@ CREATE TABLE `settings` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `settings_key_unique` (`key`),
   KEY `settings_id_index` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1926,7 +1865,7 @@ CREATE TABLE `settings` (
 
 LOCK TABLES `settings` WRITE;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-INSERT INTO `settings` VALUES (1,'GA_CODE','UA-','Codice  google  analitycs','GA','2016-08-09 12:01:24','2016-08-09 12:28:06'),(2,'credits_url','https://magutti.com','url credits','webiste','2016-08-09 12:29:05','2016-12-29 14:35:06'),(3,'GMAPS_KEY','','Google maps apy key','','2016-12-27 17:28:54','2016-12-29 09:24:44'),(4,'iubenda_code_it',NULL,'','','2018-06-05 07:08:21','2019-05-11 12:06:46'),(5,'iubenda_code_en',NULL,'','','2018-06-05 07:10:35','2019-05-11 12:06:47'),(6,'iubenda_site',NULL,'','','2018-06-05 07:10:49','2019-05-11 12:07:00'),(7,'captcha_site','','','','2018-08-10 15:00:00','2018-08-10 15:00:00'),(8,'captcha_secret','','','','2018-08-10 15:00:00','2018-08-10 15:00:00'),(9,'LNG','9.432586','google maps longitude','GMAPS','2019-05-01 06:53:24','2019-05-11 12:08:00'),(10,'LAT','46.138065','google maps latitude','GMAPS','2019-05-01 06:55:27','2019-05-11 12:08:16'),(11,'THEME_COLOR','#9a9c00','name=\"theme-color\" content=\"THEME_COLOR\"','THEME','2019-05-02 18:04:54','2019-05-02 18:13:52'),(12,'debug','1','Store in debug mode','store','2021-03-06 09:55:31','2021-03-06 09:55:31');
+INSERT INTO `settings` VALUES (1,'GA_CODE','UA-','Codice  google  analitycs','GA','2016-08-09 12:01:24','2016-08-09 12:28:06'),(2,'credits_url','https://magutti.com','url credits','webiste','2016-08-09 12:29:05','2016-12-29 14:35:06'),(3,'GMAPS_KEY','','Google maps apy key','','2016-12-27 17:28:54','2016-12-29 09:24:44'),(4,'iubenda_code_it',NULL,'','','2018-06-05 07:08:21','2019-05-11 12:06:46'),(5,'iubenda_code_en',NULL,'','','2018-06-05 07:10:35','2019-05-11 12:06:47'),(6,'iubenda_site',NULL,'','','2018-06-05 07:10:49','2019-05-11 12:07:00'),(7,'captcha_site','','','','2018-08-10 15:00:00','2018-08-10 15:00:00'),(8,'captcha_secret','','','','2018-08-10 15:00:00','2018-08-10 15:00:00'),(9,'LNG','9.432586','google maps longitude','GMAPS','2019-05-01 06:53:24','2019-05-11 12:08:00'),(10,'LAT','46.138065','google maps latitude','GMAPS','2019-05-01 06:55:27','2019-05-11 12:08:16'),(11,'THEME_COLOR','#9a9c00','name=\"theme-color\" content=\"THEME_COLOR\"','THEME','2019-05-02 18:04:54','2019-05-02 18:13:52');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2126,4 +2065,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-06 10:58:30
+-- Dump completed on 2021-03-06 10:17:41

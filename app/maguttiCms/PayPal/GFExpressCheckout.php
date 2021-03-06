@@ -118,6 +118,36 @@ class GFExpressCheckout extends ExpressCheckout
         }
     }
 
+
+    /**
+     * Function to perform SetExpressCheckout PayPal API operation.
+     *
+     * @param array $data
+     * @param bool  $subscription
+     *
+     * @return array
+     */
+    public function setSimpleExpressCheckout($data, $subscription = false)
+    {
+
+        $this->post = collect([
+            'PAYMENTREQUEST_0_AMT'              => $data['total'],
+            'PAYMENTREQUEST_0_PAYMENTACTION'    => $this->paymentAction,
+            'PAYMENTREQUEST_0_CURRENCYCODE'     => $this->currency,
+            'PAYMENTREQUEST_0_NOTETEXT'         => '',
+            'NOSHIPPING'                        => $data['noshipping'],
+            'RETURNURL'                         => $data['return_url'],
+            'CANCELURL'                         => $data['cancel_url'],
+            'LOCALE'                            => $this->locale,
+        ]);
+
+        $response = $this->doPayPalRequest('SetExpressCheckout');
+
+        return collect($response)->merge([
+            'paypal_link' => !empty($response['TOKEN']) ? $this->config['gateway_url'].'/webscr?cmd=_express-checkout&token='.$response['TOKEN'] : null,
+        ])->toArray();
+    }
+
 	/**
 	* Function to perform SetExpressCheckout PayPal API operation.
 	*
@@ -195,7 +225,7 @@ class GFExpressCheckout extends ExpressCheckout
      *
      * @return array|\Psr\Http\Message\StreamInterface
      */
-    public function doExpressCheckoutPayment($data, $token, $payerid)
+    public function doFullExpressCheckoutPayment($data, $token, $payerid)
     {
         $this->setItemSubTotal($data);
 
@@ -209,6 +239,29 @@ class GFExpressCheckout extends ExpressCheckout
             'PAYMENTREQUEST_0_CURRENCYCODE'  => $this->currency,
             'PAYMENTREQUEST_0_DESC'          => $data['invoice_description'],
             'PAYMENTREQUEST_0_INVNUM'        => $data['invoice_id'],
+            'PAYMENTREQUEST_0_NOTIFYURL'     => $this->notifyUrl,
+        ]);
+
+        $this->setShippingAmount($data);
+
+        return $this->doPayPalRequest('DoExpressCheckoutPayment');
+    }
+
+
+    public function doExpressCheckoutPayment($data, $token, $payerid)
+    {
+        $this->setItemSubTotal($data);
+
+        $this->post = $this->setCartItems($data['items'])->merge([
+            'TOKEN'                          => $token,
+            'PAYERID'                        => $payerid,
+            //          'PAYMENTREQUEST_0_ITEMAMT'       => $data['products_cost'],
+            // 'PAYMENTREQUEST_0_SHIPPINGAMT'      => $data['shipping_cost'],
+            'PAYMENTREQUEST_0_AMT'           => $data['total'],
+            'PAYMENTREQUEST_0_PAYMENTACTION' => !empty($this->config['payment_action']) ? $this->config['payment_action'] : 'Sale',
+            'PAYMENTREQUEST_0_CURRENCYCODE'  => $this->currency,
+            // 'PAYMENTREQUEST_0_DESC'          => $data['invoice_description'],
+            // 'PAYMENTREQUEST_0_INVNUM'        => $data['invoice_id'],
             'PAYMENTREQUEST_0_NOTIFYURL'     => $this->notifyUrl,
         ]);
 
