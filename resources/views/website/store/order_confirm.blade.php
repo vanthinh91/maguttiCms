@@ -5,7 +5,7 @@
         <div class="container">
             <div class="border p-4">
                 <div class="h3 text-primary">
-                    {!!  __('store.order.success')!!}<span class="text-accent">{{$order->order_reference}}</span>
+                    {!!  __('store.order.success') !!}<span class="text-accent"> {{$order->order_reference}} </span>
                 </div>
                 {!!   $order->orderFeedback(optional($payment->payment_method)->description)!!}
                 <p>

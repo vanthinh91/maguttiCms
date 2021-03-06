@@ -151,38 +151,4 @@ class StoreController extends Controller
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-	public function orderResult($token)
-	{
-        $user = Auth::user();
-
-        $order = StoreHelper::getOrderByToken($token);
-
-        if ($order) {
-            $payment = $order->payment;
-
-            /*
-            $this->mailer
-                ->to($user->email)
-
-                ->replyTo('noreply@vvv')
-                ->notifyOrderSubmission('Nuovo ordine ', $order )
-                ->send();
-            */
-
-            return view('website.store.order_confirm', compact('order', 'payment'));
-        }
-        else {
-            return Redirect::to('/');
-        }
-	}
 }

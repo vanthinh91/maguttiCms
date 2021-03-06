@@ -14,6 +14,9 @@ class PaymentMethod extends Model
     use HasFactory;
     use GFTranslatableHelperTrait;
     use Translatable;
+    const PAYPAL= 1;
+    const BANK_TRANSFER = 2;
+    const CASH          = 3;
 
     protected $with = ['translations'];
 
