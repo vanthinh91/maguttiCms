@@ -11,9 +11,9 @@
                 </td>
                 <td width="10%"></td>
                 <td width="45%">
-                    @if($order->display_billing_address))
+                    @if($order->billing_address_id)
                     <h4 class="order-step-resume-title"><b>{{ trans('store.order.billing') }}</b></h4>
-                    {!! optional($order->display_billing_address)->display('<br>')!!}
+                    {!! optional($order->billing_address)->display('<br>')!!}
                     @endif
                 </td>
             </tr>
