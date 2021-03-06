@@ -181,6 +181,7 @@ return [
 		'news' => 'News',
 		'newsletters' => 'Newsletter subscriptions',
 		'orders' => 'Orders',
+        'orderstatuses' => 'Orders Status',
 		'paymentmethods' => 'Payment methods',
 		'productmodels' => 'Product models',
 		'products' => 'Products',

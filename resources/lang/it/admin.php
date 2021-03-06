@@ -171,6 +171,7 @@ return [
 		'news' => 'News',
 		'newsletters' => 'Iscrizioni newsletter',
 		'orders' => 'Ordini',
+
 		'paymentmethods' => 'Metodi di pagamento',
 		'productmodels' => 'Modelli prodotto',
 		'products' => 'Prodotti',

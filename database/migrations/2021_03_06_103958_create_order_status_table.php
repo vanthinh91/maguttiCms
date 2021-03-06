@@ -18,7 +18,7 @@ class CreateOrderStatusTable extends Migration
             $table->string('title', 255)->nullable();
             $table->text('description')->nullable();
             $table->integer('sort')->nullable();
-            $table->tinyInteger('pub')->nullable()->default(1);
+            $table->tinyInteger('is_active')->nullable()->default(1);
             $table->integer('created_by');
             $table->unsignedInteger('updated_by');
             $table->timestamps();

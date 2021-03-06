@@ -1319,13 +1319,13 @@ CREATE TABLE `order_status` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci,
   `sort` int(11) DEFAULT NULL,
-  `pub` tinyint(4) DEFAULT '1',
+  `is_active` tinyint(4) DEFAULT '1',
   `created_by` int(11) NOT NULL,
   `updated_by` int(10) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1334,6 +1334,7 @@ CREATE TABLE `order_status` (
 
 LOCK TABLES `order_status` WRITE;
 /*!40000 ALTER TABLE `order_status` DISABLE KEYS */;
+INSERT INTO `order_status` VALUES (1,NULL,NULL,10,1,0,0,'2021-03-06 11:28:59','2021-03-06 11:28:59'),(2,NULL,NULL,20,1,0,0,'2021-03-06 11:29:41','2021-03-06 11:29:41'),(3,NULL,NULL,30,1,0,0,'2021-03-06 11:30:00','2021-03-06 11:30:00'),(4,NULL,NULL,40,1,0,0,'2021-03-06 11:30:17','2021-03-06 11:30:42'),(5,NULL,NULL,50,1,0,0,'2021-03-06 11:30:33','2021-03-06 11:30:33');
 /*!40000 ALTER TABLE `order_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1355,7 +1356,7 @@ CREATE TABLE `order_status_translations` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_status_translations_order_status_id_locale_unique` (`order_status_id`,`locale`),
   CONSTRAINT `order_status_translations_order_status_id_foreign` FOREIGN KEY (`order_status_id`) REFERENCES `order_status` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1364,6 +1365,7 @@ CREATE TABLE `order_status_translations` (
 
 LOCK TABLES `order_status_translations` WRITE;
 /*!40000 ALTER TABLE `order_status_translations` DISABLE KEYS */;
+INSERT INTO `order_status_translations` VALUES (1,1,'en','Sent',NULL,'2021-03-06 11:28:59','2021-03-06 11:28:59'),(2,1,'it','Inviato',NULL,'2021-03-06 11:28:59','2021-03-06 11:28:59'),(3,1,'es',NULL,NULL,'2021-03-06 11:28:59','2021-03-06 11:28:59'),(4,1,'fr',NULL,NULL,'2021-03-06 11:28:59','2021-03-06 11:28:59'),(5,2,'en','Shipped',NULL,'2021-03-06 11:29:41','2021-03-06 11:29:41'),(6,2,'it','Spedito',NULL,'2021-03-06 11:29:41','2021-03-06 11:29:41'),(7,2,'es',NULL,NULL,'2021-03-06 11:29:41','2021-03-06 11:29:41'),(8,2,'fr',NULL,NULL,'2021-03-06 11:29:41','2021-03-06 11:29:41'),(9,3,'en','Completed',NULL,'2021-03-06 11:30:00','2021-03-06 11:30:00'),(10,3,'it','Completato',NULL,'2021-03-06 11:30:00','2021-03-06 11:30:00'),(11,3,'es',NULL,NULL,'2021-03-06 11:30:00','2021-03-06 11:30:00'),(12,3,'fr',NULL,NULL,'2021-03-06 11:30:00','2021-03-06 11:30:00'),(13,4,'en','Return',NULL,'2021-03-06 11:30:17','2021-03-06 11:31:23'),(14,4,'it','Reso',NULL,'2021-03-06 11:30:17','2021-03-06 11:30:17'),(15,4,'es',NULL,NULL,'2021-03-06 11:30:17','2021-03-06 11:30:17'),(16,4,'fr',NULL,NULL,'2021-03-06 11:30:17','2021-03-06 11:30:17'),(17,5,'en','Cancelled',NULL,'2021-03-06 11:30:33','2021-03-06 11:30:33'),(18,5,'it','Annullato',NULL,'2021-03-06 11:30:33','2021-03-06 11:30:33'),(19,5,'es',NULL,NULL,'2021-03-06 11:30:33','2021-03-06 11:30:33'),(20,5,'fr',NULL,NULL,'2021-03-06 11:30:33','2021-03-06 11:30:33');
 /*!40000 ALTER TABLE `order_status_translations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2126,4 +2128,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-06 10:58:30
+-- Dump completed on 2021-03-06 12:31:29
