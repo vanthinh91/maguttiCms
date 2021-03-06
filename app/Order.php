@@ -1,13 +1,23 @@
 <?php namespace App;
 
-use App\maguttiCms\Domain\Store\OrderPresenter;
 use Illuminate\Database\Eloquent\Model;
-use	App\maguttiCms\Tools\StoreHelper;
+
+
+use App\maguttiCms\Domain\Store\OrderNotificationPresenter;
+use App\maguttiCms\Domain\Store\OrderPresenter;
 
 class Order extends Model
 {
     use OrderPresenter;
-    const ORDER_STATUS_SENT =1;
+    use OrderNotificationPresenter;
+
+    const ORDER_STATUS_SENT = 1;
+
+    public function getRouteKeyName()
+    {
+        return 'token';
+    }
+
     protected $fillable = [
 		'user_id',
 		'cart_id',
