@@ -820,7 +820,7 @@ return [
                 'user' => ['type' => 'text', 'field' => 'user_display', 'orderable' => true],
                 'reference' => ['type' => 'text', 'field' => 'reference', 'orderable' => true],
                 'coupon' => ['type' => 'text', 'field' => 'discount_code', 'class' => 'text-left'],
-                'products' => ['type' => 'text', 'field' => 'products_display', 'class' => 'text-left'],
+                //'products' => ['type' => 'text', 'field' => 'products_display', 'class' => 'text-left'],
                 'products_cost' => ['type' => 'text', 'field' => 'products_cost_display'],
                 'total_cost' => ['type' => 'text', 'field' => 'total_cost_display'],
                 'payment' => ['type' => 'text', 'field' => 'payment_method_display'],
@@ -831,6 +831,7 @@ return [
             'orderBy' => 'created_at',
             'orderType' => 'DESC',
             'withRelation' => ['payment'], // array
+            'viewTemplate' => 'admin.views.order',
             'actions' => [
                 'edit' => 0,
                 'export_csv' => 0,
@@ -838,7 +839,8 @@ return [
                 'create' => 0,
                 'copy' => 0,
                 'preview' => 0,
-                'view' => 0,
+                'view' => 1,
+                'view' => 1,
                 'selectable' => 0
             ],
             'showMedia' => 0,
