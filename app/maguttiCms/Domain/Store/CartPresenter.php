@@ -125,4 +125,16 @@ trait CartPresenter
         $email = (auth_user()) ? auth_user()->email : '';
         return data_get($this->billing_address, 'email', $email);
     }
+
+    function prefillAddressIfPresent()
+    {
+       if(auth_user()){
+
+           $latestOrder = optional(auth_user()->orders())->latest()->first();
+           if($latestOrder){
+                $this->shipping_address_id = $latestOrder->shipping_address_id;
+                $this->save();
+            };
+       }
+    }
 }

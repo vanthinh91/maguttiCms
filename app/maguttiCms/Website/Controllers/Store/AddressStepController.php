@@ -20,6 +20,7 @@ class AddressStepController extends  CartStepController
         if(optional($cart)->hasStep()) {
             $countries = Country::list()->get();
             $payment_methods = StoreHelper::getPaymentMethods();
+            $cart->prefillAddressIfPresent();
             return view('website.store.order', compact('cart', 'countries', 'payment_methods'));
         }
         return $this->handleMissingStep();
