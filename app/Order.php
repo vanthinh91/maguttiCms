@@ -61,6 +61,11 @@ class Order extends Model
 		return $this->belongsTo('App\Address', 'shipping_address_id');
 	}
 
+    public function status()
+    {
+        return $this->belongsTo('App\OrderStatus', 'status_id');
+    }
+
 	public function discount()
 	{
 		return $this->belongsTo('App\Discount', 'discount_code', 'code');
