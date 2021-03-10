@@ -21,21 +21,21 @@
             <table class="table table-hover table-striped cart-resume ">
               <thead>
               <tr>
-                <th colspan="2">{{ $t('store.cart.table.name') }}</th>
+                <th class="d-none d-lg-block">{{ $t('store.cart.table.name') }}</th>
+                <th >{{ $t('store.cart.table.name') }}</th>
                 <th class="width-10">{{ $t('store.cart.table.quantity') }}</th>
-                <th class="width-10">{{ $t('store.cart.total') }}</th>
-                <th class="width-10 text-center">{{ $t('store.cart.table.actions') }}</th>
+                <th class="cart__product-price">{{ $t('store.cart.total') }}</th>
+                <th class="cart__product-action"><span class="d-none d-lg-block">{{ $t('store.cart.table.actions') }}</span></th>
               </tr>
               </thead>
               <tbody>
               <tr v-for="(item,index) in items" :key="index">
-                <td><a :href="item.product.url"><img :src="item.product.thumb_image"></a></td>
-                <td>
-                  {{ item.product.code }}<br>
-                  {{ item.product.title }}<br>
+                <td class="d-none d-lg-block"><a :href="item.product.url"><img :src="item.product.thumb_image"></a></td>
+                <td class="product-description">
+                  {{ item.product.code }} - {{ item.product.title }}<br>
                   <span class="product-price">{{ item.product.price | currency }}</span>
                 </td>
-                <td style="width:150px">
+                <td class="product-quantity">
                   <!--<input
                       type="number"
                       v-model.lazy="item.quantity"
@@ -58,7 +58,7 @@
                 <td>
                   <div class="product-price-total">{{ itemTotal(item) | currency }}</div>
                 </td>
-                <td class="text-center"><i class="fas fa-trash" @click="deleteCartItem(index,item.id)"></i></td>
+                <td class="text-center product-action"><i class="fas fa-trash" @click="deleteCartItem(index,item.id)"></i></td>
               </tr>
               </tbody>
             </table>
