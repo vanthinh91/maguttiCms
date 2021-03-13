@@ -27,7 +27,7 @@
                 </tr>
                 <tr bgcolor="#ffffff" >
                     <td class="footer" style="border-top:1px solid #edf2f7;padding:7px 0px 0px 0px;font-size:14px;" bgcolor="#ffffff" bgcolor="#ffffff">
-                        {{ config('maguttiCms.website.option.email.footer') }}
+                        {{ trans('email.footer') }}
                     </td>
                 </tr>
             </table>
