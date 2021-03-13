@@ -20,11 +20,14 @@ class ResetPasswordController extends Controller
     */
 
     use ResetsPasswords;
-    protected $redirectTo   = '/users/dashboard';
+
+    protected $redirectTo = '/users/dashboard';
     protected $redirectPath = '/users/dashboard';
     public $localePrefix;
     use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
+
     protected $articleRepo;
+
     /**
      * Create a new controller instance.
      *
@@ -33,34 +36,35 @@ class ResetPasswordController extends Controller
     public function __construct(ArticleRepositoryInterface $article)
     {
         $this->middleware('guest');
-        $this->localePrefix    = get_locale();
-        $this->redirectTo      = $this->localePrefix.'/users/dashboard';
-        $this->redirectPath    = $this->localePrefix.'/users/dashboard';
+        $this->localePrefix = get_locale();
+        $this->redirectTo = $this->localePrefix . '/users/dashboard';
+        $this->redirectPath = $this->localePrefix . '/users/dashboard';
         $this->articleRepo = $article;
     }
 
     public function showResetForm(Request $request, $token = null)
     {
-        $article = $this->articleRepo->getBySlug('home');
+        $article = $this->articleRepo->getBySlug(config('maguttiCms.website.option.auth.default_page'));
+
         $this->setSeo($article);
         \SEO::setTitle(trans(trans('message.password_reset')));
 
         return view('website.auth.reset')->with(
-            ['token' => $token, 'email' => $request->email,'article'=>$article]
+            ['token' => $token, 'email' => $request->email, 'article' => $article]
         );
     }
 
     /**
      * Get the response for a failed password reset.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string  $response
+     * @param \Illuminate\Http\Request $request
+     * @param string $response
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
     protected function sendResetFailedResponse(Request $request, $response)
     {
-        if ($response=='passwords.user') {
-            $response="passwords.invalid";
+        if ($response == 'passwords.user') {
+            $response = "passwords.invalid";
         }
 
         return redirect()->back()
@@ -83,7 +87,7 @@ class ResetPasswordController extends Controller
         return [
             'token' => 'required',
             'email' => 'required|email',
-            'password' => 'required|confirmed|min:10|regex:'.config('maguttiCms.security.password_regex'),
+            'password' => 'required|confirmed|min:10|regex:' . config('maguttiCms.security.password_regex'),
         ];
     }
 

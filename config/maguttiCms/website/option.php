@@ -24,6 +24,9 @@ return [
         'slider'	  => '2',
         'bottom'	  => '3',
     ],
+    'auth' => [
+        'default_page'	  => 'login',
+    ],
 	// FontAwesome or MaterialIcons
 	'icons' => 'fa', 	// 'icons' => 'mi',
 	'js_localization' => ['website','message'],
