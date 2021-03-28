@@ -50,10 +50,12 @@
         <x-website.ui.form-error-label class="pt-1" field="province" srequired/>
     </div>
     <div class="col-12 col-sm-6 form-group">
-        <select class="form-control" name="country_id" srequired>
+        <select class="form-control" name="country_id">
+
             @foreach ($countries as $_country)
                 <option value="{{$_country->id}}"
-                        @if(old('country-id') == $_country->id) selected="true" @endif>{{$_country->name}}</option>
+                        @if(old('country-id') == $_country->id || optional($cart->shipping_address)->country_id ===$_country->id) selected="true" @endif>
+                        {{$_country->name}}</option>
             @endforeach
         </select>
     </div>

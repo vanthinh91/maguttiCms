@@ -7,6 +7,7 @@
 |--------------------------------------------------------------------------
 */
 
+use App\maguttiCms\Domain\Store\Controllers\OrderControllers;
 use App\maguttiCms\Website\Controllers\APIController;
 use App\maguttiCms\Website\Controllers\Auth\ForgotPasswordController;
 use App\maguttiCms\Website\Controllers\Auth\LoginController;
@@ -44,14 +45,17 @@ Route::group(['middleware' => ['localeSessionRedirect', 'localizationRedirect', 
     // Authentication routes...
     Route::get('users/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('users/login', [LoginController::class, 'login']);
-    Route::get('logout', [LoginController::class, 'logout'])->name('logut');;
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');;
 
     // Reserved area user routes
     Route::group(['middleware' => ['auth']], function () {
-        Route::get('users/dashboard', [ReservedAreaController::class, 'dashboard']);
+        Route::get('users/dashboard', [ReservedAreaController::class, 'dashboard'])->name('user.dashboard');
+        Route::get('users/profile', [ReservedAreaController::class, 'profile']);
+
+        Route::get('users/order-detail/{order}', [OrderControllers::class, 'show'])->name('order.detail');
+
         Route::get('users/address-new', [ReservedAreaController::class, 'addressNew']);
         Route::post('users/address-new', [ReservedAreaController::class, 'addressCreate']);
-        Route::get('users/profile', [ReservedAreaController::class, 'profile']);
     });
 
     // Registration routes...
@@ -72,7 +76,7 @@ Route::group(['middleware' => ['localeSessionRedirect', 'localizationRedirect', 
     Route::get('/faq/', [PagesController::class, 'faq']);
     Route::get('/faq/{slug}', [PagesController::class, 'faq']);
 
-    Route::get(LaravelLocalization::transRoute("routes.category"), [ProductsController::class, 'category']);
+    Route::get(LaravelLocalization::transRoute("routes.category"), [ProductsController::class, 'category'])->name('shop.index');
     Route::get(LaravelLocalization::transRoute("routes.products"), [ProductsController::class, 'products']);
     Route::get(LaravelLocalization::transRoute("routes.contacts"), [PagesController::class, 'contacts']);
 

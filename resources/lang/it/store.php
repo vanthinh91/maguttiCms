@@ -133,6 +133,8 @@ return [
 
     'dashboard' => [
         'orders' => 'Ordini',
+        'orders_empty' => 'Non ci sono ancora ordini, vai allo shop ',
+        'welcome' => 'Ciao',
         'addresses' => 'Indirizzi',
         'table' => [
             'products' => 'Prodotti',

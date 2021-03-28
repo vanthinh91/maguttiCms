@@ -288,7 +288,7 @@ CREATE TABLE `cart_items` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -297,7 +297,6 @@ CREATE TABLE `cart_items` (
 
 LOCK TABLES `cart_items` WRITE;
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
-INSERT INTO `cart_items` VALUES (1,1,'PRDB',NULL,2,'2021-03-06 15:47:06','2021-03-06 15:47:06'),(2,1,'226987',NULL,3,'2021-03-06 15:47:15','2021-03-06 15:47:15'),(3,2,'PRDB',NULL,2,'2021-03-06 15:48:18','2021-03-06 15:48:18'),(4,3,'226987',NULL,5,'2021-03-06 15:49:00','2021-03-06 15:49:00'),(5,3,'PRDC',NULL,1,'2021-03-06 15:49:07','2021-03-06 15:49:07'),(6,4,'PRDC',NULL,1,'2021-03-06 15:50:07','2021-03-06 15:50:07'),(7,5,'PRDB',NULL,1,'2021-03-06 15:51:01','2021-03-06 15:51:01'),(8,6,'PRDC',NULL,1,'2021-03-06 15:53:29','2021-03-06 15:53:29');
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,7 +321,7 @@ CREATE TABLE `carts` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `token` (`token`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -331,7 +330,6 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
-INSERT INTO `carts` VALUES (1,'H7IJ3gnGeZcPioIw6iZq1VLgF9kDiowi2gFPuZQgeEAGxoI7hdicqkcs$1',NULL,1,'TESTAMOUNT',1,1,2,NULL,'2021-03-06 15:47:06','2021-03-06 15:47:51'),(2,'IKuYo1rscPai0GLTqQcppo2v4FeYcjmnOLYyYh4r0lbKA4heP5eP7x3y$2',NULL,1,NULL,1,1,3,NULL,'2021-03-06 15:48:18','2021-03-06 15:48:37'),(3,'lbdxK1WeNyFl4VqMgaOWVTp6oXcQSK3jvaEsJjUI5yIBQQE8l0qtw7ck$3',NULL,1,'TESTAMOUNT',1,1,1,NULL,'2021-03-06 15:49:00','2021-03-06 15:49:50'),(4,'BDKrhj8d0oRXOjlYQX8eOcDF3uxLDCJZW9Vq3xw1ArHLu7bex44dxYrN$4',NULL,1,NULL,1,1,2,NULL,'2021-03-06 15:50:07','2021-03-06 15:50:24'),(5,'r4VjTLimmAfNZPfpQIEvvjJSYjw5y2GrnSDuIVTUQF4J03rv61oFWjzc$5',NULL,1,NULL,1,1,3,NULL,'2021-03-06 15:51:01','2021-03-06 15:51:23'),(6,'0SPaVu4Em4Y4kafMEeriWAC6QxFa2m3pHtOZcniGsKhxP3LqXlGszWit$6',2,1,NULL,1,1,3,NULL,'2021-03-06 15:53:29','2021-03-06 15:53:46');
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1294,7 +1292,7 @@ CREATE TABLE `order_items` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `rife` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1303,7 +1301,6 @@ CREATE TABLE `order_items` (
 
 LOCK TABLES `order_items` WRITE;
 /*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
-INSERT INTO `order_items` VALUES (1,1,1,'PRDB','','Prodotto B','PRDB Prodotto B',2,20,NULL,NULL,40.000,'2021-03-06 15:47:51','2021-03-06 15:47:51',NULL),(2,1,2,'226987','','Prodotto XXX','226987 Prodotto XXX',3,12.25,NULL,NULL,36.750,'2021-03-06 15:47:51','2021-03-06 15:47:51',NULL),(3,2,3,'PRDB','','Prodotto B','PRDB Prodotto B',2,20,NULL,NULL,40.000,'2021-03-06 15:48:37','2021-03-06 15:48:37',NULL),(4,3,4,'226987','','Prodotto XXX','226987 Prodotto XXX',5,12.25,NULL,NULL,61.250,'2021-03-06 15:49:50','2021-03-06 15:49:50',NULL),(5,3,5,'PRDC','','Prodotto C','PRDC Prodotto C',1,30,NULL,NULL,30.000,'2021-03-06 15:49:50','2021-03-06 15:49:50',NULL),(6,4,6,'PRDC','','Product Category table','PRDC Product Category table',1,30,NULL,NULL,30.000,'2021-03-06 15:50:24','2021-03-06 15:50:24',NULL),(7,5,7,'PRDB','','Product B','PRDB Product B',1,20,NULL,NULL,20.000,'2021-03-06 15:51:23','2021-03-06 15:51:23',NULL),(8,6,8,'PRDC','','Product Category table','PRDC Product Category table',1,30,NULL,NULL,30.000,'2021-03-06 15:53:46','2021-03-06 15:53:46',NULL);
 /*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1399,7 +1396,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_token_unique` (`token`),
   UNIQUE KEY `orders_rife_unique` (`reference`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1408,7 +1405,6 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,'B2EYAGZO',1,1,NULL,76.7500,NULL,10.0000,NULL,66.7500,1,'Angelo Marco<br>Vicolo S urbano 4, 4<br>24057 Martinengo (Bergamo)<br>Italy<br>Tel: 3385766907<br>Email: fatturazione@magutti.com','Angelo Marco<br>Vicolo S urbano 4, 4<br>24057 Martinengo (Bergamo)<br>Italy<br>Tel: 3385766907<br>Email: fatturazione@magutti.com',1,'TESTAMOUNT','eucu9yaw298XOqhsaegd2OlEp1y5P7Ec','2021-03-06 15:47:51','2021-03-06 15:47:51'),(2,1,'XGAAQ4BV',1,2,NULL,40.0000,NULL,0.0000,NULL,40.0000,1,'Angelo Marco<br>Vicolo S urbano 4, 4<br>24057 Martinengo (Bergamo)<br>Italy<br>Tel: 3385766907<br>Email: fatturazione@magutti.com','Angelo Marco<br>Vicolo S urbano 4, 4<br>24057 Martinengo (Bergamo)<br>Italy<br>Tel: 3385766907<br>Email: fatturazione@magutti.com',1,NULL,'jcw5kKiwIxD8BaVoe27dqXBuptbbajkA','2021-03-06 15:48:37','2021-03-06 15:48:37'),(3,1,'GLYVYPSA',1,3,NULL,91.2500,NULL,10.0000,NULL,81.2500,1,'Angelo Marco<br>Vicolo S urbano 4, 4<br>24057 Martinengo (Bergamo)<br>Afghanistan<br>Tel: 3385766907<br>Email: fatturazione@magutti.com','Angelo Marco<br>Vicolo S urbano 4, 4<br>24057 Martinengo (Bergamo)<br>Afghanistan<br>Tel: 3385766907<br>Email: fatturazione@magutti.com',1,'TESTAMOUNT','g3zv0GCAFLn8YohW2Hb9FeU2y4dBxNmI','2021-03-06 15:49:50','2021-03-06 15:49:50'),(4,1,'IMLXYVKH',1,4,NULL,30.0000,NULL,0.0000,NULL,30.0000,1,'Angelo Marco<br>Vicolo S urbano 4, 4<br>24057 Martinengo (Bergamo)<br>Afghanistan<br>Tel: 3385766907<br>Email: fatturazione@magutti.com','Angelo Marco<br>Vicolo S urbano 4, 4<br>24057 Martinengo (Bergamo)<br>Afghanistan<br>Tel: 3385766907<br>Email: fatturazione@magutti.com',1,NULL,'pbhmra6cYyDRMAnIfXMDz05CJHV5fLWL','2021-03-06 15:50:24','2021-03-06 15:50:24'),(5,1,'QEVKBOOM',1,5,NULL,20.0000,NULL,0.0000,NULL,20.0000,1,'Angelo Marco<br>Vicolo S urbano 4, 4<br>24057 Martinengo (Bergamo)<br>Afghanistan<br>Tel: 3385766907<br>Email: fatturazione@magutti.com','Angelo Marco<br>Vicolo S urbano 4, 4<br>24057 Martinengo (Bergamo)<br>Afghanistan<br>Tel: 3385766907<br>Email: fatturazione@magutti.com',1,NULL,'E4jZFIinI9csjUEmhkbxERAmoRbxp23M','2021-03-06 15:51:23','2021-03-06 15:51:23'),(6,1,'QVIGPB5O',1,6,NULL,30.0000,NULL,0.0000,NULL,30.0000,2,'Angelo Marco<br>Vicolo S urbano 4, 4<br>24057 Martinengo (Bergamo)<br>Afghanistan<br>Tel: 3385766907<br>Email: fatturazione@magutti.com','Angelo Marco<br>Vicolo S urbano 4, 12344<br>24057 Martinengo (Bergamo)<br>Italy<br>Tel: 3385766907<br>Email: fatturazione@magutti.com',1,NULL,'Jy77QgNEVbVZD4RLP6oLkFWabmL0ckxg','2021-03-06 15:53:46','2021-03-06 15:53:46');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2128,4 +2124,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-06 19:10:39
+-- Dump completed on 2021-03-28 14:32:33

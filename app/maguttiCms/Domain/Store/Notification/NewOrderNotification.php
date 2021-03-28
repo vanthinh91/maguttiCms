@@ -26,7 +26,6 @@ class NewOrderNotification extends Notification
     {
         //
         $this->order = $order;
-
     }
 
     /**
@@ -52,7 +51,7 @@ class NewOrderNotification extends Notification
         return (new MailMessage)
             ->subject($this->order->newOrderEmailSubject())
             ->cc(config('maguttiCms.website.option.app.email_order'))
-            ->view(['emails.store.order-confirm-html', 'emails.store.order-confirm-plain'], ['order' => $this->order]);
+            ->view(['magutti_store::emails.order-confirm-html', 'magutti_store::emails.order-confirm-plain'], ['order' => $this->order]);
     }
 
 

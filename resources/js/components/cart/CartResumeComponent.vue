@@ -21,7 +21,7 @@
             <table class="table table-hover table-striped cart-resume ">
               <thead>
               <tr>
-                <th class="d-none d-lg-block">{{ $t('store.cart.table.name') }}</th>
+                <th class="d-none d-lg-table-cell">{{ $t('store.cart.table.name') }}</th>
                 <th >{{ $t('store.cart.table.name') }}</th>
                 <th class="width-10">{{ $t('store.cart.table.quantity') }}</th>
                 <th class="cart__product-price">{{ $t('store.cart.total') }}</th>

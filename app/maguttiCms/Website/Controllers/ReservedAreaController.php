@@ -2,11 +2,13 @@
 
 namespace App\maguttiCms\Website\Controllers;
 
+use App\maguttiCms\Website\Facades\StoreHelper;
 use App\maguttiCms\Website\Requests\WebsiteFormRequest;
 use App\Country;
 use App\Address;
 use App\Http\Controllers\Controller;
 use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
+use App\Order;
 use Auth;
 use Input;
 use Validator;
@@ -45,10 +47,13 @@ class ReservedAreaController extends Controller
         $article =$this->articleRepo->getBySlug('dashboard');
         $this->setSeo($article);
 		$user = Auth::user();
-		$orders = $user->orders()->list()->get();
 		$addresses = $user->addresses;
-        return view('website.users.dashboard', compact('article', 'orders', 'addresses'));
+        if(StoreHelper::isStoreEnabled()){
+            return view('magutti_store::order.index', compact('article','addresses'));
+        }
+        return view('website.users.dashboard', compact('article',  'addresses'));
     }
+
 
     public function profile()
     {

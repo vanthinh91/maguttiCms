@@ -133,14 +133,18 @@ return [
 	],
 
 	'dashboard' => [
+        'welcome' => 'Hi',
 		'orders' => 'Orders',
+		'orders_empty' => 'There are no orders yet, go to the Shop ',
 		'addresses' => 'Addresses',
 		'table' => [
 			'products' => 'Products',
 			'total' => 'Total',
 			'payment' => 'Payment',
 			'paid' => 'Paid',
-			'date' => 'Date'
+			'date' => 'Date',
+			'order' => 'Order',
+			'view' => 'View'
 		]
 	],
 

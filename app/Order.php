@@ -41,6 +41,8 @@ class Order extends Model
 
     public $sluggable = [];
 
+
+
 	public function cart()
 	{
 		return $this->belongsTo('App\Cart');

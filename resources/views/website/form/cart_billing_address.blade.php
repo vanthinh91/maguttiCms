@@ -68,10 +68,10 @@
         <x-website.ui.form-error-label class="pt-1" field="billing_province" srequired/>
     </div>
     <div class="col-12 col-sm-6 form-group">
-        <select class="form-control" name="billing_country_id" srequired>
+        <select class="form-control" name="billing_country_id" required>
             @foreach ($countries as $_country)
                 <option value="{{$_country->id}}"
-                        @if(old('billing_country-id') == $_country->id) selected="true" @endif>{{$_country->name}}</option>
+                        @if(old('billing_country-id') == $_country->id || optional($cart->billing_address)->country_id ===$_country->id) selected="{{true}}" @endif>{{$_country->name}}</option>
             @endforeach
         </select>
     </div>

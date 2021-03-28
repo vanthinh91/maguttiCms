@@ -209,6 +209,9 @@ return [
         App\maguttiCms\Website\Providers\HtmlSocialServiceProvider::class,
         App\maguttiCms\Website\Providers\HtmlMenuServiceProvider::class,
         App\maguttiCms\Website\Providers\WebsiteDecoratorServiceProvider::class,
+
+
+        App\maguttiCms\Domain\Store\StoreServiceProvider::class
     ],
 
     /*
