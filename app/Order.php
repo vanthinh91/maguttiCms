@@ -41,7 +41,11 @@ class Order extends Model
 
     public $sluggable = [];
 
-
+    /*
+    |--------------------------------------------------------------------------
+    |  RELATION
+    |--------------------------------------------------------------------------
+    */
 
 	public function cart()
 	{
@@ -83,6 +87,12 @@ class Order extends Model
 		return $this->belongsTo('App\Discount', 'discount_code', 'code');
 	}
 
+    /*
+    |--------------------------------------------------------------------------
+    |  RELATION
+    |--------------------------------------------------------------------------
+    */
+
     function getFieldSpec()
     {
         return $this->fieldspec;
@@ -93,10 +103,7 @@ class Order extends Model
 		return $query->with(['order_items', 'payment', 'billing_address', 'shipping_address']);
 	}
 
-	public function getPermalink()
-	{
-		return url_locale('/order-review/'.$this->token);
-	}
+
 
 	public function getUserDisplayAttribute() {return $this->user->name;}
 	public function getProductsDisplayAttribute()

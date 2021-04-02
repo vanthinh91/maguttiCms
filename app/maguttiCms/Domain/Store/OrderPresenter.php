@@ -66,4 +66,10 @@ trait OrderPresenter
     }
 
 
+    public function getPermalink()
+    {
+        return url_locale('/order-review/'.$this->token);
+    }
+
+
 }
