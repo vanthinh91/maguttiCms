@@ -827,7 +827,41 @@ return [
                 'payment_transaction' => ['type' => 'relation', 'relation' => 'payment', 'field' => 'transaction'],
                 //'payment_date' => ['type' => 'relation', 'relation' => 'payment', 'field' => 'created_at'],
                 'paid' => ['type' => 'boolean', 'relation' => 'payment', 'model' => 'payment', 'field' => 'is_paid', 'editable' => true],
+                'status' => [
+                    'type' => 'relation',
+                    'relation' => 'status',
+                    'model' => 'OrderStatus',
+                    'foreign_key' => 'id',
+                    'label_key' => 'title',
+                    'label_empty' => 'Seleziona Stato',
+                    'order_field' => 'sort',
+                    'field' => 'status_id',
+                    'editable' => true
+                ],
             ],
+            'field_searchable' => [
+                /*
+                * This is the 'relation' version which builds a dropdown input for the corresponding relation.
+                * It should be only used when there are only a few records to show.
+                */
+                'status_id' => [
+                    'label' => 'status',
+                    'type' => 'relation',
+                    'model' => 'OrderStatus',
+                    'relation' => 'status',
+                    'value' => 'id',
+                    'field' => 'title',
+                    'where' => '1 = 1',
+                    'cssClass' => 'selectize',
+                ],
+
+                'from_date' => ['type' => 'date_range', 'label' => 'data_from', 'field' => 'created_at', 'class' => 'col-6 col-sm-1'],
+                'to_date' => ['type' => 'date_range', 'label' => 'data_to', 'field' => 'created_at', 'class' => 'col-6 col-sm-1'],
+                'reference' => ['type' => 'text', 'label' => 'reference', 'field' => 'reference'],
+
+
+            ],
+
             'orderBy' => 'created_at',
             'orderType' => 'DESC',
             'withRelation' => ['payment'], // array

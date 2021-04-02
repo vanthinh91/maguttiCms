@@ -1,12 +1,9 @@
 @extends('admin.master')
 @section('content')
-
 <?php $order = $article ;?>
-
     @include('admin.common.action-bar')
     <main id="edit-main" class="container-fluid">
-        <h1>{{__('store.order.number')}}: {{$article->reference}}</h1>
-
+        <h1>{{__('store.order.number')}}: {{$order->reference}}</h1>
         <div class="row">
             <div class="col-12 col-sm-8">
                 <div class="card">
@@ -14,16 +11,15 @@
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <a href="#content_tab" class="nav-link active" data-toggle="tab" role="tab" aria-controls="content" aria-selected="true">
-                                {{__('store.order.number')}}: {{$article->reference}} -  {{ trans('store.order.date') }}: {{$order->created_at->format('d-m-Y')}}
+                                {{__('store.order.number')}}: {{$order->reference}} -  {{ trans('store.order.date') }}: {{$order->created_at->format('d-m-Y')}}
                             </a>
-                        </li>
 
+                        </li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="content_tab" role="tabpanel" aria-labelledby="content_tab">
-
-
+                            <h2>{{__('admin.label.status')}}: <span class="text-primary">{{ $order->status->title }}</span></h2>
                             <table class="" border="0" cellpadding="2" cellspacing="0" width="100%">
                                 <tbody>
                                 <tr>
