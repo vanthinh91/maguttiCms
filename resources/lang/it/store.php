@@ -41,7 +41,7 @@ return [
 
     'shipping' => [
         'free' => 'Spedizione gratuita',
-        'free_from' => 'Spedizione gratuita per ordini superiori hai :AMOUNT',
+        'free_from' => 'Spedizione gratuita per ordini superiori a :AMOUNT',
         'method' => 'Metodo di Spedizione',
     ],
 
