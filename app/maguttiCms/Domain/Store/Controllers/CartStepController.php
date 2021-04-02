@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\maguttiCms\Website\Controllers\Store;
+namespace App\maguttiCms\Domain\Store\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\maguttiCms\Tools\StoreHelper;

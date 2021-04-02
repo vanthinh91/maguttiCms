@@ -30,16 +30,21 @@ return [
 			'actions' => 'Actions'
 		],
         'step'=>[
-            'next_payment' =>'Next: Payment Method',
+            'next_payment' =>'Next: Shipping  & Payment Methods',
             'next_send' =>'Next: Send Order ',
             'next_confirm' =>'Next: Confirm Order ',
+            'shipping_and_payment' => 'Shipping  & Payment Methods',
+            'edit_shipping_and_payment' => 'Edit Shipping  & Payment'
 
         ]
 	],
 
 	'shipping' => [
-		'free' => 'Free shipping'
+		'free' => 'Free shipping',
+		'free_from' => 'Free shipping from order amount more  than :AMOUNT',
+        'method' => 'Shipping Method',
 	],
+
 
 	'items' => [
 		'add' => 'Add to cart',

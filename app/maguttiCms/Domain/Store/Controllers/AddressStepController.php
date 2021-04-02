@@ -1,13 +1,12 @@
 <?php
 
 
-namespace App\maguttiCms\Website\Controllers\Store;
+namespace App\maguttiCms\Domain\Store\Controllers;
 
 
 use App\Country;
-
-use App\maguttiCms\Domain\Store\Action\UpdateCartAddressAction;
 use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Action\UpdateCartAddressAction;
 
 
 class AddressStepController extends  CartStepController

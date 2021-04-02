@@ -18,7 +18,7 @@ return [
 	],
 
 	'shipping' => [
-		'enabled' => true,
+		'enabled' =>true,
 		'free_threshold' => 20,
 		'percentage' => 0.1,
 		'fixed' => 10,

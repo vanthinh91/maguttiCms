@@ -23,7 +23,7 @@ class CreateProductModelsTable extends Migration
             $table->string('title', 255);
             $table->text('description')->nullable();
             $table->string('image', 255)->nullable();
-
+            $table->float('price', 10,3)->nullable();
             $table->unsignedInteger('finishing_id')->nullable();
             $table->string('code', 100)->nullable();
             $table->integer('color_id')->nullable();

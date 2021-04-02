@@ -442,6 +442,7 @@ class StoreHelper {
             'cart_id'             => $cart->id,
             'products_cost'       => $cart->getTotalProducts(),
             'shipping_cost'       => $cart->getShipping(),
+            'shipping_method_id'  => $cart->shipping_method_id,
             'vat_cost'            => $cart->getVat(),
             'total_cost'          => $cart->cartGrandTotal(),
             'billing_address_id'  => $billing_address_id,

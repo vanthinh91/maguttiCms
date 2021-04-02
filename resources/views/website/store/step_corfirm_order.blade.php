@@ -15,9 +15,6 @@
                             </a>
                         </div>
                     </div>
-
-
-
                 </div>
                 <div class="col-12 col-md-4">
                     @include('website.store.cart_products_widget')

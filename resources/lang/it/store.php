@@ -30,15 +30,19 @@ return [
             'actions' => 'Azioni'
         ],
         'step' => [
-            'next_payment' => 'Prossimo Step: Metodo di Pagamento',
+            'next_payment' => 'Prossimo Step: Pagamento & Spedizione',
             'next_send' => 'Prossimo Step: Acquista ',
             'next_confirm' => 'Prossimo Step: Conferma Dati ',
+            'shipping_and_payment' => 'Pagamento & Spedizione',
+            'edit_shipping_and_payment' => 'Edit Pagamento & Spedizione'
 
         ]
     ],
 
     'shipping' => [
-        'free' => 'Spedizione gratuita'
+        'free' => 'Spedizione gratuita',
+        'free_from' => 'Spedizione gratuita per ordini superiori hai :AMOUNT',
+        'method' => 'Metodo di Spedizione',
     ],
 
     'items' => [

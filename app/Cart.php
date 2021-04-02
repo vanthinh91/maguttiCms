@@ -12,7 +12,7 @@ class Cart extends Model
     use CartPresenter;
     use CartStepTrait;
 
-    protected $fillable = ['user_id', 'status', 'payment_method_id', 'shipping_cost',
+    protected $fillable = ['user_id', 'status', 'payment_method_id', 'shipping_cost','shipping_method_id',
         'billing_address_id', 'shipping_address_id', 'discount_code','token'
     ];
     protected $fieldspec = [];
@@ -63,6 +63,11 @@ class Cart extends Model
     public function payment_method()
     {
         return $this->belongsTo('App\PaymentMethod');
+    }
+
+    public function shipping_method()
+    {
+        return $this->belongsTo('App\ShipmentMethod');
     }
 
 

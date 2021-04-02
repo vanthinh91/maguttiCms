@@ -1,13 +1,19 @@
 <?php
 
 
-namespace App\maguttiCms\Website\Controllers\Store;
+namespace App\maguttiCms\Domain\Store\Controllers;
 
 
 use App\Country;
 
-use App\maguttiCms\Domain\Store\Action\UpdateCartAddressAction;
+
+;
+
+
+use App\maguttiCms\Domain\Store\Shipping\StandardShippingCostCalculator;
 use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Action\ShippingCostAction;
+use App\maguttiCms\Domain\Store\Shipping\StandardShippingCostCalculator   as ShippingCostCalculator ;
 
 
 
@@ -25,16 +31,16 @@ class PaymentMethodStepController extends  CartStepController
         if(optional($cart)->hasStep()){
             $countries = Country::list()->get();
             $payment_methods = StoreHelper::getPaymentMethods();
-            return view('website.store.step_payment_method', compact('cart','countries','payment_methods'));
+            return view('magutti_store::cart.step_payment_and_shipping_methods', compact('cart','countries','payment_methods'));
         }
-
         return $this->handleMissingStep();
 
     }
 
     function store(PaymentMethodFormRequest $request){
          $cart = $this->getCart();
-         $cart->update(['payment_method_id'=>$request->payment_method_id]);
+         $cart->update($request->only('shipping_method_id','payment_method_id'));
+         (new ShippingCostAction(new StandardShippingCostCalculator,$cart))->execute();
          return redirect(url_locale('/cart/resume'));
      }
 }

@@ -25,12 +25,17 @@
         <td id="cart-big-total" colspan="9" align="right">
             <p>{{ __('store.order.products_cost') }}
                 : {{StoreHelper::formatPrice($order->products_cost)}}</p>
-
             @if($order->discount_amount>0)
                 <p>{!!$order->getDiscountLabel()!!}
                     : {{StoreHelper::formatPrice($order->discount_amount)}}</p>
+            @endif
+
+            @if($order->shipping_method_id>0)
+                <p>{{ __('store.order.shipping_cost') }}
+                    : {{StoreHelper::formatPrice($order->shipping_cost)}}</p>
 
             @endif
+
             <p>{{ __('store.cart.total') }}&nbsp;({{ __('store.cart.with_tax') }}): {{ StoreHelper::formatPrice($order->total_cost) }}</b></p>
         </td>
     </tr>

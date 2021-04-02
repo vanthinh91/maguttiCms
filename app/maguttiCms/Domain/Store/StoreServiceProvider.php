@@ -2,6 +2,12 @@
 
 namespace App\maguttiCms\Domain\Store;
 
+
+
+
+use App\maguttiCms\Domain\Store\View\Components\PaymentMethodComponent;
+use App\maguttiCms\Domain\Store\View\Components\ShippingMethodComponent;
+use App\PaymentMethod;
 use Illuminate\Support\ServiceProvider;
 
 use App\maguttiCms\Domain\Store\View\Components\OrderListComponent;
@@ -31,7 +37,10 @@ class StoreServiceProvider extends ServiceProvider
             AddressComponent::class,
             ResumeComponent::class,
             OrderPaymentComponent::class,
-            OrderListComponent::class
+            OrderListComponent::class,
+            ShippingMethodComponent::class,
+            PaymentMethodComponent::class,
+
         ]);
         $this->publishes([
             __DIR__ . 'resources/views' => resource_path('views/vendor/magutti_store'),
@@ -53,6 +62,8 @@ class StoreServiceProvider extends ServiceProvider
 
     protected function registerBladeClasses(): self
     {
+
+
         return $this;
     }
 }

@@ -1,15 +1,15 @@
 <?php
 
 
-namespace App\maguttiCms\Website\Controllers\Store;
+namespace App\maguttiCms\Domain\Store\Controllers;
 
 
 use App\Cart;
 use App\Country;
-
-use App\maguttiCms\Domain\Store\Action\UpdateCartAddressAction;
+use App\maguttiCms\Domain\Store\Action\ShippingCostAction;
+use App\maguttiCms\Domain\Store\Shipping\StandardShippingCostCalculator;
 use App\maguttiCms\Tools\StoreHelper;
-use Illuminate\Support\Facades\Redirect;
+
 
 
 class ConfirmStepController extends  CartStepController
@@ -26,6 +26,7 @@ class ConfirmStepController extends  CartStepController
         if(optional($cart)->hasStep()) {
             $countries = Country::list()->get();
             $payment_methods = StoreHelper::getPaymentMethods();
+
             return view('website.store.step_corfirm_order', compact('cart', 'countries', 'payment_methods'));
         }
         return $this->handleMissingStep();

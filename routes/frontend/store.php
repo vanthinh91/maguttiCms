@@ -2,13 +2,15 @@
 
 use App\maguttiCms\Website\Controllers\Store\CartController;
 use App\maguttiCms\Website\Controllers\Store\OrderSendController;
-use App\maguttiCms\Domain\Store\Notifications\NewOrderNotification;
-use App\maguttiCms\Website\Controllers\Store\AddressStepController;
-use App\maguttiCms\Website\Controllers\Store\ConfirmStepController;
+
 use App\maguttiCms\Website\Controllers\Store\OrderManageController;
 use App\maguttiCms\Website\Controllers\Store\OrderPaymentController;
 use App\maguttiCms\Website\Controllers\Store\OrderResultController;
-use App\maguttiCms\Website\Controllers\Store\PaymentMethodStepController;
+
+use App\maguttiCms\Domain\Store\Controllers\AddressStepController;
+use App\maguttiCms\Domain\Store\Controllers\ConfirmStepController;
+use App\maguttiCms\Domain\Store\Notifications\NewOrderNotification;
+use App\maguttiCms\Domain\Store\Controllers\PaymentMethodStepController;
 
 Route::get('/cart/', CartController::class)->middleware('storeenabled')->name('cart');
 Route::get('/cart/address', [AddressStepController::class, 'view'])->middleware('storeenabled', 'auth')->name('cart.address');

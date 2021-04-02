@@ -23,6 +23,7 @@ class Order extends Model
 		'cart_id',
 		'payment_id',
 		'status_id',
+        'shipping_method_id',
         'reference',
 		'products_cost',
 		'shipping_cost',

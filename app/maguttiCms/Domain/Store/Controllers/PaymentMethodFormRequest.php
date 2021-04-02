@@ -1,6 +1,6 @@
 <?php
 
-namespace App\maguttiCms\Website\Controllers\Store;
+namespace App\maguttiCms\Domain\Store\Controllers;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Input;
@@ -23,7 +23,8 @@ class PaymentMethodFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'payment_method_id' => 'required'
+            'payment_method_id' => ['required'],
+            'shipping_method_id' => ['sometimes','required'],
         ];
         return $rules;
     }

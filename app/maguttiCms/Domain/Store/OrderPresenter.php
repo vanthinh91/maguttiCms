@@ -62,7 +62,7 @@ trait OrderPresenter
 
     function getDiscountLabel(){
 
-        return'<span class="label">'.__('store.order.discount.title').'(<strong>'.$this->discount_code.'</strong>)</span>';
+        return'<span class="label">'.__('store.order.discount.title').' (<strong>'.$this->discount_code.'</strong>)</span>';
     }
 
 

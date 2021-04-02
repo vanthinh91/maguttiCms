@@ -40,7 +40,7 @@
         <span class="label">{{ __('store.order.products_cost') }}</span>
         <span class="value">{{ StoreHelper::formatCartTotal($cart) }}</span>
     </div>
-    @if(Storehelper::getDiscountPercentage($cart->discount_code ))
+    @if(StoreHelper::getDiscountPercentage($cart->discount_code ))
         <div class="cart-summary-line cart-discount">
             <span class="label">{{ __('store.order.discount.title') }}<br><strong>{{ $cart->discount_code }}</strong></span>
             <span class="value">{{ StoreHelper::formatPrice(Storehelper::getDiscountPercentage($cart->discount_code )) }}<br><a
@@ -48,15 +48,18 @@
                         class="text-danger d-none">{{ __('store.order.discount.delete') }}</a></span>
         </div>
     @endif
-    <div class="cart-summary-line cart-ship d-none">
+    @if($cart->displayShippingCost())
+    <div class="cart-summary-line cart-ship">
         <span class="label">{{ __('store.order.shipping_cost') }}</span>
-        <span class="value">{{ StoreHelper::formatPrice(StoreHelper::calcShipping($cart,20)) }}</span>
+        <span class="value">{{ StoreHelper::formatPrice($cart->getShipping()) }}</span>
     </div>
+   @endif
 
     <div class="cart-summary-totals">
+
         <div class="cart-summary-line cart-total">
             <span class="label">{{ __('store.cart.total') }}&nbsp;({{ __('store.cart.with_tax') }})</span>
-            <span class="value">{{ StoreHelper::formatPrice($cart->cartGrandTotal()) }}</span>
+            <span class="value">{{ StoreHelper::formatPrice($cart->displayTotal()) }}</span>
         </div>
     </div>
 </div>

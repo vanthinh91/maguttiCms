@@ -865,7 +865,7 @@ return [
             'orderBy' => 'created_at',
             'orderType' => 'DESC',
             'withRelation' => ['payment'], // array
-            'viewTemplate' => 'admin.views.order',
+            'viewTemplate' => 'magutti_store::admin.views.order',
             'actions' => [
                 'edit' => 0,
                 'export_csv' => 0,
@@ -938,6 +938,45 @@ return [
                 'id',
                 'title' => ['type' => 'text', 'field' => 'title'],
                 'code' => ['type' => 'text', 'field' => 'code'],
+                'is_active' => ['type' => 'boolean', 'field' => 'is_active','editable'=>true],
+            ],
+            'orderBy' => 'id',
+            'orderType' => 'ASC',
+            'withRelation' => [], // array
+            'actions' => [
+                'edit' => 1,
+                'export_csv' => 0,
+                'delete' => 0,
+                'create' => 1,
+                'copy' => 0,
+                'preview' => 0,
+                'view' => 0,
+                'selectable' => 0
+            ],
+            'showMedia' => 0,
+            'showMediaCategory' => 0,
+            'showMediaImages' => 0,
+            'showMediaDoc' => 0,
+            'showSeo' => 0,
+            'menu' => [
+                'home' => true,
+                'top-bar' => [
+                    'show' => true,
+                    'action' => ['add']
+                ],
+            ],
+            'roles' => ['su']
+        ],
+
+        'shipmentmethods' => [
+            'model' => 'ShipmentMethod',
+            'title' => 'Shipping Methods',
+            'icon' => 'truck',
+            'field' => [
+                'id',
+                'title' => ['type' => 'text', 'field' => 'title'],
+                'fee' => ['type' => 'text', 'field' => 'fee'],
+                'free_shipping_from' => ['type' => 'text', 'field' => 'free_shipping_from'],
                 'is_active' => ['type' => 'boolean', 'field' => 'is_active','editable'=>true],
             ],
             'orderBy' => 'id',

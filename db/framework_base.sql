@@ -40,7 +40,7 @@ CREATE TABLE `addresses` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +49,6 @@ CREATE TABLE `addresses` (
 
 LOCK TABLES `addresses` WRITE;
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
-INSERT INTO `addresses` VALUES (1,'Angelo','Marco',1,'Vicolo S urbano 4','4','24057','Martinengo','Bergamo',3,'3385766907','','fatturazione@magutti.com','123344','2021-03-06 15:47:45','2021-03-06 15:49:25'),(2,'Angelo','Marco',1,'Vicolo S urbano 4','12344','24057','Martinengo','Bergamo',109,'3385766907','','fatturazione@magutti.com',NULL,'2021-03-06 15:53:41','2021-03-06 15:53:41');
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -316,6 +315,7 @@ CREATE TABLE `carts` (
   `status` tinyint(4) DEFAULT '0',
   `user_id` int(11) DEFAULT NULL,
   `payment_method_id` int(5) DEFAULT NULL,
+  `shipping_method_id` int(5) DEFAULT NULL,
   `shipping_cost` decimal(12,4) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -1129,7 +1129,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1138,7 +1138,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9),(91,'2020_12_26_091719_create_projects_table',10),(92,'2020_12_31_173718_create_jobs_table',11),(93,'2021_02_14_193356_create_payment_methods_table',12),(94,'2021_02_21_091926_add_discount_type_to_discounts_table',13),(95,'2021_03_03_151238_add_formatted_address_to_orders',14),(96,'2021_03_03_151905_add_product_description_to_order_items',14),(97,'2021_03_03_200035_add_reference_to_orders',15),(98,'2021_03_03_200109_add_token_to_carts',15),(99,'2021_03_06_103703_add_status_id_to_orders',16),(100,'2021_03_06_103958_create_order_status_table',17);
+INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9),(91,'2020_12_26_091719_create_projects_table',10),(92,'2020_12_31_173718_create_jobs_table',11),(93,'2021_02_14_193356_create_payment_methods_table',12),(94,'2021_02_21_091926_add_discount_type_to_discounts_table',13),(95,'2021_03_03_151238_add_formatted_address_to_orders',14),(96,'2021_03_03_151905_add_product_description_to_order_items',14),(97,'2021_03_03_200035_add_reference_to_orders',15),(98,'2021_03_03_200109_add_token_to_carts',15),(99,'2021_03_06_103703_add_status_id_to_orders',16),(100,'2021_03_06_103958_create_order_status_table',17),(101,'2021_04_02_162326_create_shipment_methods_table',18),(102,'2021_04_02_185834_add_shipping_method_id_to_cart_table',19),(103,'2021_04_02_185857_add_shipping_method_id_to_orders_table',19);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1381,6 +1381,7 @@ CREATE TABLE `orders` (
   `cart_id` int(11) NOT NULL,
   `payment_id` int(5) DEFAULT NULL,
   `products_cost` decimal(12,4) NOT NULL DEFAULT '0.0000',
+  `shipping_method_id` int(11) DEFAULT NULL,
   `shipping_cost` decimal(12,4) DEFAULT '0.0000',
   `discount_amount` decimal(12,4) DEFAULT NULL,
   `vat_cost` decimal(10,4) DEFAULT '0.0000',
@@ -1517,7 +1518,7 @@ CREATE TABLE `payments` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1526,7 +1527,6 @@ CREATE TABLE `payments` (
 
 LOCK TABLES `payments` WRITE;
 /*!40000 ALTER TABLE `payments` DISABLE KEYS */;
-INSERT INTO `payments` VALUES (1,1,2,NULL,'','',NULL,'2021-03-06 15:47:51','2021-03-06 15:47:51',NULL),(2,2,3,NULL,'','',NULL,'2021-03-06 15:48:37','2021-03-06 15:48:37',NULL),(3,3,1,1,'','66B26463UA172344W','Completed','2021-03-06 15:49:50','2021-03-06 15:49:50',NULL),(4,4,2,1,'','',NULL,'2021-03-06 15:50:24','2021-03-06 15:55:12',NULL),(5,5,3,1,'','',NULL,'2021-03-06 15:51:23','2021-03-06 15:55:12',NULL),(6,6,3,NULL,'','',NULL,'2021-03-06 15:53:46','2021-03-06 15:53:46',NULL);
 /*!40000 ALTER TABLE `payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1929,6 +1929,68 @@ INSERT INTO `settings` VALUES (1,'GA_CODE','UA-','Codice  google  analitycs','GA
 UNLOCK TABLES;
 
 --
+-- Table structure for table `shipment_method_translations`
+--
+
+DROP TABLE IF EXISTS `shipment_method_translations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `shipment_method_translations` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `shipment_method_id` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `shipment_method_translations_shipment_method_id_locale_unique` (`shipment_method_id`,`locale`),
+  CONSTRAINT `shipment_method_translations_shipment_method_id_foreign` FOREIGN KEY (`shipment_method_id`) REFERENCES `shipment_methods` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shipment_method_translations`
+--
+
+LOCK TABLES `shipment_method_translations` WRITE;
+/*!40000 ALTER TABLE `shipment_method_translations` DISABLE KEYS */;
+INSERT INTO `shipment_method_translations` VALUES (1,'en','Standard',NULL,'2021-04-02 14:57:27','2021-04-02 14:57:27',1),(2,'it','Standard',NULL,'2021-04-02 14:57:27','2021-04-02 14:57:27',1),(3,'es',NULL,NULL,'2021-04-02 14:57:27','2021-04-02 14:57:27',1),(4,'fr',NULL,NULL,'2021-04-02 14:57:27','2021-04-02 14:57:27',1),(5,'en','Express',NULL,'2021-04-02 15:00:07','2021-04-02 15:00:07',2),(6,'it','Espresso',NULL,'2021-04-02 15:00:07','2021-04-02 15:00:07',2),(7,'es',NULL,NULL,'2021-04-02 15:00:07','2021-04-02 15:00:07',2),(8,'fr',NULL,NULL,'2021-04-02 15:00:07','2021-04-02 15:00:07',2);
+/*!40000 ALTER TABLE `shipment_method_translations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `shipment_methods`
+--
+
+DROP TABLE IF EXISTS `shipment_methods`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `shipment_methods` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `fee` decimal(20,2) DEFAULT NULL,
+  `free_shipping_from` decimal(20,2) DEFAULT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shipment_methods`
+--
+
+LOCK TABLES `shipment_methods` WRITE;
+/*!40000 ALTER TABLE `shipment_methods` DISABLE KEYS */;
+INSERT INTO `shipment_methods` VALUES (1,NULL,NULL,0.00,0.00,10,1,'2021-04-02 14:57:27','2021-04-02 14:57:27'),(2,NULL,NULL,10.00,50.00,20,1,'2021-04-02 15:00:07','2021-04-02 16:37:35');
+/*!40000 ALTER TABLE `shipment_methods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `socials`
 --
 
@@ -2124,4 +2186,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-02 15:28:25
+-- Dump completed on 2021-04-02 23:43:23

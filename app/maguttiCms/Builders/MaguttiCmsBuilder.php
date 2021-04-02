@@ -31,4 +31,8 @@ class MaguttiCmsBuilder extends Builder
     public function sorted($order="ASC",$field="sort"){
         return $this->published()->orderBy($field,$order);
     }
+
+    public function listed($order="ASC",$field="sort"){
+        return $this->active()->orderBy($field,$order);
+    }
 }
