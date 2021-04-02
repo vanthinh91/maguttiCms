@@ -6,6 +6,7 @@ namespace App\maguttiCms\Domain\Store;
 
 
 use App\maguttiCms\Domain\Store\View\Components\PaymentMethodComponent;
+use App\maguttiCms\Domain\Store\View\Components\ShippingCostLabel;
 use App\maguttiCms\Domain\Store\View\Components\ShippingMethodComponent;
 use App\PaymentMethod;
 use Illuminate\Support\ServiceProvider;
@@ -40,6 +41,7 @@ class StoreServiceProvider extends ServiceProvider
             OrderListComponent::class,
             ShippingMethodComponent::class,
             PaymentMethodComponent::class,
+            ShippingCostLabel::class,
 
         ]);
         $this->publishes([

@@ -29,11 +29,9 @@
                 <p>{!!$order->getDiscountLabel()!!}
                     : {{StoreHelper::formatPrice($order->discount_amount)}}</p>
             @endif
-
             @if($order->shipping_method_id>0)
                 <p>{{ __('store.order.shipping_cost') }}
-                    : {{StoreHelper::formatPrice($order->shipping_cost)}}</p>
-
+                : <x-magutti_store-shipping-cost-label :amount="$order->shipping_cost"/></p>
             @endif
 
             <p>{{ __('store.cart.total') }}&nbsp;({{ __('store.cart.with_tax') }}): {{ StoreHelper::formatPrice($order->total_cost) }}</b></p>

@@ -51,7 +51,7 @@
     @if($cart->displayShippingCost())
     <div class="cart-summary-line cart-ship">
         <span class="label">{{ __('store.order.shipping_cost') }}</span>
-        <span class="value">{{ StoreHelper::formatPrice($cart->getShipping()) }}</span>
+        <span class="value"><x-magutti_store-shipping-cost-label :amount="$cart->shipping_cost"/></span>
     </div>
    @endif
 

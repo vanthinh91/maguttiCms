@@ -1,4 +1,5 @@
-@if($address)
-<h4><b>{{ $label ?? '' }}</b></h4>
-{!!  $address->display('<br>')!!}
+@if($amount>0)}})
+{{StoreHelper::formatPrice($amount)}}
+@else
+ {{__('store.shipping.free')}}
 @endif
