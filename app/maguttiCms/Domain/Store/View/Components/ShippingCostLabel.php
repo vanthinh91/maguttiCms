@@ -23,7 +23,7 @@ class ShippingCostLabel  extends CartBaseStepComponent
 
     public function render(): View
     {
-        return view('magutti_store::partials.shipping_cost');;
+        return view('magutti_store::partials.shipping_cost');
     }
 }
 
