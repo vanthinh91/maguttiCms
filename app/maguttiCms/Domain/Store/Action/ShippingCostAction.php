@@ -4,6 +4,7 @@
 namespace App\maguttiCms\Domain\Store\Action;
 
 
+use App\maguttiCms\Domain\Store\Contracts\ShippingCalculator;
 use App\maguttiCms\Domain\Store\Shipping\ShippingCalculatorInterface;
 use App\maguttiCms\Tools\StoreHelper;
 
@@ -18,7 +19,7 @@ class ShippingCostAction
      */
     private $shippingCalculator;
 
-    public function __construct(ShippingCalculatorInterface $shippingCalculator,$cart)
+    public function __construct(ShippingCalculator $shippingCalculator,$cart)
     {
         $this->cart = $cart;
         $this->shippingCalculator = $shippingCalculator;

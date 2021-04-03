@@ -35,8 +35,8 @@ class PaymentMethodStepController extends  CartStepController
 
     function store(PaymentMethodFormRequest $request){
          $cart = $this->getCart();
-         $cart->update($request->only('shipping_method_id','payment_method_id'));
-         (new ShippingCostAction(new StandardShippingCostCalculator,$cart))->execute();
+         $cart->add_payment_and_shipment($request->only('shipping_method_id','payment_method_id'));
+
          return redirect(url_locale('/cart/resume'));
      }
 }

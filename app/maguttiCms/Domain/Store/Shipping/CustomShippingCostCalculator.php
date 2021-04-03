@@ -8,7 +8,7 @@ use App\Cart;
 use App\maguttiCms\Domain\Store\Contracts\ShippingCalculator;
 
 
-class StandardShippingCostCalculator implements ShippingCalculator
+class CustomShippingCostCalculator implements ShippingCalculator
 {
     protected $cart;
     private $shipping_method;

@@ -1,18 +1,12 @@
 <?php
 
-
 namespace App\maguttiCms\Domain\Store\Cart;
-
-
-
 
 use App\maguttiCms\Definition\Definition;
 use App\maguttiCms\Website\Facades\StoreHelper;
 
 trait CartStepTrait
 {
-
-
     function hasStep()
     {
         if($this->isEmpty()) return false;
@@ -21,8 +15,8 @@ trait CartStepTrait
             if (!$this->shipping_address_id) return false;
         }
         if ($step === Definition::CART_STEP_RESUME) {
-
-            if (!$this->shipping_address_id || !$this->payment_method_id || !$this->payment_method_id) return false;
+            if (StoreHelper::isShippingEnabled() && (!$this->shipping_address_id || !$this->payment_method_id || !$this->shipping_method_id ) ) return false;
+            if (!$this->shipping_address_id || !$this->payment_method_id) return false;
         }
         return $step;
 

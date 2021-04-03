@@ -24,6 +24,12 @@ class ConfirmStepController extends  CartStepController
     {
         $cart = $this->getCart();
         if(optional($cart)->hasStep()) {
+            $result = $cart->calculate_shipping_cost();
+            if($this->shippingHasError($result)){
+                session()->flash('message', __('store.alerts.shipping_address_invalid',['ERROR'=>$result['message']]));
+                return redirect(url_locale('/cart/address'));
+            }
+
             $countries = Country::list()->get();
             $payment_methods = StoreHelper::getPaymentMethods();
             return view('magutti_store::cart.step_confirm_order', compact('cart', 'countries', 'payment_methods'));
@@ -36,7 +42,6 @@ class ConfirmStepController extends  CartStepController
     {
 
         if(optional($cart)->hasStep()) {
-            session()->flash('message', trans('store.alerts.payment_cancel'));
             $countries = Country::list()->get();
             $payment_methods = StoreHelper::getPaymentMethods();
             return view('magutti_store::cart.step_confirm_order', compact('cart', 'countries', 'payment_methods'));

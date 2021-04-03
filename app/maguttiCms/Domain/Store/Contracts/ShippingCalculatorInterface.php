@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\maguttiCms\Domain\Store\Shipping;
+namespace App\maguttiCms\Domain\Store\Contracts;
 
 
 use App\Cart;
 
-interface ShippingCalculatorInterface
+interface ShippingCalculator
 {
 
    function  getAmount();

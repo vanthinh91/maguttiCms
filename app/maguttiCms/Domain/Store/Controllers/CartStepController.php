@@ -20,13 +20,16 @@ class CartStepController extends Controller
 
     }
 
-
     function handleMissingStep()
     {
         if(auth_user()){
             return redirect(url_locale('/cart'));
         }
         return Redirect::to(url_locale('/order-login'));
+    }
 
+    function shippingHasError($result)
+    {
+        return (data_get($result,'status')=='KO');
     }
 }

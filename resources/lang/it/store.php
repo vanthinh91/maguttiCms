@@ -65,6 +65,7 @@ return [
         'payment_already_paid' => 'Ordine Già pagato',
         'payment_success' => 'Pagamento avvenuto con successo',
         'payment_cancel' => 'La tua richiesta di pagamento è stato annullata',
+        'shipping_address_invalid' => 'Indirizzo di spedizione non valido<br> :ERROR',
     ],
 
     'order' => [
