@@ -7,6 +7,7 @@
 |--------------------------------------------------------------------------
 */
 
+
 use App\maguttiCms\Domain\Store\Controllers\OrderControllers;
 use App\maguttiCms\Website\Controllers\APIController;
 use App\maguttiCms\Website\Controllers\Auth\ForgotPasswordController;
@@ -17,20 +18,11 @@ use App\maguttiCms\Website\Controllers\PagesController;
 use App\maguttiCms\Website\Controllers\ProductsController;
 use App\maguttiCms\Website\Controllers\ReservedAreaController;
 use App\maguttiCms\Website\Controllers\StoreAPIController;
-use App\maguttiCms\Website\Controllers\StoreDeleteCouponController;
-use App\maguttiCms\Website\Controllers\StoreValidateCouponController;
+
 use App\maguttiCms\Website\Controllers\WebsiteFormController;
 
 Route::group([], function () {
     Route::post('api/update-ghost', [APIController::class, 'updateGhost']);
-
-    // store section
-    Route::post('api/store/cart-item-add', [StoreAPIController::class, 'storeCartItemAdd']);
-    Route::post('api/store/cart-item-remove', [StoreAPIController::class, 'storeCartitemRemove']);
-    Route::post('api/store/cart-item-update', [StoreAPIController::class, 'updateItemQuantity']);
-    Route::get('api/store/order-calc', [StoreAPIController::class, 'storeOrderCalc']);
-    Route::get('api/store/validate-coupon', StoreValidateCouponController::class);
-    Route::delete('api/store/coupon-remove', StoreDeleteCouponController::class);
 });
 
 /*

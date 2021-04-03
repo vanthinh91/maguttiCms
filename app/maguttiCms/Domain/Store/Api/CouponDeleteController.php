@@ -1,17 +1,15 @@
 <?php
 
 
-namespace App\maguttiCms\Website\Controllers;
+namespace App\maguttiCms\Domain\Store\Api;
 
 
 use App\maguttiCms\Tools\StoreHelper;
 
-
-class StoreDeleteCouponController extends APIController
+class CouponDeleteController extends StoreAPIController
 {
     public function __invoke()
     {
-
         $cart = StoreHelper::getSessionCart();
         if ($cart) {
             $cart->removeDiscount();
@@ -19,6 +17,4 @@ class StoreDeleteCouponController extends APIController
         }
         return $this->apiResponse();
     }
-
-
 }

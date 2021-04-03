@@ -1,17 +1,23 @@
 <?php
 
-use App\maguttiCms\Domain\Store\Controllers\MainStoreController;
+
 use App\maguttiCms\Website\Controllers\Store\CartController;
 use App\maguttiCms\Website\Controllers\Store\OrderSendController;
-
 use App\maguttiCms\Website\Controllers\Store\OrderManageController;
 use App\maguttiCms\Website\Controllers\Store\OrderPaymentController;
 use App\maguttiCms\Website\Controllers\Store\OrderResultController;
 
+use App\maguttiCms\Domain\Store\Controllers\MainStoreController;
 use App\maguttiCms\Domain\Store\Controllers\AddressStepController;
 use App\maguttiCms\Domain\Store\Controllers\ConfirmStepController;
 use App\maguttiCms\Domain\Store\Notifications\NewOrderNotification;
 use App\maguttiCms\Domain\Store\Controllers\PaymentMethodStepController;
+
+
+use App\maguttiCms\Domain\Store\Api\CouponDeleteController;
+use App\maguttiCms\Domain\Store\Api\CouponValidateController;
+use App\maguttiCms\Domain\Store\Api\StoreAPIController;
+
 
 Route::get('/cart/', CartController::class)->middleware('storeenabled')->name('cart');
 Route::get('/cart/address', [AddressStepController::class, 'view'])->middleware('storeenabled', 'auth')->name('cart.address');
@@ -40,3 +46,20 @@ Route::get('/order-submit/', [MainStoreController::class,'orderSubmit'])->middle
 Route::get('/order-review/{token}', '\App\maguttiCms\Website\Controllers\StoreController@orderReview')->middleware(['storeenabled', 'auth']);
 Route::post('/order-payment/', '\App\maguttiCms\Website\Controllers\StoreController@orderPayment')->middleware(['storeenabled', 'auth']);
 Route::get('/order-payment-result/{token}', '\App\maguttiCms\Website\Controllers\StoreController@orderResult')->middleware(['storeenabled', 'auth']);
+
+/*
+|--------------------------------------------------------------------------
+| STORE API
+|--------------------------------------------------------------------------
+*/
+
+Route::group([], function () {
+    // store section
+    // store section
+    Route::post('api/store/cart-item-add', [StoreAPIController::class, 'storeCartItemAdd']);
+    Route::post('api/store/cart-item-remove', [StoreAPIController::class, 'storeCartitemRemove']);
+    Route::post('api/store/cart-item-update', [StoreAPIController::class, 'updateItemQuantity']);
+    Route::get('api/store/order-calc', [StoreAPIController::class, 'storeOrderCalc']);
+    Route::get('api/store/validate-coupon', CouponValidateController::class);
+    Route::delete('api/store/coupon-remove', CouponDeleteController::class);
+});

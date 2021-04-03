@@ -1,13 +1,13 @@
 <?php
 
 
-namespace App\maguttiCms\Website\Controllers;
+namespace App\maguttiCms\Domain\Store\Api;
 
 
 use App\maguttiCms\Tools\StoreHelper;
 use App\maguttiCms\Website\Requests\AjaxFormRequest;
 
-class StoreValidateCouponController extends APIController
+class CouponValidateController extends StoreAPIController
 {
     public function __invoke(AjaxformRequest $request)
     {

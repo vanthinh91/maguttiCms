@@ -1,9 +1,10 @@
 <?php
 
-namespace App\maguttiCms\Website\Controllers;
+namespace App\maguttiCms\Domain\Store\Api;
 
 
 use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Website\Controllers\APIController;
 use App\maguttiCms\Website\Requests\AjaxFormRequest;
 use App\maguttiCms\Tools\JsonResponseTrait;
 
