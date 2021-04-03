@@ -1,5 +1,6 @@
 <?php
 
+use App\maguttiCms\Domain\Store\Controllers\MainStoreController;
 use App\maguttiCms\Website\Controllers\Store\CartController;
 use App\maguttiCms\Website\Controllers\Store\OrderSendController;
 
@@ -28,15 +29,13 @@ Route::get('/order-payment-cancel/{cart:token}', [OrderPaymentController::class,
 
 
 Route::get('/order/mailable/{order:token}', function (\App\Order $order) {
-
-
     return (new NewOrderNotification($order))
         ->toMail($order->user);
 });
 
 
-Route::get('/order-login/', '\App\maguttiCms\Website\Controllers\StoreController@orderLogin')->middleware(['storeenabled']);
-Route::get('/order-submit/', '\App\maguttiCms\Website\Controllers\StoreController@orderSubmit')->middleware(['storeenabled']);
+Route::get('/order-login/', [MainStoreController::class,'orderLogin'])->name('pino')->middleware(['storeenabled']);
+Route::get('/order-submit/', [MainStoreController::class,'orderSubmit'])->middleware(['storeenabled'])->name('cart.detail');
 
 Route::get('/order-review/{token}', '\App\maguttiCms\Website\Controllers\StoreController@orderReview')->middleware(['storeenabled', 'auth']);
 Route::post('/order-payment/', '\App\maguttiCms\Website\Controllers\StoreController@orderPayment')->middleware(['storeenabled', 'auth']);
