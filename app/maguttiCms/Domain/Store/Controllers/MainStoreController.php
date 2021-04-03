@@ -109,7 +109,7 @@ class MainStoreController extends Controller
 		$payment = StoreHelper::createPayment($order_id, $payment_method_id);
 
 		if (!$payment) {
-			session()->flash('error', trans('store.alerts.payment_fail'));
+			session()->flash('error', );
 			return back();
 		}
 		$response = StoreHelper::processPayment($payment);

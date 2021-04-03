@@ -1,9 +1,6 @@
 <?php
 
-
-
 use App\maguttiCms\Website\Controllers\Store\OrderSendController;
-use App\maguttiCms\Website\Controllers\Store\OrderManageController;
 use App\maguttiCms\Website\Controllers\Store\OrderPaymentController;
 use App\maguttiCms\Website\Controllers\Store\OrderResultController;
 
@@ -11,9 +8,10 @@ use App\maguttiCms\Domain\Store\Controllers\MainStoreController;
 use App\maguttiCms\Domain\Store\Controllers\CartController;
 use App\maguttiCms\Domain\Store\Controllers\AddressStepController;
 use App\maguttiCms\Domain\Store\Controllers\ConfirmStepController;
-use App\maguttiCms\Domain\Store\Notifications\NewOrderNotification;
 use App\maguttiCms\Domain\Store\Controllers\PaymentMethodStepController;
+use App\maguttiCms\Domain\Store\Controllers\Payment\StorePaymentManagerController;
 
+use App\maguttiCms\Domain\Store\Notifications\NewOrderNotification;
 
 use App\maguttiCms\Domain\Store\Api\CouponDeleteController;
 use App\maguttiCms\Domain\Store\Api\CouponValidateController;
@@ -28,7 +26,7 @@ Route::post('/cart/payment', [PaymentMethodStepController::class, 'store'])->mid
 Route::get('/cart/resume', [ConfirmStepController::class, 'view'])->middleware('storeenabled')->name('cart.resume');
 Route::post('/cart/resume', [ConfirmStepController::class, 'view'])->middleware('storeenabled');
 
-Route::get('/order-send/', [OrderManageController::class, 'handle'])->middleware(['storeenabled', 'auth'])->name('order.send');
+Route::get('/order-send/', [StorePaymentManagerController::class, 'handle'])->middleware(['storeenabled', 'auth'])->name('order.send');
 Route::get('/order-confirm/{token}', [OrderResultController::class, 'view'])->middleware(['storeenabled', 'auth'])->name('order.confirm.success');
 
 Route::get('/order-payment-confirm/{token?}', [OrderPaymentController::class, 'orderPaymentConfirm'])->middleware(['storeenabled', 'auth'])->name('order.payment.cancel');

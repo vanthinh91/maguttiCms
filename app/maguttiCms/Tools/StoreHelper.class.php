@@ -590,15 +590,9 @@ class StoreHelper {
 
                 $provider->setCurrency(config('maguttiCms.store.currency'));
                 $options = PayPalHelper::getPaypalPaymentOptions();
-
-
                 $cart = StoreHelper::getSessionCart();
-
                 $data = PayPalHelper::getPaypalPaymentData($cart);
-
                 $data['items'] = [];
-
-
                 $response = $provider->addOptions($options)->setSimpleExpressCheckout($data,'false');
 
                 if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
