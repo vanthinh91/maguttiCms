@@ -19,7 +19,7 @@
 							</a>
 						</h5>
 						<p>
-							{{ Stringable::truncate($_item->description, 100) }}
+							{{ StringHelper::truncate($_item->description, 100) }}
 						</p>
 					</div>
 				</div>

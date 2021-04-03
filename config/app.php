@@ -293,7 +293,7 @@ return [
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
         'SEOMeta' => Artesaos\SEOTools\Facades\SEOMeta::class,
         'Setting' => \App\maguttiCms\Tools\SettingHelper::class,
-        'Stringable' => App\maguttiCms\Tools\Stringable::class,
+        'StringHelper' => App\maguttiCms\Tools\StringHelper::class,
         'ImgHelper' => App\maguttiCms\Website\Facades\ImgHelper::class,
         'SeoLandingHelper' => App\maguttiCms\Website\Facades\SeoLandingHelper::class,
         'HtmlSocial' => App\maguttiCms\Website\Facades\HtmlSocial::class,

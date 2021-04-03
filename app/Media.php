@@ -2,7 +2,7 @@
 
 use App\maguttiCms\Website\Facades\ImgHelper;
 use Illuminate\Database\Eloquent\Model;
-use App\maguttiCms\Tools\Stringable;
+use App\maguttiCms\Tools\StringHelper;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 
@@ -153,6 +153,6 @@ class Media extends Model
 	}
 
 	public function getFileSize() {
-		return Stringable::humanReadableFileSize($this->size);
+		return StringHelper::humanReadableFileSize($this->size);
 	}
 }

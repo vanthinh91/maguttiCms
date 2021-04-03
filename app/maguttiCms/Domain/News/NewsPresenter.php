@@ -1,6 +1,6 @@
 <?php
 namespace App\maguttiCms\Domain\News;
-use App\maguttiCms\Tools\Stringable;
+use App\maguttiCms\Tools\StringHelper;
 
 trait NewsPresenter
 {
@@ -24,7 +24,7 @@ trait NewsPresenter
     */
     public function getExcerpt($length = 200)
     {
-        return Stringable::truncate($this->description, $length);
+        return StringHelper::truncate($this->description, $length);
     }
 
 }

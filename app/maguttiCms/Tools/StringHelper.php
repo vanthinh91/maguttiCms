@@ -4,7 +4,7 @@ namespace App\maguttiCms\Tools;
 
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-class Stringable
+class StringHelper
 {
 
     public static function camelize($string)
