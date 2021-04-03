@@ -40,9 +40,10 @@ return [
     ],
 
     'shipping' => [
+        'free_label' => 'Gratuita',
         'free' => 'Spedizione gratuita',
         'free_from' => 'Spedizione gratuita per ordini superiori a :AMOUNT',
-        'method' => 'Metodo di Spedizione',
+        'method' => 'Metodo di spedizione',
     ],
 
     'items' => [

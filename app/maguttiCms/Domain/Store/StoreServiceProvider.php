@@ -4,16 +4,18 @@ namespace App\maguttiCms\Domain\Store;
 
 
 
-
-use App\maguttiCms\Domain\Store\View\Components\PaymentMethodComponent;
-use App\maguttiCms\Domain\Store\View\Components\ShippingCostLabel;
-use App\maguttiCms\Domain\Store\View\Components\ShippingMethodComponent;
-use App\PaymentMethod;
 use Illuminate\Support\ServiceProvider;
+
+use App\maguttiCms\Domain\Store\View\Components\ShippingCostLabel;
+use App\maguttiCms\Domain\Store\View\Components\CartProductsWidget;
+use App\maguttiCms\Domain\Store\View\Components\PaymentMethodComponent;
+use App\maguttiCms\Domain\Store\View\Components\ShippingMethodComponent;
+
+use App\maguttiCms\Domain\Store\View\Components\ResumeComponent;
 
 use App\maguttiCms\Domain\Store\View\Components\OrderListComponent;
 use App\maguttiCms\Domain\Store\View\Components\OrderPaymentComponent;
-use App\maguttiCms\Domain\Store\View\Components\ResumeComponent;
+use App\maguttiCms\Domain\Store\View\Components\OrderShippingComponent;
 
 use App\maguttiCms\Domain\Store\View\Components\AddressComponent;
 
@@ -36,8 +38,10 @@ class StoreServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'magutti_store');
         $this->loadViewComponentsAs('magutti_store', [
             AddressComponent::class,
+            CartProductsWidget::class,
             ResumeComponent::class,
             OrderPaymentComponent::class,
+            OrderShippingComponent::class,
             OrderListComponent::class,
             ShippingMethodComponent::class,
             PaymentMethodComponent::class,

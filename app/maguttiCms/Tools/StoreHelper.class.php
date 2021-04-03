@@ -443,6 +443,7 @@ class StoreHelper {
             'products_cost'       => $cart->getTotalProducts(),
             'shipping_cost'       => $cart->getShipping(),
             'shipping_method_id'  => $cart->shipping_method_id,
+            'shipping_method'     => optional($cart->shipping_method)->title,
             'vat_cost'            => $cart->getVat(),
             'total_cost'          => $cart->cartGrandTotal(),
             'billing_address_id'  => $billing_address_id,

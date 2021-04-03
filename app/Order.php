@@ -24,6 +24,7 @@ class Order extends Model
 		'payment_id',
 		'status_id',
         'shipping_method_id',
+        'shipping_method',
         'reference',
 		'products_cost',
 		'shipping_cost',

@@ -8,14 +8,11 @@
         <h5 class="order-step-resume-title"><b>{{ trans('store.order.billing') }}</b></h5>
         {!! optional($cart->display_billing_address)->display('<br>')!!}
     </div>
-
 </div>
-
 <div class="row">
     <div class="col-12 mt-3">
         <h5 class="order-step-resume-title"><b>{{ trans('store.payment.method') }}:</b> {{$cart->payment_method->title}}
         </h5>
-
     </div>
 </div>
 

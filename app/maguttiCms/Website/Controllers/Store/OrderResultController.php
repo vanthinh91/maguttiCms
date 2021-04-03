@@ -29,7 +29,7 @@ class OrderResultController extends Controller
             $payment = $order->payment;
             $user->notify(new NewOrderNotification($order));
 
-            return view('website.store.order_confirm', compact('order', 'payment'));
+            return view('magutti_store::order.confirm', compact('order', 'payment'));
         }
         else {
             return Redirect::to('/');

@@ -9,6 +9,9 @@
                     <x-magutti_store-address-component
                             :address="$order->shipping_address"
                             :label="trans('store.order.shipping')"/>
+                    @if($order->shipping_method)
+                        <p><b>{{ trans('store.shipping.method') }}:</b> {{$order->shipping_method}}</p>
+                    @endif
                 </td>
                 <td width="10%"></td>
                 <td width="45%">
@@ -30,6 +33,7 @@
                     @if($order->payment->payment_method_id=App\PaymentMethod::BANK_TRANSFER)
                         {!!   $order->orderFeedback(optional($order->payment->payment_method)->description)!!}
                     @endif
+
                 </td>
             </tr>
             </tbody>

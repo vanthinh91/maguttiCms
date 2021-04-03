@@ -26,8 +26,7 @@ class ConfirmStepController extends  CartStepController
         if(optional($cart)->hasStep()) {
             $countries = Country::list()->get();
             $payment_methods = StoreHelper::getPaymentMethods();
-
-            return view('website.store.step_corfirm_order', compact('cart', 'countries', 'payment_methods'));
+            return view('magutti_store::cart.step_confirm_order', compact('cart', 'countries', 'payment_methods'));
         }
         return $this->handleMissingStep();
 
@@ -40,7 +39,7 @@ class ConfirmStepController extends  CartStepController
             session()->flash('message', trans('store.alerts.payment_cancel'));
             $countries = Country::list()->get();
             $payment_methods = StoreHelper::getPaymentMethods();
-            return view('website.store.step_corfirm_order', compact('cart', 'countries', 'payment_methods'));
+            return view('magutti_store::cart.step_confirm_order', compact('cart', 'countries', 'payment_methods'));
         }
         return $this->handleMissingStep();
     }

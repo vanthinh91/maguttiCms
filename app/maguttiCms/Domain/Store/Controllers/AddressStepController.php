@@ -20,7 +20,7 @@ class AddressStepController extends  CartStepController
             $countries = Country::list()->get();
             $payment_methods = StoreHelper::getPaymentMethods();
             $cart->prefillAddressIfPresent();
-            return view('website.store.order', compact('cart', 'countries', 'payment_methods'));
+            return view('magutti_store::cart.step_address', compact('cart', 'countries', 'payment_methods'));
         }
         return $this->handleMissingStep();
     }

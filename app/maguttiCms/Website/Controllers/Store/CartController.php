@@ -13,7 +13,7 @@ class CartController extends Controller
     {
 
         $cart = new CartVieModel();
-        return view('website.store.cart', compact('cart',));
+        return view('magutti_store::cart.detail', compact('cart',));
 
     }
 }

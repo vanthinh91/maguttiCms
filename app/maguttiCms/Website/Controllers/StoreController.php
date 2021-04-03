@@ -41,7 +41,7 @@ class StoreController extends Controller
 	{
 		$redirectTo = 'cart/'.Definition::CART_STEP_ADDRESS;
 		$with_register = true;
-		return view('website.store.order_login', compact('redirectTo', 'with_register'));
+		return view('magutti_store::login', compact('redirectTo', 'with_register'));
 	}
 
 	public function orderCreate(WebsiteFormRequest $request)

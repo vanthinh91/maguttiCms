@@ -40,6 +40,7 @@ return [
 	],
 
 	'shipping' => [
+        'free_label' => 'Free',
 		'free' => 'Free shipping',
 		'free_from' => 'Free shipping from order amount more  than :AMOUNT',
         'method' => 'Shipping Method',

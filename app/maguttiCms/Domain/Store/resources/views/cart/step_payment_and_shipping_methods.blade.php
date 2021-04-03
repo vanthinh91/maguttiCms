@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-12 col-md-8">
                     <div class="card order-info box-shadow p-2">
-                        @include('website.store.cart_step')
+                        @include('magutti_store::cart.step_menu')
                         <h2 class="order-step-title">2. {{ trans('store.cart.step.shipping_and_payment') }}</h2>
                         <form class="mb-4 pl-3" action="{{url_locale('/cart/payment')}}" method="post">
                             {{ csrf_field() }}
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
-                    @include('website.store.cart_products_widget')
+                    <x-magutti_store-cart-products-widget :cart="$cart"/>
                 </div>
             </div>
 

@@ -1,9 +1,7 @@
 @if(StoreHelper::isShippingEnabled())
 <h4 class="order-sub-step-title"> {{ trans('store.shipping.method') }}</h4>
-
 <div class="row">
     <div class="col-12">
-
         @foreach ($shipping_methods() as $_method)
             <div class="form-radio mb-2 my-md-0">
                 <input type="radio" required name="shipping_method_id"
