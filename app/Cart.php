@@ -1,23 +1,30 @@
 <?php namespace App;
 
-use App\maguttiCms\Domain\Store\CartPresenter;
-use App\maguttiCms\Domain\Store\CartStepTrait;
+
+use App\maguttiCms\Domain\Store\Cart\CartActionTrait;
 use Illuminate\Database\Eloquent\Model;
 
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use App\maguttiCms\Domain\Store\Cart\CartPresenter;
+use App\maguttiCms\Domain\Store\Cart\CartStepTrait;
 
+
+/**
+ * Class Cart
+ * @package App
+ */
 class Cart extends Model
 {
 
-    use CartPresenter;
-    use CartStepTrait;
+    use CartPresenter,CartStepTrait, CartActionTrait;
 
-    protected $fillable = ['user_id', 'status', 'payment_method_id', 'shipping_cost','shipping_method_id',
-        'billing_address_id', 'shipping_address_id', 'discount_code','token'
+    protected $fillable = ['user_id', 'status',
+        'payment_method_id', 'shipping_cost', 'shipping_method_id',
+        'billing_address_id', 'shipping_address_id',
+        'discount_code', 'token'
     ];
     protected $fieldspec = [];
 
-    protected $appends = ['discount_amount', 'discount_type'];
+    protected $appends = ['discount_amount','discount_type'];
 
     public $sluggable = [];
 
@@ -27,6 +34,11 @@ class Cart extends Model
         return 'token';
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    |  RELATION
+    |--------------------------------------------------------------------------
+    */
 
     public function user()
     {
@@ -50,10 +62,9 @@ class Cart extends Model
 
     public function display_billing_address()
     {
-        return ($this->billing_address_id!='') ? $this->billing_address():$this->shipping_address();
+        return ($this->billing_address_id != '') ? $this->billing_address() : $this->shipping_address();
 
     }
-
 
     public function cart_items()
     {
@@ -76,16 +87,8 @@ class Cart extends Model
         return $this->hasOne('App\Order');
 
     }
-    /*
-    |--------------------------------------------------------------------------
-    |  Action
-    |--------------------------------------------------------------------------
-    */
 
-    function update_cart_address($address_field,$address_id){
 
-        $this->update([$address_field => $address_id]);
-    }
 
     /*
     |--------------------------------------------------------------------------

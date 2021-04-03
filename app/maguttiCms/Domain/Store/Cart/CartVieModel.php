@@ -1,6 +1,6 @@
 <?php
 
-namespace App\maguttiCms\Domain\Cart;
+namespace App\maguttiCms\Domain\Store\Cart;
 
 
 use App\maguttiCms\Tools\StoreHelper;

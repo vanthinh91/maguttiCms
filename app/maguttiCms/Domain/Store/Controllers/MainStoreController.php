@@ -2,22 +2,21 @@
 
 namespace App\maguttiCms\Domain\Store\Controllers;
 
-use App\Country;
+
+use Auth;
+use Input;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+
 use App\maguttiCms\Definition\Definition;
-use App\maguttiCms\Domain\Cart\CartVieModel;
+use App\maguttiCms\Domain\Store\Cart\CartVieModel;
 use App\maguttiCms\Tools\StoreHelper;
 use App\maguttiCms\Website\Requests\WebsiteFormRequest;
-use Auth;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use Input;
 
 class MainStoreController extends Controller
 {
     public function __construct() {}
-
-
 
     public function orderSubmit() {
 	    if (!auth_user()){

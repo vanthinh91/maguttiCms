@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\maguttiCms\Domain\Store;
+namespace App\maguttiCms\Domain\Store\Cart;
 
 
 

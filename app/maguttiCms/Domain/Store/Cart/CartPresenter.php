@@ -1,8 +1,7 @@
 <?php
 
 
-namespace App\maguttiCms\Domain\Store;
-
+namespace App\maguttiCms\Domain\Store\Cart;
 
 use App\maguttiCms\Tools\StoreHelper;
 use Illuminate\Session\Store;
