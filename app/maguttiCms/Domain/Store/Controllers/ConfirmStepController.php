@@ -6,19 +6,12 @@ namespace App\maguttiCms\Domain\Store\Controllers;
 
 use App\Cart;
 use App\Country;
-use App\maguttiCms\Domain\Store\Action\ShippingCostAction;
-use App\maguttiCms\Domain\Store\Shipping\StandardShippingCostCalculator;
 use App\maguttiCms\Tools\StoreHelper;
-
 
 
 class ConfirmStepController extends  CartStepController
 {
 
-    public function __construct()
-    {
-
-    }
 
     public function view()
     {

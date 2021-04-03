@@ -19,7 +19,7 @@ use App\maguttiCms\Domain\Store\Api\StoreAPIController;
 
 
 Route::get('/cart/', CartController::class)->middleware('storeenabled')->name('cart');
-Route::get('/cart/address', [AddressStepController::class, 'view'])->middleware('storeenabled', 'auth')->name('cart.address');
+Route::get('/cart/address', [AddressStepController::class, 'view'])->middleware('storeenabled', 'auth')->name('cart.step_1');
 Route::post('/cart/address', [AddressStepController::class, 'store'])->middleware('storeenabled');
 Route::get('/cart/payment', [PaymentMethodStepController::class, 'view'])->middleware('storeenabled')->name('cart.payment');
 Route::post('/cart/payment', [PaymentMethodStepController::class, 'store'])->middleware('storeenabled');
@@ -34,17 +34,16 @@ Route::get('/order-payment-cancel/{cart:token}', [OrderPaymentController::class,
 
 
 Route::get('/order/mailable/{order:token}', function (\App\Order $order) {
-    return (new NewOrderNotification($order))
-        ->toMail($order->user);
+    return (new NewOrderNotification($order))->toMail($order->user);
 });
 
 
 Route::get('/order-login/', [MainStoreController::class,'orderLogin'])->name('pino')->middleware(['storeenabled']);
 Route::get('/order-submit/', [MainStoreController::class,'orderSubmit'])->middleware(['storeenabled'])->name('cart.detail');
 
-Route::get('/order-review/{token}', '\App\maguttiCms\Website\Controllers\StoreController@orderReview')->middleware(['storeenabled', 'auth']);
-Route::post('/order-payment/', '\App\maguttiCms\Website\Controllers\StoreController@orderPayment')->middleware(['storeenabled', 'auth']);
-Route::get('/order-payment-result/{token}', '\App\maguttiCms\Website\Controllers\StoreController@orderResult')->middleware(['storeenabled', 'auth']);
+//Route::get('/order-review/{token}', '\App\maguttiCms\Website\Controllers\StoreController@orderReview')->middleware(['storeenabled', 'auth']);
+//Route::post('/order-payment/', '\App\maguttiCms\Website\Controllers\StoreController@orderPayment')->middleware(['storeenabled', 'auth']);
+//Route::get('/order-payment-result/{token}', '\App\maguttiCms\Website\Controllers\StoreController@orderResult')->middleware(['storeenabled', 'auth']);
 
 /*
 |--------------------------------------------------------------------------

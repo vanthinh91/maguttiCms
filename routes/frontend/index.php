@@ -75,7 +75,7 @@ Route::group(['middleware' => ['localeSessionRedirect', 'localizationRedirect', 
     Route::post('/contacts/', [WebsiteFormController::class, 'getContactUsForm']);
 
     // store page
-    Route::name('store')->group(base_path('routes/frontend/store.php'));
+    Route::group(['as'=>'store.'],base_path('routes/frontend/store.php'));
 
     //Route::name('seolanding')->group(base_path('routes/frontend/seolanding.php'));
 

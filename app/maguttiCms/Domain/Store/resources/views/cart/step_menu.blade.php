@@ -7,7 +7,7 @@
 
 <div class="cart-resume no-border d-flex justify-content-between">
     <h2 class="cart-resume-title text-primary">1. {{trans('store.order.addresses')}}</h2>
-    <a href="{{url_locale('/cart/address')}}" class="cart-resume-edit">
+    <a href="{{route('store.cart.step_1')}}" class="cart-resume-edit">
         {{trans('store.cart.edit_address')}}
     </a>
 </div>
