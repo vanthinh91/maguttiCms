@@ -91,3 +91,15 @@
 		@include button-outline-variant(map_get($theme-colors, $color), $color-text-contrast);
 	}
 }
+
+@include media-breakpoint-down(md) {
+	.btn-sm-block{
+		width:100%;
+	}
+}
+
+@include media-breakpoint-down(sm) {
+	.btn-xs-block{
+		width:100%;
+	}
+}

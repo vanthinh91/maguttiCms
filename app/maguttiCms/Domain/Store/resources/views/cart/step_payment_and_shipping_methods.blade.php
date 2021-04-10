@@ -8,12 +8,12 @@
                     <div class="card order-info box-shadow p-2">
                         @include('magutti_store::cart.step_menu')
                         <h2 class="order-step-title">2. {{ trans('store.cart.step.shipping_and_payment') }}</h2>
-                        <form class="mb-4 pl-3" action="{{url_locale('/cart/payment')}}" method="post">
+                        <form class="mb-4 pl-lg-3" action="{{url_locale('/cart/payment')}}" method="post">
                             {{ csrf_field() }}
                             <x-magutti_store-shipping-method-component :cart="$cart"/>
                             <x-magutti_store-payment-method-component  :cart="$cart"/>
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-accent ">
+                            <div class="d-flex justify-content-end mt-3">
+                                <button type="submit" class="btn btn-accent btn-xs-block ">
                                     {{trans('store.cart.step.next_confirm')}}
                                 </button>
                             </div>

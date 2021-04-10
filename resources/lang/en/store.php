@@ -13,29 +13,29 @@ return [
 		'title' => 'Shopping Bag',
 		'total' => 'Total',
 		'empty' => 'Your Shopping bag is empty',
-        'edit_address'=>'Edit Address',
-        'edit_payment_method' => 'Edit Payment Method',
 		'buy' => 'Checkout',
-		'back' => 'Back to the store',
+        'back' => 'Back to the store',
         'number_of_items' => 'Items',
         'show_detail'=>'show details',
         'optional' => 'optional',
         'with_tax'=>'VAT Incl.',
-		'table' => [
-			'code' => 'Code',
-			'name' => 'Product',
-			'quantity' => 'Quantity',
-			'price' => 'Price',
-			'total' => 'Total',
-			'actions' => 'Actions'
+        'table' => [
+            'code' => 'Code',
+            'name' => 'Product',
+            'quantity' => 'Quantity',
+            'price' => 'Price',
+            'total' => 'Total',
+            'actions' => 'Actions'
 		],
         'step'=>[
             'next_payment' =>'Next: Shipping  & Payment Methods',
             'next_send' =>'Next: Send Order ',
             'next_confirm' =>'Next: Confirm Order ',
             'shipping_and_payment' => 'Shipping  & Payment Methods',
-            'edit_shipping_and_payment' => 'Edit Shipping  & Payment'
-
+            'edit'=>'Modify',
+            'edit_address'=>'Modify Addresses',
+            'edit_payment_method' => 'Edit Payment Method',
+            'edit_shipping_and_payment' => 'Modify Shipping  & Payment'
         ]
 	],
 
@@ -72,7 +72,8 @@ return [
 	'order' => [
 		'guard' => 'An account is required to continue',
 		'login' => 'Login',
-        'success' => 'Order completed successfully.<br> Order reference:  ',
+        'success' => 'Order completed successfully.',
+        'reference' => 'Order reference:  ',
         'info'=>'For any information please contact us by entering the following order number in the request:',
         'number'=>'Order number',
 		'register' => 'Create a new account',

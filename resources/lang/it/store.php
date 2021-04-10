@@ -10,8 +10,6 @@ return [
         'checkout' => 'Visualizza Carrello',
         'continue' => 'Continua',
         'confirm' => 'Conferma Dati',
-        'edit_address' => 'Modifica spedizione',
-        'edit_payment_method' => 'Modifica pagamento',
         'optional' => 'optional',
         'title' => 'Il mio carrello',
         'total' => 'Totale',
@@ -34,7 +32,10 @@ return [
             'next_send' => 'Prossimo Step: Acquista ',
             'next_confirm' => 'Prossimo Step: Conferma Dati ',
             'shipping_and_payment' => 'Pagamento & Spedizione',
-            'edit_shipping_and_payment' => 'Edit Pagamento & Spedizione'
+            'edit'=>'Modifica',
+            'edit_address' => 'Modifica Indirizzi',
+            'edit_payment_method' => 'Modifica pagamento',
+            'edit_shipping_and_payment' => 'Modifica'
 
         ]
     ],
@@ -70,7 +71,8 @@ return [
 
     'order' => [
         'guard' => 'Per proseguire è necessario essere registrati',
-        'success' => 'Ordine concluso con successo. <br>Riferimento ordine: ',
+        'success' => 'Ordine concluso con successo. ',
+        'reference' => 'Riferimento ordine: ',
         'info' => 'Per qualsiasi informazione ci contatti inserendo nella richiesta il seguente numero ordine:',
         'number' => 'Numero d\'ordine',
         'login' => 'Login',
