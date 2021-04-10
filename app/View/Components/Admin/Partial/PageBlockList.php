@@ -7,16 +7,18 @@ use Illuminate\View\Component;
 class PageBlockList extends Component
 {
     public $item;
+    public $model;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($item)
+    public function __construct($item,$model)
     {
         //
         $this->item= $item;
+        $this->model = $model;
     }
 
     /**

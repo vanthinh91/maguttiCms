@@ -86,7 +86,7 @@
 			</div>
 			<div id="right-sidebar" class="col-12 col-sm-4">
 				@includeFirst(['admin.'.strtolower($pageConfig->get('model')).'.side_bar_action', 'admin.common.side_bar_action'])
-				<x-admin.partial.page-block-list :item="$article"></x-admin.partial.page-block-list>
+
 			</div>
 		</div>
 	</main>

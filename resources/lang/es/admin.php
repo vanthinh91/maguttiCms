@@ -16,7 +16,7 @@ return [
 		'back'	        => 'Back',
         'back_to'	    => 'back to',
 		'banner'		=> 'Banner',
-        'block'		    => 'Page Block',
+        'block'		    => 'Page Blocks',
         'btn_no'        => 'No',
         'btn_yes'       => 'Yes',
         'cancel'        => 'Cancel',
