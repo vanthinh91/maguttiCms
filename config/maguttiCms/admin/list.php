@@ -237,6 +237,7 @@ return [
             'showMediaCategory' => 0,
             'showMediaImages' => 1,
             'showMediaDoc' => 0,
+            'showBlock' => 1,
             'showSeo' => 1,
             'menu' => [
                 'home' => true,

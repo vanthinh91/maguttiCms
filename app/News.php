@@ -1,5 +1,7 @@
 <?php namespace App;
 
+use App\maguttiCms\Domain\Block\Blockable;
+use App\maguttiCms\Domain\Media\Mediable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +19,8 @@ class News extends Model
     use GFTranslatableHelperTrait;
     use Translatable;
     use NewsPresenter;
+    use Mediable;
+    use Blockable;
 
     protected $with = ['translations'];
 

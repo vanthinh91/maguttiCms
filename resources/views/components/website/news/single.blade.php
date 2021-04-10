@@ -1,4 +1,4 @@
-<article class="news__single mr-md-2">
+<article class="news__single mr-md-2 mb-2">
     <h5 class="text-muted mb-1">
         <i class="fa fa-clock mr-1"></i>{{ $news->getFormattedDate() }}
     </h5>
@@ -9,6 +9,13 @@
         <img src="{{ ImgHelper::get_cached($news->image,config('maguttiCms.image.medium')) }}" alt="{{ $news->title }}" class="img-fluid mb-2">
     @endif
     {!! $news->description !!}
+    @if($news->hasBlocks())
+        <div class="my-2">
+            @foreach($news->blocks()->sorted()->get() as $block)
+                <x-website.page-blocks.item :block="$block" type="blocks"/>
+            @endforeach
+        </div>
+    @endif
     <x-website.partials.page-doc :doc="$news->doc" class="mb-3"/>
 </article>
 <x-website.widgets.tags :news="$news"/>

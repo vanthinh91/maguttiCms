@@ -28,4 +28,8 @@ trait Blockable
     {
         return $this->blocks()->where($field,$id)->first();
     }
+    public function hasBlocks()
+    {
+        return $this->blocks()->count();
+    }
 }

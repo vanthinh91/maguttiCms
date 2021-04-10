@@ -10,7 +10,4 @@
             <img src="{{ ma_get_image_from_repository($block->image) }}" class="img-fluid blocks-img w-100"  alt="{{$block->title}}">
         @endif
     </div>
-    <div class="col-lg-12 {{$type}}-content">
-        <x-website.page-blocks.content :block="$block" :buttonColor="$button_color" />
-    </div>
 </div>

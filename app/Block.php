@@ -2,13 +2,13 @@
 
 namespace App;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 use Astrotomic\Translatable\Translatable;
 use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 use App\maguttiCms\Domain\Media\Mediable;
+use App\maguttiCms\Builders\MaguttiCmsBuilder;
 use App\maguttiCms\Domain\Block\BlockPresenter;
 
 
@@ -27,6 +27,7 @@ class Block extends Model
         'model_id',
         'model_type',
         'template_id',
+        'btn_title',
         'title',
         'subtitle',
         'description',
@@ -47,7 +48,6 @@ class Block extends Model
     |--------------------------------------------------------------------------
     */
 
-
     public function model()
     {
         return $this->morphTo();
@@ -62,7 +62,15 @@ class Block extends Model
         return $this->belongsTo('App\Domain', 'template_id', 'id');
     }
 
-
+    /*
+    |--------------------------------------------------------------------------
+    |  Builder & Repo
+    |--------------------------------------------------------------------------
+    */
+    function newEloquentBuilder($query)
+    {
+        return new MaguttiCmsBuilder($query);
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -72,7 +80,8 @@ class Block extends Model
     public $translatedAttributes = [
         'title',
         'description',
-        'subtitle'
+        'subtitle',
+        'btn_title'
     ];
 
     /*
@@ -98,7 +107,7 @@ class Block extends Model
             'hidden'   => 1,
             'label'    => "Type",
             'display'  => 1,
-            'default_value' => (request()->has('model'))?get_class(getModelFromString('article')):''
+            'default_value' => $this->resolveMorphModelClass()
         ];
         $this->fieldspec['model_id'] = [
             'type'     => 'integer',
@@ -113,7 +122,7 @@ class Block extends Model
         $this->fieldspec['template_id'] = [
             'type'        => 'relation',
             'model'       => 'Domain',
-            'filter'      => ['domain' => 'template'],
+            'filter'      => ['domain' => 'block_template'],
             'foreign_key' => 'id',
             'label_key'   => 'title',
             'required'    => 0,
@@ -133,6 +142,13 @@ class Block extends Model
             'required' => 0,
             'hidden'   => 0,
             'label'    => trans('admin.label.subtitle'),
+            'display'  => 1,
+        ];
+        $this->fieldspec['btn_title'] = [
+            'type'     => 'string',
+            'required' => 0,
+            'hidden'   => 0,
+            'label'    => 'Titolo Bottone',
             'display'  => 1,
         ];
         $this->fieldspec['description'] = [
@@ -160,8 +176,9 @@ class Block extends Model
             'mediaType' => 'Img',
             'display'   => 1,
             'disk'      => 'media',
-            'accept'	=> '.jpg'
+
         ];
+
         $this->fieldspec['doc'] = [
             'type'        => 'media',
             'required'    => 0,
@@ -195,9 +212,12 @@ class Block extends Model
             'display'  => 1
         ];
 
-
-
-
         return $this->fieldspec;
+    }
+
+    function  resolveMorphModelClass(){
+        $model = (request()->has('model'))?request()->get('model'):'article';
+
+        return get_class(getModelFromString($model));
     }
 }

@@ -19,6 +19,13 @@
 								{{icon('file-alt')}} {{trans('admin.label.content')}}
 							</a>
 						</li>
+						@if ($pageConfig->get('showBlock') == 1 && $article->id!='')
+							<li class="nav-item">
+								<a href="#block_tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="block" aria-selected="false">
+									{{icon('newspaper')}} {{trans('admin.label.block')}}
+								</a>
+							</li>
+						@endif
 						@if ($pageConfig->get('tabs'))
 							@each('admin.helper.edit_form_tab', $pageConfig->get('tabs'), 'tab')
 						@endif
@@ -42,8 +49,13 @@
 					<div class="tab-content">
 						<div class="tab-pane fade show active" id="content_tab" role="tabpanel" aria-labelledby="content_tab">
 							{{ AdminForm::get( $article ) }}
-
 						</div>
+						@if ($pageConfig->get('showBlock') == 1)
+							<div class="tab-pane fade" id="block_tab" role="tabpanel" aria-labelledby="block_tab">
+								@include('admin.helper.blocks')
+
+							</div>
+						@endif
 						@if ($pageConfig->get('tabs'))
 							@foreach ($pageConfig->get('tabs') as $tab)
 								@include('admin.helper.edit_form_tab_content', ['tab' => $tab])

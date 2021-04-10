@@ -1,6 +1,6 @@
 <?php
 namespace App\maguttiCms\Domain\News;
-use App\maguttiCms\Tools\StringHelper;
+use App\maguttiCms\Tools\Stringable;
 
 trait NewsPresenter
 {
@@ -13,7 +13,6 @@ trait NewsPresenter
     public function getPermalink($locale='')
     {
         $locale = ($locale) ? $locale : app()->getLocale();
-
         return url_locale('news/'. $this->{'slug:'. $locale});
     }
 
@@ -22,9 +21,9 @@ trait NewsPresenter
     |  This method return the news excerpt.
     |--------------------------------------------------------------------------
     */
-    public function getExcerpt($length = 200)
+    public function getExcerpt($length = 200,$strip=false)
     {
-        return StringHelper::truncate($this->description, $length);
+        $description =($strip)?strip_tags($this->description):$this->description;
+        return Stringable::truncate($description,$length);
     }
-
 }
