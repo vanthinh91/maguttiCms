@@ -24,7 +24,7 @@ maguttiCms is released using Laravel 8x.
    
 ### Server Requirements
  
- - PHP >= 7.3
+ - PHP >= 7.4
  - BCMath PHP Extension
  - Ctype PHP Extension
  - Fileinfo PHP extension

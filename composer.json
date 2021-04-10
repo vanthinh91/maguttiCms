@@ -9,7 +9,7 @@
 
   "license": "MIT",
   "require": {
-    "php": "^7.3",
+    "php": "^7.4",
     "artesaos/seotools": "^0.19.0",
     "astrotomic/laravel-translatable": "^11.8",
     "cocur/slugify": "^4.0",
