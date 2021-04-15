@@ -25,12 +25,15 @@ import CartResume  from './../components/cart/CartResumeComponent';
 import CartAddItem  from './../components/cart/AddToCartComponent'
 import ShoppingCart  from './../components/cart/ShoppingCartComponent'
 import CouponComponent from './../components/cart/CouponComponent'
+import CarouselComponent from './../components/frontend/Carousel'
+import SwipComponent from './../components/frontend/Swiper'
 
 Vue.component('cart-resume', CartResume);
 Vue.component('cart-add-item', CartAddItem);
 Vue.component('shopping-cart', ShoppingCart);
 Vue.component('coupon-component', CouponComponent);
-
+Vue.component('pino', CarouselComponent);
+Vue.component('car', SwipComponent);
 
 let app = new Vue({
     el: '#app',

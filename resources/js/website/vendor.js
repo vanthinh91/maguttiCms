@@ -8,6 +8,8 @@ require('./bootstrap');
 
 require('@fancyapps/fancybox');
 require('owl.carousel');
+import Swiper from 'swiper';
+window.Swiper = Swiper;
 require('smokejs/dist/js/smoke.min.js');
 window.Cookies = require('js-cookie');
 window.bootbox = require('bootbox');
