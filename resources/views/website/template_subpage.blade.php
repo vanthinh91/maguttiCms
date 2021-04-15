@@ -9,11 +9,6 @@
         </div>
     </x-website.ui.breadcrumbs>
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <pino></pino>
-            </div>
-        </div>
         <div class="row mt-3">
             <div class="col carro">
                 <car></car>
