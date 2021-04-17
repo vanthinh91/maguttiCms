@@ -1,3 +1,5 @@
+@inject('pages','App\Article')
+<?php $items = $pages::published()->get();?>
 @extends('website.app')
 @section('content')
     <x-website.ui.breadcrumbs class="bg-accent">
@@ -8,13 +10,7 @@
             <div class="page-breadcrumb__item">{{$article->menu_title}}</div>
         </div>
     </x-website.ui.breadcrumbs>
-    <div class="container">
-        <div class="row mt-3">
-            <div class="col carro">
-                <car></car>
-            </div>
-        </div>
-    </div>
+
 
     <x-website.partials.page-content-full-image :article="$article" class="bg-color-2"/>
     <x-website.partials.page-child :children="$article->children" class="bg-color-2 mt-0 pt-1 pb-1"/>

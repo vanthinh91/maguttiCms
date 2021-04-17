@@ -7,8 +7,8 @@
 require('./bootstrap');
 
 require('@fancyapps/fancybox');
-require('owl.carousel');
-import Swiper from 'swiper';
+import Swiper from 'swiper/bundle';
+
 window.Swiper = Swiper;
 require('smokejs/dist/js/smoke.min.js');
 window.Cookies = require('js-cookie');

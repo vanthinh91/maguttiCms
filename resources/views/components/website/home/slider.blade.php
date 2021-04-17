@@ -1,27 +1,50 @@
-<header id="carousel" {{ $attributes->merge(['class' => 'slider owl-carousel ']) }}>
-    @foreach ($slides() as $index => $slide)
-        <div class="item">
-            <img src="{{ ImgHelper::get_cached($slide->image, ['w' => 1920, 'h' => 600, 'c' => 'cover', 'q' => 70]) }}" alt="" class="img-fluid">
+<header id="carousel" style="margin-top:100px">
 
-            <div class="slider-text">
-                <div class="container">
-                    <h2 class="text-primary">{{ $slide->title }}</h2>
-                    <div class="lead">{{ $slide->description }}</div>
+    <div class="swiper-container header-carousel">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            @foreach ($slides() as $index => $slide)
+                <div class="swiper-slide">
+                    <img src="{{ ImgHelper::get_cached($slide->image, ['w' => 1920, 'h' => 600, 'c' => 'cover', 'q' => 70]) }}"
+                         alt="" class="img-fluid">
+                    <div class="swiper-slide-text">
+                        <div class="container">
+                            <h2 class="text-primary">{{ $slide->title }}</h2>
+                            <div class="lead">{{ $slide->description }}</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
-    @endforeach
+        <!-- If we need pagination -->
+        <div class="swiper-pagination header-carousel-pagination"></div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev header-carousel-button-prev"></div>
+        <div class="swiper-button-next header-carousel-button-next"></div>
+
+    </div>
 </header>
 
 @push('scripts')
-<script type="text/javascript">
-    $('#carousel').owlCarousel({
-        items: 1,
-        loop: true,
-        dots: true,
-        nav: true,
-        navText: ['<i class="fa fa-arrow-left"></i>', '<i class="fa fa-arrow-right"></i>'],
-    });
-</script>
+    <script type="text/javascript">
+
+
+        const headerCarousel = new Swiper('.header-carousel', {
+            // Optional parameters
+            loop: true,
+
+            // If we need pagination
+            pagination: {
+                el: '.header-carousel-pagination',
+                clickable: true
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.header-carousel-button-next',
+                prevEl: '.header-carousel-button-next',
+            },
+        });
+    </script>
 @endpush
 

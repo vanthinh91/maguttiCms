@@ -1,56 +1,91 @@
-.slider {
-    position: relative;
-
-    &-text {
-        margin-top: 1rem;
-        text-align: center;
-
-        @include media-breakpoint-up(md) {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            transform: translate(0, -50%);
-            margin-top: 0;
-        }
-    }
-
-    .owl-dots {
-
-        @include media-breakpoint-up(md) {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            text-align: center;
-        }
-    }
+// override swiper css
+.swiper-wrapper {
+  padding-bottom: 0px;
 }
 
-.swiper-wrapper{
-    padding-bottom: 30px;
+.swiper-container-horizontal > .swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+  bottom: 0px !important;
 }
 
-.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
-    bottom: 0px !important;
+.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+  margin: 0 4px;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  outline: none;
 }
 
 .swiper-pagination-bullet {
-    width: 12px;
-    height: 12px;
-    display: inline-block;
-    border-radius: 100%;
-    background: #000;
-    opacity: 0.2;
-}
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border-radius: 100%;
+  background: #000;
+  opacity: 0.1;
+  outline: none;
 
-
-.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
-    margin: 0 4px;
-}
-.swiper-pagination-bullet-active{
-    background:blue;
+  &-active {
+    background: $color-accent;
     opacity: 1;
+    outline: none;
+  }
 }
+
+.swiper-pagination-bullet-active {
+
+}
+
+.header-carousel{
+  // header carousel
+  margin-bottom:1rem;
+  .swiper-wrapper {
+    padding-bottom: 2.5rem;
+  }
+
+  .swiper-button-prev, .swiper-button-next {
+    display: none;
+    @include media-breakpoint-up(md) {
+      display:block;
+    }
+  }
+
+}
+
+
+.swiper-slide {
+  position: relative;
+
+  &-text {
+    margin-top: 1rem;
+    text-align: center;
+    display:none;
+
+    @include media-breakpoint-up(md) {
+      display:block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translate(0, -50%);
+      margin-top: 0;
+    }
+  }
+}
+
+
+// product  carousel
+.product-carousel {
+  padding: 40px;
+  .swiper-slide-product {
+      text-align: center;
+      font-size: 18px;
+      background: none;
+      display: flex;
+      justify-content: center;
+  }
+}
+
+
+
 
 
