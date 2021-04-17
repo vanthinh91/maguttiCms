@@ -23,7 +23,6 @@
   background: #000;
   opacity: 0.1;
   outline: none;
-
   &-active {
     background: $color-accent;
     opacity: 1;
@@ -39,16 +38,14 @@
   // header carousel
   margin-bottom:1rem;
   .swiper-wrapper {
-    padding-bottom: 2.5rem;
+    padding-bottom: 2.55rem;
   }
-
   .swiper-button-prev, .swiper-button-next {
     display: none;
     @include media-breakpoint-up(md) {
       display:block;
     }
   }
-
 }
 
 

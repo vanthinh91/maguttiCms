@@ -1,5 +1,7 @@
 
-window.Vue = require('vue');
+import Vue from 'vue'
+
+window.Vue =Vue;
 window.$cartBus = new Vue();
 
 import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader';
@@ -39,6 +41,3 @@ let app = new Vue({
 
 
 window.app =app;;
-
-
-

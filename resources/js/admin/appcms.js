@@ -6,9 +6,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import Vue from 'vue'
 
-window.Vue = require('vue');
-
+window.Vue =Vue;
 window.$eventBus = new Vue();
 
 // const files = require.context('./', true, /\.vue$/i);

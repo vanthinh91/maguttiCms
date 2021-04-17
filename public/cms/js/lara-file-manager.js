@@ -1,1 +1,142 @@
-!function(e){var a={};function n(t){if(a[t])return a[t].exports;var i=a[t]={i:t,l:!1,exports:{}};return e[t].call(i.exports,i,i.exports,n),i.l=!0,i.exports}n.m=e,n.c=a,n.d=function(e,a,t){n.o(e,a)||Object.defineProperty(e,a,{enumerable:!0,get:t})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,a){if(1&a&&(e=n(e)),8&a)return e;if(4&a&&"object"==typeof e&&e&&e.__esModule)return e;var t=Object.create(null);if(n.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:e}),2&a&&"string"!=typeof e)for(var i in e)n.d(t,i,function(a){return e[a]}.bind(null,i));return t},n.n=function(e){var a=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(a,"a",a),a},n.o=function(e,a){return Object.prototype.hasOwnProperty.call(e,a)},n.p="/",n(n.s=6)}({"+JQO":function(e,a){$((function(){var e=$("#filemanager");$(".filemanager-select").on("click",(function(a){a.preventDefault(),e.modal("show");var n=$(this).data("input"),t=$("input[name="+n+"]").val();0!=t&&$("#file-manager-list").click(),$("input[name=file-input]",e).val(n),$("input[name=file-value]",e).val(t)})),$("input[name=upload-input]",e).uploadifive({auto:!0,queueID:"queue-modal",uploadScript:urlAjaxHandlerCms+"filemanager/upload",onAddQueueItem:function(e){this.data("uploadifive").settings.formData={_token:$("[name=_token]").val()}},onUploadComplete:function(a,n){var t=jQuery.parseJSON(n);t.data;$("input[name=file-value]",e).val(t.id),$("#file-manager-list").click(),$("#sidebar-content").empty()}}),$("#file-manager-list").on("click",(function(a){var n=$(".filemanager-select").data("input"),t=parseInt($("input[name="+n+"]").val())?parseInt($("input[name="+n+"]").val()):"",i="".concat(urlAjaxHandlerCms,"filemanager/list/").concat(t);$("#tab-images-gallery").load(i,(function(){$(".modal-footer",e).removeClass("hidden");var a=$("input[name=file-value]").val();0!=a&&($("#media-id-"+a).addClass("is-active"),$("#sidebar-content").load(urlAjaxHandlerCms+"filemanager/edit/"+a))}))})),$(document).on("click",".filemanager-list a",(function(a){a.preventDefault(),$(".filemanager-list a").removeClass("is-active"),$("input[name=file-value]",e).val($(this).data("id")),$("#sidebar-content").load(urlAjaxHandlerCms+"filemanager/edit/"+$(this).data("id")),$(this).addClass("is-active")})),$(document).on("submit","#filemanager-edit-form",(function(e){e.preventDefault();var a=$(this);$.ajax({type:"POST",url:a.attr("action"),data:a.serialize(),dataType:"json",success:function(e){$.notify(e.message,"success")},error:function(e){$.notify("Error.")}})})),$(".reset-image",e).on("click",(function(a){a.preventDefault(),$(".filemanager-list a").removeClass("is-active"),$("input[name=file-value]",e).val(0)})),$(".confirm-image",e).on("click",(function(a){a.preventDefault(),$("input[name="+$("input[name=file-input]",e).val()+"]").val($("input[name=file-value]",e).val()),e.modal("hide")})),$("#filemanager").on("hidden.bs.modal",(function(){$("#file-manager-upload").click(),$("#tab-images-gallery").html('<div class="loading text-center">\n      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>\n      <span class="sr-only">Loading...</span>\n    </div>'),$("#sidebar-content").html("")}))}))},6:function(e,a,n){e.exports=n("+JQO")}});
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!*************************************************!*\
+  !*** ./resources/js/admin/lara-file-manager.js ***!
+  \*************************************************/
+$(function () {
+  var $modal = $('#filemanager');
+  /*
+  * When the user clicks on upload button, open the modal
+  * with input name and current value
+  */
+
+  $('.filemanager-select').on('click', function (e) {
+    e.preventDefault();
+    $modal.modal('show');
+    var inputName = $(this).data('input');
+    var inputValue = $('input[name=' + inputName + ']').val(); // If 'inputValue' value is != 0, open library tab
+
+    if (inputValue != 0) {
+      $('#file-manager-list').click();
+    } // Set modal hidden input values
+
+
+    $('input[name=file-input]', $modal).val(inputName);
+    $('input[name=file-value]', $modal).val(inputValue);
+  });
+  /*
+  * Tab upload, uploadifive method
+  */
+
+  $('input[name=upload-input]', $modal).uploadifive({
+    'auto': true,
+    'queueID': 'queue-modal',
+    'uploadScript': urlAjaxHandlerCms + 'filemanager/upload',
+    'onAddQueueItem': function onAddQueueItem(file) {
+      this.data('uploadifive').settings.formData = {
+        '_token': $('[name=_token]').val()
+      };
+    },
+    'onUploadComplete': function onUploadComplete(file, data) {
+      var responseObj = jQuery.parseJSON(data);
+      var mediaType = responseObj.data; // Set media id in modal hidden value
+
+      $('input[name=file-value]', $modal).val(responseObj.id); // Switch to 'library' tab
+
+      $('#file-manager-list').click(); // Empty the content of the sidebar
+
+      $('#sidebar-content').empty();
+    }
+  });
+  /*
+  * When the user clicks on 'library' tab, load all images
+  */
+
+  $('#file-manager-list').on('click', function (e) {
+    var input_obj = $('.filemanager-select').data("input");
+    var media_obj_id = parseInt($('input[name=' + input_obj + ']').val()) ? parseInt($('input[name=' + input_obj + ']').val()) : '';
+    var request_url = "".concat(urlAjaxHandlerCms, "filemanager/list/").concat(media_obj_id);
+    $('#tab-images-gallery').load(request_url, function () {
+      $('.modal-footer', $modal).removeClass('hidden');
+      var fileValue = $('input[name=file-value]').val(); // If user is in edit mode, set media as active and load sidebar
+
+      if (fileValue != 0) {
+        $('#media-id-' + fileValue).addClass('is-active');
+        $('#sidebar-content').load(urlAjaxHandlerCms + 'filemanager/edit/' + fileValue);
+      }
+    });
+  });
+  /*
+  * When the user select an image, set modal hidden value and load sidebar
+  */
+
+  $(document).on('click', '.filemanager-list a', function (e) {
+    e.preventDefault(); // Remove all 'is-active' classes
+
+    $('.filemanager-list a').removeClass('is-active'); // Set modal hidden value with media id
+
+    $('input[name=file-value]', $modal).val($(this).data('id')); // Load sidebar
+
+    $('#sidebar-content').load(urlAjaxHandlerCms + 'filemanager/edit/' + $(this).data('id')); // Set 'is-active' class
+
+    $(this).addClass('is-active');
+  });
+  /*
+  * Sidebar: update image data
+  */
+
+  $(document).on('submit', '#filemanager-edit-form', function (e) {
+    e.preventDefault();
+    var form = $(this); // Make ajax request to edit media data
+
+    $.ajax({
+      type: 'POST',
+      url: form.attr('action'),
+      data: form.serialize(),
+      dataType: 'json',
+      success: function success(response) {
+        $.notify(response.message, 'success');
+      },
+      error: function error(response) {
+        $.notify('Error.');
+      }
+    });
+  });
+  /*
+  * When the user clicks resets button, remove current active and reset hidden input value
+  */
+
+  $('.reset-image', $modal).on('click', function (e) {
+    e.preventDefault(); // Remove all 'is-active' classes
+
+    $('.filemanager-list a').removeClass('is-active'); // Set modal hidden value as 0
+
+    $('input[name=file-value]', $modal).val(0);
+  });
+  /*
+  * When the user confirm an image from filemanager,
+  * set image id as new value in admin form input and close the modal
+  */
+
+  $('.confirm-image', $modal).on('click', function (e) {
+    e.preventDefault(); // Set admin form input value
+
+    $('input[name=' + $('input[name=file-input]', $modal).val() + ']').val($('input[name=file-value]', $modal).val()); // Close modal
+
+    $modal.modal('hide');
+  });
+  /*
+   * When the user close the modal, reset sidebar and loader.
+   */
+
+  $('#filemanager').on('hidden.bs.modal', function () {
+    // Reset modal tabs to upload
+    $('#file-manager-upload').click(); // Reset loading html
+
+    $('#tab-images-gallery').html("<div class=\"loading text-center\">\n      <i class=\"fa fa-spinner fa-pulse fa-3x fa-fw\"></i>\n      <span class=\"sr-only\">Loading...</span>\n    </div>"); // Reset sidebar content
+
+    $('#sidebar-content').html('');
+  });
+});
+/******/ })()
+;
