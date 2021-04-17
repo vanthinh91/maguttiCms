@@ -17,7 +17,6 @@ import GeneratorInputComponent from './../components/admin/GeneratorInputCompone
 import ListComponent from './../components/admin/ListComponent';
 
 
-
 Vue.component('dashboard-component', require('./../components/admin/DashboardButtonsComponent').default);
 Vue.component('side-bar-component', require('./../components/admin/SideBar').default);
 Vue.component('seo-input-component', require('./../components/admin/SeoInputComponent').default);

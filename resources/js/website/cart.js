@@ -39,5 +39,4 @@ let app = new Vue({
     i18n,
 });
 
-
 window.app =app;;
