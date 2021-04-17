@@ -1,4 +1,9 @@
-// override swiper css
+
+/*
+ |--------------------------------------------------------------------------
+ | OVERRIDE SWIPER CSS
+ |--------------------------------------------------------------------------
+*/
 .swiper-wrapper {
   padding-bottom: 0px;
 }
@@ -33,7 +38,12 @@
 .swiper-pagination-bullet-active {
 
 }
-// header carousel
+/*
+ |--------------------------------------------------------------------------
+ | HEADER CAROUSEL
+ |--------------------------------------------------------------------------
+*/
+
 .header-carousel{
 
   margin-bottom:1rem;
@@ -48,7 +58,6 @@
   }
 }
 
-// header carousel caption
 .swiper-slide {
   position: relative;
 
@@ -70,7 +79,12 @@
 }
 
 
-// product  carousel
+//
+/*
+ |--------------------------------------------------------------------------
+ | PRODUCT  CAROUSEL
+ |--------------------------------------------------------------------------
+*/
 .product-carousel {
   padding: 40px;
   .swiper-slide-product {
