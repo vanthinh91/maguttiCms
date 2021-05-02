@@ -41,9 +41,6 @@ Route::get('/order/mailable/{order:token}', function (\App\Order $order) {
 Route::get('/order-login/', [MainStoreController::class,'orderLogin'])->name('pino')->middleware(['storeenabled']);
 Route::get('/order-submit/', [MainStoreController::class,'orderSubmit'])->middleware(['storeenabled'])->name('cart.detail');
 
-//Route::get('/order-review/{token}', '\App\maguttiCms\Website\Controllers\StoreController@orderReview')->middleware(['storeenabled', 'auth']);
-//Route::post('/order-payment/', '\App\maguttiCms\Website\Controllers\StoreController@orderPayment')->middleware(['storeenabled', 'auth']);
-//Route::get('/order-payment-result/{token}', '\App\maguttiCms\Website\Controllers\StoreController@orderResult')->middleware(['storeenabled', 'auth']);
 
 /*
 |--------------------------------------------------------------------------
