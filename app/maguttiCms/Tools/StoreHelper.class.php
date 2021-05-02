@@ -11,7 +11,6 @@ use App\Payment;
 use App\PaymentMethod;
 use App\SpecialPrice;
 use App\Discount;
-
 use App\maguttiCms\PayPal\GFExpressCheckout;
 use Illuminate\Support\Str;
 
