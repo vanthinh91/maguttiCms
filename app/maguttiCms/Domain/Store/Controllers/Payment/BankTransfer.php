@@ -5,6 +5,7 @@ namespace App\maguttiCms\Domain\Store\Controllers\Payment;
 
 
 use App\Cart;
+use App\maguttiCms\Domain\Store\Action\CreateOrderAction;
 use App\maguttiCms\Domain\Store\Contracts\PaymentProcessor;
 use App\maguttiCms\Tools\StoreHelper;
 use App\Order;
@@ -37,6 +38,6 @@ class BankTransfer implements PaymentProcessor
 
     function createOrder()
     {
-        return StoreHelper::createOrder($this->cart);
+        return (new CreateOrderAction($this->cart))->execute();
     }
 }

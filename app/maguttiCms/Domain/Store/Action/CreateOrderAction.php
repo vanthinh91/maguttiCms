@@ -27,9 +27,10 @@ class CreateOrderAction
     }
 
     function execute(){
-        return createOrder($this->cart);
+        return $this->createOrder($this->cart);
     }
 
+    // order creation
     public static function createOrder($cart)
     {
         $billing_address_id=($cart->billing_address_id)?$cart->billing_address_id:$cart->shipping_address_id;
@@ -54,7 +55,6 @@ class CreateOrderAction
         ]);
 
 
-
         $cart->status = CART_SENT;
         $cart->save();
         StoreHelper::forgetSessionCart();
@@ -64,7 +64,7 @@ class CreateOrderAction
         // order items creation
         foreach ($cart_items as $_item) {
 
-            $price = self::getProductPrice($_item->product,false);
+            $price = StoreHelper::getProductPrice($_item->product,false);
             $reduction_amount =0;
             $final_price =$price - $reduction_amount;
             $quantity = ($_item->quantity)?$_item->quantity:1;
@@ -83,11 +83,9 @@ class CreateOrderAction
 
             ]);
 
+            (new DisableUserAbandonmentCartAction(auth_user()))->execute();
             //Product::where('code',$_item->product_code)->decrement('quantity', $_item->quantity) ;
-
         }
-
-
         return $order;
     }
 

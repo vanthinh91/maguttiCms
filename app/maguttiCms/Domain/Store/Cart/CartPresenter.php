@@ -25,7 +25,6 @@ trait CartPresenter
     {
 
         return $this->cart_items()->count();
-
     }
 
     function getCartProductPrice()
@@ -35,9 +34,7 @@ trait CartPresenter
 
     function addDiscount($code)
     {
-
         return $this->update(['discount_code' => $code]);
-
     }
 
     function removeDiscount()
@@ -47,40 +44,36 @@ trait CartPresenter
 
     function getDiscountAmountAttribute()
     {
-
         return optional($this->discount)->amount;
-
     }
 
     function getDiscountTypeAttribute()
     {
-
         return optional($this->discount)->type;
-
     }
 
     function getDiscountTotalAmount(){
-
        return  (StoreHelper::getDiscountAmount($this)) ?: 0;
     }
 
+
     function cartGrandTotal()
     {
-
         $shipping_cost   = $this->getShipping();
         $product_total_with_discount = $this->getTotalProductsWithDiscount();
         return $product_total_with_discount+$shipping_cost;
     }
+
     function getTotalProducts()
     {
         return  StoreHelper::getCartTotal($this);
     }
+
     function getTotalProductsWithDiscount()
     {
         $product_total = $this->getTotalProducts();
         $discount_amount = $this->getDiscountTotalAmount();
         return ($product_total - $discount_amount > 0) ? $product_total - $discount_amount : 0;
-
     }
 
     function getShipping()
@@ -90,7 +83,6 @@ trait CartPresenter
 
     function getVat()
     {
-
         return null;
     }
 
@@ -117,7 +109,6 @@ trait CartPresenter
         $lastname = (auth_user()) ? auth_user()->lastname : '';
         return data_get($this->billing_address, 'lastname', $lastname);
     }
-
 
     function getBillingFirstnameAttribute()
     {

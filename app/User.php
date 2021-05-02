@@ -52,15 +52,25 @@ class User extends Authenticatable
 
     protected $fieldspec = [];
 
-	public function orders()
-	{
-		return $this->hasMany('App\Order');
-	}
+    /*
+    |--------------------------------------------------------------------------
+    |  RELATION
+    |--------------------------------------------------------------------------
+    */
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
+    }
 
-	public function addresses()
-	{
-		return $this->hasMany('App\Address');
-	}
+    public function carts(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany('App\Cart');
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany('App\Address');
+    }
 
     /**
      * @param $roles
@@ -71,7 +81,6 @@ class User extends Authenticatable
             $this->roles()->sync($roles);
         }
          $this->roles()->detach();
-
     }
 
     /**
@@ -88,7 +97,7 @@ class User extends Authenticatable
      * @return array
      */
 	 // build array of field specifications
-    function getFieldSpec()
+    function getFieldSpec():array
     {
         $this->fieldspec['id'] = [
             'type'     => 'integer',
@@ -215,7 +224,7 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function isActive()
+    public function isActive():bool
     {
         return $this->is_active == 1;
     }

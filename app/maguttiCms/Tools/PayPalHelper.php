@@ -4,6 +4,7 @@
 namespace App\maguttiCms\Tools;
 
 
+use App\maguttiCms\Domain\Store\Action\CreateOrderAction;
 use App\maguttiCms\PayPal\GFExpressCheckout;
 
 class PayPalHelper
@@ -49,7 +50,7 @@ class PayPalHelper
             if (in_array(strtoupper($payment_status['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
 
                 //CREA ORDINE
-                $order = StoreHelper::createOrder($cart);
+                $order = (new CreateOrderAction($cart))->execute();
                 $payment = StoreHelper::createPayment($order->id, $cart->payment_method_id);
 
                 $payment->transaction = $payment_status['PAYMENTINFO_0_TRANSACTIONID'];

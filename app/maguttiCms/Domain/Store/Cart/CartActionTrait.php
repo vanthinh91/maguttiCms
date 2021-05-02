@@ -42,4 +42,34 @@ trait CartActionTrait
             ->add_shipping_method(data_get($data,'shipping_method_id',null));
         return $this;
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Status Action
+    |--------------------------------------------------------------------------
+    */
+    /****
+     * Update cart status
+     * @param $status
+     * @return $this
+     */
+    function set_status($status){
+        return $this->update(['status'=>$status]);
+        return $this;
+    }
+
+    /**
+     * Mark Cart as abandoned / inactive
+     * @return \App\Cart|CartActionTrait
+     */
+    function markAsDisabled(){
+        return $this->set_status(CART_DISABLED);;
+    }
+    /**
+     * Mark Cart as sent whe order is created
+     * @return \App\Cart|CartActionTrait
+     */
+    function markAsSent(){
+        return $this->set_status(CART_SENT);;
+    }
 }
