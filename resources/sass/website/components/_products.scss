@@ -42,8 +42,9 @@
     background: linear-gradient(90deg, transparent 50%, $color-5 50%);
   }
 
+
   &-card{
-    padding:0.5rem;
+    padding:0.5rem 0.5rem 2rem 0.5rem;
     @include media-breakpoint-up(md) {
       padding:2.5rem;
     }
@@ -70,12 +71,41 @@
       background: $color-accent;
     }
   }
+  &-add{
+    display:grid;
+    grid-template-columns: auto ;
+    grid-template-areas:
+      "label"
+      "input"
+      "action";
+    column-gap: 10px;
+    row-gap: 15px;
+    @include media-breakpoint-up(lg) {
+      display:grid;
+      grid-template-columns: auto auto ;
+      grid-template-areas:
+      "label input"
+      "action action";
+    }
+    &-label{
+      grid-area:label;
+      align-self: center;
+    }
+    &-input{
+      grid-area:input;
+
+    }
+    &-button{
+      grid-area:action
+    }
+  }
   p {
     margin:0px;
   }
   .form{
     padding:0px;
   }
+
 }
 
 

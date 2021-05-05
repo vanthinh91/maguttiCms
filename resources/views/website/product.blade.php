@@ -18,11 +18,14 @@
 						<h5 class="text-color-4 product-page-code">{{ trans('store.product.code') }}: {{ $product->code }}</h5>
 						<div class="product-page-description">{!! $product->description !!}</div>
 						@if (StoreHelper::isStoreEnabled())
-							<h4 class="product-page-price">{{ StoreHelper::formatProductPrice($product) }}</h4>
+							<h4 class="product-page-price mb-3">{{ StoreHelper::formatProductPrice($product) }}</h4>
 							<cart-add-item
 									ref="v100"
-									:product="{{$product}}" :min=1 :step="1"  :max="100" :value=1>
-								<template #label>{{ trans('store.items.add') }}</template>
+									:product="{{$product}}" :min=1 :step="1" :max="100" :value=1>
+								<template #btn_label>{{ trans('store.items.add') }}</template>
+								<template #label><h5
+											class="product-page-add-label text-italic text-color-4 mb-1">{{ trans('store.cart.table.quantity') }}</h5>
+								</template>
 							</cart-add-item>
 						@endif
 					</div>
