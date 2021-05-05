@@ -827,7 +827,7 @@ return [
                 'payment' => ['type' => 'text', 'field' => 'payment_method_display'],
                 'payment_transaction' => ['type' => 'relation', 'relation' => 'payment', 'field' => 'transaction'],
                 //'payment_date' => ['type' => 'relation', 'relation' => 'payment', 'field' => 'created_at'],
-                'paid' => ['type' => 'boolean', 'relation' => 'payment', 'model' => 'payment', 'field' => 'is_paid', 'editable' => true],
+                'paid' => ['type' => 'boolean', 'relation' => 'payment', 'model' => 'Payment', 'field' => 'is_paid', 'editable' => true],
                 'status' => [
                     'type' => 'relation',
                     'relation' => 'status',
