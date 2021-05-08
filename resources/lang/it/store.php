@@ -45,6 +45,7 @@ return [
         'free' => 'Spedizione gratuita',
         'free_from' => 'Spedizione gratuita per ordini superiori a :AMOUNT',
         'method' => 'Metodo di spedizione',
+        'disclaimer' => 'Consegna gratuita in Italia , 7 euro Europa,per le altre nazioni contattaci',
     ],
 
     'items' => [

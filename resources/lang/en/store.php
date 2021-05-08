@@ -31,11 +31,11 @@ return [
             'next_payment' =>'Next: Shipping  & Payment Methods',
             'next_send' =>'Next: Send Order ',
             'next_confirm' =>'Next: Confirm Order ',
-            'shipping_and_payment' => 'Shipping  & Payment Methods',
+            'shipping_and_payment' => 'Shipping & Payment Methods',
             'edit'=>'Modify',
             'edit_address'=>'Modify Addresses',
             'edit_payment_method' => 'Edit Payment Method',
-            'edit_shipping_and_payment' => 'Modify Shipping  & Payment'
+            'edit_shipping_and_payment' => 'Modify Shipping & Payment'
         ]
 	],
 
@@ -43,6 +43,7 @@ return [
         'free_label' => 'Free',
 		'free' => 'Free shipping',
 		'free_from' => 'Free shipping from order amount more  than :AMOUNT',
+		'disclaimer' => 'Consegna gratuita in Italia , 7 euro Europa,per le altre nazioni contattaci',
         'method' => 'Shipping Method',
 	],
 
