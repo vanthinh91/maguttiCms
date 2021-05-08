@@ -1,15 +1,12 @@
 <?php
 
-
-namespace App\maguttiCms\Domain\Store;
+namespace App\maguttiCms\Domain\Store\Shipping;
 
 
 use App\maguttiCms\Tools\StoreHelper;
-use Illuminate\Session\Store;
 
 trait ShipmentMethodPresenter
 {
-
 
      function  getCartLabelAttribute(){
 

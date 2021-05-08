@@ -1,13 +1,17 @@
 <?php namespace App;
 
 use App\maguttiCms\Builders\MaguttiCmsBuilder;
-use App\maguttiCms\Domain\Store\ShipmentMethodPresenter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Astrotomic\Translatable\Translatable;
 
 use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;;
+use App\maguttiCms\Domain\Store\Shipping\ShipmentMethodPresenter;
 
+/**
+ * Class ShipmentMethod
+ * @package App
+ */
 class ShipmentMethod extends Model
 
 {
