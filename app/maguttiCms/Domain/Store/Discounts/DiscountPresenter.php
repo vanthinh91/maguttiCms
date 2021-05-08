@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\maguttiCms\Domain\Store;
+namespace App\maguttiCms\Domain\Store\Discounts;
 
 use App\maguttiCms\Definition\Definition;
 use Carbon\Carbon;
@@ -61,9 +61,7 @@ trait DiscountPresenter
 
     function getLabelAttribute()
     {
-
         return $this->amount.''.$this->getSign();
-
     }
 
     function getSign()

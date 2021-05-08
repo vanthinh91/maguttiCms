@@ -47,5 +47,4 @@ mix.sass('resources/sass/website/app.scss', 'public/website/css')
     .js('resources/js/website/app.js', 'public/website/js')
     .js('resources/js/website/cart.js', 'public/website/js').vue({version: 2});
 
-
 mix.mergeManifest();

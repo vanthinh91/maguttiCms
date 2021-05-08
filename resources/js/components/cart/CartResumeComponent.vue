@@ -119,8 +119,6 @@ export default {
   created() {
     this.items = this.cartItems;
     this.cart = this.cartData;
-
-
   },
   computed: {
     product_total: function () {
@@ -136,7 +134,7 @@ export default {
       return (this.product_total < 100) ? 0 : 0;
     },
     discount_amount: function () {
-      return (this.cart.discount_amount)?this.calculateDiscount():0;
+      return (this.cart.discount_amount)?this.calculateDiscount(this.product_total):0;
     },
     number_of_items: function () {
       let n_items = 0;

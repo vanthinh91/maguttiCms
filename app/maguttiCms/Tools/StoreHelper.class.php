@@ -287,56 +287,20 @@ class StoreHelper {
 		return round($vat, 2);
 	}
 
-	/////	DISCOUNTS	/////
 
-	// check discount validity
-	public static function checkDiscount($discount)
-	{
-		if (!$discount->pub) {
-			return false;
-		}
-		if (!$discount->available()) {
-			return false;
-		}
-		if (!$discount->inPeriod()) {
-			return false;
-		}
-
-		return true;
-	}
 
 	public static function getDiscount($code)
 	{
-		$discount = Discount::where('code', strtoupper($code))->first();
-		if ($discount) {
-			if (self::checkDiscount($discount)) {
-				return $discount;
-			}
+		$discount = Discount::getByCode($code)->first();
+
+		if (optional($discount)->checkDiscount()) {
+			return $discount;
 		}
 		return false;
 	}
 
 
-    public static function getDiscountAmount($cart)
-    {
-        $discount = Discount::where('code', strtoupper($cart->discount_code))->first();
-        if ($discount && self::checkDiscount($discount) ) {
 
-                return $discount->amount;
-
-        }
-        return false;
-    }
-
-	public static function getDiscountPercentage($code)
-	{
-		$discount = self::getDiscount($code);
-		if ($discount) {
-			return $discount->amount;
-		} else {
-			return 0;
-		}
-	}
 
 	/////	ORDERS	/////
 

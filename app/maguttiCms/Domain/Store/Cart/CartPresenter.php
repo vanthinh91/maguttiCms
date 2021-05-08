@@ -3,6 +3,7 @@
 
 namespace App\maguttiCms\Domain\Store\Cart;
 
+use App\maguttiCms\Domain\Store\Discounts\CouponDiscountCalculator;
 use App\maguttiCms\Tools\StoreHelper;
 use Illuminate\Session\Store;
 
@@ -53,7 +54,7 @@ trait CartPresenter
     }
 
     function getDiscountTotalAmount(){
-       return  (StoreHelper::getDiscountAmount($this)) ?: 0;
+       return  (new CouponDiscountCalculator($this))->process() ?: 0;
     }
 
 

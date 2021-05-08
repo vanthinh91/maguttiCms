@@ -518,8 +518,8 @@ CREATE TABLE `discounts` (
   `date_start` timestamp NULL DEFAULT NULL,
   `date_end` timestamp NULL DEFAULT NULL,
   `uses` int(11) DEFAULT NULL,
-  `pub` tinyint(4) NOT NULL DEFAULT '1',
-  `created_at` int(11) NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -532,7 +532,7 @@ CREATE TABLE `discounts` (
 
 LOCK TABLES `discounts` WRITE;
 /*!40000 ALTER TABLE `discounts` DISABLE KEYS */;
-INSERT INTO `discounts` VALUES (1,'TESTPERCENT','10','Test sconto 10%',NULL,NULL,10,1,2018,'2021-02-21 08:29:01','percent'),(2,'TESTAMOUNT','10','Discount 1 euro',NULL,NULL,100000,1,2021,'2021-02-21 08:29:47','amount');
+INSERT INTO `discounts` VALUES (1,'TESTAMOUNT','10','Coupon 10 Euro',NULL,NULL,1000,1,'2021-05-08 16:18:24','2021-05-08 16:18:24','amount'),(2,'TESTPERCENT','15','Discount 15%',NULL,NULL,2000,1,'2021-05-08 16:18:48','2021-05-08 16:18:48','percent');
 /*!40000 ALTER TABLE `discounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2189,4 +2189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-10 18:40:10
+-- Dump completed on 2021-05-08 18:18:56

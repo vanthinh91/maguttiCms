@@ -13,21 +13,15 @@ class CouponValidateController extends StoreAPIController
     {
 
         $discount = StoreHelper::getDiscount($request->code);
-        if ($discount) {
-            $cart =  StoreHelper::getSessionCart();
-            if($cart) {
-                $cart->addDiscount($request->code);
-                $msg = sprintf(trans('store.order.discount.valid'), $discount->label);
-                return $this->responseSuccess($msg)->apiResponse();
-            }
+        $cart = StoreHelper::getSessionCart();
+        if ($discount && $cart) {
+            $cart->addDiscount($request->code);
+            $msg = sprintf(trans('store.order.discount.valid'), $discount->label);
+            return $this->responseSuccess($msg)->apiResponse();
         }
 
         $msg = trans('store.order.discount.invalid');
         return $this->responseWithError($msg)->apiResponse();
     }
 
-    function addDiscountToCart(){
-
-
-    }
 }

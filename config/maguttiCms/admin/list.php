@@ -1021,7 +1021,7 @@ return [
                 'date_end' => ['type' => 'text', 'field' => 'date_end', 'orderable' => true],
                 'uses' => ['type' => 'text', 'field' => 'uses', 'orderable' => true],
                 'available_display' => ['type' => 'false', 'field' => 'available_display', 'orderable' => true],
-                'pub' => ['type' => 'boolean', 'field' => 'pub', 'orderable' => true, 'editable' => true],
+                'pub' => ['type' => 'boolean', 'field' => 'is_active', 'orderable' => true, 'editable' => true],
             ],
             'orderBy' => 'created_at',
             'orderType' => 'DESC',

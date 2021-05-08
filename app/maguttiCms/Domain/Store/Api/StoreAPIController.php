@@ -101,11 +101,5 @@ class StoreAPIController extends APIController
 				'message' => sprintf(trans('store.order.discount.valid'), $discount->amount)
 			]);
 		}
-
-			/*return response()->json([
-				'valid' => false,
-				'message' => trans('store.order.discount.invalid');*/
-
-
 	}
 }

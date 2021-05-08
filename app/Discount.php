@@ -1,18 +1,22 @@
 <?php namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 
-use App\maguttiCms\Domain\Store\DiscountPresenter;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
+
+use App\maguttiCms\Domain\Store\Discounts\DiscountBuilder;
+use App\maguttiCms\Domain\Store\Discounts\DiscountPresenter;
+
+
 /**
  * Class Discount
  * @package App
  */
 class Discount extends Model
 {
-
+    const AMOUNT  = "amount";
+    const PERCENT = "percent";
     use DiscountPresenter;
-	protected $with = [];
 
 	protected $fillable = [
 		'code',
@@ -22,13 +26,10 @@ class Discount extends Model
 		'date_end',
 		'uses',
         'type',
-		'pub',
+		'is_active',
 	];
 	protected $fieldspec = [];
 
-
-
-	public $sluggable = [];
 
 	/*
 	|--------------------------------------------------------------------------
@@ -44,6 +45,16 @@ class Discount extends Model
     public function discount_type()
     {
         return $this->belongsTo('App\Domain', 'type', 'value');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Builder & Repo
+    |--------------------------------------------------------------------------
+    */
+    function newEloquentBuilder($query)
+    {
+        return new DiscountBuilder($query);
     }
 
 
@@ -120,7 +131,7 @@ class Discount extends Model
 			'hidden'   => 0,
 			'display'  => 1,
 		];
-		$this->fieldspec['pub'] = [
+		$this->fieldspec['is_active'] = [
 			'type'     => 'boolean',
 			'required' => 0,
 			'hidden'   => 0,
@@ -168,4 +179,16 @@ class Discount extends Model
 			return icon('infinity');
 		}
 	}
+
+    public function checkDiscount()
+    {
+        if (!$this->available()) {
+            return false;
+        }
+        if (!$this->inPeriod()) {
+            return false;
+        }
+
+        return true;
+    }
 }
