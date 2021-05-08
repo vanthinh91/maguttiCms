@@ -18,6 +18,6 @@ trait ProductPresenter
         return url_locale('/contacts/?product_id='.$this->id);
     }
     public function getThumbImage() {
-        return ImgHelper::get_cached($this->image, config('maguttiCms.image.small'));
+        return ImgHelper::init('products')->get_cached($this->image, config('maguttiCms.image.small'));
     }
 }

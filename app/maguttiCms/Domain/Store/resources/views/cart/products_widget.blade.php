@@ -16,7 +16,7 @@
                     <li class="media">
                         <div class="media-left">
                                 <img class="media-object"
-                                     src="{{ ImgHelper::get($item->image, config('maguttiCms.image.defaults'),'products') }}"
+                                     src="{{ $item->product->getThumbImage() }}"
                                      alt="{{$item->product->title}}">
 
                         </div>

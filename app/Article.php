@@ -19,7 +19,7 @@ use \App\maguttiCms\Domain\Article\ArticlePresenter;
 class Article extends Model
 {
     use Translatable;
-    use  GFTranslatableHelperTrait;
+    use GFTranslatableHelperTrait;
 
     use Blockable;
 

@@ -13,7 +13,8 @@
 				@endif
 			</span>
 		</div>
-		<img src="{{ ImgHelper::get_cached($media->file_name, config('maguttiCms.image.admin')) }}" alt="{{ $media->title}}" border="0">
+		<!-- init the media folder to empty -->
+		<img src="{{ ImgHelper::init('')->get_cached($media->file_name, config('maguttiCms.image.admin')) }}" alt="{{ $media->title}}" border="0">
 		<div class="actions">
 			<a href="{{ ma_get_admin_editmodal_url($media) }}" data-target="#modal-media">
 				{{icon('pencil-alt')}}
