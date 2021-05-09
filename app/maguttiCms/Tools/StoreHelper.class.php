@@ -59,16 +59,13 @@ class StoreHelper {
 			}
 		}
 
+
 		return floatval($product->price);
 	}
 	public static function formatProductPrice($product, $quantity = 0)
 	{
 		$quantity = max($quantity, 1);
-
-		$price = self::getProductPrice($product);
-		if (!$price)
-			$price = 0;
-
+		$price = self::getProductPrice($product)??0;
 		return self::formatPrice($price * $quantity);
 	}
 	public static function hasFreeShipping($product)

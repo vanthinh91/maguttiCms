@@ -11,6 +11,9 @@
 			<div class="row no-gutters">
 				<div class="col-12 col-sm-6 order-md-1 my-2 my-md-0 product-page-image">
 					<img class="img-fluid" src="{{ ImgHelper::init('products')->get_cached($product->image, config('maguttiCms.image.large')) }}" alt="{{ $product->title }}">
+					@if($product->on_sale)
+						<div class="products__card-on-sale">ON SALE</div>
+					@endif
 				</div>
 				<div class="col-12 col-sm-6 order-md-2">
 					<div class="product-page-card">
@@ -18,7 +21,11 @@
 						<h5 class="text-color-4 product-page-code">{{ trans('store.product.code') }}: {{ $product->code }}</h5>
 						<div class="product-page-description">{!! $product->description !!}</div>
 						@if (StoreHelper::isStoreEnabled())
-							<h4 class="product-page-price mb-3">{{ StoreHelper::formatProductPrice($product) }}</h4>
+							<div class="h4 product-page-price my-3">
+							<x-magutti_store-product-display-price
+									:product="$product"
+									:type="'product-page'"/>
+							</div>
 							<cart-add-item
 									ref="v100"
 									:product="{{$product}}" :min=1 :step="1" :max="100" :value=1>

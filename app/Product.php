@@ -17,7 +17,10 @@ class Product extends Model
 
 	protected $with = ['translations'];
 
-    protected $fillable  = ['category_id','code','price','title','subtitle','description','video','slug','sort','pub', 'permalink'];
+    protected $fillable  = ['category_id','code',
+                            'full_price','is_promo',
+                            'on_sale',
+                            'price','title','subtitle','description','video','slug','sort','pub', 'permalink'];
     protected $fieldspec = [];
 
     /*
@@ -95,13 +98,24 @@ class Product extends Model
             'label'    => trans('admin.label.code'),
             'display'  => 1,
             'cssClassElement' => 'col-md-4 col-lg-4',
-            'row-item' => 'start'
         ];
-		$this->fieldspec['price'] = [
+
+        $this->fieldspec['price'] = [
             'type'     => 'integer',
             'required' => 1,
             'hidden'   => 0,
             'label'    => trans('admin.label.price'),
+            'display'  => 1,
+            'step'     => 0.01,
+            'cssClassElement' => 'col-md-4 col-lg-4',
+            'row-item' => 'start'
+        ];
+		$this->fieldspec['full_price'] = [
+            'type'     => 'integer',
+            'required' => 1,
+            'hidden'   => 0,
+            'label'    => trans('admin.label.full_price'),
+            'extraMsg'    => trans('admin.message.full_price'),
             'display'  => 1,
         	'step'     => 0.01,
             'cssClassElement' => 'col-md-4 col-lg-4',
@@ -183,6 +197,13 @@ class Product extends Model
             'required' => false,
             'hidden'   => 0,
             'label'    => trans('admin.label.publish'),
+            'display'  => 1
+        ];
+        $this->fieldspec['on sale'] = [
+            'type'     => 'boolean',
+            'required' => false,
+            'hidden'   => 0,
+            'label'    => trans('admin.label.on_sale'),
             'display'  => 1
         ];
         $this->fieldspec['seo_title'] = [

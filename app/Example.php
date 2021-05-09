@@ -266,8 +266,9 @@ class Example extends Model
             'type' => 'vue_component',
             'required' => 1,
             'hidden' => 0,
-            'label' => 'Code (you can use a prefix )',
+            'label' => 'Code ',
             'display' => 1,
+            'extraMsg'    => 'you can use a prefix',
             'component-name' => 'generator-input-component',
             'component-data' => [
                 'length' => '10',
