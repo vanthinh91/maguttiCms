@@ -39,9 +39,8 @@
     </div>
     @if($cart->getDiscountTotalAmount())
         <div class="cart-summary-line cart-discount">
-            <span class="label">{{ __('store.order.discount.title') }}<br><strong>{{ $cart->discount_code }}</strong></span>
-
-            <span class="value">{{ StoreHelper::formatPrice($cart->getDiscountTotalAmount() ) }}<br><a
+            <span class="label">{{ __('store.order.discount.title') }}<br><strong>{{ $cart->discount_label }}</strong></span>
+            <span class="value">{{ StoreHelper::formatPrice($cart->getDiscountTotalAmount()) }}<br><a
                         href="" @click.prevent="deleteCartCoupon"
                         class="text-danger d-none">{{ __('store.order.discount.delete') }}</a></span>
         </div>

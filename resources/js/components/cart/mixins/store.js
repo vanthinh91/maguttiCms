@@ -68,10 +68,10 @@ export default {
             return `${this.baseUrl}coupon-remove`;
         },
         calculateDiscount(product_total=0){
-            if(this.cart.discount_amount=='amount') return this.cart.discount_amount;
-            if(this.cart.discount_amount=='percent') return product_total * (this.cart.discount_amount/100);
+
+            if(this.cart.discount_type=='amount') return this.cart.discount_amount;
+            if(this.cart.discount_type=='percent') return product_total * (this.cart.discount_amount/100);
             return null;
         }
-
     },
 }

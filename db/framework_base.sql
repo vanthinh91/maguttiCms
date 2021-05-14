@@ -1131,7 +1131,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1140,7 +1140,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9),(91,'2020_12_26_091719_create_projects_table',10),(92,'2020_12_31_173718_create_jobs_table',11),(93,'2021_02_14_193356_create_payment_methods_table',12),(94,'2021_02_21_091926_add_discount_type_to_discounts_table',13),(95,'2021_03_03_151238_add_formatted_address_to_orders',14),(96,'2021_03_03_151905_add_product_description_to_order_items',14),(97,'2021_03_03_200035_add_reference_to_orders',15),(98,'2021_03_03_200109_add_token_to_carts',15),(99,'2021_03_06_103703_add_status_id_to_orders',16),(100,'2021_03_06_103958_create_order_status_table',17),(101,'2021_04_02_162326_create_shipment_methods_table',18),(102,'2021_04_02_185834_add_shipping_method_id_to_cart_table',19),(103,'2021_04_02_185857_add_shipping_method_id_to_orders_table',19),(104,'2021_04_03_085015_add_shipping_method_to_orders_table',20),(105,'2021_04_10_183034_add_btn_title_to_blocks_table',21);
+INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9),(91,'2020_12_26_091719_create_projects_table',10),(92,'2020_12_31_173718_create_jobs_table',11),(93,'2021_02_14_193356_create_payment_methods_table',12),(94,'2021_02_21_091926_add_discount_type_to_discounts_table',13),(95,'2021_03_03_151238_add_formatted_address_to_orders',14),(96,'2021_03_03_151905_add_product_description_to_order_items',14),(97,'2021_03_03_200035_add_reference_to_orders',15),(98,'2021_03_03_200109_add_token_to_carts',15),(99,'2021_03_06_103703_add_status_id_to_orders',16),(100,'2021_03_06_103958_create_order_status_table',17),(101,'2021_04_02_162326_create_shipment_methods_table',18),(102,'2021_04_02_185834_add_shipping_method_id_to_cart_table',19),(103,'2021_04_02_185857_add_shipping_method_id_to_orders_table',19),(104,'2021_04_03_085015_add_shipping_method_to_orders_table',20),(105,'2021_04_10_183034_add_btn_title_to_blocks_table',21),(106,'2021_05_14_210243_add_full_price_and_on_sale_to_products',22);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1704,10 +1704,12 @@ CREATE TABLE `products` (
   `description` text COLLATE utf8_unicode_ci,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `price` float DEFAULT NULL,
+  `full_price` decimal(10,3) DEFAULT NULL COMMENT 'add full price to shop discounted price',
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `video` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `sort` int(11) DEFAULT NULL,
+  `on_sale` tinyint(1) DEFAULT NULL COMMENT 'flag if product is on sale ',
   `pub` tinyint(4) DEFAULT '1',
   `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -1726,7 +1728,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'PRDA',1,'','','',NULL,10,'prodotto1.jpeg',NULL,NULL,0,1,NULL,NULL,0,'2017-08-02 10:09:39','2020-08-22 14:14:52'),(2,'PRDB',2,'','','',NULL,20,'B.png',NULL,'',10,1,NULL,NULL,0,'2018-06-13 14:49:32','2018-06-13 14:49:32'),(3,'PRDC',3,'','','',NULL,30,'spazzola.jpeg',NULL,NULL,0,1,NULL,NULL,0,'2018-06-13 14:50:05','2020-08-22 15:15:14'),(4,'226987',1,'','',NULL,NULL,12.25,NULL,NULL,NULL,20,1,NULL,NULL,NULL,'2020-08-21 10:34:48','2020-08-22 15:02:25');
+INSERT INTO `products` VALUES (1,'PRDA',1,'','','',NULL,10,15.000,'prodotto1.jpeg',NULL,NULL,0,1,1,NULL,NULL,0,'2017-08-02 10:09:39','2021-05-14 19:04:36'),(2,'PRDB',2,'','','',NULL,20,NULL,'B.png',NULL,'',10,NULL,1,NULL,NULL,0,'2018-06-13 14:49:32','2018-06-13 14:49:32'),(3,'PRDC',3,'','','',NULL,30,NULL,'spazzola.jpeg',NULL,NULL,0,NULL,1,NULL,NULL,0,'2018-06-13 14:50:05','2020-08-22 15:15:14'),(4,'226987',1,'','',NULL,NULL,12.25,NULL,NULL,NULL,NULL,20,NULL,1,NULL,NULL,NULL,'2020-08-21 10:34:48','2020-08-22 15:02:25');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2189,4 +2191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-08 18:18:56
+-- Dump completed on 2021-05-14 21:13:44

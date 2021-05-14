@@ -74,7 +74,7 @@
               <span class="value">{{ product_total | currency }}</span>
             </div>
             <div class="cart-summary-line cart-discount" v-if="discount_amount">
-              <span class="label">{{ $t('store.order.discount.title') }}<br><strong>{{ cart.discount_code }}</strong></span>
+              <span class="label">{{ $t('store.order.discount.title') }}<br><strong>{{ cart.discount_label }}</strong></span>
               <span class="value">{{ discount_amount | currency }}<br><a href="" @click.prevent="deleteCartCoupon" class="text-danger">{{ $t('store.order.discount.delete') }}</a></span>
             </div>
 
@@ -134,7 +134,7 @@ export default {
       return (this.product_total < 100) ? 0 : 0;
     },
     discount_amount: function () {
-      return (this.cart.discount_amount)?this.calculateDiscount(this.product_total):0;
+      return (this.cart.discount_amount)? this.calculateDiscount(this.product_total):0;
     },
     number_of_items: function () {
       let n_items = 0;

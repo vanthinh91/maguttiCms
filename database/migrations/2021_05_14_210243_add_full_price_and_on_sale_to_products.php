@@ -4,8 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFullPriceAndPromoToProducts extends Migration
+class AddFullPriceAndOnSaleToProducts extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -15,8 +16,8 @@ class AddFullPriceAndPromoToProducts extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
-            $table->decimal('full_price', 10,3)->nullable()->comment('add full price to shop discounted price');
-            $table->boolean('on_sale')->nullable()->comment('flag if product is on sale ');
+            $table->decimal('full_price', 10,3)->nullable()->comment('add full price to shop discounted price')->after('price');
+            $table->boolean('on_sale')->nullable()->comment('flag if product is on sale ')->after('sort');
         });
     }
 
@@ -31,4 +32,5 @@ class AddFullPriceAndPromoToProducts extends Migration
             //
         });
     }
+
 }
