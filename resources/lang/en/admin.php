@@ -83,6 +83,7 @@ return [
 		'name'          => 'Name',
 		'note'          => 'Notes',
         'number'        => 'Number',
+        'on_sale'       => 'On sale',
 		'paid'			=> 'Paid',
 		'page-blocks'   => 'Page Blocks',
 		'parent'		=> 'Parent',

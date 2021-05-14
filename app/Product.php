@@ -199,7 +199,7 @@ class Product extends Model
             'label'    => trans('admin.label.publish'),
             'display'  => 1
         ];
-        $this->fieldspec['on sale'] = [
+        $this->fieldspec['on_sale'] = [
             'type'     => 'boolean',
             'required' => false,
             'hidden'   => 0,

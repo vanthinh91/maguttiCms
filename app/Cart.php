@@ -24,7 +24,7 @@ class Cart extends Model
     ];
     protected $fieldspec = [];
 
-    protected $appends = ['discount_amount','discount_type'];
+    protected $appends = ['discount_amount','discount_type','discount_label'];
 
     public $sluggable = [];
 

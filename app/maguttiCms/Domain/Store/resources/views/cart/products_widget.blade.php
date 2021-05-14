@@ -15,9 +15,9 @@
                 @foreach($cart->cart_items()->get() as $item)
                     <li class="media">
                         <div class="media-left">
-                                <img class="media-object"
-                                     src="{{ $item->product->getThumbImage() }}"
-                                     alt="{{$item->product->title}}">
+                            <img class="media-object"
+                                 src="{{ $item->product->getThumbImage() }}"
+                                 alt="{{$item->product->title}}">
 
                         </div>
                         <div class="media-body">
@@ -40,17 +40,18 @@
     @if($cart->getDiscountTotalAmount())
         <div class="cart-summary-line cart-discount">
             <span class="label">{{ __('store.order.discount.title') }}<br><strong>{{ $cart->discount_code }}</strong></span>
+
             <span class="value">{{ StoreHelper::formatPrice($cart->getDiscountTotalAmount() ) }}<br><a
                         href="" @click.prevent="deleteCartCoupon"
                         class="text-danger d-none">{{ __('store.order.discount.delete') }}</a></span>
         </div>
     @endif
     @if($cart->displayShippingCost())
-    <div class="cart-summary-line cart-ship">
-        <span class="label">{{ __('store.order.shipping_cost') }}</span>
-        <span class="value"><x-magutti_store-shipping-cost-label :amount="$cart->shipping_cost"/></span>
-    </div>
-   @endif
+        <div class="cart-summary-line cart-ship">
+            <span class="label">{{ __('store.order.shipping_cost') }}</span>
+            <span class="value"><x-magutti_store-shipping-cost-label :amount="$cart->shipping_cost"/></span>
+        </div>
+    @endif
     <div class="cart-summary-totals">
         <div class="cart-summary-line cart-total">
             <span class="label">{{ __('store.cart.total') }}&nbsp;({{ __('store.cart.with_tax') }})</span>
