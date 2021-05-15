@@ -74,12 +74,12 @@ return [
 
     'mail_message' => [
         'contact' => 'Nuova richiesta informazioni da',
-        'firm' => 'Il team <b>Coffeefrom®</b>',
+        'firm' => 'Il team MaguttiCms®',
         'greeting' => 'Ciao,',
         'greeting_admin' => 'Gentile Amministratore,',
         'subscribe_newsletter_subject' => 'Iscrizione alla Newsletter',
         'subscribe_newsletter_text' => 'Nuova Iscrizione alla newsletter da:',
-        'subscribe_newsletter_feedback' => 'Benvenuto nella community Coffeefrom e grazie per esserti iscritto alla nostra newsletter.',
+        'subscribe_newsletter_feedback' => 'Benvenuto nella community MaguttiCms e grazie per esserti iscritto alla nostra newsletter.',
     ],
     'pagetitle' => [
         'privacy' => 'Privacy Policy',

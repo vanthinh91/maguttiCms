@@ -60,7 +60,7 @@ return [
         'previous' => 'Previous Articles',
     ],
     'message' => [
-        'contact_feedback'  => 'Thanks for you request.<br> The <b>Coffeefrom®</b> team ',
+        'contact_feedback'  => 'Thanks for you request.<br> The <b>MaguttiCms®</b> team ',
         'privacy'           => 'I accept terms and conditions of use and read the privacy note.',
         'required_field'    => 'Required field (*)',
 		'product_request'	=> 'Information request for product',
@@ -74,12 +74,12 @@ return [
 
     'mail_message' => [
         'contact'           => 'New request info from',
-        'firm'              => 'The <b>Coffeefrom®</b> team',
+        'firm'              => 'The MaguttiCms® team',
         'greeting'	        => 'Hallo there! ',
         'greeting_admin'	=> 'Dear Admin,',
         'subscribe_newsletter_subject' => 'Newsletter subscription',
         'subscribe_newsletter_text' => 'New newsletter subscription from:',
-        'subscribe_newsletter_feedback' => 'Welcome to the Coffeefrom community and thanks for signing up to receive our emails.',
+        'subscribe_newsletter_feedback' => 'Welcome to the MaguttiCms community and thanks for signing up to receive our emails.',
     ],
     'pagetitle' => [
         'privacy'           => 'Privacy Policy',
