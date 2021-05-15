@@ -5,20 +5,29 @@ namespace App\maguttiCms\Domain\Store\Payment;
 
 
 use App\Cart;
+
 use App\maguttiCms\Domain\Store\Contracts\PaymentFeeCalculator;
+use App\PaymentMethod;
 
 class StandardPaymentFeeCalculator implements PaymentFeeCalculator
 {
 
-    private Cart $cart;
 
-    public function __construct(Cart $cart)
+    private PaymentMethod $payment_method;
+
+    public function __construct(PaymentMethod $payment_method)
     {
-        $this->cart = $cart;
+
+        $this->payment_method = $payment_method;
     }
 
     function process()
     {
-        // TODO: Implement process() method.
+        return $this->calculateAmount();
+    }
+
+    protected function calculateAmount()
+    {
+        return optional($this->payment_method)->fee??0;
     }
 }

@@ -4,10 +4,11 @@
 namespace App\maguttiCms\Domain\Store\Contracts;
 
 
-use App\Cart;
+
+use App\PaymentMethod;
 
 interface PaymentFeeCalculator
 {
-    function __construct(Cart $cart);
+    function __construct(PaymentMethod $payment_method);
     function process();
 }

@@ -121,6 +121,7 @@ return [
         'paid' => 'Pagato',
         'unpaid' => 'Non pagato',
         'back' => 'Torna all\'ordine',
+        'payment_fee' => 'Questo metodo di pagamento ha un costo aggiuntivo:'
     ],
 
     'address' => [

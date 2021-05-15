@@ -19,7 +19,7 @@ class Cart extends Model
 
     protected $fillable = ['user_id', 'status',
         'payment_method_id', 'shipping_cost', 'shipping_method_id',
-        'billing_address_id', 'shipping_address_id',
+        'billing_address_id', 'shipping_address_id','payment_fee',
         'discount_code', 'token'
     ];
     protected $fieldspec = [];

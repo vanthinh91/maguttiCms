@@ -1,14 +1,14 @@
 {
     "/website/js/vendor.js": "/website/js/vendor.js?id=aff75a96967662db394e",
     "/cms/js/cmsvendor.js": "/cms/js/cmsvendor.js?id=3109b19bc422558b1fa9",
-    "/website/js/app.js": "/website/js/app.js?id=8cff24a971b68f5a63a1",
-    "/website/js/cart.js": "/website/js/cart.js?id=67f7c56cb81734b9811b",
+    "/website/js/app.js": "/website/js/app.js",
+    "/website/js/cart.js": "/website/js/cart.js",
     "/cms/js/cms.js": "/cms/js/cms.js?id=86e6f7e464bc3b969641",
     "/cms/js/header.js": "/cms/js/header.js?id=400a32b05b035b1dc3de",
     "/cms/js/lara-file-manager.js": "/cms/js/lara-file-manager.js?id=42a1439529c4f4f64db1",
     "/cms/js/appcms.js": "/cms/js/appcms.js?id=2709bd4bcdf8895c2047",
     "/website/css/vendor.css": "/website/css/vendor.css?id=20489f6d789badba09db",
     "/cms/css/app.css": "/cms/css/app.css?id=b731dc1a0ca980812b3d",
-    "/website/css/app.css": "/website/css/app.css?id=5b7748f8c05e7af32280",
+    "/website/css/app.css": "/website/css/app.css",
     "/cms/css/vendor.css": "/cms/css/vendor.css?id=1aa872e30ec031097cdc"
 }

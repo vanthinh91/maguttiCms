@@ -38,6 +38,7 @@ class CreateOrderAction
             'user_id'             => $cart->user_id,
             'cart_id'             => $cart->id,
             'products_cost'       => $cart->getTotalProducts(),
+            'payment_fee'         => $cart->getPaymentFeeAmount(),
             'shipping_cost'       => $cart->getShipping(),
             'shipping_method_id'  => $cart->shipping_method_id,
             'shipping_method'     => optional($cart->shipping_method)->title,

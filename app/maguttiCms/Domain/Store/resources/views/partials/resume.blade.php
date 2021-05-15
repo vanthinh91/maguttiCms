@@ -33,6 +33,10 @@
                 <p>{{ __('store.order.shipping_cost') }}
                 : <x-magutti_store-shipping-cost-label :amount="$order->shipping_cost"/></p>
             @endif
+            @if($order->payment_fee>0)
+                <p>{{ $order->payment_method_display }}
+                    : {{StoreHelper::formatPrice($order->payment_fee)}}</p>
+            @endif
 
             <p>{{ __('store.cart.total') }}&nbsp;({{ __('store.cart.with_tax') }}): {{ StoreHelper::formatPrice($order->total_cost) }}</b></p>
         </td>

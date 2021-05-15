@@ -941,6 +941,7 @@ return [
             'field' => [
                 'id',
                 'title' => ['type' => 'text', 'field' => 'title'],
+                'fee' => ['type' => 'text', 'field' => 'fee'],
                 'code' => ['type' => 'text', 'field' => 'code'],
                 'is_active' => ['type' => 'boolean', 'field' => 'is_active','editable'=>true],
             ],

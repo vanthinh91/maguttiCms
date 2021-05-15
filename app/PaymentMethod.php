@@ -1,12 +1,12 @@
 <?php namespace App;
 
-use App\maguttiCms\Builders\ArticleBuilder;
-use App\maguttiCms\Builders\MaguttiCmsBuilder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+use App\maguttiCms\Builders\MaguttiCmsBuilder;
 use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;;
+use App\maguttiCms\Domain\Store\Payment\PaymentMethodPresenter;
 
 class PaymentMethod extends Model
 
@@ -14,6 +14,7 @@ class PaymentMethod extends Model
     use HasFactory;
     use GFTranslatableHelperTrait;
     use Translatable;
+    use PaymentMethodPresenter;
     const PAYPAL= 1;
     const BANK_TRANSFER = 2;
     const CASH          = 3;
@@ -23,6 +24,8 @@ class PaymentMethod extends Model
     protected $fillable = [
         'title',
         'description',
+        'fee',
+        'free_from',
         'note',
         'code',
         'is_active',
@@ -116,6 +119,28 @@ class PaymentMethod extends Model
             'label'    => trans('admin.label.note'),
             'display'  => 1,
             'cssClass' => 'wyswyg',
+        ];
+
+        $this->fieldspec['fee'] = [
+            'type'     => 'string',
+            'required' => 0,
+            'hidden'   => 0,
+            'label'    => trans('admin.label.fee'),
+            'display'  => 1,
+            'cssClassElement' => 'col-md-3',
+            'row-item' => 'start'
+        ];
+
+        $this->fieldspec['free_from'] = [
+            'type'     => 'integer',
+            'minvalue' => 0,
+            'pkey'     => 1,
+            'required' => 0,
+            'label'    => trans('admin.label.free_shipping_from'),
+            'hidden'   => 0,
+            'display'  => 1,
+            'cssClassElement' => 'col-md-3',
+            'row-item' => 'stop'
         ];
 
 

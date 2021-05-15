@@ -5,6 +5,7 @@ namespace App\maguttiCms\Domain\Store\Cart;
 
 use App\Discount;
 use App\maguttiCms\Domain\Store\Discounts\CouponDiscountCalculator;
+use App\maguttiCms\Domain\Store\Payment\StandardPaymentFeeCalculator;
 use App\maguttiCms\Tools\StoreHelper;
 use Illuminate\Session\Store;
 
@@ -75,7 +76,8 @@ trait CartPresenter
     {
         $shipping_cost   = $this->getShipping();
         $product_total_with_discount = $this->getTotalProductsWithDiscount();
-        return $product_total_with_discount+$shipping_cost;
+        $payment_fee = $this->getPaymentFeeAmount();
+        return $product_total_with_discount+$shipping_cost+$payment_fee;
     }
 
     function getTotalProducts()
@@ -88,6 +90,9 @@ trait CartPresenter
         $product_total = $this->getTotalProducts();
         $discount_amount = $this->getDiscountTotalAmount();
         return ($product_total - $discount_amount > 0) ? $product_total - $discount_amount : 0;
+    }
+    function getPaymentFeeAmount(){
+        if($this->payment_method) return  (new StandardPaymentFeeCalculator($this->payment_method))->process() ?: 0;
     }
 
     function getShipping()

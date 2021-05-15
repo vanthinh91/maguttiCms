@@ -37,7 +37,8 @@ trait CartStepTrait
         return ($this->getLastSegment() === Definition::CART_STEP_RESUME);
     }
 
-    /**
+
+        /**
      * @return false|float|int
      */
     function displayTotal()

@@ -18,14 +18,19 @@
                             <img class="media-object"
                                  src="{{ $item->product->getThumbImage() }}"
                                  alt="{{$item->product->title}}">
-
                         </div>
                         <div class="media-body">
                             <span class="product-name d-flex ">{{$item->product->title}}</span>
                             <div class="d-flex justify-content-between">
-                                <div class="product-quantity text-secondary">
-                                    x{{$item->quantity}}</div>
-                                <div class="product-price font-weight-bold">    {{StoreHelper::formatPrice($item->product->price * $item->quantity)}}</div>
+                                <div class="product-prince-info">
+                                    <x-magutti_store-product-display-price
+                                            :product="$item->product"
+                                            :type="'product-price'"/>
+                                    <div class="product-quantity text-secondary">x {{$item->quantity}}</div>
+                                </div>
+                                <div class="product-price font-weight-bold">
+                                    {{StoreHelper::formatPrice($item->product->price * $item->quantity)}}
+                                </div>
                             </div>
                         </div>
                     </li>
@@ -49,6 +54,12 @@
         <div class="cart-summary-line cart-ship">
             <span class="label">{{ __('store.order.shipping_cost') }}</span>
             <span class="value"><x-magutti_store-shipping-cost-label :amount="$cart->shipping_cost"/></span>
+        </div>
+    @endif
+    @if($cart->getPaymentFeeAmount())
+        <div class="cart-summary-line cart-payment-fee">
+            <span class="label">{{optional($cart->payment_method)->title }}</span>
+            <span class="value">{{ StoreHelper::formatPrice($cart->getPaymentFeeAmount()) }}</span>
         </div>
     @endif
     <div class="cart-summary-totals">
