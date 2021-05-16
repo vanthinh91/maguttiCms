@@ -66,8 +66,6 @@ trait DiscountPresenter
 
     function getSign()
     {
-
         return ($this->type==self::AMOUNT)?'€': '%';
-
     }
 }

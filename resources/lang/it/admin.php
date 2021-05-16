@@ -72,6 +72,7 @@ return [
 		'locale'		=> 'Lingua',
 		'login'			=> 'Login',
 		'logout'		=> 'Logout',
+        'max_number_of_use'=> 'Numero massimo  di utilizzi',
 		'media'   		=> 'Media',
 		'menu_title'    => 'Titolo menu',
 		'message'		=> 'Messaggio',

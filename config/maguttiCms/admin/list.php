@@ -660,6 +660,7 @@ return [
                 'id',
                 'locale' => ['type' => 'locale', 'field' => 'locale'],
                 'email',
+                'coupon'=> ['type' => 'text', 'field' => 'coupon_code'],
                 'created_at' => ['type' => 'date', 'field' => 'created_at'],
             ],
             'orderBy' => 'created_at',

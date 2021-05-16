@@ -76,6 +76,7 @@ return [
         'lng'		    => 'Longitude',
         'login'			=> 'Login',
         'logout'		=> 'Logout',
+        'max_number_of_use'=> 'Max number of uses',
         'media'   		=> 'Media',
 		'menu_title'	=> 'Menu title',
 		'message'		=> 'Message',

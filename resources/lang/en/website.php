@@ -80,6 +80,7 @@ return [
         'subscribe_newsletter_subject' => 'Newsletter subscription',
         'subscribe_newsletter_text' => 'New newsletter subscription from:',
         'subscribe_newsletter_feedback' => 'Welcome to the MaguttiCms community and thanks for signing up to receive our emails.',
+        'subscribe_newsletter_coupon_message' => 'Your Welcome Gift Coupon',
     ],
     'pagetitle' => [
         'privacy'           => 'Privacy Policy',

@@ -127,7 +127,7 @@ class Discount extends Model
 		$this->fieldspec['uses'] = [
 			'type'     => 'integer',
 			'required' => 0,
-			'label'    => 'Usi',
+			'label'    => trans('admin.label.max_number_of_use'),
 			'hidden'   => 0,
 			'display'  => 1,
 		];

@@ -16,4 +16,6 @@ class DiscountBuilder extends MaguttiCmsBuilder
     {
         return $this->active()->where('code',strtoupper($code));
     }
+
+
 }

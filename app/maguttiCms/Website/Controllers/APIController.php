@@ -2,7 +2,11 @@
 
 namespace App\maguttiCms\Website\Controllers;
 
+use App\Discount;
 use App\Http\Controllers\Controller;
+use App\maguttiCms\Domain\Newsletter\Action\AddSubscriberAction;
+use App\maguttiCms\Domain\Newsletter\Action\NotifyNewSubscriberAction;
+use App\maguttiCms\Domain\Store\Action\CreateCouponAction;
 use App\maguttiCms\Notifications\ContactRequest;
 use App\maguttiCms\Notifications\NewsletterSubscriberAdminNotification;
 use App\maguttiCms\Notifications\NewsletterSubscribeUserNotification;
@@ -25,17 +29,16 @@ class APIController extends Controller
     {
         $validator = Validator::make($request->all(), $request->rules());
 
-        // INSERT RECORD IN DATABASE
-        $newsletter = new Newsletter;
-        $newsletter->locale = get_locale();
-        $newsletter->email = sanitizeParameter($request->email);
-        $newsletter->save();
+        $attributes_bag=[];
+        $attributes_bag['email']=$request->email;
+        $attributes_bag['locale']=app()->getLocale();
 
-        Notification::route('mail', config('maguttiCms.website.option.app.email'))
-                      ->notify(new NewsletterSubscriberAdminNotification($newsletter));
+        $coupon_code = (new CreateCouponAction(Discount::AMOUNT,10))->execute();
+        $attributes_bag['coupon_code']=$coupon_code;
 
-        Notification::route('mail', $newsletter->email)
-                     ->notify(new NewsletterSubscribeUserNotification($newsletter));
+        $newsletter = (new AddSubscriberAction($attributes_bag))->execute();
+
+        (new NotifyNewSubscriberAction($newsletter))->execute();
 
         return $this->responseSuccess(trans('website.mail_message.subscribe_newsletter_feedback'))->apiResponse();
 

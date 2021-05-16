@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
 use App\Newsletter;
+use Illuminate\Support\HtmlString;
 
 /**
  * Class NewsletterSubscriberUserNotification
@@ -28,7 +29,7 @@ class NewsletterSubscribeUserNotification extends Notification implements Should
     {
         //
         $this->data = $data;
-        $this->delay(now()->addMinute(1));
+        //$this->delay(now()->addMinute(1));
     }
 
     /**
@@ -50,26 +51,21 @@ class NewsletterSubscribeUserNotification extends Notification implements Should
      */
     public function toMail($notifiable): MailMessage
     {
-
+        $subject = __('website.mail_message.subscribe_newsletter_subject') . ' - ' . config('maguttiCms.website.option.app.name');
         return (new MailMessage)
-            ->subject(trans('website.mail_message.subscribe_newsletter_subject') . ' - ' . config('maguttiCms.website.option.app.name'))
-            ->greeting(trans('website.mail_message.greeting'))
-            ->line(trans('website.mail_message.subscribe_newsletter_feedback'))
+            ->subject($subject)
+            ->greeting(__('website.mail_message.greeting'))
+            ->line(__('website.mail_message.subscribe_newsletter_feedback'))
+            ->when($this->data->coupon_code, function (MailMessage $mail) {
+                return $mail
+                       ->line(new HtmlString('<h2 style="text-align: center">'
+                           . __('website.mail_message.subscribe_newsletter_coupon_message')
+                           . '</h2>')
+                       )
+                       ->action($this->data->coupon_code,$this->data->coupon_url);
+            })
             ->line('')
             ->salutation(trans('website.mail_message.firm'));
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param mixed $notifiable
-     * @return array
-     */
-    public function toArray($notifiable): array
-    {
-        return [
-            //
-        ];
     }
 
 }

@@ -80,6 +80,8 @@ return [
         'subscribe_newsletter_subject' => 'Iscrizione alla Newsletter',
         'subscribe_newsletter_text' => 'Nuova Iscrizione alla newsletter da:',
         'subscribe_newsletter_feedback' => 'Benvenuto nella community MaguttiCms e grazie per esserti iscritto alla nostra newsletter.',
+
+        'subscribe_newsletter_coupon_message' => 'Il tuo Welcome Gift Coupon',
     ],
     'pagetitle' => [
         'privacy' => 'Privacy Policy',
