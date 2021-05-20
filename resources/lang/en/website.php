@@ -23,6 +23,7 @@ return [
     'lastname'      => 'Surname',
     'newsletters_placeholder' => 'Subscribe our newsletter type your email',
     'password'		=> 'Password',
+    'current_password'		=> 'Current Password',
     'phone'         => 'Telephone',
     'please_select' => 'Please select',
     'privacy'		=> 'Privacy Policy',
@@ -33,6 +34,7 @@ return [
     'subject'       => 'Subject',
     'support'       => 'Support',
     'surname'       => 'Surname',
+    'save'          => 'Save',
     'pagination'    => 'Page :x of :y',
     'products_view' => 'View products',
     'explore'			      => 'Espolora',
@@ -64,7 +66,7 @@ return [
         'privacy'           => 'I accept terms and conditions of use and read the privacy note.',
         'required_field'    => 'Required field (*)',
 		'product_request'	=> 'Information request for product',
-		'password'			=> 'The password must be at least 8 characters long',
+		'password'			=> 'The password must be at least 8 characters long and contain upper case and lower case letters, numbers and special characters',
 
         /**************************   COOKIE  ****************************/
         'cookie'            => 'This website or the related devices use cookies, which are necessary to the working and to the purposes showed in the cookie policy.If you\'d like to know more about it or deny your approval to all or some cookies, please consult the cookie policy. If you click on Accept or go on with the surfing, you accept then the cookie use.',

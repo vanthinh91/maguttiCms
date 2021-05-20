@@ -32,6 +32,18 @@ mark {
 .box-shadow{
 	border-radius: .25rem!important;
 	box-shadow: 0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05)!important;
+
 }
+.bow-shadow-bordered{
+	border-radius: .25rem!important;
+	border:1px solid $gray-200;
+	padding:1rem;
+	@include media-breakpoint-up($navbar-trigger) {
+		padding:2.5rem;
+		box-shadow: 3px 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05)!important;
+
+	};
+}
+
 
 .pointer {cursor: pointer;}

@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
 use Validator;
 
 class RegisterController extends Controller
@@ -72,7 +73,7 @@ class RegisterController extends Controller
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:8|confirmed|regex:'.config('maguttiCms.security.password_regex'),
+            'password' => Password::min(8)->mixedCase()->numbers()->symbols(),
         ]);
     }
 

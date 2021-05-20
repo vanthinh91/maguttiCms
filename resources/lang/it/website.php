@@ -22,11 +22,13 @@ return [
     'lastname' => 'Cognome',
     'newsletters_placeholder' => 'Iscriviti alla newsletter',
     'password' => 'Password',
+    'current_password' => 'Password corrente',
     'phone' => 'Telefono',
     'please_select' => 'Prego selezionare',
     'privacy' => 'Privacy Policy',
     'read_more' => 'Continua',
     'regards' => 'Cordiali saluti',
+    'save' => 'Salva',
     'see' => 'Vedi',
     'send' => 'Invia',
     'subject' => 'Oggetto',
@@ -64,7 +66,7 @@ return [
         'privacy' => 'Acconsento al trattamento dei dati',
         'required_field' => 'I campi contrassegnati con (*) sono obbligatori',
         'product_request' => 'Richiesta informazioni per il prodotto',
-        'password' => 'La password deve avere almeno 8 caratteri',
+        'password' => 'La password deve avere  almeno 8 caratteri e deve contenere lettere maiuscole e minuscole, numeri e caratteri speciali',
 
         /**************************   COOKIE  ****************************/
         'cookie' => 'Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di cookie necessari al funzionamento ed utili alle finalità illustrate nella cookie policy. Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, consulta la cookie policy. Cliccando su \'Accetto\' o proseguendo la navigazione acconsenti all’uso dei cookie.',

@@ -19,6 +19,7 @@ use App\maguttiCms\Website\Controllers\ProductsController;
 use App\maguttiCms\Website\Controllers\ReservedAreaController;
 use App\maguttiCms\Website\Controllers\StoreAPIController;
 
+use App\maguttiCms\Website\Controllers\UpdatePasswordController;
 use App\maguttiCms\Website\Controllers\WebsiteFormController;
 
 Route::group([], function () {
@@ -42,8 +43,9 @@ Route::group(['middleware' => ['localeSessionRedirect', 'localizationRedirect', 
     // Reserved area user routes
     Route::group(['middleware' => ['auth']], function () {
         Route::get('users/dashboard', [ReservedAreaController::class, 'dashboard'])->name('user.dashboard');
-        Route::get('users/profile', [ReservedAreaController::class, 'profile']);
-
+        Route::get('users/profile', [ReservedAreaController::class, 'profile'])->name('user.profile');
+        Route::post('users/profile', [ReservedAreaController::class, 'update_profile']);
+        Route::post('users/change-password', [UpdatePasswordController::class, 'update_password'])->name('user.change-password');
         Route::get('users/order-detail/{order}', [OrderControllers::class, 'show'])->name('order.detail');
 
         Route::get('users/address-new', [ReservedAreaController::class, 'addressNew']);
