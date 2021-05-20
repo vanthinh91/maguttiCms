@@ -1,15 +1,21 @@
 <?php namespace App\maguttiCms\Website\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\maguttiCms\Tools\StoreHelper;
-use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
-use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 use Validator;
 
+use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
+use App\User;
+
+
+/**
+ * Class RegisterController
+ * @package App\maguttiCms\Website\Controllers\Auth
+ */
 class RegisterController extends Controller
 {
     /*
@@ -67,13 +73,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(array $data): \Illuminate\Contracts\Validation\Validator
     {
         return Validator::make($data, [
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => Password::min(8)->mixedCase()->numbers()->symbols(),
+            'password' => ['required', 'string', 'confirmed', Password::defaults()],
         ]);
     }
 

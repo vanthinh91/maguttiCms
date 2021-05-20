@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
+use Illuminate\Validation\Rules\Password;
 
 class ResetPasswordController extends Controller
 {
@@ -87,7 +88,7 @@ class ResetPasswordController extends Controller
         return [
             'token' => 'required',
             'email' => 'required|email',
-            'password' => 'required|confirmed|min:10|regex:' . config('maguttiCms.security.password_regex'),
+            'password' => ['required', 'string', 'confirmed', Password::defaults()],
         ];
     }
 

@@ -118,6 +118,8 @@ return [
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
+    'The :attribute must contain at least one symbol.' =>'La  :attribute deve avere almeno un simbolo',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -155,6 +157,7 @@ return [
         'billing_country_id.required_if' => 'The Country field is required',
         'billing_email.required_if'      => 'The Email fieldis required',
         'billing_phone.required_if'      => 'The Phone field is required',
+
     ],
 
     /*

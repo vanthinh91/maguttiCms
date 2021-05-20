@@ -1,4 +1,3 @@
-@include('flash::notification')
 <form method="post" action="{{url_locale('register')}}">
     @csrf
     @if (isset($redirectTo))
@@ -9,24 +8,28 @@
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="{{ trans('website.firstname') }}" name="firstname"
                        value="{{ old('firstname') }}" required>
+                <x-website.ui.form-error-label  field="firstname"/>
             </div>
         </div>
         <div class="col-12 col-md-6">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="{{ trans('website.lastname') }}" name="lastname"
                        value="{{ old('lastname') }}" required>
+                <x-website.ui.form-error-label  field="lastname"/>
             </div>
         </div>
         <div class="col-12">
         <div class="form-group">
             <input type="email" class="form-control" placeholder="{{ trans('website.email') }}" name="email"
                    value="{{ old('email') }}" required>
+            <x-website.ui.form-error-label  field="email"/>
         </div>
         </div>
         <div class="col-12">
         <div class="form-group">
             <input type="password" class="form-control" name="password" placeholder="{{ trans('website.password') }}"
                    required>
+            <x-website.ui.form-error-label  field="password"/>
         </div>
         <div class="form-group">
             <input type="password" class="form-control" name="password_confirmation"

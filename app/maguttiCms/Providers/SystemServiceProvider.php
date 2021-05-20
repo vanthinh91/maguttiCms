@@ -3,6 +3,7 @@
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\App;
+use Illuminate\Validation\Rules\Password;
 
 class SystemServiceProvider extends ServiceProvider
 {
@@ -13,6 +14,15 @@ class SystemServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+
+        Password::defaults(function () {
+            $rule = Password::min(8)->letters()->mixedCase()->numbers()->symbols();
+
+            return $this->app->isProduction()
+                ? $rule->uncompromised()
+                : $rule;
+        });
 
         // Set the Throttler plugin for Mailtrap.
         if (env('MAIL_HOST', '') == 'smtp.mailtrap.io') {

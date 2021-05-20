@@ -64,11 +64,11 @@ class UpdatePasswordController extends Controller
 
     }
 
+    /**
+     * @return array
+     */
     function passwordRules(): array
     {
-
-        return ['required', 'string', 'confirmed', Password::min(8)->letters()->mixedCase()->numbers()->symbols()];
+        return ['required', 'string', 'confirmed', Password::defaults()];
     }
-
-
 }
