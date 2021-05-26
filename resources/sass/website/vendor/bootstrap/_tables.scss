@@ -10,18 +10,21 @@
 
   th,
   td {
-    padding: $table-cell-padding;
+    padding: $table-cell-padding-y-sm $table-cell-padding-x-sm;
     vertical-align: top;
     border-top: $table-border-width solid $table-border-color;
+    @include media-breakpoint-up($navbar-trigger) {
+      padding: $table-cell-padding-y $table-cell-padding-x;
+    };
   }
 
   thead th {
     vertical-align: bottom;
-    border-bottom: (1 * $table-border-width) solid $table-border-color;
+    border-bottom: $table-border-width solid $table-border-color;
   }
 
   tbody + tbody {
-    border-top: (2 * $table-border-width) solid $table-border-color;
+    border-top: $table-border-width solid $table-border-color;
   }
 }
 
@@ -33,7 +36,7 @@
 .table-sm {
   th,
   td {
-    padding: $table-cell-padding-sm;
+    padding: $table-cell-padding-y-sm $table-cell-padding-x-sm;
   }
 }
 
@@ -44,16 +47,14 @@
 
 .table-bordered {
   border: $table-border-width solid $table-border-color;
-
   th,
   td {
     border: $table-border-width solid $table-border-color;
   }
-
   thead {
     th,
     td {
-      border-bottom-width: 2 * $table-border-width;
+      border-bottom-width:  $table-border-width;
     }
   }
 }
@@ -72,8 +73,9 @@
 // Default zebra-stripe styles (alternating gray and transparent backgrounds)
 
 .table-striped {
-  tbody tr:nth-of-type(#{$table-striped-order}) {
-    background-color: $table-accent-bg;
+  > tbody > tr:nth-of-type(#{$table-striped-order}) {
+    --#{$variable-prefix}table-accent-bg: var(--#{$variable-prefix}table-striped-bg);
+    color: var(--#{$variable-prefix}table-striped-color);
   }
 }
 
@@ -84,7 +86,7 @@
 
 .table-hover {
   tbody tr {
-    @include hover() {
+    &:hover {
       color: $table-hover-color;
       background-color: $table-hover-bg;
     }
@@ -97,65 +99,17 @@
 // Exact selectors below required to override `.table-striped` and prevent
 // inheritance to nested tables.
 
-@each $color, $value in $theme-colors {
-  @include table-row-variant($color, theme-color-level($color, $table-bg-level), theme-color-level($color, $table-border-level));
-}
-
-@include table-row-variant(active, $table-active-bg);
-
-
-// Dark styles
+// Table variants
 //
-// Same table markup, but inverted color scheme: dark background and light text.
+// Table variants set the table cell backgrounds, border colors
+// and the colors of the striped, hovered & active tables
 
-// stylelint-disable-next-line no-duplicate-selectors
-.table {
-  .thead-dark {
-    th {
-      color: $table-dark-color;
-      background-color: $table-dark-bg;
-      border-color: $table-dark-border-color;
-    }
-  }
-
-  .thead-light {
-    th {
-      color: $table-head-color;
-      background-color: $table-head-bg;
-      border-color: $table-border-color;
-    }
-  }
+@each $color, $value in $table-variants {
+  @include table-variant($color, $value);
 }
 
-.table-dark {
-  color: $table-dark-color;
-  background-color: $table-dark-bg;
 
-  th,
-  td,
-  thead th {
-    border-color: $table-dark-border-color;
-  }
 
-  &.table-bordered {
-    border: 0;
-  }
-
-  &.table-striped {
-    tbody tr:nth-of-type(#{$table-striped-order}) {
-      background-color: $table-dark-accent-bg;
-    }
-  }
-
-  &.table-hover {
-    tbody tr {
-      @include hover() {
-        color: $table-dark-hover-color;
-        background-color: $table-dark-hover-bg;
-      }
-    }
-  }
-}
 
 
 // Responsive tables

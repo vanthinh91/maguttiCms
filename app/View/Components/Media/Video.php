@@ -17,7 +17,7 @@ class Video extends EmbedComponent
      * @param string $ratio
      * @param string $extra_class
      */
-    public function __construct($video, $ratio = '16by9', $classExtra = "")
+    public function __construct($video, $ratio = '16x9', $classExtra = "")
     {
         //
         $this->video = $video;

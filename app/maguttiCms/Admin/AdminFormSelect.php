@@ -98,7 +98,7 @@ class AdminFormSelect
      */
     public function render(): string
     {
-        $openingTag = "<select name=\"{$this->name}\" class=\"form-control\">";
+        $openingTag = "<select name=\"{$this->name}\" class=\"form-select\">";
         $closingTag = "</select>";
 
         // Start building the form element.

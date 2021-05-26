@@ -2,6 +2,7 @@
 
 use Form;
 use App;
+use Illuminate\Support\Str;
 
 /**
  * Class AdminTree
@@ -27,11 +28,12 @@ class SelectBaseComponent extends AdminFormBaseComponent
 
         // GF_ma gestione campo hidden
         if (data_get($this->property, 'hidden') == 1) {
-            if ($multiple) $html = "<select class=\"form-control hidden\" id=\"" . $field . "\" name=\"" . $field . "[]\" " . $multiple . " >\n";
-            else $html = "<select class=\"form-control hidden\" id=\"" . $field . "\" name=\"" . $field . "\" >\n";
+            if ($multiple) $html = "<select class=\"form-select hidden\" id=\"" . $field . "\" name=\"" . $field . "[]\" " . $multiple . " >\n";
+            else $html = "<select class=\"form-select hidden\" id=\"" . $field . "\" name=\"" . $field . "\" >\n";
         } else {
             if ($multiple) $html = "<select data-placeholder=\"Select an option\" class=\"form-control selectizemulti\" id=\"" . $field . "\" name=\"" . $field . "[]\" " . $multiple . ">\n";
-            else $html = "<select class=\"form-control " . $cssClass . " \" id=\"" . $field . "\" name=\"" . $field . "\" >\n";
+            elseif(Str::of($cssClass)->contains('selectize')) $html = "<select class=\"form-control  " . $cssClass . " \" id=\"" . $field . "\" name=\"" . $field . "\" >\n";
+            else $html = "<select class=\"form-select  " . $cssClass . " \" id=\"" . $field . "\" name=\"" . $field . "\" >\n";
         }
 
         if (!$isRequired) $html .= "<option value=\"\">" . $nullLabel . "</option>";

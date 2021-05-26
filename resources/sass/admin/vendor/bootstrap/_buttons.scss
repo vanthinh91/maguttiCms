@@ -44,7 +44,7 @@
 		text-align: center;
 	}
 
-	&.btn-info,
+	&.btn_toggle,
 	&.btn-warning {
 		color: $color-1;
 	}
@@ -139,7 +139,19 @@ a.btn-secondary {
 		background-color: lighten($secondary, 30);
 	}
 }
-
+.btn-info {
+	color: white;
+	background-color: $info;
+	border-color: $info;
+	&:hover,
+	&:focus,
+	&:active,
+	&:active:hover {
+		color: $color-1;
+		border-color: $info;
+		background-color: darken($info, 10);
+	}
+}
 .btn-accent,
 a.btn-accent {
 	color: $color-1;
@@ -162,6 +174,13 @@ a.btn-accent {
 	}
 }
 
+
+
+@each $color in ('info', 'success', 'warning', 'danger') {
+	.btn-outline-#{$color} {
+		@include button-outline-variant(map_get($theme-colors, $color), $color-text-contrast);
+	}
+}
 .input-group-btn {
     position: relative;
     font-size: 1em;
@@ -182,3 +201,18 @@ a.btn-accent {
     text-transform: uppercase;
     width: 100%;
 }
+
+
+.btn-outline-toggle {
+	color: #C0C0CC;
+	border-color: #C0C0C0;
+	background-color: white;
+}
+.btn-check:checked + .btn-outline-toggle, .btn-check:active + .btn-outline-toggle, .btn-outline-toggle:active, .btn-outline-toggle.active, .btn-outline-toggle.dropdown-toggle.show {
+	color: white !important;
+	background-color: #2184C4;
+	border-color: #2184C4;
+}
+
+
+

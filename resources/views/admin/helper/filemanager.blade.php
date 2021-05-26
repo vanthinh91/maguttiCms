@@ -5,10 +5,10 @@
 				<h4 class="modal-title">File Manager</h4>
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
-						<a class="nav-link active" href="#tab-upload" id="file-manager-upload" data-toggle="tab" role="tab" aria-controls="upload" aria-selected="true">Upload File</a>
+						<a class="nav-link active" href="#tab-upload" id="file-manager-upload" data-bs-toggle="tab" role="tab" aria-controls="upload" aria-selected="true">Upload File</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#tab-images" id="file-manager-list" data-toggle="tab" role="tab" aria-controls="list" aria-selected="false">Library</a>
+						<a class="nav-link" href="#tab-images" id="file-manager-list" data-bs-toggle="tab" role="tab" aria-controls="list" aria-selected="false">Library</a>
 					</li>
 				</ul>
 

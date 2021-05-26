@@ -2,29 +2,27 @@
 
   <!-- Card Discount -->
   <div class="card cart__discount box-shadow p-2">
-    <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample1"
-       aria-expanded="false" aria-controls="collapseExample1">
+    <a class="dark-grey-text d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseCoupon"
+       aria-expanded="false" aria-controls="collapseCoupon">
       {{ $t('store.order.discount.add') }} ({{ $t('store.cart.optional') }})
-
       <span><i class="fas fa-chevron-down pt-1"></i></span>
     </a>
-
-    <div class="collapse" id="collapseExample1">
-      <div class="mt-1">
-        <div class=" mb-1">
+    <div class="collapse" id="collapseCoupon">
+      <div class="row gy-2 my-2">
+        <div class="col-12">
           <div v-if="error" class="text-danger pb-1 cart__discount__error ">
             {{ $t('store.order.discount.invalid') }}
           </div>
           <input type="text" id="coupon" v-model="coupon" class="form-control font-weight-light"
                  :placeholder="$t('store.order.discount.enter')" @focus="error=false">
         </div>
-        <a class="d-flex justify-content-between btn btn-success" @click.prevent="addCoupon">
-          {{ $t('store.order.discount.apply') }}
-        </a>
+        <div class="col-12">
+          <a class="d-flex justify-content-between btn btn-success" @click.prevent="addCoupon">
+            {{ $t('store.order.discount.apply') }}
+          </a>
+        </div>
       </div>
     </div>
-
-
   </div>
 
 </template>

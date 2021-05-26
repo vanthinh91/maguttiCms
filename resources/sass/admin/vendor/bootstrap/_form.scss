@@ -16,8 +16,7 @@ label {
 	margin-bottom: 1em;
 
 	label {
-		line-height: 1.2em;
-		display: block;
+	    display: block;
 		@include media-breakpoint-up(sm) {
 			text-align: right;
 			margin: 0;
@@ -28,7 +27,7 @@ label {
 .form-control,
 .selectize-control.form-control {
 	width: 100%;
-	min-height: 3em;
+	height: 3.2em;
 	padding: 0.5em;
 	font-size: 1em;
 	font-weight: 300;
@@ -69,7 +68,21 @@ textarea {
 		transition: border-color 0.3s;
 	}
 }
+.custom-checkbox{
+	padding-left: 0em;
+	.form-check-input{
+		width: 2em;
+		height: 2em;
+		position:relative;
+	}
+	.custom-control-label{
+		line-height: 2.5rem;
+		margin-left: 1rem;
+	}
 
+}
+
+/*
 .form-checkbox,
 .form-radio {
 	position: relative;
@@ -132,6 +145,25 @@ textarea {
 	label {
 		display: inline-block;
 		margin-bottom: 0;
+	}
+}
+*
+ */
+
+.form-select {
+	padding: 0.75em;
+
+
+	.custom-control-label {
+		line-height: 2rem;
+
+		&:before,
+		&:after {
+			top: 0;
+			left: -2.5rem;
+			width: 2rem;
+			height: 2rem;
+		}
 	}
 }
 
@@ -248,7 +280,11 @@ select.btn-select > option {
 		clear: both;
 	}
 }
-
+/*
+ |--------------------------------------------------------------------------
+ | Selectize
+ |--------------------------------------------------------------------------
+*/
 .selectize-control.single .selectize-input.input-active,
 .selectize-input {
 	background-color: transparent;
@@ -267,20 +303,18 @@ select.btn-select > option {
 	}
 }
 
-.custom-control {
-	padding-left: 2.5rem;
-	min-height: 2.1rem;
-
-
-	.custom-control-label {
-		line-height: 2rem;
-
-		&:before,
-		&:after {
-			top: 0;
-			left: -2.5rem;
-			width: 2rem;
-			height: 2rem;
-		}
-	}
+.selectize-control.single .selectize-input:after {
+	content: ' ';
+	display: block;
+	position: absolute;
+	top: 50%;
+	right: 5px;
+	margin-top: -3px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 5px 5px 0 5px;
+	border-color: #333333 transparent transparent transparent;
 }
+
+

@@ -7,7 +7,7 @@
                 data-role="deleteAll"
                 rel="tooltip"
                 data-placement="bottom"
-                data-toggle="tooltip"
+                data-bs-toggle="tooltip"
                 title="{!! trans('admin.message.delete_items')!!}"
                 data-original-title="{!! trans('admin.message.delete_items')!!}"
                 style="display: none;"
@@ -31,5 +31,7 @@
         @if (auth_user('admin')->action('create',$pageConfig))
             <x-admin.buttons.create class="btn-default btn-lg"  :article="$pageConfig['model']"/>
         @endif
+
+
     </div>
 </div>

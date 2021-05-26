@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row my-3">
                 <div class="col-12">
-                    <div class="alert alert-danger p-2">{{__('store.cart.empty')}}</div>
+                    <div class="alert alert-color-2 p-5">{{__('store.cart.empty')}}</div>
                 </div>
             </div>
         </div>

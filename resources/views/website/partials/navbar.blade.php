@@ -3,9 +3,10 @@
 	$locale_article = isset($locale_article) ? $locale_article : $article;
 
 @endphp
-<nav class="navbar navbar-expand-lg fixed-top">
+<nav class="navbar navbar-expand-lg sticky-top">
 	<div class="container d-flex flex-row">
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
 			{{icon('bars')}}
 		</button>
 		<a class="navbar-brand" href="{{ url_locale('/') }}">
@@ -16,7 +17,7 @@
 		</a>
 
 		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="navbar-nav ml-auto">
+			<ul class="navbar-nav ms-auto">
 				{!! HtmlMenu::getBeforeNavbar() !!}
 				{!! HtmlMenu::getArticlesLinks($article) !!}
 				{!! HtmlMenu::getAuthLinks() !!}

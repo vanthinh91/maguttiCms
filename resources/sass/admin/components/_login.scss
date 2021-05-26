@@ -28,8 +28,8 @@ body.login {
 	margin: auto;
 	align-self: center;
 	@include media-breakpoint-up(sm) {width: 60vw};
-	@include media-breakpoint-up(md) {width: 40vw};
-	@include media-breakpoint-up(lg) {width: 30vw};
+	@include media-breakpoint-up(md) {width: 50vw};
+	@include media-breakpoint-up(xl) {width: 30vw};
 
 	img {
 		display: block;
@@ -38,5 +38,9 @@ body.login {
 	}
 	.form-group {
 		margin-bottom: 1.5em;
+	}
+
+	.form-check {
+		padding-left: 1.5em;
 	}
 }

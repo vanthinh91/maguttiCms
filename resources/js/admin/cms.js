@@ -122,7 +122,7 @@ window.Cms = function () {
 
 		// gestione check box liste
 	    $('input[type="checkbox"].custom-control-input').on('change',function () {
-    		if ($("input.custom-control-input:checked").length > 0)
+	   		if ($("input.custom-control-input:checked").length > 0)
 				$('#toolbar_deleteButtonHandler').stop().fadeIn();
 			else
 				$('#toolbar_deleteButtonHandler').stop().fadeOut();

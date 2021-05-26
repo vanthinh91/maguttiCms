@@ -29,7 +29,7 @@
                             @foreach($articles as $article)
                                 @if(AdminList::showGroupBySeparator($article))
                                     <tr>
-                                        <td colspan="{{AdminList::separatorColSpan()}}" class="text-left py-2 h4 "
+                                        <td colspan="{{AdminList::separatorColSpan()}}" class="text-start py-2 h4 "
                                             style="background-color: #c1c1c1">
                                             {{AdminList::getGroupBySeparatorValue($article)}}
                                         </td>

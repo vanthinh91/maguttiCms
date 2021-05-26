@@ -15,27 +15,27 @@
 					@endif
 					<ul class="nav nav-tabs">
 						<li class="nav-item">
-							<a href="#content_tab" class="nav-link active" data-toggle="tab" role="tab" aria-controls="content" aria-selected="true">
+							<a href="#content_tab" class="nav-link active" data-bs-toggle="tab" role="tab" aria-controls="content" aria-selected="true">
 								{{icon('file-alt')}} {{trans('admin.label.content')}}
 							</a>
 						</li>
 						@if ($pageConfig->get('showBlock') == 1 && $article->id!='')
 							<li class="nav-item">
-								<a href="#block_tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="block" aria-selected="false">
+								<a href="#block_tab" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="block" aria-selected="false">
 									{{icon('newspaper')}} {{trans('admin.label.block')}}
 								</a>
 							</li>
 						@endif
 						@if ($pageConfig->get('showSeo') == 1)
 							<li class="nav-item">
-								<a href="#seo_tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="seo" aria-selected="false">
+								<a href="#seo_tab" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="seo" aria-selected="false">
 									{{icon('globe-africa')}} {{trans('admin.label.seo')}}
 								</a>
 							</li>
 						@endif
 						@if ($pageConfig->get('showMedia') == 1 && $article->id!='')
 							<li class="nav-item">
-								<a href="#media_tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="media" aria-selected="false">
+								<a href="#media_tab" class="nav-link" data-bs-toggle="tab" role="tab" aria-controls="media" aria-selected="false">
 									{{icon('image')}} {{trans('admin.label.media')}}
 								</a>
 							</li>

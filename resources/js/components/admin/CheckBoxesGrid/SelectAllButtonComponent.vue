@@ -4,7 +4,7 @@
             <slot name="label"></slot>
             <input type="checkbox" class="checkbox-inline" v-model="allSelected" @change="setStatus"/>
         </button>
-        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle</span>
         </button>

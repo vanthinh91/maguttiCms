@@ -4,6 +4,7 @@ html {
     @include media-breakpoint-up(md) {
         font-size: 14px;   
     }
+
 }
 
 body {
@@ -14,4 +15,10 @@ body {
 	@include media-breakpoint-up($header-trigger) {
 		margin-top: $header-height;
 	}
+}
+
+a {
+  text-decoration: none;
+  color:$color-text;
+
 }

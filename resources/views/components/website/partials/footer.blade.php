@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="col-12 col-md-4 footer-legal">
-                    <div class="text-md-right">
+                    <div class="text-md-end">
                         <a href="https://www.iubenda.com/privacy-policy/{{ data_get($site_settings,'iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}" class="lightbox-iframe" title="{{ trans('website.privacy')}}">
                             {{ trans('website.privacy')}}
                         </a> |

@@ -78,20 +78,7 @@ class HtmlHelper {
 		}
 	}
 
-    /**
-     *  Youtube  video embed
-     * @param $id
-     * @param string $ratio
-     * @param string $extra_class
-     * @return string
-     */
-	public static function videoEmbed($id, $ratio = '16by9',$extra_class="") {
-		$output = '';
-		$output .= '<div class="embed-responsive embed-responsive-'.$ratio.' '.$extra_class.'">';
-        $output .= '<iframe class="embed-responsive-item" src="'.self::getYoutubeUrl($id).'" allowfullscreen></iframe>';
-		$output .= '</div>';
-		return $output;
-	}
+
 
 	// Get responsive image
 	public function get_responsive($src, $args_small=['w' => 768], $args_medium=['w' => 1200]) {

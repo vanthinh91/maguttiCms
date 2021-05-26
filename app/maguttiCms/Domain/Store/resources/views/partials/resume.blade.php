@@ -1,6 +1,6 @@
-<table  border="1" cellpadding="3" cellspacing="0" width="100%">
-    <thead class="thead-dark">
-    <tr>
+<table  border="1" cellpadding="3" cellspacing="0" width="100%" class="table table-bordered">
+    <thead >
+    <tr class="table-light">
         <th>{{__('store.cart.table.name')}}</th>
         <th width="80px" class="text-center" align="center">{{__('store.cart.table.quantity')}}</th>
         <th class="text-center">{{__('store.cart.table.price')}}</th>
@@ -9,12 +9,12 @@
     </thead>
     <tbody>
     @foreach($order->order_items()->get() as $item)
-        <tr id="table_row_{{$item->id}}">
+        <tr id="table_row_{{$item->id}}" >
             <td>{!! $item->product_description  !!}</td>
             <td class="text-center" width="80px" align="center">{!! $item->quantity  !!}</td>
-            <td class="text-right" align="right"><span
+            <td class="text-end" align="right"><span
                         class="item-price">{{StoreHelper::formatPrice($item->price)}}</span></td>
-            <td class="text-right" align="right"><span id="item_total_price_{{$item->id}}"
+            <td class="text-end" align="right"><span id="item_total_price_{{$item->id}}"
                                                        class="item-total-price">{{StoreHelper::formatPrice($item->total_price)}}</span>
             </td>
         </tr>

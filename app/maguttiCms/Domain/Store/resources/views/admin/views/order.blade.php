@@ -10,7 +10,7 @@
 
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a href="#content_tab" class="nav-link active" data-toggle="tab" role="tab" aria-controls="content" aria-selected="true">
+                            <a href="#content_tab" class="nav-link active" data-bs-toggle="tab" role="tab" aria-controls="content" aria-selected="true">
                                 {{__('store.order.number')}}: {{$order->reference}} -  {{ trans('store.order.date') }}: {{$order->created_at->format('d-m-Y')}}
                             </a>
 

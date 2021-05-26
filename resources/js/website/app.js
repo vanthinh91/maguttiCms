@@ -22,6 +22,7 @@ window.App = function () {
 	}
 
 	function handleNewsletter() {
+
 		$('#form-newsletter').on('submit', function (e) {
 			e.preventDefault();
 			$.ajax({
@@ -168,8 +169,7 @@ window.App = function () {
 			handleLightBox();
 			handleScrollTo();
 			handleGhostInputs();
-			handleNavbar();
-			initOverrideInvalid();
+		   //initOverrideInvalid();
 		},
 
 		scrollTo: function (hash) {

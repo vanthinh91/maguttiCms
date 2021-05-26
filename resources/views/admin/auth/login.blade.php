@@ -22,15 +22,15 @@
 					<div class="form-group">
 						<input type="password" class="form-control" name="password" placeholder="Password">
 					</div>
-					<div class="form-group row">
-						<div class="col-6">
-							<div class="custom-control custom-checkbox">
-								<input type="checkbox" name="remember" class="custom-control-input" id="remember">
-								<label class="custom-control-label text-left" for="remember">@lang('message.remember_me')</label>
+					<div class="form-group row d-flex align-items-center d-grid gy-2">
+						<div class="col-12 col-sm-6 order-2 order-sm-1">
+							<div class="form-check custom-checkbox">
+								<input type="checkbox" name="remember" class="form-check-input" id="remember">
+								<label class="form-check-label custom-control-label  text-start" for="remember">@lang('message.remember_me')</label>
 							</div>
 						</div>
-						<div class="col-6">
-							<button type="submit" class="btn btn-primary btn-block">Login</button>
+						<div class="col-12 col-sm-6 order-1 order-sm-2">
+							<button type="submit" class="btn btn-primary w-100">Login</button>
 						</div>
 					</div>
 					<a href="{{ URL::to('/admin/password/reset/') }}">

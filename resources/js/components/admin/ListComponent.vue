@@ -4,7 +4,7 @@
         <div class="card  p-3 border border-dark">
             <form v-on:submit.prevent>
                 <div class="form-row w-100 my-3">
-                    <ul class="ist-group list-group-horizontal list-group-item ml-auto border-0 px-0">
+                    <ul class="ist-group list-group-horizontal list-group-item ms-auto border-0 px-0">
                         <li v-for="(value, key) in lang" :key="'lang_'+key" class="list-inline-item  py-1 px-2"
                             v-bind:class="{'bg-primary text-white':(curLang===key)}"
                             @click="changeLang(key)">{{ value }}

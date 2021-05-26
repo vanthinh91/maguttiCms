@@ -1,9 +1,10 @@
 <li class="nav-item dropdown">
-	<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+	<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+	id="dd_locale_selector">
 		{{substr(LaravelLocalization::getSupportedLocales()[LaravelLocalization::getCurrentLocale()]['native'], 0, 3)}}
 		{{icon('chevron-down')}}
 	</a>
-	<div class="dropdown-menu dropdown-menu-right">
+	<div class="dropdown-menu dropdown-menu-end" aria-labelledby="#dd_locale_selector">
 		@foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
 			@if (LaravelLocalization::getCurrentLocale() != $localeCode)
 				@if ($locale_article && !$locale_article->ignore_slug_translation)

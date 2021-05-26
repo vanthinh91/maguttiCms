@@ -1,6 +1,7 @@
-<h2>{!! trans('admin.label.page-blocks')!!}</h2>
-<div class="form-group">
-    <a href="{{ma_get_admin_create_url('block')}}?model={{$pageConfig->get('model')}}&model_id={{$article->id}}" class="btn btn-accent btn-lg btn-block">{{icon('plus')}} {{trans('admin.message.add_block')}}</a>
+
+<div class="form-group d-flex justify-content-between align-items-baseline">
+    <h2>{!! trans('admin.label.page-blocks')!!}</h2>
+    <a href="{{ma_get_admin_create_url('block')}}?model={{$pageConfig->get('model')}}&model_id={{$article->id}}" class="btn btn-accent  btn-block">{{icon('plus')}} {{trans('admin.message.add_block')}}</a>
 </div>
 <hr>
 <div class="form-group">

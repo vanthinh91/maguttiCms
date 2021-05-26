@@ -824,8 +824,8 @@ return [
                 'created_at' => ['type' => 'date', 'field' => 'created_at', 'orderable' => true],
                 'user' => ['type' => 'text', 'field' => 'user_display', 'orderable' => true],
                 'reference' => ['type' => 'text', 'field' => 'reference', 'orderable' => true],
-                'coupon' => ['type' => 'text', 'field' => 'discount_code', 'class' => 'text-left'],
-                //'products' => ['type' => 'text', 'field' => 'products_display', 'class' => 'text-left'],
+                'coupon' => ['type' => 'text', 'field' => 'discount_code', 'class' => 'text-start'],
+                //'products' => ['type' => 'text', 'field' => 'products_display', 'class' => 'text-start'],
                 'products_cost' => ['type' => 'text', 'field' => 'products_cost_display'],
                 'total_cost' => ['type' => 'text', 'field' => 'total_cost_display'],
                 'payment' => ['type' => 'text', 'field' => 'payment_method_display'],
@@ -1152,7 +1152,7 @@ return [
                  * It should be used when there are a lot of records to filter.
                  */
                 'article_2_id' => [
-                    'label' => 'Article 2',
+                    'label' => 'article_2',
                     'type' => 'suggest',
                     'model' => 'article',
                     'value' => 'id',

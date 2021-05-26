@@ -10,9 +10,9 @@
                    :data-list-name="data_list_name"
                    class="form-control"
                    v-model.trim="message" v-bind:name="name">
-            <div class="input-group-append">
-                <copy-btn @copy="copyInput" :class="btn_class" class="btn-info " ></copy-btn>
-            </div>
+
+                <copy-btn @copy="copyInput" :class="btn_class" class="btn-gray input-group-text" ></copy-btn>
+
         </div>
     </div>
 </template>

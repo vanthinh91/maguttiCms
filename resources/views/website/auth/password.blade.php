@@ -4,14 +4,13 @@
 	<section>
         <div class="container">
 			<div class="row">
-				<div class="col-12 col-lg-5 mx-auto auth-box">
+				<div class="col-12 col-lg-5 mx-auto auth-box gy-2">
 					<div class="auth-box-content">
-						<h2 class="text-primary text-center mb-3">{{ trans('message.password_forgot_enter_email') }}</h2>
+						<h2 class="text-primary text-center mb-4">{{ trans('message.password_forgot_enter_email') }}</h2>
 						@include('website.auth.form.password')
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
 @endsection

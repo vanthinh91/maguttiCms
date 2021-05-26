@@ -5,7 +5,9 @@
     @include media-breakpoint-up(md) {
       margin-bottom: 3.5rem;
     }
+
     &-item{
+      border:0px;
       border-bottom:3px solid $color-accent;
       padding:1rem 0rem;
       cursor: pointer;

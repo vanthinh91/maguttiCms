@@ -7,7 +7,7 @@
 <div id="cropper-toolbar-media" class="cropper-toolbar">
 	<button type="button" class="btn btn-default" id="cropper-zoom-in-media">{{icon('plus')}}<span class="d-none d-lg-inline-block">{{ trans('admin.cropper.zoom_in')}}</span> </button>
 	<button type="button" class="btn btn-default" id="cropper-zoom-out-media">{{icon('minus')}}<span class="d-none d-lg-inline-block">{{ trans('admin.cropper.zoom_out') }}</span> </button>
-	<button type="button" class="btn btn-info" id="cropper-preview-media" data-toggle="modal" data-target="#cropper-preview-modal-media">{{icon('eye')}}<span class="d-none d-lg-inline-block">{{trans('admin.cropper.preview')}}</span></button>
+	<button type="button" class="btn btn-info" id="cropper-preview-media" data-bs-toggle="modal" data-target="#cropper-preview-modal-media">{{icon('eye')}}<span class="d-none d-lg-inline-block">{{trans('admin.cropper.preview')}}</span></button>
 	<button type="button" class="btn btn-success" id="cropper-save-media">{{icon('save')}}<span class="d-none d-lg-inline-block">{{trans('admin.cropper.save')}}</span> </button>
 </div>
 <div class="cropper-wrapper">

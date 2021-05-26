@@ -69,7 +69,7 @@
 							</li>
 							<li>
 								<a href="{{ URL::to('/admin/logout') }}">
-									{{icon('sign-out')}}{{trans('admin.label.logout')}}
+									{{icon('sign-out-alt')}}{{trans('admin.label.logout')}}
 								</a>
 							</li>
 						@else

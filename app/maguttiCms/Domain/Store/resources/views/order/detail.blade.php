@@ -26,7 +26,7 @@
                 <div class="col-12">
                     <x-magutti_store-order-payment-component :order="$order"/>
                     <x-magutti_store-order-shipping-component :order="$order"/>
-                    <hr class="my-2 border-white"/>
+                    <hr class="my-2 text-white"/>
                     <x-magutti_store-resume-component :order="$order"/>
                 </div>
             </div>

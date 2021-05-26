@@ -1,10 +1,14 @@
+
 /*
  |--------------------------------------------------------------------------
- | Bootstrap 4.3.1.
+ | Bootstrap 5
  |--------------------------------------------------------------------------
 */
-@import "vendor/bootstrap/variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "vendor/bootstrap/variables"; //  custom variables
 @import "~bootstrap/scss/bootstrap";
+
 
 /*
  |--------------------------------------------------------------------------

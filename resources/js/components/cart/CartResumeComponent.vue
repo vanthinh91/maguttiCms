@@ -17,13 +17,10 @@
       <div class="row">
         <div class="col-12 col-md-9">
           <div class="card card__cart box-shadow">
-
-
             <div class="table-responsive">
             <table class="table table-hover table-striped cart-resume ">
               <thead>
               <tr>
-
                 <th >{{ $t('store.cart.table.name') }}</th>
                 <th class="width-10">{{ $t('store.cart.table.quantity') }}</th>
                 <th class="cart__product-price">{{ $t('store.cart.total') }}</th>
@@ -36,7 +33,7 @@
                 <td class="product-description">
                   <div class="d-flex justify-content-start">
                     <a :href="item.product.url" class="d-none d-md-block"><img :src="item.product.thumb_image"></a>
-                    <div class="ml-1">
+                    <div class="ms-1">
                       {{ item.product.code }} - {{ item.product.title }}
                       <product-price :product="item.product"/>
                     </div>

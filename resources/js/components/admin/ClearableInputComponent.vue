@@ -2,9 +2,8 @@
     <div>
         <div class="input-group mb-3">
             <input type="text" onkeyup="" class="form-control" v-model="message" v-bind:name="name">
-            <div class="input-group-append">
-                <clear-btn @reset="clearInput" class="input-group-text"></clear-btn>
-            </div>
+            <clear-btn @reset="clearInput" class="input-group-text"></clear-btn>
+
         </div>
     </div>
 </template>

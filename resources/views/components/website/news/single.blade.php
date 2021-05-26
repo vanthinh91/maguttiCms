@@ -1,6 +1,6 @@
-<article class="news__single mr-md-2 mb-2">
+<article class="news__single me-md-2 mb-2">
     <h5 class="text-muted mb-1">
-        <i class="fa fa-clock mr-1"></i>{{ $news->getFormattedDate() }}
+        <i class="fa fa-clock me-1"></i>{{ $news->getFormattedDate() }}
     </h5>
     <h1 class="text-primary mb-2">{{ $news->title }}</h1>
     @if($news->video)

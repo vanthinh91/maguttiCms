@@ -6,8 +6,10 @@
 	</li>
 @else
 	<li class="nav-item dropdown">
-		<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">{{Auth::guard()->user()->name}}</a>
-		<div class="dropdown-menu">
+		<a class="nav-link dropdown-toggle" href="#" role="button"
+		   id="dd_auth"
+		   data-bs-toggle="dropdown" aria-expanded="false" >{{Auth::guard()->user()->name}}</a>
+		<div class="dropdown-menu" aria-labelledby="#dd_auth">
 			<a class="dropdown-item" href="{{url_locale('users/dashboard')}}">
 				{{icon('list')}} {{trans('auth.dashboard')}}
 			</a>
@@ -17,7 +19,7 @@
 			</a>
 
 			<a class="dropdown-item" href="{{url_locale('logout')}}">
-				{{icon('sign-out')}} {{trans('auth.logout')}}
+				{{icon('sign-out-alt')}} {{trans('auth.logout')}}
 			</a>
 		</div>
 	</li>

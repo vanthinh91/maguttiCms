@@ -157,7 +157,7 @@
 
 		color: $navbar-item-color;
 		background-color: $navbar-item-background;
-		@include hover-focus {
+		&:hover,&:focus {
 			color: $navbar-item-color-hover;
 			background-color: $navbar-item-background-hover;
 			border-bottom: 3px solid $navbar-item-color-hover;

@@ -23,9 +23,10 @@
             <!--Grid column-->
         </div>
         <div class="row text-center mt-2 mt-sm-3">
-            <x-website.ui.button :item="$item" :label="trans('website.see_all')"
-                                 class="{{$buttonClass ?? 'btn-primary m-auto' }}"/>
-            <!--Grid column-->
+            <div class="col">
+                <x-website.ui.button :item="$item" :label="trans('website.see_all')"
+                                     class="{{$buttonClass ?? 'btn-primary m-auto' }}"/>
+            </div>
         </div>
         <!--Grid row-->
     </div>

@@ -2,10 +2,12 @@
 
 /*
  |--------------------------------------------------------------------------
- | Bootstrap 4.3.1.
+ | Bootstrap 5
  |--------------------------------------------------------------------------
 */
-@import "vendor/bootstrap/variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "vendor/bootstrap/variables"; //  custom variables
 @import "~bootstrap/scss/bootstrap";
 
 /*
@@ -22,6 +24,7 @@
 // Vendor override
 @import "vendor/bootstrap/reboot";
 @import "vendor/bootstrap/buttons";
+@import "vendor/bootstrap/forms";
 @import "vendor/bootstrap/dropdown";
 @import "vendor/bootstrap/typography";
 @import "vendor/bootstrap/navbar";

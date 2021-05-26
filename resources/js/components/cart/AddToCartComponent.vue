@@ -19,9 +19,9 @@
     <confirm-modal :show="modalOpen" @close="modalOpen = false">
       <template #modal-header>{{$t('store.alerts.add_success')}}</template>
       <template #modal-body>
-        <div class="shopping-cart-item-preview d-flex my-2">
+        <div class="shopping-cart-item-preview d-flex my-3">
           <img :src="product.thumb_image" class="shopping-cart-image-preview">
-          <div class="shopping-cart-item-body-preview ml-1">
+          <div class="shopping-cart-item-body-preview ms-2">
             <b>{{ product.code}} - {{product.title}}</b>
             <div>Qt:{{product.quantity}}</div>
             <div>{{$t('store.cart.table.price')}}: {{product.price * product.quantity | currency}} ({{product.price}})</div>
@@ -29,10 +29,10 @@
         </div>
       </template>
       <template #modal-footer="{closeModal}">
-        <button @click="closeModal" type="button" class="btn btn-primary btn-block">
+        <button @click="closeModal" type="button" class="btn btn-primary my-2">
           {{$t('store.cart.continue')}}
         </button>
-        <button @click.prevent="gotToCart" type="button" class="btn btn-accent btn-block">
+        <button @click.prevent="gotToCart" type="button" class="btn btn-accent">
           {{$t('store.cart.checkout')}}
         </button>
       </template>

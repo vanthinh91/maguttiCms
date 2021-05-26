@@ -5,21 +5,20 @@
     </div>
     <!-- Card summary details -->
     <div class="cart-summary-detail mb-2">
-        <a class="text-accent d-flex justify-content-between" data-toggle="collapse"
+        <a class="text-accent d-flex justify-content-between" data-bs-toggle="collapse"
            href="#cartSummaryDetail"
            aria-expanded="false" aria-controls="cartSummaryDetail">
             {{ __('store.cart.show_detail') }} <span><i class="fas fa-chevron-down pt-1"></i></span>
         </a>
-        <div class="collapse" id="cartSummaryDetail">
-            <ul class="media-list">
+        <div class="collapse mt-2" id="cartSummaryDetail">
                 @foreach($cart->cart_items()->get() as $item)
-                    <li class="media">
-                        <div class="media-left">
-                            <img class="media-object"
+                    <div class="d-flex mb-2 justify-content-start">
+                        <div class="flex-shrink-0">
+                            <img class="img-fluid"
                                  src="{{ $item->product->getThumbImage() }}"
                                  alt="{{$item->product->title}}">
                         </div>
-                        <div class="media-body">
+                        <div class="flex-grow-1 ms-3">
                             <span class="product-name d-flex ">{{$item->product->title}}</span>
                             <div class="d-flex justify-content-between">
                                 <div class="product-prince-info">
@@ -33,10 +32,9 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </div>
                 @endforeach
-            </ul>
-        </div>
+          </div>
     </div>
     <div class="cart-summary-line cart-product-total">
         <span class="label">{{ __('store.order.products_cost') }}</span>

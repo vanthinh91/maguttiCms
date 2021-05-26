@@ -10,9 +10,9 @@
                 <div class="vue-modal-body">
                     <slot name="modal-body"></slot>
                 </div>
-                <div class="text-right vue-modal-footer">
+                <div class="d-grid vue-modal-footer">
                     <slot name="modal-footer" :closeModal="dismiss">
-                        <button @click="dismiss" type="button" class="btn btn-primary btn-block">
+                        <button @click="dismiss" type="button" class="btn btn-primary">
                             Close
                         </button>
                     </slot>
@@ -108,9 +108,11 @@
     }
 
     .vue-modal-body {
+
     }
 
     .vue-modal-footer {
+      margin-top:0.5rem;
     }
 
 </style>

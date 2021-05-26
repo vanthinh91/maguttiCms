@@ -1,4 +1,4 @@
-<header id="carousel" style="margin-top:100px">
+<header id="carousel">
 
     <div class="swiper-container header-carousel">
         <!-- Additional required wrapper -->

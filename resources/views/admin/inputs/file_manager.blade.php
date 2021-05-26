@@ -13,7 +13,7 @@
 					<div>
 						@if ($media->collection_name == 'images')
 							<a href="{{ma_get_image_from_repository($media->file_name)}}" target="_blank" >
-								<img class="img-thumb pull-right" src="{{ImgHelper::get_cached($media->file_name, ['w' => 100, 'h' => 100, 'q' => 50], isset($properties['disk'])? $properties['disk']: '', isset($properties['folder'])? $properties['folder']: '')}}">
+								<img class="img-thumb pull-end" src="{{ImgHelper::get_cached($media->file_name, ['w' => 100, 'h' => 100, 'q' => 50], isset($properties['disk'])? $properties['disk']: '', isset($properties['folder'])? $properties['folder']: '')}}">
 							</a>
 						@else
 							<a href="{{ma_get_doc_from_repository($media->file_name)}}" target="_blank" class="btn btn-primary">

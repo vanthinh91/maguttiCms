@@ -24,14 +24,19 @@ class CheckBox extends AdminFormBaseComponent
         $activeYes = ($value == '1') ? $this->active : '';
         $checkedYes = ($value == '1') ? 'checked' : '';
         $checkedNo = ($value != '1') ? 'checked' : '';
-        $this->html .= "<div class=\"btn-group\" data-toggle=\"buttons\">\n";
-        $this->html .= ' <button type="button" class="btn btn-default ' . $activeYes . '" onclick="$(\'#' . $booleanInputId . '\').val(1)">
-					<input type="radio" name="options" autocomplete="off" ' . $checkedYes . '>' . trans('admin.label.btn_yes') . '
-				</button>';
-        $this->html .= ' <button type="button" class="btn btn-default ' . $activeNo . '" onclick="$(\'#' . $booleanInputId . '\').val(0)">
-					<input type="radio" name="options" autocomplete="off" ' . $checkedNo . '> ' . trans('admin.label.btn_no') . '
-				</button>';
-        $this->html .= "</div>\n";
+        $this->html='
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+               
+                <input 
+                onclick="$(\'#' . $booleanInputId . '\').val(1)" 
+                type="radio" class="btn-check" name="'.$key.'" id="' . $booleanInputId . '_1" autocomplete="off" '.$checkedYes.'>
+                <label class="btn btn-outline-toggle" for="' . $booleanInputId . '_1">'.trans('admin.label.btn_yes').'</label>
+               
+                <input onclick="$(\'#' . $booleanInputId . '\').val(0)"  type="radio" class="btn-check" name="'.$key.'" id="' . $booleanInputId . '_2" autocomplete="off" '.$checkedNo.'>
+                <label class="btn btn-outline-toggle" for="' . $booleanInputId . '_2">'.trans('admin.label.btn_no').'</label>
+            </div>
+        ';
+
         /* GF_ma aggiornato dopo Aggiunta Middleware ConvertEmptyStringsToNull metto di default 0 anzichè null */
         $value = ($value === null) ? 0 : $value;
         $this->html .= Form::hidden($key, $value, array('id' => $booleanInputId, 'class' => ' form-control ' . $this->formObject->cssClass));

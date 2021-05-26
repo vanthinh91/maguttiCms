@@ -1,8 +1,8 @@
 <template>
-    <span class="ml-auto"
+    <span class="ms-auto"
           :class="{inputClass}"
           @click="resetInput"
-          data-toggle="tooltip"
+          data-bs-toggle="tooltip"
           data-placement="left" title="Clear">
           <i class="fas fa-eraser"></i>
     </span>

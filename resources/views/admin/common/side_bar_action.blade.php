@@ -20,6 +20,7 @@
                    target="_new">{{icon('eye')}}{!! trans('admin.message.view_page')!!}</a>
             </li>
         @endif
+
     </ul>
 </x-admin.card.side-bar>
 @if ($pageConfig->get('showBlock') == 1)

@@ -1,6 +1,6 @@
 <h3 class="text-muted">{{trans('store.dashboard.orders')}}</h3>
 @if($orders->count())
-<table class="table table-bordered table-striped table-hover table-sm orders-resume">
+<table class="table table-bordered table-striped table-hover orders-resume">
     <thead class="thead-dark">
     <tr>
         <th>{{trans('store.order.number')}}</th>

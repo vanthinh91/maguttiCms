@@ -1,33 +1,21 @@
-@if ($errors->any())
-	<div class='text-center alert alert-info'>
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">{{icon('times')}}</button>
-		{{icon('exclamation-circle', 'fa-3x')}}
-
-		@foreach ( $errors->all() as $error)
-			<p>{{ $error }}</p>
-		@endforeach
-	</div>
-@endif
-
-<form class="form-horizontal" role="form" method="POST" action="{{url_locale('/password/reset')}}">
+<form class="row d-grid gy-3" role="form" method="POST" action="{{url_locale('/password/reset')}}">
 	{{ csrf_field() }}
-	<input type="hidden" name="token" value="{{ $token }}">
-	<div class="form-group">
-		<input type="email" class="form-control" name="email" value="{{ old('email') }}" autocomplete="off" placeholder="{{ trans('website.email') }}">
+	<x-website.ui.input type="hidden" for="token" value="{{ $token }}"/>
+	<div class="col-12">
+		<x-website.ui.input type="email" for="email"  autocomplete="off" placeholder="{{ trans('website.email') }}"/>
 	</div>
-	<div class="form-group">
-		<input type="password" class="form-control" name="password" placeholder="{{trans('website.password')}}">
+	<div class="col-12">
+		<x-website.ui.input type="password" for="password" placeholder="{{trans('website.password')}}"/>
 	</div>
-	<div class="form-group">
-		<input type="password" class="form-control" name="password_confirmation" placeholder="{{ trans('message.password_confirm') }}">
-
-		<div class="mt-2 alert alert-color-4">
+	<div class="col-12">
+		<x-website.ui.input type="password" for="password_confirmation" placeholder="{{ trans('message.password_confirm') }}"/>
+	</div>
+	<div class="col-12">
+		<div class="alert alert-color-4">
 			{{trans('website.message.password')}}
 		</div>
 	</div>
-
-
-	<div>
-		<button type="submit" class="btn btn-primary btn-block">{{ trans('message.password_reset') }}</button>
+	<div class="col-12 d-flex justify-content-end">
+		<button type="submit" class="btn btn-primary">{{ trans('message.password_reset') }}</button>
 	</div>
 </form>

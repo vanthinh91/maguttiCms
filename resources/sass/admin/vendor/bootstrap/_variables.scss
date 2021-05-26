@@ -3,10 +3,13 @@ $primary: #000000;
 $secondary: #d20535;
 $yellow: #f0ad4e;
 $cyan: #5bc0de;
+$color-accent:orange;
+
 
 // Body.
 $body-bg: #f2f2f2;
 $body-color: $primary;
+$color-text-contrast: white; // used in contrast with primary and secondary color
 
 // Typography
 $font-family-sans-serif: 'Roboto', sans-serif;
@@ -19,6 +22,18 @@ $link-hover-decoration: none;
 
 
 
+// Theme colors.
+$theme-colors: (
+        "primary":    $primary,
+        "secondary":  $secondary,
+        "success":    $success,
+        "info":       $info,
+        "warning":    $warning,
+        "danger":     $danger,
+        "light":      $light,
+        "dark":       $dark,
+        'accent':     $color-accent,
+);
 
 
 // /*	colors	*/

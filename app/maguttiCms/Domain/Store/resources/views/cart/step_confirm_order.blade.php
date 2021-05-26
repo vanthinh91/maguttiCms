@@ -18,7 +18,7 @@
                 <div class="col-12 col-md-4">
                     <x-magutti_store-cart-products-widget :cart="$cart"/>
                     <div class="d-flex justify-content-end mt-3">
-                        <a href="{{url_locale('order-send')}}" type="submit" class="btn btn-success  btn-block">
+                        <a href="{{url_locale('order-send')}}" type="submit" class="btn btn-success">
                             {{trans('store.order.confirm')}}
                         </a>
                     </div>

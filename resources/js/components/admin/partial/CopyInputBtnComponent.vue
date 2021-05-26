@@ -1,8 +1,8 @@
 <template>
-    <span class="ml-auto "
+    <span class="ms-auto "
           :class="{inputClass}"
           @click.stop.prevent="copyInput"
-          data-toggle="tooltip"
+          data-bs-toggle="tooltip"
           data-placement="left" title="Copy content in to clipboard">
           <i class="fas fa-clipboard"></i>
     </span>
