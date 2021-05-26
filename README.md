@@ -7,7 +7,7 @@ Open source multilingual Laravel 8.x CMS with shopping cart.
 ## Version
 Laravel 8.x
 
-maguttiCms is released using Laravel 8x.
+maguttiCms is released using Laravel 8x and Boostrap 5
 
 ### How to Install
  
