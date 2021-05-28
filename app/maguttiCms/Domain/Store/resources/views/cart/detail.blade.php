@@ -11,7 +11,10 @@
         <div class="container">
             <div class="row my-3">
                 <div class="col-12">
-                    <div class="alert alert-color-2 p-5">{{__('store.cart.empty')}}</div>
+                    <x-ui.alert class="text-center alert-color-4 d-flex align-items-center" >
+                        {{icon('exclamation-circle', 'fa-2x flex-shrink-0 me-2')}}
+                        <div>{!! __('store.cart.empty')!!}</div>
+                    </x-ui.alert>
                 </div>
             </div>
         </div>

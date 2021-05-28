@@ -13,9 +13,9 @@
 				<div class="col-12 col-sm-6 login-box">
 					<div class="login-box-content h-100">
 						<h3 class="text-primary text-center login-box-title">{{trans('store.order.registered_user')}}</h3>
-						<div class="mt-2 alert alert-color-4">
+						<x-ui.alert class="mt-2 alert-color-4" >
 							{{trans('store.order.registered_user_login_message')}}
-						</div>
+						</x-ui.alert>
 						@include('website.auth.form.login')
 					</div>
 				</div>

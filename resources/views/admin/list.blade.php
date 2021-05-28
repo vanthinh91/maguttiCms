@@ -10,7 +10,9 @@
         </h2>
         @include('shared.notification')
         @if ($articles->isEmpty())
-            <div class="alert alert-info">{{trans('admin.message.no_item_found')}}</div>
+            <x-ui.alert  class='alert-info d-flex justify-content-center'>
+                <div>{{trans('admin.message.no_item_found')}}</div>
+            </x-ui.alert>
         @else
             <div class="table-container">
                 <form>

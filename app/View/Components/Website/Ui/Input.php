@@ -8,16 +8,20 @@ class Input extends Component
 {
     public string $for;
     public string $type;
+    public bool $enableError;
 
     /**
-     * FormErrorLabel constructor.
+     * Input constructor.
      * @param $for
+     * @param string $type
+     * @param bool $enableError
      */
-    public function __construct($for,$type='text')
+    function __construct($for,$type='text',$enableError=true)
     {
         //
         $this->for = $for;
         $this->type = $type;
+        $this->enableError = $enableError;
     }
 
     /**

@@ -1,14 +1,25 @@
-@if (session('status'))
-	<div class="text-center alert alert-info">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">{{icon('times')}}</button>
-		{{icon('exclamation-circle', 'fa-3x')}}
-		<p>{!! session('status') !!}</p>
-	</div>
+@if ($errors->any())
+	<x-ui.alert class="text-center alert-color-4 d-flex align-items-center" >
+		{{icon('exclamation-circle', 'fa-2x flex-shrink-0 me-2')}}
+		<div>
+			@foreach ( $errors->all() as $error)
+				<p>{{ $error }}</p>
+			@endforeach
+		</div>
+	</x-ui.alert>
 @endif
+
+@if(session('status'))
+<x-ui.alert class="text-center alert-color-4 d-flex align-items-center" >
+	{{icon('exclamation-circle', 'fa-2x flex-shrink-0 me-2')}}
+	<div>{!! session('status') !!}</div>
+</x-ui.alert>
+@endif
+
 <form method="POST" action="{{ url_locale('/password/email') }} " class="row gy-4">
 	{{ csrf_field() }}
 	<div class="col-12">
-		<x-website.ui.input type="email" placeholder="{{ trans('website.email') }}" for="email" />
+		<x-website.ui.input type="email" placeholder="{{ trans('website.email') }}" enableError="{{false}}" for="email" />
 	</div>
 	<div class="col-12 d-flex justify-content-end ">
 		<button type="submit" class="btn btn-primary">

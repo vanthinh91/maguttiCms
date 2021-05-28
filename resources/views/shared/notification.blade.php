@@ -1,37 +1,35 @@
 @if (session('success'))
-	<div class="text-center alert alert-success alert-dismissible">
-		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		{{icon('check-circle', 'fa-3x')}}
-		<p>{!! session('success') !!}</p>
-	</div>
+	<x-ui.alert class="alert-success alert-dismissible d-flex align-items-center" >
+		{{icon('check-circle', 'fa-2x flex-shrink-0 me-2')}}
+		<div>{!! session('success') !!}</div>
+	</x-ui.alert>
 @endif
 @if ($errors->any())
-	<div class='text-center alert alert-danger alert-dismissible'>
-		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		{{icon('times-circle', 'fa-3x')}}
+	<x-ui.alert  class='alert-danger alert-dismissible d-flex align-items-center'>
+		{{icon('times-circle', 'fa-2x flex-shrink-0 me-2')}}
+		<div>
 		@foreach ( $errors->all() as $error)
 			<p>{{ $error }}</p>
 		@endforeach
-	</div>
+		</div>
+	</x-ui.alert>
 @endif
 @if (session('error'))
-	<div class="text-center alert alert-danger alert-dismissible">
-		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		{{icon('times-circle', 'fa-3x')}}
+	<x-ui.alert  class='alert-danger alert-dismissible d-flex align-items-center'>
+		{{icon('times-circle', 'fa-2x flex-shrink-0 me-2')}}
 		<p>{!! session('error') !!}</p>
-	</div>
+    </x-ui.alert>
+
 @endif
 @if (session('warning'))
-	<div class="text-center alert alert-warning alert-dismissible">
-		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		{{icon('exclamation-triangle', 'fa-3x')}}
+	<x-ui.alert  class='alert-warning alert-dismissible d-flex align-items-center'>
+		{{icon('times-circle', 'fa-2x flex-shrink-0 me-2')}}
 		<p>{!! session('warning') !!}</p>
-	</div>
+	</x-ui.alert>
 @endif
 @if (session('status'))
-	<div class="text-center alert alert-info alert-dismissible">
-		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		{{icon('exclamation-circle', 'fa-3x')}}
+	<x-ui.alert  class='alert-info alert-dismissible d-flex align-items-center'>
+		{{icon('times-circle', 'fa-2x flex-shrink-0 me-2')}}
 		<p>{!! session('status') !!}</p>
-	</div>
+	</x-ui.alert>
 @endif

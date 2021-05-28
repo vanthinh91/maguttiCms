@@ -22,9 +22,9 @@
                                 placeholder="{{ trans('message.password_confirm') }}" required/>
         </div>
         <div class="col-12">
-            <div class="alert alert-color-4">
+            <x-ui.alert class="mt-2 alert-color-4" >
                 {{trans('website.message.password')}}
-            </div>
+            </x-ui.alert>
         </div>
     </div>
     <div class="col-12">

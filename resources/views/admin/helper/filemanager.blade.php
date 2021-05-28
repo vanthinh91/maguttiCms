@@ -11,10 +11,7 @@
 						<a class="nav-link" href="#tab-images" id="file-manager-list" data-bs-toggle="tab" role="tab" aria-controls="list" aria-selected="false">Library</a>
 					</li>
 				</ul>
-
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<div class="tab-content">
@@ -24,7 +21,6 @@
 							<div id="queue-modal" class="queue">{!!trans('admin.message.media_drag') !!}</div>
 						</fieldset>
 					</div>
-
 					<div id="tab-images" class="tab-pane fade" role="tabpanel" aria-labelledby="file-manager-list">
 						<div class="row">
 							<div id="tab-images-gallery" class="col-md-8 col-12">
@@ -39,11 +35,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal-footer hidden">
-				<button type="button" class="btn btn-success confirm-image" data-dismiss="modal">{{icon('check')}} Select</button>
+			<div class="modal-footer d-flex justify-content-between ">
+				<button type="button" class="btn btn-success confirm-image" data-bs-dismiss="modal">{{icon('check')}} Select</button>
 				<button type="button" class="btn btn-default reset-image">{{icon('undo')}} Reset selection</button>
-				<button type="button" class="btn btn-danger" data-dismiss="modal">{{icon('times')}} Close</button>
-
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">{{icon('times')}} Close</button>
 				<input type="hidden" name="file-input" value="0">
 				<input type="hidden" name="file-value" value="0">
 			</div>

@@ -9,12 +9,16 @@
 				<form method="post">
 					<h3>Accedi</h3>
 					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							@foreach ($errors->all() as $error)
-								<p>{{ $error }}</p>
-							@endforeach
-						</div>
+						<x-ui.alert class="alert-danger d-flex align-items-center" >
+							{{icon('exclamation-circle', 'fa-2x flex-shrink-0 me-2')}}
+							<div>
+								@foreach ($errors->all() as $error)
+									<p>{{ $error }}</p>
+								@endforeach
+							</div>
+						</x-ui.alert>
 					@endif
+
 					{!! csrf_field() !!}
 					<div class="form-group">
 						<input type="email" class="form-control" name="email" value="{{old('email')}}" placeholder="E-Mail Address">

@@ -11,6 +11,7 @@
 		<x-website.ui.input type="password" for="password_confirmation" placeholder="{{ trans('message.password_confirm') }}"/>
 	</div>
 	<div class="col-12">
+
 		<div class="alert alert-color-4">
 			{{trans('website.message.password')}}
 		</div>

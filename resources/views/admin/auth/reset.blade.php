@@ -22,7 +22,6 @@
 					<div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
 						<div class="col-12">
 							<input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
-
 							<p class="mt-3">{{trans('website.message.password')}}</p>
 						</div>
 					</div>

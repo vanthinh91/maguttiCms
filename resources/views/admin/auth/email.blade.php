@@ -7,14 +7,16 @@
 				<img src="{!! asset('/cms/images/logo.png')!!}" alt="CMS Login">
 				<hr>
 				@if (session('status'))
-					<div class="alert alert-info">
-						{{ session('status') }}
-					</div>
+					<x-ui.alert class="text-center alert-success d-flex align-items-center" >
+						{{icon('exclamation-circle', 'fa-2x flex-shrink-0 me-2')}}
+						<div>{!! session('status') !!}</div>
+					</x-ui.alert>
 				@endif
 				@if ($errors->has('email'))
-					<div class="alert alert-info">
-						{{ $errors->first('email') }}
-					</div>
+					<x-ui.alert class="text-center alert-success d-flex align-items-center" >
+						{{icon('exclamation-circle', 'fa-2x flex-shrink-0 me-2')}}
+						<div>{{ $errors->first('email') }}</div>
+					</x-ui.alert>
 				@endif
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/password/email') }}">
 					{{ csrf_field() }}
