@@ -29,10 +29,14 @@ class Index extends Component
         return view('components.website.categories.index');
     }
 
-
+    //get categories  sorted by title
     function categories(){
-
         /** @var TYPE_NAME $categories */
         return $this->categories = Category::published()->orderBy('title')->get();
+    }
+    //get categories  sorted by sort asc
+    function categories_sorted(){
+        /** @var TYPE_NAME $categories */
+        return $this->categories = Category::sorted()->get();
     }
 }

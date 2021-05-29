@@ -82,7 +82,7 @@ trait SearchableTrait
                             if ($this->request->filled('from_date') && $this->request->filled('to_date') ) {
                                 $date_from = Carbon::parse(str_replace('/', '-', $this->request->get('from_date')))->format('Y-m-d');
                                 $date_to = Carbon::parse(str_replace('/', '-', $this->request->get('to_date')))->format('Y-m-d');
-                                // avoid  duplicate where 
+                                // avoid  duplicate where
                                 if($key=='from_date')$objBuilder->whereBetween($field, [$date_from, $date_to]);
                             } else {
                                 $objBuilder->whereDate($field, '=', Carbon::parse(str_replace('/', '-', $curValue)));

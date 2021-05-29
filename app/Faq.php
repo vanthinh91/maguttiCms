@@ -1,5 +1,7 @@
 <?php namespace App;
 
+use App\maguttiCms\Builders\MaguttiCmsBuilder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Translatable;
 
@@ -38,9 +40,13 @@ class Faq extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  RELATION
+    |  Builder & Repo
     |--------------------------------------------------------------------------
     */
+    function newEloquentBuilder($query)
+    {
+        return new MaguttiCmsBuilder($query);
+    }
     
 
     /*

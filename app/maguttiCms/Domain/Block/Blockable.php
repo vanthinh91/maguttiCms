@@ -12,6 +12,16 @@ trait Blockable
     {
         return $this->morphMany('App\Block', 'model');
     }
+    /**
+     * GET active and sorted blocks by sort ascending order
+     *
+     */
+
+    public function blocks_sorted()
+    {
+        return $this->blocks()->sorted();
+    }
+
 
     /**
      * GET MODEL BLOCK BY ID

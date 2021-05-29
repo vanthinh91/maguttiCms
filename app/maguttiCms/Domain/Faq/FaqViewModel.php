@@ -16,7 +16,7 @@ class FaqViewModel extends WebsiteViewModel
     function index()
     {
         $article = $this->getCurrentPage();
-        $faqs = Faq::all();
+        $faqs = Faq::sorted()->get();// get active and sorted by sort ASC order
         $this->setSeo($article);
         return view('website.faq.index', compact('article', 'faqs'));
     }

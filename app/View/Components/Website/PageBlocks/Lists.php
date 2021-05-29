@@ -30,9 +30,10 @@ class Lists extends Component
         return view('components.website.page-blocks.lists');
     }
 
+    // Return active page blocks sorted
     public function items()
     {
-        return optional($this->item)->blocks;
+        return optional($this->item)->blocks_sorted()->get();;
     }
 
 

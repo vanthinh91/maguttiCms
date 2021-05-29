@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Website\Widgets;
 
+use App\Metric;
 use Illuminate\View\Component;
 
 class Metrics extends Component
@@ -30,6 +31,6 @@ class Metrics extends Component
 
     public function getItems()
     {
-        return \App\Metric::sorted()->get();
+        return Metric::sorted()->get();
     }
 }
