@@ -222,6 +222,12 @@ return [
                 'sort' => ['type' => 'text', 'label' => 'Sort', 'field' => 'sort'],
                 'created_at' => ['type' => 'datetime', 'label' => 'created_at', 'field' => 'created_at'],
             ],
+            'field_searchable' => [
+                'from_date' => ['type' => 'date_range', 'label' => 'data_from', 'field' => 'date', 'class' => 'col-6 col-sm-1'],
+                'to_date' => ['type' => 'date_range', 'label' => 'data_to', 'field' => 'date', 'class' => 'col-6 col-sm-1'],
+                'title' => ['type' => 'text', 'label' => 'title', 'field' => 'title'],
+
+            ],
             'orderBy' => 'date',
             'orderType' => 'desc',
             'actions' => [
