@@ -31,8 +31,8 @@ class Article extends Model
     protected $fillable = ['title', 'subtitle', 'abstract', 'description',
         'slug', 'sort', 'pub', 'top_menu', 'footer_menu', 'parent_id',
         'link', 'template_id', 'ignore_slug_translation',
-        'video','doc'];
-    protected $fieldspec = [];
+        'video', 'doc'];
+    protected array $fieldspec = [];
 
 
     /*
@@ -40,12 +40,12 @@ class Article extends Model
     |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = [
+    public array $translatedAttributes = [
         'menu_title', 'title', 'subtitle', 'slug',
-        'abstract', 'description',
+        'description', 'abstract',
         'seo_title', 'seo_description', 'seo_no_index'];
 
-    public $sluggable = ['slug' => ['field' => 'title', 'updatable' => false, 'translatable' => true]];
+    public array $sluggable = ['slug' => ['field' => 'title', 'updatable' => false, 'translatable' => true]];
 
 
     /*
@@ -53,12 +53,10 @@ class Article extends Model
     |  RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function template()
+    public function template(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo('App\Domain', 'template_id', 'id');
     }
-
-
 
 
     public function parent()
@@ -77,7 +75,7 @@ class Article extends Model
     |  Builder & Repo
     |--------------------------------------------------------------------------
     */
-    function newEloquentBuilder($query)
+    function newEloquentBuilder($query): ArticleBuilder
     {
         return new ArticleBuilder($query);
     }
@@ -87,7 +85,7 @@ class Article extends Model
     |  Fieldspec
     |--------------------------------------------------------------------------
     */
-    function getFieldSpec()
+    function getFieldSpec(): array
     {
         $this->fieldspec['id'] = [
             'type' => 'integer',
@@ -204,11 +202,11 @@ class Article extends Model
             'accept' => '.pdf'
         ];
         $this->fieldspec['video'] = [
-            'type'     => 'string',
+            'type' => 'string',
             'required' => 0,
-            'hidden'   => 0,
-            'label'    => "YouTube video code",
-            'display'  => 1,
+            'hidden' => 0,
+            'label' => "YouTube video code",
+            'display' => 1,
         ];
         $this->fieldspec['sort'] = [
             'type' => 'integer',
