@@ -79,9 +79,9 @@ trait SearchableTrait
                             $objBuilder->whereDate($key, '=', Carbon::parse(str_replace('/', '-', $curValue)));
                         } elseif ($value['type'] == 'date_range') {
                             $field = $value['field'];
-                            if ($this->request->filled('from_date') && $this->request->filled('to_date')) {
-                                $date_from = Carbon::parse(str_replace('/', '-', $this->request->get('from_date')));
-                                $date_to = Carbon::parse(str_replace('/', '-', $this->request->get('to_date')));
+                            if ($this->request->filled('from_date') && $this->request->filled('to_date') && $key=='from_date') {
+                                $date_from = Carbon::parse(str_replace('/', '-', $this->request->get('from_date')))->format('Y-m-d');
+                                $date_to = Carbon::parse(str_replace('/', '-', $this->request->get('to_date')))->format('Y-m-d');
                                 $objBuilder->whereBetween($field, [$date_from, $date_to]);
                             } else {
                                 $objBuilder->whereDate($field, '=', Carbon::parse(str_replace('/', '-', $curValue)));
