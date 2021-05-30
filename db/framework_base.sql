@@ -40,7 +40,7 @@ CREATE TABLE `addresses` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +49,6 @@ CREATE TABLE `addresses` (
 
 LOCK TABLES `addresses` WRITE;
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
-INSERT INTO `addresses` VALUES (1,'Angelo','Asperti',1,'Vicolo S urbano 4','44','24057','Martinengo','BG',3,'3385766907','','marcoasperti@gmail.com',NULL,'2021-05-15 22:46:07','2021-05-15 22:46:07');
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,7 +370,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,NULL,'',NULL,NULL,'identity','','','',10,1,NULL,NULL,0,'2016-07-04 04:29:04','2021-05-29 16:47:46'),(2,0,'',NULL,NULL,'research','','','',20,1,NULL,NULL,0,'2016-12-26 11:16:23','2021-05-29 16:47:48'),(3,0,'',NULL,NULL,'start-up','','','',30,1,NULL,NULL,0,'2016-12-27 17:33:25','2021-05-29 16:47:51');
+INSERT INTO `categories` VALUES (1,NULL,'',NULL,NULL,'identity','','','',10,1,NULL,NULL,0,'2016-07-04 04:29:04','2021-05-29 16:51:56'),(2,0,'',NULL,NULL,'research','','','',20,1,NULL,NULL,0,'2016-12-26 11:16:23','2021-05-29 16:47:48'),(3,0,'',NULL,NULL,'start-up','','','',30,1,NULL,NULL,0,'2016-12-27 17:33:25','2021-05-29 16:47:51');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -533,7 +532,7 @@ CREATE TABLE `discounts` (
 
 LOCK TABLES `discounts` WRITE;
 /*!40000 ALTER TABLE `discounts` DISABLE KEYS */;
-INSERT INTO `discounts` VALUES (1,'TESTPERCENT','10','Coupon 10%','2021-04-30 22:00:00','2021-12-24 23:00:00',100000,1,2018,'2021-05-16 00:10:04','percent'),(2,'TESTAMOUNT','10','TEST Discount Amount','2021-05-01 00:00:00','2022-05-28 22:00:00',100000,1,2021,'2021-05-16 00:09:35','amount'),(3,'D77RVB0F','10','',NULL,NULL,1,1,2021,'2021-05-22 23:27:09','amount'),(4,'0J2GBGOR','10','',NULL,NULL,1,1,2021,'2021-05-22 23:27:11','amount'),(5,'NOFZ51Q4','10','',NULL,NULL,1,1,2021,'2021-05-22 23:27:12','amount');
+INSERT INTO `discounts` VALUES (1,'TESTPERCENT','10','Coupon 10%','2021-04-30 22:00:00','2021-12-24 23:00:00',100000,1,2018,'2021-05-16 00:10:04','percent'),(2,'TESTAMOUNT','10','TEST Discount Amount','2021-05-01 00:00:00','2022-05-28 22:00:00',100000,1,2021,'2021-05-16 00:09:35','amount');
 /*!40000 ALTER TABLE `discounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1116,7 +1115,7 @@ CREATE TABLE `metrics` (
 
 LOCK TABLES `metrics` WRITE;
 /*!40000 ALTER TABLE `metrics` DISABLE KEYS */;
-INSERT INTO `metrics` VALUES (1,'',1020,10,1,'2020-11-07 14:24:19','2020-11-07 15:04:11'),(2,'',25,20,1,'2020-11-07 14:24:19','2020-11-07 14:32:00'),(3,'',200,30,1,'2020-11-07 14:24:19','2020-11-07 14:31:57'),(4,'',128,40,1,'2020-11-07 14:24:19','2020-11-07 14:31:54');
+INSERT INTO `metrics` VALUES (1,'',1020,10,1,'2020-11-07 14:24:19','2021-05-29 16:55:55'),(2,'',25,20,1,'2020-11-07 14:24:19','2020-11-07 14:32:00'),(3,'',200,30,1,'2020-11-07 14:24:19','2020-11-07 14:31:57'),(4,'',128,40,1,'2020-11-07 14:24:19','2021-05-29 16:55:36');
 /*!40000 ALTER TABLE `metrics` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1998,7 +1997,7 @@ CREATE TABLE `shipment_methods` (
 
 LOCK TABLES `shipment_methods` WRITE;
 /*!40000 ALTER TABLE `shipment_methods` DISABLE KEYS */;
-INSERT INTO `shipment_methods` VALUES (1,NULL,NULL,0.00,0.00,10,1,'2021-04-02 14:57:27','2021-04-02 14:57:27'),(2,NULL,NULL,10.00,50.00,20,1,'2021-04-02 15:00:07','2021-04-02 16:37:35');
+INSERT INTO `shipment_methods` VALUES (1,NULL,NULL,0.00,0.00,10,1,'2021-04-02 14:57:27','2021-04-02 14:57:27'),(2,NULL,NULL,10.50,50.00,20,1,'2021-04-02 15:00:07','2021-05-30 08:17:17');
 /*!40000 ALTER TABLE `shipment_methods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2031,7 +2030,7 @@ CREATE TABLE `socials` (
 
 LOCK TABLES `socials` WRITE;
 /*!40000 ALTER TABLE `socials` DISABLE KEYS */;
-INSERT INTO `socials` VALUES (1,'facebook',NULL,'facebook','','http://www.facebook.com',10,1,0,'2016-08-09 12:50:01','2016-08-09 10:50:01'),(2,'Twitter','','twitter','','http://www.twitter.com',20,1,0,'2016-06-28 12:58:53','2016-06-28 10:58:53'),(3,'Github','','github','','https://github.com/marcoax/maguttiCms',30,1,0,'2016-06-28 12:58:59','2020-12-25 13:44:26');
+INSERT INTO `socials` VALUES (1,'facebook',NULL,'facebook','','http://www.facebook.com',10,1,0,'2016-08-09 12:50:01','2021-05-29 17:01:02'),(2,'Twitter','','twitter','','http://www.twitter.com',20,0,0,'2016-06-28 12:58:53','2021-05-29 17:01:03'),(3,'Github','','github','','https://github.com/marcoax/maguttiCms',30,1,0,'2016-06-28 12:58:59','2020-12-25 13:44:26');
 /*!40000 ALTER TABLE `socials` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2198,4 +2197,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-29 18:48:20
+-- Dump completed on 2021-05-30 10:21:56

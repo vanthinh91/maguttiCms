@@ -13,13 +13,13 @@ class CustomShippingCostCalculator implements ShippingCalculator
     protected $cart;
     private $shipping_method;
 
-    function getCost( Cart $cart): int
+    function getCost( Cart $cart): float
     {
         $this->cart = $cart;
         return $this->getAmount();
     }
 
-    function getAmount(): int
+    function getAmount(): float
     {
         $this->shipping_method = $this->cart->shipping_method;
         if ($this->isFree()) return 0;
@@ -32,7 +32,7 @@ class CustomShippingCostCalculator implements ShippingCalculator
 
     }
 
-    function calculate($product_total): int
+    function calculate($product_total): float
     {
 
         if ($this->shipping_method->free_shipping_from < $product_total) return 0;
