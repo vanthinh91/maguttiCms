@@ -761,6 +761,7 @@ return [
                 'icon' => ['type' => 'editable', 'field' => 'icon'],
                 'link' => ['type' => 'editable', 'field' => 'link'],
                 'is_active' => ['type' => 'boolean', 'field' => 'pub', 'editable' => true],
+                'sort' => ['type' => 'editable', 'field' => 'sort'],
                 'created_at' => ['type' => 'date', 'field' => 'created_at'],
                 'updated_at' => ['type' => 'date', 'field' => 'updated_at'],
             ],

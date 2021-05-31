@@ -25,7 +25,7 @@ class Product extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  Sluggable & Trnslateble
+    |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
     public $translatedAttributes = ['title','slug','subtitle','description',

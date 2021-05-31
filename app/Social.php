@@ -4,13 +4,25 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\maguttiCms\Builders\SocialBuilder;
+
 class Social extends Model
 {
     protected $table = 'socials';
     protected $fillable = ['title', 'description', 'link', 'icon', 'sort', 'pub'];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
-    function getFieldSpec ()
+    /*
+    |--------------------------------------------------------------------------
+    |  Builder & Repo
+    |--------------------------------------------------------------------------
+    */
+    function newEloquentBuilder($query): SocialBuilder
+    {
+        return new SocialBuilder($query);
+    }
+
+    function getFieldSpec (): array
     {
         $this->fieldspec['id'] = [
             'type'     => 'integer',
@@ -77,8 +89,5 @@ class Social extends Model
       return $this->fieldspec;
     }
 
-	public function scopePublished($query)
-	{
-		return $query->where('pub', 1);
-	}
+
 }

@@ -5,7 +5,7 @@
  |--------------------------------------------------------------------------
 */
 .swiper-wrapper {
-  padding-bottom: 0px;
+  padding-bottom: 1.5rem;
 }
 
 .swiper-container-horizontal > .swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
@@ -33,6 +33,10 @@
     opacity: 1;
     outline: none;
   }
+}
+
+.swiper-button-prev,.swiper-button-next{
+  color:$color-4;
 }
 
 .swiper-pagination-bullet-active {
@@ -91,5 +95,24 @@
       background: none;
       display: flex;
       justify-content: center;
+  }
+}
+
+/*
+ |--------------------------------------------------------------------------
+ | PRODUCT  CAROUSEL
+ |--------------------------------------------------------------------------
+*/
+.page-carousel {
+  .page-carousel-swiper-pagination {
+    bottom: 0.5rem !important;
+  }
+  .swiper-pagination-bullet {
+
+    &-active {
+      background: $color-4;
+      opacity: 1;
+      outline: none;
+    }
   }
 }

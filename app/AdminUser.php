@@ -72,7 +72,7 @@ class AdminUser extends Model implements AuthenticatableContract, CanResetPasswo
 	 * @return array
 	 */
 	function getFieldSpec ()
-	// set the specifications for this database table
+	
 	{
 		// build array of field specifications
 		$this->fieldspec['id'] = [

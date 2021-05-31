@@ -48,7 +48,7 @@ class HtmlSocial extends maguttiCmsDecorator
      */
     function createSocialBar()
     {
-        foreach ($this->model->published()->get() as $item) {
+        foreach ($this->model->sorted()->get() as $item) {
             $this->html .= '<li>';
             if (filter_var($item->link, FILTER_VALIDATE_EMAIL)) {
                 $this->html .= '<a href="mailto:' . $item->link . '">';

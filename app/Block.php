@@ -23,6 +23,8 @@ class Block extends Model
     use BlockPresenter;
     use Mediable;
 
+    protected $with = ['translations'];
+
     protected $fillable = [
         'model_id',
         'model_type',
@@ -39,7 +41,7 @@ class Block extends Model
         'pub',
         'translatables'
     ];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
 
     /*
@@ -67,17 +69,17 @@ class Block extends Model
     |  Builder & Repo
     |--------------------------------------------------------------------------
     */
-    function newEloquentBuilder($query)
+    function newEloquentBuilder($query): MaguttiCmsBuilder
     {
         return new MaguttiCmsBuilder($query);
     }
 
     /*
     |--------------------------------------------------------------------------
-    |  Sluggable & Trnslateble
+    |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = [
+    public array $translatedAttributes = [
         'title',
         'description',
         'subtitle',
@@ -86,7 +88,7 @@ class Block extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  Fieldspec
+    |  Fieldspec for admin form
     |--------------------------------------------------------------------------
     */
 

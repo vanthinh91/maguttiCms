@@ -15,7 +15,7 @@ class Contact extends Model
     }
 
     function getFieldSpec ()
-    // set the specifications for this database table
+    
     {
         $this->fieldspec['id'] = [
             'type'     => 'integer',

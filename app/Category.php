@@ -21,7 +21,7 @@ class Category extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  Sluggable & Trnslateble
+    |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
     public $translatedAttributes = ['title', 'slug', 'description', 'seo_title', 'seo_description'];

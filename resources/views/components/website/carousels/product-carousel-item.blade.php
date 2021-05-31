@@ -1,4 +1,3 @@
-
 <div class="swiper-slide swiper-slide-product">
    <a href="{{$item ->getPermalink()}}">
       <img src="{{ ImgHelper::get_cached($item->image, ['w' => 300, 'h' => 200, 'q' => 70],'products') }}"

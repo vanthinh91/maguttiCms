@@ -16,29 +16,33 @@ class HpSlider extends Model
 
     protected $table = 'hpsliders';
     protected $fillable = ['title', 'description',  'link', 'sort', 'is_active'];
-    protected $fieldspec = [];
-
+    protected array $fieldspec = [];
+    protected $with = ['translations'];
     /*
     |--------------------------------------------------------------------------
     |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = [
-        'title', 'description'];
+    public array $translatedAttributes = [
+        'title', 'description'
+    ];
 
     /*
     |--------------------------------------------------------------------------
     |  Builder & Repo
     |--------------------------------------------------------------------------
     */
-    function newEloquentBuilder($query)
+    function newEloquentBuilder($query): MaguttiCmsBuilder
     {
         return new MaguttiCmsBuilder($query);
     }
 
-
-    function getFieldSpec()
-        // set the specifications for this database table
+    /*
+    |--------------------------------------------------------------------------
+    |  Fieldspec for admin form
+    |--------------------------------------------------------------------------
+    */
+    function getFieldSpec(): array
     {
 
         // build array of field specifications

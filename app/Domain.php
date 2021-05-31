@@ -10,12 +10,16 @@ class Domain extends Model
     use Translatable;
     use GFTranslatableHelperTrait;
 
-    public    $translatedAttributes = ['title'];
+    public array $translatedAttributes = ['title'];
     protected $fillable  = ['domain','title','value','pub','sort'];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
-
-    function getFieldSpec ()
+    /*
+    |--------------------------------------------------------------------------
+    |  Fieldspec for admin form
+    |--------------------------------------------------------------------------
+    */
+    function getFieldSpec (): array
     {
 
         $this->fieldspec['id'] = [

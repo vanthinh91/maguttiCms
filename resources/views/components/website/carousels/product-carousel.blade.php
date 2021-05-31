@@ -62,14 +62,8 @@
                         slidesPerGroup: 3,
                     },
                 },
-
                 // Navigation arrows
-
-
-
             });
-
-
         </script>
     @endpush
 @endonce

@@ -22,36 +22,37 @@ class Faq extends Model
         'pub'
     ];
 
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
     /*
     |--------------------------------------------------------------------------
     |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = [
+    public array $translatedAttributes = [
         'title',
         'description'
     ];
 
-    public $sluggable = [
+    public array $sluggable = [
         'slug' => ['field' => 'title', 'updatable' => false, 'translatable' => 1]
     ];
+
 
     /*
     |--------------------------------------------------------------------------
     |  Builder & Repo
     |--------------------------------------------------------------------------
     */
-    function newEloquentBuilder($query)
+    function newEloquentBuilder($query): MaguttiCmsBuilder
     {
         return new MaguttiCmsBuilder($query);
     }
-    
+
 
     /*
     |--------------------------------------------------------------------------
-    |  Fieldspec
+    |  Fieldspec for admin form
     |--------------------------------------------------------------------------
     */
     function getFieldSpec()

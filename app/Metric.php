@@ -1,11 +1,12 @@
 <?php namespace App;
 
-use App\maguttiCms\Builders\MaguttiCmsBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Astrotomic\Translatable\Translatable;
 
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;;
+use Astrotomic\Translatable\Translatable;
+use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+
+use App\maguttiCms\Builders\MaguttiCmsBuilder;
 
 class Metric extends Model
 
@@ -23,14 +24,14 @@ class Metric extends Model
         'pub'
     ];
 
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
     /*
     |--------------------------------------------------------------------------
     |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = [
+    public array $translatedAttributes = [
         'title'
     ];
 
@@ -39,13 +40,13 @@ class Metric extends Model
     |  Builder & Repo
     |--------------------------------------------------------------------------
     */
-    function newEloquentBuilder($query)
+    function newEloquentBuilder($query): MaguttiCmsBuilder
     {
         return new MaguttiCmsBuilder($query);
     }
 
 
-    public $sluggable = [
+    public array $sluggable = [
         'slug' => ['field' => 'title', 'updatable' => false, 'translatable' => 1]
     ];
 
@@ -54,14 +55,14 @@ class Metric extends Model
     |  RELATION
     |--------------------------------------------------------------------------
     */
-    
+
 
     /*
     |--------------------------------------------------------------------------
-    |  Fieldspec
+    |  Fieldspec for admin form
     |--------------------------------------------------------------------------
     */
-    function getFieldSpec()
+    function getFieldSpec(): array
     {
         $this->fieldspec['id'] = [
             'type'     => 'integer',

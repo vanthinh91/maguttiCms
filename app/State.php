@@ -15,7 +15,7 @@ class State extends Model
     }
 
     function getFieldSpec ()
-        // set the specifications for this database table
+        
     {
 
         // build array of field specifications

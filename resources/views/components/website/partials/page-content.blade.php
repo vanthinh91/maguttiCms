@@ -3,9 +3,7 @@
         <div class="row">
         @if($contentHasMedia())
             <div class="col-12 col-md-6 order-md-2 mb-3 mb-md-0">
-                <x-media.video :video="$article->video" :classExtra="'mb-4'"></x-media.video>
-                <img src="{{ ImgHelper::get_cached($article->image, config('maguttiCms.image.medium')) }}"
-                alt="{{ $article->title }}" class="img-fluid">
+                <x-website.partials.page-media-block :item="$article"/>
             </div>
         @endif
         <div class="{{!$contentHasMedia()? "col-12":"col-12  col-md-6 order-md-1 "}}">

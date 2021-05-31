@@ -28,10 +28,13 @@ class Article extends Model
 
     protected $with = ['translations'];
 
-    protected $fillable = ['title', 'subtitle', 'abstract', 'description',
+    protected $fillable = [
+        'title', 'subtitle', 'abstract', 'description',
         'slug', 'sort', 'pub', 'top_menu', 'footer_menu', 'parent_id',
         'link', 'template_id', 'ignore_slug_translation',
-        'video', 'doc'];
+        'video', 'doc'
+    ];
+
     protected array $fieldspec = [];
 
 
@@ -43,7 +46,8 @@ class Article extends Model
     public array $translatedAttributes = [
         'menu_title', 'title', 'subtitle', 'slug',
         'description', 'abstract',
-        'seo_title', 'seo_description', 'seo_no_index'];
+        'seo_title', 'seo_description', 'seo_no_index'
+    ];
 
     public array $sluggable = ['slug' => ['field' => 'title', 'updatable' => false, 'translatable' => true]];
 
@@ -58,13 +62,12 @@ class Article extends Model
         return $this->belongsTo('App\Domain', 'template_id', 'id');
     }
 
-
-    public function parent()
+    public function parent(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo('App\Article', 'parent_id', 'id');
     }
 
-    public function children()
+    public function children(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany('App\Article', 'parent_id', 'id');
     }
@@ -82,7 +85,7 @@ class Article extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  Fieldspec
+    |  Fieldspec for admin form
     |--------------------------------------------------------------------------
     */
     function getFieldSpec(): array
