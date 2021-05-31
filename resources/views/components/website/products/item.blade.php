@@ -7,7 +7,7 @@
                     :product="$product"
                     :type="'card'"/>
         </div>
-        <a href="{{ $product->getPermalink() }}" class="btn btn-sm btn-outline-accent mt-2">
+        <a href="{{ $product->getPermalink() }}" class="btn btn-sm btn-outline-accent mt-2 stretched-link">
             {{ trans('website.see') }} {{ icon('fas fa-caret-right') }}
         </a>
     </div>

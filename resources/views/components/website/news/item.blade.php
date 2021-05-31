@@ -6,7 +6,7 @@
         </small>
         <h4 class="card-title text-primary">{{ $post->title }}</h4>
         <div class="card-text">{{ $post->getExcerpt() }}</div>
-        <a href="{{ $post->getPermalink() }}" class="btn btn-sm btn-outline-color-4 mt-2">
+        <a href="{{ $post->getPermalink() }}" class="btn btn-sm btn-outline-color-4 mt-2 stretched-link">
             {{ trans('website.read_more') }} {{ icon('fas fa-caret-right') }}
         </a>
     </div>

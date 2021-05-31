@@ -3,7 +3,7 @@
     <div class="card-body bg-color-3">
         <h4 class="card-title text-primary">{{ $category->title }}</h4>
         <div class="card-text">{!!   $category->description !!}</div>
-        <a href="{{ $category->getPermalink() }}" class="btn btn-sm btn-outline-accent mt-2">
+        <a href="{{ $category->getPermalink() }}" class="btn btn-sm btn-outline-accent mt-2 stretched-link">
             {{ trans('website.product.see_all') }} {{ icon('fas fa-caret-right') }}
         </a>
     </div>
