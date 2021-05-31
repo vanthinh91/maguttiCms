@@ -2,7 +2,7 @@
     <x-slot name="title">{!! trans('admin.label.page-blocks')!!}</x-slot>
     <ul>
         <li>
-            <a href="{{ma_get_admin_create_url('block')}}?model={{$model}}"
+            <a href="{{ma_get_admin_create_url('block')}}?model={{$model}}&model_id={{$item->id}}"
                class="nav-link btn btn-info btn-sm mb-3">{{icon('plus')}}{!! trans('admin.message.add_block')!!}</a>
         </li>
         @foreach($item->blocks as $block)
