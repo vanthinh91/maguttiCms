@@ -21,7 +21,11 @@ class Social extends Model
     {
         return new SocialBuilder($query);
     }
-
+    /*
+    |--------------------------------------------------------------------------
+    |  Fieldspec for admin form
+    |--------------------------------------------------------------------------
+    */
     function getFieldSpec (): array
     {
         $this->fieldspec['id'] = [

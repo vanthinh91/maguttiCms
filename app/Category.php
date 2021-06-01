@@ -3,7 +3,7 @@
 use App\maguttiCms\Builders\MaguttiCmsBuilder;
 use App\maguttiCms\Builders\ProductBuilder;
 use Illuminate\Database\Eloquent\Model;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 
@@ -17,15 +17,15 @@ class Category extends Model
     protected $with = ['translations'];
 
     protected $fillable = ['title', 'description', 'abstract', 'slug', 'sort', 'pub', 'parent_id'];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
     /*
     |--------------------------------------------------------------------------
     |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = ['title', 'slug', 'description', 'seo_title', 'seo_description'];
-    public $sluggable = ['slug' => ['field' => 'title', 'updatable' => false, 'translatable' => true]];
+    public array $translatedAttributes = ['title', 'slug', 'description', 'seo_title', 'seo_description'];
+    public array $sluggable = ['slug' => ['field' => 'title', 'updatable' => false, 'translatable' => true]];
 
     /*
     |--------------------------------------------------------------------------
@@ -55,10 +55,9 @@ class Category extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  Fieldspec
+    |  Fieldspec for admin form
     |--------------------------------------------------------------------------
     */
-
     function getFieldSpec()
     {
         $this->fieldspec['id'] = [

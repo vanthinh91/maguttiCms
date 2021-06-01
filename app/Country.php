@@ -18,15 +18,17 @@ class Country extends Model
     /**
      * @var array
      */
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
-    /**
-     * @return array
-     */
-    public function getFieldSpec ()
-        
+    /*
+    |--------------------------------------------------------------------------
+    |  Fieldspec for admin form
+    |--------------------------------------------------------------------------
+    */
+    public function getFieldSpec (): array
+
     {
-        // build array of field specifications
+       
         $this->fieldspec['id'] = [
             'type'     => 'integer',
             'minvalue' => 0,

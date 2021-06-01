@@ -2,7 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\App;
+
 use Illuminate\Validation\Rules\Password;
 
 class SystemServiceProvider extends ServiceProvider

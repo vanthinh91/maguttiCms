@@ -17,9 +17,9 @@ class OrderItem extends Model
         'final_price',
 		'total_price',
     ];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
-    public $sluggable = [];
+
 
 	public function product()
 	{
@@ -41,7 +41,7 @@ class OrderItem extends Model
 		return $this->belongsTo('App\Order');
 	}
 
-    function getFieldSpec()
+    function getFieldSpec(): array
     {
         return $this->fieldspec;
     }

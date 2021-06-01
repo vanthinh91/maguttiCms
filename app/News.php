@@ -6,12 +6,11 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 use \App\maguttiCms\Domain\News\NewsPresenter;
 use App\maguttiCms\Builders\NewsBuilder;
 
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class News extends Model
 {
@@ -27,15 +26,15 @@ class News extends Model
     protected $fillable = ['title', 'subtitle', 'description',
         'video', 'doc',
         'date', 'date_start', 'sort', 'pub'];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
     /*
     |--------------------------------------------------------------------------
-    |  Sluggable & Translateble
+    |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = ['title', 'subtitle', 'slug', 'description', 'seo_title', 'seo_description'];
-    public $sluggable = ['slug' => ['field' => 'title', 'updatable' => false]];
+    public array $translatedAttributes = ['title', 'subtitle', 'slug', 'description', 'seo_title', 'seo_description'];
+    public array $sluggable = ['slug' => ['field' => 'title', 'updatable' => false]];
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +66,7 @@ class News extends Model
     |  Builder & Repo
     |--------------------------------------------------------------------------
     */
-    function newEloquentBuilder($query)
+    function newEloquentBuilder($query): NewsBuilder
     {
         return new NewsBuilder($query);
     }
@@ -108,10 +107,10 @@ class News extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  Fieldspec
+    |  Fieldspec for admin form
     |--------------------------------------------------------------------------
     */
-    function getFieldSpec()
+    function getFieldSpec(): array
     {
 
         $this->fieldspec['id'] = [

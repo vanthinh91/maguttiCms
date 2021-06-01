@@ -9,16 +9,16 @@ class SpecialPrice extends Model
 		'list_code',
 		'price'
     ];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
-    public $sluggable = [];
+    public array $sluggable = [];
 
 	public function product()
 	{
 		return $this->belongsTo('App\Product', 'product_code', 'code');
 	}
 
-    function getFieldSpec()
+    function getFieldSpec(): array
     {
         return $this->fieldspec;
     }

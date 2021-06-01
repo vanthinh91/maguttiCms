@@ -5,7 +5,7 @@ use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use App\maguttiCms\Builders\MaguttiCmsBuilder;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 use App\maguttiCms\Domain\Store\Payment\PaymentMethodPresenter;
 
 class PaymentMethod extends Model
@@ -32,29 +32,27 @@ class PaymentMethod extends Model
         'sort'
     ];
 
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
     /*
     |--------------------------------------------------------------------------
     |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = [
+    public array $translatedAttributes = [
         'title',
         'description',
         'note'
     ];
 
-    public $sluggable = [
-
-    ];
+    public array $sluggable = [];
 
     /*
     |--------------------------------------------------------------------------
     |  Builder & Repo
     |--------------------------------------------------------------------------
     */
-    function newEloquentBuilder($query)
+    function newEloquentBuilder($query): MaguttiCmsBuilder
     {
         return new MaguttiCmsBuilder($query);
     }
@@ -68,10 +66,10 @@ class PaymentMethod extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  Fieldspec
+    |  Fieldspec for admin form
     |--------------------------------------------------------------------------
     */
-    function getFieldSpec()
+    function getFieldSpec(): array
     {
         $this->fieldspec['id'] = [
             'type'     => 'integer',

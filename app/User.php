@@ -96,7 +96,7 @@ class User extends Authenticatable
     /**
      * @return array
      */
-	 // build array of field specifications
+	
     function getFieldSpec():array
     {
         $this->fieldspec['id'] = [

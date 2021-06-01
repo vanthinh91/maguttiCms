@@ -8,7 +8,7 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use App\maguttiCms\Domain\Media\Mediable;
 use App\maguttiCms\Builders\ProductBuilder;
 use App\maguttiCms\Domain\Project\ProjectPresenter;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 
 class Project extends Model
@@ -22,17 +22,17 @@ class Project extends Model
     protected $with = ['translations'];
 
     protected $fillable = ['category_id', 'title', 'subtitle', 'description', 'video', 'slug', 'sort', 'pub', 'permalink'];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
     /*
     |--------------------------------------------------------------------------
     |  Sluggable & Translateble
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = ['title', 'slug', 'subtitle', 'description',
+    public array $translatedAttributes = ['title', 'slug', 'subtitle', 'description',
                                     'seo_title', 'seo_description', 'seo_no_index',
                                     'permalink'];
-    public $sluggable = ['slug' => ['field' => 'title', 'updatable' => false, 'translatable' => 1]];
+    public array $sluggable = ['slug' => ['field' => 'title', 'updatable' => false, 'translatable' => 1]];
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ class Project extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  Fieldspec
+    |  Fieldspec for admin form
     |--------------------------------------------------------------------------
     */
 

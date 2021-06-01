@@ -5,14 +5,17 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
 	protected $fillable = ['name', 'display_name', 'description','level'];
-	protected $fieldspec = [];
+	protected array $fieldspec = [];
 
-	function getFieldSpec ()
-    
+    /*
+    |--------------------------------------------------------------------------
+    |  Fieldspec for admin form
+    |--------------------------------------------------------------------------
+    */
+	function getFieldSpec (): array
+
     {
-       
-		// build array of field specifications
-        $this->fieldspec['id'] = [
+       $this->fieldspec['id'] = [
             'type'     => 'integer',
             'minvalue' => 0,
             'pkey'     => 'y',

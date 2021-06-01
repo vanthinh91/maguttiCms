@@ -16153,6 +16153,41 @@ mark, .mark {
   color: white;
 }
 
+/*
+ |--------------------------------------------------------------------------
+ | THUMBNAIL
+ |--------------------------------------------------------------------------
+*/
+.page-thumbnail .thumbnail-item {
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+.page-thumbnail .thumbnail-item:hover .thumbnail-caption {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: transform 0.4s, opacity 0.1s;
+}
+.page-thumbnail .thumbnail-image {
+  max-width: 100%;
+  height: auto;
+}
+.page-thumbnail .thumbnail-caption {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  opacity: 0;
+  transform: translateY(100%);
+  background-color: rgba(0, 0, 0, 0.75);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  transition: transform 0.4s, opacity 0.1s 0.3s;
+}
+.page-thumbnail .thumbnail-caption-title {
+  padding: 0.7rem;
+  color: white;
+}
+
 .category__card {
   border: 0px solid rgba(0, 0, 0, 0.25);
 }

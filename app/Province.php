@@ -8,28 +8,29 @@ class Province extends Model
 {
     //
     protected $fillable  = ['title','code','state_id','country_id'];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
-    public function state()
-	{
+    public function state(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo('App\State');
     }
 
-    public function country()
-	{
+    public function country(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo('App\Country');
     }
 
-	public function cities()
-	{
+	public function cities(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
 		return $this->hasMany('App\City', 'province_code', 'code');
 	}
-
-    function getFieldSpec ()
-        
+    /*
+    |--------------------------------------------------------------------------
+    |  Fieldspec for admin form
+    |--------------------------------------------------------------------------
+    */
+    function getFieldSpec (): array
     {
-
-        // build array of field specifications
         $this->fieldspec['id'] = [
             'type'     => 'integer',
             'minvalue' => 0,

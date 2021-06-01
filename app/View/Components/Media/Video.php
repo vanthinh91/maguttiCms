@@ -15,7 +15,7 @@ class Video extends EmbedComponent
      * Video constructor.
      * @param $video
      * @param string $ratio
-     * @param string $extra_class
+     * @param string $classExtra
      */
     public function __construct($video, $ratio = '16x9', $classExtra = "")
     {
@@ -36,7 +36,7 @@ class Video extends EmbedComponent
         return view('components.media.video');
     }
 
-    public  function getUrl()
+    public  function getUrl(): string
     {
         return 'https://www.youtube-nocookie.com/embed/' . $this->video . '?rel=0';
     }

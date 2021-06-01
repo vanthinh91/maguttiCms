@@ -1,10 +1,9 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
-use Astrotomic\Translatable\Translatable;
 
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use Astrotomic\Translatable\Translatable;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class ProductModel extends Model
 {
@@ -13,9 +12,9 @@ class ProductModel extends Model
     use GFTranslatableHelperTrait;
 
 
-    public    $translatedAttributes = ['title','description'];
+    public array $translatedAttributes = ['title','description'];
     protected $fillable  = ['product_id','title','description','sort','pub'];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
     public function product()
     {
@@ -26,7 +25,12 @@ class ProductModel extends Model
         return $this->belongsTo('App\Domain');
     }
 
-    function getFieldSpec ()
+    /*
+    |--------------------------------------------------------------------------
+    |  Fieldspec for admin form
+    |--------------------------------------------------------------------------
+    */
+    function getFieldSpec (): array
     {
 
         $this->fieldspec['id'] = [

@@ -1,6 +1,5 @@
 <?php namespace App;
 
-
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,7 +27,7 @@ class Discount extends Model
         'type',
 		'is_active',
 	];
-	protected $fieldspec = [];
+	protected array $fieldspec = [];
 
 
 	/*
@@ -52,19 +51,19 @@ class Discount extends Model
     |  Builder & Repo
     |--------------------------------------------------------------------------
     */
-    function newEloquentBuilder($query)
+    function newEloquentBuilder($query): DiscountBuilder
     {
         return new DiscountBuilder($query);
     }
 
 
-	/*
-	|--------------------------------------------------------------------------
-	|  Fieldspec
-	|--------------------------------------------------------------------------
-	*/
-	function getFieldSpec()
-	{
+    /*
+    |--------------------------------------------------------------------------
+    |  Fieldspec for admin form
+    |--------------------------------------------------------------------------
+    */
+	function getFieldSpec(): array
+    {
 		$this->fieldspec['id'] = [
 			'type'     => 'integer',
 			'minvalue' => 0,

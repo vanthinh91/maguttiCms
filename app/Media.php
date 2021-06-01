@@ -55,7 +55,7 @@ class Media extends Model
     function getFieldSpec(): array
     {
 
-        // build array of field specifications
+       
         $this->fieldspec['id'] = [
             'type' => 'integer',
             'minvalue' => 0,

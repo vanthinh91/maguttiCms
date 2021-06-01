@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Error extends Model
 {
     protected $fillable = ['message', 'file', 'line', 'trace'];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
 
 
@@ -17,10 +17,11 @@ class Error extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  Fieldspec
+    |  Fieldspec for admin form
     |--------------------------------------------------------------------------
     */
-    function getFieldSpec() {
+    function getFieldSpec(): array
+    {
         return $this->fieldspec;
     }
 }

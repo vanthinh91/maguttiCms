@@ -92,10 +92,11 @@ class Cart extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  Fieldspec
+    |  Fieldspec for admin form
     |--------------------------------------------------------------------------
     */
-    function getFieldSpec()
+
+    function getFieldSpec(): array
     {
         return $this->fieldspec;
     }

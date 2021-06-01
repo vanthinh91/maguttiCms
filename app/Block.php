@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use Astrotomic\Translatable\Translatable;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 use App\maguttiCms\Domain\Media\Mediable;
 use App\maguttiCms\Builders\MaguttiCmsBuilder;
@@ -91,7 +91,6 @@ class Block extends Model
     |  Fieldspec for admin form
     |--------------------------------------------------------------------------
     */
-
     function getFieldSpec()
     {
         $this->fieldspec['id'] = [

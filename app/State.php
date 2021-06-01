@@ -18,7 +18,7 @@ class State extends Model
         
     {
 
-        // build array of field specifications
+       
         $this->fieldspec['id'] = [
             'type'     => 'integer',
             'minvalue' => 0,

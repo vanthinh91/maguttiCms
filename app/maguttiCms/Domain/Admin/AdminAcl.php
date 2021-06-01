@@ -26,16 +26,16 @@ trait AdminAcl
      * @param $section
      * @return bool
      */
-    public function canViewSection($section)
+    public function canViewSection($section): bool
     {
         if (!isset($section['roles'])) {
             return true;
         }
         if ($this->hasRole($section['roles'])) {
             return true;
-        } else {
-            return false;
         }
+        return false;
+
     }
 
     /**
@@ -96,7 +96,6 @@ trait AdminAcl
     public function action($action, $action_property)
     {
 
-
         $value = $this->actionValue($action_property, $action);
 
         if (!$value) return false;
@@ -116,10 +115,8 @@ trait AdminAcl
 
     function actionValue($action_property, $action)
     {
-
         return data_get($action_property['actions'], $action);
     }
-
 
     function userHasPersmission($section)
     {

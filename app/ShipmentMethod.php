@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Astrotomic\Translatable\Translatable;
 
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;;
 use App\maguttiCms\Domain\Store\Shipping\ShipmentMethodPresenter;
 
 /**
@@ -31,19 +31,19 @@ class ShipmentMethod extends Model
         'is_active'
     ];
 
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
     /*
     |--------------------------------------------------------------------------
     |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = [
+    public array $translatedAttributes = [
         'title',
         'description'
     ];
 
-    public $sluggable = [
+    public array $sluggable = [
         'slug' => ['field' => 'title', 'updatable' => false, 'translatable' => 1]
     ];
 
@@ -58,7 +58,7 @@ class ShipmentMethod extends Model
     |  Builder & Repo
     |--------------------------------------------------------------------------
     */
-    function newEloquentBuilder($query)
+    function newEloquentBuilder($query): MaguttiCmsBuilder
     {
         return new MaguttiCmsBuilder($query);
     }
@@ -66,10 +66,10 @@ class ShipmentMethod extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  Fieldspec
+    |  Fieldspec for admin form
     |--------------------------------------------------------------------------
     */
-    function getFieldSpec()
+    function getFieldSpec(): array
     {
         $this->fieldspec['id'] = [
             'type'     => 'integer',

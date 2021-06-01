@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Astrotomic\Translatable\Translatable;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 use App\maguttiCms\Builders\MaguttiCmsBuilder;
 

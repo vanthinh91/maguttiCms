@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 use \App\maguttiCms\Domain\Article\ArticlePresenter;
 
 class Example extends Model
@@ -36,7 +36,7 @@ class Example extends Model
         'status_id',
         'image_media_id'
     ];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
 
 
@@ -46,7 +46,7 @@ class Example extends Model
     |--------------------------------------------------------------------------
     */
 
-    public $translatedAttributes = [
+    public array $translatedAttributes = [
         'title',
         'slug',
         'description',
@@ -58,7 +58,7 @@ class Example extends Model
         'seo_no_index'
     ];
 
-    public $sluggable = ['slug' => ['field' => 'title', 'updatable' => false, 'translatable' => true]];
+    public array $sluggable = ['slug' => ['field' => 'title', 'updatable' => false, 'translatable' => true]];
 
 
     /*
@@ -146,10 +146,10 @@ class Example extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  Fieldspec
+    |  Fieldspec for admin form
     |--------------------------------------------------------------------------
     */
-    function getFieldSpec()
+    function getFieldSpec(): array
     {
         $this->fieldspec['id'] = [
             'type'     => 'integer',

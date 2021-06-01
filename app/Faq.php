@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Translatable;
 
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;;
 
 class Faq extends Model
 {

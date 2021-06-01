@@ -25,7 +25,7 @@ class Contact extends Model
             'hidden'   => 1,
             'display'  => 0,
         ];
-        // build array of field specifications
+       
         $this->fieldspec['created_at'] = [
             'type'      => 'date-readonly',
             'required'  => 0,

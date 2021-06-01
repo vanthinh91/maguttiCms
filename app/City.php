@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class City extends Model
 {
     protected $fillable  = [];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
 	public function province()
 	{

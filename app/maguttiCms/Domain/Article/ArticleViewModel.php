@@ -94,11 +94,13 @@ class ArticleViewModel extends WebsiteViewModel
 
     }
 
-    function validatePage($article)
+    /**
+     * @param $article
+     * @return bool
+     */
+    function validatePage($article): bool
     {
-
         return ($article && $article->slug != 'home' && $article->pub == 1) ? true : false;
-
     }
 
     function handle($parent, $child = '')

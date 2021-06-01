@@ -1,13 +1,13 @@
 <?php namespace App;
 
-use Carbon\Carbon;
+
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Translatable;
 
 use App\maguttiCms\Builders\LocationBuilder;
 use App\maguttiCms\Domain\Location\LocationPresenter;
 use App\maguttiCms\Domain\Location\MapLocationPresenter;
-use \App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 
 class Location extends Model
 {
@@ -44,21 +44,21 @@ class Location extends Model
         'pub'
     ];
 
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
     /*
     |--------------------------------------------------------------------------
     |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
-    public $translatedAttributes = [
+    public array $translatedAttributes = [
         'title',
         'subtitle', 'slug',
         'description', 'info',
         'seo_title', 'seo_description', 'seo_no_index'
     ];
 
-    public $sluggable = [
+    public array $sluggable = [
         'slug' => ['field' => 'title', 'updatable' => true, 'translatable' => 1]
     ];
 
@@ -67,7 +67,7 @@ class Location extends Model
     |  Builder & Repo
     |--------------------------------------------------------------------------
     */
-    function newEloquentBuilder($query)
+    function newEloquentBuilder($query): LocationBuilder
     {
         return new LocationBuilder($query);
     }
@@ -105,10 +105,10 @@ class Location extends Model
 
     /*
     |--------------------------------------------------------------------------
-    |  Fieldspec
+    |  Fieldspec for admin form
     |--------------------------------------------------------------------------
     */
-    function getFieldSpec()
+    function getFieldSpec(): array
     {
         $this->fieldspec['id'] = [
             'type' => 'integer',

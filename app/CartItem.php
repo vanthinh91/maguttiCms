@@ -10,9 +10,9 @@ class CartItem extends Model
 		'product_model_code',
 		'quantity'
     ];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
-    public $sluggable = [];
+    public array $sluggable = [];
 
 	public function product()
 	{
@@ -34,7 +34,7 @@ class CartItem extends Model
 		return $this->hasOne('App\OrderItem');
 	}
 
-    function getFieldSpec()
+    function getFieldSpec(): array
     {
         return $this->fieldspec;
     }

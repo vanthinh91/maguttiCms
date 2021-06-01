@@ -70,21 +70,18 @@ trait ArticlePresenter
      * @return string
      */
 
-    function getNavLinkAttribute()
+    function getNavLinkAttribute(): string
     {
         if ($this->slug == 'home') {
             return $page_link = '/';
-        } elseif ($this->link) {
-            return $page_link = $this->link;
-        } else {
-            return $page_link = $this->getPermalink();
         }
+        if ($this->link) {
+            return $page_link = $this->link;
+        }
+        return $page_link = $this->getPermalink();
     }
 
-
-
-
-    function getNavCssClassAttribute()
+    function getNavCssClassAttribute(): string
     {
       return "nav-item-".$this->{'slug:'. config('app.locale')};
     }

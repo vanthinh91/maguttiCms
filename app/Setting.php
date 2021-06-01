@@ -13,12 +13,14 @@ class Setting extends Model
     /**
      * @var array
      */
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
-    /**
-     * @return array
-     */
-    public function getFieldSpec ()
+    /*
+    |--------------------------------------------------------------------------
+    |  Fieldspec for admin form
+    |--------------------------------------------------------------------------
+    */
+    public function getFieldSpec (): array
     {
 
         $this->fieldspec['id'] = [

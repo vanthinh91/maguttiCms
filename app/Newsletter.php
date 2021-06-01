@@ -13,7 +13,7 @@ class Newsletter extends Model
     use NewsletterPresenter;
 
     protected $fillable = ['locale', 'name', 'email', 'coupon_code', 'sort', 'pub'];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
     /*
     |--------------------------------------------------------------------------

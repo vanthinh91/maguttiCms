@@ -21,9 +21,9 @@ class Address extends Model
 		'email',
 		'vat'
     ];
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
-    public $sluggable = [];
+    public array $sluggable = [];
 
 	public function user()
 	{
@@ -35,13 +35,13 @@ class Address extends Model
 		return $this->belongsTo('App\Country');
 	}
 
-    function getFieldSpec()
+    function getFieldSpec(): array
     {
         return $this->fieldspec;
     }
 
-	public function display($separator)
-	{
+	public function display($separator): string
+    {
 		$display = $this->firstname.' '.$this->lastname;
         $display .= $separator;
 		$display .= $this->street;
