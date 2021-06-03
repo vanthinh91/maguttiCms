@@ -3,10 +3,9 @@
   <div class="container mb-5" v-if="this.items.length==0">
     <div class="row">
       <div class="col-12">
-        <alert-box class="alert-info">
+          <alert-box class="text-center alert-color-4 d-flex align-items-center">
           <template #content>
-            <h5>{{ $t('store.cart.empty') }}</h5>
-
+            <div>{{ $t('store.cart.empty') }}</div>
           </template>
         </alert-box>
       </div>

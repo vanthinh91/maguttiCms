@@ -12,7 +12,7 @@ return [
         'confirm' => 'Confirm your data',
 		'title' => 'Shopping Bag',
 		'total' => 'Total',
-		'empty' => 'Your Shopping bag is empty',
+		'empty' => 'Your shopping bag is empty',
 		'buy' => 'Checkout',
         'back' => 'Back to the store',
         'number_of_items' => 'Items',

@@ -56,8 +56,6 @@
         };
         @endif
     </script>
-    @include('website.partials.js_localization')
-
     <script type="text/javascript" src="{{ asset(config('maguttiCms.admin.path.assets').mix('/website/js/vendor.js')) }}"></script>
     <script type="text/javascript" src="{{ asset(config('maguttiCms.admin.path.assets').mix('/website/js/app.js')) }}"></script>
     <script type="text/javascript">
