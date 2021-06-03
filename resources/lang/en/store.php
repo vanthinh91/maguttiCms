@@ -50,7 +50,7 @@ return [
 
 	'items' => [
 		'add' => 'Add to cart',
-        'are_you_sure_to_remove' => 'Are you Sure to remove this item from your cart?',
+        'are_you_sure_to_remove' => 'Are you sure to remove this item from your cart?',
 		'remove' => 'Remove from cart'
 	],
 
@@ -110,6 +110,7 @@ return [
             'enter'=>'Enter discount code',
             'apply'=>'Apply discount code',
             'delete'=>'Delete',
+            'delete_coupon' => 'Delete Coupon',
             'are_you_sure_to_remove' => 'Are you Sure to remove your coupon from your cart?',
 		]
 	],

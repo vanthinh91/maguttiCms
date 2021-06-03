@@ -164,22 +164,55 @@ export default {
     deleteCartItem(index, id) {
       let items = this.items
       let self = this;
+      let msgHtml = "<h4>" + this.$t('store.items.are_you_sure_to_remove') + "</h4>";
+      let title = this.$t('store.items.remove');
       bootbox.setLocale(window._LANG);
-      bootbox.confirm("<h5>" + this.$t('store.items.are_you_sure_to_remove') + "</h5>", function (confirmed) {
-        if (confirmed) {
-          items.splice(index, 1);
-          self.deleteItem(id)
+      bootbox.confirm({
+        message: msgHtml,
+        title: title,
+        buttons: {
+          confirm: {
+            label: this.$t('website.btn_yes'),
+            className: 'btn-success '
+          },
+          cancel: {
+            label: this.$t('website.btn_no'),
+            className: 'btn-accent '
+          }
+        },
+        callback: function (result) {
+          if (result) {
+            items.splice(index, 1);
+            self.deleteItem(id)
+          }
         }
       });
     },
     deleteCartCoupon() {
       let self = this;
+      let msgHtml ="<h4>" + this.$t('store.order.discount.are_you_sure_to_remove')+ "</h4>";
+      let title = this.$t('store.order.discount.delete_coupon');
       bootbox.setLocale(window._LANG);
-      bootbox.confirm("<h5>" + this.$t('store.order.discount.are_you_sure_to_remove') + "</h5>", function (confirmed) {
-        if (confirmed) {
-          self.removeDiscount();
+      bootbox.confirm({
+        message: msgHtml,
+        title: title,
+        buttons: {
+          confirm: {
+            label: this.$t('website.btn_yes'),
+            className: 'btn-success '
+          },
+          cancel: {
+            label: this.$t('website.btn_no'),
+            className: 'btn-accent '
+          }
+        },
+        callback: function (result) {
+          if (result) {
+            self.removeDiscount();
+          }
         }
       });
+
     },
     updateCoupon(){
       this.cart.discount_amount=0;

@@ -5,16 +5,16 @@
     @endif
     <div class="row gy-3">
         <div class="col-12 col-md-6">
-            <x-website.ui.input for="firstname" placeholder="{{ trans('website.firstname') }}" required/>
+            <x-website.ui.input for="firstname" placeholder="{{ trans('website.firstname') }} *" required/>
         </div>
         <div class="col-12 col-md-6">
-            <x-website.ui.input placeholder="{{ trans('website.lastname') }}*" for="lastname" required/>
+            <x-website.ui.input placeholder="{{ trans('website.lastname') }} *" for="lastname" required/>
         </div>
         <div class="col-12">
-            <x-website.ui.input type="email" placeholder="{{ trans('website.email') }}*" for="email" required/>
+            <x-website.ui.input type="email" placeholder="{{ trans('website.email') }} *" for="email" required/>
         </div>
         <div class="col-12">
-            <x-website.ui.input type="password" for="password" placeholder="{{ trans('website.password') }}*"
+            <x-website.ui.input type="password" for="password" placeholder="{{ trans('website.password') }} *"
                required/>
         </div>
         <div class="col-12">

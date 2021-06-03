@@ -110,6 +110,7 @@ return [
             'enter' => 'Inserisci codice di sconto',
             'apply' => 'Applica codice di sconto',
             'delete' => 'Elimina',
+            'delete_coupon' => 'Elimina Coupon',
             'are_you_sure_to_remove' => 'Sei sicuro di voler annullare il tuo codice di sconto?'
         ]
     ],

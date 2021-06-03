@@ -40,6 +40,8 @@ return [
     'btn_shop_now' => 'Shop Now',
     'btn_get_in_touch_to_find' => 'Contattaci per maggiori informazioni',
     'btn_get_in_touch' => 'Contattaci',
+    'btn_no'        => 'No',
+    'btn_yes'       => 'Si',
 
     'ghost' => [
         'updated' => 'Valore aggiornato',

@@ -41,6 +41,8 @@ return [
     'btn_shop_now'            => 'Shop Now',
     'btn_get_in_touch_to_find'=> 'GET IN TOUCH TO FIND OUT MORE',
     'btn_get_in_touch'        => 'GET IN TOUCH',
+    'btn_no'        => 'No',
+    'btn_yes'       => 'Yes',
 
 	'ghost' => [
 		'updated' => 'Value updated',

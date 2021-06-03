@@ -1,10 +1,6 @@
 window.App = function () {
 	function handleBootstrap() {
-		/*Bootstrap Carousel*/
-		$('.carousel').carousel({
-			interval: 5000,
-			pause: 'hover'
-		});
+
 
 		/*Tooltips*/
 		$('.tooltips').tooltip();
@@ -31,23 +27,33 @@ window.App = function () {
 				data: $("#form-newsletter").serialize(),
 				dataType: 'json',
 				success: function (response) {
-					var msgHtml = '';
+					let msgHtml = '';
 					if (response.status == 'OK') {
-						msgHtml += '<h4>' + response.msg + '</h4>';
+						msgHtml +=response.msg;
 					} else {
 						$.each(response.errors, function (_key, value) {
 							msgHtml += '<h4>' + value[0] + '</h4>'; //showing only the first error.
 						});
 					}
-					updateModalAlertMsg(msgHtml);
+					bootbox.alert({
+						title: "Newsletter",
+						message: msgHtml,
+					})
+
 				},
 				error: function ({responseJSON}) {
 					let msgHtml = '';
 					$.each(responseJSON.errors, function (_key, value) {
 						msgHtml += '<h4>' + value[0] + '</h4>'; //showing only the first error.
 					});
-					updateModalAlertMsg( msgHtml);
+					bootbox.alert({
+						title: "Newsletter",
+						message: msgHtml
+					})
 				}
+
+
+
 			});
 		});
 	}
@@ -76,54 +82,7 @@ window.App = function () {
 		}
 	}
 
-	function handleGhostInputs() {
-		$('.form-ghost').each(function () {
-			let elem = $(this);
-			elem.data('original', elem.val());
-		}).blur(function (e) {
-			e.preventDefault();
 
-			let elem = $(this);
-
-			if (elem.val() != elem.data('original')) {
-				let id = elem.data('id');
-				let model = elem.data('model');
-				let field = elem.data('field');
-				let value = elem.val();
-
-				$.ajax({
-					type: 'POST',
-					url: '/api/	update-ghost',
-					data: {
-						id: id,
-						model: model,
-						field: field,
-						value: value,
-						_token: $('meta[name="csrf-token"]').attr('content')
-					},
-					dataType: 'json',
-					success: function (response) {
-						elem.data('original', value);
-						$.each(response.alerts, function () {
-							$.smkAlert({
-								text: this.text,
-								type: this.type,
-								time: this.time
-							});
-						});
-					},
-					error: function () {
-						$.smkAlert({
-							text: trans('website.ghost.error'),
-							type: 'danger',
-							time: 5
-						});
-					}
-				});
-				return true;
-			}
-		});
-	}
 
 	function handleNavbar() {
 		// deprecato
@@ -134,12 +93,7 @@ window.App = function () {
 		});
 		checkNavbar();
 		*/
-		$.pbScrollTriger({
-			selector: 'nav',
-			class: 'navbar-scrolled',
-			use_element_position: false,
-			apply_class_to_body: false,
-		});
+
 	}
 
 
@@ -168,7 +122,6 @@ window.App = function () {
 			handleNewsletter();
 			handleLightBox();
 			handleScrollTo();
-			handleGhostInputs();
 		   //initOverrideInvalid();
 		},
 

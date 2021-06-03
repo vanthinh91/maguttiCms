@@ -3,7 +3,7 @@
 		{{icon('exclamation-circle', 'fa-2x flex-shrink-0 me-2')}}
 		<div>
 			@foreach ( $errors->all() as $error)
-				<p>{{ $error }}</p>
+				<div>{{ $error }}</div>
 			@endforeach
 		</div>
 	</x-ui.alert>
