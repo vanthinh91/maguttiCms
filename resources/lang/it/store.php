@@ -111,6 +111,7 @@ return [
             'apply' => 'Applica codice di sconto',
             'delete' => 'Elimina',
             'delete_coupon' => 'Elimina Coupon',
+            'coupon_deleted' => 'Coupon rimosso dal carrello',
             'are_you_sure_to_remove' => 'Sei sicuro di voler annullare il tuo codice di sconto?'
         ]
     ],

@@ -41,21 +41,12 @@ return [
 			'payment_method_id' => 'required|numeric'
 		],
 
-		'order-calc' => [
-			'cart' => 'required|numeric',
-			'address' => 'required'
-		],
+
 
 		'validate-coupon' => [
 			'code' => 'required|exists:discounts,code'
 		],
 
-		'update-ghost' => [
-			'id' => 'required|numeric',
-			'model' => 'required',
-			'field' => 'required',
-			'value' => 'required',
-		],
 
 		'address-new' => [
 			'street'     => 'required',

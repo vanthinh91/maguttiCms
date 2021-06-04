@@ -52,7 +52,7 @@ Route::group([], function () {
     // store section
     // store section
     Route::post('api/store/cart-item-add', [StoreAPIController::class, 'storeCartItemAdd']);
-    Route::post('api/store/cart-item-remove', [StoreAPIController::class, 'storeCartitemRemove']);
+    Route::post('api/store/cart-item-remove', [StoreAPIController::class, 'storeCartItemRemove']);
     Route::post('api/store/cart-item-update', [StoreAPIController::class, 'updateItemQuantity']);
     Route::get('api/store/order-calc', [StoreAPIController::class, 'storeOrderCalc']);
     Route::get('api/store/validate-coupon', CouponValidateController::class);

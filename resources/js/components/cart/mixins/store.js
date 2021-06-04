@@ -10,7 +10,6 @@ export default {
         }
     },
     methods: {
-
         addProductToCart() {
             return HTTP.post(this.url(), {
                     product_code: this.product.code,
@@ -23,7 +22,6 @@ export default {
                 })
         },
         updateItemQuantity(q, id) {
-
             return HTTP.post(this.update_url(), {
                     id: id,
                     quantity: q
@@ -40,7 +38,6 @@ export default {
                 })
         },
         removeDiscount(){
-
             return HTTP.delete(this.delete_coupon_url())
                 .then(this.updateCoupon)
                 .catch(e => {

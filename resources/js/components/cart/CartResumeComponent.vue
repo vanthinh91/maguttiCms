@@ -28,7 +28,6 @@
               </thead>
               <tbody>
               <tr v-for="(item,index) in items" :key="index">
-
                 <td class="product-description">
                   <div class="d-flex justify-content-start">
                     <a :href="item.product.url" class="d-none d-md-block"><img :src="item.product.thumb_image"></a>
@@ -37,19 +36,8 @@
                       <product-price :product="item.product"/>
                     </div>
                   </div>
-
-
                 </td>
                 <td class="product-quantity">
-                  <!--<input
-                      type="number"
-                      v-model.lazy="item.quantity"
-                      autocomplete="off"
-                      v-bind:min="1"
-                      @keyup="updateCartItem(item.quantity,item)"
-                      @change="updateCartItem(item.quantity,item)"
-                  >-->
-
                   <number-input
                       :hideDecreaseBtn="false"
                       :hideIncreaseBtn="false"
@@ -59,7 +47,6 @@
                       @keyup="updateCartItem(item.quantity,item)"
                   />
                 </td>
-
                 <td>
                   <div class="product-price-total">
                     {{ itemTotal(item) | currency }}
@@ -77,7 +64,6 @@
 
         <div class="col-12 col-md-3">
           <div class="card cart-summary box-shadow p-2">
-
             <div class="cart-summary-line cart-item">
               <span class="label">{{ number_of_items }} {{ $t('store.cart.number_of_items') }} </span>
               <span class="value">{{ product_total | currency }}</span>
@@ -213,7 +199,8 @@ export default {
       });
 
     },
-    updateCoupon(){
+    updateCoupon({data}){
+      this.notify(data.msg)
       this.cart.discount_amount=0;
       this.cart.discount_code="";
     },

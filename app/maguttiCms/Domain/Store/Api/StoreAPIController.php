@@ -7,10 +7,19 @@ use App\maguttiCms\Tools\StoreHelper;
 use App\maguttiCms\Website\Controllers\APIController;
 use App\maguttiCms\Website\Requests\AjaxFormRequest;
 use App\maguttiCms\Tools\JsonResponseTrait;
+/*
+|--------------------------------------------------------------------------
+| SET METHODS FOR AJAX STORE REQUESTS
+|--------------------------------------------------------------------------
+*/
 
+/**
+ * Class StoreAPIController
+ * @package App\maguttiCms\Domain\Store\Api
+ */
 class StoreAPIController extends APIController
 {
-	private $response = [];
+	private array $response = [];
     use JsonResponseTrait;
 
 	public function __construct() {}
@@ -77,29 +86,5 @@ class StoreAPIController extends APIController
 			];
 		}
         return $this->setMsg($message)->apiResponse();
-	}
-
-	public function storeOrderCalc(AjaxFormRequest $request)
-	{
-		$cart = StoreHelper::getSessionCart();
-		if ($cart && $cart->id = $request->cart) {
-			$result = StoreHelper::calcCosts($cart, $request->address, $request->discount_code);
-			if ($result)
-				return response()->json($result);
-			else
-				return response()->json(false);
-		}
-		return response()->json(false);
-	}
-
-	public function storeOrderDiscount(AjaxformRequest $request)
-	{
-		$discount = StoreHelper::getDiscount($request->code);
-		if ($discount) {
-			return response()->json([
-				'valid' => true,
-				'message' => sprintf(trans('store.order.discount.valid'), $discount->amount)
-			]);
-		}
 	}
 }

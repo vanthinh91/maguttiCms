@@ -112,6 +112,7 @@ return [
             'delete'=>'Delete',
             'delete_coupon' => 'Delete Coupon',
             'are_you_sure_to_remove' => 'Are you Sure to remove your coupon from your cart?',
+            'coupon_deleted' => 'Coupon deleted',
 		]
 	],
 

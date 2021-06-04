@@ -8,9 +8,9 @@ require('./bootstrap');
 
 require('@fancyapps/fancybox');
 import Swiper from 'swiper/bundle';
-
+import Swal from 'sweetalert2';
 window.Swiper = Swiper;
-require('smokejs/dist/js/smoke.min.js');
+window.Swal = Swal;
 window.Cookies = require('js-cookie');
 window.bootbox = require('bootbox');
 

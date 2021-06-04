@@ -13,7 +13,11 @@ class CouponDeleteController extends StoreAPIController
         $cart = StoreHelper::getSessionCart();
         if ($cart) {
             $cart->removeDiscount();
-            return $this->responseSuccess()->apiResponse();
+            $message= [
+                'text'	=> __('store.order.discount.coupon_deleted'),
+                'type'	=> 'success',
+            ];
+            return $this->setMsg($message)->responseSuccess()->apiResponse();
         }
         return $this->apiResponse();
     }
