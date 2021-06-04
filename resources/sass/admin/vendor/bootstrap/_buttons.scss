@@ -139,6 +139,19 @@ a.btn-secondary {
 		background-color: lighten($secondary, 30);
 	}
 }
+.btn-success {
+	color: white;
+	background-color: $success;
+	border-color: $success;
+	&:hover,
+	&:focus,
+	&:active,
+	&:active:hover {
+		color: $color-1;
+		border-color: $success;
+		background-color: darken($success, 10);
+	}
+}
 .btn-info {
 	color: white;
 	background-color: $info;

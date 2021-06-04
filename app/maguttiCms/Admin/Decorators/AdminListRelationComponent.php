@@ -35,7 +35,7 @@ class AdminListRelationComponent extends AdminListComponent
         $relation = $this->getItemProperty('relation');
         if ($this->getItemProperty('multiple') != '') {
             $data = optional($this->model->$relation)->pluck($this->getField())->sortBy($this->getField())->toArray();
-            return $this->value = implode(',', $data);
+            return $this->value = '<span class="badge rounded-pill bg-info me-2">'.implode('</span><span class="badge rounded-pill bg-info me-2"> ', $data).'</span';
         }
         return $this->value = optional($this->model->$relation)->{$this->getField()};
     }

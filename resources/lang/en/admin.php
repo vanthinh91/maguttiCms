@@ -125,6 +125,7 @@ return [
 		'template'		=> 'Template',
 		'title'         => 'Title',
 		'tools'			=> 'Tools',
+        'search_by_tags'      => 'Search by tags',
         'top_menu'      => 'Show on main menu',
 		'total_cost'	=> 'Total',
         'update'        => 'Update',

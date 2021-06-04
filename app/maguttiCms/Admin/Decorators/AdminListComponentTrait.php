@@ -25,7 +25,7 @@ trait AdminListComponentTrait
     }
 
 
-    function hasComponent($type)
+    function hasComponent($type): bool
     {
         $sample = new \ReflectionClass($this);
         if ($sample->hasMethod($this->resolveMethodName($type))){
@@ -51,23 +51,23 @@ trait AdminListComponentTrait
     }
 
 
-    function resolveMethodName($type)
+    function resolveMethodName($type): string
     {
         return 'make' . ucfirst(Str::camel($type));
     }
 
 
-    function resolveComponentClassNamespace($type)
+    function resolveComponentClassNamespace($type): string
     {
         return "App\maguttiCms\Admin\Decorators\AdminList" . ucfirst(Str::camel($type)) . "Component";
     }
 
-    function componentClassExist($type)
+    function componentClassExist($type): bool
     {
         return class_exists($this->resolveComponentClassNamespace($type));
     }
 
-    function componentViewExist($type)
+    function componentViewExist($type): bool
     {
         return view()->exists('admin.list.'.$type);
     }

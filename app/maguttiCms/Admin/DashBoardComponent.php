@@ -24,7 +24,7 @@ class DashBoardComponent  {
     public function init()
     {
         $this->data->push([
-            'title' => 'Web site',
+            'title' => 'Website',
             'url' => url()->to(''),
             'iconClass' => 'fas fa-globe',
             'target' => "_new",

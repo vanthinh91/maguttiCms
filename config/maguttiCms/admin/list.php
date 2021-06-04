@@ -208,6 +208,7 @@ return [
                 'image' => ['type' => 'image', 'field' => 'image'],
                 'title',
                 'slug',
+                'tags' => ['type' => 'relation', 'relation' => 'tags', 'field' => 'title','multiple'=>true],
                 'pub' => ['type' => 'boolean', 'field' => 'pub', 'editable' => true],
                 'sort' => ['type' => 'editable', 'field' => 'sort'],
                 'created_at' => ['type' => 'date', 'field' => 'created_at'],
@@ -226,6 +227,16 @@ return [
                 'from_date' => ['type' => 'date_range', 'label' => 'data_from', 'field' => 'date', 'class' => 'col-6 col-sm-1'],
                 'to_date' => ['type' => 'date_range', 'label' => 'data_to', 'field' => 'date', 'class' => 'col-6 col-sm-1'],
                 'title' => ['type' => 'text', 'label' => 'title', 'field' => 'title'],
+                'tags' => [
+                    'label' => 'search_by_tags',
+                    'type' => 'relation',
+                    'model' => 'tag',
+                    'relation' => 'tags',
+                    'value' => 'id',
+                    'field' => 'title',
+
+                    'cssClass' => 'selectize',
+                ],
 
             ],
             'orderBy' => 'date',
