@@ -29,6 +29,7 @@ class DashBoardComponent  {
             'iconClass' => 'fas fa-globe',
             'target' => "_new",
             'footer_url' => url()->to(''),
+            'footer_icon' => 'fas fa-external-link-alt',
         ]);
     }
 
@@ -42,7 +43,7 @@ class DashBoardComponent  {
                 'url' => ma_get_admin_list_url($section['model']),
                 'iconClass' => 'fas fa-' . $section['icon'],
                 'pills' => $model::count(),
-                'footer_url' => ma_get_admin_create_url($section['model']),
+                'footer_url' => (data_get($section['actions'],'create'))? ma_get_admin_create_url($section['model']):'',
                 'target' => null,
             ]);
         }

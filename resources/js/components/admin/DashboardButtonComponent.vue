@@ -11,9 +11,9 @@
          <div class="dashboard-card-footer-counter">
            <span class="badge rounded-pill bg-info">{{ item.pills }}</span>
          </div>
-         <div class="dashboard-card-footer-action">
+         <div v-if="item.footer_url!==''" class="dashboard-card-footer-action">
            <a :href="item.footer_url" :target="item.target ? item.target : null">
-           <i :class="'fas fa-plus-circle fa-lg'"></i>
+           <i :class="item.footer_icon ? item.footer_icon:'fas fa-plus-circle'+' fa-lg'"></i>
            </a>
          </div>
 
