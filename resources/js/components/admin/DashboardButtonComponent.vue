@@ -1,11 +1,26 @@
 <template>
-    <div class="col-12 col-sm-4 col-md-3 col-lg-2">
-        <a :href="item.url" :target="item.target ? item.target : null">
-            <div class="button">
-                <i :class="item.iconClass"></i>
-                <h3>{{item.title}}</h3>
-            </div>
-        </a>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xxl-2">
+     <div class="dashboard-card">
+       <a class="dashboard-card-body" :href="item.url" :target="item.target ? item.target : null">
+         <div class="button">
+           <i :class="item.iconClass+' fa-fw fa-5x '"></i>
+           <h3>{{item.title}}</h3>
+         </div>
+       </a>
+       <div class="dashboard-card-footer d-flex justify-content-between">
+         <div class="dashboard-card-footer-counter">
+           <span class="badge rounded-pill bg-info">{{ item.pills }}</span>
+         </div>
+         <div class="dashboard-card-footer-action">
+           <a :href="item.footer_url" :target="item.target ? item.target : null">
+           <i :class="'fas fa-plus-circle fa-lg'"></i>
+           </a>
+         </div>
+
+       </div>
+     </div>
+
+
     </div>
 </template>
 

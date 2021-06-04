@@ -7,56 +7,86 @@
 	.row {
 		display: flex;
 		flex-wrap: wrap;
-
+		@include media-breakpoint-up(md) {
+			margin: 0px 30px;
+		};
 		> div {
 			margin-top: 10px;
 			@include media-breakpoint-up(md) {
-				margin-top: 30px;
+				margin-top:30px;
 			};
 		}
+	}
+
+	.dashboard-card{
+		background-color: white;
+		border-bottom:5px solid rgba(26, 26, 23, 0.67);
+		border-radius: 0.25rem;
+		&:hover {
+			border-bottom:5px solid $info;
+			@include shadow(4);
+			.button {
+				i, h3 {
+					color: $info;
+				}
+			}
+
+		}
+	    @include shadow(3);
+		@include animate();
+		&-body{
+			display: block;
+			border-bottom: 1px solid #D1D5DB;
+		}
+		&-footer{
+			padding:0.75rem 1rem;
+			border-bottom-left-radius: 0.5rem;
+			color: #7b7d80;
+			:hover{
+				i {
+					color: $danger;
+				}
+			}
+		}
+
+
 	}
 
 	.button {
 		height: 100%;
 		display: flex;
 		align-items: center;
-		padding: 1em;
-		border-radius: $button-border-radius;
-		background-color: $primary;
-		@include shadow(3);
-		@include animate();
-
+		padding: 1.25em 0.75rem;
+		color: rgba(61, 85, 151, 0.97);
 		i {
-			width: 1em;
-			height: 1em;
+
 			margin-right: 0.5em;
 			font-size: 2.5em;
 			flex-shrink: 0;
-			color: $color-1;
-			text-align: center;
+			color: rgba(26, 26, 23, 0.67);
+			text-align: left;
 		}
 
 		h3 {
+			font-size: 1.25em;
 			margin-top: 0;
-			color: $color-1;
+			color: #1C1C1B;
 		}
 
-		&:hover {
-			background-color: $color-2;
-			@include shadow(4);
-		}
 
 		@include media-breakpoint-up(md) {
-			flex-direction: column;
+			//flex-direction: column;
+			padding: 2em 1rem;
 
 			i {
-				font-size: 4em;
-				margin-right: 0;
-				margin-bottom: 0.2em;
-			}
+				margin-right: 0.25em;
+				font-size: 3em;
+		    }
 
 			h3 {
-				text-align: center;
+				text-align: left;
+				font-size: 1.25em;
+				font-weight: normal;
 			}
 		}
 	}

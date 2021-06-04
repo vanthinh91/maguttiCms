@@ -1,6 +1,7 @@
 <?php namespace App\maguttiCms\Admin;
 use Form;
 use App;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class AdminTree
@@ -27,16 +28,21 @@ class DashBoardComponent  {
             'url' => url()->to(''),
             'iconClass' => 'fas fa-globe',
             'target' => "_new",
+            'footer_url' => url()->to(''),
         ]);
     }
 
 
     function getData(){
         foreach ($this->getDashBoardItems() as $_code => $section) {
+            $modelClass = 'App\\' . $section['model'];
+            $model = new $modelClass;
             $this->data->push([
                 'title' => trans('admin.models.' . $_code),
                 'url' => ma_get_admin_list_url($section['model']),
                 'iconClass' => 'fas fa-' . $section['icon'],
+                'pills' => $model::count(),
+                'footer_url' => ma_get_admin_create_url($section['model']),
                 'target' => null,
             ]);
         }
