@@ -16,7 +16,7 @@
 			{{trans('website.message.password')}}
 		</div>
 	</div>
-	<div class="col-12 d-flex justify-content-end">
-		<button type="submit" class="btn btn-primary">{{ trans('message.password_reset') }}</button>
+	<div class="col-12 d-grid gap-2 d-sm-flex justify-content-sm-end">
+		<button type="submit" class="btn btn-success">{{ trans('message.password_reset') }}</button>
 	</div>
 </form>

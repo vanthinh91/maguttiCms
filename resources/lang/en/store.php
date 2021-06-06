@@ -66,7 +66,7 @@ return [
         'payment_cancel' => 'Your payment request has been canceled',
 		'payment_fail' => 'Payment failed',
 		'payment_already_paid' => 'The order has already been paid',
-		'payment_success' => 'Payment succesful',
+		'payment_success' => 'Payment successful',
         'shipping_address_invalid' => 'Shipping address error<br> :ERROR',
 	],
 

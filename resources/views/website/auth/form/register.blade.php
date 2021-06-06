@@ -30,8 +30,8 @@
     <div class="col-12">
         <x-website.widgets.privacy-message/>
     </div>
-    <div class="col-12 mt-3 d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary">
+    <div class="col-12 mt-3 d-grid gap-2 d-sm-flex justify-content-sm-end">
+        <button type="submit" class="btn btn-success">
             {{ trans('message.register') }}
         </button>
     </div>
