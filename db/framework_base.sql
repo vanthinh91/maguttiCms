@@ -1131,7 +1131,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1140,7 +1140,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9),(91,'2020_12_26_091719_create_projects_table',10),(92,'2020_12_31_173718_create_jobs_table',11),(93,'2021_02_14_193356_create_payment_methods_table',12),(94,'2021_02_21_091926_add_discount_type_to_discounts_table',13),(95,'2021_03_03_151238_add_formatted_address_to_orders',14),(96,'2021_03_03_151905_add_product_description_to_order_items',14),(97,'2021_03_03_200035_add_reference_to_orders',15),(98,'2021_03_03_200109_add_token_to_carts',15),(99,'2021_03_06_103703_add_status_id_to_orders',16),(100,'2021_03_06_103958_create_order_status_table',17),(101,'2021_04_02_162326_create_shipment_methods_table',18),(102,'2021_04_02_185834_add_shipping_method_id_to_cart_table',19),(103,'2021_04_02_185857_add_shipping_method_id_to_orders_table',19),(104,'2021_04_03_085015_add_shipping_method_to_orders_table',20),(105,'2021_04_10_183034_add_btn_title_to_blocks_table',21),(106,'2021_05_14_210243_add_full_price_and_on_sale_to_products',22),(107,'2021_05_14_212703_add_fee_and_free_from_to_payment_methods',23),(108,'2021_05_15_145503_add_payment_fee_to_carts',24),(109,'2021_05_15_145523_add_payment_fee_to_orders',24),(111,'2021_05_16_004255_add_coupon_code_to_newsletters',25);
+INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9),(91,'2020_12_26_091719_create_projects_table',10),(92,'2020_12_31_173718_create_jobs_table',11),(93,'2021_02_14_193356_create_payment_methods_table',12),(94,'2021_02_21_091926_add_discount_type_to_discounts_table',13),(95,'2021_03_03_151238_add_formatted_address_to_orders',14),(96,'2021_03_03_151905_add_product_description_to_order_items',14),(97,'2021_03_03_200035_add_reference_to_orders',15),(98,'2021_03_03_200109_add_token_to_carts',15),(99,'2021_03_06_103703_add_status_id_to_orders',16),(100,'2021_03_06_103958_create_order_status_table',17),(101,'2021_04_02_162326_create_shipment_methods_table',18),(102,'2021_04_02_185834_add_shipping_method_id_to_cart_table',19),(103,'2021_04_02_185857_add_shipping_method_id_to_orders_table',19),(104,'2021_04_03_085015_add_shipping_method_to_orders_table',20),(105,'2021_04_10_183034_add_btn_title_to_blocks_table',21),(106,'2021_05_14_210243_add_full_price_and_on_sale_to_products',22),(107,'2021_05_14_212703_add_fee_and_free_from_to_payment_methods',23),(108,'2021_05_15_145503_add_payment_fee_to_carts',24),(109,'2021_05_15_145523_add_payment_fee_to_orders',24),(111,'2021_05_16_004255_add_coupon_code_to_newsletters',25),(112,'2021_06_05_180340_create_social_accounts_table',26);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1926,7 +1926,7 @@ CREATE TABLE `settings` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `settings_key_unique` (`key`),
   KEY `settings_id_index` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1935,7 +1935,7 @@ CREATE TABLE `settings` (
 
 LOCK TABLES `settings` WRITE;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-INSERT INTO `settings` VALUES (1,'GA_CODE','UA-','Codice  google  analitycs','GA','2016-08-09 12:01:24','2016-08-09 12:28:06'),(2,'credits_url','https://magutti.com','url credits','webiste','2016-08-09 12:29:05','2016-12-29 14:35:06'),(3,'GMAPS_KEY','','Google maps apy key','','2016-12-27 17:28:54','2016-12-29 09:24:44'),(4,'iubenda_code_it',NULL,'','','2018-06-05 07:08:21','2019-05-11 12:06:46'),(5,'iubenda_code_en',NULL,'','','2018-06-05 07:10:35','2019-05-11 12:06:47'),(6,'iubenda_site',NULL,'','','2018-06-05 07:10:49','2019-05-11 12:07:00'),(7,'captcha_site','','','','2018-08-10 15:00:00','2018-08-10 15:00:00'),(8,'captcha_secret','','','','2018-08-10 15:00:00','2018-08-10 15:00:00'),(9,'LNG','9.432586','google maps longitude','GMAPS','2019-05-01 06:53:24','2019-05-11 12:08:00'),(10,'LAT','46.138065','google maps latitude','GMAPS','2019-05-01 06:55:27','2019-05-11 12:08:16'),(11,'THEME_COLOR','#9a9c00','name=\"theme-color\" content=\"THEME_COLOR\"','THEME','2019-05-02 18:04:54','2019-05-02 18:13:52'),(12,'debug','1','Store in debug mode','store','2021-03-06 09:55:31','2021-03-06 09:55:31');
+INSERT INTO `settings` VALUES (1,'GA_CODE','UA-','Codice  google  analitycs','GA','2016-08-09 12:01:24','2016-08-09 12:28:06'),(2,'credits_url','https://magutti.com','url credits','webiste','2016-08-09 12:29:05','2016-12-29 14:35:06'),(3,'GMAPS_KEY','','Google maps apy key','','2016-12-27 17:28:54','2016-12-29 09:24:44'),(4,'iubenda_code_it',NULL,'','','2018-06-05 07:08:21','2019-05-11 12:06:46'),(5,'iubenda_code_en',NULL,'','','2018-06-05 07:10:35','2019-05-11 12:06:47'),(6,'iubenda_site',NULL,'','','2018-06-05 07:10:49','2019-05-11 12:07:00'),(7,'captcha_site','','','','2018-08-10 15:00:00','2018-08-10 15:00:00'),(8,'captcha_secret','','','','2018-08-10 15:00:00','2018-08-10 15:00:00'),(9,'LNG','9.432586','google maps longitude','GMAPS','2019-05-01 06:53:24','2019-05-11 12:08:00'),(10,'LAT','46.138065','google maps latitude','GMAPS','2019-05-01 06:55:27','2019-05-11 12:08:16'),(11,'THEME_COLOR','#9a9c00','name=\"theme-color\" content=\"THEME_COLOR\"','THEME','2019-05-02 18:04:54','2019-05-02 18:13:52'),(12,'debug','1','Store in debug mode','store','2021-03-06 09:55:31','2021-03-06 09:55:31'),(13,'enable_social_auth','1','Enable. social authentication','social_auth','2021-06-06 11:43:19','2021-06-06 11:49:27');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2002,6 +2002,41 @@ INSERT INTO `shipment_methods` VALUES (1,NULL,NULL,0.00,0.00,10,1,'2021-04-02 14
 UNLOCK TABLES;
 
 --
+-- Table structure for table `social_accounts`
+--
+
+DROP TABLE IF EXISTS `social_accounts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `social_accounts` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `provider` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `provider_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nickname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `token` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `secret` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `refresh_token` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `expires_at` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `social_accounts_user_id_id_index` (`user_id`,`id`),
+  KEY `social_accounts_provider_provider_id_index` (`provider`,`provider_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `social_accounts`
+--
+
+LOCK TABLES `social_accounts` WRITE;
+/*!40000 ALTER TABLE `social_accounts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `social_accounts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `socials`
 --
 
@@ -2030,7 +2065,7 @@ CREATE TABLE `socials` (
 
 LOCK TABLES `socials` WRITE;
 /*!40000 ALTER TABLE `socials` DISABLE KEYS */;
-INSERT INTO `socials` VALUES (1,'facebook',NULL,'facebook','','http://www.facebook.com',10,1,0,'2016-08-09 12:50:01','2021-05-29 17:01:02'),(2,'Twitter','','twitter','','http://www.twitter.com',20,0,0,'2016-06-28 12:58:53','2021-05-29 17:01:03'),(3,'Github','','github','','https://github.com/marcoax/maguttiCms',30,1,0,'2016-06-28 12:58:59','2020-12-25 13:44:26');
+INSERT INTO `socials` VALUES (1,'facebook',NULL,'facebook','','http://www.facebook.com',10,1,0,'2016-08-09 12:50:01','2021-05-29 17:01:02'),(2,'Twitter','','twitter','','https://twitter.com/marcoaxx',20,1,0,'2016-06-28 12:58:53','2021-06-06 20:27:07'),(3,'Github','','github','','https://github.com/marcoax/maguttiCms',30,1,0,'2016-06-28 12:58:59','2020-12-25 13:44:26');
 /*!40000 ALTER TABLE `socials` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2175,7 +2210,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2197,4 +2232,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-31 23:10:24
+-- Dump completed on 2021-06-06 22:27:15

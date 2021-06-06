@@ -38,7 +38,7 @@ Route::get('/order/mailable/{order:token}', function (\App\Order $order) {
 });
 
 
-Route::get('/order-login/', [MainStoreController::class,'orderLogin'])->name('cart.logib')->middleware(['storeenabled']);
+Route::get('/order-login/', [MainStoreController::class,'orderLogin'])->name('cart.login')->middleware(['storeenabled']);
 Route::get('/order-submit/', [MainStoreController::class,'orderSubmit'])->middleware(['storeenabled'])->name('cart.detail');
 
 

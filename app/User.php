@@ -10,6 +10,9 @@ use App\maguttiCms\Notifications\UserResetPasswordNotification as UserResetPassw
 use App\maguttiCms\Permission\GFEntrustUserTrait;
 use App\maguttiCms\Domain\User\UserPresenter;
 
+/**
+ * @method static firstWhere(string $string, $getEmail)
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -18,8 +21,8 @@ class User extends Authenticatable
 
     // user role trait
     use GFEntrustUserTrait;
-    protected $role_user_table = "role_user";
-    protected $user_foreign_key = "user_id";
+    protected string $role_user_table = "role_user";
+    protected string $user_foreign_key = "user_id";
 
 
     /**
@@ -50,7 +53,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
     /*
     |--------------------------------------------------------------------------
@@ -70,6 +73,10 @@ class User extends Authenticatable
     public function addresses()
     {
         return $this->hasMany('App\Address');
+    }
+
+    public function identities() {
+        return $this->hasMany('App\SocialAccount');
     }
 
     /**
@@ -93,10 +100,12 @@ class User extends Authenticatable
         }
     }
 
-    /**
-     * @return array
-     */
-	
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Fieldspec for admin form
+    |--------------------------------------------------------------------------
+    */
     function getFieldSpec():array
     {
         $this->fieldspec['id'] = [

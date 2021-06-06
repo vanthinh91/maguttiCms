@@ -182,7 +182,7 @@ class LoginController extends Controller
 		if (StoreHelper::isStoreEnabled())
 			$cart = StoreHelper::getSessionCart();
 
-        $request->session()->regenerate();
+           $request->session()->regenerate();
 
 		// if the user has an active cart, store it to the new session
 		if (StoreHelper::isStoreEnabled()) {

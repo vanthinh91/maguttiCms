@@ -38,7 +38,7 @@ class MainStoreController extends Controller
 
 	public function orderLogin()
 	{
-		$redirectTo = 'cart/'.Definition::CART_STEP_ADDRESS;
+		$redirectTo = Definition::CART_FIRST_STEP;
 		$with_register = true;
 		return view('magutti_store::login', compact('redirectTo', 'with_register'));
 	}
@@ -55,14 +55,15 @@ class MainStoreController extends Controller
 			return back();
 		}
 		$response = StoreHelper::processPayment($payment);
+
 		if ($response['status'] == 'ok') {
 			return redirect($response['text']);
 		}
-		else {
-			$order = $payment->order;
-			session()->flash('error', $response['text']);
-			return Redirect::to(url_locale('/order-payment-result/'.$order->token));
-		}
+
+        $order = $payment->order;
+        session()->flash('error', $response['text']);
+        return Redirect::to(url_locale('/order-payment-result/'.$order->token));
+
 	}
 
 

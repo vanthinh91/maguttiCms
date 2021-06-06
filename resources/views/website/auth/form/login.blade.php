@@ -21,11 +21,16 @@
 			</a>
 		</div>
 	</div>
+
 	<div class="col">
-		<button type="submit" class="btn btn-primary btn-block">
+		<button type="submit" class="btn btn-success w-100 ">
 			{{ trans('message.sign_in') }}
 		</button>
 	</div>
+	@if(data_get($site_settings,'enable_social_auth') )
+
+		<x-magutti_social-login-component :label="__('auth.social_login')" :redirectTo="$redirectTo??''"/>
+	@endif
 
 	@if (!isset($with_register))
 		<div class="login-form-not-registered d-flex justify-content-center">

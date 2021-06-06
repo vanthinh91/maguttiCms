@@ -21,11 +21,15 @@ use App\maguttiCms\Website\Controllers\StoreAPIController;
 
 use App\maguttiCms\Website\Controllers\UpdatePasswordController;
 use App\maguttiCms\Website\Controllers\WebsiteFormController;
+use App\SocialAccount;
+use App\User;
 
-Route::group([], function () {
-    Route::post('api/update-ghost', [APIController::class, 'updateGhost']);
+
+Route::get('/pino/', function () {
+
+    SocialAccount::firstWhere(['provider'=>1,'provider_id'=>1]);
+    return 1;
 });
-
 /*
 |--------------------------------------------------------------------------
 | FRONT END
@@ -78,6 +82,9 @@ Route::group(['middleware' => ['localeSessionRedirect', 'localizationRedirect', 
 
     // store page
     Route::group(['as'=>'store.'],base_path('routes/frontend/store.php'));
+
+    // store social_auth
+    Route::group(['as'=>'social_auth.'],base_path('routes/frontend/social_auth.php'));
 
     //Route::name('seolanding')->group(base_path('routes/frontend/seolanding.php'));
 

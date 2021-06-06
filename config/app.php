@@ -190,6 +190,8 @@ return [
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
 
+        Laravel\Socialite\SocialiteServiceProvider::class,
+
 
         /*
         |--------------------------------------------------------------------------
@@ -211,7 +213,9 @@ return [
         App\maguttiCms\Website\Providers\WebsiteDecoratorServiceProvider::class,
 
 
-        App\maguttiCms\Domain\Store\StoreServiceProvider::class
+        App\maguttiCms\Domain\Store\StoreServiceProvider::class,
+        App\maguttiCms\Domain\SocialAccount\SocialAuthServiceProvider::class
+
     ],
 
     /*
@@ -276,6 +280,8 @@ return [
         'Carbon' => 'Carbon\Carbon',
         'Slugify' => 'Cocur\Slugify\Bridge\Laravel\SlugifyFacade',
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
         /*
          |--------------------------------------------------------------------------

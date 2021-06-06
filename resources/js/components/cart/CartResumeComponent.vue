@@ -32,7 +32,9 @@
                   <div class="d-flex justify-content-start">
                     <a :href="item.product.url" class="d-none d-md-block"><img :src="item.product.thumb_image"></a>
                     <div class="ms-1">
-                      {{ item.product.code }} - {{ item.product.title }}
+                      <small>{{ item.product.code }}</small>
+                      <br>
+                      {{ item.product.title }}
                       <product-price :product="item.product"/>
                     </div>
                   </div>
