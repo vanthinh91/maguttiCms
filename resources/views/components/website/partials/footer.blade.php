@@ -14,10 +14,10 @@
     <section class="footer-info bg-primary py-2">
         <div class="container ">
             <div class="row align-items-end">
-                <div class="col-12 col-md-8 col footer-address">
-                    <h4 class="text-white">{{ config('maguttiCms.website.option.app.name') }} </h4>
+                <div class=" d-grip col-12 col-md-8 footer-address">
+                    <h4 class="text-center text-md-start">{{ config('maguttiCms.website.option.app.name') }} </h4>
 
-                    <div class="">
+                    <div class="footer-address-content">
                         &copy; <?php echo date('Y'); ?> {{ config('maguttiCms.website.option.app.legal') }} - Ver. {{ App::VERSION() }} <br>
                         {{ config('maguttiCms.website.option.app.address') }} - {{ config('maguttiCms.website.option.app.locality') }} - P.IVA {{ config('maguttiCms.website.option.app.vat') }}<br>
                         Tel: {{ config('maguttiCms.website.option.app.phone') }} - Fax: {{ config('maguttiCms.website.option.app.fax') }} - <a href="mailto:{{ config('maguttiCms.website.option.app.email') }}">{{ config('maguttiCms.website.option.app.email') }}</a>
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="col-12 col-md-4 footer-legal">
-                    <div class="text-md-end">
+                    <div class="text-center text-md-end">
                         <a href="https://www.iubenda.com/privacy-policy/{{ data_get($site_settings,'iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}" class="lightbox-iframe" title="{{ trans('website.privacy')}}">
                             {{ trans('website.privacy')}}
                         </a> |

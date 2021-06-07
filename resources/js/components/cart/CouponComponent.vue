@@ -17,7 +17,7 @@
                  :placeholder="$t('store.order.discount.enter')" @focus="error=false">
         </div>
         <div class="col-12">
-          <a class="d-flex justify-content-between btn btn-success" @click.prevent="addCoupon">
+          <a class="d-flex justify-content-center btn btn-success" @click.prevent="addCoupon">
             {{ $t('store.order.discount.apply') }}
           </a>
         </div>

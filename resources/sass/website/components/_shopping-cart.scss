@@ -81,7 +81,11 @@
   border: 1px solid rgba(239, 239, 239, 0.55);
 
   &.cart-summary {
-    margin-bottom: 1rem;
+    margin: 1rem 0px;
+
+    @include media-breakpoint-up(md) {
+      margin: 0px;
+    }
   }
 
 

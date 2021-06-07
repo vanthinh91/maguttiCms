@@ -30,5 +30,5 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'social_login' => 'accedi con'
+    'social_login' => 'continua con'
 ];

@@ -6,7 +6,7 @@
     		</div>
 
             <div class="cookie-notice-action">
-    			<a href="https://www.iubenda.com/privacy-policy/{{ data_get($site_settings,'iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}/cookie-policy" class="btn btn-secondary lightbox-iframe" title="{{ trans('website.cookie')}}">
+    			<a href="https://www.iubenda.com/privacy-policy/{{ data_get($site_settings,'iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}/cookie-policy" class="btn btn-success lightbox-iframe" title="{{ trans('website.cookie')}}">
     				{!! trans('website.message.cookie_more_info')!!}
     			</a>
     			<a id="cookie-accept" href="#" class="btn btn-primary">
