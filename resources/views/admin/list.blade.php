@@ -4,10 +4,16 @@
     @include('admin.common.action-bar')
     <main id="main-list" class="container-fluid">
         @include('admin.common.search_bar')
-        <h2>
-            {{icon($pageConfig['icon'])}}
-            {{sprintf(trans('admin.label.list_title'), trans('admin.models.'.$model))}}
-        </h2>
+        <div class="d-flex justify-content-between align-items-center list-header my-3">
+            <x-admin.list.header class="p-0 m-0">
+                <x-slot name="icon">
+                    {{icon($pageConfig['icon'])}}
+                </x-slot>
+                {{sprintf(trans('admin.label.list_title'), trans('admin.models.'.$model))}}
+            </x-admin.list.header>
+
+        </div>
+
         @include('shared.notification')
         @if ($articles->isEmpty())
             <x-ui.alert  class='alert-info d-flex justify-content-center'>

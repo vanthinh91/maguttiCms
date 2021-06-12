@@ -65,6 +65,7 @@ return [
 		'image'         => 'Image',
 		'insert'		=> 'Insert',
 		'is_active'		=> 'Status',
+		'items_per_page'=> ':Items Items per page',
 		'languages'		=> 'Languages',
         'lat'		    => 'Latitude',
         'last_name'		=> 'Surname',
