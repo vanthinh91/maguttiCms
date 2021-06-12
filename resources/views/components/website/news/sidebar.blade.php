@@ -1,5 +1,5 @@
 <aside class="mt-5 mt-md-0">
-    <h5 class="text-accent">Ultime News</h5>
+<h5 class="text-accent">Ultime News</h5>
     @foreach ( $getLatestPost(6) as $latest_post)
         <div class="d-flex news__sidebar">
             <a href="{{ $latest_post->getPermalink() }}" class="flex-shrink-0">

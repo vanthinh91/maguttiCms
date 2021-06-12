@@ -1,4 +1,6 @@
 <?php namespace App;
+use App\maguttiCms\Builders\MaguttiCmsBuilder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 use Astrotomic\Translatable\Translatable;
@@ -31,6 +33,16 @@ class Tag extends Model
     public function news(){
         return $this->belongsToMany('App\News');
     }
+    /*
+    |--------------------------------------------------------------------------
+    |  Builder & Repo
+    |--------------------------------------------------------------------------
+    */
+    function newEloquentBuilder($query)
+    {
+        return new MaguttiCmsBuilder($query);
+    }
+
 
     /*
     |--------------------------------------------------------------------------

@@ -14,6 +14,7 @@
                 </div>
                 <div class="col-12 col-md-3 d-none d-md-block">
                     <x-website.news.sidebar/>
+                    <x-website.news.tags/>
                 </div>
             </div>
 		</div>
