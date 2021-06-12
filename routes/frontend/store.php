@@ -1,5 +1,6 @@
 <?php
 
+use App\maguttiCms\Domain\Store\Api\ResendOrderNotification;
 use App\maguttiCms\Website\Controllers\Store\OrderSendController;
 use App\maguttiCms\Website\Controllers\Store\OrderPaymentController;
 use App\maguttiCms\Website\Controllers\Store\OrderResultController;
@@ -57,4 +58,5 @@ Route::group([], function () {
     Route::get('api/store/order-calc', [StoreAPIController::class, 'storeOrderCalc']);
     Route::get('api/store/validate-coupon', CouponValidateController::class);
     Route::delete('api/store/coupon-remove', CouponDeleteController::class);
+    Route::get('api/store/resend-order-notification/{order:token}', ResendOrderNotification::class);
 });

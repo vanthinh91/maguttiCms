@@ -1,22 +1,4 @@
 window.App = function () {
-	function handleBootstrap() {
-
-
-		/*Tooltips*/
-		$('.tooltips').tooltip();
-		$('.tooltips-show').tooltip('show');
-		$('.tooltips-hide').tooltip('hide');
-		$('.tooltips-toggle').tooltip('toggle');
-		$('.tooltips-destroy').tooltip('destroy');
-
-		/*Popovers*/
-		$('.popovers').popover();
-		$('.popovers-show').popover('show');
-		$('.popovers-hide').popover('hide');
-		$('.popovers-toggle').popover('toggle');
-		$('.popovers-destroy').popover('destroy');
-	}
-
 	function handleNewsletter() {
 
 		$('#form-newsletter').on('submit', function (e) {
@@ -84,20 +66,6 @@ window.App = function () {
 
 
 
-	function handleNavbar() {
-		// deprecato
-		/*
-		let WINDOW = $(window);
-		WINDOW.on('scroll', function () {
-			checkNavbar();
-		});
-		checkNavbar();
-		*/
-
-	}
-
-
-	window.myFunc = (val) => alert(val);
 
 	function initOverrideInvalid() {
 		var offset = $('.navbar.fixed-top').outerHeight() + 30;
@@ -118,7 +86,6 @@ window.App = function () {
 
 	return {
 		init: function () {
-			handleBootstrap();
 			handleNewsletter();
 			handleLightBox();
 			handleScrollTo();
@@ -162,6 +129,10 @@ window.App = function () {
 	};
 }();
 
+
+
+
+
 /******************************** MODAL ************************/
 function updateModalAlertMsg($htmlContent) {
 	bootbox.alert($htmlContent, function () {});
@@ -171,9 +142,7 @@ function updateModalBoxMsg($htmlContent) {
 	bootbox.confirm($htmlContent, function () {});
 }
 
- window.modalPino  = function($htmlContent){
-	 bootbox.alert($htmlContent, function () {});
-}
+
 
 /*********************************  localize *********************/
 window.trans = function (keystring) {
@@ -189,4 +158,29 @@ window.trans = function (keystring) {
 	} else {
 		return keystring;
 	}
+}
+const Toast = Swal.mixin({
+	toast: true,
+	position: 'top-right',
+	iconColor: 'green',
+	customClass: {
+		popup: 'colored-toast'
+	},
+	showConfirmButton: false,
+	timer: 1500,
+	timerProgressBar: true
+});
+
+window.sendOrderNotification = function (order_token){
+    let api_url=`${window.urlAjaxHandler}/api/store/resend-order-notification/${order_token}`;
+
+	axios.get(api_url)
+	  .then(({data}) => {
+		  Toast.fire({
+			  icon: data.msg.type,
+			  title: data.msg.text,
+		  })
+	   }, (error) => {
+			console.log(error);
+	  });
 }

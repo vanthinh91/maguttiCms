@@ -4,9 +4,9 @@ namespace App\maguttiCms\Domain\Store\Notifications;
 
 use App\Order;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class NewOrderNotification extends Notification implements ShouldQueue
 {
@@ -16,16 +16,17 @@ class NewOrderNotification extends Notification implements ShouldQueue
      * @var Order
      */
     private Order $order;
+    private bool $notify_to_admin; //
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Order $order)
+    public function __construct(Order $order,$notify_to_admin=true)
     {
-        //
         $this->order = $order;
+        $this->notify_to_admin = $notify_to_admin;
     }
 
     /**
@@ -47,11 +48,12 @@ class NewOrderNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-
         return (new MailMessage)
             ->subject($this->order->newOrderEmailSubject())
-            ->cc(config('maguttiCms.website.option.app.email_order'))
-            ->view(['magutti_store::emails.order-confirm-html', 'magutti_store::emails.order-confirm-plain'], ['order' => $this->order]);
+            ->when($this->notify_to_admin, function (MailMessage $mail) {
+                return $mail->cc(config('maguttiCms.website.option.app.email_order'));
+            }
+            )->view(['magutti_store::emails.order-confirm-html', 'magutti_store::emails.order-confirm-plain'], ['order' => $this->order]);
     }
 
 

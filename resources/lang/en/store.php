@@ -70,6 +70,10 @@ return [
         'shipping_address_invalid' => 'Shipping address error<br> :ERROR',
 	],
 
+    'notification'=>[
+        'order_resent'=>'Order Email confirmation has been resent to your email address'
+    ],
+
 	'order' => [
 		'guard' => 'An account is required to continue',
 		'login' => 'Login',
@@ -155,7 +159,8 @@ return [
 			'paid' => 'Paid',
 			'date' => 'Date',
 			'order' => 'Order',
-			'view' => 'View'
+			'view' => 'View',
+			'resend_email' => 'Resend<br/>Email',
 		]
 	],
 
