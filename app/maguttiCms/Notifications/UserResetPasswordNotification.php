@@ -2,12 +2,15 @@
 
 namespace App\maguttiCms\Notifications;
 
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class UserResetPasswordNotification extends Notification
+class UserResetPasswordNotification extends Notification implements ShouldQueue
 {
-	public $token;
+	public string $token;
+    use Queueable;
 
 	/**
 	 * Create a notification instance.
