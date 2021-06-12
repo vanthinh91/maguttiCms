@@ -38,7 +38,7 @@ class MainStoreController extends Controller
 
 	public function orderLogin()
 	{
-		$redirectTo = Definition::CART_FIRST_STEP;
+	    $redirectTo = 'cart/'.Definition::CART_STEP_ADDRESS;
 		$with_register = true;
 		return view('magutti_store::login', compact('redirectTo', 'with_register'));
 	}
