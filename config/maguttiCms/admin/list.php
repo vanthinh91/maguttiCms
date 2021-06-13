@@ -889,6 +889,7 @@ return [
             'orderType' => 'DESC',
             'withRelation' => ['payment'], // array
             'viewTemplate' => 'magutti_store::admin.views.order',
+            'total' => 'total_cost',
             'actions' => [
                 'edit' => 0,
                 'export_csv' => 0,

@@ -14,7 +14,10 @@
          <div v-if="item.footer_url!==''" class="dashboard-card-footer-action">
            <a :href="item.footer_url" :target="item.target ? item.target : null">
            <i :class="item.footer_icon ? item.footer_icon:'fas fa-plus-circle'+' fa-lg'"></i>
-           </a>
+         </a>
+         </div>
+         <div v-else-if="item.total!==''" class="dashboard-card-footer-action">
+             <span class="badge rounded-pill bg-info">{{ item.total }}</span>
          </div>
 
        </div>

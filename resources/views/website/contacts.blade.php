@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4">
-                    <address>
+                    <address style="line-height: 1.75rem">
                         <h3 class="text-primary">{{ config('maguttiCms.website.option.app.name') }}</h3>
                         <div class="text-muted">
                             {{ config('maguttiCms.website.option.app.address') }}<br>

@@ -8,7 +8,7 @@
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="main">
 		<a id="sidebar-toggle" href="#sidebar" class="nav-toggle">
-			{{icon('angle-right', 'fa-2x')}}
+			{{icon('bars', 'fa-lg')}}
 		</a>
 		<a class="logo" href="/admin">
 			<img src="{!! asset(config('maguttiCms.admin.path.assets').'cms/images/logo-white.png')!!}" alt="CMS Login" class="img-fluid">

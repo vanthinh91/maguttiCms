@@ -45,6 +45,7 @@ class DashBoardComponent  {
                 'pills' => $model::count(),
                 'footer_url' => (data_get($section['actions'],'create'))? ma_get_admin_create_url($section['model']):'',
                 'target' => null,
+                'total' => $this->getTotalAmount($section,$model),
             ]);
         }
         return $this->data;
@@ -56,5 +57,9 @@ class DashBoardComponent  {
                 return auth_user('admin')->canViewSection($section);
             }
         );
+    }
+
+    function getTotalAmount($section,$model){
+      return (data_get($section,'total'))?App\maguttiCms\Tools\StoreHelper::formatPrice($model::sum(data_get($section,'total'))):null;
     }
 }
