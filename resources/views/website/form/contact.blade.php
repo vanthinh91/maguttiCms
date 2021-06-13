@@ -1,6 +1,6 @@
 
 @if (session('success'))
-    <x-ui.alert class="alert-success alert-dismissible d-flex align-items-center" >
+    <x-ui.alert class=" alert alert-color-4 alert-dismissible d-flex align-items-center" >
         {{icon('check-circle', 'fa-2x flex-shrink-0 me-2')}}
         <div>{!! session('success') !!}</div>
     </x-ui.alert>
@@ -24,7 +24,7 @@
         @endif
     @endif
     <div class="col-12 col-sm-6">
-        <x-website.ui.input for="name" placeholder="{{ trans('website.name') }}*" required/>
+        <x-website.ui.input for="name" placeholder="{{ trans('website.name') }} *" required/>
     </div>
     <div class="col-12 col-sm-6">
         <x-website.ui.input for="surname" placeholder="{{ trans('website.surname') }} *" required/>
@@ -36,10 +36,10 @@
         <x-website.ui.input for="company" placeholder="{{ trans('website.employer') }} *" required/>
     </div>
     <div class="col-12">
-        <x-website.ui.input for="subject" placeholder="{{ trans('website.subject') }}*" required/>
+        <x-website.ui.input for="subject" placeholder="{{ trans('website.subject') }} *" required/>
     </div>
     <div class="col-12">
-		<x-website.ui.textarea for="message" placeholder="{{ trans('website.message_email') }}*" rows="5" />
+		<x-website.ui.textarea for="message" placeholder="{{ trans('website.message_email') }} *" rows="5" required />
     </div>
     <div class="col-12 col-sm-12">
         <x-website.widgets.privacy-message/>
