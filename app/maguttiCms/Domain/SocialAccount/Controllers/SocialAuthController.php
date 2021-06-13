@@ -26,7 +26,7 @@ class SocialAuthController extends Controller
         $this->redirectTo = $this->getRedirectAfterLogin();
         Auth::login($user,true);
         $this->addCartToLoggedUser($user);
-        return redirect()->route($this->redirectTo);
+        return redirect($this->redirectTo);
     }
 
     /* TODO */
