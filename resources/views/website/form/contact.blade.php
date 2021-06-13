@@ -1,3 +1,17 @@
+
+@if (session('success'))
+    <x-ui.alert class="alert-success alert-dismissible d-flex align-items-center" >
+        {{icon('check-circle', 'fa-2x flex-shrink-0 me-2')}}
+        <div>{!! session('success') !!}</div>
+    </x-ui.alert>
+@else
+ @if ($errors->any())
+    <x-ui.alert  class='alert-danger alert-dismissible d-flex align-items-center'>
+        {{icon('times-circle', 'fa-2x flex-shrink-0 me-2')}}
+        <div>{{__('website.message.please_fill_all_required_field')}}</div>
+    </x-ui.alert>
+ @endif
+
 {{ Form::open(array('action' => '\App\maguttiCms\Website\Controllers\WebsiteFormController@getContactUsForm')) }}
 <div class="row g-3">
     @if(isset($request_product_id))
@@ -25,7 +39,7 @@
         <x-website.ui.input for="subject" placeholder="{{ trans('website.subject') }}*" required/>
     </div>
     <div class="col-12">
-		<x-website.ui.textarea for="message" placeholder="{{ trans('website.message_email') }}*" rows="5" required/>
+		<x-website.ui.textarea for="message" placeholder="{{ trans('website.message_email') }}*" rows="5" />
     </div>
     <div class="col-12 col-sm-12">
         <x-website.widgets.privacy-message/>
@@ -42,3 +56,4 @@
     </div>
 </div>
 {{ Form::close() }}
+@endif

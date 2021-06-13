@@ -67,6 +67,7 @@ return [
         'contact_feedback'  => 'Thanks for you request.<br> The <b>MaguttiCms®</b> team ',
         'privacy'           => 'I accept terms and conditions of use and read the privacy note.',
         'required_field'    => 'Required field (*)',
+        'please_fill_all_required_field' => 'Please fill all the required field (*)',
 		'product_request'	=> 'Information request for product',
 		'password'			=> 'The password must be at least 8 characters long and contain upper case and lower case letters, numbers and special characters',
 

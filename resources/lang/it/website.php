@@ -67,6 +67,7 @@ return [
         'contact_feedback' => 'Grazie per  aver inviato la tua richiesta',
         'privacy' => 'Acconsento al trattamento dei dati',
         'required_field' => 'I campi contrassegnati con (*) sono obbligatori',
+        'please_fill_all_required_field' => 'Prego compilare tutti i campi obbligatori (*)',
         'product_request' => 'Richiesta informazioni per il prodotto',
         'password' => 'La password deve avere  almeno 8 caratteri e deve contenere lettere maiuscole e minuscole, numeri e caratteri speciali',
 
