@@ -55,8 +55,8 @@ return [
         'see_all'           => 'All products',
     ],
     'news' => [
-        'latest'    => 'Ultime News',
-        'share_on'  => 'Condividi su'
+        'latest'    => 'Latest News',
+        'share_on'  => 'Share on'
     ],
 
     'paginator' => [
