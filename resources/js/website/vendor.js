@@ -16,4 +16,4 @@ window.bootbox = require('bootbox');
 
 require('../plugins/gmaps.js');
 require('../plugins/jquery.maCookieEu.js');
-require('../plugins/jquery.pb-scroll-trigger.js');
+

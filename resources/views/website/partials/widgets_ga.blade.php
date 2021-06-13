@@ -4,6 +4,5 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', '{!! data_get($site_settings,'GA_CODE') !!}', {'anonymizeIp': true});
 </script>

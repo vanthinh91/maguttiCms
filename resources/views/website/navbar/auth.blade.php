@@ -13,11 +13,9 @@
 			<a class="dropdown-item" href="{{url_locale('users/dashboard')}}">
 				{{icon('list')}} {{trans('auth.dashboard')}}
 			</a>
-
 			<a class="dropdown-item" href="{{url_locale('users/profile')}}">
 				{{icon('user')}} {{trans('auth.profile')}}
 			</a>
-
 			<a class="dropdown-item" href="{{url_locale('logout')}}">
 				{{icon('sign-out-alt')}} {{trans('auth.logout')}}
 			</a>

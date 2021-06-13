@@ -1,6 +1,5 @@
 window.App = function () {
 	function handleNewsletter() {
-
 		$('#form-newsletter').on('submit', function (e) {
 			e.preventDefault();
 			$.ajax({
@@ -33,9 +32,6 @@ window.App = function () {
 						message: msgHtml
 					})
 				}
-
-
-
 			});
 		});
 	}
@@ -63,8 +59,6 @@ window.App = function () {
 			App.scrollTo(window.location.hash);
 		}
 	}
-
-
 
 
 	function initOverrideInvalid() {
@@ -130,9 +124,6 @@ window.App = function () {
 }();
 
 
-
-
-
 /******************************** MODAL ************************/
 function updateModalAlertMsg($htmlContent) {
 	bootbox.alert($htmlContent, function () {});
@@ -141,8 +132,6 @@ function updateModalAlertMsg($htmlContent) {
 function updateModalBoxMsg($htmlContent) {
 	bootbox.confirm($htmlContent, function () {});
 }
-
-
 
 /*********************************  localize *********************/
 window.trans = function (keystring) {

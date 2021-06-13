@@ -14,7 +14,6 @@
 				<div class="my-0">
 					<x-magutti_store-order-list-component/>
 				</div>
-
 				<div class="my-4 d-none">
 					<h3 class="text-muted">{{ trans('store.dashboard.addresses') }}</h3>
 					<ul>

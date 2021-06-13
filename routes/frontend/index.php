@@ -21,15 +21,7 @@ use App\maguttiCms\Website\Controllers\StoreAPIController;
 
 use App\maguttiCms\Website\Controllers\UpdatePasswordController;
 use App\maguttiCms\Website\Controllers\WebsiteFormController;
-use App\SocialAccount;
-use App\User;
 
-
-Route::get('/pino/', function () {
-
-    SocialAccount::firstWhere(['provider'=>1,'provider_id'=>1]);
-    return 1;
-});
 /*
 |--------------------------------------------------------------------------
 | FRONT END

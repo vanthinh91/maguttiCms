@@ -10,8 +10,6 @@
             <div class="page-breadcrumb__item">{{$article->menu_title}}</div>
         </div>
     </x-website.ui.breadcrumbs>
-
-
     <x-website.partials.page-content-full-image :article="$article"/>
     <x-website.partials.page-child :children="$article->children" class="mt-0 pt-1 pb-1"/>
     <x-website.page-blocks.lists :item="$article"/>
