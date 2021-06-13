@@ -12,7 +12,7 @@ class ContactRequest extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $data;
+    public array $data;
 
     /**
      * Create a new notification instance.

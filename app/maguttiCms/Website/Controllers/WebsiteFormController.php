@@ -17,13 +17,6 @@ use Input;
 class WebsiteFormController extends Controller
 {
 
-
-
-    public function __construct()
-    {
-
-    }
-
     /**
      *  Contact Form  Handler
      *
