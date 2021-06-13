@@ -22,6 +22,7 @@
 		background-color: white;
 		border-bottom:5px solid rgba(26, 26, 23, 0.67);
 		border-radius: 0.25rem;
+		padding:0px;
 		&:hover {
 			border-bottom:5px solid $info;
 			@include shadow(4);
@@ -39,8 +40,9 @@
 			border-bottom: 1px solid #D1D5DB;
 		}
 		&-footer{
-			padding:0.75rem 1rem;
+			padding:0.75rem 1.5rem;
 			border-bottom-left-radius: 0.5rem;
+			border-top:0;
 			color: #7b7d80;
 			:hover{
 				i {
@@ -48,8 +50,6 @@
 				}
 			}
 		}
-
-
 	}
 
 	.button {
@@ -76,8 +76,7 @@
 
 		@include media-breakpoint-up(md) {
 			//flex-direction: column;
-			padding: 2em 1rem;
-
+			padding: 2em 0.5rem;
 			i {
 				margin-right: 0.25em;
 				font-size: 3em;

@@ -1,13 +1,15 @@
 <template>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xxl-2">
-     <div class="dashboard-card">
-       <a class="dashboard-card-body" :href="item.url" :target="item.target ? item.target : null">
-         <div class="button">
-           <i :class="item.iconClass+' fa-fw fa-5x '"></i>
-           <h3>{{item.title}}</h3>
+  <div class="col">
+     <div class="card dashboard-card  h-100">
+       <div class="card-body dashboard-card-body " >
+         <div class="dashboard-card-body-content">
+           <a class="button" :href="item.url" :target="item.target ? item.target : null">
+             <i :class="item.iconClass+' fa-fw fa-5x '"></i>
+             <h3>{{item.title}}</h3>
+           </a>
          </div>
-       </a>
-       <div class="dashboard-card-footer d-flex justify-content-between">
+       </div>
+       <div class="card-footer dashboard-card-footer d-flex justify-content-between">
          <div class="dashboard-card-footer-counter">
            <span class="badge rounded-pill bg-info">{{ item.pills }}</span>
          </div>
@@ -19,11 +21,8 @@
          <div v-else-if="item.total!==''" class="dashboard-card-footer-action">
              <span class="badge rounded-pill bg-info">{{ item.total }}</span>
          </div>
-
        </div>
      </div>
-
-
     </div>
 </template>
 

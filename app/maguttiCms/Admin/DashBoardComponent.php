@@ -1,4 +1,5 @@
 <?php namespace App\maguttiCms\Admin;
+use App\maguttiCms\Website\Facades\StoreHelper;
 use Form;
 use App;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +41,7 @@ class DashBoardComponent  {
             $model = new $modelClass;
             $this->data->push([
                 'title' => trans('admin.models.' . $_code),
+                'model' => $section['model'],
                 'url' => ma_get_admin_list_url($section['model']),
                 'iconClass' => 'fas fa-' . $section['icon'],
                 'pills' => $model::count(),
@@ -60,6 +62,6 @@ class DashBoardComponent  {
     }
 
     function getTotalAmount($section,$model){
-      return (data_get($section,'total'))?App\maguttiCms\Tools\StoreHelper::formatPrice($model::sum(data_get($section,'total'))):null;
+      return (data_get($section,'total'))?StoreHelper::formatPrice($model::sum(data_get($section,'total'))):null;
     }
 }
