@@ -128,6 +128,6 @@
 		});
 	</script>
 	<script>
-		$('#flash-overlay-modal').modal();
+		//$('#flash-overlay-modal').modal();
 	</script>
 @endsection
