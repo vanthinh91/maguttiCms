@@ -3,7 +3,8 @@
 return [
 	'product' => [
 		'code' => 'Code',
-		'price' => 'Price'
+		'price' => 'Price',
+        'sku'   => 'SKU number',
 	],
 
 	'cart' => [

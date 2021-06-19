@@ -109,6 +109,7 @@ return [
 		'seo'     		=> 'SEO',
 		'slug'			=> 'Slug',
 		'slug_ignore'	=> 'Ignora traduzione slug',
+        'sku'           => 'SKU/Codice',
         'street'        => 'Via',
         'sort'          => 'Ordinamento',
 		'status'		=> 'Stato',

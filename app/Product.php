@@ -95,7 +95,7 @@ class Product extends Model
             'type'     => 'string',
             'required' => 1,
             'hidden'   => 0,
-            'label'    => trans('admin.label.code'),
+            'label'    => trans('admin.label.sku'),
             'display'  => 1,
             'cssClassElement' => 'col-md-4 col-lg-4',
         ];

@@ -118,6 +118,7 @@ return [
 		'seo'     		=> 'SEO',
 		'slug'			=> 'Slug',
 		'slug_ignore'	=> 'Ignore slug translation',
+        'sku'			=> 'SKU number',
         'street'        => 'Street',
 		'sort'          => 'Sort',
 		'status'		=> 'Status',

@@ -171,6 +171,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'code' => 'SKU/code',
+    ],
 
 ];

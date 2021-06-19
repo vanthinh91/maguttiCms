@@ -179,6 +179,7 @@ return [
 
     'attributes' => [
         'name'                  => 'nome',
+        'code'                  => 'SKU/Ccd..odice',
         'username'              => 'nome utente',
         'first_name'            => 'nome',
         'last_name'             => 'cognome',
