@@ -115,6 +115,7 @@ class Article extends Model
             'type' => 'relation',
             'model' => 'Domain',
             'filter' => ['domain' => 'template'],
+            //'whereRaw' => 'domain in ("template","block_template")',
             'foreign_key' => 'id',
             'label_key' => 'title',
             'required' => 0,

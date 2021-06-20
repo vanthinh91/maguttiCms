@@ -3,10 +3,10 @@
         @foreach($children as $child)
             <div id="{{$child->slug}}" class="row  {{ ($loop->last) ?'':' pb-2 mb-2' }}">
                 <a name="#{{$child->slug}}"></a>
-                <div class=" col-12 col-lg-7 mb-2 mb-lg-0  {{$loop->even ? '' :'order-lg-12' }}">
+                <div class=" col col-12 col-lg-7 mb-2 mb-lg-0  {{$loop->even ? 'order-lg-1' :'order-lg-12' }}">
                     <x-website.partials.page-media-block :item="$child"/>
                 </div>
-                <div class=" col-12 col-lg-5  {{$loop->even ? '' :'order-lg-1' }}text-primary">
+                <div class="col  col-12 col-lg-5  {{$loop->even ? 'order-lg-12' :'order-lg-1' }} text-primary">
                     @if($child->subtitle!='')
                         <h6 class="text-accent ">{!! $child->subtitle !!}</h6>
                     @endif
