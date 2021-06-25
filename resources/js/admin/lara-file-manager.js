@@ -1,7 +1,7 @@
 $( function()
 {
 
-  var $modal = $('#filemanager');
+  const $modal = $('#filemanager');
 
   /*
   * When the user clicks on upload button, open the modal
@@ -10,20 +10,19 @@ $( function()
   $('.filemanager-select').on('click', function(e) {
 
     e.preventDefault();
-
     $modal.modal('show');
-
-    var inputName = $(this).data('input');
-    var inputValue = $('input[name='+ inputName +']').val();
-
+    let inputName = $(this).data('input');
+    let inputValue = $('input[name='+ inputName +']').val();
     // If 'inputValue' value is != 0, open library tab
     if(inputValue != 0) {
+      window.$eventBus.$emit('FILE_MANAGER_SELECT_ITEM',inputValue)
+      window.$eventBus.$emit('FILE_MANAGER_LOAD_LIST',inputValue)
       $('#file-manager-list').click();
     }
-
     // Set modal hidden input values
     $('input[name=file-input]', $modal).val(inputName);
     $('input[name=file-value]', $modal).val(inputValue);
+
   });
 
   /*
@@ -44,13 +43,8 @@ $( function()
 
       // Set media id in modal hidden value
       $('input[name=file-value]', $modal).val(responseObj.id);
-
       // Switch to 'library' tab
       $('#file-manager-list').trigger('click');
-
-      // Empty the content of the sidebar
-      $('#sidebar-content').empty();
-
     }
   });
 
@@ -61,38 +55,24 @@ $( function()
       let input_obj    = $('.filemanager-select').data("input");
       let media_obj_id = (parseInt($('input[name='+input_obj+']').val()))?parseInt($('input[name='+input_obj+']').val()):'' ;
       let request_url = `${urlAjaxHandlerCms}filemanager/list/${media_obj_id }`;
+      window.$eventBus.$emit('FILE_MANAGER_LOAD_LIST',media_obj_id)
+      let fileValue = $('input[name=file-value]').val();
 
-      $('#tab-images-gallery').load(request_url , function() {
       $('.modal-footer', $modal).removeClass('visually-hidden');
-      var fileValue = $('input[name=file-value]').val();
       // If user is in edit mode, set media as active and load sidebar
       if(fileValue != 0) {
-        $('#file-manager-upload',$modal).removeClass('active');
-        $('#file-manager-list',$modal).addClass('active');
-        $('#tab-upload',$modal).removeClass('active show');
-        $('#tab-images',$modal).addClass('active show')
-        $('#media-id-'+ fileValue).addClass('active');
-        $('#sidebar-content').load(urlAjaxHandlerCms + 'filemanager/edit/'+ fileValue);
+
+        $('#file-manager-upload', $modal).removeClass('active');
+        $('#file-manager-list', $modal).addClass('active');
+        $('#tab-upload', $modal).removeClass('active show');
+        $('#tab-images', $modal).addClass('active show')
+        $('#media-id-' + fileValue).addClass('active');
+        window.$eventBus.$emit('FILE_MANAGER_SELECT_ITEM',fileValue)
       }
-
-    });
   });
 
-  /*
-  * When the user select an image, set modal hidden value and load sidebar
-  */
-  $(document).on('click', '.filemanager-list .thumbnail-item', function(e) {
-    e.preventDefault();
-    // Remove all 'is-active' classes
-    $('.filemanager-list .thumbnail-item').removeClass('active');
-    // Set modal hidden value with media id
-    $('input[name=file-value]', $modal).val($(this).data('id'));
-    // Load sidebar
-    $('#sidebar-content').load(urlAjaxHandlerCms + 'filemanager/edit/'+ $(this).data('id'));
-    // Set 'is-active' class
-    $(this).addClass('active');
 
-  });
+
 
   /*
   * Sidebar: update image data
@@ -101,7 +81,7 @@ $( function()
 
     e.preventDefault();
 
-    var form = $(this);
+    let  form = $(this);
 
     // Make ajax request to edit media data
     $.ajax({
@@ -112,7 +92,7 @@ $( function()
       success: function(response) {
         $.notify(response.message, 'success');
         // Switch to 'library' tab
-        $('#file-manager-list').trigger('click'); 
+        $('#file-manager-list').trigger('click');
       },
       error: function(response) {
         $.notify('Error.');
@@ -125,15 +105,9 @@ $( function()
   * When the user clicks resets button, remove current active and reset hidden input value
   */
   $('.reset-image', $modal).on('click', function(e) {
-
     e.preventDefault();
-
     // Remove all 'is-active' classes
-    $('.filemanager-list a').removeClass('active');
-
-    // Set modal hidden value as 0
-    $('input[name=file-value]', $modal).val(0);
-
+    window.$eventBus.$emit('FILE_MANAGER_RESET')
   });
 
   /*
@@ -141,36 +115,23 @@ $( function()
   * set image id as new value in admin form input and close the modal
   */
   $('.confirm-image', $modal).on('click', function(e) {
-
     e.preventDefault();
-
     // Set admin form input value
     $('input[name='+ $('input[name=file-input]', $modal).val() +']').val($('input[name=file-value]', $modal).val());
-
     // Close modal
     $modal.modal('hide');
-
   });
 
   /*
    * When the user close the modal, reset sidebar and loader.
    */
   $('#filemanager').on('hidden.bs.modal', function () {
-
     $('#tab-upload',$modal).addClass('active show');
     $('#tab-images',$modal).removeClass('active show')
     $('#file-manager-upload',$modal).addClass('active');
     $('#file-manager-list',$modal).removeClass('active');
-
-    // Reset loading html
-    $('#tab-images-gallery').html(`<div class="loading text-center">
-      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-      <span class="sr-only">Loading...</span>
-    </div>`);
-
     // Reset sidebar content
     $('#sidebar-content').html('');
-
   });
 
 } );
