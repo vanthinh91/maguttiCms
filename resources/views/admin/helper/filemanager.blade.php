@@ -39,12 +39,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal-footer d-flex justify-content-end ">
+			<div class="modal-footer d-grid gap-2 d-md-flex justify-content-md-end visually-hidden">
 				<button type="button" class="btn btn-success confirm-image" data-bs-dismiss="modal">{{icon('check')}} Select</button>
 				<button type="button" class="btn btn-default reset-image">{{icon('undo')}} Reset selection</button>
 				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">{{icon('times')}} Close</button>
-				<input type="hidden" name="file-input" value="0">
-				<input type="hidden" name="file-value" value="0">
+				<input type="hidden" name="file-input" value="0" ref="fileInputModel">
+				<input type="hidden" name="file-value" value="0" ref="fileInputValue">
 			</div>
 		</div>
 	</div>

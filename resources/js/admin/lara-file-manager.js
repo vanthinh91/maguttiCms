@@ -61,9 +61,9 @@ $( function()
       let input_obj    = $('.filemanager-select').data("input");
       let media_obj_id = (parseInt($('input[name='+input_obj+']').val()))?parseInt($('input[name='+input_obj+']').val()):'' ;
       let request_url = `${urlAjaxHandlerCms}filemanager/list/${media_obj_id }`;
-    ;
+
       $('#tab-images-gallery').load(request_url , function() {
-      $('.modal-footer', $modal).removeClass('hidden');
+      $('.modal-footer', $modal).removeClass('visually-hidden');
       var fileValue = $('input[name=file-value]').val();
       // If user is in edit mode, set media as active and load sidebar
       if(fileValue != 0) {
