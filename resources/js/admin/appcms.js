@@ -27,6 +27,7 @@ Vue.component('copyable-input-component', require('./../components/admin/Copyabl
 Vue.component('generator-input-component', GeneratorInputComponent);
 Vue.component('list-component', ListComponent);
 Vue.component('checkbox-grid-component', require('../components/admin/CheckBoxesGrid/CheckGridComponent').default);
+Vue.component('file-manager-grid-component', require('../components/admin/Filemanager/IndexComponent').default);
 
 
 

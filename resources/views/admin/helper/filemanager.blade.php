@@ -39,7 +39,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal-footer d-flex justify-content-between ">
+			<div class="modal-footer d-flex justify-content-end ">
 				<button type="button" class="btn btn-success confirm-image" data-bs-dismiss="modal">{{icon('check')}} Select</button>
 				<button type="button" class="btn btn-default reset-image">{{icon('undo')}} Reset selection</button>
 				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">{{icon('times')}} Close</button>

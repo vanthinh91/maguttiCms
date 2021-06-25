@@ -1,6 +1,7 @@
 <?php
 
 
+use App\maguttiCms\Api\V1\Controllers\AdminFileMangerController;
 use App\maguttiCms\Middleware\AdminSuggestRole;
 use App\maguttiCms\Admin\Controllers\AjaxController;
 use App\maguttiCms\Api\V1\Controllers\AdminCrudController;
@@ -30,6 +31,13 @@ Route::group([], function () {
     Route::get('api/suggest', ['as' => 'api.suggest', 'uses' => [SuggestAjaxController::class,'suggest']])->middleware(AdminSuggestRole::class);
     Route::get('dashboard', [AdminServicesController::class,'dashboard']);
     Route::get('nav-bar', [AdminServicesController::class,'navbar']);
+
+    /*
+    |--------------------------------------------------------------------------
+    | API FILE MANAGER
+    |--------------------------------------------------------------------------
+    */
+    Route::get('file-manager/grid/{id?}', [AdminFileMangerController::class,'index']);
 
     /*
     |--------------------------------------------------------------------------

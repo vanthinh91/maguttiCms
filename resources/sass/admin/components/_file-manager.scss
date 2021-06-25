@@ -76,7 +76,7 @@
 					padding: 5px 10px;
 				}
 
-				&.is-active {
+				&.is-active,&.active {
 					&:before {
 						content: '';
 						background-color: rgba(0, 0, 0, 0.5);

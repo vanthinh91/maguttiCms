@@ -46,7 +46,7 @@ $( function()
       $('input[name=file-value]', $modal).val(responseObj.id);
 
       // Switch to 'library' tab
-      $('#file-manager-list').click();
+      $('#file-manager-list').trigger('click');
 
       // Empty the content of the sidebar
       $('#sidebar-content').empty();
@@ -61,14 +61,17 @@ $( function()
       let input_obj    = $('.filemanager-select').data("input");
       let media_obj_id = (parseInt($('input[name='+input_obj+']').val()))?parseInt($('input[name='+input_obj+']').val()):'' ;
       let request_url = `${urlAjaxHandlerCms}filemanager/list/${media_obj_id }`;
-    $('#tab-images-gallery').load(request_url , function() {
-
+    ;
+      $('#tab-images-gallery').load(request_url , function() {
       $('.modal-footer', $modal).removeClass('hidden');
       var fileValue = $('input[name=file-value]').val();
-
       // If user is in edit mode, set media as active and load sidebar
       if(fileValue != 0) {
-        $('#media-id-'+ fileValue).addClass('is-active');
+        $('#file-manager-upload',$modal).removeClass('active');
+        $('#file-manager-list',$modal).addClass('active');
+        $('#tab-upload',$modal).removeClass('active show');
+        $('#tab-images',$modal).addClass('active show')
+        $('#media-id-'+ fileValue).addClass('active');
         $('#sidebar-content').load(urlAjaxHandlerCms + 'filemanager/edit/'+ fileValue);
       }
 
@@ -83,7 +86,7 @@ $( function()
     e.preventDefault();
 
     // Remove all 'is-active' classes
-    $('.filemanager-list a').removeClass('is-active');
+    $('.filemanager-list a').removeClass('active');
 
     // Set modal hidden value with media id
     $('input[name=file-value]', $modal).val($(this).data('id'));
@@ -92,7 +95,7 @@ $( function()
     $('#sidebar-content').load(urlAjaxHandlerCms + 'filemanager/edit/'+ $(this).data('id'));
 
     // Set 'is-active' class
-    $(this).addClass('is-active');
+    $(this).addClass('active');
 
   });
 
@@ -129,7 +132,7 @@ $( function()
     e.preventDefault();
 
     // Remove all 'is-active' classes
-    $('.filemanager-list a').removeClass('is-active');
+    $('.filemanager-list a').removeClass('active');
 
     // Set modal hidden value as 0
     $('input[name=file-value]', $modal).val(0);
@@ -157,8 +160,10 @@ $( function()
    */
   $('#filemanager').on('hidden.bs.modal', function () {
 
-    // Reset modal tabs to upload
-    $('#file-manager-upload').click();
+    $('#tab-upload',$modal).addClass('active show');
+    $('#tab-images',$modal).removeClass('active show')
+    $('#file-manager-upload',$modal).addClass('active');
+    $('#file-manager-list',$modal).removeClass('active');
 
     // Reset loading html
     $('#tab-images-gallery').html(`<div class="loading text-center">
