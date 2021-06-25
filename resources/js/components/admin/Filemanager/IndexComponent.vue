@@ -100,14 +100,14 @@ export default {
     $eventBus.$on('FILE_MANAGER_RESET', () => {
       this.set_selected(null);
     });
-    this.$nextTick(function () {
-     alert( $('input[name=file-value]').val());
-        }
-    )
+
 
   },
   created() {
-
+    this.$nextTick(function () {
+          this.fetchData(1);
+        }
+    )
   },
   beforeDestroy() {
     $eventBus.$off('FILE_MANAGER_LOAD_LIST');

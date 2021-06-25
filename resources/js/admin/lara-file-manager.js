@@ -81,19 +81,14 @@ $( function()
   /*
   * When the user select an image, set modal hidden value and load sidebar
   */
-  $(document).on('click', '.filemanager-list a', function(e) {
-
+  $(document).on('click', '.filemanager-list .thumbnail-item', function(e) {
     e.preventDefault();
-
     // Remove all 'is-active' classes
-    $('.filemanager-list a').removeClass('active');
-
+    $('.filemanager-list .thumbnail-item').removeClass('active');
     // Set modal hidden value with media id
     $('input[name=file-value]', $modal).val($(this).data('id'));
-
     // Load sidebar
     $('#sidebar-content').load(urlAjaxHandlerCms + 'filemanager/edit/'+ $(this).data('id'));
-
     // Set 'is-active' class
     $(this).addClass('active');
 
@@ -116,6 +111,8 @@ $( function()
       dataType: 'json',
       success: function(response) {
         $.notify(response.message, 'success');
+        // Switch to 'library' tab
+        $('#file-manager-list').trigger('click'); 
       },
       error: function(response) {
         $.notify('Error.');
