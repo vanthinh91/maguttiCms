@@ -1,6 +1,6 @@
 <a id="delete-{{$key}}-{{$id}}"
 	class="btn btn-danger media-delete"
-    data-locale="{{(isset($locale)?$locale:'')}}"
+    data-locale="{{$locale??''}}"
 	href="#"
 	rel="tooltip"
 	data-original-title="{{trans('admin.message.delete_item')}}"

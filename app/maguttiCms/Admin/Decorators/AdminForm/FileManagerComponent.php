@@ -18,11 +18,14 @@ class FileManagerComponent extends ViewComponent
        return  $this->viewName = 'admin.inputs.container_manager';
     }
 
+
+
     function viewBag()
     {
         $this->viewBag = parent::viewBag();
         $media = Media::where('id', $this->value)->first();
         $this->addItemToBag('media',$media);
+        $this->addItemToBag('locale',$this->locale);
         return $this->viewBag;
     }
 

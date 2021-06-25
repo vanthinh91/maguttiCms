@@ -12,8 +12,8 @@ use App;
 class ViewComponent extends AdminFormBaseComponent
 {
 
-    protected $viewName;
-    protected $viewBag = [];
+    protected string $viewName ='';
+    protected array $viewBag = [];
 
 
     function render($key, $value, $locale)
