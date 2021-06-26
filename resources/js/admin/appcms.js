@@ -11,8 +11,18 @@ import Vue from 'vue'
 window.Vue =Vue;
 window.$eventBus = new Vue();
 
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+
+import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader';
+import VueI18n from 'vue-i18n';
+
+
+Vue.use(VueI18n);
+const i18n = new VueI18n({
+    locale: window._LOCALE,
+    messages: languageBundle,
+})
+
+
 import GeneratorInputComponent from './../components/admin/GeneratorInputComponent';
 import ListComponent from './../components/admin/ListComponent';
 
@@ -38,5 +48,6 @@ Vue.component('file-manager-grid-component', require('../components/admin/Filema
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    i18n,
 });

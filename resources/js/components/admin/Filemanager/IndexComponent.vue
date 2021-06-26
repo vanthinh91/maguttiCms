@@ -1,8 +1,9 @@
 <template>
+  <div class="row">
   <div class="tab-images-gallery col-md-8 col-12">
-
     <search-box @update-search="updateSearchFilter"></search-box>
-    <div class="row filemanager-list d-grid-lg gy-3" v-if="items">
+    <loader :is-loading="loading" v-if="loading"></loader>
+    <div class="row filemanager-list d-grid-lg gy-3" v-else="items">
       <div class="col-6 col-xl-2 col-lg-3 col-md-3" v-for="item in itemList">
         <media-item
             :class="{active: selected_item == item.id}"
@@ -11,7 +12,10 @@
             :key="'media_item_'+item.id">
         </media-item>
       </div>
+
     </div>
+   </div>
+    <media-edit></media-edit>
   </div>
 </template>
 
@@ -20,27 +24,37 @@ import {HTTP} from '../../../mixins/http-common';
 import helper from '../../../mixins/helper';
 import MediaItem from './MediaItem'
 import SearchBox from './SearchBoxComponent'
+import MediaEdit from "./MediaEditComponent";
+import Loader from "../../BaseComponent/LoaderComponent";
 
 export default {
   name: "file-manager-grid",
   components: {
     MediaItem,
-    SearchBox
+    MediaEdit,
+    SearchBox,
+    Loader
   },
   mixins: [helper],
   data() {
     return {
       items: [],
       selected_item: null,
-      searchText: ""
+      searchText: "",
+      loading:true
     }
   },
   methods: {
     fetchData: function (payload = null) {
       let self = this;
+      self.loading =true;
+      console.log({carico:payload})
       let url = (payload) ? this.url() + '/' + payload : this.url();
       return HTTP.get(url)
           .then(this.refresh)
+          .then(function (response){
+            self.loading = false;
+          })
           .catch(e => {
             self.errors.push(e)
             self.showMessage(e.message, self.ERROR_CLASS);
@@ -49,13 +63,7 @@ export default {
     url() {
       return window._SERVER_PATH + `/admin/api/file-manager/grid`;
     },
-    updateSidebar(id) {
-      // Set modal hidden value with media id
-      axios.get(urlAjaxHandlerCms + 'filemanager/edit/' + id)
-          .then(response => {
-            this.$root.$refs.modalEditComponent.innerHTML = response.data;
-          })
-    },
+
 
     refresh({data}) {
       this.items = data.data
@@ -63,8 +71,8 @@ export default {
     set_selected(id) {
       this.selected_item = id;
       this.$root.$refs.fileInputValue.value = id;
-      if (this.selected_item === null) {
-        this.$root.$refs.modalEditComponent.innerHTML = null;
+      if (this.selected_item == null ) {
+        $eventBus.$emit('FILE_MANAGER_UPDATE_SIDE_BAR', null);
       }
     },
     updateSearchFilter(value) {
@@ -80,6 +88,8 @@ export default {
                 item.media_type.toLowerCase().includes(this.searchText.toLowerCase())
                 ||
                 item.file_ext.toLowerCase().includes(this.searchText.toLowerCase())
+                ||
+                item.category.toLowerCase().includes(this.searchText.toLowerCase())
             )
           }
       )
@@ -91,7 +101,6 @@ export default {
     });
     $eventBus.$on('FILE_MANAGER_SELECT_ITEM', (id) => {
       this.set_selected(id);
-      this.updateSidebar(id)
     });
     $eventBus.$on('FILE_MANAGER_RESET', () => {
       this.set_selected(null);
@@ -105,7 +114,6 @@ export default {
   beforeDestroy() {
     $eventBus.$off(['FILE_MANAGER_LOAD_LIST','FILE_MANAGER_RESET']);
     $eventBus.$off('FILE_MANAGER_SELECT_ITEM');
-
   }
 }
 </script>

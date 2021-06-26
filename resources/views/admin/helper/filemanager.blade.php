@@ -3,17 +3,17 @@
 		<div class="modal-content">
 
 			<div class="modal-header d-flex justify-content-between" >
-				<h4>File Manager</h4>
+				<h4>{{__('admin.label.file_manager')}}</h4>
 			    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
 			</div>
 			<div class="modal-action">
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
-						<a class="nav-link bg-info" href="#tab-upload" id="file-manager-upload" data-bs-toggle="tab" role="tab" aria-controls="upload" aria-selected="true">Upload File</a>
+						<a class="nav-link bg-info" href="#tab-upload" id="file-manager-upload" data-bs-toggle="tab" role="tab" aria-controls="upload" aria-selected="true">{{__('admin.label.upload_file')}}</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link bg-success" href="#tab-images" id="file-manager-list" data-bs-toggle="tab" role="tab" aria-controls="list" aria-selected="false">Library</a>
+						<a class="nav-link bg-success" href="#tab-images" id="file-manager-list" data-bs-toggle="tab" role="tab" aria-controls="list" aria-selected="false">{{__('admin.file_manager.library')}}</a>
 					</li>
 				</ul>
 			</div>
@@ -22,14 +22,11 @@
 					<div id="tab-upload" class="tab-pane fade show active" role="tabpanel" aria-labelledby="file-manager-upload">
 						<fieldset class="alert alert-info">
 							<input name="upload-input" type="file" class="btn btn-primary">
-							<div id="queue-modal" class="queue">{!!trans('admin.message.media_drag') !!}</div>
+							<div id="queue-modal" class="queue">{!!__('admin.message.media_drag') !!}</div>
 						</fieldset>
 					</div>
 					<div id="tab-images" class="tab-pane fade" role="tabpanel" aria-labelledby="file-manager-list">
-						<div class="row">
-							<file-manager-grid-component></file-manager-grid-component>
-							<div id="sidebar-content" class="col-md-4 col-12" ref="modalEditComponent"></div>
-						</div>
+						<file-manager-grid-component></file-manager-grid-component>
 					</div>
 				</div>
 			</div>

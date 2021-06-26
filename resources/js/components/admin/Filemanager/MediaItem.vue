@@ -27,6 +27,7 @@ export default {
   methods: {
     updateItem(id) {
       $eventBus.$emit(this.eventName, id);
+      $eventBus.$emit('FILE_MANAGER_UPDATE_SIDE_BAR', id);
     }
   },
 }

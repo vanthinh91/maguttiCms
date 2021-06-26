@@ -19,4 +19,9 @@ trait MediaPresenter
         return  ($this->file_name)? ImgHelper::get_cached($this->file_name, config('maguttiCms.image.admin')):'';
     }
 
+    public function getCategoryAttribute()
+    {
+       return optional($this->media_category)->title;
+    }
+
 }

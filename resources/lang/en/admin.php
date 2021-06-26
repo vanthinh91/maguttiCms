@@ -57,6 +57,7 @@ return [
         'fee'           => 'Fee',
         'free_shipping_from' => 'Free from',
 		'first_name'	=> 'Name',
+		'file_manager'	=> 'File Manager',
 		'footer_menu'	=> 'Show on footer menu',
 		'go_to_site'	=> 'View site',
 		'icon'			=> 'Icon',
@@ -211,5 +212,10 @@ return [
         'zoom_out' => 'Zoom out',
 		'preview' => 'Preview',
 		'save' => 'Save'
-	]
+	],
+    'file_manager' => [
+        'filter_message' => 'Filter by title, extension, type or category ....',
+        'library' => 'Library',
+
+    ]
 ];

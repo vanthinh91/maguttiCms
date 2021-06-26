@@ -22,6 +22,7 @@ class AdminMediaResource extends JsonResource
             'title' => (string)$this->title,
             'media_type'=>(string) $this->collection_name,
             'media_category_id'=> (int)$this->media_category_id,
+            'category'=> (string)$this->category,
             'file_ext'=>(string) $this->file_ext,
             'icon'=>(string) $this->file_ext,
             'cover_image' =>($this->collection_name == 'images')? ImgHelper::get_cached($this->file_name, array( 'h' => '150', 'c' => 'contain', 'q' => '60' )):''

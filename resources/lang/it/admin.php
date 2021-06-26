@@ -51,6 +51,7 @@ return [
 		'export'        => 'Esporta',
 		'ext_url'		=> 'Url esterno',
 		'first_name'	=> 'Nome',
+        'file_manager'	=> 'File Manager',
         'fee'           => 'Costo',
         'free_shipping_from' => 'Gratis da',
         'footer_menu'	=> 'Mostra nel menu del footer',
@@ -197,5 +198,11 @@ return [
         'zoom_out' => 'Riduci',
 		'preview' => 'Preview',
 		'save' => 'Salva'
-	]
+	],
+    'file_manager' => [
+        'filter_message' => 'Filtra per titolo, estensione, tipo o categoria ...',
+        'library' => 'Libreria',
+    ]
+
+
 ];

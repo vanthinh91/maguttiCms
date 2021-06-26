@@ -7,8 +7,8 @@
       <input type="text" class="form-control"
              id="search-text"
              v-model="searchText"
-             placeholder="Filter by title, extension, type ...."
-             aria-label="Filter by title, extension, type ...."
+             :placeholder="$t('admin.file_manager.filter_message')"
+             :aria-label="$t('admin.file_manager.filter_message')"
              aria-describedby="search-text">
     </div>
   </div>

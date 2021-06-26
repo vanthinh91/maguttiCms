@@ -1,3 +1,5 @@
+var uploaded= false
+
 $( function()
 {
 
@@ -13,11 +15,16 @@ $( function()
     $modal.modal('show');
     let inputName = $(this).data('input');
     let inputValue = $('input[name='+ inputName +']').val();
+
     // If 'inputValue' value is != 0, open library tab
     if(inputValue != 0) {
       window.$eventBus.$emit('FILE_MANAGER_SELECT_ITEM',inputValue)
       window.$eventBus.$emit('FILE_MANAGER_LOAD_LIST',inputValue)
       $('#file-manager-list').click();
+    }
+    else {
+      window.$eventBus.$emit('FILE_MANAGER_LOAD_LIST',inputValue)
+      window.$eventBus.$emit('FILE_MANAGER_SELECT_ITEM',null)
     }
     // Set modal hidden input values
     $('input[name=file-input]', $modal).val(inputName);
@@ -44,6 +51,7 @@ $( function()
       // Set media id in modal hidden value
       $('input[name=file-value]', $modal).val(responseObj.id);
       // Switch to 'library' tab
+      uploaded =true
       $('#file-manager-list').trigger('click');
     }
   });
@@ -52,22 +60,26 @@ $( function()
   * When the user clicks on 'library' tab, load all images
   */
   $('#file-manager-list').on('click', function(e) {
+
       let input_obj    = $('.filemanager-select').data("input");
       let media_obj_id = (parseInt($('input[name='+input_obj+']').val()))?parseInt($('input[name='+input_obj+']').val()):'' ;
       let request_url = `${urlAjaxHandlerCms}filemanager/list/${media_obj_id }`;
+
       window.$eventBus.$emit('FILE_MANAGER_LOAD_LIST',media_obj_id)
       let fileValue = $('input[name=file-value]').val();
 
       $('.modal-footer', $modal).removeClass('visually-hidden');
       // If user is in edit mode, set media as active and load sidebar
       if(fileValue != 0) {
-
         $('#file-manager-upload', $modal).removeClass('active');
         $('#file-manager-list', $modal).addClass('active');
         $('#tab-upload', $modal).removeClass('active show');
         $('#tab-images', $modal).addClass('active show')
         $('#media-id-' + fileValue).addClass('active');
+        if(uploaded!=true)window.$eventBus.$emit('FILE_MANAGER_LOAD_LIST',fileValue)
         window.$eventBus.$emit('FILE_MANAGER_SELECT_ITEM',fileValue)
+        window.$eventBus.$emit('FILE_MANAGER_UPDATE_SIDE_BAR',fileValue)
+        uploaded =false;
       }
   });
 
