@@ -6,7 +6,6 @@ class AdminListRelationImageComponent extends AdminListImageComponent
 {
     public function getValue()
     {
-       return  $this->value =  (optional($this->item)->{$this->getItemProperty('relation')}) ? $this->item->{$this->getItemProperty('relation')}->{$this->getField()}:'';
+      return  $this->value =  ($this->model->{$this->getItemProperty('relation')}) ? $this->model->{$this->getItemProperty('relation')}->{$this->getField()}:'';
     }
-
 }

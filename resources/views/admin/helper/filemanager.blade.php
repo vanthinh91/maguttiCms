@@ -1,11 +1,9 @@
 <div id="filemanager" class="modal fade" role="dialog">
 	<div class="modal-dialog modal-dialog-scrollable modal-xl">
 		<div class="modal-content">
-
 			<div class="modal-header d-flex justify-content-between" >
 				<h4>{{__('admin.label.file_manager')}}</h4>
 			    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
 			</div>
 			<div class="modal-action">
 				<ul class="nav nav-tabs">

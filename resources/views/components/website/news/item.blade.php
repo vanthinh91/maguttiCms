@@ -1,5 +1,5 @@
 <article class="card box-shadow news__card">
-    <img class="card-img-top" src="{{ ImgHelper::get($post->image, config('maguttiCms.image.defaults')) }}" alt="{{ $post->title }}">
+    <img class="card-img-top" src="{{ ImgHelper::get(optional($post->imageMedia)->file_name, config('maguttiCms.image.defaults')) }}" alt="{{ $post->title }}">
     <div class="card-body bg-color-3">
         <small class="text-accent">
             {{ Carbon::parse($post->date)->format('d/m/Y') }}

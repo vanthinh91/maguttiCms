@@ -1,14 +1,13 @@
 <template>
   <div @click="updateItem(media.id)" class="thumbnail-item">
-    <img v-if="media.media_type=='images'"
-         :src="media.cover_image" :alt="media.title" :title="media.title"/>
-    <cover-icon v-else
-                :icon="media.icon"/>
+    <img v-if="media.media_type=='images'"  :src="media.cover_image" :title="media.title"/>
+    <cover-icon v-else :icon="media.icon"/>
     <div class="thumbnail-caption">{{ media.title }}</div>
   </div>
 </template>
 <script>
 import CoverIcon from './CoverComponent'
+
 
 export default {
   name: "MediaItem",

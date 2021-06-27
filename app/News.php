@@ -1,13 +1,15 @@
 <?php namespace App;
 
-use App\maguttiCms\Domain\Block\Blockable;
-use App\maguttiCms\Domain\Media\Mediable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 
-use \App\maguttiCms\Domain\News\NewsPresenter;
 use App\maguttiCms\Builders\NewsBuilder;
+use \App\maguttiCms\Domain\News\NewsPresenter;
+
+use App\maguttiCms\Domain\Tag\Taggable;
+use App\maguttiCms\Domain\Block\Blockable;
+use App\maguttiCms\Domain\Media\Mediable;
 
 use Astrotomic\Translatable\Translatable;
 use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
@@ -19,12 +21,13 @@ class News extends Model
     use Translatable;
     use NewsPresenter;
     use Mediable;
+    use Taggable;
     use Blockable;
 
     protected $with = ['translations'];
 
     protected $fillable = ['title', 'subtitle', 'description',
-        'video', 'doc',
+        'video', 'doc','image_media_id',
         'date', 'date_start', 'sort', 'pub'];
     protected array $fieldspec = [];
 
@@ -41,25 +44,8 @@ class News extends Model
     |  RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function media()
-    {
-        return $this->morphMany('App\Media', 'model')->orderBy('sort');
-    }
 
-    public function tags()
-    {
-        return $this->belongsToMany('App\Tag');
-    }
 
-    public function saveTags($values)
-    {
-        if (!empty($values)) {
-            $values = array_filter($values);
-            $this->tags()->sync($values);
-        } else {
-            $this->tags()->detach();
-        }
-    }
 
     /*
     |--------------------------------------------------------------------------
@@ -198,15 +184,17 @@ class News extends Model
             'label' => 'External url',
             'display' => 0,
         ];
-        $this->fieldspec['image'] = [
-            'type' => 'media',
-            'required' => 0,
-            'hidden' => 0,
-            'label' => 'Image',
-            'extraMsgEnabled' => 'Code',
-            'mediaType' => 'Img',
-            'display' => 1,
+
+        $this->fieldspec['image_media_id'] = [
+            'type'        => 'filemanager',
+            'required'    => false,
+            'hidden'      => 0,
+            'label'       => 'Image File Manager',
+            'mediaType'   => 'images',
+            'collection'   => 'images',
+            'display'     => 1,
         ];
+
         $this->fieldspec['doc'] = [
             'type' => 'media',
             'required' => 0,

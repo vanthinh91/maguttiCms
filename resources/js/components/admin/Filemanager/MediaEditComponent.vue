@@ -3,43 +3,43 @@
     <loader v-if="isLoading"></loader>
   </div>
 </template>
-
 <script>
 import Loader from "../../BaseComponent/LoaderComponent";
-import {HTTP} from "../../../mixins/http-common";
+import fileManagerSupport from "../Support/Filemanager";
 
 export default {
   name: "MediaEditComponent",
   components: {
-     Loader
+    Loader
   },
+  mixins: [fileManagerSupport],
   data() {
     return {
-     isLoading:false
+      isLoading: false
     }
   },
   methods: {
 
-    updateSidebar(id) {
-      this.isLoading=true;
-      HTTP.get(urlAjaxHandlerCms + 'filemanager/edit/' + id)
-          .then(response => {
-            console.log({'loading':this.isLoading})
-            this.isLoading=false;
-            this.$refs.modalEditComponent.innerHTML = response.data;
-            console.log({'loading':this.isLoading})
-          })
+    updateData({data}) {
+      this.$refs.modalEditComponent.innerHTML = data;
     },
   },
   mounted() {
-      $eventBus.$on('FILE_MANAGER_UPDATE_SIDE_BAR', (id) => {
-      if(id===null){
-          this.$refs.modalEditComponent.innerHTML = '';
-        }
-       else this.updateSidebar(id)
+    $eventBus.$on('FILE_MANAGER_UPDATE_SIDE_BAR', (id) => {
+      if (id === null) {
+        this.$refs.modalEditComponent.innerHTML = '';
+      }
+      else this.updateSidebar(id)
+    });
+    let self = this;
+
+    $(document).on('submit', '#filemanager-edit-form', function (e) {
+      e.preventDefault();
+      let  form = $(this);
+      self.saveMediaData(form)
     });
   },
-   beforeDestroy() {
+  beforeDestroy() {
     $eventBus.$off(['FILE_MANAGER_UPDATE_SIDE_BAR']);
   }
 }

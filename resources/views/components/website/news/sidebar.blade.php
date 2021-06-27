@@ -4,7 +4,7 @@
         <div class="d-flex news__sidebar">
             <a href="{{ $latest_post->getPermalink() }}" class="flex-shrink-0">
                 <img class="img-fluid me-2"
-                     src="{{ ImgHelper::get($latest_post->image,config('maguttiCms.image.small')) }}">
+                     src="{{ ImgHelper::get(optional($latest_post->imageMedia)->file_name,config('maguttiCms.image.small')) }}">
             </a>
             <div class="flex-grow-1 ms-3 news__sidebar-body">
                 <small><b>{{ $latest_post->getFormattedDate() }}</b></small>

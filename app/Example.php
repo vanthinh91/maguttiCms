@@ -371,6 +371,7 @@ class Example extends Model
             'label'       => 'Image File Manager',
             'mediaType'   => 'Img',
             'display'     => 1,
+            //'collection'   => 'images', optional collection [images or docs]
         ];
 
 		$this->fieldspec['map'] = [

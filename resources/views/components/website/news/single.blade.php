@@ -5,8 +5,8 @@
     <h1 class="text-primary mb-2">{{ $news->title }}</h1>
     @if($news->video)
         <x-media.video :video="$news->video" :classExtra="'mb-2'"></x-media.video>
-    @elseif($news->image)
-        <img src="{{ ImgHelper::get_cached($news->image,config('maguttiCms.image.medium')) }}" alt="{{ $news->title }}" class="img-fluid mb-2">
+    @elseif($news->image_media_id)
+        <img src="{{ ImgHelper::get_cached($news->imageMedia->file_name,config('maguttiCms.image.medium')) }}" alt="{{ $news->title }}" class="img-fluid mb-2">
     @endif
     {!! $news->description !!}
     @if($news->hasBlocks())

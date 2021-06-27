@@ -13,22 +13,26 @@ use App\Media;
 class AdminFileMangerController
 {
     use JsonResponseTrait;
-
-
     /**
      * @var Request
      */
     private Request $request;
 
-    public function index(Request $request,$id=null)
+    public function index(Request $request, $id = null)
     {
         $this->request = $request;
         $object = Media::when($id, function ($query) use ($id) {
-            $query-> orderByRaw('IF(FIELD(id,'.$id.')=0,1,0)');
-        })->orderBy('id', 'DESC')->get();
+                    $query->orderByRaw('IF(FIELD(id,' . $id . ')=0,1,0)');
+                    })
+                    ->when($request->get('collection'), function ($query) use ($request) {
+                        $query->where('collection_name',$request->get('collection'));
+                    })
+                    ->when($request->get('media_category_id'), function ($query) use ($request) {
+                        $query->where('media_category_id',$request->get('media_category_id'));
+                    })
+                    ->orderBy('id', 'DESC')
+                    ->get();
         $items = AdminMediaResource::collection($object);
         return $this->setData($items)->responseSuccess()->apiResponse();
     }
-
-
 }

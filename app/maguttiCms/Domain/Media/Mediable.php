@@ -19,11 +19,11 @@ trait Mediable
 
     public function imageMedia()
     {
-        return $this->belongsTo('App\Media', 'image', 'id');
+        return $this->belongsTo('App\Media', 'image_media_id', 'id');
     }
     public function docMedia()
     {
-        return $this->belongsTo('App\Media', 'doc', 'id');
+        return $this->belongsTo('App\Media', 'doc_media_id', 'id');
     }
 
     public function hasGallery()

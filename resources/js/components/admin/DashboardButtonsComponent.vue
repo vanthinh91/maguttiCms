@@ -26,7 +26,7 @@
 
         },methods: {
             fetchData: function () {
-                var self = this;
+                let self = this;
                 return HTTP.get(this.url())
                     .then(this.refresh)
                     .catch(e => {

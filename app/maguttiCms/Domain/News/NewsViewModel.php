@@ -12,7 +12,6 @@ class NewsViewModel extends WebsiteViewModel
 
     function show($slug)
     {
-
         $news = News::findBySlug($slug, app()->getLocale());
         $article = $this->getCurrentPage();
         if ($news) {

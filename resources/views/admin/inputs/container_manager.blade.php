@@ -1,7 +1,11 @@
 {{Form::hidden($key, $value , array('class' => ' form-control '.$css_class))}}
 <div class="media-cont">
     <div class="media-input">
-        <a href="#" class="btn btn-default filemanager-select" data-input="{{$key}}">
+           <a href="#" class="btn btn-default filemanager-select"
+            data-input="{{$key}}"
+            data-collection="{{data_get($properties,'collection')}}"
+            data-media-category-id="{{data_get($properties,'media_category_id')}}"
+            >
             {{icon('upload')}} {{trans('admin.label.upload_file')}}
         </a>
     </div>

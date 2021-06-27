@@ -331,9 +331,7 @@ return [
             'title' => 'News',
             'icon' => 'bullhorn',
             'field' => [
-                'id',
-                'date',
-                'image' => ['type' => 'image', 'field' => 'image'],
+                'image' => ['type' => 'relation_image', 'relation' => 'imageMedia', 'field' => 'file_name'],
                 'title',
                 'slug',
                 'tags' => ['type' => 'relation', 'relation' => 'tags', 'field' => 'title','multiple'=>true],
