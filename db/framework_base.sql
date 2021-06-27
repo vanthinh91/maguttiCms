@@ -1162,6 +1162,7 @@ CREATE TABLE `news` (
   `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `video` text COLLATE utf8_unicode_ci,
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image_media_id` int(6) DEFAULT NULL,
   `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sort` int(11) DEFAULT NULL,
   `pub` tinyint(4) DEFAULT '1',
@@ -1178,7 +1179,7 @@ CREATE TABLE `news` (
 
 LOCK TABLES `news` WRITE;
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
-INSERT INTO `news` VALUES (1,'','2017-07-11','2021-06-26','','','pinoscotto11','96281-dedprifxoaaxql6.jpg',NULL,'prodotto33.jpeg',NULL,0,1,0,'2017-07-11 05:18:08','2021-06-26 09:02:31'),(2,'','2019-05-07','2020-12-08','','',NULL,NULL,'3LXr89pMU2Q','32526-img-8712.jpg',NULL,NULL,1,NULL,'2019-05-07 05:16:44','2021-06-26 09:00:59'),(3,'','2019-04-17','2021-06-26','','',NULL,NULL,NULL,'p33-3.jpeg',NULL,NULL,1,NULL,'2019-05-07 05:17:21','2021-06-26 09:01:29'),(4,'','2019-03-07','2021-06-26','','',NULL,NULL,NULL,'17471-tazzina3.jpg',NULL,NULL,1,NULL,'2019-05-07 05:18:08','2021-06-26 09:01:55');
+INSERT INTO `news` VALUES (1,'','2017-07-11','2021-06-26','','','pinoscotto11','96281-dedprifxoaaxql6.jpg',NULL,'prodotto33.jpeg',14,NULL,0,1,0,'2017-07-11 05:18:08','2021-06-27 11:00:40'),(2,'','2019-05-07','2020-12-08','','',NULL,NULL,'3LXr89pMU2Q','32526-img-8712.jpg',3,NULL,NULL,1,NULL,'2019-05-07 05:16:44','2021-06-27 11:01:02'),(3,'','2019-04-17','2021-06-26','','',NULL,NULL,NULL,'p33-3.jpeg',17,NULL,NULL,1,NULL,'2019-05-07 05:17:21','2021-06-27 11:01:26'),(4,'','2019-03-07','2021-06-26','','',NULL,NULL,NULL,'17471-tazzina3.jpg',16,NULL,NULL,1,NULL,'2019-05-07 05:18:08','2021-06-27 11:01:46');
 /*!40000 ALTER TABLE `news` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2232,4 +2233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-26 11:51:00
+-- Dump completed on 2021-06-27 13:03:58

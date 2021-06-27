@@ -15,7 +15,7 @@ export default {
             let self = this;
             let url = (this.current_item)
                             ? this.fetchDataUrl() + '/' + this.current_item
-                            : this.url();
+                            : this.fetchDataUrl();
 
             let params = this.parameterBag()
 
