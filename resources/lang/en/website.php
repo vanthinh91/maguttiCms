@@ -32,7 +32,7 @@ return [
     'see_all'       => 'View All',
     'send'          => 'Send',
     'subject'       => 'Subject',
-    'support'       => 'Support',
+    'support'       => 'repository',
     'surname'       => 'Surname',
     'save'          => 'Save',
     'pagination'    => 'Page :x of :y',

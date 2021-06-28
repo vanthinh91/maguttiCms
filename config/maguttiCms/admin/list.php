@@ -814,7 +814,7 @@ return [
             'model' => 'Newsletter',
             'title' => 'Newsletter',
             'icon' => 'envelope-open-text',
-            'section' =>'cms',
+            'section' =>'users',
             'field' => [
                 'id',
                 'locale' => ['type' => 'locale', 'field' => 'locale'],
@@ -847,7 +847,7 @@ return [
             'model' => 'Contact',
             'icon' => 'envelope',
             'title' => 'Info Request',
-            'section' =>'cms',
+            'section' =>'users',
             'field' => [
                 'id',
                 'email' => ['type' => 'text', 'field' => 'email'],

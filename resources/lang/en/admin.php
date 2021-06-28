@@ -83,6 +83,7 @@ return [
 		'menu_title'	=> 'Menu title',
 		'message'		=> 'Message',
         'mobile'		=> 'Mobile',
+        'models'		=> 'Models',
 		'name'          => 'Name',
 		'note'          => 'Notes',
         'number'        => 'Number',
@@ -116,6 +117,7 @@ return [
         'save'          => 'Save',
         'status'        => 'Status',
         'search'        => 'Search',
+        'sections'      => 'Sections',
 		'seo'     		=> 'SEO',
 		'slug'			=> 'Slug',
 		'slug_ignore'	=> 'Ignore slug translation',
@@ -216,6 +218,10 @@ return [
     'file_manager' => [
         'filter_message' => 'Filter by title, extension, type or category ....',
         'library' => 'Library',
+    ],
+    'dashboard' => [
+        'filter_message' => 'Type a word to filter ...',
+        'select_context' => 'Select a category',
 
     ]
 ];

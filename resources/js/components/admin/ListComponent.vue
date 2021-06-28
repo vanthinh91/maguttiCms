@@ -142,9 +142,9 @@
 
     import Editor from '@tinymce/tinymce-vue'
     import {HTTP} from './../../mixins/http-common';
-    import inputComponent from './BaseInput';
-    import inputBooleanComponent from './BaseInputBoolean';
-    import selectComponent from './BaseSelect';
+    import inputComponent from '../BaseComponent/BaseInput';
+    import inputBooleanComponent from '../BaseComponent/BaseInputBoolean';
+    import selectComponent from '../BaseComponent/BaseSelect';
 
     export default {
         props: ['items', 'selects', 'lang', 'model','products'],

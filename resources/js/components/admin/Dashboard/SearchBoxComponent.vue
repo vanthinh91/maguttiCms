@@ -1,13 +1,13 @@
 <template>
 
     <div class="col ">
-      <label for="context" class="form-label">Section</label>
+      <label for="context" class="form-label">{{ $t('admin.label.sections') }}</label>
       <select
           name="context"
           class="form-control"
           @change="$emit('update:context', $event.target.value)"
       >
-        <option value="">Select Context</option>
+        <option value="">{{ $t('admin.dashboard.select_context') }}</option>
         <option
             v-for="item of sections"
             :value="item"
@@ -21,12 +21,13 @@
     <div class="col">
       <BaseInputGroup
           v-model="searchText"
-          label="Models"
+          :label="$t('admin.label.models')"
           type="text"
+          prepend="fas fa-search"
           name="searchText"
           @input="$emit('update:searchText', $event.target.value)"
           aria-placeholder=""
-          placeholder="Type a  word  to filter"
+          :placeholder="$t('admin.dashboard.filter_message')"
       />
 
     </div>
@@ -34,7 +35,7 @@
 </template>
 
 <script>
-import BaseInputGroup from "../BaseInputGroup";
+import BaseInputGroup from "../../BaseComponent/BaseInputGroup";
 import {ref, computed, watch} from "vue";
 
 const sections = [
@@ -57,7 +58,7 @@ export default {
   },
 
   setup() {
-    const sections = ['Cms', 'Shop'];
+    const sections = ['Cms', 'Shop','Users'];
     return {
       sections
     }

@@ -7,7 +7,7 @@
 </template>
 <script>
 import Loader from "../../BaseComponent/LoaderComponent";
-import fileManagerSupport from "../Support/Filemanager";
+import fileManagerSupport from "../repository/Filemanager";
 
 export default {
   name: "MediaEditComponent",

@@ -21,7 +21,7 @@
 <script>
 
 import helper from '../../../mixins/helper';
-import fileManagerSupport  from '../Support/Filemanager'
+import fileManagerSupport  from '../repository/Filemanager'
 import MediaItem from './MediaItem'
 import SearchBox from './SearchBoxComponent'
 import MediaEdit from "./MediaEditComponent";

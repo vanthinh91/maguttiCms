@@ -1,6 +1,6 @@
 <template>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5 gx-4
-  dashboard-search ">
+  dashboard-search">
     <DashBoardSearch
         v-model:context="form.context"
         v-model:searchText="form.searchText"
@@ -16,7 +16,7 @@ import {reactive, onMounted, ref,computed} from 'vue'
 
 import DashboardItem from './DashboardButtonComponent'
 import DashBoardSearch from './SearchBoxComponent'
-import DashboardRepository from '../Support/DashboardRepository'
+import DashboardRepository from '../repository/DashboardRepository'
 
 import helper from '../../../mixins/helper';
 import {HTTP} from "../../../mixins/http-common";

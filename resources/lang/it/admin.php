@@ -78,6 +78,7 @@ return [
 		'menu_title'    => 'Titolo menu',
 		'message'		=> 'Messaggio',
 		'mobile'		=> 'Cellulare',
+        'models'		=> 'Modelli',
         'name'          => 'Nome',
         'note'          => 'Note',
         'number'        => 'Numero',
@@ -108,6 +109,7 @@ return [
         'stato'          => 'Stato',
         'search'        => 'Cerca',
 		'seo'     		=> 'SEO',
+        'sections'      => 'Sezioni',
 		'slug'			=> 'Slug',
 		'slug_ignore'	=> 'Ignora traduzione slug',
         'sku'           => 'SKU/Codice',
@@ -202,6 +204,11 @@ return [
     'file_manager' => [
         'filter_message' => 'Filtra per titolo, estensione, tipo o categoria ...',
         'library' => 'Libreria',
+    ],
+    'dashboard' => [
+        'filter_message' => 'Digita una parola per cercare ...',
+        'select_context' => 'Filtra per  sezione',
+
     ]
 
 

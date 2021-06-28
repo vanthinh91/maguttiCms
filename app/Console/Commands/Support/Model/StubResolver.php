@@ -5,7 +5,7 @@ namespace App\Console\Commands\Support\Model;
 
 /**
  * Class StubResolver
- * @package App\Console\Commands\Support\Model
+ * @package App\Console\Commands\repository\Model
  */
 class StubResolver
 {
