@@ -1,22 +1,13 @@
 <template>
-
     <div class="col ">
-      <label for="context" class="form-label">{{ $t('admin.label.sections') }}</label>
-      <select
-          name="context"
-          class="form-control"
-          @change="$emit('update:context', $event.target.value)"
-      >
-        <option value="">{{ $t('admin.dashboard.select_context') }}</option>
-        <option
-            v-for="item of sections"
-            :value="item"
-            :key="item"
-            :selected="context === item"
-        >
-          {{ item }}
-        </option>
-      </select>
+      <BaseSelect
+          :options="sections"
+          v-model="section"
+          name="section"
+          :label="$t('admin.label.category')"
+          :empty_value ="$t('admin.dashboard.select_section')"
+          @input="$emit('update:section', $event.target.value)"
+      />
     </div>
     <div class="col">
       <BaseInputGroup
@@ -29,38 +20,39 @@
           aria-placeholder=""
           :placeholder="$t('admin.dashboard.filter_message')"
       />
-
     </div>
 
 </template>
 
 <script>
 import BaseInputGroup from "../../BaseComponent/BaseInputGroup";
-import {ref, computed, watch} from "vue";
+import BaseSelect from "../../BaseComponent/BaseSelect";
 
-const sections = [
-  'Cms',
-  'Shop',
-]
+import {ref} from 'vue'
 
 export default {
   name: "DashBoardSearchComponent",
-  components: {BaseInputGroup},
+  components: {BaseInputGroup,BaseSelect},
   props: {
-    context: {
+    section: {
       type: String,
       default: ''
     },
     searchText: {
       type: String,
       default: ''
-    },
+    }
   },
-
   setup() {
     const sections = ['Cms', 'Shop','Users'];
+    const element= ref('');
+    const elements = [
+      { label: 'Shop', id: 1 },
+      { label: 'Cms', id: 2 },
+      { label: 'User', id: 3 },
+    ]
     return {
-      sections
+      sections,elements,element
     }
   },
 }

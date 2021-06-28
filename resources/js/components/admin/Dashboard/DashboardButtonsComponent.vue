@@ -1,14 +1,16 @@
 <template>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5 gx-4
-  dashboard-search">
-    <DashBoardSearch
-        v-model:context="form.context"
+  dashboard-search align-items-center">
+     <DashBoardSearch
+        v-model:section="form.section"
         v-model:searchText="form.searchText"
+
     />
    </div>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5 gx-4  dashboard-menu bg-light ">
     <dashboard-item v-for="(item, index) in dashBoardItem" :item="item" :key="index"/>
   </div>
+
 </template>
 
 <script>
@@ -29,8 +31,9 @@ export default {
   },
    setup(props, {emit}) {
     const form = reactive({
-      context: '',
+      section: '',
       searchText: '',
+
     })
     const items=reactive([])
      onMounted(async () => {
@@ -52,7 +55,7 @@ export default {
                return (
                    item.title.toLowerCase().includes(form.searchText.toLowerCase())
                    &&
-                   item.section.toLowerCase().includes(form.context.toLowerCase())
+                   item.section.toLowerCase().includes(form.section.toLowerCase())
                )
              }
          )

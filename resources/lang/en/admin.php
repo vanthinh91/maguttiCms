@@ -221,7 +221,7 @@ return [
     ],
     'dashboard' => [
         'filter_message' => 'Type a word to filter ...',
-        'select_context' => 'Select a category',
+        'select_section' => 'Select a category',
 
     ]
 ];

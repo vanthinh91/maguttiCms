@@ -1,37 +1,42 @@
 <template>
-    <div class="form-group col-12 col-sm-12  ">
-        <p>{{label}}</p>
-        <select class="form-control"
-                @change="select"
-                @input="$emit('update:selected-option', $event.target.value)">
-            <option selected="true">Select template</option>
-            <option v-for="option in options"
-                    :selected="option.id === selectedOption ? 'selected' : ''"
-                    :value="option.id">{{ option.title }}</option>
-        </select>
-
-    </div>
+  <label v-if="label" :for="$attrs.name??''" class="form-label">{{ label }}</label>
+  <select
+      class="form-select" aria-label="Default select example"
+      :value="modelValue"
+      v-bind="{
+      ...$attrs,
+      onChange: ($event) => { $emit('update:modelValue', $event.target.value) }
+    }"
+  >
+    <option value="" v-if="empty_value">{{ empty_value }}</option>
+    <option
+        v-for="option in options"
+        :value="option.id??option"
+        :key="option"
+        :selected="option === modelValue"
+    >{{ option.label??option }}</option>
+  </select>
 </template>
-<script>
-    export default {
-        props: {
-            label: String,
-            cssInput: String,
-            options: Array,
-            selectedOption:[String, Number]
-        },
-        data() {
-            return {
-                selected: null
-            }
-        },
-        methods: {
-            select: function (e) {
-                this.selected = this.options[e.target.selectedIndex - 1].id;
-                console.log(this.selected)
-                this.$emit('update:selected-option', this.selected);
-            }
-        }
 
+<script>
+export default {
+  props: {
+    label: {
+      type: String,
+      default: ''
+    },
+    empty_value: {
+      type: String,
+      default: ''
+    },
+    modelValue: {
+      type: [String, Number],
+      default: ''
+    },
+    options: {
+      type: Array,
+      required: true
     }
+  }
+}
 </script>
