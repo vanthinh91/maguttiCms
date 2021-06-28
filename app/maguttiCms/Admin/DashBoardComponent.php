@@ -31,7 +31,7 @@ class DashBoardComponent  {
             'target' => "_new",
             'footer_url' => url()->to(''),
             'footer_icon' => 'fas fa-external-link-alt',
-            'section' =>'website'
+            'section' =>'See website'
         ]);
     }
 
