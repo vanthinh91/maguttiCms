@@ -8,5 +8,6 @@
             <div class="page-breadcrumb__item">{{$article->title}}</div>
         </div>
     </x-website.ui.breadcrumbs>
+   <x-magutti_store-shop-banner-component/>
     <x-website.categories.index></x-website.categories.index>
 @endsection

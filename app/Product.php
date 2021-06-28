@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use App\maguttiCms\Domain\Media\Mediable;
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
@@ -13,6 +14,7 @@ class Product extends Model
 {
     use GFTranslatableHelperTrait;
     use Translatable;
+    use Mediable;
     use ProductPresenter;
 
     protected $with = ['translations'];

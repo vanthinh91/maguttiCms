@@ -6,12 +6,16 @@
 			<div class="page-breadcrumb__item">{{$product->title}}</div>
 		</div>
 	</x-website.ui.breadcrumbs>
+	<x-magutti_store-shop-banner-component/>
 	<section class="product-page">
 		<div class="container">
 			<div class="row no-gutters">
-				<div class="col-12 col-sm-6 order-md-1 my-2 my-md-0 product-page-image">
+				<div class="col-12 col-sm-6 order-md-1 my-2 my-md-0 product-page-image p-0 m-0">
+
+
 					<img class="img-fluid" src="{{ ImgHelper::init('products')->get_cached($product->image, config('maguttiCms.image.large')) }}" alt="{{ $product->title }}">
-					@if($product->on_sale)
+
+				    @if($product->on_sale)
 						<div class="products__card-on-sale">ON SALE</div>
 					@endif
 				</div>

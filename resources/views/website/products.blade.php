@@ -8,6 +8,7 @@
             <div class="page-breadcrumb__item">{{$article->menu_title}}</div>
         </div>
     </x-website.ui.breadcrumbs>
+    <x-magutti_store-shop-banner-component/>
     <section class="py-3">
       <div class="container">
             <div class="row">

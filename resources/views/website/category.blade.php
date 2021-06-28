@@ -5,6 +5,7 @@
 			<h1 class="page-breadcrumb__item">{{$category->title}}</h1>
 		</div>
 	</x-website.ui.breadcrumbs>
+	<x-magutti_store-shop-banner-component/>
 	<section class="py-2 py-md-4">
 		<div class="container">
 			<div class="row">
