@@ -1,4 +1,6 @@
-<section {{ $attributes->merge(['class' => 'shipping_disclaimer']) }}>
+
+@if($banner->pub)
+    <section {{ $attributes->merge(['class' => 'shipping_disclaimer']) }}>
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
@@ -7,6 +9,7 @@
         </div>
     </div>
 </section>
+@endif
 
 
 
