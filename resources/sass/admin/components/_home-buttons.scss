@@ -36,7 +36,28 @@
 					color: $info;
 				}
 			}
-
+		}
+		&.shop{
+			&:hover {
+				border-bottom:5px solid $danger;
+				@include shadow(4);
+				.button {
+					i, h3 {
+						color: $danger;
+					}
+				}
+			}
+		}
+		&.users{
+			&:hover {
+				border-bottom:5px solid $success;
+				@include shadow(4);
+				.button {
+					i, h3 {
+						color: $success;
+					}
+				}
+			}
 		}
 	    @include shadow(3);
 		@include animate();
@@ -52,6 +73,14 @@
 			:hover{
 				i {
 					color: $danger;
+				}
+			}
+			.badge{
+				&.shop{
+					background-color: $danger !important;
+				}
+				&.users{
+					background-color: $success !important;
 				}
 			}
 		}

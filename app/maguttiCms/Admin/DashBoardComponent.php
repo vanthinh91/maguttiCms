@@ -49,7 +49,7 @@ class DashBoardComponent  {
                 'footer_url' => (data_get($section['actions'],'create'))? ma_get_admin_create_url($section['model']):'',
                 'target' => null,
                 'total' => $this->getTotalAmount($section,$model),
-                'section' =>data_get($section,'section','')
+                'section' =>data_get($section,'section','cms')
             ]);
         }
         return $this->data;
