@@ -10,12 +10,17 @@
 		@include media-breakpoint-up(md) {
 			margin: 0px 30px;
 		};
+
+	}
+	.dashboard-menu{
+		padding:1.5rem 0.75rem 0rem;
 		> div {
-			margin-top: 10px;
+			margin-bottom: 1.5rem;
 			@include media-breakpoint-up(md) {
-				margin-top:30px;
+				margin-bottom:2rem;
 			};
 		}
+
 	}
 
 	.dashboard-card{
@@ -50,6 +55,23 @@
 				}
 			}
 		}
+	}
+	.dashboard-search{
+		background-color: rgba(0, 0, 0, 0.03);
+		margin-top:2rem;
+		padding:0.75rem 0.75rem;
+		margin-bottom:0rem;
+		border-bottom: 1px solid $color-3;
+		.form-label{
+			color:$primary;
+			font-weight: 300;
+		}
+
+		> div {
+			margin-bottom: 0.5rem;
+
+		}
+
 	}
 
 	.button {

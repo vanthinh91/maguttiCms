@@ -8,7 +8,7 @@
 
 import { createApp } from 'vue';
 
-import DashboardComponent from './../components/admin/DashboardButtonsComponent'
+import DashboardComponent from '../components/admin/Dashboard/DashboardButtonsComponent'
 import SideBarComponent  from './../components/admin/SideBar';
 import SeoInputComponent from './../components/admin/SeoInputComponent';
 import SeoTextComponent from './../components/admin/SeoTextComponent';

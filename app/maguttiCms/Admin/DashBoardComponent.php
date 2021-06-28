@@ -31,6 +31,7 @@ class DashBoardComponent  {
             'target' => "_new",
             'footer_url' => url()->to(''),
             'footer_icon' => 'fas fa-external-link-alt',
+            'section' =>'website'
         ]);
     }
 
@@ -48,6 +49,7 @@ class DashBoardComponent  {
                 'footer_url' => (data_get($section['actions'],'create'))? ma_get_admin_create_url($section['model']):'',
                 'target' => null,
                 'total' => $this->getTotalAmount($section,$model),
+                'section' =>data_get($section,'section','')
             ]);
         }
         return $this->data;

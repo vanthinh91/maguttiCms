@@ -1,22 +1,26 @@
 <template>
-    <div class="form-group col-12 col-sm-6  ">
-        <p>{{label}}</p>
-        <input class="form-control"
-               :type="type"
-               :value="content"
-               :placeholder="placeholder"
-               @input="$emit('update:content', $event.target.value)"
-        >
-
-    </div>
+  <label v-if="label">{{ label }}</label>
+  <input
+      v-bind="$attrs"
+      :value="modelValue"
+      :placeholder="$attrs.placeholder??''"
+      @input="$emit('update:modelValue', $event.target.value)"
+      class="form-control"
+  >
 </template>
-<script>
-    export default {
-        props: ['label', 'placeholder','content','cssInput','type'],
-        data() {
-            return {
 
-            }
-        },
+<script>
+export default {
+  props: {
+    label: {
+      type: String,
+      default: ''
+    },
+    modelValue: {
+      type: [String, Number],
+      default: ''
     }
+  },
+  emits: ['update:modelValue'],
+}
 </script>

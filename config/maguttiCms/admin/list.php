@@ -11,6 +11,8 @@ return [
             'model' => 'Example',
             'title' => 'Example',
             'icon' => 'graduation-cap',
+            'section' =>'cms',
+
             'field' => [
                 'id',
                 'date' => ['type' => 'text', 'field' => 'date', 'orderable' => true],
@@ -140,6 +142,7 @@ return [
             'model' => 'Article',
             'title' => 'Pages',
             'icon' => 'newspaper',
+            'section' =>'cms',
             'field' => ['id',
                 'image' => ['type' => 'image', 'field' => 'image'],
                 'parent' => ['type' => 'relation', 'relation' => 'parent', 'field' => 'title'],
@@ -227,6 +230,7 @@ return [
             'model' => 'Block',
             'title' => 'Pages',
             'icon' => 'newspaper',
+            'section' =>'cms',
             'field' => ['id',
                 'image' => ['type' => 'image', 'field' => 'image'],
                 'title' => ['type' => 'text', 'field' => 'title', 'orderable' => true, 'order_field' => 'article_translations.title'],
@@ -264,6 +268,7 @@ return [
             'model' => 'HpSlider',
             'title' => 'Home Sliders',
             'icon' => 'image',
+            'section' =>'cms',
             'field' => [
                 'id',
                 'image' => ['type' => 'image', 'field' => 'image'],
@@ -297,6 +302,7 @@ return [
             'model' => 'Media',
             'title' => 'Media',
             'icon' => 'file',
+            'section' =>'media',
             'field' => [
                 'id',
                 'image' => ['type' => 'image', 'field' => 'file_name'],
@@ -330,6 +336,7 @@ return [
             'model' => 'News',
             'title' => 'News',
             'icon' => 'bullhorn',
+            'section' =>'cms',
             'field' => [
                 'image' => ['type' => 'relation_image', 'relation' => 'imageMedia', 'field' => 'file_name'],
                 'title',
@@ -395,6 +402,7 @@ return [
             'model' => 'Faq',
             'title' => 'Faqs',
             'icon' => 'question',
+            'section' =>'cms',
             'field' => [
                 'id',
                 'title',
@@ -442,6 +450,7 @@ return [
             'model' => 'Tag',
             'title' => 'TagsNews',
             'icon' => 'tag',
+            'section' =>'cms',
             'field' => [
                 'id',
                 'title',
@@ -471,6 +480,7 @@ return [
             'model' => 'Location',
             'title' => 'Musei',
             'icon' => 'university',
+            'section' =>'cms',
             'field' => ['id',
                 'image' => ['type' => 'image', 'field' => 'image'],
                 'title' => ['type' => 'text', 'field' => 'title', 'orderable' => true, 'order_field' => 'article_translations.title'],
@@ -528,6 +538,7 @@ return [
             'model' => 'Metric',
             'title' => 'Metrics',
             'icon' => 'sort-numeric-up',
+            'section' =>'cms',
             'field' => [
                 'id',
                 'title' => ['type' => 'editable', 'field' => 'title','class' => 'col-2'],
@@ -567,6 +578,7 @@ return [
             'model' => 'Project',
             'title' => 'Project',
             'icon' => 'project-diagram',
+            'section' =>'cms',
             'field' => [
                 'id',
                 'category' => ['type' => 'relation', 'relation' => 'category', 'field' => 'title'],
@@ -609,6 +621,7 @@ return [
             'model' => 'Product',
             'title' => 'Product',
             'icon' => 'cube',
+            'section' =>'cms',
             'field' => [
                 'id',
                 'category' => ['type' => 'relation', 'relation' => 'category', 'field' => 'title'],
@@ -655,6 +668,7 @@ return [
             'model' => 'Category',
             'title' => 'Product Categories',
             'icon' => 'folder',
+            'section' =>'cms',
             'field' => [
                 'id',
                 //'parent' => ['type' => 'relation', 'relation' => 'parentCategory', 'field' => 'title'],
@@ -694,6 +708,7 @@ return [
             'model' => 'ProductModel',
             'title' => 'Models',
             'icon' => 'folder',
+            'section' =>'cms',
             'field' => [
                 'id',
                 'image' => ['type' => 'image', 'field' => 'image'],
@@ -799,6 +814,7 @@ return [
             'model' => 'Newsletter',
             'title' => 'Newsletter',
             'icon' => 'envelope-open-text',
+            'section' =>'cms',
             'field' => [
                 'id',
                 'locale' => ['type' => 'locale', 'field' => 'locale'],
@@ -831,6 +847,7 @@ return [
             'model' => 'Contact',
             'icon' => 'envelope',
             'title' => 'Info Request',
+            'section' =>'cms',
             'field' => [
                 'id',
                 'email' => ['type' => 'text', 'field' => 'email'],
@@ -867,6 +884,7 @@ return [
             'model' => 'Role',
             'icon' => 'graduation-cap',
             'title' => 'Roles',
+            'section' =>'users',
             'field' => [
                 'id',
                 'name' => ['type' => 'editable', 'field' => 'name'],
@@ -892,6 +910,7 @@ return [
             'model' => 'Social',
             'icon' => 'share-alt',
             'title' => 'Social',
+            'section' =>'cms',
             'field' => [
                 'id',
                 'title' => ['type' => 'editable', 'field' => 'title'],
@@ -922,6 +941,7 @@ return [
             'model' => 'User',
             'icon' => 'users',
             'title' => 'Users',
+            'section' =>'users',
             'field' => [
                 'id',
                 'email' => ['type' => 'editable', 'field' => 'email'],
@@ -963,6 +983,7 @@ return [
             'model' => 'Order',
             'title' => 'Orders',
             'icon' => 'shopping-cart',
+            'section' =>'shop',
             'field' => [
                 'id',
                 'created_at' => ['type' => 'date', 'field' => 'created_at', 'orderable' => true],
@@ -1045,6 +1066,7 @@ return [
             'model' => 'OrderStatus',
             'title' => 'Order Status',
             'icon' => 'credit-card',
+            'section' =>'shop',
             'field' => [
                 'id',
                 'title' => ['type' => 'text', 'field' => 'title'],
@@ -1084,6 +1106,7 @@ return [
             'model' => 'PaymentMethod',
             'title' => 'Payment Methods',
             'icon' => 'credit-card',
+            'section' =>'shop',
             'field' => [
                 'id',
                 'title' => ['type' => 'text', 'field' => 'title'],
@@ -1123,6 +1146,7 @@ return [
             'model' => 'ShipmentMethod',
             'title' => 'Shipping Methods',
             'icon' => 'truck',
+            'section' =>'shop',
             'field' => [
                 'id',
                 'title' => ['type' => 'text', 'field' => 'title'],
@@ -1162,6 +1186,7 @@ return [
             'model' => 'Discount',
             'title' => 'Discount',
             'icon' => 'tags',
+            'section' =>'shop',
             'field' => [
                 'id',
                 'id',
