@@ -52,7 +52,8 @@
             thousands_separator: '{{config('maguttiCms.store.formatting.thousands_separator')}}',
             prepend_currency: {{config('maguttiCms.store.formatting.prepend_currency')}},
             append_currency: {{config('maguttiCms.store.formatting.append_currency')}},
-            currency_symbol: '{{config('maguttiCms.store.currency_symbol')}}'
+            currency_symbol: '{{config('maguttiCms.store.currency_symbol')}}',
+            currency: '{{config('maguttiCms.store.currency')}}'
         };
         @endif
     </script>

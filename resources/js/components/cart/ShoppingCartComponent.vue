@@ -17,7 +17,7 @@
   </ul>
 </template>
 <script>
-import cartHelper from './mixins/store';
+import cartHelper from './repository/store';
 import cartItem from './partial/ShoppingCartItemsComponent';
 import cartIcon from './partial/ShoppingCartIconComponent';
 
@@ -36,10 +36,10 @@ export default {
     this.counterItems = this.counter;
   },
   mounted() {
-    window.$cartBus.$on('ADD_ITEM_TO_CART', (payload) => {
+    cartBus.on('ADD_ITEM_TO_CART', (payload) => {
       this.updateData(payload);
     });
-    window.$cartBus.$on('DELETE_ITEM_FROM_CART', ({cart_count}) => {
+    cartBus.on('DELETE_ITEM_FROM_CART', ({cart_count}) => {
       this.counterItems = cart_count;
     })
   },

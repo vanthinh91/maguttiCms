@@ -55,7 +55,7 @@ export default {
       this.selected_item = id;
       this.$root.$refs.fileInputValue.value = id;
       if (this.selected_item == null) {
-        $eventBus.$emit('FILE_MANAGER_UPDATE_SIDE_BAR', null);
+        emitterHub.emit('FILE_MANAGER_UPDATE_SIDE_BAR', null);
       }
     },
     updateSearchFilter(value) {
@@ -79,24 +79,24 @@ export default {
     }
   },
   mounted() {
-    $eventBus.$on('FILE_MANAGER_INIT', (current_item, params) => {
+    emitterHub.on('FILE_MANAGER_INIT', (current_item, params) => {
       this.params = {...params};
       this.current_item = current_item;
       this.set_selected(current_item);
       this.searchText ="";
     });
-    $eventBus.$on('FILE_MANAGER_LOAD_LIST', () => {
+    emitterHub.on('FILE_MANAGER_LOAD_LIST', () => {
       this.fetchData();
     });
-    $eventBus.$on('FILE_MANAGER_SELECT_ITEM', (id) => {
+    emitterHub.on('FILE_MANAGER_SELECT_ITEM', (id) => {
       this.set_selected(id);
     });
-    $eventBus.$on('FILE_MANAGER_RESET', () => {
+    emitterHub.on('FILE_MANAGER_RESET', () => {
       this.set_selected(null);
     });
   },
   beforeDestroy() {
-    $eventBus.$off(['FILE_MANAGER_LOAD_LIST',
+    emitterHub.off(['FILE_MANAGER_LOAD_LIST',
       'FILE_MANAGER_RESET',
       'FILE_MANAGER_INIT',
       'FILE_MANAGER_SELECT_ITEM'

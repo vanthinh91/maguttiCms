@@ -1,6 +1,8 @@
 <template>
+
   <div id="sidebar-content" class="col-md-4 col-12" ref="modalEditComponent">
     <loader v-if="isLoading"></loader>
+    <div v-else v-html="formContent"></div>
   </div>
 </template>
 <script>
@@ -15,19 +17,21 @@ export default {
   mixins: [fileManagerSupport],
   data() {
     return {
-      isLoading: false
+      isLoading: false,
+      formContent : '',
     }
   },
   methods: {
 
     updateData({data}) {
-      this.$refs.modalEditComponent.innerHTML = data;
+       this.formContent=data;
+
     },
   },
   mounted() {
-    $eventBus.$on('FILE_MANAGER_UPDATE_SIDE_BAR', (id) => {
+    emitterHub.on('FILE_MANAGER_UPDATE_SIDE_BAR', (id) => {
       if (id === null) {
-        this.$refs.modalEditComponent.innerHTML = '';
+        this.formContent = '';
       }
       else this.updateSidebar(id)
     });
@@ -36,11 +40,12 @@ export default {
     $(document).on('submit', '#filemanager-edit-form', function (e) {
       e.preventDefault();
       let  form = $(this);
-      self.saveMediaData(form)
+      self.saveMediaData(form);
+
     });
   },
   beforeDestroy() {
-    $eventBus.$off(['FILE_MANAGER_UPDATE_SIDE_BAR']);
+    emitterHub.off(['FILE_MANAGER_UPDATE_SIDE_BAR']);
   }
 }
 </script>

@@ -17,7 +17,7 @@ $( function()
     $('input[name=file-input]', $modal).val(inputName);
     $('input[name=file-value]', $modal).val(inputValue)
 
-    window.$eventBus.$emit('FILE_MANAGER_INIT',inputValue,params);
+    window.emitterHub.emit('FILE_MANAGER_INIT',inputValue,params);
 
     // If 'inputValue' value is != 0, open library tab
     if(inputValue != 0) {
@@ -50,7 +50,7 @@ $( function()
   * When the user clicks on 'library' tab, load all images
   */
   $('#file-manager-list').on('click', function(e) {
-      window.$eventBus.$emit('FILE_MANAGER_LOAD_LIST')
+      window.emitterHub.emit('FILE_MANAGER_LOAD_LIST')
 
       let fileValue = $('input[name=file-value]').val();
       $('.modal-footer', $modal).removeClass('visually-hidden');
@@ -63,8 +63,8 @@ $( function()
         $('#tab-upload', $modal).removeClass('active show');
         $('#tab-images', $modal).addClass('active show')
 
-        window.$eventBus.$emit('FILE_MANAGER_UPDATE_SIDE_BAR',fileValue)
-        window.$eventBus.$emit('FILE_MANAGER_SELECT_ITEM',fileValue)
+        window.emitterHub.emit('FILE_MANAGER_UPDATE_SIDE_BAR',fileValue)
+        window.emitterHub.emit('FILE_MANAGER_SELECT_ITEM',fileValue)
      }
   });
 
@@ -79,7 +79,7 @@ $( function()
   $('.reset-image', $modal).on('click', function(e) {
     e.preventDefault();
     // Remove all 'is-active' classes
-    window.$eventBus.$emit('FILE_MANAGER_RESET')
+    window.emitterHub.emit('FILE_MANAGER_RESET')
   });
 
   /*
@@ -102,7 +102,7 @@ $( function()
     $('#tab-images',$modal).removeClass('active show')
     $('#file-manager-upload',$modal).addClass('active');
     $('#file-manager-list',$modal).removeClass('active');
-    window.$eventBus.$emit('FILE_MANAGER_UPDATE_SIDE_BAR',null)
+    window.emitterHub.emit('FILE_MANAGER_UPDATE_SIDE_BAR',null)
   });
 
 } );

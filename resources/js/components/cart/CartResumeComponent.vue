@@ -51,7 +51,7 @@
                 </td>
                 <td>
                   <div class="product-price-total">
-                    {{ itemTotal(item) | currency }}
+                    {{ currencyFormatter(itemTotal(item)) }}
                   </div>
                 </td>
                 <td class="text-center product-action">
@@ -68,21 +68,21 @@
           <div class="card cart-summary box-shadow p-2">
             <div class="cart-summary-line cart-item">
               <span class="label">{{ number_of_items }} {{ $t('store.cart.number_of_items') }} </span>
-              <span class="value">{{ product_total | currency }}</span>
+              <span class="value">{{ currencyFormatter(product_total)}}</span>
             </div>
             <div class="cart-summary-line cart-discount" v-if="discount_amount">
               <span class="label">{{ $t('store.order.discount.title') }}<br><strong>{{ cart.discount_label }}</strong></span>
-              <span class="value">{{ discount_amount | currency }}<br><a href="" @click.prevent="deleteCartCoupon" class="text-danger">{{ $t('store.order.discount.delete') }}</a></span>
+              <span class="value">{{ currencyFormatter(discount_amount) }}<br><a href="" @click.prevent="deleteCartCoupon" class="text-danger">{{ $t('store.order.discount.delete') }}</a></span>
             </div>
 
             <div class="cart-summary-line cart-ship" v-if="shipping_cost">
               <span class="label">{{ $t('store.order.shipping_cost') }}</span>
-              <span class="value">{{ shipping_cost | currency }}</span>
+              <span class="value">{{ currencyFormatter(shipping_cost) }}</span>
             </div>
             <div class="cart-summary-totals">
               <div class="cart-summary-line cart-total">
                 <span class="label">{{ $t('store.cart.total') }}&nbsp;({{ $t('store.cart.with_tax') }})</span>
-                <span class="value">{{ total | currency }}</span>
+                <span class="value">{{ currencyFormatter(total)  }}</span>
               </div>
             </div>
             <a class="btn btn-accent mt-2" :href="this.cart_url">{{ $t('store.cart.buy') }}</a>
@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import cartHelper from './mixins/store';
+import cartHelper from './repository/store';
 import alertBox from '../BaseComponent/AlertComponent';
 import CouponBox from './CouponComponent';
 import numberInput from '../BaseComponent/InputNumberComponent'

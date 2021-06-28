@@ -24,7 +24,7 @@
           <div class="shopping-cart-item-body-preview ms-2">
             <b>{{ product.code}} - {{product.title}}</b>
             <div>Qt:{{product.quantity}}</div>
-            <div>{{$t('store.cart.table.price')}}: {{product.price * product.quantity | currency}} ({{product.price}})</div>
+            <div>{{$t('store.cart.table.price')}} : {{getProductTotalAmount(product)}} ({{product.price}})</div>
           </div>
         </div>
       </template>
@@ -40,7 +40,7 @@
   </div>
 </template>
 <script>
-import cartHelper  from './mixins/store';
+import cartHelper  from './repository/store';
 import confirmModal from '../BaseComponent/ModalComponent'
 import numberInput from '../BaseComponent/InputNumberComponent'
 export default {
@@ -84,9 +84,7 @@ export default {
     this.quantity = (this.value)?this.value:this.min;
   },
   methods: {
-    url() {
-      return `${this.baseUrl}cart-item-add`;
-    },
+
     update(q) {
       this.quantity =this.round(q,this.step);
       this.$refs.control.quantity = this.quantity;
@@ -102,12 +100,11 @@ export default {
       this.product.quantity=this.item.quantity;
       this.product.thumb_image=this.item.product.thumb_image;
     },
-    pino(){
-      window.myFunc(this.quantity);
-    }
+
   },
+
   mounted() {
-    window.$cartBus.$on('ADD_ITEM_TO_CART', ({cart_count,cart_items}) => {
+    cartBus.on('ADD_ITEM_TO_CART', ({cart_count,cart_items}) => {
       this.counterItems = (_.isUndefined(cart_count))?1:cart_count;
       this.updateModal(cart_items)
     })

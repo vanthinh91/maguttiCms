@@ -1902,7 +1902,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    window.$cartBus.$on('ADD_ITEM_TO_CART', function (_ref) {
+    cartBus.on('ADD_ITEM_TO_CART', function (_ref) {
       var cart_count = _ref.cart_count,
           cart_items = _ref.cart_items;
       _this.counterItems = cart_count;
@@ -2076,10 +2076,10 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    window.$cartBus.$on('ADD_ITEM_TO_CART', function (payload) {
+    cartBus.on('ADD_ITEM_TO_CART', function (payload) {
       _this.updateData(payload);
     });
-    window.$cartBus.$on('DELETE_ITEM_FROM_CART', function (_ref) {
+    cartBus.on('DELETE_ITEM_FROM_CART', function (_ref) {
       var cart_count = _ref.cart_count;
       _this.counterItems = cart_count;
     });
@@ -51779,12 +51779,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     refreshCart: function refreshCart(_ref) {
       var data = _ref.data;
-      window.$cartBus.$emit('ADD_ITEM_TO_CART', data.data);
+      cartBus.emit('ADD_ITEM_TO_CART', data.data);
       this.notify(data.msg);
     },
     updateCartItems: function updateCartItems(_ref2) {
       var data = _ref2.data;
-      window.$cartBus.$emit('DELETE_ITEM_FROM_CART', data.data);
+      cartBus.emit('DELETE_ITEM_FROM_CART', data.data);
       this.notify(data.msg);
     },
     delete_url: function delete_url() {

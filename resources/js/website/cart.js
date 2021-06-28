@@ -1,42 +1,42 @@
 
-import Vue from 'vue'
+import { createApp } from 'vue';
 
-window.Vue =Vue;
-window.$cartBus = new Vue();
-
+// languageBundle
 import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader';
-import VueI18n from 'vue-i18n';
-import VueCurrencyFilter from 'vue-currency-filter'
+import { createI18n } from 'vue-i18n'
 
-Vue.use(VueI18n);
-const i18n = new VueI18n({
-    locale: window._LANG,
+const i18n = createI18n({
+    locale: window._LANG, // set locale
+    fallbackLocale: 'en', // set fallback locale
     messages: languageBundle,
+    // If you need to specify other options, you can set other options
+    // ...
 })
 
-Vue.use(VueCurrencyFilter,{
-    symbol : window.StoreConfig.currency_symbol,
-    thousandsSeparator: window.StoreConfig.thousands_separator,
-    fractionCount: window.StoreConfig.decimals,
-    fractionSeparator: window.StoreConfig.decimal_separator,
-    symbolPosition: 'front',
-    symbolSpacing: true
-}) // or with custom config
+// eventHub emitter
+import mitt from 'mitt'
+window.cartBus = mitt()
 
+
+// Components
 import CartResume  from './../components/cart/CartResumeComponent';
 import CartAddItem  from './../components/cart/AddToCartComponent'
 import ShoppingCart  from './../components/cart/ShoppingCartComponent'
 import CouponComponent from './../components/cart/CouponComponent'
 
-
-Vue.component('cart-resume', CartResume);
-Vue.component('cart-add-item', CartAddItem);
-Vue.component('shopping-cart', ShoppingCart);
-Vue.component('coupon-component', CouponComponent);
-
-let app = new Vue({
-    el: '#app',
-    i18n,
+// init  app
+const app = createApp({
+    components: {
+        CartResume,
+        CartAddItem,
+        ShoppingCart,
+        CouponComponent
+    }
 });
 
-window.app =app;;
+
+
+app.use(i18n);
+app.mount("#app");
+
+

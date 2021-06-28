@@ -1,6 +1,5 @@
 import {HTTP} from '../../../mixins/http-common';
 import notifier from '../../../mixins/notifier';
-
 export default {
     mixins: [notifier],
     data() {
@@ -11,7 +10,7 @@ export default {
     },
     methods: {
         addProductToCart() {
-            return HTTP.post(this.url(), {
+            return HTTP.post(this.add_to_cart_url(), {
                     product_code: this.product.code,
                     quantity: this.quantity
                 })
@@ -45,30 +44,50 @@ export default {
                 })
         },
         refreshCart({data}) {
-            window.$cartBus.$emit('ADD_ITEM_TO_CART', data.data)
+            cartBus.emit('ADD_ITEM_TO_CART', data.data)
             this.modalOpen = true;
         },
         gotToCart() {
             location.href= window.urlAjaxHandler+'/cart';
         },
         updateCartItems({data}) {
-            window.$cartBus.$emit('DELETE_ITEM_FROM_CART', data.data)
+            cartBus.emit('DELETE_ITEM_FROM_CART', data.data)
             this.notify(data.msg)
+        },
+
+
+        add_to_cart_url() {
+            return `${this.baseUrl}cart-item-add`;;
         },
         delete_url() {
             return `${this.baseUrl}cart-item-remove`;
         },
-        update_url() {
-            return `${this.baseUrl}cart-item-update`;
-        },
         delete_coupon_url() {
             return `${this.baseUrl}coupon-remove`;
         },
+        update_url() {
+            return `${this.baseUrl}cart-item-update`;
+        },
+
+        // calculate the product total amount
+        getProductTotalAmount(product){
+              return this.currencyFormatter(product.price * product.quantity);
+        },
+        // calculate  discount
         calculateDiscount(product_total=0){
 
             if(this.cart.discount_type=='amount') return this.cart.discount_amount;
             if(this.cart.discount_type=='percent') return product_total * (this.cart.discount_amount/100);
             return null;
+        },
+        // currency formatter
+        currencyFormatter(amount) {
+            return new Intl.NumberFormat( window._LANG , {
+                            style: 'currency',
+                            currency: window.StoreConfig.currency,
+                        }).format(amount)
+
+            return `${window.StoreConfig.currency_symbol} ${price}`
         }
-    },
+    }
 }

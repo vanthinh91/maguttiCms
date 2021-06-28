@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import cartHelper from './mixins/store';
+import cartHelper from './repository/store';
 import alertBox from '../BaseComponent/AlertComponent';
 import numberInput from '../BaseComponent/InputNumberComponent'
 import {HTTP} from "../../mixins/http-common";

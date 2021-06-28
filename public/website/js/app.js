@@ -1,1 +1,199 @@
-(()=>{function t(t,n){var r="undefined"!=typeof Symbol&&t[Symbol.iterator]||t["@@iterator"];if(!r){if(Array.isArray(t)||(r=function(t,n){if(!t)return;if("string"==typeof t)return e(t,n);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return e(t,n)}(t))||n&&t&&"number"==typeof t.length){r&&(t=r);var o=0,a=function(){};return{s:a,n:function(){return o>=t.length?{done:!0}:{done:!1,value:t[o++]}},e:function(t){throw t},f:a}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var i,s=!0,l=!1;return{s:function(){r=r.call(t)},n:function(){var t=r.next();return s=t.done,t},e:function(t){l=!0,i=t},f:function(){try{s||null==r.return||r.return()}finally{if(l)throw i}}}}function e(t,e){(null==e||e>t.length)&&(e=t.length);for(var n=0,r=new Array(e);n<e;n++)r[n]=t[n];return r}window.App={init:function(){$("#form-newsletter").on("submit",(function(t){t.preventDefault(),$.ajax({type:"POST",url:urlAjaxHandler+"/api/newsletter",data:$("#form-newsletter").serialize(),dataType:"json",success:function(t){var e="";"OK"==t.status?e+=t.msg:$.each(t.errors,(function(t,n){e+="<h4>"+n[0]+"</h4>"})),bootbox.alert({title:"Newsletter",message:e})},error:function(t){var e=t.responseJSON,n="";$.each(e.errors,(function(t,e){n+="<h4>"+e[0]+"</h4>"})),bootbox.alert({title:"Newsletter",message:n})}})})),$().fancybox({selector:".lightbox"}),$(".lightbox-iframe").fancybox({type:"iframe",iframe:{css:{width:"800px"}}}),$(document).on("click",".scroll-to",(function(t){t.preventDefault(),App.scrollTo($(this).attr("href"))})),window.location.hash&&App.scrollTo(window.location.hash)},scrollTo:function(t){var e=$("nav").outerHeight(),n=$(t).offset().top;$("html, body").stop().animate({scrollTop:n-e},500)},formValidation:function(t){$("#"+t).submit((function(e){e.preventDefault(),$.ajax({type:"POST",url:urlAjaxHandler+"/api/"+t,data:$("#"+t).serialize(),dataType:"json",success:function(e){"ok"==e.status?($("#"+t).hide(),$("#response").show().text(e.msg)):($.each(e.errors,(function(t,e){$('[name="'+t+'"]').addClass("error")})),$("html, body").animate({scrollTop:$("#"+t).offset().top-$("nav").height()},1200,"swing"))}})}))}},window.trans=function(e){var n,r=e.split("."),o=JS_LOCALIZATION,a=t(r);try{for(a.s();!(n=a.n()).done;){var i=n.value;i in o&&(o=o[i])}}catch(t){a.e(t)}finally{a.f()}return"string"==typeof o?o:e};var n=Swal.mixin({toast:!0,position:"top-right",iconColor:"green",customClass:{popup:"colored-toast"},showConfirmButton:!1,timer:1500,timerProgressBar:!0});window.sendOrderNotification=function(t){var e="".concat(window.urlAjaxHandler,"/api/store/resend-order-notification/").concat(t);axios.get(e).then((function(t){var e=t.data;n.fire({icon:e.msg.type,title:e.msg.text})}),(function(t){console.log(t)}))}})();
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!*************************************!*\
+  !*** ./resources/js/website/app.js ***!
+  \*************************************/
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+window.App = function () {
+  function handleNewsletter() {
+    $('#form-newsletter').on('submit', function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: urlAjaxHandler + "/api/newsletter",
+        data: $("#form-newsletter").serialize(),
+        dataType: 'json',
+        success: function success(response) {
+          var msgHtml = '';
+
+          if (response.status == 'OK') {
+            msgHtml += response.msg;
+          } else {
+            $.each(response.errors, function (_key, value) {
+              msgHtml += '<h4>' + value[0] + '</h4>'; //showing only the first error.
+            });
+          }
+
+          bootbox.alert({
+            title: "Newsletter",
+            message: msgHtml
+          });
+        },
+        error: function error(_ref) {
+          var responseJSON = _ref.responseJSON;
+          var msgHtml = '';
+          $.each(responseJSON.errors, function (_key, value) {
+            msgHtml += '<h4>' + value[0] + '</h4>'; //showing only the first error.
+          });
+          bootbox.alert({
+            title: "Newsletter",
+            message: msgHtml
+          });
+        }
+      });
+    });
+  }
+
+  function handleLightBox() {
+    $().fancybox({
+      selector: '.lightbox'
+    });
+    $(".lightbox-iframe").fancybox({
+      type: 'iframe',
+      iframe: {
+        css: {
+          width: '800px'
+        }
+      }
+    });
+  }
+
+  function handleScrollTo() {
+    $(document).on('click', '.scroll-to', function (e) {
+      e.preventDefault();
+      App.scrollTo($(this).attr('href'));
+    });
+
+    if (window.location.hash) {
+      App.scrollTo(window.location.hash);
+    }
+  }
+
+  function initOverrideInvalid() {
+    var offset = $('.navbar.fixed-top').outerHeight() + 30;
+    document.addEventListener('invalid', function (e) {
+      var elem = $(e.target);
+      elem.addClass('override-invalid');
+
+      if ($('.override-invalid:visible').length) {
+        $('html, body').animate({
+          scrollTop: $('.override-invalid:visible').first().offset().top - offset
+        }, 0);
+      }
+    }, true);
+    document.addEventListener('change', function (e) {
+      $(e.target).removeClass('override-invalid');
+    }, true);
+  }
+
+  return {
+    init: function init() {
+      handleNewsletter();
+      handleLightBox();
+      handleScrollTo(); //initOverrideInvalid();
+    },
+    scrollTo: function scrollTo(hash) {
+      var margin_top = $("nav").outerHeight();
+      var elem_top = $(hash).offset().top;
+      $('html, body').stop().animate({
+        'scrollTop': elem_top - margin_top
+      }, 500);
+    },
+    formValidation: function formValidation(selector) {
+      $('#' + selector).submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+          type: 'POST',
+          url: urlAjaxHandler + '/api/' + selector,
+          data: $('#' + selector).serialize(),
+          dataType: 'json',
+          success: function success(response) {
+            if (response.status == 'ok') {
+              $('#' + selector).hide();
+              $('#response').show().text(response.msg);
+            } else {
+              $.each(response.errors, function (key, _value) {
+                $('[name="' + key + '"]').addClass('error');
+              });
+              $('html, body').animate({
+                scrollTop: $('#' + selector).offset().top - $('nav').height()
+              }, 1200, 'swing');
+            }
+          }
+        });
+      });
+    }
+  };
+}();
+/******************************** MODAL ************************/
+
+
+function updateModalAlertMsg($htmlContent) {
+  bootbox.alert($htmlContent, function () {});
+}
+
+function updateModalBoxMsg($htmlContent) {
+  bootbox.confirm($htmlContent, function () {});
+}
+/*********************************  localize *********************/
+
+
+window.trans = function (keystring) {
+  var key_array = keystring.split('.');
+  var temp_localization = JS_LOCALIZATION;
+
+  var _iterator = _createForOfIteratorHelper(key_array),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var key = _step.value;
+
+      if (key in temp_localization) {
+        temp_localization = temp_localization[key];
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  if (typeof temp_localization == 'string') {
+    return temp_localization;
+  } else {
+    return keystring;
+  }
+};
+
+var Toast = Swal.mixin({
+  toast: true,
+  position: 'top-right',
+  iconColor: 'green',
+  customClass: {
+    popup: 'colored-toast'
+  },
+  showConfirmButton: false,
+  timer: 1500,
+  timerProgressBar: true
+});
+
+window.sendOrderNotification = function (order_token) {
+  var api_url = "".concat(window.urlAjaxHandler, "/api/store/resend-order-notification/").concat(order_token);
+  axios.get(api_url).then(function (_ref2) {
+    var data = _ref2.data;
+    Toast.fire({
+      icon: data.msg.type,
+      title: data.msg.text
+    });
+  }, function (error) {
+    console.log(error);
+  });
+};
+/******/ })()
+;

@@ -26,7 +26,7 @@ require('laravel-mix-merge-manifest');
 		.js('resources/js/admin/cms.js', 'public/cms/js/cms.js')
 		.js('resources/js/admin/header.js', 'public/cms/js/header.js')
 		.js('resources/js/admin/lara-file-manager.js', 'public/cms/js')
-		.js('resources/js/admin/appcms.js', 'public/cms/js/').vue({version: 2});
+		.js('resources/js/admin/appcms.js', 'public/cms/js/').vue();
 
 //} else {
 	mix.options({
@@ -46,6 +46,6 @@ mix.sass('resources/sass/website/vendor.scss', 'public/website/css')
 
 mix.sass('resources/sass/website/app.scss', 'public/website/css')
 	.js('resources/js/website/app.js', 'public/website/js')
-	.js('resources/js/website/cart.js', 'public/website/js').vue({version: 2});
+	.js('resources/js/website/cart.js', 'public/website/js').vue();
 
 mix.mergeManifest();

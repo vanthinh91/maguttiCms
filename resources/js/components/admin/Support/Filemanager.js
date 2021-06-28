@@ -43,7 +43,7 @@ export default {
             this.isLoading = true;
             HTTP.get(urlAjaxHandlerCms + 'filemanager/edit/' + id)
                 .then(response => {
-                    self.isLoading = false;
+                    self.isLoading =false;
                     this.updateData(response);
                 })
                 .catch(e => {
@@ -59,11 +59,12 @@ export default {
             let target = form.attr('action')
             HTTP.post(target ,form.serialize())
                 .then(function ({data}) {
-                    $.notify(data.message, 'success')
+                    $.notify(data.message, 'success');
                 })
                 .catch(function (error) {
                     $.notify('Error')
                 })
+                .finally(()=> emitterHub.emit('FILE_MANAGER_LOAD_LIST') )
         }
 
     },

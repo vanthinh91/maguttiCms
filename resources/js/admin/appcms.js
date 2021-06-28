@@ -6,48 +6,69 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import Vue from 'vue'
+import { createApp } from 'vue';
 
-window.Vue =Vue;
-window.$eventBus = new Vue();
+import DashboardComponent from './../components/admin/DashboardButtonsComponent'
+import SideBarComponent  from './../components/admin/SideBar';
+import SeoInputComponent from './../components/admin/SeoInputComponent';
+import SeoTextComponent from './../components/admin/SeoTextComponent';
+import ClearableInputComponent from './../components/admin/ClearableInputComponent';
+import CopyableInputComponent from './../components/admin/CopyableInputComponent';
+import GeneratorInputComponent from './../components/admin/GeneratorInputComponent';
+import CheckboxGridComponent from '../components/admin/CheckBoxesGrid/CheckGridComponent';
 
+import FileManagerGridComponent from '../components/admin/Filemanager/IndexComponent';
+
+//import ListComponent from './../components/admin/ListComponent' ;
 
 import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader';
-import VueI18n from 'vue-i18n';
+import { createI18n } from 'vue-i18n'
 
 
-Vue.use(VueI18n);
-const i18n = new VueI18n({
-    locale: window._LOCALE,
+const i18n = createI18n({
+    locale: window._LANG, // set locale
+    fallbackLocale: 'en', // set fallback locale
     messages: languageBundle,
+    // If you need to specify other options, you can set other options
+    // ...
 })
 
+import mitt from 'mitt'
 
-import GeneratorInputComponent from './../components/admin/GeneratorInputComponent';
-import ListComponent from './../components/admin/ListComponent';
+window.emitterHub = mitt()
 
-
-Vue.component('dashboard-component', require('./../components/admin/DashboardButtonsComponent').default);
-Vue.component('side-bar-component', require('./../components/admin/SideBar').default);
-Vue.component('seo-input-component', require('./../components/admin/SeoInputComponent').default);
-Vue.component('seo-text-component', require('./../components/admin/SeoTextComponent').default);
-Vue.component('clearable-input-component', require('./../components/admin/ClearableInputComponent').default);
-Vue.component('copyable-input-component', require('./../components/admin/CopyableInputComponent').default);
-
-Vue.component('generator-input-component', GeneratorInputComponent);
-Vue.component('list-component', ListComponent);
-Vue.component('checkbox-grid-component', require('../components/admin/CheckBoxesGrid/CheckGridComponent').default);
-Vue.component('file-manager-grid-component', require('../components/admin/Filemanager/IndexComponent').default);
-
-
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-const app = new Vue({
-    el: '#app',
-    i18n,
+const app = createApp({
+    components: {
+        DashboardComponent,
+        SideBarComponent,
+        SeoInputComponent,
+        SeoTextComponent,
+        ClearableInputComponent,
+        CopyableInputComponent,
+        GeneratorInputComponent,
+        CheckboxGridComponent,
+        FileManagerGridComponent
+    }
 });
+app.use(i18n);
+app.mount("#app");
+
+
+
+
+
+
+
+
+
+/*
+
+
+
+
+
+';
+
+
+*/
+

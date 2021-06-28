@@ -41,9 +41,9 @@
                 }
             }
             document.addEventListener("keydown", escapeHandler)
-            this.$once("hook:destroyed", () => {
+           /*this.once("hook:destroyed", () => {
                 document.removeEventListener("keydown", escapeHandler)
-            })
+            })*/
         },
         watch: {
             show: {

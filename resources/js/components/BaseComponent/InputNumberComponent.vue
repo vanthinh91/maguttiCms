@@ -107,7 +107,7 @@
            emitEvent(){
                 if(this.quantity>=this.max) this.quantity =this.max;
                 else this.quantity= this.round(this.quantity,this.step);
-                this.$emit('input', this.quantity);
+                this.$emit('update:modelValue', this.quantity);
                 this.notifyUpdate(this.quantity);
             },
             change(event) {

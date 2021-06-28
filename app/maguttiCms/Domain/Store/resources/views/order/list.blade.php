@@ -1,4 +1,5 @@
 <h3 class="text-muted">{{__('store.dashboard.orders')}}</h3>
+<div class="bow-shadow-bordered">
 @if($orders->count())
 <table class="table table-bordered table-striped table-hover orders-resume">
     <thead class="thead-dark">
@@ -58,3 +59,4 @@
 @else
     <a href="{{route('shop.index')}}" class="h4 text-color-6">{{__('store.dashboard.orders_empty')}}</a>
 @endif
+</div>
