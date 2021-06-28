@@ -26,10 +26,10 @@
 
                 <div class="col-12 col-md-4 footer-legal">
                     <div class="text-center text-md-end">
-                        <a href="https://www.iubenda.com/privacy-policy/{{ data_get($site_settings,'iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}" class="lightbox-iframe" title="{{ trans('website.privacy')}}">
+                        <a href="{{page_permalink_by_id(3)}}"  target="_blank" title="{{ trans('website.privacy')}}">
                             {{ trans('website.privacy')}}
                         </a> |
-                        <a href="https://www.iubenda.com/privacy-policy/{{ data_get($site_settings,'iubenda_code_'.LaravelLocalization::getCurrentLocale()) }}/cookie-policy" class="lightbox-iframe" title="{{ trans('website.cookie')}}">
+                        <a href="{{page_permalink_by_id(20)}}" target="_blank" title="{{ trans('website.cookie')}}">
                             {{ trans('website.cookie')}}
                         </a> |
                         <a href="{{ data_get($site_settings,'credits_url') }}" target="_blank">Credits</a>
