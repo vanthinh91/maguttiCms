@@ -204,6 +204,7 @@ return [
     'file_manager' => [
         'filter_message' => 'Filtra per titolo, estensione, tipo o categoria ...',
         'library' => 'Libreria',
+        'empty' => 'La tua liberia è vuota',
     ],
     'dashboard' => [
         'filter_message' => 'Digita una parola per cercare ...',

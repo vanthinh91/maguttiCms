@@ -14,16 +14,16 @@ export default {
         data: '',
     }),
     methods: {
-        notify(message) {
+        notify(message,type="success") {
            Toast.fire({
-                icon: message.type ?? 'success',
-                title: message.text,
+                icon: message.type ?? type,
+                title: message.text ?? message,
             })
         },
-        notifyError(message) {
+        notifyError(message,type='') {
             Toast.fire({
-                icon: "error",
-                title: message.text
+                icon: type??"error",
+                title: message.text ?? message,
             })
         }
     }

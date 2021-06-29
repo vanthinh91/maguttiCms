@@ -133,11 +133,12 @@ trait JsonApiResponseTrait
      * @param string $message
      * @return $this
      */
-    public function responseNotFound($message = '')
+    public function responseNotFound($message = '',$code='')
     {
 
         $this->setHttpStatus(Response::HTTP_BAD_REQUEST);
         $message = ($message) ?: __('api.errors.item_not_found');
+        $code ?? ErrorCodes::DataNotFound;
         return $this->addValidationError(ErrorCodes::DataNotFound, $message)->responseWithValidationError();
 
     }

@@ -26,6 +26,17 @@ trait Mediable
         return $this->belongsTo('App\Media', 'doc_media_id', 'id');
     }
 
+    public function hasImageMedia()
+    {
+
+        return $this->imageMedia()->count();
+    }
+
+    public function hasDocMedia()
+    {
+        return $this->imageMedia()->count();
+    }
+
     public function hasGallery()
     {
         return $this->gallery()->count();

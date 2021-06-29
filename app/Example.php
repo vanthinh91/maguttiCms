@@ -1,6 +1,7 @@
 <?php namespace App;
 
 
+use App\maguttiCms\Domain\Media\Mediable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
@@ -12,9 +13,9 @@ use \App\maguttiCms\Domain\Article\ArticlePresenter;
 class Example extends Model
 {
     use Translatable;
-
+    use Mediable;
     use ArticlePresenter;
-    use  GFTranslatableHelperTrait;
+    use GFTranslatableHelperTrait;
 
     protected $with = ['translations'];
 
@@ -93,15 +94,7 @@ class Example extends Model
 
 
 
-    public function media()
-    {
-        return $this->morphMany('App\Media', 'model');
-    }
 
-    public function imageMedia()
-    {
-        return $this->belongsTo('App\Media', 'image_media_id', 'id');
-    }
 
     /*
     |--------------------------------------------------------------------------

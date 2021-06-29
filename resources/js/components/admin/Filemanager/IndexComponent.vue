@@ -2,9 +2,10 @@
   <div class="row">
     <div class="tab-images-gallery col-md-8 col-12">
       <search-box @update-search="updateSearchFilter"></search-box>
-      <loader :is-loading="loading" v-if="loading"></loader>
-      <div class="row filemanager-list d-grid-lg gy-3" v-else="items">
-        <div class="col-6 col-xl-2 col-lg-3 col-md-3" v-for="item in itemList">
+
+      <div class="row filemanager-list d-grid-lg gy-3">
+        <loader :is-loading="loading" v-if="loading"></loader>
+        <div v-else-if="items.length" class="col-6 col-xl-2 col-lg-3 col-md-3" v-for="item in itemList">
           <media-item
               :class="{active: selected_item == item.id}"
               :media="item"
@@ -12,7 +13,14 @@
               :key="'media_item_'+item.id">
           </media-item>
         </div>
+        <alert-component v-else class="text-center d-flex align-items-top">
+          <template #content>
+            <h3>{{ $t('admin.file_manager.empty') }}</h3>
+          </template>
+        </alert-component>
+
       </div>
+
     </div>
     <media-edit/>
   </div>
@@ -26,6 +34,7 @@ import MediaItem from './MediaItem'
 import SearchBox from './SearchBoxComponent'
 import MediaEdit from "./MediaEditComponent";
 import Loader from "../../BaseComponent/LoaderComponent";
+import AlertComponent from "../../BaseComponent/AlertComponent";
 
 export default {
   name: "file-manager-grid",
@@ -33,7 +42,7 @@ export default {
     MediaItem,
     MediaEdit,
     SearchBox,
-    Loader
+    Loader,AlertComponent
   },
   mixins: [helper,fileManagerSupport],
   data() {

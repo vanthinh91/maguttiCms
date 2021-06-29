@@ -218,6 +218,7 @@ return [
     'file_manager' => [
         'filter_message' => 'Filter by title, extension, type or category ....',
         'library' => 'Library',
+        'empty' => 'Your Media Library is empty',
     ],
     'dashboard' => [
         'filter_message' => 'Type a word to filter ...',

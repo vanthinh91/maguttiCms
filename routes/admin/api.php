@@ -38,6 +38,8 @@ Route::group([], function () {
     |--------------------------------------------------------------------------
     */
     Route::get('file-manager/grid/{id?}', [AdminFileMangerController::class,'index']);
+    Route::get('file-manager/edit/{id}',  [AdminFileMangerController::class,'edit']);
+    Route::post('file-manager/edit/{id}', [AdminFileMangerController::class,'update']);
 
     /*
     |--------------------------------------------------------------------------
@@ -53,8 +55,7 @@ Route::group([], function () {
     */
     Route::post('filemanager/upload', [AjaxController::class, 'uploadFileManager']);
     Route::get('filemanager/list/{id?}', [AjaxController::class, 'getFileManagerList']);
-    Route::get('filemanager/edit/{id}', [AjaxController::class, 'editFileManager']);
-    Route::post('filemanager/edit/{id}', [AjaxController::class, 'updateFileManager']);
+
 
     /*
     |--------------------------------------------------------------------------

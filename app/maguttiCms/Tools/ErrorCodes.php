@@ -21,5 +21,6 @@ abstract class ErrorCodes
     const WrongOldPassword = 23;
     const PasswordInvalidFormat = 24;
     const DataNotFound = 25;
+    const MediaNotFound = 26;
 
 }

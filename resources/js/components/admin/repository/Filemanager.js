@@ -1,5 +1,7 @@
 import {HTTP} from '../../../mixins/http-common';
+import notifier from '../../../mixins/notifier';
 export default {
+    mixins: [notifier],
     data() {
         return {
             params: {},// parameter for fetch data
@@ -11,7 +13,6 @@ export default {
     methods: {
         /* pull  file manager data */
         fetchData: function () {
-
             let self = this;
             let url = (this.current_item)
                             ? this.fetchDataUrl() + '/' + this.current_item
@@ -24,9 +25,9 @@ export default {
                 .then(function (response) {
                     self.loading = false;
                 })
-                .catch(e => {
-                    self.errors.push(e)
-                    self.showMessage(e.message, self.ERROR_CLASS);
+                .catch(error => {
+                    self.isLoading =false;
+                    self.notifyError(error)
                 })
         },
         fetchDataUrl() {
@@ -41,14 +42,15 @@ export default {
         updateSidebar(id) {
             let self = this;
             this.isLoading = true;
-            HTTP.get(urlAjaxHandlerCms + 'filemanager/edit/' + id)
+            HTTP.get(urlAjaxHandlerCms + 'file-manager/edit/' + id)
                 .then(response => {
                     self.isLoading =false;
                     this.updateData(response);
                 })
-                .catch(e => {
-                    self.errors.push(e)
-                    self.showMessage(e.message, self.ERROR_CLASS);
+                .catch(error => {
+                    self.isLoading = false;
+                    //self.notifyError(error,'error');
+                    console.log(error);
                 })
         },
         /*
@@ -57,12 +59,13 @@ export default {
         // Make ajax request to edit media data
         saveMediaData(form){
             let target = form.attr('action')
+            let self = this;
             HTTP.post(target ,form.serialize())
                 .then(function ({data}) {
-                    $.notify(data.message, 'success');
+                   self.notify(data.msg, 'success');
                 })
                 .catch(function (error) {
-                    $.notify('Error')
+                    this.notifyError('Error')
                 })
                 .finally(()=> emitterHub.emit('FILE_MANAGER_LOAD_LIST') )
         }
