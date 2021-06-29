@@ -21,7 +21,17 @@ maguttiCms is released using Laravel 8.x, Vue 3 and  Boostrap 5
  - password: password
  - for shared hosting you can set ASSET_PUBLIC_PATH in .env  file (eg ASSET_PUBLIC_PATH='public/')
    
-   
+### Features
+ - Free and open source
+ - Multi languages
+ - Different Authentication for Admin panel and Front-end with user roles access permission
+ - Social login with Socialite 
+ - E-shop 
+ - PayPal Express Checkout Payment integration
+ - Customizable payment and shipping methods 
+ - Seo friendly
+ - Admin model form generator via artisan command **magutticms:create-model**
+  
 ### Server Requirements
  
  - PHP >= 7.4
