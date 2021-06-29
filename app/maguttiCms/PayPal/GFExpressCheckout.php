@@ -156,7 +156,7 @@ class GFExpressCheckout extends ExpressCheckout
 	*
 	* @return array
 	*/
-	public function setExpressCheckout($data, $subscription = false)
+	public function setExpressCheckout($data, $subscription = false,$guest = false)
 	{
 		$this->setItemSubTotal($data);
 
