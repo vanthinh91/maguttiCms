@@ -18,7 +18,7 @@
 			<div class="modal-body">
 				<div class="tab-content">
 					<div id="tab-upload" class="tab-pane fade show active" role="tabpanel" aria-labelledby="file-manager-upload">
-						<fieldset class="alert alert-info">
+						<fieldset class="alert alert-info mt-3">
 							<input name="upload-input" type="file" class="btn btn-primary">
 							<div id="queue-modal" class="queue">{!!__('admin.message.media_drag') !!}</div>
 						</fieldset>

@@ -370,7 +370,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,NULL,'',NULL,NULL,'identity','demo-img1-hp-01.png','','',10,1,NULL,NULL,0,'2016-07-04 04:29:04','2021-06-26 08:56:42'),(2,NULL,'',NULL,NULL,'research','img-8712.jpg','','',20,1,NULL,NULL,0,'2016-12-26 11:16:23','2021-06-26 08:57:39'),(3,NULL,'',NULL,NULL,'start-up','tazzina3.jpg','','',30,1,NULL,NULL,0,'2016-12-27 17:33:25','2021-06-26 08:57:58');
+INSERT INTO `categories` VALUES (1,NULL,'',NULL,NULL,'identity','p3-3.jpeg','','',10,1,NULL,NULL,0,'2016-07-04 04:29:04','2021-06-29 23:16:44'),(2,NULL,'',NULL,NULL,'research','product-2-4.jpeg','','',20,1,NULL,NULL,0,'2016-12-26 11:16:23','2021-06-29 23:17:03'),(3,NULL,'',NULL,NULL,'start-up','25840-product-2-4.jpeg','','',30,1,NULL,NULL,0,'2016-12-27 17:33:25','2021-06-29 23:17:29');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -865,7 +865,7 @@ CREATE TABLE `hpsliders` (
 
 LOCK TABLES `hpsliders` WRITE;
 /*!40000 ALTER TABLE `hpsliders` DISABLE KEYS */;
-INSERT INTO `hpsliders` VALUES (1,'','',NULL,'shopnow2.jpg',NULL,10,1,NULL,NULL,'2020-12-26 14:53:46','2021-06-26 09:03:49'),(2,'','',NULL,'demo-img-instructions-01.png',NULL,30,1,NULL,NULL,'2020-12-26 14:54:56','2021-06-26 09:04:54');
+INSERT INTO `hpsliders` VALUES (1,'','',NULL,'demo-img-collaborations-01.png',NULL,10,1,NULL,NULL,'2020-12-26 14:53:46','2021-06-29 23:15:14'),(2,'','',NULL,'demo-img-contact-01.png',NULL,30,1,NULL,NULL,'2020-12-26 14:54:56','2021-06-29 23:15:39');
 /*!40000 ALTER TABLE `hpsliders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2233,4 +2233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-29 17:45:37
+-- Dump completed on 2021-06-30  1:18:32

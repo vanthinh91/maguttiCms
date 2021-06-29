@@ -68,6 +68,28 @@ export default {
                     this.notifyError('Error')
                 })
                 .finally(()=> emitterHub.emit('FILE_MANAGER_LOAD_LIST') )
+        },
+
+        deleteItem(id){
+
+            let self = this;
+            HTTP.get(urlAjaxHandlerCms + 'file-manager/delete/' + id)
+                .then(({data}) => {
+                    self.isLoading =false;
+                    self.notify(data.msg,'success');
+                 })
+                .catch(error => {
+                    self.isLoading = false;
+                    self.notifyError(error.response.data.msg,'error');
+                    console.log(error.response);
+                })
+                .finally(()=> self.removeMedia(id))
+
+        },
+        removeMedia(id){
+            let index = this.items.findIndex(x => x.id == id);
+            if(this.selected_item ==id)this.set_selected(null);
+            this.items.splice(index,1);
         }
 
     },

@@ -219,6 +219,9 @@ return [
         'filter_message' => 'Filter by title, extension, type or category ....',
         'library' => 'Library',
         'empty' => 'Your Media Library is empty',
+        'deleted' => 'Media has been deleted',
+        'delete_media' => 'Delete media',
+        'delete_media_message' => 'Do you really want to delete {msg} ?',
     ],
     'dashboard' => [
         'filter_message' => 'Type a word to filter ...',

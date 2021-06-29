@@ -132,15 +132,7 @@ class Media extends Model
 
 
 
-    public function scopeImages($query)
-    {
-        return $query->where('collection_name', 'images');
-    }
 
-    public function scopeDocuments($query)
-    {
-        return $query->where('collection_name', 'docs');
-    }
 
     public function url()
     {
@@ -149,7 +141,7 @@ class Media extends Model
                 return ma_get_image_from_repository($this->file_name);
                 break;
             case 'docs':
-                return ma_get_idoc_from_repository($this->file_name);
+                return ma_get_doc_from_repository($this->file_name);
                 break;
         }
     }
@@ -169,5 +161,10 @@ class Media extends Model
     public function getFileSize()
     {
         return StringHelper::humanReadableFileSize($this->size);
+    }
+    /* TODO */
+    public function canBeDeleted()
+    {
+       return true;
     }
 }

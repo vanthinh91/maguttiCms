@@ -37,10 +37,16 @@ Route::group([], function () {
     | API FILE MANAGER
     |--------------------------------------------------------------------------
     */
-    Route::get('file-manager/grid/{id?}', [AdminFileMangerController::class,'index']);
-    Route::get('file-manager/edit/{id}',  [AdminFileMangerController::class,'edit']);
-    Route::post('file-manager/edit/{id}', [AdminFileMangerController::class,'update']);
 
+    Route::prefix('file-manager')->group(function () {
+        Route::get('grid/{id?}', [AdminFileMangerController::class,'index']);
+        Route::get('edit/{id}',  [AdminFileMangerController::class,'edit']);
+        Route::post('edit/{id}', [AdminFileMangerController::class,'update']);
+        Route::get('delete/{id}', [AdminFileMangerController::class,'deleteMedia']);
+    });
+
+    Route::post('filemanager/upload', [AjaxController::class, 'uploadFileManager']);
+    //Route::get('filemanager/list/{id?}', [AjaxController::class, 'getFileManagerList']);
     /*
     |--------------------------------------------------------------------------
     | API SERVICES LIBRARY
@@ -48,13 +54,9 @@ Route::group([], function () {
     */
 
     Route::post('services/generator', [AdminServicesController::class,'generator']);
-    /*
-    |--------------------------------------------------------------------------
-    | FILE MANANGER
-    |--------------------------------------------------------------------------
-    */
-    Route::post('filemanager/upload', [AjaxController::class, 'uploadFileManager']);
-    Route::get('filemanager/list/{id?}', [AjaxController::class, 'getFileManagerList']);
+
+
+
 
 
     /*

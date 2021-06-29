@@ -15,6 +15,7 @@ return [
         "user_not_authorized" => "L'utente non è autorizzato ad eseguire quest'azione",
     ],
     "messages" => [
-        'data_update' =>"Data has been updated"
+        'data_update' =>"Data has been updated",
+
     ],
 ];

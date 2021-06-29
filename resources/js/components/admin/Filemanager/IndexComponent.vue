@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="tab-images-gallery col-md-8 col-12">
+    <div class="tab-images-gallery col-md-8 col-12 px-3">
       <search-box @update-search="updateSearchFilter"></search-box>
 
       <div class="row filemanager-list d-grid-lg gy-3">
@@ -10,6 +10,7 @@
               :class="{active: selected_item == item.id}"
               :media="item"
               :event-name="'FILE_MANAGER_SELECT_ITEM'"
+              @delete-media="deleteItem"
               :key="'media_item_'+item.id">
           </media-item>
         </div>
@@ -70,6 +71,7 @@ export default {
     updateSearchFilter(value) {
       this.searchText = value;
     },
+
   },
   computed: {
     itemList() {

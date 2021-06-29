@@ -205,12 +205,13 @@ return [
         'filter_message' => 'Filtra per titolo, estensione, tipo o categoria ...',
         'library' => 'Libreria',
         'empty' => 'La tua liberia è vuota',
+        'deleted' => 'Il file è stato eliminato',
+        'delete_media' => 'Eliminazione media',
+        'delete_media_message' => 'Sei sicuro di voler calcellare  {msg} ? ',
     ],
     'dashboard' => [
         'filter_message' => 'Digita una parola per cercare ...',
         'select_context' => 'Filtra per  sezione',
-
     ]
-
 
 ];
