@@ -9,7 +9,5 @@
 			<x-website.users.update-password/>
 		</div>
 	</main>
-	<style>
-		html { scroll-behavior: smooth; }
-	</style>
+
 @endsection

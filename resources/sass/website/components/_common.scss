@@ -4,6 +4,10 @@
  |--------------------------------------------------------------------------
 */
 
+
+
+
+
 main,
 section {
 	padding-top: 30px;
@@ -47,3 +51,5 @@ mark {
 
 
 .pointer {cursor: pointer;}
+
+html { scroll-behavior: smooth; }
