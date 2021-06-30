@@ -5,6 +5,7 @@ namespace App\maguttiCms\Domain\Media\Action;
 
 
 use App\Media;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -19,11 +20,14 @@ class DeleteMediaFromDisk
     private $storage;
     private string $disk = 'media';
     private string $path;
+    protected  $log;
 
-    public function __construct(Media $media)
+    public function __construct(Media $media,$log=true)
     {
         $this->media = $media;
         $this->init()->resolvePath();
+        $this->log = $log;
+
     }
 
     function execute()
@@ -41,6 +45,7 @@ class DeleteMediaFromDisk
     function delete()
     {
         if ($this->storage->exists($this->path)) {
+            $this->logDelete();
             return $this->storage->delete($this->path);
         }
         return false;
@@ -51,6 +56,13 @@ class DeleteMediaFromDisk
     {
         $this->path = $this->media->collection_name . '/' . $this->media->file_name;
         return $this;
+    }
+
+    protected function logDelete()
+    {
+        if (auth_user('admin') && $this->log) {
+            Log::info('Delete media by:', ['user_id' => auth_user('admin')->id, 'media' => $this->media]);
+        }
     }
 
 }

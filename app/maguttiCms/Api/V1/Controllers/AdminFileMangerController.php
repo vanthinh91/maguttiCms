@@ -2,6 +2,7 @@
 
 
 use App\maguttiCms\Domain\Media\Action\DeleteMediaAction;
+use Illuminate\Support\Facades\Log;
 use Url;
 use Validator;
 use Illuminate\Http\Request;
@@ -100,10 +101,10 @@ class AdminFileMangerController
     function deleteMedia($id)
     {
         $media = Media::find($id);
+
         if ($media) {
             $response = (new DeleteMediaAction($media))->execute();
             if($response){
-
                 return $this->responseSuccess(__('admin.file_manager.deleted'))->apiResponse();
             }
         }

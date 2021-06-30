@@ -14,7 +14,7 @@ trait JsonResponseTrait
 
     protected bool $error = false;
     protected string $error_code = '';
-    protected $msg = [];
+    protected $msg = '';
     protected string $status = "KO";
     protected $data = null;
     protected $meta = null;
