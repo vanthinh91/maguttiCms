@@ -1,5 +1,6 @@
 <template>
     <div class="col ">
+
       <BaseSelect
           :options="sections"
           v-model="section"
@@ -27,8 +28,8 @@
 <script>
 import BaseInputGroup from "../../BaseComponent/BaseInputGroup";
 import BaseSelect from "../../BaseComponent/BaseSelect";
+import useDashBoardSearchApi from "../repository/DashBoardSearch.js";
 
-import {ref} from 'vue'
 
 export default {
   name: "DashBoardSearchComponent",
@@ -44,15 +45,9 @@ export default {
     }
   },
   setup() {
-    const sections = ['Cms', 'Shop','Users'];
-    const element= ref('');
-    const elements = [
-      { label: 'Shop', id: 1 },
-      { label: 'Cms', id: 2 },
-      { label: 'User', id: 3 },
-    ]
+    const { sections,elements,element } = useDashBoardSearchApi();
     return {
-      sections,elements,element
+      sections,elements,element,formatCurrency
     }
   },
 }

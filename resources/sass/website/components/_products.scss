@@ -111,6 +111,7 @@
 
     &:hover {
       background: $color-accent;
+
     }
 
   }
@@ -120,9 +121,7 @@
     @include transition();
     margin: 0rem 0.25rem;
 
-    &:hover {
-      background: $color-accent;
-    }
+
   }
 
   &-price-full {

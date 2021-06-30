@@ -30,7 +30,8 @@
               <tr v-for="(item,index) in items" :key="index">
                 <td class="product-description">
                   <div class="d-flex justify-content-start">
-                    <a :href="item.product.url" class="d-none d-md-block"><img :src="item.product.thumb_image"></a>
+                    <a :href="item.product.url" class="d-none d-md-block">
+                      <img :src="item.product.thumb_image" class="rounded me-1"></a>
                     <div class="ms-1">
                       <small>{{ item.product.code }}</small>
                       <br>
@@ -51,7 +52,7 @@
                 </td>
                 <td>
                   <div class="product-price-total">
-                    {{ currencyFormatter(itemTotal(item)) }}
+                    {{ formatCurrency(itemTotal(item)) }}
                   </div>
                 </td>
                 <td class="text-center product-action">
@@ -68,21 +69,21 @@
           <div class="card cart-summary box-shadow p-2">
             <div class="cart-summary-line cart-item">
               <span class="label">{{ number_of_items }} {{ $t('store.cart.number_of_items') }} </span>
-              <span class="value">{{ currencyFormatter(product_total)}}</span>
+              <span class="value">{{ formatCurrency(product_total)}}</span>
             </div>
             <div class="cart-summary-line cart-discount" v-if="discount_amount">
               <span class="label">{{ $t('store.order.discount.title') }}<br><strong>{{ cart.discount_label }}</strong></span>
-              <span class="value">{{ currencyFormatter(discount_amount) }}<br><a href="" @click.prevent="deleteCartCoupon" class="text-danger">{{ $t('store.order.discount.delete') }}</a></span>
+              <span class="value">{{ formatCurrency(discount_amount) }}<br><a href="" @click.prevent="deleteCartCoupon" class="text-danger">{{ $t('store.order.discount.delete') }}</a></span>
             </div>
 
             <div class="cart-summary-line cart-ship" v-if="shipping_cost">
               <span class="label">{{ $t('store.order.shipping_cost') }}</span>
-              <span class="value">{{ currencyFormatter(shipping_cost) }}</span>
+              <span class="value">{{ formatCurrency(shipping_cost) }}</span>
             </div>
             <div class="cart-summary-totals">
               <div class="cart-summary-line cart-total">
                 <span class="label">{{ $t('store.cart.total') }}&nbsp;({{ $t('store.cart.with_tax') }})</span>
-                <span class="value">{{ currencyFormatter(total)  }}</span>
+                <span class="value">{{ formatCurrency(total)  }}</span>
               </div>
             </div>
             <a class="btn btn-accent mt-2" :href="this.cart_url">{{ $t('store.cart.buy') }}</a>
@@ -103,10 +104,20 @@ import numberInput from '../BaseComponent/InputNumberComponent'
 import CouponComponent from "./CouponComponent";
 import ProductPrice from "./partial/DisplayPriceComponent"
 
+import formatCurrencyApi from "./repository/CurrencyFormatterApi";
+
+
 export default {
   mixins: [cartHelper],
   props: ['cartItems','cartData','cart_url'],
   components: {CouponComponent, alertBox, numberInput,CouponBox,ProductPrice},
+
+  setup(){
+    const { formatCurrency } = formatCurrencyApi ();
+    return {
+      formatCurrency
+    }
+  },
   data() {
     return {
       name: '1',

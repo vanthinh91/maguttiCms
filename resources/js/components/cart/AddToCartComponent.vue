@@ -24,7 +24,7 @@
           <div class="shopping-cart-item-body-preview ms-2">
             <b>{{ product.code}} - {{product.title}}</b>
             <div>Qt:{{product.quantity}}</div>
-            <div>{{$t('store.cart.table.price')}} : {{getProductTotalAmount(product)}} ({{product.price}})</div>
+            <div>{{$t('store.cart.table.price')}} : {{ formatCurrency(getProductTotalAmount(product))}} ({{formatCurrency(product.price)}})</div>
           </div>
         </div>
       </template>
@@ -43,9 +43,16 @@
 import cartHelper  from './repository/store';
 import confirmModal from '../BaseComponent/ModalComponent'
 import numberInput from '../BaseComponent/InputNumberComponent'
+import formatCurrencyApi from "./repository/CurrencyFormatterApi"
 export default {
   components: {confirmModal,numberInput},
   mixins: [cartHelper],
+  setup(){
+    const { formatCurrency } = formatCurrencyApi ();
+    return {
+      formatCurrency
+    }
+  },
   props: {
     product: Object,
     max: {

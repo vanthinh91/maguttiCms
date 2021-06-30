@@ -1,7 +1,9 @@
 import {HTTP} from '../../../mixins/http-common';
 import notifier from '../../../mixins/notifier';
+
 export default {
     mixins: [notifier],
+
     data() {
         return {
             baseUrl: window.urlAjaxHandler+"/api/store/",
@@ -71,7 +73,7 @@ export default {
 
         // calculate the product total amount
         getProductTotalAmount(product){
-              return this.currencyFormatter(product.price * product.quantity);
+              return product.price * product.quantity;
         },
         // calculate  discount
         calculateDiscount(product_total=0){
@@ -80,14 +82,5 @@ export default {
             if(this.cart.discount_type=='percent') return product_total * (this.cart.discount_amount/100);
             return null;
         },
-        // currency formatter
-        currencyFormatter(amount) {
-            return new Intl.NumberFormat( window._LANG , {
-                            style: 'currency',
-                            currency: window.StoreConfig.currency,
-                        }).format(amount)
-
-            return `${window.StoreConfig.currency_symbol} ${price}`
-        }
-    }
+ }
 }

@@ -8,7 +8,7 @@
     />
    </div>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5 gx-4  dashboard-menu bg-light ">
-    <dashboard-item v-for="(item, index) in dashBoardItem" :item="item" :key="index"/>
+    <dashboard-item v-for="(item, index) in dashBoardItems" :item="item" :key="index"/>
   </div>
 
 </template>
@@ -49,7 +49,7 @@ export default {
            })
            .finally()
      }
-     const dashBoardItem = computed(() => { // <-------
+     const dashBoardItems = computed(() => { // <-------
        if(items.value){
          return items.value.filter(item => {
                return (
@@ -61,10 +61,7 @@ export default {
          )
        }
      });
-     return {form,dashBoardItem}
+     return {form,dashBoardItems}
   },
-
-
-
 }
 </script>
