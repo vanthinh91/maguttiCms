@@ -1,10 +1,18 @@
 <?php
 namespace App;
-use Illuminate\Database\Eloquent\Model;
-use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
-use Astrotomic\Translatable\Translatable;
 
+use Illuminate\Database\Eloquent\Model;
+
+use Astrotomic\Translatable\Translatable;
+use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+
+use App\maguttiCms\Builders\DomainBuilder;
+use App\maguttiCms\Builders\ArticleBuilder;
+
+/**
+ * Class Domain
+ * @package App
+ */
 class Domain extends Model
 {
     use Translatable;
@@ -13,6 +21,16 @@ class Domain extends Model
     public array $translatedAttributes = ['title'];
     protected $fillable  = ['domain','title','value','pub','sort'];
     protected array $fieldspec = [];
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Builder & Repo
+    |--------------------------------------------------------------------------
+    */
+    function newEloquentBuilder($query): DomainBuilder
+    {
+        return new DomainBuilder($query);
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -73,17 +91,6 @@ class Domain extends Model
             'display'   => 1
         ];
         return $this->fieldspec;
-    }
-
-    /*****************************  REPOSITORY **********************/
-    public function scopePublished($query)    {
-
-        $query->where('pub', '=',1 );
-    }
-
-    public function scopeByDomain($query,$domain)    {
-
-        $query->where('domain', '=',$domain )->published();
     }
 
 }

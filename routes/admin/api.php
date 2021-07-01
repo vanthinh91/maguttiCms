@@ -30,6 +30,7 @@ Route::group([], function () {
 
     Route::get('api/suggest', ['as' => 'api.suggest', 'uses' => [SuggestAjaxController::class,'suggest']])->middleware(AdminSuggestRole::class);
     Route::get('dashboard', [AdminServicesController::class,'dashboard']);
+    Route::get('sections', [AdminServicesController::class,'sections']);
     Route::get('nav-bar', [AdminServicesController::class,'navbar']);
 
     /*

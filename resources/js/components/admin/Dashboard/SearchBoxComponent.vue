@@ -44,10 +44,11 @@ export default {
       default: ''
     }
   },
-  setup() {
-    const { sections,elements,element } = useDashBoardSearchApi();
+setup() {
+    const { sections } =  useDashBoardSearchApi();
+
     return {
-      sections,elements,element,formatCurrency
+      sections
     }
   },
 }
