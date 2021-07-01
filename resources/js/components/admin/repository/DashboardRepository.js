@@ -1,25 +1,28 @@
-import {HTTP} from '../../../mixins/http-common';
-export default {
-    methods: {
-        fetchDashBoardData: function () {
+import useFetch from "./useFetch";
+import {computed, reactive} from "vue";
 
 
-            return HTTP.get(this.url())
-                       .catch(e => {
-                       self.errors.push(e)
-                       self.showMessage(e.message, self.ERROR_CLASS);
-                     })
-        },
-        url() {
-            return window._SERVER_PATH + `/admin/api/dashboard`;
-        },
-        refresh({data}) {
-            this.items = data.data
-            console.log(this.items)
-        },
-        updateSearchFilter(data) {
-            this.form.searchText = data;
+export default function useDashBoardApi() {
+
+    const form = reactive({
+        section: '',
+        searchText: '',
+    })
+    const { data:items,error,loading } =  useFetch(window._SERVER_PATH + `/admin/api/dashboard`)
+
+    const dashBoardItems = computed(() => { // <-------
+        if(items.value){
+            return items.value.filter(item => {
+                    return (
+                        item.title.toLowerCase().includes(form.searchText.toLowerCase())
+                        &&
+                        item.section.toLowerCase().includes(form.section.toLowerCase())
+                    )
+                }
+            )
         }
-
+    });
+    return {
+        dashBoardItems,error,loading,items,form
     }
-}
+};

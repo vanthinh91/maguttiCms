@@ -11,7 +11,7 @@ class AdminSectionResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => (string)$this->title,
+            'id' => (string)$this->value,
             'title' => (string)$this->title,
         ];
     }

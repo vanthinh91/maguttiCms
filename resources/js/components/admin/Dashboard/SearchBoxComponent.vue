@@ -1,6 +1,6 @@
 <template>
-    <div class="col ">
-
+    <div v-if="error">{{error}}</div>
+    <div v-else class="col ">
       <BaseSelect
           :options="sections"
           v-model="section"
@@ -22,15 +22,12 @@
           :placeholder="$t('admin.dashboard.filter_message')"
       />
     </div>
-
 </template>
 
 <script>
 import BaseInputGroup from "../../BaseComponent/BaseInputGroup";
 import BaseSelect from "../../BaseComponent/BaseSelect";
-import useDashBoardSearchApi from "../repository/DashBoardSearch.js";
-
-
+import DashBoardSearchRepository from "../repository/DashBoardSearch.js";
 export default {
   name: "DashBoardSearchComponent",
   components: {BaseInputGroup,BaseSelect},
@@ -44,12 +41,9 @@ export default {
       default: ''
     }
   },
-setup() {
-    const { sections } =  useDashBoardSearchApi();
-
-    return {
-      sections
-    }
-  },
+  setup(props) {
+    const  { sections,error,loading } =  DashBoardSearchRepository();
+    return { sections,error,loading}
+  }
 }
 </script>
