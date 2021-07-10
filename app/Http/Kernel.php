@@ -23,7 +23,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         /*
         |--------------------------------------------------------------------------
-        | LaraCms Middleware
+        | maguttiCms Middleware
         |--------------------------------------------------------------------------
         */
         // \App\maguttiCms\Middleware\ForceSSLMiddleware::class enable if you want to force to https

@@ -18,14 +18,17 @@ class CreateNewsTable extends Migration
     public function up()
     {
         Schema::create('news', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id('id');
             $table->string('domain', 255);
             $table->string('slug', 255)->nullable();
             $table->date('date');
-            $table->string('title', 255)->nullable();;
+            $table->date('date_start')->nullable();
+            $table->integer('image_media_id')->nullable();
+            $table->string('title', 255)->nullable();
             $table->text('description')->nullable();;
             $table->string('abstract', 255)->nullable();
-            $table->string('image', 255)->nullable();;
+            $table->string('image', 255)->nullable();
+            $table->string('doc', 255)->nullable();
             $table->text('video')->comment('Video list separated by ;');
             $table->string('link', 255)->nullable();
             $table->integer('sort')->nullable();;

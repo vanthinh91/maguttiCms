@@ -1,6 +1,6 @@
 import {ref} from 'vue'
-import {HTTP} from '../../../mixins/http-common';
-import {notify,notifyError} from "./useNotifier";
+import {HTTP} from '../../mixins/http-common';
+import {notifyError} from "./use-notifier";
 
 export default  function useFetch(url,params={}) {
     const response = ref(null);

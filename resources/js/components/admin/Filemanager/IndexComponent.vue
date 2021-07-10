@@ -105,13 +105,8 @@ export default {
     emitterHub.on('FILE_MANAGER_RESET', () => {
       this.set_selected(null);
     });
+
   },
-  beforeDestroy() {
-    emitterHub.off(['FILE_MANAGER_LOAD_LIST',
-      'FILE_MANAGER_RESET',
-      'FILE_MANAGER_INIT',
-      'FILE_MANAGER_SELECT_ITEM'
-    ]);
-  }
+
 }
 </script>

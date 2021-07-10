@@ -3,7 +3,7 @@
 	<main id="login-main">
 		<div id="login-block">
 			<div class="card">
-				<img src="{!! asset('cms/images/logo.png')!!}" alt="CMS Login">
+				<img src="{!! asset(config('maguttiCms.admin.path.assets').'cms/images/logo.png')!!}" alt="CMS Login">
 				<hr>
 				@include('shared.notification')
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/password/reset') }}">

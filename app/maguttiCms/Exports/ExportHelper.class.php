@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  * Class ExportHelper
- * @package App\LaraCms\Exports
+ * @package App\maguttiCms\Exports
  */
 class ExportHelper
 {
@@ -17,13 +17,11 @@ class ExportHelper
     protected $model;
     protected $modelClass;
     protected $config;
-    protected $fileName;
-    protected $storage = "app/report/";
-    protected $itemsArray = [];
-    protected $ext = 'xlsx';
-    /**
-     * @var array|\Illuminate\Http\Request|string
-     */
+    protected string $fileName="";
+    protected string $storage = "app/report/";
+    protected array $itemsArray = [];
+    protected string $ext = 'xlsx';
+
     protected $request;
 
 
@@ -62,7 +60,7 @@ class ExportHelper
 
     }
 
-    function getLatestGenaratedReport($model)
+    function getLatestGeneratedReport($model)
     {
         $report = (new self)->setFilename($model)->reportPath();
         return (Storage::exists($report)) ? Carbon::createFromTimestamp(Storage::lastModified($report))->toDateTimeString() : null;

@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import formatCurrencyApi from "../../composable/use-currency-formatter-api";
     export default {
         props: ['item'],
         data() {
@@ -37,7 +38,13 @@
                 activeClass: 'btn-success'
             }
         },
+        setup(){
+          const { formatCurrency } = formatCurrencyApi();
+          return {
+            formatCurrency
+          }
+        }
 
-        mounted() {}
+
     }
 </script>

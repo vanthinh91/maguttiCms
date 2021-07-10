@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use App\maguttiCms\Domain\Tag\Taggable;
 use Illuminate\Database\Eloquent\Model;
 
 use Astrotomic\Translatable\Translatable;
@@ -17,6 +18,7 @@ class Project extends Model
     use GFTranslatableHelperTrait;
 
     use Mediable;
+    use Taggable;
     use ProjectPresenter;
 
     protected $with = ['translations'];
@@ -30,8 +32,9 @@ class Project extends Model
     |--------------------------------------------------------------------------
     */
     public array $translatedAttributes = ['title', 'slug', 'subtitle', 'description',
-                                    'seo_title', 'seo_description', 'seo_no_index',
-                                    'permalink'];
+                                          'seo_title', 'seo_description', 'seo_no_index',
+                                           'permalink'];
+
     public array $sluggable = ['slug' => ['field' => 'title', 'updatable' => false, 'translatable' => 1]];
 
     /*
@@ -49,9 +52,6 @@ class Project extends Model
     {
         return $this->hasMany('App\Category');
     }
-
-
-
     /*
     |--------------------------------------------------------------------------
     |  Fieldspec for admin form
@@ -68,6 +68,18 @@ class Project extends Model
             'label' => 'id',
             'hidden' => 1,
             'display' => 0,
+        ];
+        $this->fieldspec['tag'] = [
+            'type' => 'relation',
+            'model' => 'Tag',
+            'relation_name' => 'tags',
+            'foreign_key' => 'id',
+            'label_key' => 'title',
+            'label' => 'Tags',
+            'required' => 1,
+            'display' => 1,
+            'hidden' => 0,
+            'multiple' => 1
         ];
         $this->fieldspec['category_id'] = [
             'type' => 'relation',

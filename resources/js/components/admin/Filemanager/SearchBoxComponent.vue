@@ -1,30 +1,30 @@
 <template>
   <div class="search-box">
-    <div class="input-group">
-      <span class="input-group-text">
-        <i class="fas fa-search"></i>
-      </span>
-      <input type="text" class="form-control"
-             id="search-text"
-             v-model="searchText"
-             :placeholder="$t('admin.file_manager.filter_message')"
-             :aria-label="$t('admin.file_manager.filter_message')"
-             aria-describedby="search-text">
-    </div>
+    <BaseInputGroup
+        v-model="searchText"
+        type="text"
+        id="search-text"
+        append="fas fa-search"
+        name="searchText"
+        @input="$emit('update:searchText', $event.target.value)"
+        :placeholder="$t('admin.file_manager.filter_message')"
+        :aria-label="$t('admin.file_manager.filter_message')"
+    />
   </div>
 </template>
 <script>
+import BaseInputGroup from "../../BaseComponent/BaseInputGroup";
+import {ref, watch} from "vue";
+
 export default {
   name: "SearchBoxComponent",
-  data() {
-    return {
-      searchText: null,
-    }
-  },
-  watch: {
-    searchText: function (newFilter, oldFilter) {
-      this.$emit('update-search', newFilter)
-    }
+  components: {BaseInputGroup},
+  setup(props, {emit}) {
+    const searchText = ref(null);
+    watch(searchText, (newFilter, oldFilter) => {
+      emit('update-search', newFilter)
+    });
+    return {searchText}
   },
 }
 </script>

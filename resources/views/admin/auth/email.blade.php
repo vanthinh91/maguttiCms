@@ -4,8 +4,9 @@
 	<main id="login-main">
 		<div id="login-block">
 			<div class="card">
-				<img src="{!! asset('/cms/images/logo.png')!!}" alt="CMS Login">
+				<img src="{!! asset(config('maguttiCms.admin.path.assets').'cms/images/logo.png')!!}" alt="CMS Login">
 				<hr>
+
 				@if (session('status'))
 					<x-ui.alert class="text-center alert-success d-flex align-items-center" >
 						{{icon('exclamation-circle', 'fa-2x flex-shrink-0 me-2')}}

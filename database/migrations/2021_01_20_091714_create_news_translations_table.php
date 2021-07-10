@@ -18,8 +18,9 @@ class CreateNewsTranslationsTable extends Migration
     public function up()
     {
         Schema::create('news_translations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('news_id');
+            $table->id('id');
+            $table->bigInteger('news_id')->unsigned();
+            $table->string('slug', 255)->nullable();
             $table->string('locale', 255);
             $table->string('title', 255)->nullable();
             $table->text('description')->nullable();
@@ -36,8 +37,10 @@ class CreateNewsTranslationsTable extends Migration
             $table->unique(['news_id', 'locale'], 'news_translations_news_id_locale_unique');
             $table->index('locale', 'news_translations_locale_index');
 
-            $table->foreign('news_id', 'news_translations_news_id_foreign')->references('id')->on('news')->onDelete('CASCADE
+            $table->foreign('news_id')->references('id')->on('news')->onDelete('CASCADE
 ')->onUpdate('RESTRICT');
+
+
 
         });
     }

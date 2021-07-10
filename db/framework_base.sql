@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.32, for osx10.16 (x86_64)
 --
--- Host: localhost    Database: maguttiCms
+-- Host: localhost    Database: magutticms
 -- ------------------------------------------------------
 -- Server version	5.7.32
 
@@ -1131,7 +1131,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1140,7 +1140,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9),(91,'2020_12_26_091719_create_projects_table',10),(92,'2020_12_31_173718_create_jobs_table',11),(93,'2021_02_14_193356_create_payment_methods_table',12),(94,'2021_02_21_091926_add_discount_type_to_discounts_table',13),(95,'2021_03_03_151238_add_formatted_address_to_orders',14),(96,'2021_03_03_151905_add_product_description_to_order_items',14),(97,'2021_03_03_200035_add_reference_to_orders',15),(98,'2021_03_03_200109_add_token_to_carts',15),(99,'2021_03_06_103703_add_status_id_to_orders',16),(100,'2021_03_06_103958_create_order_status_table',17),(101,'2021_04_02_162326_create_shipment_methods_table',18),(102,'2021_04_02_185834_add_shipping_method_id_to_cart_table',19),(103,'2021_04_02_185857_add_shipping_method_id_to_orders_table',19),(104,'2021_04_03_085015_add_shipping_method_to_orders_table',20),(105,'2021_04_10_183034_add_btn_title_to_blocks_table',21),(106,'2021_05_14_210243_add_full_price_and_on_sale_to_products',22),(107,'2021_05_14_212703_add_fee_and_free_from_to_payment_methods',23),(108,'2021_05_15_145503_add_payment_fee_to_carts',24),(109,'2021_05_15_145523_add_payment_fee_to_orders',24),(111,'2021_05_16_004255_add_coupon_code_to_newsletters',25),(112,'2021_06_05_180340_create_social_accounts_table',26);
+INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2017_01_20_091156_create_adminusers_table',1),(56,'2017_01_20_091156_create_articles_table',1),(57,'2017_01_20_091157_create_article_translations_table',1),(58,'2017_01_20_091158_create_categories_table',1),(59,'2017_01_20_091158_create_category_translations_table',1),(60,'2017_01_20_091159_create_countries_table',1),(62,'2017_01_20_091712_create_media_table',1),(63,'2017_01_20_091713_create_media_translations_table',1),(64,'2017_01_20_091713_create_news_table',1),(65,'2017_01_20_091714_create_news_translations_table',1),(66,'2017_01_20_091715_create_newsletters_table',1),(67,'2017_01_20_091719_create_products_table',1),(68,'2017_01_20_091720_create_product_translations_table',1),(69,'2017_01_20_091856_create_provinces_table',1),(70,'2017_01_20_091857_create_settings_table',1),(71,'2017_01_20_091857_create_socials_table',1),(72,'2017_01_20_091858_create_states_table',1),(73,'2017_01_20_091858_create_tags_table',1),(74,'2017_01_20_091859_create_news_tag_table',1),(75,'2017_01_20_091859_create_tag_translations_table',1),(76,'2017_01_20_101551_create_product_models_table',1),(77,'2017_01_20_101558_create_product_model_translations_table',1),(78,'2017_02_02_133516_entrust_setup_tables',1),(79,'2017_02_02_143850_create_domains_table',1),(80,'2017_02_02_143948_create_domain_translations_table',1),(81,'2019_05_07_171738_create_examples_table',2),(82,'2019_05_10_091157_create_hpslider_translations_table',3),(83,'2019_10_19_112436_create_blocks_table',4),(84,'2019_10_19_112536_create_block_translations_table',4),(85,'2020_04_13_181820_create_locations_table',5),(86,'2019_08_19_000000_create_failed_jobs_table',6),(87,'2020_09_19_151446_create_faqs_table',7),(88,'2020_11_07_150010_create_metrics_table',8),(90,'2020_12_26_091712_create_hpsliders_table',9),(91,'2020_12_26_091719_create_projects_table',10),(92,'2020_12_31_173718_create_jobs_table',11),(93,'2021_02_14_193356_create_payment_methods_table',12),(94,'2021_02_21_091926_add_discount_type_to_discounts_table',13),(95,'2021_03_03_151238_add_formatted_address_to_orders',14),(96,'2021_03_03_151905_add_product_description_to_order_items',14),(97,'2021_03_03_200035_add_reference_to_orders',15),(98,'2021_03_03_200109_add_token_to_carts',15),(99,'2021_03_06_103703_add_status_id_to_orders',16),(100,'2021_03_06_103958_create_order_status_table',17),(101,'2021_04_02_162326_create_shipment_methods_table',18),(102,'2021_04_02_185834_add_shipping_method_id_to_cart_table',19),(103,'2021_04_02_185857_add_shipping_method_id_to_orders_table',19),(104,'2021_04_03_085015_add_shipping_method_to_orders_table',20),(105,'2021_04_10_183034_add_btn_title_to_blocks_table',21),(106,'2021_05_14_210243_add_full_price_and_on_sale_to_products',22),(107,'2021_05_14_212703_add_fee_and_free_from_to_payment_methods',23),(108,'2021_05_15_145503_add_payment_fee_to_carts',24),(109,'2021_05_15_145523_add_payment_fee_to_orders',24),(111,'2021_05_16_004255_add_coupon_code_to_newsletters',25),(112,'2021_06_05_180340_create_social_accounts_table',26),(114,'2021_06_26_181641_add_image_media_id_to_news_table',28),(115,'2021_01_20_091713_create_news_table',29),(116,'2021_01_20_091714_create_news_translations_table',29),(118,'2021_07_10_151953_create_tags_table',30),(119,'2021_01_20_091859_create_news_tag_table',31),(120,'2021_07_10_142130_create_project_tag_table',32);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1152,25 +1152,27 @@ DROP TABLE IF EXISTS `news`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `news` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `domain` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date` date NOT NULL,
-  `date_start` date DEFAULT NULL COMMENT 'Event start date',
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `video` text COLLATE utf8_unicode_ci,
-  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `image_media_id` int(6) DEFAULT NULL,
-  `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date_start` date DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `abstract` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_media_id` int(10) DEFAULT NULL,
+  `doc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `video` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Video list separated by ;',
+  `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sort` int(11) DEFAULT NULL,
-  `pub` tinyint(4) DEFAULT '1',
+  `pub` tinyint(1) DEFAULT '1',
   `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1179,7 +1181,7 @@ CREATE TABLE `news` (
 
 LOCK TABLES `news` WRITE;
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
-INSERT INTO `news` VALUES (1,'','2017-07-11','2021-06-26','','','pinoscotto11','96281-dedprifxoaaxql6.jpg',NULL,'prodotto33.jpeg',NULL,NULL,0,1,0,'2017-07-11 05:18:08','2021-06-27 11:00:40'),(2,'','2019-05-07','2020-12-08','','',NULL,NULL,'3LXr89pMU2Q','32526-img-8712.jpg',NULL,NULL,NULL,1,NULL,'2019-05-07 05:16:44','2021-06-27 11:01:02'),(3,'','2019-04-17','2021-06-26','','',NULL,NULL,NULL,'p33-3.jpeg',NULL,NULL,NULL,1,NULL,'2019-05-07 05:17:21','2021-06-27 11:01:26'),(4,'','2019-03-07','2021-06-26','','',NULL,NULL,NULL,'17471-tazzina3.jpg',NULL,NULL,NULL,1,NULL,'2019-05-07 05:18:08','2021-06-27 11:01:46');
+INSERT INTO `news` VALUES (1,'','pinoscotto11','2017-07-11','2021-06-26','','',NULL,'prodotto33.jpeg',NULL,'96281-dedprifxoaaxql6.jpg','',NULL,0,1,0,NULL,'2017-07-11 05:18:08','2021-06-27 11:00:40'),(2,'',NULL,'2019-05-07','2020-12-08','','',NULL,'32526-img-8712.jpg',NULL,NULL,'3LXr89pMU2Q',NULL,NULL,1,NULL,NULL,'2019-05-07 05:16:44','2021-07-10 13:27:54'),(3,'',NULL,'2019-04-17','2021-06-26','','',NULL,'p33-3.jpeg',NULL,NULL,'',NULL,NULL,1,NULL,NULL,'2019-05-07 05:17:21','2021-07-10 13:28:21'),(4,'',NULL,'2019-03-07','2021-06-26','','',NULL,'17471-tazzina3.jpg',NULL,NULL,'',NULL,NULL,1,NULL,NULL,'2019-05-07 05:18:08','2021-07-10 13:28:07');
 /*!40000 ALTER TABLE `news` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1191,11 +1193,15 @@ DROP TABLE IF EXISTS `news_tag`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `news_tag` (
-  `news_id` int(10) unsigned NOT NULL,
-  `tag_id` int(10) unsigned NOT NULL,
+  `news_id` bigint(20) unsigned NOT NULL,
+  `tag_id` bigint(20) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  KEY `news_tag_news_id_foreign` (`news_id`),
+  KEY `news_tag_tag_id_foreign` (`tag_id`),
+  CONSTRAINT `news_tag_news_id_foreign` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `news_tag_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1204,7 +1210,7 @@ CREATE TABLE `news_tag` (
 
 LOCK TABLES `news_tag` WRITE;
 /*!40000 ALTER TABLE `news_tag` DISABLE KEYS */;
-INSERT INTO `news_tag` VALUES (3,2,NULL,NULL),(3,1,NULL,NULL),(2,4,NULL,NULL),(2,2,NULL,NULL),(4,1,NULL,NULL),(4,2,NULL,NULL),(4,4,NULL,NULL);
+INSERT INTO `news_tag` VALUES (2,4,NULL,NULL),(2,2,NULL,NULL),(4,2,NULL,NULL),(3,4,NULL,NULL),(3,2,NULL,NULL),(3,1,NULL,NULL);
 /*!40000 ALTER TABLE `news_tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1216,23 +1222,27 @@ DROP TABLE IF EXISTS `news_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `news_translations` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `news_id` int(10) unsigned NOT NULL,
-  `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
-  `description` text COLLATE utf8_unicode_ci,
-  `abstract` text COLLATE utf8_unicode_ci,
-  `subtitle` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `intro` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `seo_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `seo_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `update_by` int(11) DEFAULT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `news_id` bigint(20) unsigned NOT NULL,
+  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `abstract` text COLLATE utf8mb4_unicode_ci,
+  `subtitle` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `intro` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seo_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seo_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seo_keywords` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `update_by` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `news_translations_news_id_locale_unique` (`news_id`,`locale`),
+  KEY `news_translations_locale_index` (`locale`),
+  CONSTRAINT `news_translations_news_id_foreign` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1241,7 +1251,7 @@ CREATE TABLE `news_translations` (
 
 LOCK TABLES `news_translations` WRITE;
 /*!40000 ALTER TABLE `news_translations` DISABLE KEYS */;
-INSERT INTO `news_translations` VALUES (1,'titolo-della-news-1',1,'it','Titolo della news 1','<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>',NULL,NULL,NULL,NULL,NULL,0,0,'2017-07-11 05:18:08','2019-05-07 05:17:44'),(2,'news-1',1,'en','News 1','<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>',NULL,NULL,NULL,NULL,NULL,0,0,'2017-07-11 05:18:08','2021-06-26 08:24:18'),(3,'news-numero-due',2,'it','News Numero due','<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-07 05:16:44','2019-05-07 05:16:44'),(4,'news-2',2,'en','News 2','<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-07 05:16:44','2021-06-26 08:25:19'),(5,'',2,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-07 05:16:44','2019-05-07 05:16:44'),(6,'',2,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-07 05:16:44','2019-05-07 05:16:44'),(7,'news-numero-3',3,'it','News Numero 3','<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-07 05:17:21','2019-05-07 05:17:21'),(8,'news-3',3,'en','News 3','<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-07 05:17:21','2021-06-26 08:25:02'),(9,'',3,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-07 05:17:21','2019-05-07 05:17:21'),(10,'',3,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-07 05:17:21','2019-05-07 05:17:21'),(11,'',1,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-07 05:17:44','2019-05-07 05:17:44'),(12,'',1,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-07 05:17:44','2019-05-07 05:17:44'),(13,'news-numero-4',4,'it','News Numero 4','<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-07 05:18:08','2019-05-07 05:18:08'),(14,'news-4',4,'en','News 4','<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-07 05:18:08','2021-06-26 08:24:44'),(15,'',4,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-07 05:18:08','2019-05-07 05:18:08'),(16,'',4,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-07 05:18:08','2019-05-07 05:18:08');
+INSERT INTO `news_translations` VALUES (1,'titolo-della-news-1',1,'it','Titolo della news 1','<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>',NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2017-07-11 05:18:08','2019-05-07 05:17:44'),(2,'news-1',1,'en','News 1','<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>',NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2017-07-11 05:18:08','2021-06-26 08:24:18'),(3,'news-numero-due',2,'it','News Numero due','<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>',NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2019-05-07 05:16:44','2019-05-07 05:16:44'),(4,'news-2',2,'en','News 2','<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>',NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2019-05-07 05:16:44','2021-06-26 08:25:19'),(5,'',2,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2019-05-07 05:16:44','2019-05-07 05:16:44'),(6,'',2,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2019-05-07 05:16:44','2019-05-07 05:16:44'),(7,'news-numero-3',3,'it','News Numero 3','<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>',NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2019-05-07 05:17:21','2019-05-07 05:17:21'),(8,'news-3',3,'en','News 3','<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>',NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2019-05-07 05:17:21','2021-06-26 08:25:02'),(9,'',3,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2019-05-07 05:17:21','2019-05-07 05:17:21'),(10,'',3,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2019-05-07 05:17:21','2019-05-07 05:17:21'),(11,'',1,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2019-05-07 05:17:44','2019-05-07 05:17:44'),(12,'',1,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2019-05-07 05:17:44','2019-05-07 05:17:44'),(13,'news-numero-4',4,'it','News Numero 4','<p><strong>Lorem Ipsum</strong>&nbsp;&egrave; un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum &egrave; considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assembl&ograve; per preparare un testo campione. &Egrave; sopravvissuto non solo a pi&ugrave; di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni &rsquo;60, con la diffusione dei fogli di caratteri trasferibili &ldquo;Letraset&rdquo;, che contenevano passaggi del Lorem Ipsum, e pi&ugrave; recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.</p>',NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2019-05-07 05:18:08','2019-05-07 05:18:08'),(14,'news-4',4,'en','News 4','<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>',NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2019-05-07 05:18:08','2021-06-26 08:24:44'),(15,'',4,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2019-05-07 05:18:08','2019-05-07 05:18:08'),(16,'',4,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,'2019-05-07 05:18:08','2019-05-07 05:18:08');
 /*!40000 ALTER TABLE `news_translations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1739,6 +1749,35 @@ INSERT INTO `products` VALUES (1,'PRDA',1,'','','',NULL,10,15.000,'prodotto2.jpg
 UNLOCK TABLES;
 
 --
+-- Table structure for table `project_tag`
+--
+
+DROP TABLE IF EXISTS `project_tag`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `project_tag` (
+  `project_id` bigint(20) unsigned NOT NULL,
+  `tag_id` bigint(20) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  KEY `project_tag_project_id_foreign` (`project_id`),
+  KEY `project_tag_tag_id_foreign` (`tag_id`),
+  CONSTRAINT `project_tag_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `project_tag_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `project_tag`
+--
+
+LOCK TABLES `project_tag` WRITE;
+/*!40000 ALTER TABLE `project_tag` DISABLE KEYS */;
+INSERT INTO `project_tag` VALUES (1,4,NULL,NULL),(1,2,NULL,NULL);
+/*!40000 ALTER TABLE `project_tag` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `project_translations`
 --
 
@@ -1751,6 +1790,7 @@ CREATE TABLE `project_translations` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `subtitle` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci,
+  `permalink` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `doc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `seo_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1766,7 +1806,7 @@ CREATE TABLE `project_translations` (
   UNIQUE KEY `projects_translations_project_id_locale_unique` (`project_id`,`locale`),
   KEY `projects_translations_locale_index` (`locale`),
   CONSTRAINT `project_translations_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1775,6 +1815,7 @@ CREATE TABLE `project_translations` (
 
 LOCK TABLES `project_translations` WRITE;
 /*!40000 ALTER TABLE `project_translations` DISABLE KEYS */;
+INSERT INTO `project_translations` VALUES (1,'en','Project One',NULL,'<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>',NULL,NULL,'project-one',NULL,NULL,NULL,'0',0,0,'2021-07-10 13:35:11','2021-07-10 13:35:11',1),(2,'it',NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,0,0,'2021-07-10 13:35:11','2021-07-10 13:35:11',1),(3,'es',NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,0,0,'2021-07-10 13:35:11','2021-07-10 13:35:11',1),(4,'fr',NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,0,0,'2021-07-10 13:35:11','2021-07-10 13:35:11',1);
 /*!40000 ALTER TABLE `project_translations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1793,8 +1834,9 @@ CREATE TABLE `projects` (
   `description` text COLLATE utf8mb4_unicode_ci,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `permalink` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `doc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `video` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `video` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sort` int(11) DEFAULT NULL,
   `pub` tinyint(1) DEFAULT '1',
   `seo_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1806,7 +1848,7 @@ CREATE TABLE `projects` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `projects_slug_unique` (`slug`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1815,6 +1857,7 @@ CREATE TABLE `projects` (
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
+INSERT INTO `projects` VALUES (1,1,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,0,'2021-07-10 13:35:11','2021-07-10 13:35:11');
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2134,17 +2177,16 @@ DROP TABLE IF EXISTS `tag_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tag_translations` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `tag_id` int(10) unsigned NOT NULL,
-  `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tag_id` bigint(20) unsigned NOT NULL,
+  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `tag_translations_tag_id_locale_unique` (`tag_id`,`locale`),
-  KEY `tag_translations_locale_index` (`locale`),
-  CONSTRAINT `tag_translations_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `tags_translations_tag_id_foreign` (`tag_id`),
+  CONSTRAINT `tags_translations_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2153,7 +2195,7 @@ CREATE TABLE `tag_translations` (
 
 LOCK TABLES `tag_translations` WRITE;
 /*!40000 ALTER TABLE `tag_translations` DISABLE KEYS */;
-INSERT INTO `tag_translations` VALUES (1,1,'en','Tag','2016-12-27 18:07:07','2016-12-27 17:07:07'),(2,1,'it','tag','2016-12-27 14:46:45','2016-12-27 13:46:45'),(3,2,'en','PHP','2016-12-27 17:07:15','2016-12-27 17:07:15'),(4,2,'it','Php','2016-12-27 17:07:15','2017-08-02 14:02:09'),(7,4,'it','Artisan','2017-08-02 14:01:53','2017-08-02 14:01:53'),(8,4,'en','Artisan','2017-08-02 14:01:53','2017-08-02 14:01:53');
+INSERT INTO `tag_translations` VALUES (1,1,'en','Tag','2016-12-27 17:07:07','2016-12-27 16:07:07'),(2,1,'it','tag','2016-12-27 13:46:45','2016-12-27 12:46:45'),(3,2,'en','PHP','2016-12-27 16:07:15','2016-12-27 16:07:15'),(4,2,'it','Php','2016-12-27 16:07:15','2017-08-02 12:02:09'),(7,4,'it','Artisan','2017-08-02 12:01:53','2017-08-02 12:01:53'),(8,4,'en','Artisan','2017-08-02 12:01:53','2017-08-02 12:01:53');
 /*!40000 ALTER TABLE `tag_translations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2165,15 +2207,15 @@ DROP TABLE IF EXISTS `tags`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tags` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `slug` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `created_by` int(10) unsigned NOT NULL,
-  `update_by` int(10) unsigned NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2182,7 +2224,7 @@ CREATE TABLE `tags` (
 
 LOCK TABLES `tags` WRITE;
 /*!40000 ALTER TABLE `tags` DISABLE KEYS */;
-INSERT INTO `tags` VALUES (1,'','tag',0,0,'2016-12-27 18:07:28','2016-12-27 17:07:28'),(2,'','php',0,0,'2016-12-27 17:07:15','2016-12-27 17:07:15'),(4,'','artisan',0,0,'2017-08-02 14:01:53','2017-08-02 14:01:53');
+INSERT INTO `tags` VALUES (1,'','tag',0,0,'2016-12-27 17:07:28','2016-12-27 16:07:28'),(2,'','php',0,0,'2016-12-27 16:07:15','2016-12-27 16:07:15'),(4,'','artisan',0,0,'2017-08-02 12:01:53','2017-08-02 12:01:53');
 /*!40000 ALTER TABLE `tags` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2233,4 +2275,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-01 17:11:55
+-- Dump completed on 2021-07-10 15:35:21

@@ -18,16 +18,17 @@ class CreateNewsTagTable extends Migration
     public function up()
     {
         Schema::create('news_tag', function (Blueprint $table) {
-            $table->unsignedInteger('news_id');
-            $table->unsignedInteger('tag_id');
-            $table->timestamps();
-            $table->index('news_id', 'news_tag_news_id_index');
-            $table->index('tag_id', 'news_tag_tag_id_index');
+            $table->foreignId('news_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
-            $table->foreign('news_id', 'news_tag_news_id_foreign')->references('id')->on('news')->onDelete('CASCADE
-')->onUpdate('RESTRICT');
-            $table->foreign('tag_id', 'news_tag_tag_id_foreign')->references('id')->on('tags')->onDelete('CASCADE
-')->onUpdate('RESTRICT');
+            $table->foreignId('tag_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->timestamps();
 
         });
     }

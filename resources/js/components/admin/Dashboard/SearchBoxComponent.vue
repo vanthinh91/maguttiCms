@@ -22,12 +22,16 @@
           :placeholder="$t('admin.dashboard.filter_message')"
       />
     </div>
+
 </template>
 
 <script>
 import BaseInputGroup from "../../BaseComponent/BaseInputGroup";
 import BaseSelect from "../../BaseComponent/BaseSelect";
 import DashBoardSearchRepository from "../repository/DashBoardSearch.js";
+
+
+import {ref} from "vue";
 export default {
   name: "DashBoardSearchComponent",
   components: {BaseInputGroup,BaseSelect},
@@ -41,7 +45,8 @@ export default {
       default: ''
     }
   },
-  setup(props) {
+  setup() {
+
     const  { sections,error,loading } =  DashBoardSearchRepository();
     return { sections,error,loading}
   }
