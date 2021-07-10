@@ -452,6 +452,8 @@ return [
             'field' => [
                 'id',
                 'category' => ['type' => 'relation', 'relation' => 'category', 'field' => 'title'],
+                'tags' => ['type' => 'relation', 'relation' => 'tags', 'field' => 'title','multiple'=>true],
+
                 'image' => ['type' => 'image', 'field' => 'image'],
                 'title',
                 'pub' => ['type' => 'boolean', 'field' => 'pub', 'editable' => true],
