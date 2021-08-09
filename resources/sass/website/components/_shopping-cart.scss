@@ -211,24 +211,35 @@
     margin-top: 0.5rem;
   }
 }
+.order{
+  &-info{
+    padding:0.75rem;
+    @include media-breakpoint-up($navbar-trigger) {
+     padding:1rem
+    }
 
-.order-step {
-  color: $color-text;
-  padding: 1rem 0rem 1rem;
-  &-title {
-    margin: 0rem;
-    color: $color-text;
-    border-top: 3px solid $color-4;
-    padding: 1.5rem 0rem 1.5rem;
   }
-
-  &-resume-title {
-    margin: 0rem;
+  &-step {
     color: $color-text;
-    padding: 0rem 0rem 0.5rem;
-  }
+    padding: 1rem 0rem 1rem;
 
+    &-title {
+      margin: 0rem;
+      color: $color-text;
+      border-top: 3px solid $color-4;
+      padding: 1.5rem 0rem 1.5rem;
+    }
+
+    &-resume-title {
+      margin: 0rem;
+      color: $color-text;
+      padding: 0rem 0rem 0.5rem;
+    }
+  }
 }
+
+
+
 
 
 

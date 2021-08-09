@@ -5,7 +5,7 @@
         <div class="container ">
             <div class="row">
                 <div class="col-12 col-md-8">
-                    <div class="card order-info box-shadow p-2">
+                    <div class="card order-info box-shadow ">
                         @include('magutti_store::cart.step_menu')
                         <h2 class="order-step-title">2. {{ trans('store.cart.step.shipping_and_payment') }}</h2>
                         <form class="mb-4 pl-lg-3" action="{{url_locale('/cart/payment')}}" method="post">
