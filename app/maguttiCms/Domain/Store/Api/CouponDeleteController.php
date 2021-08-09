@@ -19,6 +19,7 @@ class CouponDeleteController extends StoreAPIController
             ];
             return $this->setMsg($message)->responseSuccess()->apiResponse();
         }
-        return $this->apiResponse();
+
+        return $this->responseNotFound()->apiResponse();
     }
 }

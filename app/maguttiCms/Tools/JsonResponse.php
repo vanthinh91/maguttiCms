@@ -39,7 +39,8 @@ trait JsonResponseTrait
 
     public function errorCode($code)
     {
-        return $this->error_code=$code;
+        $this->error_code = $code;
+        return $this;
     }
 
     /**
@@ -48,14 +49,14 @@ trait JsonResponseTrait
     public function setError($error)
     {
         $this->error = $error;
-        return;
+        return $this;
     }
 
     /**
      * @param mixed $msg
      * @return JsonResponseTrait
      */
-    public function setMsg($msg)
+    public function  setMsg($msg)
     {
         $this->msg = $msg;
         return $this;
@@ -158,29 +159,32 @@ trait JsonResponseTrait
 
     /**
      * @param string $message
+     * @param string $code
      * @return $this
      */
-    public function responseWithError($message = '',$code)
+    public function responseWithError($message = '', $code = null)
     {
         $this->setStatus('KO');
         $this->setHttpStatus(422);
         $this->setError(true);
-        $this->errorCode($code);
-        $this->errorLogger($message);
+        $code = ($code) ? $code : ErrorCodes::InvalidParameters;
+
+        $this->errorCode($code)->errorLogger($message);
         if ($message) $this->setMsg($message);
         return $this;
     }
 
     /**
      * @param string $message
+     * @param null $code
      * @return $this
      */
-    public function responseNotFound($message = '', $code)
+    public function responseNotFound($message = '', $code = null)
     {
         $this->setHttpStatus(Response::HTTP_BAD_REQUEST);
         $message = ($message) ?: __('api.errors.item_not_found');
-        $code ?? ErrorCodes::DataNotFound;
-        $this->responseWithError($message,$code);
+        $code = ($code) ? $code : ErrorCodes::DataNotFound;
+        $this->responseWithError($message, $code);
         return $this;
     }
 

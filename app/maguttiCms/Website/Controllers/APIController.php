@@ -19,7 +19,7 @@ use App\Newsletter;
 
 class APIController extends Controller
 {
-    protected $articleRepo;
+
     use JsonResponseTrait;
 
     /**
