@@ -1,4 +1,4 @@
-![maguttiCms](http://www.magutti.com/public/website/images/logo_colore.png)
+![maguttiCms](https://www.magutti.com/public//website/images/logo.png)
 
 
 ## About maguttiCms
