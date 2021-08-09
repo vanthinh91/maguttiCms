@@ -34,7 +34,7 @@ maguttiCms is released using Laravel 8.x, Vue 3 and  Boostrap 5
   
 ### Server Requirements
  
- - PHP >= 7.4
+ - PHP >= 7.4 | 8.0
  - BCMath PHP Extension
  - Ctype PHP Extension
  - Fileinfo PHP extension
