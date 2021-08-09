@@ -6,5 +6,5 @@ $this->fieldspec['##field##'] = [
             'h'        => 300,
             'label'    => trans('admin.label.##field##'),
             'display'  => 1,
-            'cssClass' => 'wyswyg',
+            'cssClass' => 'wysiwyg',
         ];

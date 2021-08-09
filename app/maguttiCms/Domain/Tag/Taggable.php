@@ -3,7 +3,10 @@
 
 namespace App\maguttiCms\Domain\Tag;
 
-
+/**
+ * Trait Taggable
+ * @package App\maguttiCms\Domain\Tag
+ */
 trait Taggable
 {
     public function tags()
@@ -16,7 +19,8 @@ trait Taggable
         if (!empty($values)) {
             $values = array_filter($values);
             $this->tags()->sync($values);
-        } else {
+        }
+        else {
             $this->tags()->detach();
         }
     }

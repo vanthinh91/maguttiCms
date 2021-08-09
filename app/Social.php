@@ -73,7 +73,7 @@ class Social extends Model
             'required'  => 0,
             'hidden'    => 0,
             'label'     => 'Description',
-            'cssClass'  => 'wyswyg',
+            'cssClass'  => 'wysiwyg',
             'display'   => 0,
         ];
         $this->fieldspec['sort'] = [

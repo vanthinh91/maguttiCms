@@ -69,7 +69,7 @@ class HpSlider extends Model
             'hidden' => 0,
             'label' => trans('admin.label.description'),
             'lang' => 0,
-            'cssClass' => 'wyswyg',
+            'cssClass' => 'wysiwyg',
             'display' => 1,
         ];
 

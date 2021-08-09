@@ -83,7 +83,7 @@ class Faq extends Model
             'h'        => 300,
             'label'    => trans('admin.label.description'),
             'display'  => 1,
-            'cssClass' => 'wyswyg',
+            'cssClass' => 'wysiwyg',
         ];
 
         $this->fieldspec['image'] = [

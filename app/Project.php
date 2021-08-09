@@ -1,15 +1,14 @@
 <?php namespace App;
 
-use App\maguttiCms\Domain\Tag\Taggable;
 use Illuminate\Database\Eloquent\Model;
 
 use Astrotomic\Translatable\Translatable;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
-
-use App\maguttiCms\Domain\Media\Mediable;
-use App\maguttiCms\Builders\ProductBuilder;
-use App\maguttiCms\Domain\Project\ProjectPresenter;
 use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+
+use App\maguttiCms\Domain\Tag\Taggable;
+use App\maguttiCms\Domain\Media\Mediable;
+use App\maguttiCms\Builders\ProjectBuilder;
+use App\maguttiCms\Domain\Project\ProjectPresenter;
 
 
 class Project extends Model
@@ -52,6 +51,19 @@ class Project extends Model
     {
         return $this->hasMany('App\Category');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Builder & Repo
+    |--------------------------------------------------------------------------
+    */
+    function newEloquentBuilder($query)
+    {
+        return new ProjectBuilder($query);
+    }
+
+
+
     /*
     |--------------------------------------------------------------------------
     |  Fieldspec for admin form
@@ -88,7 +100,7 @@ class Project extends Model
             'label_key' => 'title',
             'label' => trans('admin.label.category'),
             'hidden' => 0,
-            'required' => 1,
+            'required' => false,
             'display' => 1,
         ];
 
@@ -121,7 +133,7 @@ class Project extends Model
             'required' => false,
             'hidden' => 0,
             'label' => trans('admin.label.description'),
-            'cssClass' => 'wyswyg',
+            'cssClass' => 'wysiwyg',
             'display' => 1,
         ];
         $this->fieldspec['image'] = [
@@ -176,6 +188,7 @@ class Project extends Model
             'label' => trans('admin.label.publish'),
             'display' => 1
         ];
+
         $this->fieldspec['seo_title'] = [
             'type' => 'string',
             'required' => 'n',

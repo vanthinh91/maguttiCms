@@ -25,6 +25,8 @@ class News extends Model
     use Blockable;
 
     protected $with = ['translations'];
+    public array $cloneable_relations= ['translations','tags'];
+    public array $clone_exempt_attributes = ['slug'];
 
     protected $fillable = ['title', 'subtitle', 'description',
         'video', 'doc','image_media_id',
@@ -44,7 +46,6 @@ class News extends Model
     |  RELATIONS
     |--------------------------------------------------------------------------
     */
-
 
 
     /*
@@ -161,7 +162,7 @@ class News extends Model
             'required' => 1,
             'hidden' => 0,
             'label' => 'Description',
-            'cssClass' => 'wyswyg',
+            'cssClass' => 'wysiwyg',
             'display' => 1,
         ];
         $this->fieldspec['tag'] = [

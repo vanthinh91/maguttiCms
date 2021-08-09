@@ -165,7 +165,7 @@ class Location extends Model
             'h' => 300,
             'label' => trans('admin.label.description'),
             'display' => 1,
-            'cssClass' => 'wyswyg',
+            'cssClass' => 'wysiwyg',
         ];
 
         $this->fieldspec['info'] = [
@@ -176,7 +176,7 @@ class Location extends Model
             'h' => 300,
             'label' => trans('admin.label.info'),
             'display' => 0,
-            'cssClass' => 'wyswyg',
+            'cssClass' => 'wysiwyg',
         ];
         $this->fieldspec['image'] = [
             'type' => 'media',

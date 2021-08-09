@@ -284,7 +284,7 @@ window.Cms = function () {
 
 
 			tinymce.init({
-				selector: "textarea.wyswyg",
+				selector: "textarea.wysiwyg",
 				plugins: [
 					"advlist autolink lists link image charmap print preview anchor textcolor colorpicker",
 					"searchreplace visualblocks code fullscreen",

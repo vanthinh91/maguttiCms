@@ -105,7 +105,7 @@ class Category extends Model
             'required' => 0,
             'hidden' => 0,
             'label' => trans('admin.label.description'),
-            'cssClass' => 'wyswyg',
+            'cssClass' => 'wysiwyg',
             'display' => 1,
         ];
 

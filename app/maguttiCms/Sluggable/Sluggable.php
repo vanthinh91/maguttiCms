@@ -17,8 +17,7 @@ trait SluggableTrait
 
     public static function bootSluggableTrait()
     {
-        static::created(function ($item) {
-        });
+        static::created(function ($item) {});
     }
 
 

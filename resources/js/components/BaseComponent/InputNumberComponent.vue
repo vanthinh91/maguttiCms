@@ -43,10 +43,10 @@
                 type: Number,
                 default: 1,
             },
-            qty: {
-                type: Number,
-                default: 1,
-            },
+              qty: {
+                  type: Number,
+                  default: 1,
+              },
             hideDecreaseBtn: {
                 type: Boolean,
                 default: false,

@@ -164,7 +164,7 @@ class Product extends Model
             'required' => false,
             'hidden' => 0,
             'label' => trans('admin.label.description'),
-            'cssClass' => 'wyswyg',
+            'cssClass' => 'wysiwyg',
             'display' => 1,
         ];
         $this->fieldspec['image'] = [

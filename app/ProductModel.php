@@ -67,7 +67,7 @@ class ProductModel extends Model
             'required'  => 0,
             'hidden'    => 0,
             'label'     => 'Description',
-            'cssClass'  => 'wyswyg',
+            'cssClass'  => 'wysiwyg',
             'display'   => 1,
         ];
         $this->fieldspec['image'] = [

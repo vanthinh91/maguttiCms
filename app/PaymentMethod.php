@@ -105,7 +105,7 @@ class PaymentMethod extends Model
             'h'        => 300,
             'label'    => trans('admin.label.description'),
             'display'  => 1,
-            'cssClass' => 'wyswyg',
+            'cssClass' => 'wysiwyg',
         ];
 
         $this->fieldspec['note'] = [
@@ -116,7 +116,7 @@ class PaymentMethod extends Model
             'h'        => 300,
             'label'    => trans('admin.label.note'),
             'display'  => 1,
-            'cssClass' => 'wyswyg',
+            'cssClass' => 'wysiwyg',
         ];
 
         $this->fieldspec['fee'] = [

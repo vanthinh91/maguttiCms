@@ -310,7 +310,7 @@ class Example extends Model
             'required' => 0,
             'hidden'   => 0,
             'label'    => 'Textarea WYSIWYG',
-            'cssClass' => 'wyswyg',
+            'cssClass' => 'wysiwyg',
             'display'  => 1,
         ];
         $this->fieldspec['image'] = [

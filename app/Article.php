@@ -27,6 +27,8 @@ class Article extends Model
     use ArticlePresenter;
 
     protected $with = ['translations'];
+    public array $cloneable_relations= ['translations'];
+    public array $clone_exempt_attributes = ['slug'];
 
     protected $fillable = [
         'title', 'subtitle', 'abstract', 'description',
@@ -164,7 +166,7 @@ class Article extends Model
             'required' => 0,
             'hidden' => 0,
             'label' => trans('admin.label.description'),
-            'cssClass' => 'wyswyg',
+            'cssClass' => 'wysiwyg',
             'display' => 1,
         ];
         $this->fieldspec['abstract'] = [
@@ -174,7 +176,7 @@ class Article extends Model
             'required' => 0,
             'hidden' => 0,
             'label' => trans('admin.label.additional'),
-            'cssClass' => 'wyswyg',
+            'cssClass' => 'wysiwyg',
             'display' => 1,
         ];
         $this->fieldspec['link'] = [

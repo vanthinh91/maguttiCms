@@ -14,7 +14,7 @@ class ProductViewModel extends WebsiteViewModel
     {
         $product = Product::findBySlug($slug, app()->getLocale());
         $article = $this->getCurrentPage();
-        // singolo prodotto
+        // single product
         if ($product) {
             $category = $product->category;
             $locale_article = $product;
