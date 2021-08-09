@@ -209,6 +209,7 @@ return [
             'section' =>'cms',
             'field' => [
                 'image' => ['type' => 'relation_image', 'relation' => 'imageMedia', 'field' => 'file_name'],
+                'image_txt' => ['type' => 'relation_image', 'relation' => 'imageMedia', 'field' => 'file_name'],
                 'title',
                 'slug',
                 'tags' => ['type' => 'relation', 'relation' => 'tags', 'field' => 'title','multiple'=>true],
@@ -248,7 +249,7 @@ return [
                 'edit' => 1,
                 'delete' => 1,
                 'create' => 1,
-                'copy' => 0,
+                'copy' => 1,
                 'preview' => 1,
                 'view' => 0,
                 'selectable' => 1
