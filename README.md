@@ -13,7 +13,7 @@ maguttiCms requires PHP 7.4 or 8.0
  
  - copy files in your local directory
  - rename env.example to .env file and set your db connection data
- - run composer install
+ - run composer install (on PHP 8 if you have trouble try to run composer update)
  - run php artisan key:generate
  - create db tables importing framework_base.sql file located under the db folder
  - to login in the admin panel (http://yourpath/admin)
