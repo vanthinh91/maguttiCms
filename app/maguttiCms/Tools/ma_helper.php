@@ -226,6 +226,9 @@ function ma_get_admin_preview_url($model)
     $modelName = (!is_object($model)) ? strtolower($model) : strtolower(class_basename($model));
 	$resourcePath = ($modelName != 'article') ? Str::plural($modelName).'/'.$model->slug : $model->slug;
 	$path = LaravelLocalization::getLocalizedURL(App::getLocale(), URL::to($resourcePath));
+	if(is_object($model) && method_exists($model,'getPermalink')){
+        return URL::to($model->getPermalink());
+    }
 	return URL::to($path);
 }
 

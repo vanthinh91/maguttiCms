@@ -1,13 +1,13 @@
 <?php namespace App;
 
-use App\maguttiCms\Domain\Media\Mediable;
 use Illuminate\Database\Eloquent\Model;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
-use Astrotomic\Translatable\Translatable;
 
+use Astrotomic\Translatable\Translatable;
 use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
-use \App\maguttiCms\Domain\Product\ProductPresenter;
+
+use App\maguttiCms\Domain\Media\Mediable;
 use App\maguttiCms\Builders\ProductBuilder;
+use \App\maguttiCms\Domain\Product\ProductPresenter;
 
 
 class Product extends Model
@@ -23,7 +23,8 @@ class Product extends Model
         'full_price', 'is_promo', 'on_sale',
         'price', 'title', 'subtitle', 'description',
         'video', 'slug', 'sort', 'pub',
-        'permalink'];
+        'permalink'
+    ];
 
     protected array $fieldspec = [];
 
@@ -32,8 +33,10 @@ class Product extends Model
     |  Sluggable & Translatable
     |--------------------------------------------------------------------------
     */
-    public array $translatedAttributes = ['title', 'slug', 'subtitle', 'description',
-        'seo_title', 'seo_description', 'seo_no_index', 'permalink'];
+    public array $translatedAttributes = [
+        'title', 'slug', 'subtitle', 'description',
+        'seo_title', 'seo_description', 'seo_no_index', 'permalink'
+    ];
     public array $sluggable = ['slug' => ['field' => 'title', 'updatable' => false, 'translatable' => 1]];
 
     /*

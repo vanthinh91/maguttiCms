@@ -515,7 +515,7 @@ return [
                 'delete' => 1,
                 'create' => 1,
                 'copy' => 0,
-                'preview' => 0,
+                'preview' => 1,
                 'view' => 0,
                 'selectable' => 1
             ],
