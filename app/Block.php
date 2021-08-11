@@ -25,6 +25,8 @@ class Block extends Model
 
     protected $with = ['translations'];
 
+    public array $cloneable_relations= ['translations'];
+
     protected $fillable = [
         'model_id',
         'model_type',
