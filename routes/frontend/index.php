@@ -8,19 +8,16 @@
 */
 
 
-use App\maguttiCms\Domain\Store\Controllers\OrderControllers;
 use App\maguttiCms\Website\Controllers\APIController;
-use App\maguttiCms\Website\Controllers\Auth\ForgotPasswordController;
+use App\maguttiCms\Website\Controllers\PagesController;
+use App\maguttiCms\Website\Controllers\StoreAPIController;
+use App\maguttiCms\Website\Controllers\ProductsController;
+use App\maguttiCms\Website\Controllers\WebsiteFormController;
+
 use App\maguttiCms\Website\Controllers\Auth\LoginController;
 use App\maguttiCms\Website\Controllers\Auth\RegisterController;
 use App\maguttiCms\Website\Controllers\Auth\ResetPasswordController;
-use App\maguttiCms\Website\Controllers\PagesController;
-use App\maguttiCms\Website\Controllers\ProductsController;
-use App\maguttiCms\Website\Controllers\ReservedAreaController;
-use App\maguttiCms\Website\Controllers\StoreAPIController;
-
-use App\maguttiCms\Website\Controllers\UpdatePasswordController;
-use App\maguttiCms\Website\Controllers\WebsiteFormController;
+use App\maguttiCms\Website\Controllers\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,14 +35,7 @@ Route::group(['middleware' => ['localeSessionRedirect', 'localizationRedirect', 
 
     // Reserved area user routes
     Route::group(['middleware' => ['auth']], function () {
-        Route::get('users/dashboard', [ReservedAreaController::class, 'dashboard'])->name('user.dashboard');
-        Route::get('users/profile', [ReservedAreaController::class, 'profile'])->name('user.profile');
-        Route::post('users/profile', [ReservedAreaController::class, 'update_profile']);
-        Route::post('users/change-password', [UpdatePasswordController::class, 'update_password'])->name('user.change-password');
-        Route::get('users/order-detail/{order}', [OrderControllers::class, 'show'])->name('order.detail');
-
-        Route::get('users/address-new', [ReservedAreaController::class, 'addressNew']);
-        Route::post('users/address-new', [ReservedAreaController::class, 'addressCreate']);
+        Route::prefix('users')->group(base_path('routes/frontend/reserved_area.php'));
     });
 
     // Registration routes...
