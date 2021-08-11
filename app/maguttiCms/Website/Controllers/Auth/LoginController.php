@@ -32,13 +32,13 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo            = '/users/dashboard';
-    protected $loginPath  		     = '/users/login';
-    protected $redirectPath          = '/users/dashboard';
-    protected $redirectAfterLogout   = '/users/login';
+    protected string $redirectTo            = '/users/dashboard';
+    protected string $loginPath  		     = '/users/login';
+    protected string $redirectPath          = '/users/dashboard';
+    protected string $redirectAfterLogout   = '/users/login';
     protected $localePrefix          =  '';
 
-    protected $registerView          =  'website.auth.register';
+    protected string $registerView          =  'website.auth.register';
     /**
      * @var ArticleRepositoryInterface|string
      * TODO   will be  removed
@@ -122,7 +122,10 @@ class LoginController extends Controller
               if(in_array($request->redirectTo, config('maguttiCms.security.redirectTo')) == true) {
                  $this->redirectTo = $request->redirectTo;
               }
-
+          }
+         // if store is disabled redirect to user profile page
+          elseif(!store_enabled()){
+             $this->redirectTo='users/profile';
           }
 
          // If the class is using the ThrottlesLogins trait, we can automatically throttle
@@ -200,10 +203,7 @@ class LoginController extends Controller
 		}
 
         $this->clearLoginAttempts($request);
-
         return $this->authenticated($request, $this->guard()->user())
                 ?: redirect()->intended($this->redirectPath());
     }
-
-
 }

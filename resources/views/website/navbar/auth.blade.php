@@ -10,9 +10,11 @@
 		   id="dd_auth"
 		   data-bs-toggle="dropdown" aria-expanded="false" >{{Auth::guard()->user()->name}}</a>
 		<div class="dropdown-menu" aria-labelledby="#dd_auth">
+			@if(store_enabled())
 			<a class="dropdown-item" href="{{url_locale('users/dashboard')}}">
 				{{icon('list')}} {{trans('auth.dashboard')}}
 			</a>
+			@endif
 			<a class="dropdown-item" href="{{url_locale('users/profile')}}">
 				{{icon('user')}} {{trans('auth.profile')}}
 			</a>
