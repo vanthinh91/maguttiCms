@@ -8,10 +8,6 @@
 @import "~bootstrap/scss/functions";
 @import "vendor/bootstrap/variables"; //  custom variables
 @import "~bootstrap/scss/variables";
-// Merge the maps
-$theme-colors: map-merge($theme-colors, $custom-colors);
-@import "~bootstrap/scss/mixins";
-
 @import "~bootstrap/scss/bootstrap";
 
 /*
