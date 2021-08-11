@@ -40,7 +40,8 @@ class User extends Authenticatable
 		'list_code',
         'is_active',
         'is_guest',
-        'dob'
+        'dob',
+        'avatar'
     ];
 
     /**
@@ -237,4 +238,7 @@ class User extends Authenticatable
     {
         return $this->is_active == 1;
     }
+
+
+
 }

@@ -15,7 +15,6 @@ require('laravel-mix-merge-manifest');
 	mix.sass('resources/sass/admin/vendor.scss', 'public/cms/css/')
 		.js('resources/js/admin/cmsvendor.js', 'public/cms/js/cmsvendor.js')
 		.version();
-
 	/*
 	|--------------------------------------------------------------------------
 	| Admin
@@ -31,7 +30,6 @@ require('laravel-mix-merge-manifest');
 //} else {
 	mix.options({
 		processCssUrls: true,
-
 	});
 //}
 

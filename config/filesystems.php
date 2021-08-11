@@ -61,6 +61,12 @@ return [
             'url'    => '/media',
 			'visibility' => 'public',
         ],
+        'users' => [
+            'driver' => 'local',
+            'root'   => public_path('media/users'),
+            'url'    => '/media/users',
+            'visibility' => 'public',
+        ],
         'images' => [
             'driver' => 'local',
             'root'   => public_path('media/images'),

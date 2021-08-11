@@ -5,6 +5,7 @@ return [
     'img_repository' => env('ASSET_PUBLIC_PATH','').'media/images/',
     'img_save'       => env('ASSET_PUBLIC_PATH','').'media/images/cache/',
     'doc_repository' => env('ASSET_PUBLIC_PATH','').'media/docs/',
+    'users_repository' => env('ASSET_PUBLIC_PATH','').'media/users/',
 
     'media_img_repository' => env('ASSET_PUBLIC_PATH','').'media/images/',
     'media_doc_repository' => env('ASSET_PUBLIC_PATH','').'media/docs/',

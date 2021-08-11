@@ -2,6 +2,7 @@
 $primary: $color-primary;
 $secondary: $color-secondary;
 
+
 // Body.
 $body-bg: $color-background;
 $body-color: $color-text;
@@ -77,8 +78,8 @@ $btn-border-radius-sm: $border-radius-sm;
 
 // Forms
 
-$input-padding-y:0.5rem;
-$input-padding-x:0.75rem;
+$input-padding-y: 0.5rem;
+$input-padding-x: 0.75rem;
 
 $label-margin-bottom: 0.5em;
 
@@ -96,27 +97,18 @@ $input-focus-bg: $input-bg;
 $input-focus-border-color: $form-control-border-color-focus;
 $input-placeholder-color: $form-control-placeholder-color;
 
-$input-height-border: $input-border-width * 2 !default;
+//$input-height-border: $input-border-width * 2 !default;
 
 $form-text-margin-top: 0;
 $form-group-margin-bottom: $grid-gutter-width;
 
-$input-group-addon-border-color:$color-4;
-$input-group-addon-padding-y:0.5rem;
-$input-group-addon-padding-x:0.75rem;
+$input-group-addon-border-color: $color-4;
+$input-group-addon-padding-y: 0.5rem;
+$input-group-addon-padding-x: 0.75rem;
 
-// $form-check-input-gutter:               1.25rem !default;
-// $form-check-input-margin-y:             .3rem !default;
-// $form-check-input-margin-x:             .25rem !default;
-//
-// $form-check-inline-margin-x:            .75rem !default;
-// $form-check-inline-input-margin-x:      .3125rem !default;
-//
-// $form-grid-gutter-width:                10px !default;
-// $form-group-margin-bottom:              1rem !default;
 
 // Pagination
-
+/*
 $pagination-padding-y:              .375rem;
 $pagination-padding-x:              .75rem;
 $pagination-padding-y-sm:           .25rem;
@@ -135,6 +127,7 @@ $pagination-focus-color:            $link-hover-color;
 $pagination-focus-bg:               $gray-200;
 $pagination-focus-box-shadow:       $input-btn-focus-box-shadow;
 $pagination-focus-outline:          0;
+
 
 $pagination-hover-color:            $white;
 $pagination-hover-bg:               color-4;
@@ -160,24 +153,20 @@ $table-cell-padding-x-sm:     .25rem;
 $table-border-width:1px;
 $table-accent-bg:$light;
 
+ */
+
 
 // Theme colors.
-$theme-colors: (
-        "primary":    $primary,
-        "secondary":  $secondary,
-        "success":    $success,
-        "info":       $info,
-        "warning":    $warning,
-        "danger":     $danger,
-        "light":      $light,
-        "dark":       $dark,
-        'accent': $color-accent,
-        'color-2': $color-2,
-        'color-3': $color-3,
-        'color-4': $color-4,
-        'color-5': $color-5,
-        'color-6': $color-6,
+
+$custom-colors: (
+  'accent': $color-accent,
+  'color-2': $color-2,
+  'color-3': $color-3,
+  'color-4': $color-4,
+  'color-5': $color-5,
+  'color-6': $color-6,
 );
+
 
 $grid-breakpoints: (
         xs: 0,

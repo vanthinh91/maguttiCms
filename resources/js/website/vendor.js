@@ -16,4 +16,16 @@ window.bootbox = require('bootbox');
 
 require('../plugins/gmaps.js');
 require('../plugins/jquery.maCookieEu.js');
+require('../plugins/jquery.maCookieEu.js');
+window.FilePond = require('filepond');
+// Import the plugin code
+window.FilePondPluginFileValidateType = require('filepond-plugin-file-validate-type');
+window.FilePondPluginImageExifOrientation = require('filepond-plugin-image-exif-orientation');
+window.FilePondPluginImagePreview = require('filepond-plugin-image-preview');
+window.FilePondPluginImageCrop = require('filepond-plugin-image-crop');
+window.FilePondPluginImageResize = require('filepond-plugin-image-resize');
+window.FilePondPluginImageTransform = require('filepond-plugin-image-transform');
+window.FilePondPluginImageEdit = require('filepond-plugin-image-edit');
+
+
 

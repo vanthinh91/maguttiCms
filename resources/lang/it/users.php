@@ -1,6 +1,7 @@
 <?php
 return [
     'profile' => [
+        'avatar_upload_message'=>'Trascina qui la tua immagine oppure',
         'salutation' => 'Ciao',
         'update' => 'Aggiorna profilo',
         'update_message' => 'Aggiorna i dati del tuo profilo e la tua email',

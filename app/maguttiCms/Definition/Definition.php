@@ -6,4 +6,6 @@ interface Definition
     const CART_STEP_ADDRESS   = 'address';
     const CART_STEP_PAYMENT   = 'payment';
     const CART_STEP_RESUME    = 'resume';
+
+    const USER_STORAGE_DISK   = "users";
 }

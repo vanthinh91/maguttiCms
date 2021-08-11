@@ -6,8 +6,12 @@
  |--------------------------------------------------------------------------
 */
 @import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
 @import "vendor/bootstrap/variables"; //  custom variables
+@import "~bootstrap/scss/variables";
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+@import "~bootstrap/scss/mixins";
+
 @import "~bootstrap/scss/bootstrap";
 
 /*
@@ -32,6 +36,7 @@
 @import "vendor/fancybox/fancybox";
 @import "vendor/font-awesome/font-awesome";
 @import "vendor/swal2/swal2";
+@import "vendor/filepond/filepond";
 
 // Components
 @import "components/common";
@@ -58,3 +63,4 @@
 @import "components/news";
 @import "components/products";
 @import "components/reserved_dashboard";
+@import "components/users";

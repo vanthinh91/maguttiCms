@@ -1,6 +1,7 @@
 <?php
 return [
     'profile' => [
+        'avatar_upload_message'=>'Drag & Drop your avatar picture or',
         'salutation' => 'Hello',
         'update' => 'Update profile',
         'update_message' => 'Update your account\'s  profile and email',
