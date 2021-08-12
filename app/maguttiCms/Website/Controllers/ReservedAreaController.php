@@ -2,20 +2,20 @@
 
 namespace App\maguttiCms\Website\Controllers;
 
-use App\maguttiCms\Website\Facades\StoreHelper;
 use App\maguttiCms\Website\Requests\UpdateUserProfileRequest;
 use App\maguttiCms\Website\Requests\WebsiteFormRequest;
-use App\Country;
-use App\Address;
-use App\Http\Controllers\Controller;
-use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
-use App\Order;
+
 use Auth;
-use http\Env\Request;
 use Input;
 use Validator;
-use Illuminate\Support\Facades\URL;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+
+use App\Address;
+use App\Country;
+use App\maguttiCms\Domain\User\UserFeatures;
+use App\maguttiCms\Website\Facades\StoreHelper;
+use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 
 class ReservedAreaController extends Controller
 
@@ -59,6 +59,7 @@ class ReservedAreaController extends Controller
 
     public function profile()
     {
+
         $article =$this->articleRepo->getBySlug('profile');
         $this->setSeo($article);
         return view('website.users.profile', compact('article'));

@@ -210,9 +210,10 @@ return [
         App\maguttiCms\Website\Providers\WebsiteDbServiceProvider::class,
         App\maguttiCms\Website\Providers\HtmlSocialServiceProvider::class,
         App\maguttiCms\Website\Providers\HtmlMenuServiceProvider::class,
-        App\maguttiCms\Website\Providers\WebsiteDecoratorServiceProvider::class,
+        App\maguttiCms\Website\Providers\WebsiteServiceProvider::class,
 
 
+        App\maguttiCms\Domain\User\UserServiceProvider::class,
         App\maguttiCms\Domain\Store\StoreServiceProvider::class,
         App\maguttiCms\Domain\SocialAccount\SocialAuthServiceProvider::class
 
@@ -303,6 +304,7 @@ return [
         'ImgHelper' => App\maguttiCms\Website\Facades\ImgHelper::class,
         'SeoLandingHelper' => App\maguttiCms\Website\Facades\SeoLandingHelper::class,
         'HtmlSocial' => App\maguttiCms\Website\Facades\HtmlSocial::class,
-        'HtmlMenu'=> App\maguttiCms\Website\Facades\HtmlMenu::class
+        'HtmlMenu'=> App\maguttiCms\Website\Facades\HtmlMenu::class,
+        'UserFeatures' => App\maguttiCms\Domain\User\Facades\UserFeatures::class
     ],
 ];

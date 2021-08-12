@@ -1,3 +1,4 @@
+@if(UserFeatures::managesProfileAvatar())
 <div @class(['users-upload-avatar','d-none' => $user->hasAvatar()]) >
     <input type="file"
            class="filepond"
@@ -14,6 +15,7 @@
         </svg>
     </div>
 </div>
+
 @once
     @push('scripts')
         <script type="text/javascript">
@@ -65,3 +67,4 @@
         </script>
     @endpush
 @endonce
+@endif

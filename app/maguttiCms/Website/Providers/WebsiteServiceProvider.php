@@ -4,7 +4,7 @@ namespace App\maguttiCms\Website\Providers;
 Use App;
 use Illuminate\Support\ServiceProvider;
 
-class WebsiteDecoratorServiceProvider extends ServiceProvider
+class WebsiteServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.

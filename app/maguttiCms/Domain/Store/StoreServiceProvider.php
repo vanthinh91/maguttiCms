@@ -66,15 +66,12 @@ class StoreServiceProvider extends ServiceProvider
             ], 'config');
 
         }*/
-
         return $this;
     }
 
 
     protected function registerBladeClasses(): self
     {
-
-
         return $this;
     }
 }
