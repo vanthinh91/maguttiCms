@@ -58,6 +58,6 @@ Route::group([], function () {
     /** TODO DELETE */
     //Route::get('api/store/order-calc', [StoreAPIController::class, 'storeOrderCalc']);
     Route::get('api/store/validate-coupon', CouponValidateController::class);
-    Route::get('api/store/coupon-remove', CouponDeleteController::class);
+    Route::delete('api/store/coupon-remove', CouponDeleteController::class);
     Route::get('api/store/resend-order-notification/{order:token}', ResendOrderNotification::class);
 });
