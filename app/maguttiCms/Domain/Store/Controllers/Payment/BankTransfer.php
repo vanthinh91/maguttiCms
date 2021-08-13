@@ -5,10 +5,11 @@ namespace App\maguttiCms\Domain\Store\Controllers\Payment;
 
 
 use App\Cart;
+use App\Order;
+
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 use App\maguttiCms\Domain\Store\Action\CreateOrderAction;
 use App\maguttiCms\Domain\Store\Contracts\PaymentProcessor;
-use App\maguttiCms\Tools\StoreHelper;
-use App\Order;
 
 class BankTransfer implements PaymentProcessor
 {
@@ -16,8 +17,7 @@ class BankTransfer implements PaymentProcessor
     /**
      * @var Cart
      */
-    private $cart;
-    private $order;
+    private Cart $cart;
 
     function __construct(Cart $cart)
     {
@@ -26,14 +26,12 @@ class BankTransfer implements PaymentProcessor
 
     function process() : Order
     {
-        $this->order = $this->createOrder();
-        if($this->order){
-            StoreHelper::createPayment($this->order->id, $this->cart->payment_method_id);
-            return $this->order;
+        $order = $this->createOrder();
+        if($order){
+            StoreHelper::createPayment($order->id, $this->cart->payment_method_id);
+            return $order;
         }
-
         return false;
-
     }
 
     function createOrder()

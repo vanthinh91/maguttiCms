@@ -2,10 +2,11 @@
 
 namespace App\maguttiCms\Domain\Website\Decorator;
 
+use App\maguttiCms\Domain\Store\Facades\StoreFeatures;
 use Auth;
 use LaravelLocalization;
 
-use StoreHelper;
+
 use App\maguttiCms\Website\Decorator\maguttiCmsDecorator;
 use App\Article;
 use App\Social;
@@ -53,7 +54,7 @@ class HtmlMenu extends maguttiCmsDecorator
 	 */
 	public static function getStoreLinks()
 	{
-		if (StoreHelper::isStoreEnabled()) {
+		if (StoreFeatures::isStoreEnabled()) {
 			return view('website.navbar.store');
 		}
 	}

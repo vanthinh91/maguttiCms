@@ -25,7 +25,7 @@ class WebsiteServiceProvider extends ServiceProvider
     public function register()
     {
       App::bind('HtmlHelper', function() {return new \App\maguttiCms\Tools\HtmlHelper;});
-      App::bind('StoreHelper', function() {return new \App\maguttiCms\Tools\StoreHelper;});
+      App::bind('StoreHelper', function() {return new \App\maguttiCms\Domain\Store\StoreHelper;});
       App::bind('ImgHelper', function() {return new \App\maguttiCms\Tools\ImgHelper;});
       App::bind('SeoLandingHelper', function() {return new \App\maguttiCms\SeoTools\SeoLandingHelper;});
     }

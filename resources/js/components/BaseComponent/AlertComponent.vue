@@ -1,11 +1,11 @@
 <template>
-    <div class="alert">
-        <slot name="content"></slot>
-    </div>
+  <div class="alert">
+    <slot name="content"></slot>
+  </div>
 </template>
 
 <script>
-    export default {
-        props: ['alertClass'],
-    }
+export default {
+  props: ["alertClass"],
+};
 </script>

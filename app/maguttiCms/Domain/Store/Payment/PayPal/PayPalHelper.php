@@ -1,12 +1,15 @@
 <?php
 
 
-namespace App\maguttiCms\Tools;
+namespace App\maguttiCms\Domain\Store\Payment\PayPal;
 
 
 use App\maguttiCms\Domain\Store\Action\CreateOrderAction;
-use App\maguttiCms\PayPal\GFExpressCheckout;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 
+/**
+ *
+ */
 class PayPalHelper
 {
 

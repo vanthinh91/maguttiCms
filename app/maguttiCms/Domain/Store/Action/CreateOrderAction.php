@@ -4,17 +4,17 @@
 namespace App\maguttiCms\Domain\Store\Action;
 
 
+use Illuminate\Support\Str;
 
 
 use App\Cart;
-use App\maguttiCms\Tools\StoreHelper;
 use App\Order;
 use App\OrderItem;
-use Illuminate\Support\Str;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 
 class CreateOrderAction
 {
-    private $cart;
+    private Cart $cart;
     /**
      * @var ShippingCalculator
      */
@@ -85,10 +85,7 @@ class CreateOrderAction
             ]);
 
             (new DisableUserAbandonmentCartAction(auth_user()))->execute();
-            //Product::where('code',$_item->product_code)->decrement('quantity', $_item->quantity) ;
         }
         return $order;
     }
-
-
 }

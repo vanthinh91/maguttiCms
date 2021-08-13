@@ -4,7 +4,7 @@
 namespace App\maguttiCms\Domain\Store;
 
 
-use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreFeatures;
 use Illuminate\Support\Str;
 
 trait OrderPresenter

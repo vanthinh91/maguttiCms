@@ -2,15 +2,15 @@
 
 namespace App\maguttiCms\Domain\Store\Api;
 
+use Illuminate\Support\Facades\Auth;
 
+use App\Order;
+use App\maguttiCms\Tools\JsonResponseTrait;
+use App\maguttiCms\Website\Requests\AjaxFormRequest;
+use App\maguttiCms\Website\Controllers\APIController;
+use App\maguttiCms\Domain\Store\Facades\StoreFeatures;
 use App\maguttiCms\Domain\Store\Controllers\OrderControllers;
 use App\maguttiCms\Domain\Store\Notifications\NewOrderNotification;
-use App\maguttiCms\Tools\StoreHelper;
-use App\maguttiCms\Website\Controllers\APIController;
-use App\maguttiCms\Website\Requests\AjaxFormRequest;
-use App\maguttiCms\Tools\JsonResponseTrait;
-use App\Order;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------

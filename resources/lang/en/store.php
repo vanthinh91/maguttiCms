@@ -5,6 +5,7 @@ return [
 		'code' => 'Code',
 		'price' => 'Price',
         'sku'   => 'SKU number',
+        'on_sale' => "On Sale"
 	],
 
 	'cart' => [
@@ -47,7 +48,6 @@ return [
 		'disclaimer' => 'Consegna gratuita in Italia , 7 euro Europa,per le altre nazioni contattaci',
         'method' => 'Shipping Method',
 	],
-
 
 	'items' => [
 		'add' => 'Add to cart',

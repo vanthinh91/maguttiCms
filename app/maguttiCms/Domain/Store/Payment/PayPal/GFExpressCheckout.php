@@ -1,6 +1,6 @@
 <?php
 
-namespace App\maguttiCms\PayPal;
+namespace App\maguttiCms\Domain\Store\Payment\PayPal;
 
 use Illuminate\Support\Collection;
 use Srmklive\PayPal\Traits\PayPalRequest as PayPalAPIRequest;

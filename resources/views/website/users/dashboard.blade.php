@@ -10,7 +10,7 @@
 	</x-website.ui.breadcrumbs>
 	<main class="my-2">
         <div class="container">
-			@if (StoreHelper::isStoreEnabled())
+			@if (StoreFeatures::isStoreEnabled())
 				<div class="my-0">
 					<x-magutti_store-order-list-component/>
 				</div>

@@ -3,10 +3,11 @@
 namespace App\maguttiCms\Domain\Store\Api;
 
 
-use App\maguttiCms\Tools\StoreHelper;
-use App\maguttiCms\Website\Controllers\APIController;
-use App\maguttiCms\Website\Requests\AjaxFormRequest;
 use App\maguttiCms\Tools\JsonResponseTrait;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
+use App\maguttiCms\Website\Requests\AjaxFormRequest;
+use App\maguttiCms\Website\Controllers\APIController;
+
 /*
 |--------------------------------------------------------------------------
 | SET METHODS FOR AJAX STORE REQUESTS

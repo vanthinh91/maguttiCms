@@ -1,11 +1,12 @@
 <template>
   <div class="form-check">
     <input
-        class="form-check-input"
-        type="checkbox"
-        :checked="modelValue"
-        @change="$emit('update:modelValue', $event.target.checked)"
-        id="flexCheckDefault">
+      class="form-check-input"
+      type="checkbox"
+      :checked="modelValue"
+      @change="$emit('update:modelValue', $event.target.checked)"
+      id="flexCheckDefault"
+    />
     <label class="form-check-label" for="flexCheckDefault">
       Default checkbox
     </label>
@@ -16,13 +17,13 @@ export default {
   props: {
     label: {
       type: String,
-      default: ''
+      default: "",
     },
     modelValue: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  emits: ['update:modelValue'],
-}
+  emits: ["update:modelValue"],
+};
 </script>

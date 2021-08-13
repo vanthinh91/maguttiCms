@@ -5,7 +5,7 @@ namespace App\maguttiCms\Domain\Store\Controllers;
 
 
 use App\Country;
-use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 use App\maguttiCms\Domain\Store\Action\UpdateCartAddressAction;
 
 

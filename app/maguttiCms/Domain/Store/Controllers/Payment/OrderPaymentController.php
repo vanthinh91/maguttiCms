@@ -10,16 +10,12 @@ use App\Country;
 use App\maguttiCms\Domain\Store\Controllers\CartStepController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreFeatures;
 
 
 class OrderPaymentController extends  CartStepController
 {
 
-    public function __construct()
-    {
-
-    }
 
     public function orderPaymentConfirm(Request $request)
     {
@@ -28,12 +24,10 @@ class OrderPaymentController extends  CartStepController
 
         if (!is_object($response)) {
             session()->flash('error', $response);
-
             $cart = StoreHelper::getSessionCart();
             return Redirect::to(url_locale('/order-payment-cancel/'.$cart->token));
         }
         else {
-
             session()->flash('success', trans('store.alerts.payment_success'));
             return Redirect::to(url_locale('/order-confirm/'.$response->token));
         }
@@ -42,7 +36,6 @@ class OrderPaymentController extends  CartStepController
 
     public function cancel(Cart $cart)
     {
-
         if(optional($cart)->hasStep()) {
             session()->flash('message', trans('store.alerts.payment_cancel'));
             $countries = Country::list()->get();

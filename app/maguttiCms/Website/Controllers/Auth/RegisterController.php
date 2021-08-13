@@ -1,15 +1,16 @@
 <?php namespace App\maguttiCms\Website\Controllers\Auth;
 
+use Validator;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
-use Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
-use App\maguttiCms\Tools\StoreHelper;
-use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 use App\User;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreFeatures;
+use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 
 
 /**
@@ -122,7 +123,7 @@ class RegisterController extends Controller
         $this->guard()->login($user);
 
 		// if the guet has an active cart, set it to his new user
-		if (StoreHelper::isStoreEnabled()) {
+		if (StoreFeatures::isStoreEnabled()) {
 			$cart = StoreHelper::getSessionCart();
 			if ($cart) {
 				$cart->user()->associate($user);

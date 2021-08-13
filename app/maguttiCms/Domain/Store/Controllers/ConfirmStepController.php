@@ -6,7 +6,7 @@ namespace App\maguttiCms\Domain\Store\Controllers;
 
 use App\Cart;
 use App\Country;
-use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 
 
 class ConfirmStepController extends  CartStepController

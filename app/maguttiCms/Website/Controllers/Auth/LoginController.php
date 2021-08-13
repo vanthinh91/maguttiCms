@@ -5,8 +5,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\maguttiCms\Tools\StoreHelper;
 
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreFeatures;
 use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 
 class LoginController extends Controller
@@ -124,7 +125,7 @@ class LoginController extends Controller
               }
           }
          // if store is disabled redirect to user profile page
-          elseif(!store_enabled()){
+          elseif(!StoreFeatures::isStoreEnabled()){
              $this->redirectTo='users/profile';
           }
 
@@ -182,13 +183,13 @@ class LoginController extends Controller
      */
     protected function sendLoginResponse(Request $request)
     {
-		if (StoreHelper::isStoreEnabled())
+		if (StoreFeatures::isStoreEnabled())
 			$cart = StoreHelper::getSessionCart();
 
            $request->session()->regenerate();
 
 		// if the user has an active cart, store it to the new session
-		if (StoreHelper::isStoreEnabled()) {
+		if (StoreFeatures::isStoreEnabled()) {
 			if ($cart) {
 				$user = Auth::user();
 				$cart->user()->associate($user);

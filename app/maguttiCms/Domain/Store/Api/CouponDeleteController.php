@@ -4,7 +4,7 @@
 namespace App\maguttiCms\Domain\Store\Api;
 
 
-use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 
 class CouponDeleteController extends StoreAPIController
 {

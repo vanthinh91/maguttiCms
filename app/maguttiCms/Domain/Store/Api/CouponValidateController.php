@@ -5,7 +5,7 @@ namespace App\maguttiCms\Domain\Store\Api;
 
 
 use App\Discount;
-use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 use App\maguttiCms\Website\Requests\AjaxFormRequest;
 
 /**

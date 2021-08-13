@@ -2,9 +2,8 @@
 
 namespace App\maguttiCms\Website\Controllers;
 
-use App\maguttiCms\Website\Requests\UpdateUserProfileRequest;
-use App\maguttiCms\Website\Requests\WebsiteFormRequest;
 
+use App\maguttiCms\Domain\Store\Facades\StoreFeatures;
 use Auth;
 use Input;
 use Validator;
@@ -13,14 +12,16 @@ use Illuminate\Support\Facades\Redirect;
 
 use App\Address;
 use App\Country;
-use App\maguttiCms\Domain\User\UserFeatures;
-use App\maguttiCms\Website\Facades\StoreHelper;
+
+use App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
+use App\maguttiCms\Website\Requests\WebsiteFormRequest;
+use App\maguttiCms\Website\Requests\UpdateUserProfileRequest;
 use App\maguttiCms\Website\Repos\Article\ArticleRepositoryInterface;
 
 class ReservedAreaController extends Controller
-
 {
-	use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
+	use MaguttiCmsSeoTrait;
     /**
      * @var
      */
@@ -50,7 +51,7 @@ class ReservedAreaController extends Controller
         $this->setSeo($article);
 		$user = Auth::user();
 		$addresses = $user->addresses;
-        if(StoreHelper::isStoreEnabled()){
+        if(StoreFeatures::isStoreEnabled()){
             return view('magutti_store::order.index', compact('article','addresses'));
         }
         return view('website.users.dashboard', compact('article',  'addresses'));

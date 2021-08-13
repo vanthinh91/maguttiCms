@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 
-use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 
 class StorePaymentManagerController extends Controller
 {
@@ -18,7 +18,6 @@ class StorePaymentManagerController extends Controller
     function handle(){
 
         $cart = StoreHelper::getSessionCart();
-
         switch ($cart->payment_method_id) {
             case '1': // paypal
                 $response = StoreHelper::processPayment('paypal');

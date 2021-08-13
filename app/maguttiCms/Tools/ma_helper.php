@@ -8,7 +8,7 @@ use App\Article;
 
 use App\maguttiCms\Tools\Tool;
 use App\maguttiCms\Tools\HtmlHelper;
-use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreFeatures;
 
 /*
 |--------------------------------------------------------------------------
@@ -310,9 +310,9 @@ function store_currency()
 	return config('maguttiCms.store.currency_symbol');
 }
 
-function store_enabled()
+function store_enabled___()
 {
-	return StoreHelper::isStoreEnabled();
+	return StoreFeatures::isStoreEnabled();
 }
 
 

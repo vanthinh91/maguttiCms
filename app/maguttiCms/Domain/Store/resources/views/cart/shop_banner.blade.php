@@ -1,5 +1,5 @@
 
-@if($banner->pub)
+@if($show())
     <section {{ $attributes->merge(['class' => 'shipping_disclaimer']) }}>
     <div class="container">
         <div class="row">

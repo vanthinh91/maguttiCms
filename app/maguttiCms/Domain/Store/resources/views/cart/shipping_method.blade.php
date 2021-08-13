@@ -14,7 +14,7 @@
     </div>
 </div>
 @else
-    <h4 class="text-primary my-4">{{__('store.shipping.free')}}</h4>
+    <h4 class="text-primary mb-3">{{__('store.shipping.free')}}</h4>
 @endif
 
 

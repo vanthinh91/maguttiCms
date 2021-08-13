@@ -7,7 +7,7 @@ namespace App\maguttiCms\Domain\Store\Action;
 use App\maguttiCms\Domain\Store\Shipping\CustomShippingCostCalculator;
 use App\maguttiCms\Domain\Store\Shipping\ShippingCalculatorInterface;
 use App\maguttiCms\Domain\Store\Shipping\StandardShippingCostCalculator;
-use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreFeatures;
 
 class ShippingCostResolverAction
 {
@@ -26,7 +26,7 @@ class ShippingCostResolverAction
     function execute()
     {
         if (config('maguttiCms.store.shipping.use_service')) {
-            //TODO add your shipingcost calculator here
+            //TODO add your shipping cost calculator here
             (new ShippingCostAction(new CustomShippingCostCalculator,$this->cart))->execute();
         }
         return (new ShippingCostAction(new StandardShippingCostCalculator,$this->cart))->execute();

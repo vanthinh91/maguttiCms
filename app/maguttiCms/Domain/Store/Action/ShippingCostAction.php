@@ -4,20 +4,21 @@
 namespace App\maguttiCms\Domain\Store\Action;
 
 
+use App\Cart;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 use App\maguttiCms\Domain\Store\Contracts\ShippingCalculator;
 use App\maguttiCms\Domain\Store\Shipping\ShippingCalculatorInterface;
-use App\maguttiCms\Tools\StoreHelper;
 
 class ShippingCostAction
 {
     /**
      * @var Cart
      */
-    private $cart;
+    private Cart $cart;
     /**
      * @var ShippingCalculator
      */
-    private $shippingCalculator;
+    private ShippingCalculator $shippingCalculator;
 
     public function __construct(ShippingCalculator $shippingCalculator,$cart)
     {

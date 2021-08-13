@@ -4,11 +4,14 @@
 |  Store Options
 |--------------------------------------------------------------------------
 */
+
+
+use App\maguttiCms\Domain\Store\Features;
+
 return [
 	
 	// enables store functionality
 	'enabled' => true,
-
 	// show prices to registered users only
 	'private_prices' => false,
 
@@ -21,10 +24,7 @@ return [
 
 	'shipping' => [
 		'enabled' =>true,
-		'free_threshold' => 20,
-		'percentage' => 0.1,
-		'fixed' => 10,
-		'use_service' => false,
+	    'use_service' => false,
 	],
 
 	//------------//
@@ -50,4 +50,9 @@ return [
 	// currency
 	'currency' => 'EUR',
 	'currency_symbol' => '€',
+
+    'features' =>[
+        Features::showPrice(),
+        Features::shopBanner(),
+    ]
 ];

@@ -3,6 +3,7 @@
 namespace App\maguttiCms\Domain\Store;
 
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 use App\maguttiCms\Domain\Store\View\Components\ResumeComponent;
@@ -33,6 +34,9 @@ class StoreServiceProvider extends ServiceProvider
             ->registerBladeClasses()
             ->registerPublishables();
             //$this->mergeConfigFrom(__DIR__ . '/config/store.php', 'store');
+            App::bind('StoreFeatures', function () {
+                return new \App\maguttiCms\Domain\Store\Features;
+            });
     }
 
     public function boot() : void
@@ -46,7 +50,7 @@ class StoreServiceProvider extends ServiceProvider
             OrderShippingComponent::class,
             OrderListComponent::class,
             ShippingMethodComponent::class,
-           ShopBannerComponent::class,
+            ShopBannerComponent::class,
             PaymentMethodComponent::class,
             PaymentFeeComponent::class,
             ProductDisplayPrice::class,

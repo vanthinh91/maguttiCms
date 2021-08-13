@@ -296,7 +296,7 @@ return [
         'AdminList' => App\maguttiCms\Admin\Facades\AdminList::class,
         'Flash' => 'Helpers\Notifications\Flash',
         'HtmlHelper' => App\maguttiCms\Website\Facades\HtmlHelper::class,
-        'StoreHelper' => App\maguttiCms\Website\Facades\StoreHelper::class,
+
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
         'SEOMeta' => Artesaos\SEOTools\Facades\SEOMeta::class,
         'Setting' => \App\maguttiCms\Tools\SettingHelper::class,
@@ -305,6 +305,13 @@ return [
         'SeoLandingHelper' => App\maguttiCms\Website\Facades\SeoLandingHelper::class,
         'HtmlSocial' => App\maguttiCms\Website\Facades\HtmlSocial::class,
         'HtmlMenu'=> App\maguttiCms\Website\Facades\HtmlMenu::class,
-        'UserFeatures' => App\maguttiCms\Domain\User\Facades\UserFeatures::class
+        'UserFeatures' => App\maguttiCms\Domain\User\Facades\UserFeatures::class,
+        /*
+         |--------------------------------------------------------------------------
+         | MaguttiCms Store Class Aliases
+         |--------------------------------------------------------------------------
+        */
+        'StoreHelper' => App\maguttiCms\Domain\Store\Facades\StoreHelper::class,
+        'StoreFeatures' => App\maguttiCms\Domain\Store\Facades\StoreFeatures::class,
     ],
 ];

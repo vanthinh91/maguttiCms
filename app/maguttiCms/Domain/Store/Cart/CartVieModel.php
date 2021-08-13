@@ -3,7 +3,7 @@
 namespace App\maguttiCms\Domain\Store\Cart;
 
 
-use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 
 class CartVieModel
 {

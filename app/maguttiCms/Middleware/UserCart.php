@@ -4,7 +4,8 @@ namespace App\maguttiCms\Middleware;
 
 use Auth;
 use Closure;
-use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreFeatures;
 
 class UserCart
 {

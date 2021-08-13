@@ -6,7 +6,7 @@ namespace App\maguttiCms\Domain\Store\Controllers;
 
 use App\Article;
 use App\Http\Controllers\Controller;
-use App\maguttiCms\Website\Facades\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 use App\Order;
 use \App\maguttiCms\SeoTools\MaguttiCmsSeoTrait;
 

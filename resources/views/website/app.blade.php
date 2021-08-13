@@ -45,7 +45,7 @@
         var _WEBSITE_NAME	= "{!! config('maguttiCms.website.option.app.name')!!}";
         var imageScroll     = "{!! asset(config('maguttiCms.admin.path.assets').'website/images/up.png') !!}";
 
-        @if (store_enabled())
+        @if (StoreFeatures::isStoreEnabled())
         window.StoreConfig = {
             decimals: {{config('maguttiCms.store.formatting.decimals')}},
             decimal_separator: '{{config('maguttiCms.store.formatting.decimal_separator')}}',
@@ -66,7 +66,7 @@
     </script>
 
     {{-- Store JS --}}
-    @if (store_enabled())
+    @if (StoreFeatures::isStoreEnabled())
     <script type="text/javascript" src="{{ asset(config('maguttiCms.admin.path.assets').mix('/website/js/cart.js')) }}"></script>
     @endif
 

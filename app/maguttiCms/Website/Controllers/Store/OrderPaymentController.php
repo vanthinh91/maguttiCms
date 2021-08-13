@@ -3,24 +3,19 @@
 
 namespace App\maguttiCms\Website\Controllers\Store;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 use App\Cart;
 use App\Country;
 
-use App\maguttiCms\Domain\Store\Action\UpdateCartAddressAction;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 use App\maguttiCms\Domain\Store\Controllers\CartStepController;
-use App\maguttiCms\Tools\StoreHelper;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 
 class OrderPaymentController extends  CartStepController
 {
 
-    public function __construct()
-    {
-
-    }
 
     public function orderPaymentConfirm(Request $request)
     {

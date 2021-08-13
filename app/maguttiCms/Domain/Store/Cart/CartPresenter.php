@@ -3,11 +3,12 @@
 
 namespace App\maguttiCms\Domain\Store\Cart;
 
+use Illuminate\Session\Store;
+
 use App\Discount;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 use App\maguttiCms\Domain\Store\Discounts\CouponDiscountCalculator;
 use App\maguttiCms\Domain\Store\Payment\StandardPaymentFeeCalculator;
-use App\maguttiCms\Tools\StoreHelper;
-use Illuminate\Session\Store;
 
 trait CartPresenter
 {

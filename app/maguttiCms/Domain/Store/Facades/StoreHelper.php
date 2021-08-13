@@ -1,5 +1,5 @@
 <?php
-namespace App\maguttiCms\Website\Facades;
+namespace App\maguttiCms\Domain\Store\Facades;
 use Illuminate\Support\Facades\Facade;
 
 class StoreHelper extends Facade{

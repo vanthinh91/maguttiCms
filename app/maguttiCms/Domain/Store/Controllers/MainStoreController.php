@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 
 use App\maguttiCms\Definition\Definition;
 use App\maguttiCms\Domain\Store\Cart\CartVieModel;
-use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreFeatures;
 use App\maguttiCms\Website\Requests\WebsiteFormRequest;
 
 class MainStoreController extends Controller

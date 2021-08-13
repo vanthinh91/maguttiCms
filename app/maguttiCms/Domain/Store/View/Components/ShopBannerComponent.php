@@ -3,7 +3,8 @@
 namespace App\maguttiCms\Domain\Store\View\Components;
 
 use App\Article;
-use App\maguttiCms\Website\Facades\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreFeatures;
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 use Illuminate\View\View;
 use Illuminate\Support\Collection;
 
@@ -30,6 +31,11 @@ class ShopBannerComponent  extends CartBaseStepComponent
     public function render():View
     {
         return view('magutti_store::cart.shop_banner');;
+    }
+
+    public function show(){
+
+        return ($this->banner->pub && StoreFeatures::hasShopBanner());
     }
 
 }

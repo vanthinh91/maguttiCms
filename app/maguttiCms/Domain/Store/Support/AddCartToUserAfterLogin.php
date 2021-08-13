@@ -4,7 +4,7 @@
 namespace App\maguttiCms\Domain\Store\Support;
 
 
-use App\maguttiCms\Tools\StoreHelper;
+use App\maguttiCms\Domain\Store\Facades\StoreFeatures;
 
 trait AddCartToUserAfterLogin
 {
@@ -12,7 +12,7 @@ trait AddCartToUserAfterLogin
 
         request()->session()->regenerate();
 
-        if (StoreHelper::isStoreEnabled()) {
+        if (StoreFeatures::isStoreEnabled()) {
             // if the user has an active cart, store it to the new session
             $cart = StoreHelper::getSessionCart();
             if ($cart) {

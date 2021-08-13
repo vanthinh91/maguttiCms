@@ -4,8 +4,9 @@
 namespace App\maguttiCms\Domain\Store\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\maguttiCms\Tools\StoreHelper;
 use Illuminate\Support\Facades\Redirect;
+
+use App\maguttiCms\Domain\Store\Facades\StoreHelper;
 
 
 class CartStepController extends Controller

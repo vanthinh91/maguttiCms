@@ -5,6 +5,7 @@ return [
         'code' => 'Codice',
         'price' => 'Prezzo',
         'sku'   => 'SKU/Codice',
+        'on_sale' => "In Saldo"
     ],
 
     'cart' => [
