@@ -18,6 +18,7 @@ class Domain extends Model
     use Translatable;
     use GFTranslatableHelperTrait;
 
+    protected $with = ['translations'];
     public array $translatedAttributes = ['title'];
     protected $fillable  = ['domain','title','value','pub','sort'];
     protected array $fieldspec = [];

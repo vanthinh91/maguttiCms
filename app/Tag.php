@@ -11,7 +11,7 @@ class Tag extends Model
     use Translatable;
     use GFTranslatableHelperTrait;
 
-
+    protected $with = ['translations'];
     protected $fillable  = ['title','slug'];
     protected array $fieldspec = [];
 
