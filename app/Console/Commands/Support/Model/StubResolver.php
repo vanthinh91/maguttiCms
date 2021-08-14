@@ -10,7 +10,7 @@ namespace App\Console\Commands\Support\Model;
 class StubResolver
 {
    function getContent($type,$field){
-       // Leggi lo stub relativo al al nome  del campo se esiste.
+       // Leggi lo stub relativo al nome  del campo se esiste.
        if($this->stubExist($field)){
             return file_get_contents(__DIR__ . "/stubs/fieldspecs/{$field}.stub");
        }

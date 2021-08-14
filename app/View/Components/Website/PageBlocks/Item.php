@@ -18,6 +18,7 @@ class Item extends Lists
     public function __construct($block, string $type)
     {
         $this->block = $block;
+        $this->block->load('template');// load template  relations 
         $this->type = $type;
     }
 

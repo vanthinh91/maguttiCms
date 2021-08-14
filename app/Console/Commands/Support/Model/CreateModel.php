@@ -2,17 +2,31 @@
 
 namespace App\Console\Commands\Support\Model;
 
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
+use App\Console\Commands\Support\Traits\TranslatableResolver;
+use App\Console\Commands\Support\Traits\SluggableResolver;
+
 use App\Console\Commands\Support\Model\support\StubTypeResolver;
 
+
+/**
+ * @property bool translatable
+ */
 class CreateModel extends Command
 {
 
-
+     use TranslatableResolver;
+     use SluggableResolver;
+    /**
+     * @var
+     */
+    protected  string $translatable;
+    protected  string $sluggable;
     /**
      * Il nome e la signature del command.
      *
@@ -38,7 +52,7 @@ class CreateModel extends Command
      *
      * @var array
      */
-    protected $fields = [];
+    protected array $fields = [];
 
     /**
      * I type Doctrine che non hanno un match diretto con i type dei fieldspec.
@@ -47,7 +61,7 @@ class CreateModel extends Command
      *
      * @var array
      */
-    protected $databaseTypeMappings = [
+    protected array $databaseTypeMappings = [
         'float'   => 'string',
         'decimal' => 'string',
         'bigint'  => 'integer'
@@ -58,58 +72,62 @@ class CreateModel extends Command
      *
      * @var string
      */
-    protected $model = '';
+    protected string $model = '';
 
     /**
      * Il Model stub che rappresenta il Model che verrà creato.
      *
      * @var string
      */
-    protected $modelStub = '';
+    protected $modelStub;
 
     /**
      * Il placeholder per le linee da rimuovere.
      *
      * @var string
      */
-    protected $dropLine = '[dropline]';
+    protected string $dropLine = '[dropline]';
 
     /**
      * I campi da considerare non fillable di default.
      *
      * @var array
      */
-    protected $ignoreFillable = ['id', 'created_at', 'updated_at','created_by','updated_by'];
+    protected array $ignoreFillable = ['id', 'created_at', 'updated_at','created_by','updated_by'];
+
+    protected array $primaryKey = ['id', 'uuid'];
+
 
     /**
      * I campi da considerare translatable di default.
      *
      * @var array
      */
-    protected $defaultTranslatable = ['title', 'name', 'description'];
+    protected array $defaultTranslatable = ['title', 'name', 'description'];
 
     /**
      * I suffissi che identificano i possibili campi translatable.
      *
      * @var array
      */
-    protected $translatableSuffixes = ['it', 'en', 'ru', 'de', 'es', 'fr'];
+    protected array $translatableSuffixes = ['it', 'en', 'ru', 'de', 'es', 'fr'];
 
     /**
      * I campi da considerare sluggable di default.
      *
      * @var array
      */
-    protected $defaultSluggable = ['title', 'name'];
+    protected array $defaultSluggable = ['title', 'name'];
 
     /**
      * I campi da non mettere nei FieldSpec di default.
      *
      * @var array
      */
-    protected $ignoreFieldSpec = ['created_at', 'updated_at','created_by','updated_by'];
+    protected array $ignoreFieldSpec = ['created_at', 'updated_at','created_by','updated_by'];
+    protected array $ignoreRequiredFieldSpec = ['created_at', 'updated_at','created_by','updated_by'];
 
-    protected $defaultMediaField = ['image', 'doc'];
+    protected array $defaultMediaField = ['image', 'doc'];
 
     /**
      * Crea una nuova istanza di command.
@@ -132,29 +150,35 @@ class CreateModel extends Command
     {
         $table = $this->argument('table');
         $this->model = ucfirst($this->argument('model'));
-        $translatable = ($this->option('translatable') == 'true');
-        $sluggable = ($this->option('sluggable') == 'true');
+        $this->translatable = ($this->option('translatable') == 'true');
+
+        $this->sluggable = ($this->option('sluggable') == 'true');
 
         // Se non viene fornito un nome per il Model tenta di ipotizzarne uno in automatico.
         if ($this->model === '' && !$this->isGuessedModelCorrect($table))
             return;
 
-        // Istanzia Doctrine SchemaBuilder.
+        // Instance Doctrine SchemaBuilder.
         $schemaBuilder = DB::getSchemaBuilder();
+
 
         echo "Reading [$table] table" . PHP_EOL;
 
-        // Loop di tutte le colonne per ottenere il type e calcolare i possibili translatable.
-        $translatableFields = [];
+        (new AdminListResolver())->handle();
+
+        // Loop table columns.
         foreach ($schemaBuilder->getColumnListing($table) as $column) {
 
             $type = $schemaBuilder->getColumnType($table, $column);
-            echo "Column name: [$column] => [$type]" . PHP_EOL;
+            $col = $schemaBuilder->getConnection()->getDoctrineColumn($table, $column);
+            $not_null = (int)$col->getNotNull();
+            echo "Column name: [$column] => [$type], required => [$not_null]" . PHP_EOL;
 
             $this->fields[$column] = [
                 'type'         => $type,
                 'translatable' => $this->isTranslatable($column),
-                'relation'     => $this->isRelation($column)
+                'relation'     => $this->isRelation($column),
+                'not_null'     => $not_null // not null value must be required
             ];
         }
 
@@ -171,103 +195,14 @@ class CreateModel extends Command
         $this->writeModel();
     }
 
-    /**
-     * Questo metodo serve per aggiungere tutti i componenti translatable allo stub.
-     */
-    private function setTranslatable(): void
-    {
-        // Flat dei translatable fields;
-        $this->flattenTranslatableFields();
 
-        // Considera solo i fields che hanno 'translatable' impostato a true.
-        $translatableFields = Arr::where($this->fields, function($value, $key) {
-            return $value['translatable'] == true;
-        });
-        $translatableFields = $this->buildFormattedArrayValues(array_keys($translatableFields));
-
-        // Leggi gli stub.
-        $translatableNamespaces = ($translatableFields === '') ? $this->dropLine : file_get_contents(__DIR__ . '/stubs/translatable/translatable_namespaces.stub');
-        $translatableTraits = ($translatableFields === '') ? $this->dropLine : file_get_contents(__DIR__ . '/stubs/translatable/translatable_traits.stub');
-        $translatableEagerLoading = ($translatableFields === '') ? $this->dropLine : file_get_contents(__DIR__ . '/stubs/translatable/translatable_eager.stub');
-        $translatableAttributes = ($translatableFields == '') ? $this->dropLine : str_replace('##translatable_fields##', $translatableFields, file_get_contents(__DIR__ . '/stubs/translatable/translatable_attributes.stub'));
-
-        // Aggiungi i namespaces.
-        $this->modelStub = str_replace('##translatable_namespaces##', $translatableNamespaces, $this->modelStub);
-
-        // Aggiungi le Traits.
-        $this->modelStub = str_replace('##translatable_traits##', $translatableTraits, $this->modelStub);
-
-        // Aggiungi eager loading.
-        $this->modelStub = str_replace('##translatable_eager##', $translatableEagerLoading, $this->modelStub);
-
-        // Aggiungi i translatable attributes.
-        $this->modelStub = str_replace('##translatable_attributes##', $translatableAttributes, $this->modelStub);
-
-        if ($translatableFields != '')
-            $this->writeTranslationModel();
-    }
 
     /**
-     * Questo metodo serve a rimuovere i possibili duplicati dai campi translatable.
-     * Esempio: 'name_it', 'name_en', 'name_ru' divantano 'name'.
-     */
-    private function flattenTranslatableFields(): void
-    {
-        /*
-         * Flat dei translatable fields.
-         * Merge e unique delle chiavi multiple traducibili dell'array.
-         *
-         * Array originale: ['name_it' => [], 'name_en' => [], 'name_ru' => [], 'name_de' => [], 'name_es' => [], 'name_fr' => [], 'description' => []]
-         * Obbiettivo: ['name' => [], 'description' => []]
-         */
-        $translatableFields = [];
-        array_walk($this->fields, function($value, $key) use (&$translatableFields) {
-
-            if ($this->isTranslatable($key)) {
-
-                $bits = explode('_', $key);
-                $key = implode('_', array_slice($bits, 0, max(1, count($bits) - 1)));
-            }
-
-            $translatableFields[$key] = $value;
-        });
-
-        // Aggiorna i fields con il nuovo array filtrato.
-        $this->fields = $translatableFields;
-    }
-
-    /**
-     * Questo metodo serve ad inserire gli sluggable nello stub.
-     */
-    private function setSluggable(): void
-    {
-        $sluggableFields = array_intersect(array_keys($this->fields), $this->defaultSluggable);
-
-        // Set ci sono degli sluggable crea tutti gli stubs.
-        $sluggableAttributes = empty($sluggableFields) ? $this->dropLine : file_get_contents(__DIR__ . '/stubs/sluggable/sluggable_attributes.stub');
-        $stubs = [];
-        if (!empty($sluggableFields)) {
-
-            $sluggableFieldStub = trim(file_get_contents(__DIR__ . '/stubs/sluggable/sluggable_field.stub'));
-
-            foreach ($sluggableFields as $field) {
-                $stubs[] = str_replace('##sluggable_field_name##', $field, $sluggableFieldStub);
-            }
-        }
-
-        // Aggiungi tutti gli sluggable allo stub principale.
-        $stubs = implode(",\n        ", $stubs);
-        $sluggableAttributes = str_replace('##sluggable_fields##', $stubs, $sluggableAttributes);
-
-        $this->modelStub = str_replace('##sluggable##', $sluggableAttributes, $this->modelStub);
-    }
-
-    /**
-     * Questo metodo serve ad inserire i fillable nello stub.
+     * This method add fillable to stub.
      */
     private function setFillable(): void
     {
-        // Inizializza lo stub.
+        // Stub init.
         $fillableAttributes = empty($this->fields) ? $this->dropLine : file_get_contents(__DIR__ . '/stubs/fillable/fillable_attributes.stub');
 
         // Rimuovi dai fillable quelli che vanno ignorati e crea la lista di fillable da inserire.
@@ -296,12 +231,13 @@ class CreateModel extends Command
             $type = $definition['relation'] ? 'relation' : Arr::get($this->databaseTypeMappings, $definition['type'], $definition['type']);
 
             // Se il type è integer ed il field si chiama 'id', usa il type 'primary_key'.
-            $type = ($type === 'integer' && $field === 'id') ? 'primary_key' : $type;
+            $type = ($type === 'integer' && in_array($field,$this->primaryKey)) ? 'primary_key' : $type;
 
             // get stub  file content.
             $stub = (new StubResolver())->getContent($type,$field);
 
-            //  try to guess f relation ??? .
+            $stub = str_replace('##required##', $definition['not_null'], $stub);
+            //  try to guess if is relation ??? .
             if ($type === 'relation') {
 
                 // Rimuovi il prefisso/suffisso 'id' e ipotizza un nome per il Model della relation.
@@ -329,7 +265,7 @@ class CreateModel extends Command
             }
 
             // Sostituisci il field e aggiungi lo stub all'array di FieldSpec per questo Model..
-            $fieldSpecStubs[] = str_replace('##field##', $field, $stub);
+            echo $fieldSpecStubs[] = str_replace('##field##', $field, $stub);
         }
 
         // Aggiungi i FieldSpec.
@@ -449,31 +385,7 @@ class CreateModel extends Command
         return Str::studly(Str::singular($table));
     }
 
-    /**
-     * Questo metodo serve per capire se un field è un possibile translatable.
-     *
-     * @param $field: Il field da controllare
-     *
-     * @return bool
-     */
-    private function isTranslatable($field): bool
-    {
-        // Se il campo è contenuto nei defaultTranslatable non proseguire oltre.
-        if (in_array($field, $this->defaultTranslatable)) {
-            return true;
-        }
 
-        // I campi senza un '_' come delimitatore lingua non sono considerati per evitare
-        // che campi come ad esempio 'en' vengano considerati translatable.
-        $bits = explode('_', $field);
-        if (count($bits) > 0) {
-            if (in_array(end($bits), $this->translatableSuffixes)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
 
     /**
      * Questo metodo serve per capire se un field è una possibile relation.

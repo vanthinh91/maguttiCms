@@ -7,9 +7,5 @@ $this->fieldspec['##field##'] = [
 			//'cssClass'        => 'datetimepicker',
             'cssClass'      => 'datepicker',
 			'cssClassElement' => 'col-sm-3',
-<<<<<<< Updated upstream
-			'required|date_format:d-m-Y',
-=======
-			'validation' => ['required','date_format:d-m-Y']
->>>>>>> Stashed changes
+		   'validation' => ['required','date_format:d-m-Y']
         ];

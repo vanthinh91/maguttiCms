@@ -13,7 +13,7 @@ class ##model## extends Model
     ##translatable_eager##
 
     ##fillable_attributes##
-    protected $fieldspec = [];
+    protected array $fieldspec = [];
 
     /*
     |--------------------------------------------------------------------------
