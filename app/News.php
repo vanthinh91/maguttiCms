@@ -17,12 +17,13 @@ use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
 class News extends Model
 {
 
-    use GFTranslatableHelperTrait;
     use Translatable;
-    use NewsPresenter;
+    use GFTranslatableHelperTrait;
+
     use Mediable;
     use Taggable;
     use Blockable;
+    use NewsPresenter;
 
     protected $with = ['translations'];
     public array $cloneable_relations= ['translations','tags'];
