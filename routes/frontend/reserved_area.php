@@ -2,6 +2,7 @@
 
 use App\maguttiCms\Domain\Store\Controllers\OrderControllers;
 use App\maguttiCms\Website\Controllers\ReservedAreaController;
+use App\maguttiCms\Website\Controllers\UpdatePasswordController;
 use App\maguttiCms\Website\Controllers\UserAvatarApiController;
 
 Route::get('/dashboard', [ReservedAreaController::class, 'dashboard'])->name('user.dashboard');
