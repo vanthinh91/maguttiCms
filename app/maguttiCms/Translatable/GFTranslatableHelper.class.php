@@ -57,6 +57,7 @@ trait GFTranslatableHelperTrait
         foreach (config('app.locales') as $locale => $value) {
             foreach ($this->translatedAttributes as $attribute) {
                 $attribute_key = $attribute."_".$locale;
+                //set optional if translation is missing
                 $this->translatables[$attribute_key] = optional($this->translate($locale))->{$attribute};
             }
         }
