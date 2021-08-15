@@ -42,7 +42,7 @@ class DashBoardComponent  {
             $modelClass = 'App\\' . $section['model'];
             $model = new $modelClass;
             $this->data->push([
-                'title' => trans('admin.models.' . $_code),
+                'title' => (\Lang::has('admin.models.' . $_code)) ? trans('admin.models.' . $_code) : ucwords($_code),
                 'model' => $section['model'],
                 'url' => ma_get_admin_list_url($section['model']),
                 'iconClass' => 'fas fa-' . $section['icon'],

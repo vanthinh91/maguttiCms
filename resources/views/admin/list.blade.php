@@ -9,7 +9,7 @@
                 <x-slot name="icon">
                     {{icon($pageConfig['icon'])}}
                 </x-slot>
-                {{sprintf(trans('admin.label.list_title'), trans('admin.models.'.$model))}}
+                {{sprintf(trans('admin.label.list_title'), (\Lang::has('admin.models.' . $model)) ? trans('admin.models.' . $model) : ucwords($model))}}
             </x-admin.list.header>
 
         </div>

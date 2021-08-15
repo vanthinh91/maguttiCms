@@ -164,7 +164,6 @@ class CreateModel extends Command
 
         echo "Reading [$table] table" . PHP_EOL;
 
-        (new AdminListResolver())->handle();
 
         // Loop table columns.
         foreach ($schemaBuilder->getColumnListing($table) as $column) {
@@ -265,7 +264,7 @@ class CreateModel extends Command
             }
 
             // Sostituisci il field e aggiungi lo stub all'array di FieldSpec per questo Model..
-            echo $fieldSpecStubs[] = str_replace('##field##', $field, $stub);
+            $fieldSpecStubs[] = str_replace('##field##', $field, $stub);
         }
 
         // Aggiungi i FieldSpec.
@@ -314,7 +313,7 @@ class CreateModel extends Command
      */
     private function writeTranslationModel(): void
     {
-        echo "Crea translatable Model [{$this->model}Translation]" . PHP_EOL;
+        echo "Create translatable Model [{$this->model}Translation]" . PHP_EOL;
         $translationModel = str_replace('##model##', $this->model, file_get_contents(__DIR__ . '/stubs/translation_model.stub'));
 
         // Richiedi conferma e crea Model.

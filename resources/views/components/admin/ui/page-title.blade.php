@@ -6,7 +6,7 @@
             {{trans('admin.label.edit')}} <strong>{{ $article->name }}</strong>
         @endif
     @else
-        {{trans('admin.models.'.$model)}}
+        {{(\Lang::has('admin.models.' . $model)) ? trans('admin.models.' . $model) : ucwords($model)}}
     @endif
  </h1>
 
