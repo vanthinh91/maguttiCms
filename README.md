@@ -30,7 +30,7 @@ maguttiCms requires PHP 7.4 or 8.0
  - PayPal Express Checkout Payment integration
  - Customizable payment and shipping methods 
  - Seo friendly
- - Admin model form generator via artisan command **magutticms:create-model**
+ - Admin model form generator via artisan command **[magutticms:create-model](https://github.com/marcoax/maguttiCms/wiki/How-to-Create-a-New-Resource)**
   
 ### Server Requirements
  
