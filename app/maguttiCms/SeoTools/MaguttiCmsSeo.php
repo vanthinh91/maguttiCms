@@ -28,13 +28,16 @@ trait MaguttiCmsSeoTrait
     {
         $this->model = $model;
         $this->image = asset('website/images/logo-share.jpg');
-        $this->setTitle();
-        $this->setDescription();
-        $this->setOpenGraphImages();
-        $this->setCanonical();
-        $this->setNoIndex();
-        $this->addAlternate();
-        SEO::opengraph()->addProperty('url', Request::url());
+        if($this->model ){
+            $this->setTitle();
+            $this->setDescription();
+            $this->setOpenGraphImages();
+            $this->setCanonical();
+            $this->setNoIndex();
+            $this->addAlternate();
+            SEO::opengraph()->addProperty('url', Request::url());
+        }
+
         return $this;
     }
 
@@ -130,7 +133,9 @@ trait MaguttiCmsSeoTrait
 
     protected function tagHandler($tag)
     {
-        return ($this->model->{'seo_' . $tag} != '') ? $this->model->{'seo_' . $tag} : $this->model->{$tag};
+
+
+        return (optional($this->model)->{'seo_' . $tag} != '') ? $this->model->{'seo_' . $tag} : optional($this->model)->{$tag};
     }
 
     protected function allowedQueryStrings()
