@@ -5,10 +5,10 @@
     'classContent',
     'item',
 ])
-<x-website.section class="{{$class}}" classCaption="{{$classCaption ?? 'text-primary'}}">
-    <x-slot name="caption">{!! $item->subtitle!!}</x-slot>
+<x-website.partials.section class="{{$class??''}}">
+    <x-slot name="caption" class="{{$classCaption ?? 'text-primary'}}">{!! $item->subtitle!!}</x-slot>
     <h1 class="{{$classTitle ?? 'text-white'}} banner-title">{!! $item->title !!}</h1>
         @if($item->description)
         <div class="banner-content {{$classContent ?? 'text-white'}}">{!!  $item->description !!}</div>
     @endif
-</x-website.section>
+</x-website.partials.section>
