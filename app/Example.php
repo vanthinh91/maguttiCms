@@ -206,6 +206,7 @@ class Example extends Model
         $this->fieldspec['title'] = [
             'type' => 'vue_component',
             'required' => 1,
+            'validation'=>'required|multi_locales',
             'hidden' => 0,
             'label' => 'Text',
             'display' => 1,
