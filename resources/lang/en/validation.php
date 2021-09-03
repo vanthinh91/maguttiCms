@@ -157,6 +157,9 @@ return [
         'billing_country_id.required_if' => 'The Country field is required',
         'billing_email.required_if'      => 'The Email fieldis required',
         'billing_phone.required_if'      => 'The Phone field is required',
+        '*' => [
+            'multi_locales' => 'All the :attribute fields are required'
+        ]
 
     ],
 
@@ -174,5 +177,6 @@ return [
     'attributes' => [
         'code' => 'SKU/code',
     ],
+
 
 ];

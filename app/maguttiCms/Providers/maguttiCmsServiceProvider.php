@@ -61,7 +61,12 @@ class MaguttiCmsServiceProvider extends ServiceProvider
 
         Validator::extend(
             'recaptcha',
-            'App\\Rules\\GoogleRecaptcha@passes'
+            'App\\maguttiCms\\Rules\\GoogleRecaptcha@passes'
+        );
+
+        Validator::extend(
+            'multi_locales',
+            'App\\maguttiCms\\Rules\\MultiLocale@passes'
         );
 
         /*

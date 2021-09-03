@@ -4,7 +4,7 @@
 @section('content')
    {{-- Header --}}
     <x-website.home.slider class="owl-theme"/>
-    <x-website.partials.section :class="'bg-accent py-5'">
+    <x-website.partials.section class="bg-accent py-5">
         <x-slot name="caption"  class="text-primary">{{$article->subtitle}}</x-slot>
         <x-slot name="title"    class="h1 text-white">{{$article->title}}</x-slot>
         <div class="px-0 px-lg-4 text-justify text-white">{!!  $article->description !!}</div>
