@@ -44,9 +44,10 @@ class AdminFormRequest extends FormRequest
 
     function handleValidationRules($validation_rules, $key)
     {
+
         if (is_array($validation_rules)) {
             foreach ($validation_rules as $item => $value) {
-                $this->addRule($item, $value);
+                $this->addRule($key, $value);
             }
         } else $this->addRule($key, $validation_rules);
     }
