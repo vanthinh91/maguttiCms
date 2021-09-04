@@ -47,7 +47,7 @@ class AdminFormRequest extends FormRequest
 
         if (is_array($validation_rules)) {
             foreach ($validation_rules as $item => $value) {
-                // handle if the validation rules is an associative or  sequential array
+                // handle if the validation rules is an associative or sequential array
                 (is_string($item))
                     ? $this->addRule($item, $value)
                     : $this->addRule($key, $validation_rules);

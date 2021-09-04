@@ -135,6 +135,8 @@ class Article extends Model
         $this->fieldspec['title'] = [
             'type' => 'string',
             'required' => 1,
+            // uncomment if you want validate all title fields
+            //'validation'=>['required','multi_locales'],
             'hidden' => 0,
             'label' => trans('admin.label.title'),
             'display' => 1,
