@@ -15,7 +15,7 @@ class AdminFormRequest extends FormRequest
      *
      * @return bool
      */
-    protected $rules = [];
+    protected array $rules = [];
 
     public function authorize()
     {
