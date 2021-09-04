@@ -7,8 +7,8 @@ Open source multilingual Laravel 8.x CMS with shopping cart and social login.
 ## Version
 Laravel 8.x
 
-maguttiCms is released using Laravel 8.x, Vue 3 and  Boostrap 5
-maguttiCms requires PHP 7.4 or 8.0
+maguttiCms is released using Laravel 8.x, Vue 3 and  Boostrap 5.
+maguttiCms requires PHP 7.4 or 8.0.
 ### How to Install
  
  - copy files in your local directory
@@ -46,15 +46,15 @@ maguttiCms requires PHP 7.4 or 8.0
  - XML PHP Extension
 
 ## User Guide
-See **[Wiki](https://github.com/marcoax/maguttiCms/wiki/)**
+See **[Wiki](https://github.com/marcoax/maguttiCms/wiki/)**.
 
 ## Commands
 ## magutticms:create-model
-helper to create a model and the related admin form configuration fields from a db table 
+Artisan helper to create a model and the related admin form configuration fields from a db table. 
 
 License
 =======
-Code released under the MIT license
+Code released under the MIT license.
 
 Security Vulnerabilities
 =======
