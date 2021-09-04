@@ -45,6 +45,8 @@ maguttiCms requires PHP 7.4 or 8.0
  - Tokenizer PHP Extension
  - XML PHP Extension
 
+## User Guide
+See **[wiki](https://github.com/marcoax/maguttiCms/wiki/)**
 
 ## Commands
 ## magutticms:create-model
