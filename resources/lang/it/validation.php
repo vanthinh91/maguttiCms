@@ -165,7 +165,7 @@ return [
         'billing_email.required_if' => 'Il campo email è obbligatorio',
         'billing_phone.required_if' => 'Il campo telefono è obbligatorio',
         '*' => [
-            'multi_locales' => 'All the :attribute fields are required'
+            'field_locale' => 'All the :attribute fields are required'
         ]
     ],
 

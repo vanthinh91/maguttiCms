@@ -136,7 +136,7 @@ class Article extends Model
             'type' => 'string',
             'required' => 1,
             // uncomment if you want validate all title fields
-            //'validation'=>['required','multi_locales'],
+            //'validation'=>['required','field_locale'],
             'hidden' => 0,
             'label' => trans('admin.label.title'),
             'display' => 1,

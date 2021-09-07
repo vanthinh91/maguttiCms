@@ -7,7 +7,7 @@ use Illuminate\Contracts\Validation\Rule;
 /**
  * @property string current_locale
  */
-class MultiLocale implements Rule
+class FieldLocale implements Rule
 {
     /**
      * Create a new rule instance.
@@ -27,7 +27,7 @@ class MultiLocale implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value): bool
     {
         //
         foreach (config('app.locales') as $locale => $code) {

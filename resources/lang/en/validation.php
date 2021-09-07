@@ -158,7 +158,7 @@ return [
         'billing_email.required_if'      => 'The Email fieldis required',
         'billing_phone.required_if'      => 'The Phone field is required',
         '*' => [
-            'multi_locales' => 'All the :attribute fields are required'
+            'field_locale' => 'All the :attribute fields are required'
         ]
 
     ],

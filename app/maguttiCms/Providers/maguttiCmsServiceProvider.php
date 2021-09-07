@@ -44,7 +44,7 @@ class MaguttiCmsServiceProvider extends ServiceProvider
          */
         view()->composer(['website/*','components/*'], ViewShareSettingComposer::class);
 
-       
+
 
         /*
         |--------------------------------------------------------------------------
@@ -65,8 +65,8 @@ class MaguttiCmsServiceProvider extends ServiceProvider
         );
 
         Validator::extend(
-            'multi_locales',
-            'App\\maguttiCms\\Rules\\MultiLocale@passes'
+            'field_locale',
+            'App\\maguttiCms\\Rules\\FieldLocale@passes'
         );
 
         /*
