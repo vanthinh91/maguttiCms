@@ -26,6 +26,7 @@
     "laravelcollective/html": "^6.2",
     "maatwebsite/excel": "^3.1",
     "magutti/magutti-builders": "dev-master",
+    "magutti/magutti-spatial": "^2.0",
     "mcamara/laravel-localization": "^1.6",
     "nesbot/carbon": "^2.31",
     "predis/predis": "^1.1",

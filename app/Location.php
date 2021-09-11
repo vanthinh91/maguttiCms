@@ -1,13 +1,16 @@
 <?php namespace App;
 
 
+
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Translatable;
+use Magutti\MaguttiSpatial\Builders\SpatialBuilder;
 
-use App\maguttiCms\Builders\LocationBuilder;
+
 use App\maguttiCms\Domain\Location\LocationPresenter;
 use App\maguttiCms\Domain\Location\MapLocationPresenter;
 use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
+
 
 class Location extends Model
 {
@@ -67,9 +70,9 @@ class Location extends Model
     |  Builder & Repo
     |--------------------------------------------------------------------------
     */
-    function newEloquentBuilder($query): LocationBuilder
+    function newEloquentBuilder($query): SpatialBuilder
     {
-        return new LocationBuilder($query);
+        return new SpatialBuilder($query);
     }
 
     /*
@@ -333,4 +336,5 @@ class Location extends Model
 
         return $this->fieldspec;
     }
+
 }
