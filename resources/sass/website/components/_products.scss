@@ -9,7 +9,6 @@
       img {
         opacity: 0.8;
       }
-
       border: 0px solid $primary;
     }
 
@@ -20,7 +19,8 @@
       padding: 0.30rem 0.5rem;
       color:white;
       background-color: $color-price-discount;
-      border-color: $color-price-discount;;
+      border-color: $color-price-discount;
+      z-index: 2000;
 
       &::before, &::after {
         content: "";

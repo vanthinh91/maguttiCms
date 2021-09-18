@@ -13,13 +13,11 @@
                         @foreach (  $carousel_items()  as  $index => $carousel_item )
                             <x-website.carousels.product-carousel-item :item="$carousel_item" class="swiper-slide-product"></x-website.carousels.product-carousel-item>
                         @endforeach
-
                     </div>
                     <!-- Add Pagination -->
                     <div class="swiper-pagination product-carousel-swiper-pagination"></div>
                 </div>
             </div>
-
             <!--Grid column-->
         </div>
         <div class="row text-center mt-2 mt-sm-3">

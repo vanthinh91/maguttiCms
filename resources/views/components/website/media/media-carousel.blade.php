@@ -2,7 +2,7 @@
     <div class="swiper-wrapper">
         <x-website.media.media-carousel-item :image="$item->image" class="swiper-slide-{{$carousel_identifier}}" />
         @foreach (  $gallery()  as  $index => $item )
-           <x-website.media.media-carousel-item :image="$item->file_name" class="swiper-slide-{{$carousel_identifier}}" />
+           <x-website.media.media-carousel-item :image="$item->file_name" class="img-fluid swiper-slide-{{$carousel_identifier}}" />
        @endforeach
     </div>
     <!-- Add Pagination -->

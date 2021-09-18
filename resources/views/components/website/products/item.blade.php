@@ -1,5 +1,6 @@
 <article class="card box-shadow products__card mb-3">
     <img class="card-img-top" src="{{ ImgHelper::get($product->image, config('maguttiCms.image.defaults'),'products') }}" alt="{{ $product->title }}">
+
     <div class="card-body bg-color-3">
         <h4 class="card-title text-primary"><span class="text-uppercase">{{ $product->title }}</span> <span class="card-code text-muted"> - {{ trans('store.product.sku') }}: {{ $product->code }}</span> </h4>
         @if(StoreFeatures::showPrice())

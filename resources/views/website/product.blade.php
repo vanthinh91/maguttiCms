@@ -10,9 +10,13 @@
 	<section class="product-page">
 		<div class="container">
 			<div class="row no-gutters">
-				<div class="col-12 col-sm-6 order-md-1 my-2 my-md-0 product-page-image p-0 m-0">
-					<img class="img-fluid" src="{{ ImgHelper::init('products')->get_cached($product->image, config('maguttiCms.image.large')) }}" alt="{{ $product->title }}">
-				    @if($product->on_sale)
+				<div class="col-12 col-sm-6 order-md-1 my-2 my-md-0 product-page-image p-0 m-0 position-relative">
+					@if(!$product->hasGallery())
+						<img class="img-fluid" src="{{ ImgHelper::init('products')->get_cached($product->image, config('maguttiCms.image.large')) }}" alt="{{ $product->title }}">
+					@else
+						<x-website.products.product-gallery :item="$product" />
+					@endif
+					@if($product->on_sale)
 						<div class="products__card-on-sale">{{__('store.product.on_sale')}}</div>
 					@endif
 				</div>
@@ -37,7 +41,6 @@
 							</cart-add-item>
 						@endif
 					</div>
-
 				</div>
 			</div>
 		</div>
