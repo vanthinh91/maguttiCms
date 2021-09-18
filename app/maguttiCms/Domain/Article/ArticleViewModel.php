@@ -45,7 +45,7 @@ class ArticleViewModel extends WebsiteViewModel
         $this->setSeo($article);
         $parameter = request()->get('product_id');
 
-        $locations = MapLocationResource::collection(Location::published()->get());
+        $locations = MapLocationResource::collection(Location::query()->wherePub(1)->get());
 
         if ($parameter && !is_array($parameter)) {
             $product = Product::findOrFail($parameter);
@@ -100,7 +100,7 @@ class ArticleViewModel extends WebsiteViewModel
      */
     function validatePage($article): bool
     {
-        return ($article && $article->slug != 'home' && $article->pub == 1) ? true : false;
+        return $article && $article->slug != 'home' && $article->pub == 1;
     }
 
     function handle($parent, $child = '')

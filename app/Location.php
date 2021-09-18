@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Translatable;
 use Magutti\MaguttiSpatial\Builders\SpatialBuilder;
 
-
 use App\maguttiCms\Domain\Location\LocationPresenter;
 use App\maguttiCms\Domain\Location\MapLocationPresenter;
 use App\maguttiCms\Translatable\GFTranslatableHelperTrait;
@@ -72,7 +71,7 @@ class Location extends Model
     */
     function newEloquentBuilder($query): SpatialBuilder
     {
-        return new SpatialBuilder($query);
+           return new SpatialBuilder($query);
     }
 
     /*

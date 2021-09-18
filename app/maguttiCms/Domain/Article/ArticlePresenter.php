@@ -13,11 +13,13 @@ trait ArticlePresenter
     function getFullSlug($locale=''){
         $locale = ($locale)?:app()->getLocale();
 
-        if ($this->parent && $this->parent->{'slug:it'} != 'home')
-        return $this->parent->{'slug:'.$locale}.'/'.$this->{'slug:'.$locale};
+        if ($this->parent && $this->parent->{'slug:it'} != 'home'){
+            return $this->parent->{'slug:'.$locale}.'/'.$this->{'slug:'.$locale};
+        }
 
-        if ($this->{'slug:'.$locale} == 'home')
-        return '';
+        if ($this->{'slug:'.$locale} == 'home'){
+            return '';
+        }
 
         return $this->{'slug:'.$locale};
     }
@@ -53,13 +55,17 @@ trait ArticlePresenter
      */
     function getNavTitleAttribute()
     {
-        return ($this->menu_title) ? $this->menu_title : $this->title;
+        return ($this->menu_title)
+                    ?
+                    : $this->title;
     }
 
 
     function getBtnTitleAttribute()
     {
-        return ($this->menu_title) ? $this->menu_title : $this->sub_title;
+        return ($this->menu_title)
+                    ?
+                    : $this->sub_title;
     }
 
 
@@ -73,12 +79,12 @@ trait ArticlePresenter
     function getNavLinkAttribute(): string
     {
         if ($this->slug == 'home') {
-            return $page_link = '/';
+            return '/';
         }
         if ($this->link) {
-            return $page_link = $this->link;
+            return $this->link;
         }
-        return $page_link = $this->getPermalink();
+        return $this->getPermalink();
     }
 
     function getNavCssClassAttribute(): string
@@ -110,6 +116,8 @@ trait ArticlePresenter
 
     function getAltSeoTitleAttribute()
     {
-        return ($this->seo_title)?:$this->nav_title;
+        return ($this->seo_title)
+                    ?
+                    :$this->nav_title;
     }
 }
