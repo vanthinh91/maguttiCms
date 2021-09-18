@@ -2,8 +2,10 @@
 
 namespace App\View\Components\Website\Products;
 
+use App\Product;
 use App\View\Components\Website\Media\MediaCarousel;
 use Illuminate\Contracts\View\View;
+
 
 class ProductGallery extends  MediaCarousel
 {
@@ -13,18 +15,23 @@ class ProductGallery extends  MediaCarousel
      */
     public $carousel_identifier;
 
+     /**
+     * @property string config
+     */
+
+    public string $config;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($item,$carousel_identifier="product-gallery")
+    public function __construct($item,string $config,string $carousel_identifier="product-gallery")
     {
-        //
         $this->item = $item;
         $this->carousel_identifier = $carousel_identifier;
+        $this->config =$config;
     }
-
     /**
      * Get the view / contents that represent the component.
      *
@@ -32,9 +39,10 @@ class ProductGallery extends  MediaCarousel
      */
     public function render()
     {
-        return view('components.website.products.product-gallery');
+        return ($this->item->hasGallery())
+                ? view('components.website.products.product-gallery')
+                : view('components.website.products.product-image');
     }
-
     public function gallery()
     {
         return $this->item->gallery()->sorted()->get();

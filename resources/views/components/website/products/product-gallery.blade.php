@@ -3,10 +3,12 @@
         <x-website.products.product-gallery-item
                 :image="$item->image"
                 disk="products"
+                :config="$config"
                 class="swiper-slide-{{$carousel_identifier}}" />
         @foreach (  $gallery()  as  $index => $item )
         <x-website.products.product-gallery-item
                 :image="$item->file_name"
+                :config="$config"
                 class="swiper-slide-{{$carousel_identifier}}" />
         @endforeach
     </div>
@@ -50,7 +52,6 @@
                 slidesPerGroup: 1,
             },
         },
-        // Navigation arrows
     });
 </script>
 @endpush
