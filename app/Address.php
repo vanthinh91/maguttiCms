@@ -1,10 +1,13 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\maguttiCms\Domain\Address\AddressPresenter;
+
 
 class Address extends Model
 {
-	protected $with = ['country'];
+	use AddressPresenter;
+    protected $with = ['country'];
 
     protected $fillable = [
         'firstname',
@@ -40,40 +43,4 @@ class Address extends Model
         return $this->fieldspec;
     }
 
-	public function display($separator): string
-    {
-		$display = $this->firstname.' '.$this->lastname;
-        $display .= $separator;
-		$display .= $this->street;
-		if ($this->number)
-			$display .= ', '.$this->number;
-		$display .= $separator;
-		$display .= $this->zip_code.' '.$this->city.' ('.$this->province.')';
-		$display .= $separator;
-		$display .= $this->country->name;
-		if ($this->phone) {
-			$display .= $separator;
-			$display .= 'Tel: '.$this->phone;
-		}
-		if ($this->mobile) {
-			$display .= $separator;
-			$display .= 'Cell: '.$this->mobile;
-		}
-		if ($this->email) {
-			$display .= $separator;
-			$display .= 'Email: '.$this->email;
-		}
-
-		return $display;
-	}
-
-	public function getDisplayInlineAttribute()
-	{
-		return $this->display(' - ');
-	}
-
-	public function getDisplayBlockAttribute()
-	{
-		return $this->display('<br>');
-	}
 }
