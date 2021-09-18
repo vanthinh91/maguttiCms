@@ -16,21 +16,15 @@
 				</div>
 				<div class="col-12 col-sm-6 order-md-2">
 					<div class="product-page-card">
-						<h1 class="text-primary product-page-title">{{ $product->title }}</h1>
-						<h5 class="text-color-4 product-page-code">{{ trans('store.product.sku') }}: {{ $product->code }}</h5>
-						<div class="product-page-description">{!! $product->description !!}</div>
+						<x-website.products.product-description :product="$product"/>
 						@if (StoreFeatures::showPrice())
 							<div class="h4 product-page-price my-3">
-							<x-magutti_store-product-display-price
-									:product="$product"
-									:type="'product-page'"/>
+							<x-magutti_store-product-display-price :product="$product"  :type="'product-page'"/>
 							</div>
-							<cart-add-item
-									ref="v100"
-									:product="{{$product}}" :min=1 :step="1" :max="100" :value=1>
-								<template #btn_label>{{ trans('store.items.add') }}</template>
-								<template #label><h5
-											class="product-page-add-label text-italic text-color-4 mb-1">{{ trans('store.cart.table.quantity') }}</h5>
+							<cart-add-item	ref="v100" :product="{{$product}}" :min=1 :step="1" :max="100" :value=1>
+								<template #btn_label>{{ __('store.items.add') }}</template>
+								<template #label>
+									<h5	class="product-page-add-label text-italic text-color-4 mb-1">{{ __('store.cart.table.quantity') }}</h5>
 								</template>
 							</cart-add-item>
 						@endif
