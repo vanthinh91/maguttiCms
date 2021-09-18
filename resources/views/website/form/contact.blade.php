@@ -17,29 +17,29 @@
     @if(isset($request_product_id))
         @if(isset($product))
             <div class="col-12">
-				<x-website.ui.input type="hidden" for="request_product_id" placeholder="{{ trans('website.name') }}" required/>
-                {!! trans('website.message.product_request') !!}
+				<x-website.ui.input type="hidden" for="request_product_id" placeholder="{{ __('website.name') }}"/>
+                {!! __('website.message.product_request') !!}
                 <mark>{{$product->title}}</mark>
             </div>
         @endif
     @endif
     <div class="col-12 col-sm-6">
-        <x-website.ui.input for="name" placeholder="{{ trans('website.name') }} *" required/>
+        <x-website.ui.input for="name" placeholder="{{ __('website.name') }} *" required/>
     </div>
     <div class="col-12 col-sm-6">
-        <x-website.ui.input for="surname" placeholder="{{ trans('website.surname') }} *" required/>
+        <x-website.ui.input for="surname" placeholder="{{ __('website.surname') }} *" required/>
     </div>
     <div class="col-12 col-sm-6">
-        <x-website.ui.input type="email" for="email" placeholder="{{ trans('website.email') }} *" required/>
+        <x-website.ui.input type="email" for="email" placeholder="{{ __('website.email') }} *" required/>
     </div>
     <div class="col-12 col-sm-6">
-        <x-website.ui.input for="company" placeholder="{{ trans('website.employer') }} *" required/>
+        <x-website.ui.input for="company" placeholder="{{ __('website.employer') }} *" required/>
     </div>
     <div class="col-12">
-        <x-website.ui.input for="subject" placeholder="{{ trans('website.subject') }} *" required/>
+        <x-website.ui.input for="subject" placeholder="{{ __('website.subject') }} *" required/>
     </div>
     <div class="col-12">
-		<x-website.ui.textarea for="message" placeholder="{{ trans('website.message_email') }} *" rows="5" required/>
+		<x-website.ui.textarea for="message" placeholder="{{ __('website.message_email') }} *" rows="5" required/>
     </div>
     <div class="col-12 col-sm-12">
         <x-website.widgets.privacy-message/>
@@ -52,7 +52,7 @@
         </div>
     @endif
     <div class="col-12 col-sm-6 ">
-		<button type="submit" class="btn btn-primary">{{ trans('website.send') }}</button>
+		<button type="submit" class="btn btn-primary">{{ __('website.send') }}</button>
     </div>
 </div>
 {{ Form::close() }}
