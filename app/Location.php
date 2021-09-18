@@ -64,6 +64,10 @@ class Location extends Model
         'slug' => ['field' => 'title', 'updatable' => true, 'translatable' => 1]
     ];
 
+    protected array $spatialFields = [
+        'lng',
+        'lat'
+    ];
     /*
     |--------------------------------------------------------------------------
     |  Builder & Repo
