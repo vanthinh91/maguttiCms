@@ -1013,7 +1013,7 @@ CREATE TABLE `media` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `media_model_id_model_type_index` (`model_id`,`model_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1022,7 +1022,7 @@ CREATE TABLE `media` (
 
 LOCK TABLES `media` WRITE;
 /*!40000 ALTER TABLE `media` DISABLE KEYS */;
-INSERT INTO `media` VALUES (1,0,19,'App\\Article','images','',NULL,NULL,'pack2x-2.jpeg','jpeg','media',103870,NULL,1,10,'2021-06-29 14:21:02','2021-06-29 14:22:27'),(2,0,19,'App\\Article','images','',NULL,NULL,'56562-p4-3.jpeg','jpeg','media',147436,NULL,1,30,'2021-06-29 14:21:02','2021-06-29 14:22:27'),(3,0,19,'App\\Article','images','',NULL,NULL,'28876-p3-3.jpeg','jpeg','media',211642,NULL,1,40,'2021-06-29 14:21:02','2021-06-29 14:22:27'),(5,0,19,'App\\Article','images','',NULL,NULL,'product-2-4.jpeg','jpeg','media',358348,NULL,1,NULL,'2021-06-29 14:21:02','2021-06-29 14:21:02'),(6,0,19,'App\\Article','images','',NULL,NULL,'79744-prodotto1-4x.jpg','jpg','media',100965,NULL,1,NULL,'2021-06-29 14:21:10','2021-06-29 14:21:10'),(7,0,19,'App\\Article','images','',NULL,NULL,'12439-img-8831.jpeg','jpeg','media',161593,NULL,1,20,'2021-06-29 14:21:10','2021-06-29 14:22:27'),(8,0,0,'','images','',NULL,NULL,'86176-product-2-4.jpeg','jpeg','',358348,NULL,1,NULL,'2021-06-29 14:37:32','2021-06-29 14:37:55');
+INSERT INTO `media` VALUES (1,0,19,'App\\Article','images','',NULL,NULL,'pack2x-2.jpeg','jpeg','media',103870,NULL,1,10,'2021-06-29 14:21:02','2021-06-29 14:22:27'),(2,0,19,'App\\Article','images','',NULL,NULL,'56562-p4-3.jpeg','jpeg','media',147436,NULL,1,30,'2021-06-29 14:21:02','2021-06-29 14:22:27'),(3,0,19,'App\\Article','images','',NULL,NULL,'28876-p3-3.jpeg','jpeg','media',211642,NULL,1,40,'2021-06-29 14:21:02','2021-06-29 14:22:27'),(5,0,19,'App\\Article','images','',NULL,NULL,'product-2-4.jpeg','jpeg','media',358348,NULL,1,NULL,'2021-06-29 14:21:02','2021-06-29 14:21:02'),(6,0,19,'App\\Article','images','',NULL,NULL,'79744-prodotto1-4x.jpg','jpg','media',100965,NULL,1,NULL,'2021-06-29 14:21:10','2021-06-29 14:21:10'),(7,0,19,'App\\Article','images','',NULL,NULL,'12439-img-8831.jpeg','jpeg','media',161593,NULL,1,20,'2021-06-29 14:21:10','2021-06-29 14:22:27'),(8,0,0,'','images','',NULL,NULL,'86176-product-2-4.jpeg','jpeg','',358348,NULL,1,NULL,'2021-06-29 14:37:32','2021-06-29 14:37:55'),(9,0,3,'App\\Product','images','',NULL,NULL,'91804-pack1x-2.jpeg','jpeg','media',98775,NULL,1,NULL,'2021-09-18 23:38:59','2021-09-18 23:38:59'),(10,0,3,'App\\Product','images','',NULL,NULL,'23620-pack1x-1.jpeg','jpeg','media',111190,NULL,1,NULL,'2021-09-18 23:38:59','2021-09-18 23:38:59'),(11,0,3,'App\\Product','images','',NULL,NULL,'30111-pack2x-1.jpeg','jpeg','media',121013,NULL,1,NULL,'2021-09-18 23:38:59','2021-09-18 23:38:59');
 /*!40000 ALTER TABLE `media` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1046,7 +1046,7 @@ CREATE TABLE `media_translations` (
   UNIQUE KEY `media_translations_media_id_locale_unique` (`media_id`,`locale`),
   KEY `media_translations_locale_index` (`locale`),
   CONSTRAINT `media_translations_media_id_foreign` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1055,7 +1055,7 @@ CREATE TABLE `media_translations` (
 
 LOCK TABLES `media_translations` WRITE;
 /*!40000 ALTER TABLE `media_translations` DISABLE KEYS */;
-INSERT INTO `media_translations` VALUES (1,1,'en','pack2x-2.jpeg',NULL,NULL,'2021-06-29 14:21:02','2021-06-29 14:21:02'),(2,2,'en','56562-p4-3.jpeg',NULL,NULL,'2021-06-29 14:21:02','2021-06-29 14:21:02'),(3,3,'en','28876-p3-3.jpeg',NULL,NULL,'2021-06-29 14:21:02','2021-06-29 14:21:02'),(5,5,'en','product-2-4.jpeg',NULL,NULL,'2021-06-29 14:21:02','2021-06-29 14:21:02'),(6,6,'en','79744-prodotto1-4x.jpg',NULL,NULL,'2021-06-29 14:21:10','2021-06-29 14:21:10'),(7,7,'en','12439-img-8831.jpeg',NULL,NULL,'2021-06-29 14:21:10','2021-06-29 14:21:10'),(8,8,'en','Coffee Cup Collection',NULL,NULL,'2021-06-29 14:37:32','2021-06-29 14:37:55'),(9,8,'it',NULL,NULL,NULL,'2021-06-29 14:37:55','2021-06-29 14:37:55'),(10,8,'es',NULL,NULL,NULL,'2021-06-29 14:37:55','2021-06-29 14:37:55'),(11,8,'fr',NULL,NULL,NULL,'2021-06-29 14:37:55','2021-06-29 14:37:55');
+INSERT INTO `media_translations` VALUES (1,1,'en','pack2x-2.jpeg',NULL,NULL,'2021-06-29 14:21:02','2021-06-29 14:21:02'),(2,2,'en','56562-p4-3.jpeg',NULL,NULL,'2021-06-29 14:21:02','2021-06-29 14:21:02'),(3,3,'en','28876-p3-3.jpeg',NULL,NULL,'2021-06-29 14:21:02','2021-06-29 14:21:02'),(5,5,'en','product-2-4.jpeg',NULL,NULL,'2021-06-29 14:21:02','2021-06-29 14:21:02'),(6,6,'en','79744-prodotto1-4x.jpg',NULL,NULL,'2021-06-29 14:21:10','2021-06-29 14:21:10'),(7,7,'en','12439-img-8831.jpeg',NULL,NULL,'2021-06-29 14:21:10','2021-06-29 14:21:10'),(8,8,'en','Coffee Cup Collection',NULL,NULL,'2021-06-29 14:37:32','2021-06-29 14:37:55'),(9,8,'it',NULL,NULL,NULL,'2021-06-29 14:37:55','2021-06-29 14:37:55'),(10,8,'es',NULL,NULL,NULL,'2021-06-29 14:37:55','2021-06-29 14:37:55'),(11,8,'fr',NULL,NULL,NULL,'2021-06-29 14:37:55','2021-06-29 14:37:55'),(12,11,'en','30111-pack2x-1.jpeg',NULL,NULL,'2021-09-18 23:38:59','2021-09-18 23:38:59'),(13,10,'en','23620-pack1x-1.jpeg',NULL,NULL,'2021-09-18 23:38:59','2021-09-18 23:38:59'),(14,9,'en','91804-pack1x-2.jpeg',NULL,NULL,'2021-09-18 23:38:59','2021-09-18 23:38:59');
 /*!40000 ALTER TABLE `media_translations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1291,7 +1291,7 @@ DROP TABLE IF EXISTS `order_items`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `order_items` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `order_id` int(11) NOT NULL,
+  `order_id` bigint(20) unsigned NOT NULL,
   `cartitem_id` int(11) NOT NULL,
   `product_code` varchar(255) DEFAULT '',
   `product_model_code` varchar(255) DEFAULT '',
@@ -1305,7 +1305,9 @@ CREATE TABLE `order_items` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `rife` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_order_items_order_id` (`order_id`),
+  CONSTRAINT `fk_order_items_order_id` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1388,7 +1390,7 @@ DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `orders` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `status_id` bigint(20) DEFAULT NULL,
   `reference` varchar(20) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
@@ -1526,7 +1528,7 @@ DROP TABLE IF EXISTS `payments`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `payments` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `order_id` int(11) NOT NULL,
+  `order_id` bigint(20) unsigned NOT NULL,
   `payment_method_id` int(11) DEFAULT NULL,
   `is_paid` tinyint(4) DEFAULT NULL,
   `code` varchar(255) DEFAULT '',
@@ -1535,7 +1537,9 @@ CREATE TABLE `payments` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_payments_order_id` (`order_id`),
+  CONSTRAINT `fk_payments_order_id` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2275,4 +2279,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-13 22:54:07
+-- Dump completed on 2021-09-19  9:45:56
