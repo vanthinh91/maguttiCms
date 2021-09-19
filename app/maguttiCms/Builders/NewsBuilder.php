@@ -4,6 +4,7 @@ namespace App\maguttiCms\Builders;
 
 use App\News;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 class NewsBuilder extends MaguttiCmsBuilder
 {
@@ -33,23 +34,34 @@ class NewsBuilder extends MaguttiCmsBuilder
 
     /**
      * @param $tag
-     * @return NewsBuilder|\Illuminate\Database\Eloquent\Builder
+     * @return NewsBuilder|Builder
      */
     function findByTag($tag)
     {
-        return $this->whereHas('tags', function ($query) use ($tag) {
-                    $query->where('slug', 'like', '%' . $tag . '%');
-        });
+        return $this->whereRelation('tags', 'slug', 'like', '%' . $tag . '%');
     }
 
 
     function itemList($tag,$limit=null){
         $limit ?? config('maguttiCms.website.option.pagination.news_index');
         return $this->findPublished()
-            ->when($tag, function ($query, $tag) {
-                return $query->findByTag($tag);
-            })->paginate($limit);
+                    ->when($tag, function ($query, $tag) {
+                        return $query->findByTag($tag);
+                    })->paginate($limit);
     }
 
 
+
+    function findByTags($tag)
+    {
+        $tag='laravel';
+
+        // before
+        News::whereHas('tags', function ($query) use ($tag) {
+            $query->where('slug', 'like', '%' . $tag . '%');
+        });
+
+        // after
+        News::whereRelation('tags', 'slug', 'like', '%' . $tag . '%');
+    }
 }

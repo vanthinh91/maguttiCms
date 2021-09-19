@@ -72,9 +72,10 @@ trait SearchableTrait
                         $objBuilder->whereTranslationLike($key, "%" . $curValue . "%");
                     } else {
                         if ($value['type'] == 'relation') {
-                            $objBuilder->whereHas($value['relation'], function ($query) use ($value, $curValue) {
-                                $query->where((isset($value['key']) ? $value['key'] : 'id'), $curValue);
-                            });
+
+                           $objBuilder->whereRelation($value['relation'], data_get($value,'key', 'id'),$curValue);
+
+
                         } elseif ($value['type'] == 'date') {
                             $objBuilder->whereDate($key, '=', Carbon::parse(str_replace('/', '-', $curValue)));
                         } elseif ($value['type'] == 'date_range') {
