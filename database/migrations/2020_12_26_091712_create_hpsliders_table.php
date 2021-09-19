@@ -33,15 +33,16 @@ class CreateHpslidersTable extends Migration
 
         Schema::create('hp_slider_translations', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('hp_slider_id')
+                ->constrained('hpsliders')
+                ->onDelete('CASCADE')->onUpdate('RESTRICT');
             $table->string('locale', 255);
             $table->string('title', 255)->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
             $table->unique(['hp_slider_id', 'locale'], 'hp_sliders_translations_hp_slider_id_locale_unique');
             $table->index('locale', 'hp_sliders_translations_locale_index');
-            $table->foreignId('hp_slider_id')
-                ->constrained('hpsliders')
-                ->onDelete('CASCADE')->onUpdate('RESTRICT');
+
         });
     }
 

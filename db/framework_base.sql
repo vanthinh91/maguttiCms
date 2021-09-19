@@ -281,14 +281,16 @@ DROP TABLE IF EXISTS `cart_items`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cart_items` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `cart_id` int(11) NOT NULL,
+  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
+  `cart_id` bigint(11) unsigned NOT NULL,
   `product_code` varchar(255) DEFAULT '',
   `product_model_code` varchar(255) DEFAULT NULL,
   `quantity` int(1) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_cart_items_cart_id` (`cart_id`),
+  CONSTRAINT `fk_cart_items_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -309,7 +311,7 @@ DROP TABLE IF EXISTS `carts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `carts` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
   `token` varchar(255) DEFAULT NULL,
   `billing_address_id` int(11) DEFAULT NULL,
   `shipping_address_id` int(11) DEFAULT NULL,
@@ -344,7 +346,7 @@ DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categories` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` int(10) unsigned DEFAULT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `abstract` text COLLATE utf8_unicode_ci,
@@ -384,7 +386,7 @@ DROP TABLE IF EXISTS `category_translations`;
 CREATE TABLE `category_translations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
-  `category_id` int(10) unsigned NOT NULL,
+  `category_id` bigint(10) unsigned NOT NULL,
   `locale` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `abstract` text COLLATE utf8_unicode_ci,
@@ -395,7 +397,9 @@ CREATE TABLE `category_translations` (
   `update_by` int(10) unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_category_translations_category_id` (`category_id`),
+  CONSTRAINT `fk_category_translations_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -405,7 +409,7 @@ CREATE TABLE `category_translations` (
 
 LOCK TABLES `category_translations` WRITE;
 /*!40000 ALTER TABLE `category_translations` DISABLE KEYS */;
-INSERT INTO `category_translations` VALUES (1,'peri-il-caffe',1,'it','Peri il caffè',NULL,NULL,NULL,NULL,0,0,'2016-07-04 04:29:04','2021-06-26 08:50:24'),(2,'for-coffee',1,'en','For coffee',NULL,NULL,NULL,NULL,0,0,'2016-07-04 04:29:04','2021-06-26 08:45:08'),(3,'second-category',2,'en','Second Category',NULL,NULL,NULL,NULL,0,0,'2016-12-26 11:16:23','2021-06-26 08:57:39'),(4,'seconda-categoria',2,'it','Seconda Categoria',NULL,NULL,NULL,NULL,0,0,'2016-12-26 11:16:23','2021-06-26 08:57:39'),(5,'third-category',3,'en','Third Category',NULL,NULL,NULL,NULL,0,0,'2016-12-27 17:33:25','2021-08-11 16:11:30'),(6,'terza-category',3,'it','Terza Categoria',NULL,NULL,NULL,NULL,0,0,'2016-12-27 17:33:25','2021-06-26 08:57:58'),(7,'nuova-categoria',4,'it','Nuova categoria',NULL,NULL,'','',0,0,'2017-08-02 11:16:28','2017-08-02 11:16:28'),(8,'new-category',4,'en','New category',NULL,NULL,'','',0,0,'2017-08-02 11:16:28','2017-08-02 11:16:28'),(9,'',1,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-12-24 16:56:51','2020-12-24 16:56:51'),(10,'',1,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-12-24 16:56:51','2020-12-24 16:56:51'),(11,'',2,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021-06-26 08:57:39','2021-06-26 08:57:39'),(12,'',2,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021-06-26 08:57:39','2021-06-26 08:57:39'),(13,'',3,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021-06-26 08:57:58','2021-06-26 08:57:58'),(14,'',3,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021-06-26 08:57:58','2021-06-26 08:57:58');
+INSERT INTO `category_translations` VALUES (1,'peri-il-caffe',1,'it','Peri il caffè',NULL,NULL,NULL,NULL,0,0,'2016-07-04 04:29:04','2021-06-26 08:50:24'),(2,'for-coffee',1,'en','For coffee',NULL,NULL,NULL,NULL,0,0,'2016-07-04 04:29:04','2021-06-26 08:45:08'),(3,'second-category',2,'en','Second Category',NULL,NULL,NULL,NULL,0,0,'2016-12-26 11:16:23','2021-06-26 08:57:39'),(4,'seconda-categoria',2,'it','Seconda Categoria',NULL,NULL,NULL,NULL,0,0,'2016-12-26 11:16:23','2021-06-26 08:57:39'),(5,'third-category',3,'en','Third Category',NULL,NULL,NULL,NULL,0,0,'2016-12-27 17:33:25','2021-08-11 16:11:30'),(6,'terza-category',3,'it','Terza Categoria',NULL,NULL,NULL,NULL,0,0,'2016-12-27 17:33:25','2021-06-26 08:57:58'),(9,'',1,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-12-24 16:56:51','2020-12-24 16:56:51'),(10,'',1,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-12-24 16:56:51','2020-12-24 16:56:51'),(11,'',2,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021-06-26 08:57:39','2021-06-26 08:57:39'),(12,'',2,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021-06-26 08:57:39','2021-06-26 08:57:39'),(13,'',3,'es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021-06-26 08:57:58','2021-06-26 08:57:58'),(14,'',3,'fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2021-06-26 08:57:58','2021-06-26 08:57:58');
 /*!40000 ALTER TABLE `category_translations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2279,4 +2283,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-19  9:45:56
+-- Dump completed on 2021-09-19  9:54:15
