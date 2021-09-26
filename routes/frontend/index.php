@@ -9,6 +9,8 @@
 
 
 use App\maguttiCms\Website\Controllers\APIController;
+use App\maguttiCms\Website\Controllers\FaqController;
+use App\maguttiCms\Website\Controllers\NewsController;
 use App\maguttiCms\Website\Controllers\PagesController;
 use App\maguttiCms\Website\Controllers\StoreAPIController;
 use App\maguttiCms\Website\Controllers\ProductsController;
@@ -50,16 +52,38 @@ Route::group(['middleware' => ['localeSessionRedirect', 'localizationRedirect', 
 
     // Pages routes...
     Route::get('/', [PagesController::class, 'home']);
-    Route::get('/news/', [PagesController::class, 'news']);
-    Route::get('/news/tags/{tags}', [PagesController::class, 'newsByTags']);
-    Route::get('/news/{slug}', [PagesController::class, 'news']);
-    Route::get('/faq/', [PagesController::class, 'faq']);
-    Route::get('/faq/{slug}', [PagesController::class, 'faq']);
 
+    /*
+    |--------------------------------------------------------------------------
+    | NEWS
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('news')->group(function () {
+        Route::get('', [NewsController::class, 'news']);
+        Route::get('/tags/{tags}', [NewsController::class, 'newsByTags']);
+        Route::get('/{slug}', [NewsController::class, 'news']);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | FAQS
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('faq')->group(function () {
+        Route::get('/', [FaqController::class,'index']);
+        Route::get('/{slug}', [FaqController::class, 'index']);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | PRODUCTS
+    |--------------------------------------------------------------------------
+    */
     Route::get(LaravelLocalization::transRoute("routes.category"), [ProductsController::class, 'category'])->name('shop.index');
     Route::get(LaravelLocalization::transRoute("routes.products"), [ProductsController::class, 'products']);
-    Route::get(LaravelLocalization::transRoute("routes.contacts"), [PagesController::class, 'contacts']);
 
+
+    Route::get(LaravelLocalization::transRoute("routes.contacts"), [PagesController::class, 'contacts']);
     Route::post('/contacts/', [WebsiteFormController::class, 'getContactUsForm']);
 
     // store page
@@ -67,8 +91,6 @@ Route::group(['middleware' => ['localeSessionRedirect', 'localizationRedirect', 
 
     // store social_auth
     Route::group(['as'=>'social_auth.'],base_path('routes/frontend/social_auth.php'));
-
-    //Route::name('seolanding')->group(base_path('routes/frontend/seolanding.php'));
 
     Route::get('/{parent}/{child}', [PagesController::class, 'pages']);
     Route::get('/{parent?}/', [PagesController::class, 'pages']);

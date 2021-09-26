@@ -8,7 +8,7 @@ use App\Project;
 
 class ProjectViewModel extends WebsiteViewModel
 {
-    function show($slug)
+    function show( string $slug)
     {
         $project = Project::findBySlug($slug, app()->getLocale());
         $article = $this->getCurrentPage();
@@ -19,10 +19,5 @@ class ProjectViewModel extends WebsiteViewModel
             return view('website.project', compact('article', 'project', 'category', 'locale_article'));
         }
         return $this->handleMissingPage();
-    }
-
-    function handle($slug)
-    {
-        return ($slug == '') ? $this->index() : $this->show($slug);
     }
 }

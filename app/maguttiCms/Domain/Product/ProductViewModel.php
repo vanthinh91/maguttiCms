@@ -2,15 +2,15 @@
 
 namespace App\maguttiCms\Domain\Product;
 
-use App\maguttiCms\Domain\Website\WebsiteViewModel;
 use App\Product;
+use App\maguttiCms\Domain\Website\WebsiteViewModel;
 
 
 class ProductViewModel extends WebsiteViewModel
 {
 
 
-    function show($slug)
+    function show(string $slug)
     {
         $product = Product::findBySlug($slug, app()->getLocale());
         $article = $this->getCurrentPage();
@@ -22,12 +22,5 @@ class ProductViewModel extends WebsiteViewModel
             return view('website.product', compact('article', 'product', 'category', 'locale_article'));
         }
         return $this->handleMissingPage();
-    }
-
-    
-
-    function handle($slug)
-    {
-        return ($slug == '') ? $this->index() : $this->show($slug);
     }
 }

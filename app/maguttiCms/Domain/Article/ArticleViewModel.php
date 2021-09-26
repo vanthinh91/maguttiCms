@@ -8,11 +8,12 @@ use App\Location;
 use App\Product;
 use App\maguttiCms\Domain\Website\WebsiteViewModel;
 use Illuminate\View\View;
+use phpDocumentor\Reflection\Types\Mixed_;
 
 class ArticleViewModel extends WebsiteViewModel
 {
 
-    function index()
+    function index() : View
     {
         $article = $this->getPage('home');
         $this->setSeo($article);
@@ -27,7 +28,7 @@ class ArticleViewModel extends WebsiteViewModel
         return view('website.home', compact('article'));
     }
 
-    function show($parent, $child = '')
+    function show( string $parent, string $child = '')
     {
         $article = (!$child) ? $this->getParentPage($parent, app()->getLocale()) : $this->getSubPage($parent, $child);
         if ($this->validatePage($article)) {
@@ -39,7 +40,7 @@ class ArticleViewModel extends WebsiteViewModel
     }
 
 
-    function contacts()
+    function contacts() :View
     {
         $article = $this->getPage(trans('routes.contacts'));
         $this->setSeo($article);
@@ -56,7 +57,7 @@ class ArticleViewModel extends WebsiteViewModel
     }
 
 
-    function getParentPage($parent)
+    protected function getParentPage($parent)
     {
 
         $page = $this->getPage($parent, app()->getLocale());
@@ -65,7 +66,7 @@ class ArticleViewModel extends WebsiteViewModel
 
     }
 
-    public function getSubPage($parent, $child)
+    public function getSubPage(string $parent, string $child)
     {
         $parent = $this->getPage($parent);
         $child = $this->getPage($child);
@@ -84,14 +85,12 @@ class ArticleViewModel extends WebsiteViewModel
         return $child;
     }
 
-    function handleTemplate($article)
+    function handleTemplate($article) : string
     {
-
         // Get website default locale
         $fallback_locale = \Config::get('app.fallback_locale');
         $template = ($article->template_id) ? $article->template->value : $article->{'slug:' . $fallback_locale};
         return (view()->exists('website.' . $template)) ? 'website.' . $template : 'website.normal';
-
     }
 
     /**

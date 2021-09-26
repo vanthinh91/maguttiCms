@@ -8,6 +8,14 @@ use App\maguttiCms\Domain\Website\WebsiteViewModel;
 class CategoryViewModel extends WebsiteViewModel
 {
 
+    function index()
+    {
+        $article = $this->getCurrentPage();
+        $this->setSeo($article);
+        $template = ($article->template_id) ? $article->template->value : 'categories';
+        return view('website.'.$template, ['article' => $article]);
+    }
+
     function show($slug)
     {
         $category = Category::findBySlug($slug, app()->getLocale());
@@ -23,18 +31,6 @@ class CategoryViewModel extends WebsiteViewModel
 
     }
 
-    function index()
-    {
-        $article = $this->getCurrentPage();
 
-        $this->setSeo($article);
-        $template = ($article->template_id) ? $article->template->value : 'categories';
-        return view('website.'.$template, ['article' => $article]);
 
-    }
-
-    function handle($slug)
-    {
-        return ($slug == '') ? $this->index() : $this->show($slug);
-    }
 }

@@ -11,8 +11,15 @@ use phpDocumentor\Reflection\Types\Collection;
 class LocationViewModel extends WebsiteViewModel
 {
 
+    function index()
+    {
+        $article = $this->getCurrentPage();
+        $locations = Location::published()->orderBy('sort')->get();
+        $this->setSeo($article);
+        return view('website.location.index', ['article' => $article, 'locations' =>  $locations]);
+    }
 
-    function show($slug)
+    function show(string $slug)
     {
         $location = Location::findBySlug($slug, app()->getLocale());
         $locations = collect(Location::published()->orderBy('sort')->pluck('id'));
@@ -29,19 +36,4 @@ class LocationViewModel extends WebsiteViewModel
         return view('website.location.single', compact('article', 'location', 'locale_article','next','prev'));
 
     }
-
-    function index()
-    {
-        $article = $this->getCurrentPage();
-        $locations = Location::published()->orderBy('sort')->get();
-        $this->setSeo($article);
-        return view('website.location.index', ['article' => $article, 'locations' =>  $locations]);
-
-    }
-
-    function handle($slug)
-    {
-        return ($slug == '') ? $this->index() : $this->show($slug);
-    }
-
 }
