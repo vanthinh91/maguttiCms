@@ -14,6 +14,6 @@ trait BlockPresenter
      */
     function getBtnTitleAttribute()
     {
-        return ($this->menu_title) ? $this->menu_title : $this->subtitle;
+        return ($this->btn_title) ? $this->btn_title : $this->subtitle;
     }
 }
